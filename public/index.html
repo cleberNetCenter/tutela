@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutela Digital® - Custódia Jurídica de Ativos Digitais</title>
     <meta name="description" content="Infraestrutura de custódia jurídica e governança de ativos digitais com validade legal, inviolabilidade técnica e cadeia de custódia auditável.">
+    <link rel="icon" type="image/svg+xml" href="assets/illustrations/favicon.svg">
     
     <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,7 +112,7 @@
 		}
 
 		.header.scrolled {
-			background: var(--color-surface-dark);
+			background: var(--color-surface-base);
 			box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
 		}
 
@@ -1028,10 +1029,7 @@
 				line-height: 1.45;
 			}
 			
-			#page-governo .text-block h2::before {
-					background-size: 220px;
-			}
-			
+
 			#page-empresas .text-block h2::before {
 				background-size: 240px;
 				opacity: 0.12;
@@ -1163,115 +1161,67 @@
 				display: none;
 			}
 		}
+	
 		/* =========================================================
-		   SISTEMA DE MARCA-D’ÁGUA EM H2 – PADRÃO INSTITUCIONAL
-		   ---------------------------------------------------------
-		   - Aplica SVG como background (marca-d’água)
-		   - Sem alterar HTML
-		   - Escopo por página
-		   - Visual premium, editorial e discreto
+		   HERO PREMIUM – PADRÃO PARA PÁGINAS INTERNAS
 		   ========================================================= */
 
+		.page-header--split {
+			max-width: var(--max-width);
+			margin: 0 auto;
 
-		/* =========================================================
-		   CONFIGURAÇÃO BASE (TODAS AS PÁGINAS)
-		   ========================================================= */
-
-		.page .text-block h2 {
-			position: relative;
-			padding: 3rem 2rem;
-			text-align: center;
-			z-index: 1;
+			display: grid;
+			grid-template-columns: 1.3fr 0.7fr;
+			align-items: center;
+			column-gap: var(--space-xl);
 		}
 
-		.page .text-block h2::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-
-			background-repeat: no-repeat;
-			background-position: center;
-
-			z-index: -1;
+		/* Texto */
+		.page-header-content {
+			text-align: left;
+			max-width: 560px;
 		}
 
-
 		/* =========================================================
-		   PÁGINA: GOVERNO
-		   Conceito: institucional público / atos administrativos
+		   PADRONIZAÇÃO DE TAMANHO – GRÁFICOS DO HERO
 		   ========================================================= */
 
-		#page-governo .text-block h2::before {
-			background-image: url("assets/illustrations/national_congress_brazil.svg");
-			background-size: 320px;
-			opacity: 0.2;
+		.page-header-graphic {
+			width: 260px;        /* tamanho visual fixo */
+			height: 200px;       /* altura controlada */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: auto;
 		}
 
+		.page-header-graphic img {
+			max-width: 100%;
+			max-height: 100%;
+			width: auto;
+			height: auto;
 
-		/* =========================================================
-		   PÁGINA: EMPRESAS
-		   Conceito: arquitetura corporativa / governança empresarial
-		   ========================================================= */
-
-		#page-empresas .text-block h2::before {
-			background-image: url("assets/illustrations/corporate_building.svg");
-			background-size: 390px;
-			opacity: 0.2;
+			opacity: 0.5;
+			filter: grayscale(100%) contrast(0.95);
 		}
 
-
-		/* =========================================================
-		   PÁGINA: PESSOAS FÍSICAS
-		   Conceito: decisão pessoal / documento / orientação
-		   ========================================================= */
-
-		#page-pessoas .text-block h2::before {
-			background-image: url("assets/illustrations/people_conversation.svg");
-			background-size: 380px;
-			opacity: 0.2;
-		}
-
-
-		/* =========================================================
-		   PÁGINA: COMO FUNCIONA
-		   Conceito: processo / etapas / fluxo
-		   ========================================================= */
-
-		#page-como-funciona .text-block h2::before {
-			background-image: url("assets/illustrations/workflow_process.svg");
-			background-size: 360px;
-			opacity: 0.25;
-		}
-
-
-		/* =========================================================
-		   PÁGINA: SEGURANÇA
-		   Conceito: proteção / integridade / validade jurídica
-		   ========================================================= */
-
-		#page-seguranca .text-block h2::before {
-			background-image: url("assets/illustrations/security_shield.svg");
-			background-size: 360px;
-			opacity: 0.25;
-		}
-
-
-		/* =========================================================
-		   AJUSTE RESPONSIVO – MOBILE
-		   Mantém legibilidade e sobriedade
-		   ========================================================= */
-
+		/* Mobile: remove gráfico */
 		@media (max-width: 768px) {
-
-			.page .text-block h2 {
-				padding: 2.5rem 1.5rem;
+			.page-header--split {
+				grid-template-columns: 1fr;
+				text-align: center;
 			}
 
-			.page .text-block h2::before {
-				background-size: 220px !important;
-				opacity: 0.12 !important;
+			.page-header-graphic {
+				display: none;
 			}
 		}
+
+		/* Corrige alinhamento herdado */
+		.page-header {
+			text-align: left;
+		}
+
     </style>
 </head>
 <body class="exec-compact">
@@ -1388,12 +1338,26 @@
             
             <!-- ==================== GOVERNO ==================== -->
             <div class="page" id="page-governo">
-                <section class="page-header">
-                    <div class="page-header-inner">
-                        <h1>Soluções para Governo</h1>
-                        <p>Custódia probatória e governança de ativos digitais para a administração pública.</p>
-                    </div>
-                </section>
+                <section class="page-header page-header--governo">
+					<div class="page-header-inner page-header--split">
+						
+						<!-- TEXTO À ESQUERDA -->
+						<div class="page-header-content">
+							<h1>Soluções para Governo</h1>
+							<p>Custódia probatória e governança de ativos digitais para a administração pública.</p>
+						</div>
+
+						<!-- ELEMENTO GRÁFICO À DIREITA -->
+						<div class="page-header-graphic">
+							<img
+								src="assets/illustrations/national_congress_brazil.svg"
+								alt="Ilustração institucional do setor público"
+							/>
+						</div>
+
+					</div>
+				</section>
+
                 <section class="text-block">
                     <div class="text-block-inner">
                         <h2>Infraestrutura para o Setor Público</h2>
@@ -1440,14 +1404,22 @@
             </div>
             
             <!-- ==================== EMPRESAS ==================== -->
-            <div class="page" id="page-empresas">
-                <section class="page-header">
-                    <div class="page-header-inner">
-                        <h1>Soluções para Empresas</h1>
-                        <p>Proteção jurídica e governança de ativos digitais corporativos.</p>
-                    </div>
-                </section>
-                
+			<div class="page" id="page-empresas">
+				<section class="page-header page-header--empresas">
+					<div class="page-header-inner page-header--split">
+
+						<div class="page-header-content">
+							<h1>Soluções para Empresas</h1>
+							<p>Proteção jurídica e governança de ativos digitais corporativos.</p>
+						</div>
+
+						<div class="page-header-graphic">
+							<img src="assets/illustrations/corporate_building.svg" alt="">
+						</div>
+
+					</div>
+				</section>    
+				
                 <section class="text-block">
                     <div class="text-block-inner">
                         <h2>Infraestrutura para o Ambiente Corporativo</h2>
@@ -1494,13 +1466,21 @@
             </div>
             
             <!-- ==================== PESSOAS FÍSICAS ==================== -->
-            <div class="page" id="page-pessoas">
-                <section class="page-header">
-                    <div class="page-header-inner">
-                        <h1>Soluções para Pessoas Físicas</h1>
-                        <p>Proteção patrimonial e planejamento sucessório do seu acervo digital.</p>
-                    </div>
-                </section>
+			<div class="page" id="page-pessoas">
+				<section class="page-header page-header--pessoas">
+					<div class="page-header-inner page-header--split">
+
+						<div class="page-header-content">
+							<h1>Soluções para Pessoas Físicas</h1>
+							<p>Proteção patrimonial e planejamento sucessório do seu acervo digital.</p>
+						</div>
+
+						<div class="page-header-graphic">
+							<img src="assets/illustrations/people_conversation.svg" alt="">
+						</div>
+
+					</div>
+				</section>
                 
                 <section class="text-block">
                     <div class="text-block-inner">
@@ -1548,13 +1528,21 @@
             </div>
             
             <!-- ==================== COMO FUNCIONA ==================== -->
-            <div class="page" id="page-como-funciona">
-                <section class="page-header">
-                    <div class="page-header-inner">
-                        <h1>Como Funciona</h1>
-                        <p>Processo simples e seguro para iniciar a custódia dos seus ativos digitais.</p>
-                    </div>
-                </section>
+			<div class="page" id="page-como-funciona">
+				<section class="page-header page-header--como-funciona">
+					<div class="page-header-inner page-header--split">
+
+						<div class="page-header-content">
+							<h1>Como Funciona</h1>
+							<p>Processo simples e seguro para iniciar a custódia dos seus ativos digitais.</p>
+						</div>
+
+						<div class="page-header-graphic">
+							<img src="assets/illustrations/workflow_process.svg" alt="">
+						</div>
+
+					</div>
+				</section>
                 
                 <section class="text-block">
                     <div class="text-block-inner">
@@ -1607,13 +1595,21 @@
             </div>
             
             <!-- ==================== SEGURANÇA ==================== -->
-            <div class="page" id="page-seguranca">
-                <section class="page-header">
-                    <div class="page-header-inner">
-                        <h1>Segurança &amp; Validade Jurídica</h1>
-                        <p>Fundamentos técnicos e jurídicos que sustentam a infraestrutura de custódia.</p>
-                    </div>
-                </section>
+			<div class="page" id="page-seguranca">
+				<section class="page-header page-header--seguranca">
+					<div class="page-header-inner page-header--split">
+
+						<div class="page-header-content">
+							<h1>Segurança &amp; Validade Jurídica</h1>
+							<p>Fundamentos técnicos e jurídicos que sustentam a infraestrutura de custódia.</p>
+						</div>
+
+						<div class="page-header-graphic">
+							<img src="assets/illustrations/security_shield.svg" alt="">
+						</div>
+
+					</div>
+				</section>
                 
                 <section class="text-block">
                     <div class="text-block-inner">
@@ -1926,5 +1922,6 @@
 	</a>
 </body>
 </html>
+
 
 
