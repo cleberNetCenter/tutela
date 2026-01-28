@@ -1,0 +1,99 @@
+
+/* =========================================================
+   STYLES CLEAN – EXEC COMPACT MODE
+   Compactação agressiva segura (escopo body.exec-compact)
+   NÃO altera variáveis globais nem estrutura de grid
+   ========================================================= */
+
+/* ===================== SEÇÕES ============================ */
+body.exec-compact .hero,
+body.exec-compact .lp-hero,
+body.exec-compact .page-header {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+body.exec-compact .text-block,
+body.exec-compact .features,
+body.exec-compact .steps,
+body.exec-compact .verticals {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+/* ===================== TÍTULOS =========================== */
+body.exec-compact h1 {
+  margin-bottom: 1rem;
+}
+
+body.exec-compact h2 {
+  margin-bottom: 1.25rem;
+}
+
+body.exec-compact h3 {
+  margin-bottom: .5rem;
+}
+
+/* ===================== HERO SUBTITLE ===================== */
+body.exec-compact .hero-subtitle,
+body.exec-compact .lp-hero-subtitle {
+  margin-bottom: 1.5rem;
+}
+
+/* ===================== GRIDS ============================= */
+body.exec-compact .features-grid {
+  gap: 1rem;
+}
+
+body.exec-compact .steps-list {
+  gap: 1.5rem;
+}
+
+body.exec-compact .verticals-grid {
+  gap: 1.5rem;
+}
+
+/* ===================== CARDS ============================= */
+body.exec-compact .feature-item,
+body.exec-compact .vertical-card {
+  padding: 1.5rem;
+}
+
+/* ===================== CTA =============================== */
+body.exec-compact .cta-final {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+body.exec-compact .cta-final h2 {
+  margin-bottom: 1rem;
+}
+
+body.exec-compact .cta-final p {
+  margin-bottom: 1.25rem;
+}
+
+/* ===================== FOOTER ============================ */
+body.exec-compact .footer {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+body.exec-compact .footer-inner {
+  gap: 1rem;
+}
+
+/* ===================== MOBILE ============================ */
+@media (max-width:768px){
+  body.exec-compact .hero,
+  body.exec-compact .lp-hero,
+  body.exec-compact .page-header,
+  body.exec-compact .text-block,
+  body.exec-compact .features,
+  body.exec-compact .steps,
+  body.exec-compact .verticals,
+  body.exec-compact .cta-final {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}

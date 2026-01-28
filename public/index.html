@@ -1,1927 +1,641 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutela Digital® - Custódia Jurídica de Ativos Digitais</title>
-    <meta name="description" content="Infraestrutura de custódia jurídica e governança de ativos digitais com validade legal, inviolabilidade técnica e cadeia de custódia auditável.">
-    <link rel="icon" type="image/svg+xml" href="assets/illustrations/favicon.svg">
-    
-    <!-- Preconnect for fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Prepared for GTM -->
-    <!-- Google Tag Manager -->
-    <!-- <script>(function(w,d,s,l,i){...})(window,document,'script','dataLayer','GTM-XXXXX');</script> -->
-    
-    <style>
-/* =========================================================
-   VARIÁVEIS GLOBAIS – IDENTIDADE VISUAL
-   ========================================================= */
-
-		:root {
-			/* Verdes institucionais */
-			--color-green-980: #081a13;
-			--color-green-950: #0b241b;
-			--color-green-900: #0f3a2a;
-			--color-green-850: #134634;
-			--color-green-800: #16503b;
-			--color-green-700: #1b6b4d;
-
-			/* Superfícies */
-			--color-surface-dark: #081a13;
-			--color-surface-base: #0f3a2a;
-			--color-surface-muted: #e6f0eb;
-			--color-surface-light: #f2f7f5;
-
-			/* Texto */
-			--color-text-strong: #0b241b;
-			--color-text-base: #123f30;
-			--color-text-muted: #4f7c6b;
-			--color-text-inverse: #e6f0eb;
-
-			/* Bordas */
-			--color-border-soft: #c8ddd4;
-			--color-border-strong: #9fbfb3;
-
-			/* Tipografia */
-			--font-display: 'Cormorant Garamond', Georgia, serif;
-			--font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-
-			/* Espaçamentos */
-			--space-xs: 0.5rem;
-			--space-sm: 1rem;
-			--space-md: 1.5rem;
-			--space-lg: 2.5rem;
-			--space-xl: 4rem;
-			--space-2xl: 6rem;
-			--space-3xl: 10rem;
-
-			--max-width: 1200px;
-			--max-width-narrow: 800px;
-		}
-
-  
-		/* =========================================================
-		   RESET E BASE
-		   ========================================================= */
-
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-
-		html {
-			scroll-behavior: smooth;
-		}
-
-		body {
-			font-family: var(--font-body);
-			font-size: 16px;
-			line-height: 1.7;
-			color: var(--color-text-base);
-			background: var(--color-surface-light);
-			-webkit-font-smoothing: antialiased;
-		}
-
-		.app {
-			min-height: 100vh;
-			display: flex;
-			flex-direction: column;
-		}
-
-		.main {
-			flex: 1;
-			padding-top: 80px;
-		}
-        
-        /* HEADER */
-
-		.header {
-			position: fixed;
-			top: 0;
-			left: 0;
-			right: 0;
-			z-index: 100;
-			background: var(--color-surface-base);
-			border-bottom: 1px solid var(--color-border-strong);
-			transition: all 0.3s ease;
-		}
-
-		.header.scrolled {
-			background: var(--color-surface-base);
-			box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
-		}
-
-		.header-inner {
-			max-width: var(--max-width);
-			margin: 0 auto;
-			padding: var(--space-md) var(--space-lg);
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		}
-
-		/* Logo */
-		.header .logo {
-			font-family: var(--font-display);
-			font-size: 1.5rem;
-			color: #ffffff;
-			text-decoration: none;
-		}
-        
-        .logo sup {
-            font-size: 0.5em;
-            vertical-align: super;
-        }
-
-		/* Menu desktop */
-		.nav {
-			display: flex;
-			gap: var(--space-lg);
-		}
-
-		.nav-link {
-			color: var(--color-text-inverse);
-			text-decoration: none;
-			font-size: 0.875rem;
-			position: relative;
-			padding-bottom: 6px;
-		}
-
-		/* Hover e ativo */
-		.nav-link:hover,
-		.nav-link.active {
-			color: var(--color-surface-light);
-		}
-
-		.nav-link.active::after {
-			content: "";
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			width: 100%;
-			height: 2px;
-			background: var(--color-surface-light);
-		}
-           
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: var(--space-xs);
-        }
-        
-        .mobile-menu-btn span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--color-text-strong);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-        
-        @media (max-width: 900px) {
-            .nav {
-                display: none;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            .nav.mobile-open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--color-surface-light);
-                border-bottom: 1px solid var(--color-border-soft);
-                padding: var(--space-lg);
-                gap: var(--space-md);
-            }
-        }
-        
-        /* MAIN */
-        .main {
-            flex: 1;
-            padding-top: 80px;
-        }
-        
-        /* PAGE (visibility) */
-        .page {
-            display: none;
-        }
-        .page.active {
-            display: block;
-        }
-		
-		/* =========================================================
-		   SEÇÕES PADRÃO
-		   ========================================================= */
-		/* HERO – DEFINIÇÃO ÚNICA E GLOBAL */
-		.hero,
-		.lp-hero {
-			padding: 2.25rem var(--space-lg);
-			text-align: center;
-
-			background: linear-gradient(
-				180deg,
-				var(--color-surface-light) 0%,
-				var(--color-surface-muted) 100%
-			);
-
-			color: var(--color-text-base);
-
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		
-		.text-block,
-		.features,
-		.steps,
-		.verticals,
-		.page-header {
-			padding: var(--space-2xl) var(--space-lg);
-			background: var(--color-surface-light);
-		}
-
-		.feature-item,
-		.vertical-card {
-			background: var(--color-surface-light);
-			border: 1px solid var(--color-border-soft);
-			padding: var(--space-lg);
-		}
-        
-        /* HERO */
-        
-        .hero-inner {
-            max-width: var(--max-width-narrow);
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 500;
-            color: var(--color-text-strong);
-            line-height: 1.15;
-            margin-bottom: var(--space-md);
-            letter-spacing: -0.02em;
-        }
-        
-        .hero h1 sup {
-            font-size: 0.4em;
-            vertical-align: super;
-        }
-		
-		.hero h1,
-		.lp-hero h1 {
-			color: var(--color-text-strong);
-		}
-
-		.hero-subtitle,
-		.lp-hero-subtitle {
-			color: var(--color-text-muted);
-		}
-     
-        .hero-subtitle {
-            font-size: 1.125rem;
-            color: var(--color-text-muted);
-            max-width: 600px;
-            margin: 0 auto var(--space-xl);
-            line-height: 1.8;
-        }
-       
-        /* BUTTONS */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-md) var(--space-xl);
-            font-family: var(--font-body);
-            font-size: 0.9375rem;
-            font-weight: 500;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            letter-spacing: 0.02em;
-        }
-        
-        .btn-primary {
-            background: var(--color-green-900);
-			color: var(--color-text-inverse);
-        }
-        
-        .btn-primary:hover {
-            background: var(--color-green-950);
-            transform: translateY(-1px);
-        }
-        
-        /* TEXT BLOCK */
-        .text-block {
-            padding: var(--space-2xl) var(--space-lg);
-            background: var(--color-surface-light);
-        }
-        
-        .text-block-inner {
-            max-width: var(--max-width-narrow);
-            margin: 0 auto;
-        }
-        
-        .text-block h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 500;
-            color: var(--color-text-strong);
-            margin-bottom: var(--space-lg);
-            letter-spacing: -0.01em;
-        }
-		
-		.text-block h2,
-		.features h2,
-		.steps h2,
-		.verticals h2 {
-			margin-bottom: var(--space-md);
-		}
-       
-        .text-block p {
-            color: var(--color-text-base);
-            margin-bottom: var(--space-md);
-            font-size: 1.0625rem;
-        }
-        
-        .text-block p:last-child {
-            margin-bottom: 0;
-        }
-        
-        /* FEATURES */
-        .features {
-            padding: var(--space-2xl) var(--space-lg);
-            background: var(--color-surface-light);
-        }
-        
-        .features-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-        
-        .features h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 500;
-            color: var(--color-text-strong);
-            text-align: center;
-            margin-bottom: var(--space-xl);
-            letter-spacing: -0.01em;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-sm);
-        }
-        
-        .feature-item {
-            background: var(--color-surface-light);
-			padding: var(--space-lg);
-            border: 1px solid var(--color-border-soft);
-        }
-		
-		.feature-item,
-		.vertical-card {
-			background: var(--color-surface-light);
-			border: 1px solid var(--color-border-soft);
-		}
-
-		.feature-item h3,
-		.vertical-card h3 {
-			color: var(--color-text-strong);
-		}
-				
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: var(--space-md);
-            color: var(--color-text-base);
-        }
-        
-        .feature-item h3 {
-            font-family: var(--font-body);
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--color-text-strong);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .feature-item p {
-            color: var(--color-text-muted);
-            font-size: 0.9375rem;
-            line-height: 1.7;
-        }
-        
-        /* CTA FINAL */
-        .cta-final {
-            padding: clamp(3rem, 7vh, 5rem) var(--space-lg);
-            text-align: center;
-            background: var(--color-surface-base);
-			color: var(--color-text-inverse);
-        }
-        
-        .cta-final-inner {
-            max-width: var(--max-width-narrow);
-            margin: 0 auto;
-        }
-        
-        .cta-final h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 500;
-            color: var(--color-text-inverse);
-            margin-bottom: var(--space-md);
-            letter-spacing: -0.01em;
-        }
-        
-        .cta-final p {
-            color: var(--color-border-soft);
-            margin-bottom: var(--space-xl);
-            font-size: 1rem;
-        }
-        
-        .cta-final .btn-primary {
-            background: var(--color-text-inverse);
-            color: var(--color-text-strong);
-        }
-        
-        .cta-final .btn-primary:hover {
-            background: var(--color-surface-light);
-        }
-
-		.cta-final h2 {
-			color: var(--color-text-inverse);
-		}
-
-		.cta-final p {
-			color: var(--color-border-soft);
-		}
-
-		.cta-final .btn-primary,
-		.lp-hero .btn-primary {
-			background: var(--color-surface-light);
-			color: var(--color-green-900);
-		}
-        
-        /* STEPS */
-        .steps {
-            padding: var(--space-2xl) var(--space-lg);
-            background: var(--color-surface-light);
-        }
-        
-        .steps-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-        
-        .steps h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 500;
-            color: var(--color-text-strong);
-            text-align: center;
-            margin-bottom: var(--space-xl);
-            letter-spacing: -0.01em;
-        }
-        
-        .steps-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: var(--space-lg);
-        }
-        
-        .step-item {
-            text-align: center;
-            padding: var(--space-lg);
-        }
-        
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 64px;
-            height: 64px;
-            margin: 0 auto var(--space-md);
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--color-text-strong);
-            border: 2px solid var(--color-border-strong);
-            border-radius: 50%;
-        }
-        
-        .step-item h3 {
-            font-family: var(--font-body);
-            font-size: 1.0625rem;
-            font-weight: 600;
-            color: var(--color-text-strong);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .step-item p {
-            color: var(--color-text-muted);
-            font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-        
-        /* VERTICALS */
-        .verticals {
-            padding: var(--space-2xl) var(--space-lg);
-            background: var(--color-surface-light);
-        }
-        
-        .verticals-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-        
-        .verticals h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 500;
-            color: var(--color-text-strong);
-            text-align: center;
-            margin-bottom: var(--space-xl);
-            letter-spacing: -0.01em;
-        }
-        
-        .verticals-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-lg);
-        }
-        
-        @media (max-width: 768px) {
-            .verticals-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .vertical-card {
-            background: var(--color-surface-light);
-            padding: var(--space-lg);
-            text-align: center;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
-        
-        .vertical-card:hover {
-            border-color: var(--color-border-strong);
-            transform: translateY(-4px);
-        }
-        
-        .vertical-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--color-text-strong);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .vertical-card p {
-            color: var(--color-text-muted);
-            font-size: 0.9375rem;
-            line-height: 1.7;
-        }
-        
-        /* PAGE HEADER */
-		.page-header {
-			padding: var(--space-2xl) var(--space-lg);
-			text-align: center;
-
-			/* herda o fundo institucional do hero */
-			background: linear-gradient(
-				180deg,
-				var(--color-surface-light) 0%,
-				var(--color-surface-muted) 100%
-			);
-		}
-        
-        .page-header-inner {
-            max-width: var(--max-width-narrow);
-            margin: 0 auto;
-        }
-        
-        .page-header h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 500;
-            color: var(--color-text-strong);
-            margin-bottom: var(--space-md);
-            letter-spacing: -0.02em;
-        }
-        
-        .page-header p {
-            color: var(--color-text-muted);
-            font-size: 1.0625rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* LP HERO */
-        .lp-hero {
-            padding: var(--space-3xl) var(--space-lg);
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .lp-hero-inner {
-            max-width: var(--max-width-narrow);
-            margin: 0 auto;
-        }
-        
-        .lp-hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 500;
-            color: var(--color-text-inverse);
-            line-height: 1.15;
-            margin-bottom: var(--space-md);
-            letter-spacing: -0.02em;
-        }
-        
-        .lp-hero h1 sup {
-            font-size: 0.4em;
-            vertical-align: super;
-        }
-        
-        .lp-hero-subtitle {
-            font-size: 1.125rem;
-            color: var(--color-text-muted);
-            max-width: 600px;
-            margin: 0 auto var(--space-xl);
-            line-height: 1.8;
-        }
-        
-        .lp-hero .btn-primary:hover {
-            background: var(--color-surface-light);
-        }
-        
-
-
-        /* FOOTER */
-		.footer {
-			background: var(--color-surface-dark);
-			color: var(--color-border-soft);
-			padding: var(--space-md) var(--space-lg);
-		}
-				
-        .footer-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: var(--space-md);
-        }
-        
-        .footer-logo {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--color-text-inverse);
-        }
-        
-        .footer-logo sup {
-            font-size: 0.5em;
-            vertical-align: super;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: var(--space-lg);
-            flex-wrap: wrap;
-        }
-        
-        .footer-link {
-            font-size: 0.875rem;
-            color: var(--color-text-muted);
-            text-decoration: none;
-            transition: color 0.2s ease;
-            cursor: pointer;
-        }
-        
-        .footer-link:hover {
-            color: var(--color-text-inverse);
-        }
-        
-        .footer-copy {
-            width: 100%;
-            text-align: center;
-            padding-top: var(--space-sm);
-			margin-top: var(--space-sm);
-            border-top: 1px solid var(--color-surface-dark);
-            font-size: 0.8125rem;
-        }
-        
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero, 
-			.lp-hero {
-				align-items: flex-start;
-            }
-            
-            .text-block,
-            .features,
-            .steps,
-            .cta-final,
-            .verticals,
-            .page-header {
-                padding: clamp(2.5rem, 6vh, 4rem) var(--space-lg);
-            }
-            
-            .header-inner {
-                padding: var(--space-sm) var(--space-md);
-            }
-            
-            .features-grid,
-            .steps-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .footer-links {
-                justify-content: center;
-            }
-        }
-		/* WHATSAPP FLOATING BUTTON */
-		.whatsapp-float {
-		  position: fixed;
-		  right: 24px;
-		  bottom: 24px;
-		  width: 56px;
-		  height: 56px;
-		  background: #25d366;
-		  color: #ffffff;
-		  border-radius: 50%;
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		  text-decoration: none;
-		  z-index: 200;
-		  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-		  transition: transform 0.25s ease, box-shadow 0.25s ease;
-		}
-
-		.whatsapp-float:hover {
-		  transform: translateY(-2px);
-		  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
-		}
-
-		/* ICON */
-		.whatsapp-icon {
-		  width: 28px;
-		  height: 28px;
-		}
-
-		/* TOOLTIP */
-		.whatsapp-tooltip {
-		  position: absolute;
-		  right: 70px;
-		  background: var(--color-green-900);
-		  color: var(--color-text-inverse);
-		  padding: 8px 12px;
-		  font-size: 0.8125rem;
-		  font-family: var(--font-body);
-		  white-space: nowrap;
-		  opacity: 0;
-		  pointer-events: none;
-		  transform: translateY(4px);
-		  transition: opacity 0.2s ease, transform 0.2s ease;
-		}
-
-		.whatsapp-tooltip::after {
-		  content: '';
-		  position: absolute;
-		  top: 50%;
-		  right: -6px;
-		  transform: translateY(-50%);
-		  border-width: 6px;
-		  border-style: solid;
-		  border-color: transparent transparent transparent var(--color-green-900);
-		}
-
-		/* SHOW TOOLTIP ON HOVER */
-		.whatsapp-float:hover .whatsapp-tooltip {
-		  opacity: 1;
-		  transform: translateY(0);
-		}
-
-		/* MOBILE ADJUST */
-		@media (max-width: 768px) {
-
-			.hero,
-			.lp-hero {
-				align-items: flex-start;
-			}
-
-			.text-block,
-			.features,
-			.steps,
-			.verticals,
-			.page-header,
-			.cta-final {
-				padding: 2.5rem var(--space-md);
-			}
-
-			.feature-item,
-			.vertical-card {
-				padding: var(--space-md);
-			}
-			
-			.features-grid {
-				grid-template-columns: 1fr;
-			}
-
-			.hero-subtitle,
-			.lp-hero-subtitle {
-				margin-bottom: var(--space-md);
-			}
-			
-			.hero h1,
-			.lp-hero h1 {
-				font-size: clamp(1.8rem, 6vw, 2.4rem);
-			}
-			
-			.footer {
-				padding: var(--space-sm) var(--space-md);
-			}
-
-			.footer-inner {
-				gap: var(--space-sm);
-			}
-
-			.footer-copy {
-				padding-top: var(--space-xs);
-				margin-top: var(--space-xs);
-			}
-		}
-		/* =========================================================
-		   MODO EXECUTIVO COMPACTO
-		   ========================================================= */
-
-		.exec-compact .hero,
-		.exec-compact .lp-hero {
-			padding: 1.75rem var(--space-lg);
-		}
-
-		.exec-compact .hero h1,
-		.exec-compact .lp-hero h1 {
-			margin-bottom: var(--space-xs);
-			line-height: 1.1;
-		}
-
-		.exec-compact .hero-subtitle,
-		.exec-compact .lp-hero-subtitle {
-			margin-bottom: var(--space-md);
-			line-height: 1.5;
-		}
-
-		.exec-compact .text-block,
-		.exec-compact .features,
-		.exec-compact .steps,
-		.exec-compact .verticals,
-		.exec-compact .page-header {
-			padding: 2.75rem var(--space-lg);
-		}
-
-		.exec-compact .features-grid {
-			grid-template-columns: repeat(4, 1fr);
-			gap: var(--space-md);
-		}
-
-		.exec-compact .feature-item,
-		.exec-compact .vertical-card {
-			padding: var(--space-md);
-		}
-
-		.exec-compact .step-item {
-			padding: var(--space-md);
-		}
-
-		.exec-compact .step-number {
-			width: 52px;
-			height: 52px;
-			font-size: 1.25rem;
-			margin-bottom: var(--space-sm);
-		}
-
-		.exec-compact .cta-final {
-			padding: 3rem var(--space-lg);
-		}
-
-		.exec-compact .footer {
-			padding: var(--space-sm) var(--space-lg);
-		}
-
-		.exec-compact .footer-inner {
-			gap: var(--space-sm);
-		}
-
-		.exec-compact .footer-copy {
-			margin-top: var(--space-xs);
-			padding-top: var(--space-xs);
-			font-size: 0.75rem;
-		}
-
-		@media (max-width: 768px) {
-
-			.exec-compact .hero,
-			.exec-compact .lp-hero {
-				min-height: 28vh;
-				padding: 2rem var(--space-md);
-			}
-
-			.exec-compact .features-grid {
-				grid-template-columns: 1fr;
-			}
-
-			.exec-compact .text-block,
-			.exec-compact .features,
-			.exec-compact .steps,
-			.exec-compact .verticals,
-			.exec-compact .page-header,
-			.exec-compact .cta-final {
-				padding: 2.25rem var(--space-md);
-			}
-
-			.exec-compact .footer {
-				padding: var(--space-xs) var(--space-md);
-			}			
-
-			.exec-compact .features-grid--security {
-				grid-template-columns: repeat(3, 1fr);
-			}
-		}
-		/* Tablet */
-		@media (max-width: 1200px) {
-			.exec-compact .features-grid--security {
-				grid-template-columns: repeat(2, 1fr);
-			}
-		}
-
-		/* Mobile */
-		@media (max-width: 768px) {
-			.exec-compact .features-grid--security {
-				grid-template-columns: 1fr;
-			}
-		}
-		
-		/* =========================================================
-		   CORREÇÃO DEFINITIVA – GRID PILARES DE SEGURANÇA
-		   (CSS PURO – SEM ANINHAMENTO)
-		   ========================================================= */
-
-		/* Desktop */
-		body.exec-compact #page-seguranca .features-grid--security {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-		}
-
-		/* Tablet */
-		@media (max-width: 1200px) {
-			body.exec-compact #page-seguranca .features-grid--security {
-				grid-template-columns: repeat(2, 1fr);
-			}
-		}
-
-		/* Mobile */
-		@media (max-width: 768px) {
-			body.exec-compact #page-seguranca .features-grid--security {
-				grid-template-columns: 1fr;
-			}
-			.hero,
-			.lp-hero {
-				padding: 1.5rem var(--space-md);
-			}
-
-			.hero h1,
-			.lp-hero h1 {
-				font-size: clamp(1.6rem, 6vw, 2.2rem);
-			}
-
-			.hero-subtitle,
-			.lp-hero-subtitle {
-				margin-bottom: var(--space-sm);
-				line-height: 1.45;
-			}
-			
-
-			#page-empresas .text-block h2::before {
-				background-size: 240px;
-				opacity: 0.12;
-			}
-			#page-pessoas .text-block h2::before {
-				background-size: 240px;
-				opacity: 0.12;
-			}
-			#page-como-funciona .text-block h2::before {
-				background-size: 220px;
-				opacity: 0.12;
-			}
-			#page-seguranca .text-block h2::before {
-				background-size: 220px;
-				opacity: 0.12;
-			}
-		}
-
-		/* =========================================================
-		   CABEÇALHO – FUNDO VERDE INSTITUCIONAL
-		   ========================================================= */
-
-		.header .nav-link {
-			color: var(--color-text-inverse);
-			position: relative;
-			padding-bottom: 6px;
-		}
-
-		.header .nav-link:hover,
-		.header .nav-link.active {
-			color: var(--color-surface-light);
-		}
-
-		.header .nav-link.active::after {
-			content: "";
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			width: 100%;
-			height: 2px;
-			background-color: var(--color-surface-light);
-		}
-
-		/* Botão mobile (hamburger) */
-		.mobile-menu-btn span {
-			background: var(--color-surface-light);
-		}
-
-		/* Menu mobile aberto */
-		@media (max-width: 900px) {
-			.nav.mobile-open {
-				background: var(--color-surface-base);
-				border-bottom: 1px solid var(--color-border-strong);
-			}
-		}
-
-		/* Header ao rolar a página */
-		.header.scrolled {
-			background: var(--color-surface-dark);
-			box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
-		}	
-		/* =========================================================
-		   CORREÇÃO DE VISIBILIDADE – MENU HEADER
-		   ========================================================= */
-
-		/* Botão menu mobile */
-		.mobile-menu-btn span {
-			background: #ffffff;
-		}
-
-		/* Menu mobile aberto */
-		@media (max-width: 900px) {
-			.nav.mobile-open .nav-link {
-				color: #e6f0eb;
-			}
-
-			.nav.mobile-open .nav-link:hover,
-			.nav.mobile-open .nav-link.active {
-				color: #ffffff;
-			}
-		}
-		/* =========================================================
-		   MENU – DESTAQUE DA OPÇÃO ATIVA (SUBLINHADO)
-		   ========================================================= */
-
-		/* Estado padrão */
-		.header .nav-link {
-			position: relative;
-			padding-bottom: 6px;
-		}
-		h2 {
-			text-align: center;
-		}
-		/* =========================================================
-		   BOTÃO GLOBAL – HEADER CTA (PREMIUM)
-		   ========================================================= */
-
-		.header-inner {
-			gap: 1.5rem;
-		}
-
-		/* Botão CTA no header */
-		.header-cta {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			padding: 0.55rem 1.1rem;
-			font-size: 0.8125rem;
-			font-weight: 500;
-			text-decoration: none;
-			white-space: nowrap;
-
-			color: var(--color-text-inverse);
-			background: transparent;
-			border: 1px solid rgba(255, 255, 255, 0.45);
-
-			transition: all 0.25s ease;
-		}
-
-		/* Hover discreto */
-		.header-cta:hover {
-			background: rgba(255, 255, 255, 0.08);
-			border-color: #ffffff;
-		}
-
-		/* Mobile: esconder botão no topo */
-		@media (max-width: 900px) {
-			.header-cta {
-				display: none;
-			}
-		}
-	
-		/* =========================================================
-		   HERO PREMIUM – PADRÃO PARA PÁGINAS INTERNAS
-		   ========================================================= */
-
-		.page-header--split {
-			max-width: var(--max-width);
-			margin: 0 auto;
-
-			display: grid;
-			grid-template-columns: 1.3fr 0.7fr;
-			align-items: center;
-			column-gap: var(--space-xl);
-		}
-
-		/* Texto */
-		.page-header-content {
-			text-align: left;
-			max-width: 560px;
-		}
-
-		/* =========================================================
-		   PADRONIZAÇÃO DE TAMANHO – GRÁFICOS DO HERO
-		   ========================================================= */
-
-		.page-header-graphic {
-			width: 260px;        /* tamanho visual fixo */
-			height: 200px;       /* altura controlada */
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin-left: auto;
-		}
-
-		.page-header-graphic img {
-			max-width: 100%;
-			max-height: 100%;
-			width: auto;
-			height: auto;
-
-			opacity: 0.5;
-			filter: grayscale(100%) contrast(0.95);
-		}
-
-		/* Mobile: remove gráfico */
-		@media (max-width: 768px) {
-			.page-header--split {
-				grid-template-columns: 1fr;
-				text-align: center;
-			}
-
-			.page-header-graphic {
-				display: none;
-			}
-		}
-
-		/* Corrige alinhamento herdado */
-		.page-header {
-			text-align: left;
-		}
-
-    </style>
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tutela Digital® - Custódia Jurídica de Ativos Digitais</title>
+<meta content="Infraestrutura de custódia jurídica e governança de ativos digitais com validade legal, inviolabilidade técnica e cadeia de custódia auditável." name="description"/>
+<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+<!-- Preconnect for fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<!-- Prepared for GTM -->
+<!-- Google Tag Manager -->
+<!-- 
+<!-- Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
+<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-KXVB267PYJ');
+	</script>
+<link rel="stylesheet" href="/assets/css/styles-clean.css">
+<link rel="stylesheet" href="/assets/css/styles-header-final.css">
 <body class="exec-compact">
-    <!-- Prepared for GTM (noscript) -->
-    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
-    
-    <div class="app">
-        <!-- HEADER -->
-        <header class="header" id="header">
-            <div class="header-inner">
-                <a href="#" class="logo" onclick="navigateTo('home'); return false;">
+<!-- Prepared for GTM (noscript) -->
+<!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+<div class="app">
+<!-- HEADER -->
+<header class="header" id="header">
+<div class="header-inner">
+<a class="logo" href="#" onclick="navigateTo('home'); return false;">
                     Tutela Digital<sup>®</sup>
-                </a>
-                <nav class="nav" id="nav">
-                    <a href="#" class="nav-link" data-page="home" onclick="navigateTo('home'); return false;">Início</a>
-                    <a href="#" class="nav-link" data-page="governo" onclick="navigateTo('governo'); return false;">Governo</a>
-                    <a href="#" class="nav-link" data-page="empresas" onclick="navigateTo('empresas'); return false;">Empresas</a>
-                    <a href="#" class="nav-link" data-page="pessoas" onclick="navigateTo('pessoas'); return false;">Pessoas Físicas</a>
-                    <a href="#" class="nav-link" data-page="como-funciona" onclick="navigateTo('como-funciona'); return false;">Como Funciona</a>
-                    <a href="#" class="nav-link" data-page="seguranca" onclick="navigateTo('seguranca'); return false;">Segurança</a>
-                </nav>
-				<a
-				  href="https://app.tuteladigital.com.br/"
-				  class="header-cta"
-				  target="_blank"
-				  rel="noopener noreferrer"
-				>
+</a>
+<nav class="nav" id="nav">
+<a class="nav-link" data-page="home" href="#" onclick="navigateTo('home'); return false;">Início</a>
+<a class="nav-link" data-page="governo" href="#" onclick="navigateTo('governo'); return false;">Governo</a>
+<a class="nav-link" data-page="empresas" href="#" onclick="navigateTo('empresas'); return false;">Empresas</a>
+<a class="nav-link" data-page="pessoas" href="#" onclick="navigateTo('pessoas'); return false;">Pessoas Físicas</a>
+<a class="nav-link" data-page="como-funciona" href="#" onclick="navigateTo('como-funciona'); return false;">Como Funciona</a>
+<a class="nav-link" data-page="seguranca" href="#" onclick="navigateTo('seguranca'); return false;">Segurança</a>
+</nav>
+<a class="header-cta" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">
 				  Acessar a Plataforma
 				</a>
-                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </header>
-        
-        <!-- MAIN CONTENT -->
-        <main class="main">
-            
-            <!-- ==================== HOME ==================== -->
-            <div class="page active" id="page-home">
-                <section class="hero">
-                    <div class="hero-inner">
-                        <h1>Tutela Digital<sup>®</sup></h1>
-                        <p class="hero-subtitle">Infraestrutura de custódia jurídica e governança de ativos digitais com validade legal, inviolabilidade técnica e cadeia de custódia auditável.</p>
-                    </div>
-                </section>
-                
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <h2>Confiança Institucional</h2>
-                        <p>A Tutela Digital® oferece uma solução completa para a guarda e governança de ativos digitais, combinando segurança técnica de alto padrão com validade jurídica plena. Nossa infraestrutura foi desenvolvida para atender às exigências de organizações públicas, empresas e indivíduos que necessitam de garantias legais sobre seus documentos e informações digitais.</p>
-                        <p>Através de processos rigorosos de autenticação, criptografia e registro, asseguramos que cada ativo sob nossa custódia mantenha sua integridade e possa ser utilizado como prova em qualquer instância administrativa ou judicial.</p>
-                    </div>
-                </section>
-                
-                <section class="verticals">
-                    <div class="verticals-inner">
-                        <h2>Soluções por Segmento</h2>
-                        <div class="verticals-grid">
-                            <div class="vertical-card" onclick="navigateTo('governo')">
-                                <h3>Governo</h3>
-                                <p>Custódia probatória de atos públicos com transparência e aderência normativa.</p>
-                            </div>
-                            <div class="vertical-card" onclick="navigateTo('empresas')">
-                                <h3>Empresas</h3>
-                                <p>Proteção de documentos estratégicos, compliance e governança digital corporativa.</p>
-                            </div>
-                            <div class="vertical-card" onclick="navigateTo('pessoas')">
-                                <h3>Pessoas Físicas</h3>
-                                <p>Proteção patrimonial digital, confidencialidade e planejamento sucessório.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="features">
-                    <div class="features-inner">
-                        <h2>Pilares da Infraestrutura</h2>
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                <h3>Custódia Jurídica</h3>
-                                <p>Infraestrutura de guarda com validade legal e reconhecimento probatório em todas as instâncias.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                <h3>Inviolabilidade Técnica</h3>
-                                <p>Criptografia avançada e armazenamento seguro que garantem a integridade absoluta dos ativos.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                                <h3>Cadeia de Custódia</h3>
-                                <p>Rastreabilidade completa e auditável de todas as operações realizadas sobre os ativos digitais.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M9 15l2 2 4-4"/></svg>
-                                <h3>Validade Probatória</h3>
-                                <p>Documentação com fé pública e registro imutável para utilização como prova em processos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="cta-final">
-                    <div class="cta-final-inner">
-                        <h2>Proteja seus ativos digitais com validade jurídica</h2>
-                        <p>Acesse a plataforma e conheça nossas soluções de custódia.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- ==================== GOVERNO ==================== -->
-            <div class="page" id="page-governo">
-                <section class="page-header page-header--governo">
-					<div class="page-header-inner page-header--split">
-						
-						<!-- TEXTO À ESQUERDA -->
-						<div class="page-header-content">
-							<h1>Soluções para Governo</h1>
-							<p>Custódia probatória e governança de ativos digitais para a administração pública.</p>
-						</div>
-
-						<!-- ELEMENTO GRÁFICO À DIREITA -->
-						<div class="page-header-graphic">
-							<img
-								src="assets/illustrations/national_congress_brazil.svg"
-								alt="Ilustração institucional do setor público"
-							/>
-						</div>
-
-					</div>
-				</section>
-
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <h2>Infraestrutura para o Setor Público</h2>
-                        <p>A administração pública requer soluções que combinem segurança, transparência e conformidade normativa. A Tutela Digital® oferece uma infraestrutura especializada para a custódia de documentos e ativos digitais de órgãos governamentais, assegurando validade jurídica e rastreabilidade completa.</p>
-                        <p>Nossa solução atende aos princípios constitucionais da administração pública, proporcionando mecanismos de controle, auditoria e preservação que garantem a integridade dos registros públicos e a efetividade dos atos administrativos.</p>
-                    </div>
-                </section>
-                
-                <section class="features">
-                    <div class="features-inner">
-                        <h2>Recursos para Governo</h2>
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
-                                <h3>Transparência Administrativa</h3>
-                                <p>Registro auditável de atos públicos, garantindo accountability e conformidade com princípios da administração pública.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M9 15l2 2 4-4"/></svg>
-                                <h3>Custódia Probatória</h3>
-                                <p>Guarda segura de documentos oficiais com validade jurídica para utilização em procedimentos administrativos e judiciais.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                                <h3>Cadeia de Custódia Auditável</h3>
-                                <p>Rastreabilidade completa de todas as operações, atendendo aos requisitos de controle interno e externo.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-                                <h3>Aderência Normativa</h3>
-                                <p>Conformidade com a legislação vigente, incluindo Lei de Acesso à Informação e normativas de segurança da informação.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="cta-final">
-                    <div class="cta-final-inner">
-                        <h2>Modernize a gestão documental do seu órgão</h2>
-                        <p>Conheça a infraestrutura de custódia jurídica para o setor público.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- ==================== EMPRESAS ==================== -->
-			<div class="page" id="page-empresas">
-				<section class="page-header page-header--empresas">
-					<div class="page-header-inner page-header--split">
-
-						<div class="page-header-content">
-							<h1>Soluções para Empresas</h1>
-							<p>Proteção jurídica e governança de ativos digitais corporativos.</p>
-						</div>
-
-						<div class="page-header-graphic">
-							<img src="assets/illustrations/corporate_building.svg" alt="">
-						</div>
-
-					</div>
-				</section>    
-				
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <h2>Infraestrutura para o Ambiente Corporativo</h2>
-                        <p>Empresas de todos os portes geram e armazenam ativos digitais de valor estratégico que requerem proteção jurídica adequada. A Tutela Digital® oferece uma infraestrutura completa para a custódia, governança e preservação desses ativos, assegurando sua integridade e validade probatória.</p>
-                        <p>Nossa solução atende às necessidades de compliance, governança corporativa e gestão de riscos, proporcionando segurança jurídica para documentos contratuais, registros de propriedade intelectual, comunicações sensíveis e demais ativos digitais críticos.</p>
-                    </div>
-                </section>
-                
-                <section class="features">
-                    <div class="features-inner">
-                        <h2>Recursos para Empresas</h2>
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                <h3>Proteção de Documentos Estratégicos</h3>
-                                <p>Custódia segura de contratos, propriedade intelectual, segredos industriais e demais ativos corporativos críticos.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-                                <h3>Compliance e Governança</h3>
-                                <p>Aderência a regulamentações setoriais e boas práticas de governança corporativa na gestão de informações.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M9 15l2 2 4-4"/></svg>
-                                <h3>Prova de Integridade</h3>
-                                <p>Registro imutável que comprova a autenticidade e integridade de documentos ao longo do tempo.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                                <h3>Auditoria Forense</h3>
-                                <p>Cadeia de custódia que permite análise forense e utilização probatória em litígios e procedimentos investigativos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="cta-final">
-                    <div class="cta-final-inner">
-                        <h2>Proteja os ativos digitais da sua organização</h2>
-                        <p>Acesse a plataforma e conheça nossas soluções corporativas.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- ==================== PESSOAS FÍSICAS ==================== -->
-			<div class="page" id="page-pessoas">
-				<section class="page-header page-header--pessoas">
-					<div class="page-header-inner page-header--split">
-
-						<div class="page-header-content">
-							<h1>Soluções para Pessoas Físicas</h1>
-							<p>Proteção patrimonial e planejamento sucessório do seu acervo digital.</p>
-						</div>
-
-						<div class="page-header-graphic">
-							<img src="assets/illustrations/people_conversation.svg" alt="">
-						</div>
-
-					</div>
-				</section>
-                
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <h2>Proteção do Patrimônio Digital Pessoal</h2>
-                        <p>O patrimônio digital de uma pessoa física é composto por documentos, registros, memórias e ativos que possuem valor pessoal, sentimental ou econômico. A Tutela Digital® oferece uma infraestrutura de custódia que protege esse patrimônio com segurança jurídica e confidencialidade absoluta.</p>
-                        <p>Além da guarda segura, nossa solução permite o planejamento sucessório digital, garantindo que seus ativos sejam preservados e transferidos de acordo com sua vontade, com validade legal e proteção contra perdas ou acessos não autorizados.</p>
-                    </div>
-                </section>
-                
-                <section class="features">
-                    <div class="features-inner">
-                        <h2>Recursos para Pessoas Físicas</h2>
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                <h3>Proteção Patrimonial Digital</h3>
-                                <p>Guarda segura de documentos pessoais, registros financeiros, fotografias e demais ativos digitais de valor.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                <h3>Confidencialidade</h3>
-                                <p>Criptografia e controles de acesso que garantem a privacidade absoluta dos seus ativos custodiados.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                                <h3>Planejamento Sucessório</h3>
-                                <p>Definição de beneficiários e condições de acesso para transferência ordenada do patrimônio digital.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M9 15l2 2 4-4"/></svg>
-                                <h3>Segurança Jurídica</h3>
-                                <p>Validade legal e fé pública que protegem seus direitos e garantem o reconhecimento probatório dos ativos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="cta-final">
-                    <div class="cta-final-inner">
-                        <h2>Proteja seu patrimônio digital pessoal</h2>
-                        <p>Acesse a plataforma e inicie sua custódia jurídica.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- ==================== COMO FUNCIONA ==================== -->
-			<div class="page" id="page-como-funciona">
-				<section class="page-header page-header--como-funciona">
-					<div class="page-header-inner page-header--split">
-
-						<div class="page-header-content">
-							<h1>Como Funciona</h1>
-							<p>Processo simples e seguro para iniciar a custódia dos seus ativos digitais.</p>
-						</div>
-
-						<div class="page-header-graphic">
-							<img src="assets/illustrations/workflow_process.svg" alt="">
-						</div>
-
-					</div>
-				</section>
-                
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <h2>Processo de Custódia</h2>
-                        <p>A Tutela Digital® desenvolveu um processo simplificado que combina a facilidade de uso de uma plataforma digital moderna com o rigor jurídico necessário para garantir a validade legal da custódia. Em quatro etapas, você inicia a proteção dos seus ativos digitais com fé pública e cadeia de custódia auditável.</p>
-                    </div>
-                </section>
-                
-                <section class="steps">
-                    <div class="steps-inner">
-                        <h2>Etapas do Processo</h2>
-                        <div class="steps-list">
-                            <div class="step-item">
-                                <div class="step-number">1</div>
-                                <h3>Cadastro na Plataforma</h3>
-                                <p>Acesse a plataforma e realize seu cadastro inicial com informações básicas de identificação.</p>
-                            </div>
-                            <div class="step-item">
-                                <div class="step-number">2</div>
-                                <h3>Escolha do Plano</h3>
-                                <p>Selecione o plano adequado às suas necessidades de custódia e capacidade de armazenamento.</p>
-                            </div>
-                            <div class="step-item">
-                                <div class="step-number">3</div>
-                                <h3>Entrevista Cartorial</h3>
-                                <p>Agende e realize a entrevista com o tabelião via e-Notariado para validação de identidade e fé pública.</p>
-                            </div>
-                            <div class="step-item">
-                                <div class="step-number">4</div>
-                                <h3>Depósito e Custódia</h3>
-                                <p>Faça o depósito dos seus ativos digitais e inicie a custódia com validade jurídica imediata.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <p>Após a conclusão do processo de onboarding, seus ativos digitais estarão sob custódia jurídica com registro imutável, rastreabilidade completa e validade probatória para utilização em qualquer instância administrativa ou judicial.</p>
-                    </div>
-                </section>
-                
-                <section class="cta-final">
-                    <div class="cta-final-inner">
-                        <h2>Inicie sua custódia jurídica</h2>
-                        <p>Acesse a plataforma e comece o processo de proteção dos seus ativos.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- ==================== SEGURANÇA ==================== -->
-			<div class="page" id="page-seguranca">
-				<section class="page-header page-header--seguranca">
-					<div class="page-header-inner page-header--split">
-
-						<div class="page-header-content">
-							<h1>Segurança &amp; Validade Jurídica</h1>
-							<p>Fundamentos técnicos e jurídicos que sustentam a infraestrutura de custódia.</p>
-						</div>
-
-						<div class="page-header-graphic">
-							<img src="assets/illustrations/security_shield.svg" alt="">
-						</div>
-
-					</div>
-				</section>
-                
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <h2>Arquitetura de Segurança</h2>
-                        <p>A infraestrutura da Tutela Digital® foi projetada para oferecer o mais alto nível de segurança técnica combinado com validade jurídica plena. Cada componente do sistema foi desenvolvido considerando requisitos de segurança da informação, conformidade regulatória e reconhecimento probatório.</p>
-                        <p>A integração com o sistema e-Notariado garante que o processo de onboarding seja realizado com fé pública, enquanto tecnologias como criptografia avançada e blockchain asseguram a inviolabilidade e rastreabilidade dos ativos ao longo de todo o ciclo de custódia.</p>
-                    </div>
-                </section>
-                
-                <section class="features">
-                    <div class="features-inner">
-                        <h2>Pilares de Segurança</h2>
-                        <div class="features-grid features-grid--security">
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-                                <h3>e-Notariado</h3>
-                                <p>Onboarding com validação de identidade através da plataforma oficial dos cartórios brasileiros, garantindo fé pública.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-                                <h3>Não Repúdio</h3>
-                                <p>Mecanismos técnicos e jurídicos que impedem a negação de autoria ou alteração dos ativos custodiados.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                <h3>Criptografia</h3>
-                                <p>Algoritmos de criptografia de alto padrão que protegem os ativos durante transmissão e armazenamento.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                                <h3>Blockchain</h3>
-                                <p>Registro distribuído e imutável que garante a integridade e rastreabilidade de todas as operações.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                <h3>Cadeia de Custódia Imutável</h3>
-                                <p>Histórico completo e inalterável de todas as ações realizadas sobre cada ativo digital custodiado.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M9 15l2 2 4-4"/></svg>
-                                <h3>Validade Probatória</h3>
-                                <p>Reconhecimento legal dos ativos custodiados como prova em procedimentos administrativos e judiciais.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="cta-final">
-                    <div class="cta-final-inner">
-                        <h2>Conheça nossa infraestrutura de segurança</h2>
-                        <p>Acesse a plataforma e proteja seus ativos com tecnologia de ponta.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- ==================== LP GOVERNO ==================== -->
-            <div class="page" id="page-lp-governo">
-                <section class="lp-hero">
-                    <div class="lp-hero-inner">
-                        <h1>Custódia Jurídica<br>para o Setor Público</h1>
-                        <p class="lp-hero-subtitle">Infraestrutura de governança de ativos digitais com transparência, rastreabilidade e validade probatória para órgãos governamentais.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-                
-                <section class="features">
-                    <div class="features-inner">
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
-                                <h3>Transparência</h3>
-                                <p>Registro público e auditável de atos administrativos em conformidade com os princípios da administração pública.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M9 15l2 2 4-4"/></svg>
-                                <h3>Custódia Probatória</h3>
-                                <p>Documentos oficiais com validade jurídica para processos administrativos e judiciais.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                                <h3>Auditabilidade</h3>
-                                <p>Cadeia de custódia completa para atender requisitos de controle interno e externo.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-                                <h3>Conformidade Legal</h3>
-                                <p>Aderência à LAI, LGPD e demais normativas aplicáveis ao setor público.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <h2>Por que a Tutela Digital®</h2>
-                        <p>Órgãos públicos necessitam de soluções que garantam transparência, segurança e conformidade normativa na gestão de documentos e ativos digitais. A Tutela Digital® oferece uma infraestrutura completa que atende às exigências legais e aos princípios da administração pública, proporcionando validade jurídica e cadeia de custódia auditável para todos os registros.</p>
-                    </div>
-                </section>
-                
-                <section class="cta-final">
-                    <div class="cta-final-inner">
-                        <h2>Modernize a gestão documental do seu órgão</h2>
-                        <p>Acesse a plataforma e conheça a solução completa.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- ==================== LP EMPRESAS ==================== -->
-            <div class="page" id="page-lp-empresas">
-                <section class="lp-hero">
-                    <div class="lp-hero-inner">
-                        <h1>Governança de Ativos<br>Digitais Corporativos</h1>
-                        <p class="lp-hero-subtitle">Proteção jurídica para documentos estratégicos com compliance, integridade e validade probatória.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-                
-                <section class="features">
-                    <div class="features-inner">
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                <h3>Proteção Estratégica</h3>
-                                <p>Custódia segura de contratos, propriedade intelectual e documentos corporativos críticos.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-                                <h3>Compliance</h3>
-                                <p>Conformidade com regulamentações setoriais e boas práticas de governança corporativa.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M9 15l2 2 4-4"/></svg>
-                                <h3>Integridade Comprovada</h3>
-                                <p>Registro imutável que atesta a autenticidade dos documentos ao longo do tempo.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                                <h3>Suporte Forense</h3>
-                                <p>Cadeia de custódia preparada para análise forense e utilização em litígios.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <h2>Por que a Tutela Digital®</h2>
-                        <p>Empresas geram diariamente documentos e registros de valor estratégico que requerem proteção jurídica adequada. A Tutela Digital® oferece uma solução completa de custódia que garante a integridade, confidencialidade e validade legal desses ativos, atendendo às necessidades de compliance e governança corporativa.</p>
-                    </div>
-                </section>
-                
-                <section class="cta-final">
-                    <div class="cta-final-inner">
-                        <h2>Proteja os ativos digitais da sua empresa</h2>
-                        <p>Acesse a plataforma e conheça a solução completa.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- ==================== LP PESSOAS ==================== -->
-            <div class="page" id="page-lp-pessoas">
-                <section class="lp-hero">
-                    <div class="lp-hero-inner">
-                        <h1>Proteção do Seu<br>Patrimônio Digital</h1>
-                        <p class="lp-hero-subtitle">Custódia jurídica para documentos pessoais com confidencialidade, planejamento sucessório e validade legal.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-                
-                <section class="features">
-                    <div class="features-inner">
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                <h3>Proteção Patrimonial</h3>
-                                <p>Guarda segura de documentos pessoais, registros financeiros e memórias digitais.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                <h3>Privacidade Absoluta</h3>
-                                <p>Criptografia e controles de acesso que garantem a confidencialidade dos seus ativos.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                                <h3>Sucessão Digital</h3>
-                                <p>Planejamento da transferência do patrimônio digital com validade legal.</p>
-                            </div>
-                            <div class="feature-item">
-                                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><path d="M9 15l2 2 4-4"/></svg>
-                                <h3>Segurança Jurídica</h3>
-                                <p>Fé pública e reconhecimento probatório para proteção dos seus direitos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="text-block">
-                    <div class="text-block-inner">
-                        <h2>Por que a Tutela Digital®</h2>
-                        <p>Seu patrimônio digital merece a mesma proteção jurídica dos seus bens físicos. A Tutela Digital® oferece uma infraestrutura de custódia com fé pública que protege seus documentos, registros e memórias digitais, garantindo confidencialidade absoluta e permitindo o planejamento da transferência desses ativos para seus beneficiários.</p>
-                    </div>
-                </section>
-                
-                <section class="cta-final">
-                    <div class="cta-final-inner">
-                        <h2>Proteja seu patrimônio digital pessoal</h2>
-                        <p>Acesse a plataforma e inicie sua custódia jurídica.</p>
-                        <a href="https://app.tuteladigital.com.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Acessar a Plataforma</a>
-                    </div>
-                </section>
-            </div>
-            
-        </main>
-        
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="footer-inner">
-                <div class="footer-logo">
-                    Tutela Digital<sup>®</sup>
-                </div>
-                <div class="footer-links">
-                    <span class="footer-link" onclick="navigateTo('governo')">Governo</span>
-                    <span class="footer-link" onclick="navigateTo('empresas')">Empresas</span>
-                    <span class="footer-link" onclick="navigateTo('pessoas')">Pessoas Físicas</span>
-                    <span class="footer-link" onclick="navigateTo('como-funciona')">Como Funciona</span>
-                    <span class="footer-link" onclick="navigateTo('seguranca')">Segurança</span>
-                </div>
-                <div class="footer-copy">
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<div class="lang-dropdown">
+  <button class="lang-toggle" aria-label="Selecionar idioma">
+    🌍
+  </button>
+  <div class="lang-menu">
+    <a href="index.html">Português</a>
+    <a href="index-en.html">English</a>
+    <a href="index-es.html">Español</a>
+  </div>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="main">
+<!-- ==================== HOME ==================== -->
+<div class="page active" id="page-home">
+<section class="hero">
+<div class="hero-inner">
+<h1>Tutela Digital<sup>®</sup></h1>
+<p class="hero-subtitle">Infraestrutura de custódia jurídica e governança de ativos digitais com validade legal, inviolabilidade técnica e cadeia de custódia auditável.</p>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<h2>Confiança Institucional</h2>
+<p>A Tutela Digital® oferece uma solução completa para a guarda e governança de ativos digitais, combinando segurança técnica de alto padrão com validade jurídica plena. Nossa infraestrutura foi desenvolvida para atender às exigências de organizações públicas, empresas e indivíduos que necessitam de garantias legais sobre seus documentos e informações digitais.</p>
+<p>Através de processos rigorosos de autenticação, criptografia e registro, asseguramos que cada ativo sob nossa custódia mantenha sua integridade e possa ser utilizado como prova em qualquer instância administrativa ou judicial.</p>
+</div>
+</section>
+<section class="verticals">
+<div class="verticals-inner">
+<h2>Soluções por Segmento</h2>
+<div class="verticals-grid">
+<div class="vertical-card" onclick="navigateTo('governo')">
+<h3>Governo</h3>
+<p>Custódia probatória de atos públicos com transparência e aderência normativa.</p>
+</div>
+<div class="vertical-card" onclick="navigateTo('empresas')">
+<h3>Empresas</h3>
+<p>Proteção de documentos estratégicos, compliance e governança digital corporativa.</p>
+</div>
+<div class="vertical-card" onclick="navigateTo('pessoas')">
+<h3>Pessoas Físicas</h3>
+<p>Proteção patrimonial digital, confidencialidade e planejamento sucessório.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="features">
+<div class="features-inner">
+<h2>Pilares da Infraestrutura</h2>
+<div class="features-grid">
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+<h3>Custódia Jurídica</h3>
+<p>Infraestrutura de guarda com validade legal e reconhecimento probatório em todas as instâncias.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+<h3>Inviolabilidade Técnica</h3>
+<p>Criptografia avançada e armazenamento seguro que garantem a integridade absoluta dos ativos.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+<h3>Cadeia de Custódia</h3>
+<p>Rastreabilidade completa e auditável de todas as operações realizadas sobre os ativos digitais.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><path d="M9 15l2 2 4-4"></path></svg>
+<h3>Validade Probatória</h3>
+<p>Documentação com fé pública e registro imutável para utilização como prova em processos.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="cta-final">
+<div class="cta-final-inner">
+<h2>Proteja seus ativos digitais com validade jurídica</h2>
+<p>Acesse a plataforma e conheça nossas soluções de custódia.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+</div>
+<!-- ==================== GOVERNO ==================== -->
+<div class="page" id="page-governo">
+<section class="page-header page-header--governo">
+<div class="page-header-inner page-header--split">
+<!-- TEXTO À ESQUERDA -->
+<div class="page-header-content">
+<h1>Soluções para Governo</h1>
+<p>Custódia probatória e governança de ativos digitais para a administração pública.</p>
+</div>
+<!-- ELEMENTO GRÁFICO À DIREITA -->
+<div class="page-header-graphic">
+<img 
+	alt="Ilustração institucional do setor público" 
+	src="assets/illustrations/national_congress_brazil.svg"
+    loading="lazy"
+    width="320"
+    height="240"
+>
+</div>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<h2>Infraestrutura para o Setor Público</h2>
+<p>A administração pública requer soluções que combinem segurança, transparência e conformidade normativa. A Tutela Digital® oferece uma infraestrutura especializada para a custódia de documentos e ativos digitais de órgãos governamentais, assegurando validade jurídica e rastreabilidade completa.</p>
+<p>Nossa solução atende aos princípios constitucionais da administração pública, proporcionando mecanismos de controle, auditoria e preservação que garantem a integridade dos registros públicos e a efetividade dos atos administrativos.</p>
+</div>
+</section>
+<section class="features">
+<div class="features-inner">
+<h2>Recursos para Governo</h2>
+<div class="features-grid">
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path d="M19 21V11l-6-4"></path><path d="M9 9v.01"></path><path d="M9 12v.01"></path><path d="M9 15v.01"></path><path d="M9 18v.01"></path></svg>
+<h3>Transparência Administrativa</h3>
+<p>Registro auditável de atos públicos, garantindo accountability e conformidade com princípios da administração pública.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><path d="M9 15l2 2 4-4"></path></svg>
+<h3>Custódia Probatória</h3>
+<p>Guarda segura de documentos oficiais com validade jurídica para utilização em procedimentos administrativos e judiciais.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+<h3>Cadeia de Custódia Auditável</h3>
+<p>Rastreabilidade completa de todas as operações, atendendo aos requisitos de controle interno e externo.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22,4 12,14.01 9,11.01"></polyline></svg>
+<h3>Aderência Normativa</h3>
+<p>Conformidade com a legislação vigente, incluindo Lei de Acesso à Informação e normativas de segurança da informação.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="cta-final">
+<div class="cta-final-inner">
+<h2>Modernize a gestão documental do seu órgão</h2>
+<p>Conheça a infraestrutura de custódia jurídica para o setor público.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+</div>
+<!-- ==================== EMPRESAS ==================== -->
+<div class="page" id="page-empresas">
+<section class="page-header page-header--empresas">
+<div class="page-header-inner page-header--split">
+<div class="page-header-content">
+<h1>Soluções para Empresas</h1>
+<p>Proteção jurídica e governança de ativos digitais corporativos.</p>
+</div>
+<div class="page-header-graphic">
+  <img
+    src="assets/illustrations/corporate_building.svg"
+    alt="Ilustração institucional do ambiente corporativo"
+    loading="lazy"
+    width="360"
+    height="260"
+  >
+</div>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<h2>Infraestrutura para o Ambiente Corporativo</h2>
+<p>Empresas de todos os portes geram e armazenam ativos digitais de valor estratégico que requerem proteção jurídica adequada. A Tutela Digital® oferece uma infraestrutura completa para a custódia, governança e preservação desses ativos, assegurando sua integridade e validade probatória.</p>
+<p>Nossa solução atende às necessidades de compliance, governança corporativa e gestão de riscos, proporcionando segurança jurídica para documentos contratuais, registros de propriedade intelectual, comunicações sensíveis e demais ativos digitais críticos.</p>
+</div>
+</section>
+<section class="features">
+<div class="features-inner">
+<h2>Recursos para Empresas</h2>
+<div class="features-grid">
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+<h3>Proteção de Documentos Estratégicos</h3>
+<p>Custódia segura de contratos, propriedade intelectual, segredos industriais e demais ativos corporativos críticos.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22,4 12,14.01 9,11.01"></polyline></svg>
+<h3>Compliance e Governança</h3>
+<p>Aderência a regulamentações setoriais e boas práticas de governança corporativa na gestão de informações.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><path d="M9 15l2 2 4-4"></path></svg>
+<h3>Prova de Integridade</h3>
+<p>Registro imutável que comprova a autenticidade e integridade de documentos ao longo do tempo.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+<h3>Auditoria Forense</h3>
+<p>Cadeia de custódia que permite análise forense e utilização probatória em litígios e procedimentos investigativos.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="cta-final">
+<div class="cta-final-inner">
+<h2>Proteja os ativos digitais da sua organização</h2>
+<p>Acesse a plataforma e conheça nossas soluções corporativas.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+</div>
+<!-- ==================== PESSOAS FÍSICAS ==================== -->
+<div class="page" id="page-pessoas">
+<section class="page-header page-header--pessoas">
+<div class="page-header-inner page-header--split">
+<div class="page-header-content">
+<h1>Soluções para Pessoas Físicas</h1>
+<p>Proteção patrimonial e planejamento sucessório do seu acervo digital.</p>
+</div>
+<div class="page-header-graphic">
+<img
+    src="assets/illustrations/people_conversation.svg"
+    alt="Ilustração sobre proteção de ativos digitais pessoais"
+    loading="lazy"
+    width="320"
+    height="240"
+>
+</div>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<h2>Proteção do Patrimônio Digital Pessoal</h2>
+<p>O patrimônio digital de uma pessoa física é composto por documentos, registros, memórias e ativos que possuem valor pessoal, sentimental ou econômico. A Tutela Digital® oferece uma infraestrutura de custódia que protege esse patrimônio com segurança jurídica e confidencialidade absoluta.</p>
+<p>Além da guarda segura, nossa solução permite o planejamento sucessório digital, garantindo que seus ativos sejam preservados e transferidos de acordo com sua vontade, com validade legal e proteção contra perdas ou acessos não autorizados.</p>
+</div>
+</section>
+<section class="features">
+<div class="features-inner">
+<h2>Recursos para Pessoas Físicas</h2>
+<div class="features-grid">
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+<h3>Proteção Patrimonial Digital</h3>
+<p>Guarda segura de documentos pessoais, registros financeiros, fotografias e demais ativos digitais de valor.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+<h3>Confidencialidade</h3>
+<p>Criptografia e controles de acesso que garantem a privacidade absoluta dos seus ativos custodiados.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+<h3>Planejamento Sucessório</h3>
+<p>Definição de beneficiários e condições de acesso para transferência ordenada do patrimônio digital.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><path d="M9 15l2 2 4-4"></path></svg>
+<h3>Segurança Jurídica</h3>
+<p>Validade legal e fé pública que protegem seus direitos e garantem o reconhecimento probatório dos ativos.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="cta-final">
+<div class="cta-final-inner">
+<h2>Proteja seu patrimônio digital pessoal</h2>
+<p>Acesse a plataforma e inicie sua custódia jurídica.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+</div>
+<!-- ==================== COMO FUNCIONA ==================== -->
+<div class="page" id="page-como-funciona">
+<section class="page-header page-header--como-funciona">
+<div class="page-header-inner page-header--split">
+<div class="page-header-content">
+<h1>Como Funciona</h1>
+<p>Processo simples e seguro para iniciar a custódia dos seus ativos digitais.</p>
+</div>
+<div class="page-header-graphic">
+<img alt="" src="assets/illustrations/workflow_process.svg"/>
+</div>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<h2>Processo de Custódia</h2>
+<p>A Tutela Digital® desenvolveu um processo simplificado que combina a facilidade de uso de uma plataforma digital moderna com o rigor jurídico necessário para garantir a validade legal da custódia. Em quatro etapas, você inicia a proteção dos seus ativos digitais com fé pública e cadeia de custódia auditável.</p>
+</div>
+</section>
+<section class="steps">
+<div class="steps-inner">
+<h2>Etapas do Processo</h2>
+<div class="steps-list">
+<div class="step-item">
+<div class="step-number">1</div>
+<h3>Cadastro na Plataforma</h3>
+<p>Acesse a plataforma e realize seu cadastro inicial com informações básicas de identificação.</p>
+</div>
+<div class="step-item">
+<div class="step-number">2</div>
+<h3>Escolha do Plano</h3>
+<p>Selecione o plano adequado às suas necessidades de custódia e capacidade de armazenamento.</p>
+</div>
+<div class="step-item">
+<div class="step-number">3</div>
+<h3>Entrevista Cartorial</h3>
+<p>Agende e realize a entrevista com o tabelião via e-Notariado para validação de identidade e fé pública.</p>
+</div>
+<div class="step-item">
+<div class="step-number">4</div>
+<h3>Depósito e Custódia</h3>
+<p>Faça o depósito dos seus ativos digitais e inicie a custódia com validade jurídica imediata.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<p>Após a conclusão do processo de onboarding, seus ativos digitais estarão sob custódia jurídica com registro imutável, rastreabilidade completa e validade probatória para utilização em qualquer instância administrativa ou judicial.</p>
+</div>
+</section>
+<section class="cta-final">
+<div class="cta-final-inner">
+<h2>Inicie sua custódia jurídica</h2>
+<p>Acesse a plataforma e comece o processo de proteção dos seus ativos.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+</div>
+<!-- ==================== SEGURANÇA ==================== -->
+<div class="page" id="page-seguranca">
+<section class="page-header page-header--seguranca">
+<div class="page-header-inner page-header--split">
+<div class="page-header-content">
+<h1>Segurança &amp; Validade Jurídica</h1>
+<p>Fundamentos técnicos e jurídicos que sustentam a infraestrutura de custódia.</p>
+</div>
+<div class="page-header-graphic">
+<img alt="" src="assets/illustrations/security_shield.svg"/>
+</div>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<h2>Arquitetura de Segurança</h2>
+<p>A infraestrutura da Tutela Digital® foi projetada para oferecer o mais alto nível de segurança técnica combinado com validade jurídica plena. Cada componente do sistema foi desenvolvido considerando requisitos de segurança da informação, conformidade regulatória e reconhecimento probatório.</p>
+<p>A integração com o sistema e-Notariado garante que o processo de onboarding seja realizado com fé pública, enquanto tecnologias como criptografia avançada e blockchain asseguram a inviolabilidade e rastreabilidade dos ativos ao longo de todo o ciclo de custódia.</p>
+</div>
+</section>
+<section class="features">
+<div class="features-inner">
+<h2>Pilares de Segurança</h2>
+<div class="features-grid features-grid--security">
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+<h3>e-Notariado</h3>
+<p>Onboarding com validação de identidade através da plataforma oficial dos cartórios brasileiros, garantindo fé pública.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22,4 12,14.01 9,11.01"></polyline></svg>
+<h3>Não Repúdio</h3>
+<p>Mecanismos técnicos e jurídicos que impedem a negação de autoria ou alteração dos ativos custodiados.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+<h3>Criptografia</h3>
+<p>Algoritmos de criptografia de alto padrão que protegem os ativos durante transmissão e armazenamento.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+<h3>Blockchain</h3>
+<p>Registro distribuído e imutável que garante a integridade e rastreabilidade de todas as operações.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+<h3>Cadeia de Custódia Imutável</h3>
+<p>Histórico completo e inalterável de todas as ações realizadas sobre cada ativo digital custodiado.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><path d="M9 15l2 2 4-4"></path></svg>
+<h3>Validade Probatória</h3>
+<p>Reconhecimento legal dos ativos custodiados como prova em procedimentos administrativos e judiciais.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="cta-final">
+<div class="cta-final-inner">
+<h2>Conheça nossa infraestrutura de segurança</h2>
+<p>Acesse a plataforma e proteja seus ativos com tecnologia de ponta.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+</div>
+<!-- ==================== LP GOVERNO ==================== -->
+<div class="page" id="page-lp-governo">
+<section class="lp-hero">
+<div class="lp-hero-inner">
+<h1>Custódia Jurídica<br/>para o Setor Público</h1>
+<p class="lp-hero-subtitle">Infraestrutura de governança de ativos digitais com transparência, rastreabilidade e validade probatória para órgãos governamentais.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+<section class="features">
+<div class="features-inner">
+<div class="features-grid">
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path d="M19 21V11l-6-4"></path><path d="M9 9v.01"></path><path d="M9 12v.01"></path><path d="M9 15v.01"></path><path d="M9 18v.01"></path></svg>
+<h3>Transparência</h3>
+<p>Registro público e auditável de atos administrativos em conformidade com os princípios da administração pública.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><path d="M9 15l2 2 4-4"></path></svg>
+<h3>Custódia Probatória</h3>
+<p>Documentos oficiais com validade jurídica para processos administrativos e judiciais.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+<h3>Auditabilidade</h3>
+<p>Cadeia de custódia completa para atender requisitos de controle interno e externo.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22,4 12,14.01 9,11.01"></polyline></svg>
+<h3>Conformidade Legal</h3>
+<p>Aderência à LAI, LGPD e demais normativas aplicáveis ao setor público.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<h2>Por que a Tutela Digital®</h2>
+<p>Órgãos públicos necessitam de soluções que garantam transparência, segurança e conformidade normativa na gestão de documentos e ativos digitais. A Tutela Digital® oferece uma infraestrutura completa que atende às exigências legais e aos princípios da administração pública, proporcionando validade jurídica e cadeia de custódia auditável para todos os registros.</p>
+</div>
+</section>
+<section class="cta-final">
+<div class="cta-final-inner">
+<h2>Modernize a gestão documental do seu órgão</h2>
+<p>Acesse a plataforma e conheça a solução completa.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+</div>
+<!-- ==================== LP EMPRESAS ==================== -->
+<div class="page" id="page-lp-empresas">
+<section class="lp-hero">
+<div class="lp-hero-inner">
+<h1>Governança de Ativos<br/>Digitais Corporativos</h1>
+<p class="lp-hero-subtitle">Proteção jurídica para documentos estratégicos com compliance, integridade e validade probatória.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+<section class="features">
+<div class="features-inner">
+<div class="features-grid">
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+<h3>Proteção Estratégica</h3>
+<p>Custódia segura de contratos, propriedade intelectual e documentos corporativos críticos.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22,4 12,14.01 9,11.01"></polyline></svg>
+<h3>Compliance</h3>
+<p>Conformidade com regulamentações setoriais e boas práticas de governança corporativa.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><path d="M9 15l2 2 4-4"></path></svg>
+<h3>Integridade Comprovada</h3>
+<p>Registro imutável que atesta a autenticidade dos documentos ao longo do tempo.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+<h3>Suporte Forense</h3>
+<p>Cadeia de custódia preparada para análise forense e utilização em litígios.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<h2>Por que a Tutela Digital®</h2>
+<p>Empresas geram diariamente documentos e registros de valor estratégico que requerem proteção jurídica adequada. A Tutela Digital® oferece uma solução completa de custódia que garante a integridade, confidencialidade e validade legal desses ativos, atendendo às necessidades de compliance e governança corporativa.</p>
+</div>
+</section>
+<section class="cta-final">
+<div class="cta-final-inner">
+<h2>Proteja os ativos digitais da sua empresa</h2>
+<p>Acesse a plataforma e conheça a solução completa.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+</div>
+<!-- ==================== LP PESSOAS ==================== -->
+<div class="page" id="page-lp-pessoas">
+<section class="lp-hero">
+<div class="lp-hero-inner">
+<h1>Proteção do Seu<br/>Patrimônio Digital</h1>
+<p class="lp-hero-subtitle">Custódia jurídica para documentos pessoais com confidencialidade, planejamento sucessório e validade legal.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+<section class="features">
+<div class="features-inner">
+<div class="features-grid">
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+<h3>Proteção Patrimonial</h3>
+<p>Guarda segura de documentos pessoais, registros financeiros e memórias digitais.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+<h3>Privacidade Absoluta</h3>
+<p>Criptografia e controles de acesso que garantem a confidencialidade dos seus ativos.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+<h3>Sucessão Digital</h3>
+<p>Planejamento da transferência do patrimônio digital com validade legal.</p>
+</div>
+<div class="feature-item">
+<svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline><path d="M9 15l2 2 4-4"></path></svg>
+<h3>Segurança Jurídica</h3>
+<p>Fé pública e reconhecimento probatório para proteção dos seus direitos.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="text-block">
+<div class="text-block-inner">
+<h2>Por que a Tutela Digital®</h2>
+<p>Seu patrimônio digital merece a mesma proteção jurídica dos seus bens físicos. A Tutela Digital® oferece uma infraestrutura de custódia com fé pública que protege seus documentos, registros e memórias digitais, garantindo confidencialidade absoluta e permitindo o planejamento da transferência desses ativos para seus beneficiários.</p>
+</div>
+</section>
+<section class="cta-final">
+<div class="cta-final-inner">
+<h2>Proteja seu patrimônio digital pessoal</h2>
+<p>Acesse a plataforma e inicie sua custódia jurídica.</p>
+<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">Acessar a Plataforma</a>
+</div>
+</section>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-inner">
+<div class="footer-brand">
+<div class="footer-logo">
+						Tutela Digital<sup>®</sup>
+</div>
+<a class="footer-link footer-link--social" href="https://www.instagram.com/tuteladigitalbr/" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" class="footer-social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.75 2h8.5C19.99 2 22 4.01 22 6.25v8.5C22 19.99 19.99 22 16.25 22h-8.5C4.01 22 2 19.99 2 16.25v-8.5C2 4.01 4.01 2 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm4.75-.88a.88.88 0 1 1 0 1.75.88.88 0 0 1 0-1.75z" fill="currentColor"></path>
+</svg>
+<span>@tuteladigitalbr</span>
+</a>
+</div>
+<div class="footer-links">
+<span class="footer-link" onclick="navigateTo('governo')">Governo</span>
+<span class="footer-link" onclick="navigateTo('empresas')">Empresas</span>
+<span class="footer-link" onclick="navigateTo('pessoas')">Pessoas Físicas</span>
+<span class="footer-link" onclick="navigateTo('como-funciona')">Como Funciona</span>
+<span class="footer-link" onclick="navigateTo('seguranca')">Segurança</span>
+</div>
+<div class="footer-copy">
                     © 2025 Tutela Digital®. Todos os direitos reservados.
                 </div>
-            </div>
-        </footer>
-    </div>
-    
-    <script>
-        // Current page state
-        let currentPage = 'home';
-        
-        // Navigation
-        function navigateTo(pageId) {
-            currentPage = pageId;
-            
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show target page
-            const targetPage = document.getElementById('page-' + pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-            
-            // Update nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.dataset.page === pageId) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Close mobile menu
-            document.getElementById('nav').classList.remove('mobile-open');
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            document.getElementById('nav').classList.toggle('mobile-open');
-        }
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 20) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', function() {
-            navigateTo('home');
-        });
-    </script>
-	<!-- WhatsApp Floating Button -->
-	<a
-	  href="https://wa.me/5531975460050"
-	  class="whatsapp-float"
-	  target="_blank"
-	  rel="noopener noreferrer"
-	  aria-label="Fale com nosso especialista"
-	>
-	  <span class="whatsapp-tooltip">Fale com nosso especialista</span>
-	  <svg
-		class="whatsapp-icon"
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="0 0 32 32"
-		fill="currentColor"
-	  >
-		<path d="M19.11 17.44c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.35-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.93-.96 2.27s.98 2.64 1.11 2.82c.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.21 1.25.18 1.72.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"/>
-		<path d="M16 3C8.82 3 3 8.82 3 16c0 2.82.93 5.44 2.5 7.56L3 29l5.65-2.47A12.9 12.9 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.5c-2.3 0-4.45-.67-6.27-1.82l-.45-.28-3.35 1.47.89-3.56-.29-.46A10.4 10.4 0 0 1 5.6 16C5.6 10.27 10.27 5.6 16 5.6S26.4 10.27 26.4 16 21.73 26.5 16 26.5z"/>
-	  </svg>
-	</a>
+</div>
+</footer>
+</div>
+<!-- WhatsApp Floating Button -->
+<a aria-label="Fale com nosso especialista" class="whatsapp-float" href="https://wa.me/5531975460050" rel="noopener noreferrer" target="_blank">
+<span class="whatsapp-tooltip">Fale com nosso especialista</span>
+<svg class="whatsapp-icon" fill="currentColor" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.11 17.44c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.35-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.93-.96 2.27s.98 2.64 1.11 2.82c.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.21 1.25.18 1.72.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"></path>
+<path d="M16 3C8.82 3 3 8.82 3 16c0 2.82.93 5.44 2.5 7.56L3 29l5.65-2.47A12.9 12.9 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.5c-2.3 0-4.45-.67-6.27-1.82l-.45-.28-3.35 1.47.89-3.56-.29-.46A10.4 10.4 0 0 1 5.6 16C5.6 10.27 10.27 5.6 16 5.6S26.4 10.27 26.4 16 21.73 26.5 16 26.5z"></path>
+</svg>
+</a>
+<script src="assets/js/navigation.js"></script>
+<script>
+  function toggleMobileMenu() {
+    const nav = document.getElementById('nav');
+    nav.classList.toggle('mobile-open');
+  }
+
+  // Fecha o menu mobile ao clicar em qualquer link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('nav').classList.remove('mobile-open');
+    });
+  });
+</script>
 </body>
 </html>
-
-
-
