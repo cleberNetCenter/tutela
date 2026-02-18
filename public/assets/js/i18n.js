@@ -157,6 +157,86 @@ const I18N = {
         el.title = translation;
       }
     });
+
+    // Mostra aviso para páginas legais em idioma não-PT
+    this.showLegalPageNoticeIfNeeded();
+  },
+
+  /**
+   * Mostra banner de aviso em páginas legais quando idioma não é PT
+   */
+  showLegalPageNoticeIfNeeded() {
+    // Lista de páginas legais (apenas texto em PT)
+    const legalPages = [
+      'page-institucional',
+      'page-politica-de-privacidade',
+      'page-fundamento-juridico',
+      'page-termos-de-custodia'
+    ];
+
+    // Verifica se estamos em uma página legal
+    const isLegalPage = legalPages.some(pageId => 
+      document.getElementById(pageId)?.classList.contains('active')
+    );
+
+    // Se não for página legal ou idioma for PT, remove aviso (se existir)
+    if (!isLegalPage || this.currentLang === 'pt') {
+      const existingNotice = document.getElementById('legal-lang-notice');
+      if (existingNotice) {
+        existingNotice.remove();
+      }
+      return;
+    }
+
+    // Se já existe aviso, não cria outro
+    if (document.getElementById('legal-lang-notice')) {
+      return;
+    }
+
+    // Mensagens de aviso por idioma
+    const messages = {
+      'en': '⚠️ Legal Information: This document is available in Portuguese only. For complete understanding, please switch to Portuguese (PT).',
+      'es': '⚠️ Información Legal: Este documento está disponible solo en portugués. Para una comprensión completa, cambie a portugués (PT).'
+    };
+
+    // Cria banner de aviso
+    const notice = document.createElement('div');
+    notice.id = 'legal-lang-notice';
+    notice.style.cssText = `
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #fff3cd;
+      color: #856404;
+      padding: 16px 24px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.6;
+      border-bottom: 2px solid #ffc107;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    `;
+    notice.innerHTML = `
+      <strong style="display: block; margin-bottom: 8px;">⚠️ ${this.currentLang === 'en' ? 'Language Notice' : 'Aviso de Idioma'}</strong>
+      <p style="margin: 0;">${messages[this.currentLang]}</p>
+      <button onclick="I18N.switchLanguage('pt')" style="
+        margin-top: 12px;
+        padding: 8px 16px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+      ">
+        Switch to Portuguese (PT) / Cambiar a Portugués (PT)
+      </button>
+    `;
+
+    // Insere no topo da página
+    const main = document.querySelector('.main');
+    if (main) {
+      main.insertBefore(notice, main.firstChild);
+    }
   },
 
   /**
