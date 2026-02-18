@@ -1,10 +1,17 @@
+/* =========================================================
+   NAV DROPDOWN (Soluções & Base Jurídica)
+   Seguindo o mesmo padrão do lang-dropdown
+   ========================================================= */
 
-/* Legal Pages Dropdown Menu */
 .nav-dropdown {
   position: relative;
+  flex: 0 0 auto;
+  display: inline-block;
 }
 
-.nav-dropdown > a {
+/* Dropdown trigger link */
+.nav-dropdown > a,
+.nav-dropdown > .nav-link {
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 500;
@@ -12,72 +19,83 @@
   text-decoration: none;
   white-space: nowrap;
   position: relative;
+  display: inline-block;
+  padding: 0.25rem;
 }
 
-.nav-dropdown > a:hover {
+.nav-dropdown > a:hover,
+.nav-dropdown > .nav-link:hover {
   color: #ffffff;
+  opacity: 0.85;
 }
 
+/* Dropdown menu container */
 .dropdown-menu {
-  display: none;
   position: absolute;
-  top: 100%;
   left: 0;
-  background: rgba(30, 30, 40, 0.98);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-  padding: 8px 0;
-  min-width: 250px;
-  z-index: 1000;
-  border-radius: 6px;
-  margin-top: 2px;
-  border: 1px solid rgba(255,255,255,0.1);
-  pointer-events: auto;
+  top: calc(100% + 8px);
+  background: var(--color-surface-base);
+  border: 1px solid var(--color-border-soft);
+  display: none;
+  flex-direction: column;
+  min-width: 200px;
+  z-index: 200;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
+/* Dropdown menu items */
 .dropdown-menu li {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Dropdown menu links */
 .dropdown-menu a {
   display: block;
-  padding: 10px 20px;
-  color: rgba(255,255,255,0.8);
-  text-decoration: none;
+  padding: 0.6rem 0.9rem;
   font-size: 0.85rem;
-  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .dropdown-menu a:hover {
-  background-color: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.08);
   color: #ffffff;
-  padding-left: 24px;
 }
 
+/* Show dropdown on hover (desktop) */
 .nav-dropdown:hover .dropdown-menu,
-.nav-dropdown .dropdown-menu:hover {
-  display: block;
+.nav-dropdown:focus-within .dropdown-menu {
+  display: flex;
 }
 
 /* Mobile dropdown (click instead of hover) */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .nav-dropdown:hover .dropdown-menu {
     display: none;
   }
   
   .nav-dropdown.active .dropdown-menu {
-    display: block;
+    display: flex;
   }
   
   .dropdown-menu {
     position: relative;
-    box-shadow: none;
-    border-left: 2px solid rgba(255,255,255,0.3);
-    margin-left: 10px;
+    left: auto;
+    top: auto;
     margin-top: 4px;
+    margin-left: 10px;
+    border-left: 2px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
     background: rgba(255,255,255,0.05);
   }
 }
