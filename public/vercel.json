@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "/institucional.html",
+      "destination": "/legal/institucional.html",
+      "permanent": true
+    },
+    {
+      "source": "/fundamento-juridico.html",
+      "destination": "/legal/fundamento-juridico.html",
+      "permanent": true
+    },
+    {
+      "source": "/termos-de-custodia.html",
+      "destination": "/legal/termos-de-custodia.html",
+      "permanent": true
+    },
+    {
+      "source": "/politica-de-privacidade.html",
+      "destination": "/legal/politica-de-privacidade.html",
+      "permanent": true
+    }
+  ]
+}

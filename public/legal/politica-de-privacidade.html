@@ -6,12 +6,12 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Política de Privacidade e Proteção de Dados | Tutela Digital®</title>
 <meta content="Política de privacidade aplicável à custódia probatória digital, tratamento de dados pessoais e conformidade com a LGPD." name="description"/>
-<link rel="canonical" href="https://tuteladigital.com.br/politica-de-privacidade.html"/>
+<link rel="canonical" href="https://tuteladigital.com.br/legal/politica-de-privacidade.html"/>
 <link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
 
 <!-- Hreflang -->
-<link rel="alternate" hreflang="pt-br" href="https://tuteladigital.com.br/politica-de-privacidade.html"/>
-<link rel="alternate" hreflang="x-default" href="https://tuteladigital.com.br/politica-de-privacidade.html"/>
+<link rel="alternate" hreflang="pt-br" href="https://tuteladigital.com.br/legal/politica-de-privacidade.html"/>
+<link rel="alternate" hreflang="x-default" href="https://tuteladigital.com.br/legal/politica-de-privacidade.html"/>
 <!-- Preconnect for fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -96,6 +96,7 @@
  ]
 }
 </script>
+  <link rel="stylesheet" href="/assets/css/dropdown-menu.css">
 </head>
 <body class="exec-compact">
 <div class="app">
@@ -112,10 +113,16 @@
 <a class="nav-link" data-page="pessoas" href="#" onclick="navigateTo('pessoas'); return false;">Pessoas Físicas</a>
 <a class="nav-link" data-page="como-funciona" href="#" onclick="navigateTo('como-funciona'); return false;">Como Funciona</a>
 <a class="nav-link" data-page="seguranca" href="#" onclick="navigateTo('seguranca'); return false;">Segurança</a>
-<a class="nav-link" data-page="preservacao-probatoria" href="#" onclick="navigateTo('preservacao-probatoria'); return false;">Preservação Probatória</a>
-<a class="nav-link" data-page="institucional" href="/institucional.html">Institucional</a>
-<a class="nav-link" data-page="fundamento-juridico" href="/fundamento-juridico.html">Fundamento Jurídico</a>
-<a class="nav-link" data-page="termos-de-custodia" href="/termos-de-custodia.html">Termos de Custódia</a>
+<li class="nav-dropdown">
+<a href="#" data-i18n="nav_legal_base">Base Jurídica</a>
+<ul class="dropdown-menu">
+<li><a href="/legal/preservacao-probatoria-digital.html" data-i18n="nav_preservacao">Preservação Probatória</a></li>
+<li><a href="/legal/fundamento-juridico.html" data-i18n="nav_fundamento">Fundamento Jurídico</a></li>
+<li><a href="/legal/termos-de-custodia.html" data-i18n="nav_termos">Termos de Custódia</a></li>
+<li><a href="/legal/politica-de-privacidade.html" data-i18n="nav_privacy">Política de Privacidade</a></li>
+<li><a href="/legal/institucional.html" data-i18n="nav_institucional">Estrutura Institucional</a></li>
+</ul>
+</li>
 </nav>
 <a class="header-cta" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">
 				  Acessar a Plataforma
@@ -252,7 +259,7 @@ Informação sobre compartilhamento</p>
 <div class="cta-final-inner">
 <h2 >Consulte também nossos Termos de Custódia</h2>
 <p>Condições jurídicas aplicáveis à preservação probatória de ativos digitais.</p>
-<a class="btn btn-primary" href="/termos-de-custodia.html">Ver Termos de Custódia</a>
+<a class="btn btn-primary" href="/legal/termos-de-custodia.html">Ver Termos de Custódia</a>
 </div>
 </section>
 </div>
@@ -278,10 +285,10 @@ Informação sobre compartilhamento</p>
 <span class="footer-link" onclick="window.location.href='/'">Como Funciona</span>
 <span class="footer-link" onclick="window.location.href='/'">Segurança</span>
 <span class="footer-link" onclick="window.location.href='/'">Preservação Probatória</span>
-<span class="footer-link" onclick="window.location.href='/institucional.html'">Institucional</span>
-<span class="footer-link" onclick="window.location.href='/fundamento-juridico.html'">Fundamento Jurídico</span>
-<span class="footer-link" onclick="window.location.href='/termos-de-custodia.html'">Termos de Custódia</span>
-<span class="footer-link" onclick="window.location.href='/politica-de-privacidade.html'">Política de Privacidade</span>
+<span class="footer-link" onclick="window.location.href='/legal/institucional.html'">Institucional</span>
+<span class="footer-link" onclick="window.location.href='/legal/fundamento-juridico.html'">Fundamento Jurídico</span>
+<span class="footer-link" onclick="window.location.href='/legal/termos-de-custodia.html'">Termos de Custódia</span>
+<span class="footer-link" onclick="window.location.href='/legal/politica-de-privacidade.html'">Política de Privacidade</span>
 </div>
 <div class="footer-copy">
                     © 2025 Tutela Digital®. Todos os direitos reservados.
@@ -312,5 +319,6 @@ Informação sobre compartilhamento</p>
     });
   });
 </script>
+  <script src="/assets/js/dropdown-menu.js"></script>
 </body>
 </html>
