@@ -10,7 +10,6 @@
     "footerEmail": "contato@tuteladigital.com.br",
     "footerInstagram": "@tuteladigitalbr"
   },
-
   "navigation": {
     "home": "Home",
     "government": "Government",
@@ -23,46 +22,70 @@
     "terms": "Custody Terms",
     "privacy": "Privacy Policy"
   },
-
   "home": {
-    "heroTitle": "Digital Evidentiary Preservation Infrastructure",
+    "heroTitle": "Digital Evidentiary Preservation with Verifiable Chain of Custody",
     "heroSubtitle": "Technological infrastructure dedicated to the structured and chronologically documented organization of digital assets with potential evidentiary relevance under Brazilian law, supported by verifiable chain of custody mechanisms and technical integrity controls.",
-
     "introTitle": "How to Preserve Digital Evidence Under Brazilian Law",
     "introP1": "Digital evidence preservation consists of the structured and chronologically documented organization of digital assets with potential evidentiary relevance, ensuring that their integrity may later be technically verified by a competent authority.",
     "introP2": "This infrastructure operates primarily in the pre-litigation phase, organizing digital records before judicial, administrative, or arbitral proceedings are initiated, contributing to greater procedural predictability.",
     "introP3": "The admissibility and evidentiary weight of preserved assets remain exclusively subject to the assessment of the competent authority under Brazilian procedural law.",
-
     "pillarsTitle": "Infrastructure Pillars",
     "pillar1Title": "Digital Chain of Custody",
     "pillar1Desc": "Structured chronological recording of events related to the digital asset, enabling technical reconstruction of its documentary history.",
     "pillar2Title": "Verifiable Integrity",
     "pillar2Desc": "Technical identification and registration mechanisms allowing future verification of integrity without exposure of the preserved content.",
     "pillar3Title": "Support for Notarial Formalization",
-    "pillar3Desc": "Possibility of notarial deed issuance based on previously preserved assets, upon request by the holder."
+    "pillar3Desc": "Possibility of notarial deed issuance based on previously preserved assets, upon request by the holder.",
+    "h2Main": "Technical Organization of Evidence with Evidentiary Validity",
+    "h2Secondary": "Infrastructure Founded on Brazilian Code of Civil Procedure",
+    "h3ChainStructure": "Digital Chain of Custody Structure",
+    "h4ChronologicalRegistration": "Immutable Chronological Registration",
+    "h4TechnicalIdentifier": "Verifiable Technical Identifier",
+    "h3LegalApplication": "Legal Application of Evidentiary Preservation",
+    "h4JudicialUse": "Use in Judicial Proceedings",
+    "h4AdministrativeUse": "Application in Administrative Defense"
   },
-
   "preservation": {
-    "title": "Digital Evidence Preservation",
+    "title": "How to Preserve Digital Evidence with Integrity and Documented Chain of Custody",
     "p1": "Preserving digital evidence requires technical mechanisms capable of recording chronological events related to each asset, ensuring verifiable integrity over time.",
     "p2": "The digital chain of custody documents events such as deposit, integrity registration, and controlled access by the holder, allowing structured historical reconstruction.",
-    "p3": "Organized evidentiary documentation may support future judicial, administrative, or arbitral proceedings under Brazilian law, without constituting automatic legal validation."
+    "p3": "Organized evidentiary documentation may support future judicial, administrative, or arbitral proceedings under Brazilian law, without constituting automatic legal validation.",
+    "h2Main": "Technical Mechanisms of Evidentiary Preservation",
+    "h2Secondary": "Pre-Litigation Organization of Digital Evidence",
+    "h3PreLitigation": "Preservation in Pre-Procedural Phase",
+    "h4RiskMitigation": "Documentary Risk Mitigation",
+    "h4DocumentPredictability": "Technical Predictability of Evidence",
+    "h3ProceduralUse": "Use of Preserved Evidence",
+    "h4ExpertAnalysis": "Evidence-Based Expert Analysis",
+    "h4FutureFormalization": "Subsequent Notarial Formalization"
   },
-
   "legalBasis": {
-    "title": "Legal Foundations Under Brazilian Law",
+    "title": "Legal Basis for Digital Evidence Preservation under Brazilian Law",
     "p1": "Brazilian law recognizes documentary evidence in electronic form, provided that its integrity and origin can be technically demonstrated in accordance with procedural principles.",
     "p2": "Structured digital records may contribute to the formation of judicial or administrative conviction when submitted to competent authority analysis.",
-    "p3": "Upon request of the holder, a Brazilian notarial deed (ata notarial) may be issued to formally document the existence and chronological preservation of the asset."
+    "p3": "Upon request of the holder, a Brazilian notarial deed (ata notarial) may be issued to formally document the existence and chronological preservation of the asset.",
+    "h2Main": "Legal Basis for Electronic Evidence Admissibility",
+    "h2Secondary": "Brazilian Legislation Applicable to Digital Evidence",
+    "h3CivilProcedure": "Code of Civil Procedure — Articles 369, 422, and 439",
+    "h3ElectronicProcessLaw": "Law 11,419/2006 — Electronic Judicial Process",
+    "h3DigitalSignature": "Provisional Measure 2,200-2/2001 — ICP-Brasil and Digital Signature",
+    "h3LGPD": "Law 13,709/2018 — Data Protection and Evidentiary Preservation",
+    "h4DataProtection": "LGPD Compliance",
+    "h4ConfidentialityLimits": "Legal Confidentiality Boundaries"
   },
-
   "security": {
-    "title": "Security Architecture and Confidentiality",
+    "title": "Integrity Architecture Applied to Digital Evidentiary Preservation",
     "p1": "Digital assets are protected by encryption and authentication mechanisms linked exclusively to the holder's Brazilian digital certificate, restricting access solely to the depositary.",
     "p2": "No content is accessible to third parties, including the infrastructure operator, ensuring strict confidentiality and preservation integrity.",
-    "p3": "Complementary integrity verification records may be generated without exposing the preserved content itself."
+    "p3": "Complementary integrity verification records may be generated without exposing the preserved content itself.",
+    "h2Main": "Technical Security and Procedural Confidentiality",
+    "h2Secondary": "Cryptographic Mechanisms of Evidentiary Integrity",
+    "h3Encryption": "End-to-End Encryption",
+    "h3AccessControl": "Exclusive Access Control by Holder",
+    "h3ImmutableRegistration": "Immutable Technical Registration",
+    "h4BlockchainRecord": "Distributed Ledger as Complementary Evidence",
+    "h4TemporalIntegrity": "Verifiable Temporal Integrity"
   },
-
   "howItWorks": {
     "title": "How It Works",
     "step1Title": "Structured Identification",
@@ -74,22 +97,18 @@
     "step4Title": "Exclusive Access",
     "step4Desc": "Access remains exclusively under the control of the holder through Brazilian digital certificate authentication."
   },
-
   "government": {
     "heroTitle": "Evidentiary Preservation for Public Authorities",
     "content": "Public institutions generate digital records that may be used in audits, administrative investigations, and formal proceedings. Prior technical organization contributes to documentary governance and institutional predictability."
   },
-
   "companies": {
     "heroTitle": "Corporate Digital Preservation",
     "content": "Companies may structure digital evidence prior to litigation or internal investigations, contributing to compliance frameworks and legal risk mitigation."
   },
-
   "individuals": {
     "heroTitle": "Digital Asset Protection",
     "content": "Individuals may preserve digital documents with potential future legal relevance, organizing evidence in advance of possible disputes."
   },
-
   "institutional": {
     "title": "Institutional Structure",
     "p1": "Tutela Digital® is a technological infrastructure for digital evidentiary preservation developed under structured legal foundations and verifiable technical mechanisms, operating exclusively under Brazilian law. The company acts solely in the technical organization and structured preservation of digital assets, with documented chain of custody, cryptographic integrity, and immutable time registration. The admissibility of evidence remains always subject to evaluation by the competent authority under Brazilian law, with the infrastructure acting on technical preservation rather than legal valuation of the preserved content.",
@@ -97,7 +116,6 @@
     "p3": "Tutela Digital® does not provide legal advice, does not issue opinions on evidence admissibility under Brazilian law, and does not conduct merit analysis of deposited content. The infrastructure is limited to structured technical preservation of digital assets, with integrity mechanisms, traceability, and authorship control. The decision regarding the use of preserved assets, their evidentiary relevance, and procedural strategy rests exclusively with the holder or their legal counsel, with admissibility remaining subject to analysis by the competent Brazilian judicial authority.",
     "p4": "The admissibility and evidentiary value of preserved assets depend exclusively on the assessment by the competent authority under Brazilian law, according to the specific circumstances of each case and applicable legislation. Tutela Digital® does not replace notarial activity under Brazilian law and does not exercise jurisdictional functions. Upon request by the holder, assets may be submitted for notarial formalization through a Brazilian notarial deed at a competent notary office. The applicable legislation for digital evidentiary preservation and electronic evidence admissibility is Brazilian legislation, including the Code of Civil Procedure, Law No. 11,419/2006, Provisional Measure No. 2,200-2/2001, and Law No. 13,709/2018 (LGPD)."
   },
-
   "terms": {
     "title": "Custody Terms",
     "p1": "These terms establish the conditions governing the use of the digital evidentiary preservation infrastructure.",
@@ -109,14 +127,12 @@
     "scopeTitle": "Technical Scope Delimitation",
     "scopeText": "Tutela Digital® does not provide legal advice, does not issue opinions on evidence admissibility under Brazilian law, and does not conduct merit analysis of deposited content. The depositor is fully responsible for the submitted content, the lawfulness of preservation under Brazilian law, and the strategy for using preserved assets, and should consult qualified legal counsel when necessary."
   },
-
   "privacy": {
     "title": "Privacy Policy",
     "p1": "This policy describes the processing of personal data necessary for authentication and service provision.",
     "p2": "Data is protected through appropriate technical security mechanisms.",
     "p3": "The holder may exercise rights provided under applicable data protection legislation."
   },
-
   "modal": {
     "title": "Before Accessing the Platform",
     "intro": "Please verify that the technical requirements are met for proper operation.",

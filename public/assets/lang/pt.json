@@ -10,7 +10,6 @@
     "footerEmail": "contato@tuteladigital.com.br",
     "footerInstagram": "@tuteladigitalbr"
   },
-
   "navigation": {
     "home": "Início",
     "government": "Governo",
@@ -23,46 +22,70 @@
     "terms": "Termos de Custódia",
     "privacy": "Política de Privacidade"
   },
-
   "home": {
-    "heroTitle": "Preservação Probatória Digital",
+    "heroTitle": "Preservação Probatória Digital com Cadeia de Custódia Verificável",
     "heroSubtitle": "Infraestrutura tecnológica destinada à organização estruturada de evidências digitais com cadeia de custódia verificável, integridade técnica documentada e suporte à eventual formalização notarial quando solicitada pelo titular.",
-
     "introTitle": "Como preservar prova digital com segurança jurídica",
     "introP1": "A preservação probatória digital consiste na organização técnica e cronológica de ativos digitais com potencial relevância jurídica, assegurando que sua integridade possa ser posteriormente verificada por autoridade competente.",
     "introP2": "A atuação ocorre preferencialmente em fase pré-litigiosa, estruturando registros antes da eventual instauração de processo judicial, administrativo ou arbitral, o que contribui para maior previsibilidade documental e redução de controvérsias sobre integridade.",
     "introP3": "A admissibilidade da prova permanece sempre sujeita à análise da autoridade julgadora, cabendo à infraestrutura atuar na preservação técnica e não na valoração jurídica do conteúdo preservado.",
-
     "pillarsTitle": "Pilares da Infraestrutura",
     "pillar1Title": "Cadeia de Custódia Digital",
     "pillar1Desc": "Registro cronológico estruturado de todos os eventos relacionados ao ativo digital, permitindo reconstrução técnica do histórico documental.",
     "pillar2Title": "Integridade Verificável",
     "pillar2Desc": "Mecanismos técnicos de registro e identificação que permitem futura verificação de integridade sem exposição do conteúdo.",
     "pillar3Title": "Suporte à Formalização Notarial",
-    "pillar3Desc": "Possibilidade de lavratura de ata notarial a partir do ativo previamente preservado, mediante solicitação do titular."
+    "pillar3Desc": "Possibilidade de lavratura de ata notarial a partir do ativo previamente preservado, mediante solicitação do titular.",
+    "h2Main": "Organização Técnica de Evidências com Validade Probatória",
+    "h2Secondary": "Infraestrutura Fundamentada em Código de Processo Civil Brasileiro",
+    "h3ChainStructure": "Estrutura da Cadeia de Custódia Digital",
+    "h4ChronologicalRegistration": "Registro Cronológico Imutável",
+    "h4TechnicalIdentifier": "Identificador Técnico Verificável",
+    "h3LegalApplication": "Aplicação Jurídica da Preservação Probatória",
+    "h4JudicialUse": "Utilização em Procedimentos Judiciais",
+    "h4AdministrativeUse": "Aplicação em Defesa Administrativa"
   },
-
   "preservation": {
-    "title": "Preservação Probatória Digital",
+    "title": "Como Preservar Prova Digital com Integridade e Cadeia de Custódia Documentada",
     "p1": "Preservar evidência digital exige mecanismos técnicos capazes de registrar, de forma cronológica e estruturada, os eventos relacionados ao ativo, garantindo rastreabilidade e integridade verificável ao longo do tempo.",
     "p2": "A cadeia de custódia digital documenta operações como depósito, geração de identificador técnico, registro temporal e disponibilização ao titular, permitindo reconstrução histórica organizada.",
-    "p3": "A organização técnica da prova contribui para maior clareza documental em procedimentos judiciais, administrativos ou arbitrais, respeitando a competência exclusiva da autoridade julgadora."
+    "p3": "A organização técnica da prova contribui para maior clareza documental em procedimentos judiciais, administrativos ou arbitrais, respeitando a competência exclusiva da autoridade julgadora.",
+    "h2Main": "Mecanismos Técnicos de Preservação Probatória",
+    "h2Secondary": "Organização Pré-Litigiosa de Evidência Digital",
+    "h3PreLitigation": "Preservação em Fase Pré-Processual",
+    "h4RiskMitigation": "Mitigação de Risco Documental",
+    "h4DocumentPredictability": "Previsibilidade Técnica da Prova",
+    "h3ProceduralUse": "Utilização da Prova Preservada",
+    "h4ExpertAnalysis": "Análise Pericial Fundamentada",
+    "h4FutureFormalization": "Formalização Notarial Posterior"
   },
-
   "legalBasis": {
-    "title": "Fundamento Jurídico",
+    "title": "Fundamento Jurídico da Preservação de Evidência Digital no Direito Brasileiro",
     "p1": "O ordenamento jurídico brasileiro admite prova documental produzida em meio eletrônico, desde que demonstrada sua integridade e autenticidade por meios tecnicamente confiáveis.",
     "p2": "Registros digitais estruturados podem servir como elemento de suporte à formação de convencimento da autoridade competente, observados os requisitos legais aplicáveis ao caso concreto.",
-    "p3": "A formalização por meio de ata notarial, quando solicitada pelo titular, pode reforçar a documentação cronológica da evidência previamente preservada."
+    "p3": "A formalização por meio de ata notarial, quando solicitada pelo titular, pode reforçar a documentação cronológica da evidência previamente preservada.",
+    "h2Main": "Base Legal da Admissibilidade de Prova Eletrônica",
+    "h2Secondary": "Legislação Brasileira Aplicável à Evidência Digital",
+    "h3CivilProcedure": "Código de Processo Civil — Arts. 369, 422 e 439",
+    "h3ElectronicProcessLaw": "Lei 11.419/2006 — Processo Judicial Eletrônico",
+    "h3DigitalSignature": "MP 2.200-2/2001 — ICP-Brasil e Assinatura Digital",
+    "h3LGPD": "Lei 13.709/2018 — Proteção de Dados e Preservação Probatória",
+    "h4DataProtection": "Compatibilidade com LGPD",
+    "h4ConfidentialityLimits": "Limites da Confidencialidade Jurídica"
   },
-
   "security": {
-    "title": "Segurança e Arquitetura Técnica",
+    "title": "Arquitetura de Integridade Aplicada à Preservação Probatória Digital",
     "p1": "Os ativos digitais depositados são protegidos por mecanismos de criptografia e autenticação vinculados ao certificado digital do titular, limitando o acesso exclusivamente ao depositante.",
     "p2": "O conteúdo preservado não é acessível a terceiros, sendo armazenado em ambiente estruturado que prioriza confidencialidade, integridade e rastreabilidade técnica.",
-    "p3": "Registros complementares de verificação podem ser utilizados como mecanismo adicional de comprovação de integridade, sem exposição do conteúdo preservado."
+    "p3": "Registros complementares de verificação podem ser utilizados como mecanismo adicional de comprovação de integridade, sem exposição do conteúdo preservado.",
+    "h2Main": "Segurança Técnica e Confidencialidade Processual",
+    "h2Secondary": "Mecanismos Criptográficos de Integridade Probatória",
+    "h3Encryption": "Criptografia de Ponta a Ponta",
+    "h3AccessControl": "Controle de Acesso Exclusivo ao Titular",
+    "h3ImmutableRegistration": "Registro Técnico Imutável",
+    "h4BlockchainRecord": "Registro Distribuído como Prova Complementar",
+    "h4TemporalIntegrity": "Integridade Temporal Verificável"
   },
-
   "howItWorks": {
     "title": "Como Funciona",
     "step1Title": "Identificação Estruturada",
@@ -74,22 +97,18 @@
     "step4Title": "Acesso Exclusivo",
     "step4Desc": "O acesso permanece restrito ao titular mediante autenticação por certificado digital."
   },
-
   "government": {
     "heroTitle": "Preservação Probatória para Órgãos Públicos",
     "content": "Órgãos públicos produzem registros digitais que podem compor auditorias, sindicâncias e processos administrativos. A organização técnica prévia contribui para governança documental e maior previsibilidade institucional."
   },
-
   "companies": {
     "heroTitle": "Preservação Digital Corporativa",
     "content": "Empresas podem estruturar evidências digitais antes de litígios ou investigações internas, contribuindo para compliance e mitigação de riscos jurídicos."
   },
-
   "individuals": {
     "heroTitle": "Proteção do Patrimônio Digital",
     "content": "Pessoas físicas podem preservar documentos digitais com potencial relevância jurídica futura, organizando previamente evidências."
   },
-
   "institutional": {
     "title": "Estrutura Institucional",
     "p1": "A Tutela Digital® é infraestrutura tecnológica de preservação probatória digital desenvolvida com base em fundamento jurídico estruturado e mecanismos técnicos verificáveis. A empresa atua exclusivamente na organização técnica e preservação estruturada de ativos digitais, com cadeia de custódia documentada, integridade criptográfica e registro temporal imutável. A admissibilidade da prova permanece sempre sujeita à apreciação da autoridade competente, cabendo à infraestrutura atuar na preservação técnica e não na valoração jurídica do conteúdo preservado.",
@@ -97,7 +116,6 @@
     "p3": "A Tutela Digital® não presta consultoria jurídica, não emite pareceres sobre admissibilidade de prova e não realiza análise de mérito do conteúdo depositado. A infraestrutura limita-se à preservação técnica estruturada de ativos digitais, com mecanismos de integridade, rastreabilidade e controle de autoria. A decisão sobre a utilização dos ativos preservados, sua relevância probatória e estratégia processual cabe exclusivamente ao titular ou a seus assessores jurídicos, permanecendo a admissibilidade sujeita à análise da autoridade julgadora competente.",
     "p4": "A admissibilidade e o valor probatório dos ativos preservados dependem exclusivamente da avaliação da autoridade competente, conforme as circunstâncias do caso concreto e a legislação aplicável. A Tutela Digital® não substitui a atividade notarial e não exerce função jurisdicional. Quando solicitado pelo titular, os ativos podem ser submetidos à formalização cartorial por meio de ata notarial junto a tabelionato competente. A legislação aplicável à preservação probatória digital e à admissibilidade da prova eletrônica é a legislação brasileira, incluindo o Código de Processo Civil, a Lei nº 11.419/2006, a Medida Provisória nº 2.200-2/2001 e a Lei nº 13.709/2018 (LGPD)."
   },
-
   "terms": {
     "title": "Termos de Custódia",
     "p1": "Estabelecem as condições de uso da infraestrutura de preservação probatória digital.",
@@ -109,14 +127,12 @@
     "scopeTitle": "Delimitação do Escopo Técnico",
     "scopeText": "A Tutela Digital® não presta consultoria jurídica, não emite pareceres sobre admissibilidade de prova e não realiza análise de mérito do conteúdo depositado. O depositante é integralmente responsável pelo conteúdo submetido, pela licitude da preservação e pela estratégia de utilização dos ativos preservados, devendo consultar assessoria jurídica qualificada quando necessário."
   },
-
   "privacy": {
     "title": "Política de Privacidade",
     "p1": "Descreve o tratamento de dados pessoais necessários à autenticação e à prestação do serviço.",
     "p2": "Os dados são protegidos por mecanismos técnicos adequados.",
     "p3": "O titular poderá exercer seus direitos previstos na legislação aplicável."
   },
-
   "modal": {
     "title": "Antes de acessar a plataforma",
     "intro": "Verifique se os requisitos técnicos estão atendidos para funcionamento adequado.",
