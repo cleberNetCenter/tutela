@@ -1,0 +1,20 @@
+# Clean URLs for Netlify/Cloudflare Pages
+/como-funciona                      /como-funciona.html                     200
+/seguranca                          /seguranca.html                         200
+/preservacao-probatoria-digital     /preservacao-probatoria-digital.html    200
+/institucional                      /institucional.html                     200
+/fundamento-juridico                /fundamento-juridico.html               200
+/termos-de-custodia                 /termos-de-custodia.html                200
+/politica-de-privacidade            /politica-de-privacidade.html           200
+
+# Multilingual pages
+/en                                 /index-en.html                          200
+/es                                 /index-es.html                          200
+
+# Old hash-based redirects (SPA -> MPA)
+/#seguranca                         /seguranca.html                         301!
+/#preservacao-probatoria            /preservacao-probatoria-digital.html    301!
+/#institucional                     /institucional.html                     301!
+/#fundamento-juridico               /fundamento-juridico.html               301!
+/#termos-de-custodia                /termos-de-custodia.html                301!
+/#como-funciona                     /como-funciona.html                     301!

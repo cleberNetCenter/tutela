@@ -1,0 +1,31 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/como-funciona", "destination": "/como-funciona.html" },
+    { "source": "/seguranca", "destination": "/seguranca.html" },
+    { "source": "/preservacao-probatoria-digital", "destination": "/preservacao-probatoria-digital.html" },
+    { "source": "/institucional", "destination": "/institucional.html" },
+    { "source": "/fundamento-juridico", "destination": "/fundamento-juridico.html" },
+    { "source": "/termos-de-custodia", "destination": "/termos-de-custodia.html" },
+    { "source": "/politica-de-privacidade", "destination": "/politica-de-privacidade.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}

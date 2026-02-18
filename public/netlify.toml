@@ -1,0 +1,41 @@
+[[redirects]]
+  from = "/como-funciona"
+  to = "/como-funciona.html"
+  status = 200
+
+[[redirects]]
+  from = "/seguranca"
+  to = "/seguranca.html"
+  status = 200
+
+[[redirects]]
+  from = "/preservacao-probatoria-digital"
+  to = "/preservacao-probatoria-digital.html"
+  status = 200
+
+[[redirects]]
+  from = "/institucional"
+  to = "/institucional.html"
+  status = 200
+
+[[redirects]]
+  from = "/fundamento-juridico"
+  to = "/fundamento-juridico.html"
+  status = 200
+
+[[redirects]]
+  from = "/termos-de-custodia"
+  to = "/termos-de-custodia.html"
+  status = 200
+
+[[redirects]]
+  from = "/politica-de-privacidade"
+  to = "/politica-de-privacidade.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
