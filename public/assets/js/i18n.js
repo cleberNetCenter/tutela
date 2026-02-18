@@ -98,7 +98,7 @@ const I18N = {
    */
   async loadTranslations(lang) {
     try {
-      const response = await fetch(`assets/lang/${lang}.json?v=5`);
+      const response = await fetch(`assets/lang/${lang}.json?v=6`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       this.translations = await response.json();
       console.log(`[i18n] Traduções carregadas: ${lang}.json (${Object.keys(this.translations).length} seções)`);
@@ -165,20 +165,18 @@ const I18N = {
   async switchLanguage(lang) {
     if (this.currentLang === lang) return;
     
-    this.currentLang = lang;
+    // Salva idioma no localStorage
     localStorage.setItem('tutela_lang', lang);
     
-    await this.loadTranslations(lang);
-    this.applyTranslations();
-    this.updateLanguageSelector();
+    // Fecha o menu dropdown
+    const dropdown = document.querySelector('.lang-dropdown');
+    if (dropdown) {
+      dropdown.classList.remove('active');
+    }
     
-    // Atualiza atributo lang do HTML
-    document.documentElement.lang = this.getLangCode(lang);
-    
-    // Atualiza schemas JSON-LD (se existirem)
-    this.updateSchemaLanguage(lang);
-    
-    console.log('[i18n] Idioma alterado para:', lang);
+    // Recarrega a página para aplicar traduções completas
+    console.log('[i18n] Idioma alterado para:', lang, '- Recarregando página...');
+    window.location.reload();
   },
 
   /**
