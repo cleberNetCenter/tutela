@@ -1,42 +1,113 @@
 {
-  "homeHeroTitle": "Tutela Digital®",
-  "homeHeroSubtitle": "Digital evidentiary preservation infrastructure with verifiable chain of custody and support for notarial formalization under Brazilian law.",
+  "global": {
+    "brand": "Tutela Digital®",
+    "accessPlatform": "Access Platform",
+    "ctaPrimary": "Start Evidentiary Preservation",
+    "ctaSecondary": "Speak to a Specialist",
+    "ctaInstitutional": "Learn About the Infrastructure",
+    "legalDisclaimer": "The admissibility of evidence remains subject to evaluation by the competent authority under applicable law.",
+    "footerRights": "© 2026 Tutela Digital®. All rights reserved.",
+    "footerEmail": "contato@tuteladigital.com.br",
+    "footerInstagram": "@tuteladigitalbr"
+  },
 
-  "homeIntroTitle": "Digital Evidentiary Preservation",
-  "homeIntroParagraph1": "Digital evidentiary preservation consists of structured organization of digital assets with potential legal relevance, ensuring verifiable integrity and documented traceability.",
-  "homeIntroParagraph2": "The service operates at the pre-litigation stage, allowing digital records to be preserved prior to possible judicial, administrative, or arbitral proceedings.",
-  "homeIntroParagraph3": "The admissibility of evidence is subject to evaluation by the competent authority under Brazilian law.",
+  "navigation": {
+    "home": "Home",
+    "government": "Government",
+    "companies": "Companies",
+    "individuals": "Individuals",
+    "howItWorks": "How It Works",
+    "security": "Security",
+    "preservation": "Evidentiary Preservation",
+    "legalBasis": "Legal Framework",
+    "terms": "Custody Terms",
+    "privacy": "Privacy Policy"
+  },
 
-  "governoParagraph1": "Public institutions generate digital records that may compose administrative proceedings or audits.",
-  "governoParagraph2": "The infrastructure enables structured preservation and traceability.",
+  "home": {
+    "heroTitle": "Digital Evidentiary Preservation",
+    "heroSubtitle": "Technological infrastructure designed for the structured organization of digital evidence with verifiable chain of custody, documented technical integrity, and support for potential notarial formalization upon request by the holder.",
 
-  "empresasParagraph1": "Companies may preserve strategic communications and contracts for potential litigation.",
-  "empresasParagraph2": "Structured preservation contributes to preventive evidentiary organization.",
+    "introTitle": "How to Preserve Digital Evidence with Legal Reliability",
+    "introP1": "Digital evidentiary preservation consists of the structured and chronological organization of digital assets with potential legal relevance, ensuring that their integrity may later be verified by a competent authority.",
+    "introP2": "The process preferably takes place at the pre-litigation stage, organizing records before the initiation of judicial, administrative, or arbitral proceedings, thereby enhancing documentary predictability and reducing disputes regarding integrity.",
+    "introP3": "The admissibility of preserved evidence remains subject to judicial assessment, as the infrastructure is limited to technical preservation and does not perform legal evaluation of the content.",
 
-  "pessoasParagraph1": "Individuals may preserve digital records of legal or patrimonial relevance.",
-  "pessoasParagraph2": "Pre-litigation organization may facilitate future evidentiary use.",
+    "pillarsTitle": "Infrastructure Pillars",
+    "pillar1Title": "Digital Chain of Custody",
+    "pillar1Desc": "Structured chronological recording of events related to the digital asset, enabling technical reconstruction of its documentary history.",
+    "pillar2Title": "Verifiable Integrity",
+    "pillar2Desc": "Technical identification and registration mechanisms allowing future verification of integrity without exposure of the preserved content.",
+    "pillar3Title": "Support for Notarial Formalization",
+    "pillar3Desc": "Possibility of notarial deed issuance based on previously preserved assets, upon request by the holder."
+  },
 
-  "comoFuncionaParagraph1": "The process begins with identification and notarial validation.",
-  "comoFuncionaParagraph2": "Digital assets are then submitted to integrity registration and formal chain of custody initiation.",
-  "comoFuncionaParagraph3": "Technical records allow long-term traceability.",
+  "preservation": {
+    "title": "Digital Evidentiary Preservation",
+    "p1": "Preserving digital evidence requires technical mechanisms capable of chronologically recording events related to the asset, ensuring traceability and verifiable integrity over time.",
+    "p2": "The digital chain of custody documents operations such as deposit, technical identifier generation, timestamp registration, and holder access, allowing structured historical reconstruction.",
+    "p3": "Technical organization of evidence contributes to documentary clarity in judicial, administrative, or arbitral proceedings, while respecting the exclusive competence of the deciding authority."
+  },
 
-  "segurancaParagraph1": "Assets are protected through encryption and certificate-based authentication.",
-  "segurancaParagraph2": "Content is not accessible to third parties without proper authentication.",
-  "segurancaParagraph3": "Distributed records may be used as complementary integrity verification mechanisms.",
+  "legalBasis": {
+    "title": "Legal Framework",
+    "p1": "Brazilian procedural law recognizes electronic documentary evidence provided that its integrity and authenticity can be demonstrated through technically reliable means.",
+    "p2": "Structured digital records may serve as supporting elements in evidentiary assessment, subject to applicable legal requirements in each specific case.",
+    "p3": "Notarial formalization, when requested by the holder, may reinforce the chronological documentation of previously preserved evidence."
+  },
 
-  "preservacaoPilarParagraph1": "Digital evidentiary preservation does not replace judicial analysis.",
-  "preservacaoPilarParagraph2": "The digital chain of custody documents chronological events related to the asset.",
-  "preservacaoPilarParagraph3": "Verifiable integrity is a relevant technical requirement for potential admissibility.",
+  "security": {
+    "title": "Security and Technical Architecture",
+    "p1": "Deposited digital assets are protected through encryption mechanisms and authentication linked to the holder’s digital certificate, restricting access exclusively to the depositor.",
+    "p2": "The preserved content is not accessible to third parties and is stored in a structured environment prioritizing confidentiality, integrity, and technical traceability.",
+    "p3": "Complementary verification records may be used as an additional integrity validation mechanism without exposing the preserved content."
+  },
 
-  "fundamentoParagraph1": "Brazilian Civil Procedure Code recognizes digital documentary evidence when authenticity is preserved.",
-  "fundamentoParagraph2": "Brazilian Internet Civil Framework recognizes legal validity of electronic records.",
-  "fundamentoParagraph3": "Brazilian LGPD establishes data protection requirements.",
+  "howItWorks": {
+    "title": "How It Works",
+    "step1Title": "Structured Identification",
+    "step1Desc": "The process begins with holder identification, which may include notarial validation to reinforce legal reliability.",
+    "step2Title": "Deposit and Technical Registration",
+    "step2Desc": "After authentication, the digital asset is deposited and submitted to generation of a verifiable technical identifier.",
+    "step3Title": "Chain of Custody",
+    "step3Desc": "Events related to the asset are recorded chronologically within a structured preservation registry.",
+    "step4Title": "Exclusive Access",
+    "step4Desc": "Subsequent access remains restricted to the holder through digital certificate authentication."
+  },
 
-  "termosParagraph1": "Custody Terms regulate the use of the preservation infrastructure.",
-  "termosParagraph2": "The depositor is responsible for legality of submitted content.",
-  "termosParagraph3": "The infrastructure is limited to structured preservation.",
+  "government": {
+    "heroTitle": "Evidentiary Preservation for Public Authorities",
+    "content": "Public institutions generate digital records that may be used in audits, administrative investigations, and formal proceedings. Prior technical organization contributes to documentary governance and institutional predictability."
+  },
 
-  "privacidadeParagraph1": "The Privacy Policy describes personal data processing for authentication purposes.",
-  "privacidadeParagraph2": "Data is protected through technical safeguards.",
-  "privacidadeParagraph3": "Data subjects may exercise rights under Brazilian law."
+  "companies": {
+    "heroTitle": "Corporate Digital Preservation",
+    "content": "Companies may structure digital evidence prior to litigation or internal investigations, contributing to compliance frameworks and legal risk mitigation."
+  },
+
+  "individuals": {
+    "heroTitle": "Digital Asset Protection",
+    "content": "Individuals may preserve digital documents with potential future legal relevance, organizing evidence in advance of possible disputes."
+  },
+
+  "terms": {
+    "title": "Custody Terms",
+    "p1": "These terms establish the conditions governing the use of the digital evidentiary preservation infrastructure.",
+    "p2": "The depositor bears full responsibility for the submitted content.",
+    "p3": "The platform is limited to technical preservation and does not provide legal assessment of the content."
+  },
+
+  "privacy": {
+    "title": "Privacy Policy",
+    "p1": "This policy describes the processing of personal data necessary for authentication and service provision.",
+    "p2": "Data is protected through appropriate technical security mechanisms.",
+    "p3": "The holder may exercise rights provided under applicable data protection legislation."
+  },
+
+  "modal": {
+    "title": "Before Accessing the Platform",
+    "intro": "Please verify that the technical requirements are met for proper operation.",
+    "cancel": "Cancel",
+    "proceed": "Proceed"
+  }
 }

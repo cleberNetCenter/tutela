@@ -40,10 +40,10 @@ const I18N = {
    */
   async loadTranslations(lang) {
     try {
-      const response = await fetch(`assets/lang/${lang}.json?v=2`);
+      const response = await fetch(`assets/lang/${lang}.json?v=3`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       this.translations = await response.json();
-      console.log(`[i18n] Traduções carregadas: ${lang}.json`);
+      console.log(`[i18n] Traduções carregadas: ${lang}.json (${Object.keys(this.translations).length} seções)`);
     } catch (error) {
       console.error(`[i18n] Erro ao carregar ${lang}.json:`, error);
       if (lang !== this.fallbackLang) {
@@ -59,7 +59,7 @@ const I18N = {
   applyTranslations() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
-      const translation = this.translations[key];
+      const translation = this.t(key);
       
       if (translation) {
         // Suporta texto simples ou HTML
@@ -76,7 +76,7 @@ const I18N = {
     // Traduz placeholders de inputs
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.dataset.i18nPlaceholder;
-      const translation = this.translations[key];
+      const translation = this.t(key);
       if (translation) {
         el.placeholder = translation;
       }
@@ -85,7 +85,7 @@ const I18N = {
     // Traduz atributos alt de imagens
     document.querySelectorAll('[data-i18n-alt]').forEach(el => {
       const key = el.dataset.i18nAlt;
-      const translation = this.translations[key];
+      const translation = this.t(key);
       if (translation) {
         el.alt = translation;
       }
@@ -94,7 +94,7 @@ const I18N = {
     // Traduz atributos title
     document.querySelectorAll('[data-i18n-title]').forEach(el => {
       const key = el.dataset.i18nTitle;
-      const translation = this.translations[key];
+      const translation = this.t(key);
       if (translation) {
         el.title = translation;
       }
@@ -173,8 +173,28 @@ const I18N = {
 
   /**
    * Retorna tradução por chave (uso programático)
+   * Suporta chaves aninhadas: "global.brand" ou "navigation.home"
    */
   t(key) {
+    if (!key) return '';
+    
+    // Se a chave contém ponto, navega pelo objeto
+    if (key.includes('.')) {
+      const keys = key.split('.');
+      let value = this.translations;
+      
+      for (const k of keys) {
+        value = value?.[k];
+        if (value === undefined) {
+          console.warn(`[i18n] Chave aninhada não encontrada: "${key}"`);
+          return key;
+        }
+      }
+      
+      return value || key;
+    }
+    
+    // Chave simples
     return this.translations[key] || key;
   }
 };
