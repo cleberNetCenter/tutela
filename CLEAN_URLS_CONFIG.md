@@ -71,39 +71,61 @@ URLs sem `.html` retornam 404:
 
 ---
 
-### **5️⃣ Nginx**
-📄 Criar arquivo de configuração manualmente
+### **5️⃣ Nginx** ⭐ **SERVIDOR ATUAL EM PRODUÇÃO**
+📄 Arquivo: `nginx-tuteladigital.conf` (exemplo completo)
 
-**Exemplo de configuração:**
-```nginx
-server {
-    listen 80;
-    server_name tuteladigital.com.br www.tuteladigital.com.br;
-    root /var/www/html/public;
-    index index.html;
+**✅ DETECTADO**: O site **www.tuteladigital.com.br** roda em **Nginx**
 
-    # Clean URLs
-    location / {
-        try_files $uri $uri.html $uri/ =404;
-    }
+**Como aplicar:**
+1. **Localize o arquivo de configuração atual:**
+   ```bash
+   # Geralmente em:
+   /etc/nginx/sites-available/tuteladigital.com.br
+   # ou
+   /etc/nginx/conf.d/tuteladigital.com.br.conf
+   ```
 
-    # Redirects 301 de rotas SPA antigas
-    location ~ ^/#(.*)$ {
-        return 301 /$1.html;
-    }
+2. **Adicione a configuração de Clean URLs:**
+   ```nginx
+   server {
+       listen 443 ssl http2;
+       server_name tuteladigital.com.br www.tuteladigital.com.br;
+       root /var/www/tuteladigital.com.br/public;
+       
+       # Clean URLs - ADICIONE ESTA LINHA
+       location / {
+           try_files $uri $uri.html $uri/ =404;
+       }
+       
+       # Resto da configuração...
+   }
+   ```
 
-    # Security headers
-    add_header X-Frame-Options "DENY";
-    add_header X-Content-Type-Options "nosniff";
-    add_header X-XSS-Protection "1; mode=block";
+3. **Teste a configuração:**
+   ```bash
+   sudo nginx -t
+   ```
 
-    # Browser caching
-    location ~* \.(css|js|jpg|jpeg|png|gif|svg|ico)$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-}
-```
+4. **Se o teste passar, recarregue o Nginx:**
+   ```bash
+   sudo systemctl reload nginx
+   # ou
+   sudo service nginx reload
+   ```
+
+**📄 Arquivo completo de exemplo:**
+- Veja: `nginx-tuteladigital.conf` (arquivo completo com SSL, caching, security headers)
+
+**Funcionalidades incluídas:**
+✅ Clean URLs automáticos (`try_files $uri $uri.html`)
+✅ Force HTTPS (redirect 80 → 443)
+✅ SSL/TLS configuration
+✅ Security headers (X-Frame-Options, X-Content-Type-Options, etc.)
+✅ Browser caching otimizado (CSS/JS: 30 dias, imagens: 1 ano)
+✅ GZIP compression
+✅ Multilingual redirects (/en, /es)
+✅ Block hidden files
+✅ robots.txt e sitemap.xml otimizados
 
 ---
 
