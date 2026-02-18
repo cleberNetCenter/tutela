@@ -1,9 +1,23 @@
+# Tutela Digital® - Robots.txt
+# MPA Architecture - SEO Jurídico Nacional
+
 User-agent: *
+
+# Permitir páginas PT
 Allow: /
+Allow: /como-funciona.html
+Allow: /seguranca.html
+Allow: /governo.html
+Allow: /empresas.html
+Allow: /pessoas.html
+Allow: /legal/
+
+# Bloquear páginas EN/ES (noindex já aplicado)
+Disallow: /en/
+Disallow: /es/
+
+# Assets
+Allow: /assets/
 
 # Sitemap
 Sitemap: https://tuteladigital.com.br/sitemap.xml
-
-# Block internal tools
-Disallow: /_mpa_generator.py
-Disallow: /assets/js/navigation.js
