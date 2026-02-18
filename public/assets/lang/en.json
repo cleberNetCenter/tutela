@@ -90,11 +90,24 @@
     "content": "Individuals may preserve digital documents with potential future legal relevance, organizing evidence in advance of possible disputes."
   },
 
+  "institutional": {
+    "title": "Institutional Structure",
+    "p1": "Tutela Digital® is a technological infrastructure for digital evidentiary preservation developed under structured legal foundations and verifiable technical mechanisms, operating exclusively under Brazilian law. The company acts solely in the technical organization and structured preservation of digital assets, with documented chain of custody, cryptographic integrity, and immutable time registration. The admissibility of evidence remains always subject to evaluation by the competent authority under Brazilian law, with the infrastructure acting on technical preservation rather than legal valuation of the preserved content.",
+    "p2": "Holder identity validation occurs through notarial interview conducted by a competent Brazilian notary via the e-Notariado system, ensuring public faith and documentary authenticity from the origin of preservation. This procedure ensures that the depositor's identification is carried out with the same legal security standard used in in-person notarial acts under Brazilian law, constituting an essential element of the chain of custody and contributing to the evidentiary reliability of the preserved asset throughout the entire preservation cycle.",
+    "p3": "Tutela Digital® does not provide legal advice, does not issue opinions on evidence admissibility under Brazilian law, and does not conduct merit analysis of deposited content. The infrastructure is limited to structured technical preservation of digital assets, with integrity mechanisms, traceability, and authorship control. The decision regarding the use of preserved assets, their evidentiary relevance, and procedural strategy rests exclusively with the holder or their legal counsel, with admissibility remaining subject to analysis by the competent Brazilian judicial authority.",
+    "p4": "The admissibility and evidentiary value of preserved assets depend exclusively on the assessment by the competent authority under Brazilian law, according to the specific circumstances of each case and applicable legislation. Tutela Digital® does not replace notarial activity under Brazilian law and does not exercise jurisdictional functions. Upon request by the holder, assets may be submitted for notarial formalization through a Brazilian notarial deed at a competent notary office. The applicable legislation for digital evidentiary preservation and electronic evidence admissibility is Brazilian legislation, including the Code of Civil Procedure, Law No. 11,419/2006, Provisional Measure No. 2,200-2/2001, and Law No. 13,709/2018 (LGPD)."
+  },
+
   "terms": {
     "title": "Custody Terms",
     "p1": "These terms establish the conditions governing the use of the digital evidentiary preservation infrastructure.",
     "p2": "The depositor bears full responsibility for the submitted content.",
-    "p3": "The platform is limited to technical preservation and does not provide legal assessment of the content."
+    "p3": "The platform is limited to technical preservation and does not provide legal assessment of the content.",
+    "p4": "The admissibility of evidence remains always subject to evaluation by the competent authority under Brazilian law.",
+    "limitationTitle": "Limitation of Liability",
+    "limitationText": "Tutela Digital® does not guarantee judicial or administrative results. The infrastructure acts exclusively on structured technical preservation of digital assets, not exercising jurisdictional functions nor replacing notarial or legal services. The admissibility and evidentiary value of preserved assets are matters subject to evaluation by the competent authority under Brazilian law.",
+    "scopeTitle": "Technical Scope Delimitation",
+    "scopeText": "Tutela Digital® does not provide legal advice, does not issue opinions on evidence admissibility under Brazilian law, and does not conduct merit analysis of deposited content. The depositor is fully responsible for the submitted content, the lawfulness of preservation under Brazilian law, and the strategy for using preserved assets, and should consult qualified legal counsel when necessary."
   },
 
   "privacy": {
