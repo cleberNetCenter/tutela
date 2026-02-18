@@ -459,3 +459,79 @@ Análise do arquivo `styles-header-final.css`:
 **Autor:** GenSpark AI Developer  
 **Repositório:** https://github.com/cleberNetCenter/tutela  
 **PR:** #26 - https://github.com/cleberNetCenter/tutela/pull/26
+
+---
+
+## 🐛 Update: Fix Clicabilidade dos Links (2026-02-18)
+
+### **Problema Identificado Após Implementação:**
+❌ Links do dropdown não eram clicáveis em **desktop**  
+❌ Causa: `preventDefault()` estava bloqueando todos os cliques (mobile e desktop)
+
+### **Solução Aplicada:**
+
+**Arquivo modificado:** `public/assets/js/dropdown-menu.js`
+
+**Mudanças:**
+1. Adicionar função `isMobile()` para detectar viewport
+   ```javascript
+   function isMobile() {
+     return window.innerWidth <= 768;
+   }
+   ```
+
+2. Aplicar `preventDefault()` APENAS em mobile
+   ```javascript
+   dropdownToggle.addEventListener('click', function(e) {
+     // Only prevent default on mobile
+     if (isMobile()) {
+       e.preventDefault();
+       navDropdown.classList.toggle('active');
+     }
+   });
+   ```
+
+3. Fechar dropdown após clicar em link (mobile)
+   ```javascript
+   dropdownLinks.forEach(function(link) {
+     link.addEventListener('click', function() {
+       if (isMobile()) {
+         navDropdown.classList.remove('active');
+       }
+     });
+   });
+   ```
+
+### **Comportamento Final:**
+
+**Desktop (>768px):**
+- ✅ Hover sobre "Base Jurídica" abre dropdown
+- ✅ Links são clicáveis (navegação funciona)
+- ✅ Dropdown fecha ao mover mouse para fora
+
+**Mobile (≤768px):**
+- ✅ Click em "Base Jurídica" abre/fecha dropdown
+- ✅ Links são clicáveis (navegação funciona)
+- ✅ Dropdown fecha após clicar em link
+- ✅ Dropdown fecha ao clicar fora
+
+### **Commit:**
+- Hash: `a47c768`
+- Mensagem: "fix(dropdown): Permitir cliques nos links do dropdown em desktop"
+- Arquivos: 1 (dropdown-menu.js)
+- Linhas: +28, -11
+
+### **Validação:**
+- [x] Desktop: links clicáveis
+- [x] Desktop: hover funciona
+- [x] Mobile: click abre/fecha
+- [x] Mobile: links clicáveis
+- [x] Mobile: fecha após click em link
+- [x] Mobile: fecha ao clicar fora
+
+**Status:** ✅ **RESOLVIDO - 100% FUNCIONAL**
+
+---
+
+**Última atualização:** 2026-02-18 22:45 UTC  
+**PR #26 Status:** 🔄 OPEN (4 commits, pronto para merge)
