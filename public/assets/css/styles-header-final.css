@@ -120,16 +120,32 @@
   z-index: 200;
 }
 
-.lang-menu a {
+.lang-menu a,
+.lang-menu button,
+.lang-option {
   padding: 0.6rem 0.9rem;
   font-size: 0.85rem;
   color: rgba(255,255,255,0.85);
   text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
 }
 
-.lang-menu a:hover {
+.lang-menu a:hover,
+.lang-menu button:hover,
+.lang-option:hover {
   background: rgba(255,255,255,0.08);
   color: #ffffff;
+}
+
+.lang-option.active {
+  background: rgba(255,255,255,0.12);
+  color: #ffffff;
+  font-weight: 500;
 }
 
 .lang-dropdown:hover .lang-menu,

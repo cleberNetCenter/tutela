@@ -8,6 +8,64 @@ const I18N = {
   translations: {},
   fallbackLang: 'pt',
 
+  // Mapa de compatibilidade: chaves antigas → novas
+  keyMap: {
+    // Meta & Global
+    'site_title': 'global.brand',
+    'site_description': 'home.heroSubtitle',
+    
+    // Navigation
+    'nav_home': 'navigation.home',
+    'nav_governo': 'navigation.government',
+    'nav_empresas': 'navigation.companies',
+    'nav_pessoas': 'navigation.individuals',
+    'nav_como_funciona': 'navigation.howItWorks',
+    'nav_seguranca': 'navigation.security',
+    'nav_preservacao': 'navigation.preservation',
+    'nav_fundamento': 'navigation.legalBasis',
+    'nav_termos': 'navigation.terms',
+    'nav_privacy': 'navigation.privacy',
+    'nav_cta': 'global.accessPlatform',
+    
+    // Home Hero
+    'hero_subtitle': 'home.heroSubtitle',
+    'home_verticals_title': 'home.heroTitle',
+    
+    // Home Intro (Trust)
+    'home_trust_title': 'home.introTitle',
+    'home_trust_p1': 'home.introP1',
+    'home_trust_p2': 'home.introP2',
+    'home_trust_p3': 'home.introP3',
+    
+    // Home Verticals (Soluções por Segmento)
+    'home_verticals_gov': 'navigation.government',
+    'home_verticals_gov_desc': 'government.heroTitle',
+    'home_verticals_corp': 'navigation.companies',
+    'home_verticals_corp_desc': 'companies.heroTitle',
+    'home_verticals_personal': 'navigation.individuals',
+    'home_verticals_personal_desc': 'individuals.heroTitle',
+    
+    // Home Pillars
+    'home_pillars_title': 'home.pillarsTitle',
+    'home_pillars_preservation': 'home.pillar1Title',
+    'home_pillars_preservation_desc': 'home.pillar1Desc',
+    'home_pillars_integrity': 'home.pillar2Title',
+    'home_pillars_integrity_desc': 'home.pillar2Desc',
+    'home_pillars_custody': 'home.pillar3Title',
+    'home_pillars_custody_desc': 'home.pillar3Desc',
+    'home_pillars_admissibility': 'home.pillar3Title',
+    'home_pillars_admissibility_desc': 'home.pillar3Desc',
+    
+    // Home Applicability
+    'home_applicability_title': 'preservation.title',
+    'home_applicability_desc': 'preservation.p1',
+    
+    // Home CTA
+    'home_cta_title': 'global.ctaPrimary',
+    'home_cta_desc': 'global.ctaInstitutional',
+    'home_cta_button': 'global.accessPlatform'
+  },
+
   /**
    * Inicializa o sistema i18n
    */
@@ -40,7 +98,7 @@ const I18N = {
    */
   async loadTranslations(lang) {
     try {
-      const response = await fetch(`assets/lang/${lang}.json?v=3`);
+      const response = await fetch(`assets/lang/${lang}.json?v=4`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       this.translations = await response.json();
       console.log(`[i18n] Traduções carregadas: ${lang}.json (${Object.keys(this.translations).length} seções)`);
@@ -127,9 +185,9 @@ const I18N = {
    * Atualiza UI do seletor de idioma
    */
   updateLanguageSelector() {
-    const toggle = document.querySelector('.lang-toggle');
-    if (toggle) {
-      toggle.textContent = this.currentLang.toUpperCase();
+    const langCode = document.querySelector('.lang-code');
+    if (langCode) {
+      langCode.textContent = this.currentLang.toUpperCase();
     }
 
     // Marca idioma ativo no menu
@@ -174,19 +232,23 @@ const I18N = {
   /**
    * Retorna tradução por chave (uso programático)
    * Suporta chaves aninhadas: "global.brand" ou "navigation.home"
+   * Suporta chaves antigas com underscore via keyMap
    */
   t(key) {
     if (!key) return '';
     
+    // Converte chave antiga para nova (se existir no mapa)
+    const mappedKey = this.keyMap[key] || key;
+    
     // Se a chave contém ponto, navega pelo objeto
-    if (key.includes('.')) {
-      const keys = key.split('.');
+    if (mappedKey.includes('.')) {
+      const keys = mappedKey.split('.');
       let value = this.translations;
       
       for (const k of keys) {
         value = value?.[k];
         if (value === undefined) {
-          console.warn(`[i18n] Chave aninhada não encontrada: "${key}"`);
+          console.warn(`[i18n] Chave aninhada não encontrada: "${mappedKey}" (original: "${key}")`);
           return key;
         }
       }
@@ -195,7 +257,7 @@ const I18N = {
     }
     
     // Chave simples
-    return this.translations[key] || key;
+    return this.translations[mappedKey] || key;
   }
 };
 
