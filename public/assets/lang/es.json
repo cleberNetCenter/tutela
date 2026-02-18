@@ -1,42 +1,113 @@
 {
-  "homeHeroTitle": "Tutela Digital®",
-  "homeHeroSubtitle": "Infraestructura de preservación probatoria digital con cadena de custodia verificable conforme a la legislación brasileña.",
+  "global": {
+    "brand": "Tutela Digital®",
+    "accessPlatform": "Acceder a la Plataforma",
+    "ctaPrimary": "Iniciar Preservación Probatoria",
+    "ctaSecondary": "Hablar con Especialista",
+    "ctaInstitutional": "Conocer la Infraestructura",
+    "legalDisclaimer": "La admisibilidad de la prueba permanece sujeta a evaluación por la autoridad competente conforme a la legislación aplicable.",
+    "footerRights": "© 2026 Tutela Digital®. Todos los derechos reservados.",
+    "footerEmail": "contato@tuteladigital.com.br",
+    "footerInstagram": "@tuteladigitalbr"
+  },
 
-  "homeIntroTitle": "Preservación Probatoria Digital",
-  "homeIntroParagraph1": "La preservación probatoria digital consiste en la organización estructurada de activos digitales con posible relevancia jurídica.",
-  "homeIntroParagraph2": "Actúa en fase pre-litigiosa antes de eventuales procesos judiciales o administrativos.",
-  "homeIntroParagraph3": "La admisibilidad de la prueba está sujeta a la evaluación de la autoridad competente conforme a la legislación brasileña.",
+  "navigation": {
+    "home": "Inicio",
+    "government": "Gobierno",
+    "companies": "Empresas",
+    "individuals": "Personas",
+    "howItWorks": "Cómo Funciona",
+    "security": "Seguridad",
+    "preservation": "Preservación Probatoria",
+    "legalBasis": "Fundamento Jurídico",
+    "terms": "Términos de Custodia",
+    "privacy": "Política de Privacidad"
+  },
 
-  "governoParagraph1": "Los organismos públicos generan registros digitales que pueden integrar procedimientos administrativos.",
-  "governoParagraph2": "La infraestructura permite preservación estructurada y trazabilidad.",
+  "home": {
+    "heroTitle": "Preservación Probatoria Digital",
+    "heroSubtitle": "Infraestructura tecnológica destinada a la organización estructurada de evidencia digital con cadena de custodia verificable, integridad técnica documentada y soporte para eventual formalización notarial a solicitud del titular.",
 
-  "empresasParagraph1": "Las empresas pueden preservar comunicaciones y contratos estratégicos.",
-  "empresasParagraph2": "La organización preventiva contribuye a la preparación probatoria.",
+    "introTitle": "Cómo preservar prueba digital con seguridad jurídica",
+    "introP1": "La preservación probatoria digital consiste en la organización técnica y cronológica de activos digitales con potencial relevancia jurídica, garantizando que su integridad pueda ser verificada posteriormente por autoridad competente.",
+    "introP2": "El procedimiento se desarrolla preferentemente en etapa pre-litigiosa, estructurando registros antes de la eventual apertura de proceso judicial, administrativo o arbitral.",
+    "introP3": "La admisibilidad de la prueba queda sujeta a evaluación de la autoridad competente, limitándose la infraestructura a la preservación técnica del contenido.",
 
-  "pessoasParagraph1": "Las personas pueden preservar activos digitales con relevancia jurídica o patrimonial.",
-  "pessoasParagraph2": "La organización previa facilita su eventual utilización probatoria.",
+    "pillarsTitle": "Pilares de la Infraestructura",
+    "pillar1Title": "Cadena de Custodia Digital",
+    "pillar1Desc": "Registro cronológico estructurado de eventos relacionados con el activo digital, permitiendo reconstrucción técnica del historial documental.",
+    "pillar2Title": "Integridad Verificable",
+    "pillar2Desc": "Mecanismos técnicos de identificación que permiten verificación futura de integridad sin exposición del contenido.",
+    "pillar3Title": "Soporte para Formalización Notarial",
+    "pillar3Desc": "Posibilidad de emisión de acta notarial basada en activos previamente preservados, a solicitud del titular."
+  },
 
-  "comoFuncionaParagraph1": "El proceso inicia con identificación y validación notarial.",
-  "comoFuncionaParagraph2": "El activo digital recibe registro de integridad y apertura de cadena de custodia.",
-  "comoFuncionaParagraph3": "Los registros permiten trazabilidad continua.",
+  "preservation": {
+    "title": "Preservación Probatoria Digital",
+    "p1": "Preservar evidencia digital requiere mecanismos técnicos capaces de registrar cronológicamente los eventos relacionados con el activo, garantizando trazabilidad e integridad verificable en el tiempo.",
+    "p2": "La cadena de custodia digital documenta operaciones como depósito, generación de identificador técnico y registro temporal estructurado.",
+    "p3": "La organización técnica contribuye a mayor claridad documental en procedimientos judiciales, administrativos o arbitrales."
+  },
 
-  "segurancaParagraph1": "Los activos están protegidos mediante cifrado y autenticación con certificado digital.",
-  "segurancaParagraph2": "El contenido no es accesible a terceros sin autenticación válida.",
-  "segurancaParagraph3": "Los registros distribuidos pueden utilizarse como verificación complementaria.",
+  "legalBasis": {
+    "title": "Fundamento Jurídico",
+    "p1": "La legislación brasileña admite prueba documental electrónica siempre que se demuestre su integridad y autenticidad mediante medios técnicamente confiables.",
+    "p2": "Los registros digitales estructurados pueden servir como elementos de apoyo probatorio conforme a los requisitos legales aplicables.",
+    "p3": "La formalización notarial puede reforzar la documentación cronológica de la evidencia previamente preservada."
+  },
 
-  "preservacaoPilarParagraph1": "La preservación probatoria digital no sustituye la valoración judicial.",
-  "preservacaoPilarParagraph2": "La cadena de custodia documenta cronológicamente los eventos.",
-  "preservacaoPilarParagraph3": "La integridad verificable es requisito técnico relevante.",
+  "security": {
+    "title": "Seguridad y Arquitectura Técnica",
+    "p1": "Los activos digitales depositados están protegidos mediante criptografía y autenticación vinculada al certificado digital del titular.",
+    "p2": "El contenido preservado no es accesible a terceros y se almacena en entorno estructurado que prioriza confidencialidad e integridad.",
+    "p3": "Registros complementarios pueden utilizarse como mecanismo adicional de verificación sin exposición del contenido."
+  },
 
-  "fundamentoParagraph1": "El Código de Proceso Civil brasileño admite prueba documental digital cuando se preserva autenticidad.",
-  "fundamentoParagraph2": "El Marco Civil de Internet reconoce validez jurídica de registros electrónicos.",
-  "fundamentoParagraph3": "La LGPD establece requisitos de protección de datos.",
+  "howItWorks": {
+    "title": "Cómo Funciona",
+    "step1Title": "Identificación Estructurada",
+    "step1Desc": "El proceso inicia con identificación del titular, pudiendo incluir validación notarial.",
+    "step2Title": "Depósito y Registro Técnico",
+    "step2Desc": "Tras autenticación, el activo digital recibe identificador técnico verificable.",
+    "step3Title": "Cadena de Custodia",
+    "step3Desc": "Los eventos pasan a formar parte de registro cronológico estructurado.",
+    "step4Title": "Acceso Exclusivo",
+    "step4Desc": "El acceso permanece restringido al titular mediante certificado digital."
+  },
 
-  "termosParagraph1": "Los Términos regulan el uso de la infraestructura.",
-  "termosParagraph2": "El depositante es responsable del contenido enviado.",
-  "termosParagraph3": "La infraestructura se limita a la preservación estructurada.",
+  "government": {
+    "heroTitle": "Preservación para Entidades Públicas",
+    "content": "Las entidades públicas generan registros digitales que pueden integrar auditorías e investigaciones administrativas."
+  },
 
-  "privacidadeParagraph1": "La Política describe el tratamiento de datos personales.",
-  "privacidadeParagraph2": "Los datos están protegidos por medidas técnicas.",
-  "privacidadeParagraph3": "El titular podrá ejercer sus derechos conforme a la legislación brasileña."
+  "companies": {
+    "heroTitle": "Preservación Digital Corporativa",
+    "content": "Las empresas pueden estructurar evidencia digital antes de litigios o investigaciones internas."
+  },
+
+  "individuals": {
+    "heroTitle": "Protección del Patrimonio Digital",
+    "content": "Las personas pueden preservar documentos digitales con posible relevancia jurídica futura."
+  },
+
+  "terms": {
+    "title": "Términos de Custodia",
+    "p1": "Establecen las condiciones de uso de la infraestructura de preservación digital.",
+    "p2": "El depositante es responsable del contenido enviado.",
+    "p3": "La plataforma se limita a preservación técnica."
+  },
+
+  "privacy": {
+    "title": "Política de Privacidad",
+    "p1": "Describe el tratamiento de datos personales necesarios para autenticación.",
+    "p2": "Los datos están protegidos mediante mecanismos técnicos adecuados.",
+    "p3": "El titular puede ejercer derechos previstos en la legislación aplicable."
+  },
+
+  "modal": {
+    "title": "Antes de acceder a la plataforma",
+    "intro": "Verifique que los requisitos técnicos estén cumplidos.",
+    "cancel": "Cancelar",
+    "proceed": "Continuar"
+  }
 }
