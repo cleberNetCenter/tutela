@@ -98,7 +98,7 @@ const I18N = {
    */
   async loadTranslations(lang) {
     try {
-      const response = await fetch(`assets/lang/${lang}.json?v=4`);
+      const response = await fetch(`assets/lang/${lang}.json?v=5`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       this.translations = await response.json();
       console.log(`[i18n] Traduções carregadas: ${lang}.json (${Object.keys(this.translations).length} seções)`);
@@ -300,3 +300,28 @@ document.addEventListener('click', (e) => {
 
 // Exporta para uso global
 window.I18N = I18N;
+
+// =======================================================
+// RE-APLICAR TRADUÇÕES APÓS NAVEGAÇÃO (SPA)
+// =======================================================
+
+// Observa mudanças de classe .active nas páginas
+const pageObserver = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+      const target = mutation.target;
+      if (target.classList.contains('page') && target.classList.contains('active')) {
+        // Página foi ativada, re-aplicar traduções
+        console.log('[i18n] Página ativada, aplicando traduções:', target.id);
+        I18N.applyTranslations();
+      }
+    }
+  });
+});
+
+// Observar todas as páginas
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.page').forEach(page => {
+    pageObserver.observe(page, { attributes: true, attributeFilter: ['class'] });
+  });
+});
