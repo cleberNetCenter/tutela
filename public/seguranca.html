@@ -43,6 +43,32 @@
   gtag('js', new Date());
   gtag('config', 'G-KXVB267PYJ');
 </script>
+<style>
+/* Hierarquia Semântica H2→H4 */
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1.5rem 0;
+  color: var(--color-primary, #1a1a1a);
+  line-height: 1.3;
+}
+
+.subsection-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+  color: var(--color-secondary, #333);
+  line-height: 1.4;
+}
+
+.detail-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 1.5rem 0 0.75rem 0;
+  color: var(--color-text, #444);
+  line-height: 1.5;
+}
+</style>
 </head><body class="exec-compact">
 <header class="header" id="header">
 <div class="header-inner">
@@ -83,8 +109,12 @@
 <section class="page-header page-header--seguranca">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
-<h1>Fundamentos Técnicos da Preservação Probatória</h1>
+<h1 data-i18n="security.title">Arquitetura de Integridade Aplicada à Preservação Probatória Digital</h1>
 <p>Fundamentos técnicos e jurídicos que sustentam a infraestrutura de preservação probatória.</p>
+</div>
+<div class="page-header-inner">
+<h2 class="section-title" data-i18n="security.h2Main">Segurança Técnica e Confidencialidade Processual</h2>
+<h2 class="section-title" data-i18n="security.h2Secondary">Mecanismos Criptográficos de Integridade Probatória</h2>
 </div>
 <div class="page-header-graphic">
 <img alt="" src="assets/illustrations/security_shield.svg"/>
@@ -100,6 +130,7 @@
 </section>
 <section class="features">
 <div class="features-inner">
+<h3 class="subsection-title" data-i18n="security.h3AccessControl">Controle de Acesso Exclusivo ao Titular</h3>
 <h2>Pilares de Segurança</h2>
 <div class="features-grid features-grid--security">
 <div class="feature-item">
@@ -114,13 +145,15 @@
 </div>
 <div class="feature-item">
 <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-<h3>Criptografia</h3>
+<h3 class="subsection-title" data-i18n="security.h3Encryption">Criptografia de Ponta a Ponta</h3>
 <p>Algoritmos de criptografia de alto padrão que protegem os ativos durante transmissão e armazenamento.</p>
 </div>
 <div class="feature-item">
 <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-<h3>Blockchain</h3>
+<h3 class="subsection-title" data-i18n="security.h3ImmutableRegistration">Registro Técnico Imutável</h3>
+<h4 class="detail-title" data-i18n="security.h4BlockchainRecord">Registro Distribuído como Prova Complementar</h4>
 <p>Registro distribuído e imutável que garante a integridade e rastreabilidade de todas as operações.</p>
+<h4 class="detail-title" data-i18n="security.h4TemporalIntegrity">Integridade Temporal Verificável</h4>
 </div>
 <div class="feature-item">
 <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>

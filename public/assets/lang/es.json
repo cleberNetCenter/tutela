@@ -10,7 +10,6 @@
     "footerEmail": "contato@tuteladigital.com.br",
     "footerInstagram": "@tuteladigitalbr"
   },
-
   "navigation": {
     "home": "Inicio",
     "government": "Gobierno",
@@ -23,46 +22,70 @@
     "terms": "Términos de Custodia",
     "privacy": "Política de Privacidad"
   },
-
   "home": {
-    "heroTitle": "Infraestructura de Preservación Probatoria Digital",
+    "heroTitle": "Preservación Probatoria Digital con Cadena de Custodia Verificable",
     "heroSubtitle": "Infraestructura tecnológica orientada a la organización estructurada y cronológicamente documentada de activos digitales con posible relevancia probatoria conforme a la legislación brasileña, respaldada por mecanismos verificables de cadena de custodia e integridad técnica.",
-
     "introTitle": "Cómo Preservar Prueba Digital Conforme a la Legislación Brasileña",
     "introP1": "La preservación probatoria digital consiste en la organización técnica y cronológica de activos digitales con posible relevancia jurídica, asegurando que su integridad pueda ser posteriormente verificada por autoridad competente.",
     "introP2": "La infraestructura actúa preferentemente en fase precontenciosa, estructurando registros antes del inicio de procedimientos judiciales, administrativos o arbitrales.",
     "introP3": "La admisibilidad y valoración de la prueba corresponden exclusivamente a la autoridad competente conforme al ordenamiento jurídico brasileño.",
-
     "pillarsTitle": "Pilares de la Infraestructura",
     "pillar1Title": "Cadena de Custodia Digital",
     "pillar1Desc": "Registro cronológico estructurado de eventos relacionados con el activo digital, permitiendo reconstrucción técnica del historial documental.",
     "pillar2Title": "Integridad Verificable",
     "pillar2Desc": "Mecanismos técnicos de registro e identificación que permiten verificación futura de integridad sin exposición del contenido.",
     "pillar3Title": "Soporte a Formalización Notarial",
-    "pillar3Desc": "Posibilidad de emisión de acta notarial brasileña a partir del activo previamente preservado, mediante solicitud del titular."
+    "pillar3Desc": "Posibilidad de emisión de acta notarial brasileña a partir del activo previamente preservado, mediante solicitud del titular.",
+    "h2Main": "Organización Técnica de Evidencias con Validez Probatoria",
+    "h2Secondary": "Infraestructura Fundamentada en Código de Proceso Civil Brasileño",
+    "h3ChainStructure": "Estructura de la Cadena de Custodia Digital",
+    "h4ChronologicalRegistration": "Registro Cronológico Inmutable",
+    "h4TechnicalIdentifier": "Identificador Técnico Verificable",
+    "h3LegalApplication": "Aplicación Jurídica de la Preservación Probatoria",
+    "h4JudicialUse": "Utilización en Procedimientos Judiciales",
+    "h4AdministrativeUse": "Aplicación en Defensa Administrativa"
   },
-
   "preservation": {
-    "title": "Preservación de Evidencia Digital",
+    "title": "Cómo Preservar Prueba Digital con Integridad y Cadena de Custodia Documentada",
     "p1": "Preservar evidencia digital requiere mecanismos técnicos capaces de registrar cronológicamente los eventos relacionados con cada activo, garantizando integridad verificable en el tiempo.",
     "p2": "La cadena de custodia digital documenta operaciones como depósito, registro de integridad y acceso controlado por el titular, permitiendo reconstrucción histórica estructurada.",
-    "p3": "La organización técnica de la evidencia puede contribuir a mayor claridad documental en procedimientos futuros, sin constituir validación jurídica automática."
+    "p3": "La organización técnica de la evidencia puede contribuir a mayor claridad documental en procedimientos futuros, sin constituir validación jurídica automática.",
+    "h2Main": "Mecanismos Técnicos de Preservación Probatoria",
+    "h2Secondary": "Organización Precontenciosa de Evidencia Digital",
+    "h3PreLitigation": "Preservación en Fase Preprocesal",
+    "h4RiskMitigation": "Mitigación de Riesgo Documental",
+    "h4DocumentPredictability": "Previsibilidad Técnica de la Prueba",
+    "h3ProceduralUse": "Utilización de la Prueba Preservada",
+    "h4ExpertAnalysis": "Análisis Pericial Fundamentado",
+    "h4FutureFormalization": "Formalización Notarial Posterior"
   },
-
   "legalBasis": {
-    "title": "Fundamento Jurídico Conforme Legislación Brasileña",
+    "title": "Fundamento Jurídico de la Preservación de Evidencia Digital en el Derecho Brasileño",
     "p1": "La legislación brasileña admite prueba documental en medio electrónico siempre que sea posible demostrar su integridad y origen conforme a los principios procesales vigentes.",
     "p2": "Registros digitales estructurados pueden servir como elemento de apoyo para la formación del convencimiento de la autoridad competente.",
-    "p3": "A solicitud del titular, puede emitirse un acta notarial brasileña para documentar formalmente la existencia y preservación cronológica del activo."
+    "p3": "A solicitud del titular, puede emitirse un acta notarial brasileña para documentar formalmente la existencia y preservación cronológica del activo.",
+    "h2Main": "Base Legal de la Admisibilidad de Prueba Electrónica",
+    "h2Secondary": "Legislación Brasileña Aplicable a la Evidencia Digital",
+    "h3CivilProcedure": "Código de Proceso Civil — Arts. 369, 422 y 439",
+    "h3ElectronicProcessLaw": "Ley 11.419/2006 — Proceso Judicial Electrónico",
+    "h3DigitalSignature": "MP 2.200-2/2001 — ICP-Brasil y Firma Digital",
+    "h3LGPD": "Ley 13.709/2018 — Protección de Datos y Preservación Probatoria",
+    "h4DataProtection": "Compatibilidad con LGPD",
+    "h4ConfidentialityLimits": "Límites de la Confidencialidad Jurídica"
   },
-
   "security": {
-    "title": "Arquitectura de Seguridad y Confidencialidad",
+    "title": "Arquitectura de Integridad Aplicada a la Preservación Probatoria Digital",
     "p1": "Los activos digitales se protegen mediante mecanismos de cifrado y autenticación vinculados exclusivamente al certificado digital brasileño del titular.",
     "p2": "El contenido no es accesible a terceros, incluyendo al operador de la infraestructura, garantizando confidencialidad estricta.",
-    "p3": "Registros complementarios de verificación de integridad pueden generarse sin exposición del contenido preservado."
+    "p3": "Registros complementarios de verificación de integridad pueden generarse sin exposición del contenido preservado.",
+    "h2Main": "Seguridad Técnica y Confidencialidad Procesal",
+    "h2Secondary": "Mecanismos Criptográficos de Integridad Probatoria",
+    "h3Encryption": "Cifrado de Extremo a Extremo",
+    "h3AccessControl": "Control de Acceso Exclusivo al Titular",
+    "h3ImmutableRegistration": "Registro Técnico Inmutable",
+    "h4BlockchainRecord": "Registro Distribuido como Prueba Complementaria",
+    "h4TemporalIntegrity": "Integridad Temporal Verificable"
   },
-
   "howItWorks": {
     "title": "Cómo Funciona",
     "step1Title": "Identificación Estructurada",
@@ -74,22 +97,18 @@
     "step4Title": "Acceso Exclusivo",
     "step4Desc": "El acceso posterior permanece exclusivamente bajo control del titular mediante autenticación con certificado digital brasileño."
   },
-
   "government": {
     "heroTitle": "Preservación para Entidades Públicas",
     "content": "Órganos públicos generan registros digitales que pueden componer auditorías, investigaciones administrativas y procedimientos formales. La organización técnica previa contribuye a la gobernanza documental y previsibilidad institucional."
   },
-
   "companies": {
     "heroTitle": "Preservación Digital Corporativa",
     "content": "Empresas pueden estructurar evidencias digitales antes de litigios o investigaciones internas, contribuyendo a compliance y mitigación de riesgos jurídicos."
   },
-
   "individuals": {
     "heroTitle": "Protección del Patrimonio Digital",
     "content": "Personas físicas pueden preservar documentos digitales con posible relevancia jurídica futura, organizando evidencias de forma anticipada."
   },
-
   "institutional": {
     "title": "Estructura Institucional",
     "p1": "Tutela Digital® es una infraestructura tecnológica de preservación probatoria digital desarrollada sobre fundamentos jurídicos estructurados y mecanismos técnicos verificables, operando exclusivamente conforme a la legislación brasileña. La empresa actúa exclusivamente en la organización técnica y preservación estructurada de activos digitales, con cadena de custodia documentada, integridad criptográfica y registro temporal inmutable. La admisibilidad de la prueba permanece siempre sujeta a evaluación por la autoridad competente conforme a la legislación brasileña, correspondiendo a la infraestructura actuar en la preservación técnica y no en la valoración jurídica del contenido preservado.",
@@ -97,7 +116,6 @@
     "p3": "Tutela Digital® no presta consultoría jurídica, no emite dictamen sobre admisibilidad de prueba conforme a la legislación brasileña, y no realiza análisis de mérito del contenido depositado. La infraestructura se limita a la preservación técnica estructurada de activos digitales, con mecanismos de integridad, rastreabilidad y control de autoría. La decisión sobre la utilización de los activos preservados, su relevancia probatoria y estrategia procesal corresponde exclusivamente al titular o a sus asesores jurídicos, permaneciendo la admisibilidad sujeta al análisis de la autoridad judicial brasileña competente.",
     "p4": "La admisibilidad y el valor probatorio de los activos preservados dependen exclusivamente de la evaluación de la autoridad competente conforme a la legislación brasileña, según las circunstancias del caso concreto y la legislación aplicable. Tutela Digital® no sustituye la actividad notarial brasileña y no ejerce función jurisdiccional. A solicitud del titular, los activos pueden someterse a formalización notarial mediante acta notarial brasileña ante notario competente. La legislación aplicable a la preservación probatoria digital y a la admisibilidad de la prueba electrónica es la legislación brasileña, incluyendo el Código de Proceso Civil, la Ley nº 11.419/2006, la Medida Provisoria nº 2.200-2/2001 y la Ley nº 13.709/2018 (LGPD)."
   },
-
   "terms": {
     "title": "Términos de Custodia",
     "p1": "Establecen las condiciones de uso de la infraestructura de preservación probatoria digital.",
@@ -109,14 +127,12 @@
     "scopeTitle": "Delimitación del Alcance Técnico",
     "scopeText": "Tutela Digital® no presta consultoría jurídica, no emite dictamen sobre admisibilidad de prueba conforme a la legislación brasileña, y no realiza análisis de mérito del contenido depositado. El depositante es integralmente responsable por el contenido sometido, por la licitud de la preservación conforme a la legislación brasileña y por la estrategia de utilización de los activos preservados, debiendo consultar asesoría jurídica calificada cuando necesario."
   },
-
   "privacy": {
     "title": "Política de Privacidad",
     "p1": "Describe el tratamiento de datos personales necesarios para autenticación y prestación del servicio.",
     "p2": "Los datos son protegidos mediante mecanismos técnicos adecuados.",
     "p3": "El titular podrá ejercer sus derechos previstos en la legislación aplicable."
   },
-
   "modal": {
     "title": "Antes de Acceder a la Plataforma",
     "intro": "Verifique que los requisitos técnicos estén atendidos para funcionamiento adecuado.",
