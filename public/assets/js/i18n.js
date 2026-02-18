@@ -40,7 +40,7 @@ const I18N = {
    */
   async loadTranslations(lang) {
     try {
-      const response = await fetch(`assets/lang/${lang}.json?v=1`);
+      const response = await fetch(`assets/lang/${lang}.json?v=2`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       this.translations = await response.json();
       console.log(`[i18n] Traduções carregadas: ${lang}.json`);
