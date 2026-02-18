@@ -65,10 +65,14 @@
 
   "howItWorks": {
     "title": "How It Works",
-    "step1": "The process begins with structured identification of the holder, which may involve Brazilian notarial validation when applicable.",
-    "step2": "After authentication, the digital asset is deposited and submitted to technical integrity registration.",
-    "step3": "All subsequent actions become part of a documented digital chain of custody.",
-    "step4": "Access remains exclusively under the control of the holder through Brazilian digital certificate authentication."
+    "step1Title": "Structured Identification",
+    "step1Desc": "The process begins with structured identification of the holder, which may involve Brazilian notarial validation when applicable.",
+    "step2Title": "Deposit and Technical Registration",
+    "step2Desc": "After authentication, the digital asset is deposited and submitted to technical integrity registration.",
+    "step3Title": "Chain of Custody",
+    "step3Desc": "All subsequent actions become part of a documented digital chain of custody.",
+    "step4Title": "Exclusive Access",
+    "step4Desc": "Access remains exclusively under the control of the holder through Brazilian digital certificate authentication."
   },
 
   "government": {

@@ -65,10 +65,14 @@
 
   "howItWorks": {
     "title": "Cómo Funciona",
-    "step1": "El proceso inicia con identificación estructurada del titular, pudiendo involucrar validación notarial brasileña cuando corresponda.",
-    "step2": "Tras la autenticación, el activo digital se deposita y se somete a registro técnico de integridad.",
-    "step3": "Todas las acciones pasan a integrar una cadena de custodia digital documentada.",
-    "step4": "El acceso posterior permanece exclusivamente bajo control del titular mediante autenticación con certificado digital brasileño."
+    "step1Title": "Identificación Estructurada",
+    "step1Desc": "El proceso inicia con identificación estructurada del titular, pudiendo involucrar validación notarial brasileña cuando corresponda.",
+    "step2Title": "Depósito y Registro Técnico",
+    "step2Desc": "Tras la autenticación, el activo digital se deposita y se somete a registro técnico de integridad.",
+    "step3Title": "Cadena de Custodia",
+    "step3Desc": "Todas las acciones pasan a integrar una cadena de custodia digital documentada.",
+    "step4Title": "Acceso Exclusivo",
+    "step4Desc": "El acceso posterior permanece exclusivamente bajo control del titular mediante autenticación con certificado digital brasileño."
   },
 
   "government": {
