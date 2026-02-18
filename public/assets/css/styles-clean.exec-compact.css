@@ -5,7 +5,18 @@
    NÃO altera variáveis globais nem estrutura de grid
    ========================================================= */
 
+/* ===================== MAIN CONTENT ====================== */
+/* Garantir espaço adequado para header fixo */
+body.exec-compact .main {
+  padding-top: 80px;
+}
+
 /* ===================== SEÇÕES ============================ */
+/* Primeira seção não precisa de padding-top (já tem no .main) */
+body.exec-compact .page > .page-header:first-child {
+  padding-top: 0;
+}
+
 body.exec-compact .hero,
 body.exec-compact .lp-hero,
 body.exec-compact .page-header {
