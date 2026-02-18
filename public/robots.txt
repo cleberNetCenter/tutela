@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tuteladigital.com.br/sitemap.xml
+
+# Block internal tools
+Disallow: /_mpa_generator.py
+Disallow: /assets/js/navigation.js
