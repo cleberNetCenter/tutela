@@ -8,6 +8,14 @@ const I18N = {
   translations: {},
   fallbackLang: 'pt',
 
+  // Páginas jurídicas (conteúdo 100% em PT)
+  legalPages: [
+    'page-institucional',
+    'page-politica-de-privacidade',
+    'page-fundamento-juridico',
+    'page-termos-de-custodia'
+  ],
+
   // Mapa de compatibilidade: chaves antigas → novas
   keyMap: {
     // Meta & Global
@@ -112,9 +120,30 @@ const I18N = {
   },
 
   /**
+   * Verifica se a página atual é uma página jurídica
+   */
+  isLegalPage() {
+    // Verifica se alguma das páginas legais está ativa
+    return this.legalPages.some(pageId => {
+      const page = document.getElementById(pageId);
+      return page && page.classList.contains('active');
+    });
+  },
+
+  /**
    * Aplica traduções em todos os elementos com data-i18n
    */
   applyTranslations() {
+    const isLegal = this.isLegalPage();
+    
+    // Se é página legal E idioma não é PT, aplicar apenas interface
+    if (isLegal && this.currentLang !== 'pt') {
+      console.log('[i18n] Página jurídica detectada - aplicando apenas traduções de interface');
+      this.applyInterfaceOnlyTranslations();
+      return;
+    }
+
+    // Comportamento normal para outras páginas
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       const translation = this.t(key);
@@ -237,6 +266,51 @@ const I18N = {
     if (main) {
       main.insertBefore(notice, main.firstChild);
     }
+  },
+
+  /**
+   * Aplica traduções APENAS de interface (nav, global, modal) em páginas jurídicas
+   * Não traduz o conteúdo principal (corpo do texto)
+   */
+  applyInterfaceOnlyTranslations() {
+    // Seletores de interface permitidos
+    const interfaceSelectors = [
+      '.nav [data-i18n]',           // navegação
+      '.header [data-i18n]',         // cabeçalho
+      '.footer [data-i18n]',         // rodapé
+      '.lang-menu [data-i18n]',      // menu de idiomas
+      '.modal [data-i18n]',          // modais
+      'button[data-i18n]',           // botões
+      '.header-cta[data-i18n]',      // CTA do header
+      '#legal-lang-notice [data-i18n]' // banner de aviso
+    ];
+
+    // Aplicar traduções apenas nos seletores permitidos
+    interfaceSelectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => {
+        const key = el.dataset.i18n;
+        const translation = this.t(key);
+        
+        if (translation && translation !== key) {
+          if (el.dataset.i18nHtml === 'true') {
+            el.innerHTML = translation;
+          } else {
+            el.textContent = translation;
+          }
+        }
+      });
+    });
+
+    // Traduz placeholders se existirem na interface
+    document.querySelectorAll('.header [data-i18n-placeholder], .nav [data-i18n-placeholder]').forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      const translation = this.t(key);
+      if (translation) {
+        el.placeholder = translation;
+      }
+    });
+
+    console.log('[i18n] Traduções de interface aplicadas (conteúdo jurídico permanece em PT)');
   },
 
   /**
