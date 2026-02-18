@@ -3,7 +3,7 @@
     "brand": "Tutela Digital®",
     "accessPlatform": "Acceder a la Plataforma",
     "ctaPrimary": "Iniciar Preservación Probatoria",
-    "ctaSecondary": "Hablar con Especialista",
+    "ctaSecondary": "Hablar con un Especialista",
     "ctaInstitutional": "Conocer la Infraestructura",
     "legalDisclaimer": "La admisibilidad de la prueba permanece sujeta a evaluación por la autoridad competente conforme a la legislación aplicable.",
     "footerRights": "© 2026 Tutela Digital®. Todos los derechos reservados.",
@@ -15,7 +15,7 @@
     "home": "Inicio",
     "government": "Gobierno",
     "companies": "Empresas",
-    "individuals": "Personas",
+    "individuals": "Personas Físicas",
     "howItWorks": "Cómo Funciona",
     "security": "Seguridad",
     "preservation": "Preservación Probatoria",
@@ -25,88 +25,84 @@
   },
 
   "home": {
-    "heroTitle": "Preservación Probatoria Digital",
-    "heroSubtitle": "Infraestructura tecnológica destinada a la organización estructurada de evidencia digital con cadena de custodia verificable, integridad técnica documentada y soporte para eventual formalización notarial a solicitud del titular.",
+    "heroTitle": "Infraestructura de Preservación Probatoria Digital",
+    "heroSubtitle": "Infraestructura tecnológica orientada a la organización estructurada y cronológicamente documentada de activos digitales con posible relevancia probatoria conforme a la legislación brasileña, respaldada por mecanismos verificables de cadena de custodia e integridad técnica.",
 
-    "introTitle": "Cómo preservar prueba digital con seguridad jurídica",
-    "introP1": "La preservación probatoria digital consiste en la organización técnica y cronológica de activos digitales con potencial relevancia jurídica, garantizando que su integridad pueda ser verificada posteriormente por autoridad competente.",
-    "introP2": "El procedimiento se desarrolla preferentemente en etapa pre-litigiosa, estructurando registros antes de la eventual apertura de proceso judicial, administrativo o arbitral.",
-    "introP3": "La admisibilidad de la prueba queda sujeta a evaluación de la autoridad competente, limitándose la infraestructura a la preservación técnica del contenido.",
+    "introTitle": "Cómo Preservar Prueba Digital Conforme a la Legislación Brasileña",
+    "introP1": "La preservación probatoria digital consiste en la organización técnica y cronológica de activos digitales con posible relevancia jurídica, asegurando que su integridad pueda ser posteriormente verificada por autoridad competente.",
+    "introP2": "La infraestructura actúa preferentemente en fase precontenciosa, estructurando registros antes del inicio de procedimientos judiciales, administrativos o arbitrales.",
+    "introP3": "La admisibilidad y valoración de la prueba corresponden exclusivamente a la autoridad competente conforme al ordenamiento jurídico brasileño.",
 
     "pillarsTitle": "Pilares de la Infraestructura",
     "pillar1Title": "Cadena de Custodia Digital",
     "pillar1Desc": "Registro cronológico estructurado de eventos relacionados con el activo digital, permitiendo reconstrucción técnica del historial documental.",
     "pillar2Title": "Integridad Verificable",
-    "pillar2Desc": "Mecanismos técnicos de identificación que permiten verificación futura de integridad sin exposición del contenido.",
-    "pillar3Title": "Soporte para Formalización Notarial",
-    "pillar3Desc": "Posibilidad de emisión de acta notarial basada en activos previamente preservados, a solicitud del titular."
+    "pillar2Desc": "Mecanismos técnicos de registro e identificación que permiten verificación futura de integridad sin exposición del contenido.",
+    "pillar3Title": "Soporte a Formalización Notarial",
+    "pillar3Desc": "Posibilidad de emisión de acta notarial brasileña a partir del activo previamente preservado, mediante solicitud del titular."
   },
 
   "preservation": {
-    "title": "Preservación Probatoria Digital",
-    "p1": "Preservar evidencia digital requiere mecanismos técnicos capaces de registrar cronológicamente los eventos relacionados con el activo, garantizando trazabilidad e integridad verificable en el tiempo.",
-    "p2": "La cadena de custodia digital documenta operaciones como depósito, generación de identificador técnico y registro temporal estructurado.",
-    "p3": "La organización técnica contribuye a mayor claridad documental en procedimientos judiciales, administrativos o arbitrales."
+    "title": "Preservación de Evidencia Digital",
+    "p1": "Preservar evidencia digital requiere mecanismos técnicos capaces de registrar cronológicamente los eventos relacionados con cada activo, garantizando integridad verificable en el tiempo.",
+    "p2": "La cadena de custodia digital documenta operaciones como depósito, registro de integridad y acceso controlado por el titular, permitiendo reconstrucción histórica estructurada.",
+    "p3": "La organización técnica de la evidencia puede contribuir a mayor claridad documental en procedimientos futuros, sin constituir validación jurídica automática."
   },
 
   "legalBasis": {
-    "title": "Fundamento Jurídico",
-    "p1": "La legislación brasileña admite prueba documental electrónica siempre que se demuestre su integridad y autenticidad mediante medios técnicamente confiables.",
-    "p2": "Los registros digitales estructurados pueden servir como elementos de apoyo probatorio conforme a los requisitos legales aplicables.",
-    "p3": "La formalización notarial puede reforzar la documentación cronológica de la evidencia previamente preservada."
+    "title": "Fundamento Jurídico Conforme Legislación Brasileña",
+    "p1": "La legislación brasileña admite prueba documental en medio electrónico siempre que sea posible demostrar su integridad y origen conforme a los principios procesales vigentes.",
+    "p2": "Registros digitales estructurados pueden servir como elemento de apoyo para la formación del convencimiento de la autoridad competente.",
+    "p3": "A solicitud del titular, puede emitirse un acta notarial brasileña para documentar formalmente la existencia y preservación cronológica del activo."
   },
 
   "security": {
-    "title": "Seguridad y Arquitectura Técnica",
-    "p1": "Los activos digitales depositados están protegidos mediante criptografía y autenticación vinculada al certificado digital del titular.",
-    "p2": "El contenido preservado no es accesible a terceros y se almacena en entorno estructurado que prioriza confidencialidad e integridad.",
-    "p3": "Registros complementarios pueden utilizarse como mecanismo adicional de verificación sin exposición del contenido."
+    "title": "Arquitectura de Seguridad y Confidencialidad",
+    "p1": "Los activos digitales se protegen mediante mecanismos de cifrado y autenticación vinculados exclusivamente al certificado digital brasileño del titular.",
+    "p2": "El contenido no es accesible a terceros, incluyendo al operador de la infraestructura, garantizando confidencialidad estricta.",
+    "p3": "Registros complementarios de verificación de integridad pueden generarse sin exposición del contenido preservado."
   },
 
   "howItWorks": {
     "title": "Cómo Funciona",
-    "step1Title": "Identificación Estructurada",
-    "step1Desc": "El proceso inicia con identificación del titular, pudiendo incluir validación notarial.",
-    "step2Title": "Depósito y Registro Técnico",
-    "step2Desc": "Tras autenticación, el activo digital recibe identificador técnico verificable.",
-    "step3Title": "Cadena de Custodia",
-    "step3Desc": "Los eventos pasan a formar parte de registro cronológico estructurado.",
-    "step4Title": "Acceso Exclusivo",
-    "step4Desc": "El acceso permanece restringido al titular mediante certificado digital."
+    "step1": "El proceso inicia con identificación estructurada del titular, pudiendo involucrar validación notarial brasileña cuando corresponda.",
+    "step2": "Tras la autenticación, el activo digital se deposita y se somete a registro técnico de integridad.",
+    "step3": "Todas las acciones pasan a integrar una cadena de custodia digital documentada.",
+    "step4": "El acceso posterior permanece exclusivamente bajo control del titular mediante autenticación con certificado digital brasileño."
   },
 
   "government": {
     "heroTitle": "Preservación para Entidades Públicas",
-    "content": "Las entidades públicas generan registros digitales que pueden integrar auditorías e investigaciones administrativas."
+    "content": "Órganos públicos generan registros digitales que pueden componer auditorías, investigaciones administrativas y procedimientos formales. La organización técnica previa contribuye a la gobernanza documental y previsibilidad institucional."
   },
 
   "companies": {
     "heroTitle": "Preservación Digital Corporativa",
-    "content": "Las empresas pueden estructurar evidencia digital antes de litigios o investigaciones internas."
+    "content": "Empresas pueden estructurar evidencias digitales antes de litigios o investigaciones internas, contribuyendo a compliance y mitigación de riesgos jurídicos."
   },
 
   "individuals": {
     "heroTitle": "Protección del Patrimonio Digital",
-    "content": "Las personas pueden preservar documentos digitales con posible relevancia jurídica futura."
+    "content": "Personas físicas pueden preservar documentos digitales con posible relevancia jurídica futura, organizando evidencias de forma anticipada."
   },
 
   "terms": {
     "title": "Términos de Custodia",
-    "p1": "Establecen las condiciones de uso de la infraestructura de preservación digital.",
-    "p2": "El depositante es responsable del contenido enviado.",
-    "p3": "La plataforma se limita a preservación técnica."
+    "p1": "Establecen las condiciones de uso de la infraestructura de preservación probatoria digital.",
+    "p2": "El depositante es integralmente responsable por el contenido sometido.",
+    "p3": "La plataforma se limita a preservación técnica y no realiza análisis jurídico del contenido."
   },
 
   "privacy": {
     "title": "Política de Privacidad",
-    "p1": "Describe el tratamiento de datos personales necesarios para autenticación.",
-    "p2": "Los datos están protegidos mediante mecanismos técnicos adecuados.",
-    "p3": "El titular puede ejercer derechos previstos en la legislación aplicable."
+    "p1": "Describe el tratamiento de datos personales necesarios para autenticación y prestación del servicio.",
+    "p2": "Los datos son protegidos mediante mecanismos técnicos adecuados.",
+    "p3": "El titular podrá ejercer sus derechos previstos en la legislación aplicable."
   },
 
   "modal": {
-    "title": "Antes de acceder a la plataforma",
-    "intro": "Verifique que los requisitos técnicos estén cumplidos.",
+    "title": "Antes de Acceder a la Plataforma",
+    "intro": "Verifique que los requisitos técnicos estén atendidos para funcionamiento adecuado.",
     "cancel": "Cancelar",
     "proceed": "Continuar"
   }
