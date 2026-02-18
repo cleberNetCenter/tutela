@@ -20,7 +20,9 @@
     "preservation": "Evidentiary Preservation",
     "legalBasis": "Legal Framework",
     "terms": "Custody Terms",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "legal_base": "Legal Basis",
+    "institucional": "Institutional Structure"
   },
   "home": {
     "heroTitle": "Digital Evidentiary Preservation with Verifiable Chain of Custody",

@@ -20,7 +20,9 @@
     "preservation": "Preservación Probatoria",
     "legalBasis": "Fundamento Jurídico",
     "terms": "Términos de Custodia",
-    "privacy": "Política de Privacidad"
+    "privacy": "Política de Privacidad",
+    "legal_base": "Base Jurídica",
+    "institucional": "Estructura Institucional"
   },
   "home": {
     "heroTitle": "Preservación Probatoria Digital con Cadena de Custodia Verificable",
