@@ -1,31 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Governo | Tutela Digital®</title>
-    <link rel="stylesheet" href="/assets/css/styles-clean.css">
-    <link rel="stylesheet" href="/assets/css/styles-header-final.css">
-    <link rel="stylesheet" href="/assets/css/dropdown-menu.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Governo | Tutela Digital®</title>
+<meta content="Soluções de custódia digital para órgãos públicos e governamentais." name="description"/>
+<link href="/assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link rel="stylesheet" href="/assets/css/styles-clean.css">
+<link rel="stylesheet" href="/assets/css/styles-header-final.css">
+<link rel="stylesheet" href="/assets/css/styles-clean.exec-compact.css">
+<link rel="stylesheet" href="/assets/css/dropdown-menu.css">
 </head>
-<body>
-    <header class="header">
-                <nav class="nav" id="nav">
+<body class="exec-compact">
+<header class="header" id="header">
+<div class="header-inner">
+<a class="logo" href="/">
+    Tutela Digital<sup>®</sup>
+</a>
+<nav class="nav" id="nav">
 <a class="nav-link" href="/">Início</a>
 <a class="nav-link" href="/como-funciona.html">Como Funciona</a>
 <a class="nav-link" href="/seguranca.html">Segurança</a>
 
-<li class="nav-dropdown">
-<a href="#">Soluções</a>
+<div class="nav-dropdown">
+<a href="#" class="nav-link">Soluções</a>
 <ul class="dropdown-menu">
 <li><a href="/governo.html">Governo</a></li>
 <li><a href="/empresas.html">Empresas</a></li>
 <li><a href="/pessoas.html">Pessoas</a></li>
 </ul>
-</li>
+</div>
 
-<li class="nav-dropdown">
-<a href="#">Base Jurídica</a>
+<div class="nav-dropdown">
+<a href="#" class="nav-link">Base Jurídica</a>
 <ul class="dropdown-menu">
 <li><a href="/legal/preservacao-probatoria-digital.html">Preservação Probatória</a></li>
 <li><a href="/legal/fundamento-juridico.html">Fundamento Jurídico</a></li>
@@ -33,11 +40,34 @@
 <li><a href="/legal/politica-de-privacidade.html">Política de Privacidade</a></li>
 <li><a href="/legal/institucional.html">Institucional</a></li>
 </ul>
-</li>
+</div>
 </nav>
-    </header>
-    
-    <main>
+<a class="header-cta" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">
+    Acessar a Plataforma
+</a>
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<div class="lang-dropdown">
+  <button class="lang-toggle" aria-label="Selecionar idioma">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="2" y1="12" x2="22" y2="12"></line>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+    </svg> <span class="lang-code">PT</span>
+  </button>
+  <div class="lang-menu">
+    <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
+    <button class="lang-option" data-lang="en">🇺🇸 English</button>
+    <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+  </div>
+</div>
+</div>
+</header>
+
+<main>
         <section>
             <h1>Soluções para Governo</h1>
             
@@ -50,7 +80,9 @@
         
         </section>
     </main>
-    
-    <script src="/assets/js/dropdown-menu.js"></script>
+
+<script src="/assets/js/mobile-menu.js"></script>
+<script src="/assets/js/language-selector.js"></script>
+<script src="/assets/js/dropdown-menu.js"></script>
 </body>
 </html>
