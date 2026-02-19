@@ -58,7 +58,21 @@
     "h3AccessControl": "Exclusive Access Control by Holder",
     "h3ImmutableRegistration": "Immutable Technical Registration",
     "h4BlockchainRecord": "Distributed Ledger as Complementary Evidence",
-    "h4TemporalIntegrity": "Verifiable Temporal Integrity"
+    "h4TemporalIntegrity": "Verifiable Temporal Integrity",
+    "eNotarialTitle": "e-Notary",
+    "eNotarialDesc": "Onboarding with identity validation through the official Brazilian notary platform, ensuring public faith.",
+    "nonRepudiationTitle": "Non-Repudiation",
+    "nonRepudiationDesc": "Technical and legal mechanisms that prevent the denial of authorship or modification of custodied assets.",
+    "encryptionDesc": "High-standard encryption algorithms that protect assets during transmission and storage.",
+    "blockchainDesc": "Distributed and immutable ledger that guarantees the integrity and traceability of all operations.",
+    "chainOfCustodyTitle": "Immutable Chain of Custody",
+    "chainOfCustodyDesc": "Complete and unalterable history of all actions performed on each custodied digital asset.",
+    "evidentialValidityTitle": "Evidentiary Validity",
+    "evidentialValidityDesc": "Support for admissibility of preserved assets as evidence in administrative and judicial proceedings.",
+    "reliabilityTitle": "Evidentiary Reliability",
+    "reliabilityDesc": "The legal reliability of digital evidence depends on demonstrating integrity, traceability, and authorship control. The architecture is structured to meet these technical requirements.",
+    "ctaTitle": "Learn about our security infrastructure",
+    "ctaDesc": "Access the platform and learn about our structured evidentiary preservation infrastructure."
   },
   "howItWorks": {
     "title": "How It Works",
