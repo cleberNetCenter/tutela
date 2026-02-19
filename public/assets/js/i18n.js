@@ -64,9 +64,9 @@ const I18N = {
     'home_pillars_admissibility': 'home.pillar3Title',
     'home_pillars_admissibility_desc': 'home.pillar3Desc',
     
-    // Home Applicability
-    'home_applicability_title': 'preservation.title',
-    'home_applicability_desc': 'preservation.p1',
+    // Home Applicability (chaves diretas em home.*) 
+    'home_applicability_title': 'home.home_applicability_title',
+    'home_applicability_desc': 'home.home_applicability_desc',
     
     // Home CTA
     'home_cta_title': 'global.ctaPrimary',
