@@ -233,6 +233,56 @@
     font-size: 1rem;
   }
 }
+
+/* ================================
+   HOMEPAGE - PILARES DA INFRAESTRUTURA
+================================ */
+/* Título centralizado fora do container */
+.features--homepage-pillars {
+  padding: 4rem 2rem 3rem 2rem;
+}
+
+.features-title-centered {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-text-strong);
+  margin: 0 0 3rem 0;
+  letter-spacing: -0.01em;
+}
+
+/* Grid 2x2 centralizado */
+.features-grid--2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.features-grid--2x2 .feature-item {
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Responsivo - Mobile 1 coluna */
+@media (max-width: 768px) {
+  .features--homepage-pillars {
+    padding: 3rem 1.5rem 2rem 1.5rem;
+  }
+  
+  .features-grid--2x2 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 100%;
+  }
+  
+  .features-grid--2x2 .feature-item {
+    padding: 1.5rem;
+  }
+}
+
 </style>
 
 </head>
@@ -338,10 +388,10 @@
 </div>
 </div>
 </section>
-<section class="features">
+<section class="features features--homepage-pillars">
+<h2 class="features-title-centered" data-i18n="home_pillars_title">Pilares da Infraestrutura</h2>
 <div class="features-inner">
-<h2 data-i18n="home_pillars_title">Pilares da Infraestrutura</h2>
-<div class="features-grid">
+<div class="features-grid features-grid--2x2">
 <div class="feature-item">
 <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
 <h3 data-i18n="home_pillars_preservation">Preservação Probatória Estruturada</h3>
