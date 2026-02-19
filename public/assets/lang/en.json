@@ -45,7 +45,9 @@
     "h4TechnicalIdentifier": "Verifiable Technical Identifier",
     "h3LegalApplication": "Legal Application of Evidentiary Preservation",
     "h4JudicialUse": "Use in Judicial Proceedings",
-    "h4AdministrativeUse": "Application in Administrative Defense"
+    "h4AdministrativeUse": "Application in Administrative Defense",
+    "home_applicability_title": "Legal Applicability",
+    "home_applicability_desc": "Digital evidentiary preservation can be used for judicial proceedings, administrative defenses, arbitration procedures, internal investigations and notarial formalizations, subject to evaluation by the competent authority."
   },
   "security": {
     "title": "Integrity Architecture Applied to Digital Evidentiary Preservation",
