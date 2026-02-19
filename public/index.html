@@ -148,6 +148,30 @@
   display: block;
 }
 
+/* ================================
+   VERTICAL CARDS - LINKS
+================================ */
+a.vertical-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.vertical-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+a.vertical-card h3,
+a.vertical-card p {
+  margin: 0;
+}
+
+a.vertical-card h3 {
+  margin-bottom: 0.75rem;
+}
+
 </style>
   <link rel="stylesheet" href="/assets/css/dropdown-menu.css">
 
@@ -373,18 +397,18 @@
 <div class="verticals-inner">
 <h2 data-i18n="home_verticals_title">Soluções por Segmento</h2>
 <div class="verticals-grid">
-<div class="vertical-card" onclick="navigateTo('governo')">
+<a href="/governo.html" class="vertical-card">
 <h3 data-i18n="home_verticals_gov">Governo</h3>
 <p data-i18n="home_verticals_gov_desc">Custódia probatória de atos públicos com transparência e aderência normativa.</p>
-</div>
-<div class="vertical-card" onclick="navigateTo('empresas')">
+</a>
+<a href="/empresas.html" class="vertical-card">
 <h3 data-i18n="home_verticals_corp">Empresas</h3>
 <p data-i18n="home_verticals_corp_desc">Proteção de documentos estratégicos, compliance e governança digital corporativa.</p>
-</div>
-<div class="vertical-card" onclick="navigateTo('pessoas')">
+</a>
+<a href="/pessoas.html" class="vertical-card">
 <h3 data-i18n="home_verticals_personal">Pessoas Físicas</h3>
 <p data-i18n="home_verticals_personal_desc">Proteção patrimonial digital, confidencialidade e planejamento sucessório.</p>
-</div>
+</a>
 </div>
 </div>
 </section>
