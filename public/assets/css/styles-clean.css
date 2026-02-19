@@ -1020,3 +1020,81 @@ body.exec-compact .footer-link--social{font-size:.8125rem}
     display: none;
   }
 }
+
+
+/* =============================
+   PRESERVAÇÃO PROBATÓRIA – PAGE SPECIFIC
+   ============================= */
+
+/* Nova seção editorial após hero */
+.preservacao-intro {
+  padding: 5rem 2rem;
+  background: #ffffff;
+}
+
+.preservacao-intro-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.preservacao-intro h2 {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  color: var(--color-text-strong);
+  margin-bottom: 1.5rem;
+}
+
+.preservacao-intro p {
+  font-size: 1.125rem;
+  color: var(--color-text-base);
+  line-height: 1.7;
+}
+
+/* Alternância de blocos */
+.section-muted {
+  background: var(--color-surface-muted);
+}
+
+/* Grid de aplicações */
+.applications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.application-item {
+  background: #ffffff;
+  padding: 1.25rem;
+  border-left: 3px solid var(--color-green-800);
+  font-size: 0.95rem;
+  color: var(--color-text-base);
+}
+
+/* Hero subtitle específico */
+.hero-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.95);
+  margin-top: 1.5rem;
+}
+
+/* Responsivo para preservacao-intro */
+@media (max-width: 768px) {
+  .preservacao-intro {
+    padding: 3rem 1.5rem;
+  }
+  
+  .preservacao-intro h2 {
+    font-size: 1.75rem;
+  }
+  
+  .preservacao-intro p {
+    font-size: 1rem;
+  }
+  
+  .applications-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
