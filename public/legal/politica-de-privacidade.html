@@ -544,5 +544,25 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+
+<!-- Scripts de internacionalização e navegação -->
+<script src="/assets/js/navigation.js?v=202602190108"></script>
+<script src="/assets/js/i18n.js?v=9"></script>
+<script src="/assets/js/dropdown-menu.js?v=202602190108"></script>
+
+<!-- Inicializar i18n para páginas legais -->
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  // Inicializa sistema i18n
+  await I18N.init();
+  
+  // Força exibição do aviso se não estiver em PT
+  if (I18N.currentLang !== 'pt') {
+    console.log('[Legal Page] Idioma atual:', I18N.currentLang, '- Exibindo aviso');
+    I18N.showLegalPageNoticeIfNeeded();
+  }
+});
+</script>
+
 </body>
 </html>

@@ -123,7 +123,12 @@ const I18N = {
    * Verifica se a página atual é uma página jurídica
    */
   isLegalPage() {
-    // Verifica se alguma das páginas legais está ativa
+    // Método 1: Verifica se body tem classe 'legal-page' (páginas HTML separadas)
+    if (document.body && document.body.classList.contains('legal-page')) {
+      return true;
+    }
+    
+    // Método 2: Verifica se alguma das páginas legais está ativa no SPA
     return this.legalPages.some(pageId => {
       const page = document.getElementById(pageId);
       return page && page.classList.contains('active');
@@ -204,18 +209,8 @@ const I18N = {
    * Mostra banner de aviso em páginas legais quando idioma não é PT
    */
   showLegalPageNoticeIfNeeded() {
-    // Lista de páginas legais (apenas texto em PT)
-    const legalPages = [
-      'page-institucional',
-      'page-politica-de-privacidade',
-      'page-fundamento-juridico',
-      'page-termos-de-custodia'
-    ];
-
     // Verifica se estamos em uma página legal
-    const isLegalPage = legalPages.some(pageId => 
-      document.getElementById(pageId)?.classList.contains('active')
-    );
+    const isLegalPage = this.isLegalPage();
 
     // Se não for página legal ou idioma for PT, remove aviso (se existir)
     if (!isLegalPage || this.currentLang === 'pt') {
