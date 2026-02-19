@@ -124,19 +124,27 @@
   line-height: 1.25;
 }
 
-/* Garantir que todos os cards tenham altura mínima consistente */
+/* Cards: 1 por linha, largura total, altura reduzida */
+.legal-grid {
+  grid-template-columns: 1fr !important;
+  gap: 1.5rem !important;
+}
+
 .legal-grid .feature-item {
-  min-height: 200px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
+  padding: 1.5rem 2rem;
 }
 
 .legal-grid .feature-item h3 {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
 }
 
 .legal-grid .feature-item p {
   flex: 1;
+  margin: 0;
 }
 </style>
 
