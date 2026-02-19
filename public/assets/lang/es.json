@@ -58,7 +58,21 @@
     "h3AccessControl": "Control de Acceso Exclusivo al Titular",
     "h3ImmutableRegistration": "Registro Técnico Inmutable",
     "h4BlockchainRecord": "Registro Distribuido como Prueba Complementaria",
-    "h4TemporalIntegrity": "Integridad Temporal Verificable"
+    "h4TemporalIntegrity": "Integridad Temporal Verificable",
+    "eNotarialTitle": "e-Notariado",
+    "eNotarialDesc": "Incorporación con validación de identidad a través de la plataforma oficial de notarías brasileñas, garantizando fe pública.",
+    "nonRepudiationTitle": "No Repudio",
+    "nonRepudiationDesc": "Mecanismos técnicos y jurídicos que impiden la negación de autoría o alteración de activos custodiados.",
+    "encryptionDesc": "Algoritmos de cifrado de alto estándar que protegen los activos durante la transmisión y el almacenamiento.",
+    "blockchainDesc": "Registro distribuido e inmutable que garantiza la integridad y trazabilidad de todas las operaciones.",
+    "chainOfCustodyTitle": "Cadena de Custodia Inmutable",
+    "chainOfCustodyDesc": "Historial completo e inalterable de todas las acciones realizadas sobre cada activo digital custodiado.",
+    "evidentialValidityTitle": "Validez Probatoria",
+    "evidentialValidityDesc": "Soporte para la admisibilidad de activos preservados como prueba en procedimientos administrativos y judiciales.",
+    "reliabilityTitle": "Confiabilidad Probatoria",
+    "reliabilityDesc": "La confiabilidad jurídica de la prueba digital depende de la demostración de integridad, trazabilidad y control de autoría. La arquitectura está estructurada para cumplir con estos requisitos técnicos.",
+    "ctaTitle": "Conozca nuestra infraestructura de seguridad",
+    "ctaDesc": "Acceda a la plataforma y conozca nuestra infraestructura de preservación probatoria estructurada."
   },
   "howItWorks": {
     "title": "Cómo Funciona",
