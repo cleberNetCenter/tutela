@@ -314,7 +314,7 @@ const I18N = {
   },
 
   /**
-   * Troca de idioma
+   * Troca de idioma (MPA - Multi-Page Application)
    */
   async switchLanguage(lang) {
     if (this.currentLang === lang) return;
@@ -328,9 +328,34 @@ const I18N = {
       dropdown.classList.remove('active');
     }
     
-    // Recarrega a página para aplicar traduções completas
-    console.log('[i18n] Idioma alterado para:', lang, '- Recarregando página...');
-    window.location.reload();
+    // Detecta a página atual e idioma
+    const currentPath = window.location.pathname;
+    const currentFile = currentPath.split('/').pop() || 'index.html';
+    
+    // Remove sufixo de idioma atual (-en, -es)
+    const basePage = currentFile.replace(/-en\.html$/, '.html').replace(/-es\.html$/, '.html');
+    
+    // Constrói URL do novo idioma
+    let newUrl;
+    if (lang === 'pt') {
+      // PT: sem sufixo
+      newUrl = currentPath.replace(currentFile, basePage);
+    } else {
+      // EN/ES: adiciona sufixo
+      const newFile = basePage.replace('.html', `-${lang}.html`);
+      newUrl = currentPath.replace(currentFile, newFile);
+    }
+    
+    // Remove index.html se estiver na raiz
+    if (newUrl.endsWith('/index.html')) {
+      newUrl = newUrl.replace('/index.html', '/');
+    }
+    
+    console.log('[i18n] Idioma alterado:', this.currentLang, '→', lang);
+    console.log('[i18n] Redirecionando:', currentPath, '→', newUrl);
+    
+    // Redireciona para a versão no idioma selecionado
+    window.location.href = newUrl;
   },
 
   /**
