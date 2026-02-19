@@ -45,7 +45,9 @@
     "h4TechnicalIdentifier": "Identificador Técnico Verificável",
     "h3LegalApplication": "Aplicação Jurídica da Preservação Probatória",
     "h4JudicialUse": "Utilização em Procedimentos Judiciais",
-    "h4AdministrativeUse": "Aplicação em Defesa Administrativa"
+    "h4AdministrativeUse": "Aplicação em Defesa Administrativa",
+    "home_applicability_title": "Aplicabilidade Jurídica",
+    "home_applicability_desc": "A preservação probatória digital pode ser utilizada para instrução de processos judiciais, defesas administrativas, procedimentos arbitrais, investigações internas e formalizações notariais, conforme avaliação da autoridade competente."
   },
   "preservation": {
     "title": "Como Preservar Prova Digital com Integridade e Cadeia de Custódia Documentada",
