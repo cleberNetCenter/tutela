@@ -29,7 +29,7 @@
   /* Alinhamento vertical perfeito */
   vertical-align: middle;
   line-height: 1.5;
-  height: auto;
+  height: 48px;
 }
 
 .nav-dropdown > a:hover,
