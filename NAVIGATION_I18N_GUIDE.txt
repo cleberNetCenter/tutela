@@ -1,0 +1,72 @@
+
+=============================================================================
+GUIA DE NAVEGAÇÃO MULTILÍNGUE - Tutela Digital®
+=============================================================================
+
+COMO FUNCIONA:
+1. Usuário clica no globo e seleciona idioma (PT/EN/ES)
+2. Sistema salva idioma no localStorage
+3. Sistema carrega traduções do arquivo JSON (pt.json, en.json, es.json)
+4. Sistema aplica traduções em TODOS os elementos com data-i18n
+5. RESULTADO: Menu E conteúdo da página são traduzidos SIMULTANEAMENTE
+
+FLUXO DE TRADUÇÃO:
+┌──────────────────┐
+│ Usuário clica    │
+│ PT/EN/ES         │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│ localStorage     │
+│ tutela_lang=en   │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│ Carrega en.json  │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────────────────────┐
+│ Aplica traduções via data-i18n:  │
+│ → Menu (nav.home, nav.security)  │
+│ → Títulos (hero.title)           │
+│ → Parágrafos (hero.subtitle)    │
+│ → Botões (cta.access)            │
+└──────────────────────────────────┘
+
+IMPORTANTE:
+• NÃO existe redirecionamento para /index-en.html ou /index-es.html
+• NÃO existem páginas separadas por idioma
+• TODO o conteúdo é traduzido DINAMICAMENTE na mesma página
+• Sistema é SPA-like (Single Page Application)
+
+PÁGINAS SUPORTADAS:
+✅ Início (index.html)
+✅ Como Funciona (como-funciona.html)
+✅ Segurança (seguranca.html)
+✅ Governo (governo.html)
+✅ Empresas (empresas.html)
+✅ Pessoas (pessoas.html)
+
+PÁGINAS LEGAIS (SOMENTE PT):
+⚠️ Institucional
+⚠️ Política de Privacidade
+⚠️ Fundamento Jurídico
+⚠️ Termos de Custódia
+
+VERIFICAÇÃO:
+1. Abrir https://tuteladigital.com.br/
+2. Clicar no globo → selecionar EN
+3. Verificar que:
+   ✅ Menu mudou para inglês
+   ✅ Conteúdo da página mudou para inglês
+   ✅ URL permanece /index.html (não redireciona)
+4. Navegar para "How It Works"
+5. Verificar que:
+   ✅ Página carrega em inglês
+   ✅ Menu continua em inglês
+   ✅ Idioma persiste (localStorage)
+
+=============================================================================
