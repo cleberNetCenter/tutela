@@ -88,5 +88,18 @@
     "intro": "Verifique que los requisitos técnicos estén atendidos para funcionamiento adecuado.",
     "cancel": "Cancelar",
     "proceed": "Continuar"
+  },
+  "nav": {
+    "home": "Inicio",
+    "how_it_works": "Cómo Funciona",
+    "security": "Seguridad",
+    "solutions": "Soluciones",
+    "legal_basis": "Base Jurídica",
+    "government": "Gobierno",
+    "companies": "Empresas",
+    "individuals": "Personas"
+  },
+  "cta": {
+    "request_demo": "Solicitar Demostración"
   }
 }

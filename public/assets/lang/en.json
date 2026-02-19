@@ -88,5 +88,18 @@
     "intro": "Please verify that the technical requirements are met for proper operation.",
     "cancel": "Cancel",
     "proceed": "Proceed"
+  },
+  "nav": {
+    "home": "Home",
+    "how_it_works": "How It Works",
+    "security": "Security",
+    "solutions": "Solutions",
+    "legal_basis": "Legal Basis",
+    "government": "Government",
+    "companies": "Companies",
+    "individuals": "Individuals"
+  },
+  "cta": {
+    "request_demo": "Request Demo"
   }
 }
