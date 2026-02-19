@@ -291,6 +291,65 @@ body{
 
 		
 
+
+/* ===================== FEATURE CARDS ==================== */
+.feature-item {
+    background: var(--color-surface-light);
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 4px;
+}
+
+.feature-item,
+.vertical-card {
+    background: var(--color-surface-light);
+    border: 1px solid var(--color-border-soft);
+}
+
+.feature-item h3,
+.vertical-card h3 {
+    color: var(--color-text-strong);
+}
+        
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-md);
+    color: var(--color-text-base);
+}
+
+.feature-item h3 {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-strong);
+    margin-bottom: var(--space-sm);
+}
+
+.feature-item p {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+}
+
+.vertical-card {
+    padding: var(--space-lg);
+    border-radius: 4px;
+}
+
+.vertical-card h3 {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+.vertical-card p {
+    color: var(--color-text-base);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+}
+
 /* ===================== GRIDS ============================= */
 .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-sm)}
 .steps-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-lg)}
