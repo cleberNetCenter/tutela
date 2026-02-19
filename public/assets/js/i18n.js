@@ -314,13 +314,16 @@ const I18N = {
   },
 
   /**
-   * Troca de idioma (MPA - Multi-Page Application)
+   * Troca de idioma (aplica traduções dinamicamente)
    */
   async switchLanguage(lang) {
     if (this.currentLang === lang) return;
     
+    console.log('[i18n] Trocando idioma:', this.currentLang, '→', lang);
+    
     // Salva idioma no localStorage
     localStorage.setItem('tutela_lang', lang);
+    this.currentLang = lang;
     
     // Fecha o menu dropdown
     const dropdown = document.querySelector('.lang-dropdown');
@@ -328,34 +331,22 @@ const I18N = {
       dropdown.classList.remove('active');
     }
     
-    // Detecta a página atual e idioma
-    const currentPath = window.location.pathname;
-    const currentFile = currentPath.split('/').pop() || 'index.html';
+    // Carrega traduções do novo idioma
+    await this.loadTranslations(lang);
     
-    // Remove sufixo de idioma atual (-en, -es)
-    const basePage = currentFile.replace(/-en\.html$/, '.html').replace(/-es\.html$/, '.html');
+    // Aplica traduções na página
+    this.applyTranslations();
     
-    // Constrói URL do novo idioma
-    let newUrl;
-    if (lang === 'pt') {
-      // PT: sem sufixo
-      newUrl = currentPath.replace(currentFile, basePage);
-    } else {
-      // EN/ES: adiciona sufixo
-      const newFile = basePage.replace('.html', `-${lang}.html`);
-      newUrl = currentPath.replace(currentFile, newFile);
-    }
+    // Atualiza UI do seletor
+    this.updateLanguageSelector();
     
-    // Remove index.html se estiver na raiz
-    if (newUrl.endsWith('/index.html')) {
-      newUrl = newUrl.replace('/index.html', '/');
-    }
+    // Atualiza atributo lang do HTML
+    document.documentElement.lang = this.getLangCode(lang);
     
-    console.log('[i18n] Idioma alterado:', this.currentLang, '→', lang);
-    console.log('[i18n] Redirecionando:', currentPath, '→', newUrl);
+    // Atualiza schemas JSON-LD
+    this.updateSchemaLanguage(lang);
     
-    // Redireciona para a versão no idioma selecionado
-    window.location.href = newUrl;
+    console.log('[i18n] Idioma aplicado com sucesso:', lang);
   },
 
   /**
