@@ -42,6 +42,23 @@
   display: flex;
   justify-content: center;
   gap: 1.5rem;
+  align-items: center;
+}
+
+
+/* Alinhamento vertical de todos os itens do menu */
+.nav > a,
+.nav > div,
+.nav .nav-link,
+.nav .nav-item {
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
+.nav .dropdown {
+  display: flex;
+  align-items: center;
 }
 
 .nav-link {
