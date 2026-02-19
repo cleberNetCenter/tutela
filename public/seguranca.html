@@ -76,13 +76,21 @@
 <!-- CSS Exclusivo - Página Segurança -->
 <style>
 /* ================================
+   MAIN - FIX PARA HEADER FIXO
+================================ */
+body.exec-compact .main.main--hero-top {
+  padding-top: 80px !important;
+  margin-top: 0 !important;
+}
+
+/* ================================
    HERO SECURITY - CENTRALIZADO
 ================================ */
 .page-header--security-centered {
   background: linear-gradient(135deg, 
     var(--color-surface-light) 0%, 
     rgba(255,255,255,0.98) 100%);
-  padding: 8rem 2rem 5rem 2rem;
+  padding: 3rem 2rem 5rem 2rem;
   margin-top: 0;
   text-align: center;
 }
@@ -192,12 +200,16 @@
 
 /* Responsividade */
 @media (max-width: 768px) {
+  body.exec-compact .main.main--hero-top {
+    padding-top: 70px !important;
+  }
+  
   .security-graphic svg text {
     font-size: 13px;
   }
   
   .page-header--security-centered {
-    padding: 6rem 1.5rem 3rem 1.5rem;
+    padding: 2rem 1.5rem 3rem 1.5rem;
   }
   
   .security-cards {
