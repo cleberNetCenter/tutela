@@ -198,5 +198,9 @@
   },
   "cta": {
     "request_demo": "Solicitar Demonstração"
+  },
+  "whatsapp": {
+    "tooltip": "Fale com nosso especialista",
+    "aria": "Fale com nosso especialista"
   }
 }
