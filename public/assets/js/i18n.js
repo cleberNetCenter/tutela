@@ -160,6 +160,15 @@ const I18N = {
       }
     });
 
+    // Traduz aria-label attributes
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.dataset.i18nAria;
+      const translation = this.t(key);
+      if (translation && translation !== key) {
+        el.setAttribute('aria-label', translation);
+      }
+    });
+
     // Traduz placeholders de inputs
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.dataset.i18nPlaceholder;
