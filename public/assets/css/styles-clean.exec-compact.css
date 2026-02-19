@@ -108,3 +108,72 @@ body.exec-compact .footer-inner {
     padding-bottom: 2rem;
   }
 }
+
+
+/* =========================================================
+   INFOGRÁFICO DO FLUXO PROBATÓRIO
+   ========================================================= */
+
+.infografico-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 60px 20px;
+  margin: 60px 0;
+}
+
+.infografico-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.infografico-inner h2 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.infografico-inner p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.infografico-fluxo {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin: 40px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.infografico-fluxo:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .infografico-section {
+    padding: 40px 15px;
+    margin: 40px 0;
+  }
+  
+  .infografico-inner h2 {
+    font-size: 1.5rem;
+  }
+  
+  .infografico-inner p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .infografico-fluxo {
+    margin: 20px auto;
+    border-radius: 4px;
+  }
+}
