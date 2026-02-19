@@ -146,5 +146,9 @@
   },
   "cta": {
     "request_demo": "Request Demo"
+  },
+  "whatsapp": {
+    "tooltip": "Speak to our specialist",
+    "aria": "Speak to our specialist"
   }
 }
