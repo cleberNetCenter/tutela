@@ -106,6 +106,40 @@
 </style>
 
   <link rel="stylesheet" href="/assets/css/hero-image-backgrounds.css">
+
+<!-- CSS Fix - Preservação Probatória -->
+<style>
+/* Títulos das seções features - centralizar e fonte display */
+.legal-section-title-wrapper {
+  max-width: 820px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+}
+
+.legal-section-title-wrapper h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--color-text-strong);
+  line-height: 1.25;
+}
+
+/* Garantir que todos os cards tenham altura mínima consistente */
+.legal-grid .feature-item {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-grid .feature-item h3 {
+  margin-bottom: 1rem;
+}
+
+.legal-grid .feature-item p {
+  flex: 1;
+}
+</style>
+
 </head><body class="exec-compact legal-page legal-page"  >
 <header class="header" id="header">
 
@@ -239,7 +273,9 @@
 </section>
 <section class="features">
 <div class="features-inner">
-<h2>Elementos da Cadeia de Custódia Digital</h2>
+<div class="legal-section-title-wrapper">
+  <h2>Elementos da Cadeia de Custódia Digital</h2>
+</div>
 
   <div class="legal-grid-wrapper">
     <div class="legal-grid">
@@ -247,8 +283,7 @@
 
 <h3>Identificação do Ativo</h3>
 <p>Registro individualizado do ativo digital, incluindo metadados relevantes e identificação do depositário.</p>
-</div>
-  </div>
+
 <div class="feature-item">
 
 <h3>Geração de Hash Criptográfico</h3>
@@ -274,7 +309,8 @@
 <h3>Log Auditável</h3>
 <p>Histórico completo e inalterável de eventos relacionados ao ativo preservado.</p>
 </div>
-</div>
+    </div>
+  </div>
 </div>
 </section>
 <section class="text-block">
@@ -287,7 +323,9 @@
 </section>
 <section class="features">
 <div class="features-inner">
-<h2>Fundamento Jurídico da Preservação Digital</h2>
+<div class="legal-section-title-wrapper">
+  <h2>Fundamento Jurídico da Preservação Digital</h2>
+</div>
 <div class="text-block-inner" style="max-width: 960px; margin: 0 auto;">
 <p>A admissibilidade da prova digital decorre dos princípios do Código de Processo Civil relativos ao livre convencimento motivado e à ampla defesa.</p>
 <p>A integridade e autenticidade podem ser demonstradas por mecanismos técnicos idôneos, incluindo assinatura eletrônica, registros temporais e cadeia de custódia documentada.</p>
