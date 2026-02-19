@@ -110,70 +110,51 @@ body.exec-compact .footer-inner {
 }
 
 
+
+
+
 /* =========================================================
-   INFOGRÁFICO DO FLUXO PROBATÓRIO
+   HERO INFOGRAPHIC - Fluxo Probatório
    ========================================================= */
 
-.infografico-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  padding: 60px 20px;
-  margin: 60px 0;
+.page-header-graphic {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-.infografico-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.infografico-inner h2 {
-  font-size: 2rem;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.infografico-inner p {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 3rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.infografico-fluxo {
+.hero-infographic {
   width: 100%;
-  max-width: 1200px;
+  max-width: 600px;
   height: auto;
   display: block;
-  margin: 40px auto;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
 }
 
-.infografico-fluxo:hover {
-  transform: scale(1.02);
+@media (max-width: 968px) {
+  .page-header--split {
+    flex-direction: column;
+  }
+  
+  .page-header-graphic {
+    margin-top: 30px;
+    padding: 0;
+  }
+  
+  .hero-infographic {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
-  .infografico-section {
-    padding: 40px 15px;
-    margin: 40px 0;
+  .page-header-graphic {
+    margin-top: 20px;
   }
   
-  .infografico-inner h2 {
-    font-size: 1.5rem;
-  }
-  
-  .infografico-inner p {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .infografico-fluxo {
-    margin: 20px auto;
+  .hero-infographic {
     border-radius: 4px;
   }
 }
