@@ -1230,3 +1230,51 @@ body.exec-compact .footer-link--social{font-size:.8125rem}
     padding: 1.25rem 1.5rem;
   }
 }
+
+
+/* =============================
+   LEGAL PAGES – WHITE-PAPER STANDARDIZATION
+   ============================= */
+
+/* Gráfico vetorial minimalista */
+.wp-legal-graphic {
+  max-width: 960px;
+  margin: 3rem auto 2rem auto;
+  opacity: 0.75;
+}
+
+.wp-legal-graphic svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Hero legal uniforme (sem background-image) */
+.page-header--institucional,
+.page-header--fundamento-juridico,
+.page-header--termos-custodia,
+.page-header--politica-privacidade,
+.page-header--preservacao-probatoria {
+  background: linear-gradient(
+    180deg,
+    var(--color-surface-light),
+    var(--color-surface-muted)
+  ) !important;
+  background-image: none !important;
+}
+
+/* Responsivo para gráfico SVG */
+@media (max-width: 768px) {
+  .wp-legal-graphic {
+    margin: 2rem auto 1.5rem auto;
+  }
+  
+  .wp-legal-graphic svg text {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wp-legal-graphic svg text {
+    font-size: 8px;
+  }
+}

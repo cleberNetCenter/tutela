@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<link rel="preload" as="image" href="/assets/images/hero/documento-selo-assinatura.webp" type="image/webp">
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Preservação Probatória Digital | Tutela Digital®</title>
@@ -110,7 +110,7 @@
   <link rel="stylesheet" href="/assets/css/hero-image-backgrounds.css">
 </head><body class="exec-compact">
 <header class="header" id="header">
-<link rel="preload" as="image" href="/assets/images/hero/documento-selo-assinatura.webp" type="image/webp">
+
 <div class="header-inner">
 <a class="logo" href="/">
                     Tutela Digital<sup>®</sup>
@@ -212,7 +212,7 @@
 
 
 <main class="main main--hero-top">
-<section class="page-header page-header--preservacao-probatoria hero--image" style="background-image: url('/assets/images/hero/documento-selo-assinatura.webp');">
+<section class="page-header page-header--preservacao-probatoria " >
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
 <h1>Preservação Probatória Digital</h1>
@@ -223,6 +223,19 @@ Infraestrutura técnica para constituição de cadeia de custódia digital verif
 
 </div>
 </section>
+
+<div class="wp-legal-graphic">
+  <svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+    <line x1="50" y1="60" x2="550" y2="60" stroke="#1b6b4d" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="150" cy="60" r="6" fill="#1b6b4d"/>
+    <circle cx="300" cy="60" r="6" fill="#1b6b4d"/>
+    <circle cx="450" cy="60" r="6" fill="#1b6b4d"/>
+    <text x="150" y="40" text-anchor="middle" font-size="12" fill="#1b6b4d">Integridade</text>
+    <text x="300" y="40" text-anchor="middle" font-size="12" fill="#1b6b4d">Cadeia de Custódia</text>
+    <text x="450" y="40" text-anchor="middle" font-size="12" fill="#1b6b4d">Validação</text>
+  </svg>
+</div>
+
 <section class="preservacao-intro">
   <div class="preservacao-intro-inner">
     <h2>Mecanismos Técnicos de Preservação</h2>
@@ -405,5 +418,22 @@ Infraestrutura técnica para constituição de cadeia de custódia digital verif
 <path d="M16 3C8.82 3 3 8.82 3 16c0 2.82.93 5.44 2.5 7.56L3 29l5.65-2.47A12.9 12.9 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.5c-2.3 0-4.45-.67-6.27-1.82l-.45-.28-3.35 1.47.89-3.56-.29-.46A10.4 10.4 0 0 1 5.6 16C5.6 10.27 10.27 5.6 16 5.6S26.4 10.27 26.4 16 21.73 26.5 16 26.5z"></path>
 </svg>
 </a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const elements = document.querySelectorAll('.reveal-on-scroll');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  elements.forEach(el => observer.observe(el));
+});
+</script>
+
 </body>
 </html>
