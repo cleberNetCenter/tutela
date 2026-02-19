@@ -149,7 +149,8 @@
 }
 
 .lang-dropdown:hover .lang-menu,
-.lang-dropdown:focus-within .lang-menu {
+.lang-dropdown:focus-within .lang-menu,
+.lang-dropdown.active .lang-menu {
   display: flex;
 }
 
@@ -180,4 +181,5 @@
 .lang-toggle svg {
   vertical-align: middle;
   margin: 0;
+  pointer-events: none; /* Permite clique no botão passar pelo SVG */
 }
