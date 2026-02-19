@@ -1,15 +1,14 @@
 /* =========================================================
    NAV DROPDOWN (Soluções & Base Jurídica)
-   Seguindo o mesmo padrão do lang-dropdown
+   Alinhado com outros itens do menu
    ========================================================= */
 
 .nav-dropdown {
   position: relative;
-  flex: 0 0 auto;
   display: inline-block;
 }
 
-/* Dropdown trigger link */
+/* Dropdown trigger link - alinhado com .nav-link */
 .nav-dropdown > a,
 .nav-dropdown > .nav-link {
   cursor: pointer;
@@ -20,13 +19,11 @@
   white-space: nowrap;
   position: relative;
   display: inline-block;
-  padding: 0.25rem;
 }
 
 .nav-dropdown > a:hover,
 .nav-dropdown > .nav-link:hover {
   color: #ffffff;
-  opacity: 0.85;
 }
 
 /* Dropdown menu container */
@@ -43,6 +40,8 @@
   padding: 0;
   margin: 0;
   list-style: none;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 /* Dropdown menu items */

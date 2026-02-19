@@ -54,3 +54,19 @@
     min-height: 350px;
   }
 }
+
+/* =========================================================
+   FIX: Remover espaço entre header e hero image
+   ========================================================= */
+
+/* Páginas com hero image no topo */
+.main--hero-top {
+  padding-top: 0 !important;
+}
+
+/* Hero image começa imediatamente após o header */
+.main--hero-top > .hero--image:first-child,
+.main--hero-top > section.hero--image:first-child {
+  margin-top: 0;
+  padding-top: calc(80px + 3rem); /* Header height + espaçamento interno */
+}
