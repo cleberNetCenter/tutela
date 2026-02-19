@@ -1,14 +1,17 @@
 /* =========================================================
    NAV DROPDOWN (Soluções & Base Jurídica)
-   Alinhado com outros itens do menu
+   Alinhamento PERFEITO com outros itens do menu
    ========================================================= */
 
 .nav-dropdown {
   position: relative;
   display: inline-block;
+  /* CRITICAL: Remove qualquer padding/margin extra */
+  margin: 0;
+  padding: 0;
 }
 
-/* Dropdown trigger link - alinhado com .nav-link */
+/* Dropdown trigger link - ALINHAMENTO PERFEITO com .nav-link */
 .nav-dropdown > a,
 .nav-dropdown > .nav-link {
   cursor: pointer;
@@ -19,6 +22,12 @@
   white-space: nowrap;
   position: relative;
   display: inline-block;
+  /* CRITICAL: Zero padding para alinhamento perfeito */
+  padding: 0;
+  margin: 0;
+  /* Alinhamento vertical */
+  vertical-align: middle;
+  line-height: normal;
 }
 
 .nav-dropdown > a:hover,

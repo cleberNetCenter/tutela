@@ -185,5 +185,18 @@
     "govP3": "Detalhes técnicos proprietários não são divulgados publicamente para preservação de segurança e propriedade intelectual.",
     "ctaTitle": "Transparência Institucional e Confiabilidade Jurídica",
     "ctaText": "Conheça também os fundamentos jurídicos e termos de custódia."
+  },
+  "nav": {
+    "home": "Início",
+    "how_it_works": "Como Funciona",
+    "security": "Segurança",
+    "solutions": "Soluções",
+    "legal_basis": "Base Jurídica",
+    "government": "Governo",
+    "companies": "Empresas",
+    "individuals": "Pessoas"
+  },
+  "cta": {
+    "request_demo": "Solicitar Demonstração"
   }
 }
