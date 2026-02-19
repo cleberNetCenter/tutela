@@ -6,8 +6,8 @@
 const PAGE_TRANSITION_DURATION = 350; // ms (deve bater com o CSS)
 
 function navigateTo(page) {
-  const pages = document.querySelectorAll('.page');
-  const current = document.querySelector('.page.active');
+  const pages = document.querySelectorAll('.content');
+  const current = document.querySelector('.content.active');
   const target = document.getElementById('page-' + page);
 
   if (!target) {
@@ -52,7 +52,7 @@ function navigateTo(page) {
 // =======================================================
 
 (function initNavigation() {
-  const hasActive = document.querySelector('.page.active');
+  const hasActive = document.querySelector('.content.active');
   if (!hasActive) {
     navigateTo('home');
   }
