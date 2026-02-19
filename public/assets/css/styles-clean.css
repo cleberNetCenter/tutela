@@ -1381,3 +1381,69 @@ body.legal-page .page-header {
   opacity: 1;
   transform: translateY(0);
 }
+
+
+/* ==================================================
+   CORREÇÕES HERO E TÍTULOS LEGAIS
+   ================================================== */
+
+/* Hero - garantir visibilidade do texto */
+.page-header--legal {
+  padding: 6rem 2rem 5rem 2rem;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    var(--color-surface-light),
+    var(--color-surface-muted)
+  );
+}
+
+.page-header--legal .page-header-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.page-header--legal h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 500;
+  color: var(--color-text-strong);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.page-header-subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Títulos soltos - centralizar */
+body.legal-page h2,
+body.legal-page h3 {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Wrapper para seções especiais */
+.legal-section-wrapper {
+  max-width: 980px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+/* Sobrescrever estilos anteriores conflitantes */
+.page-header--legal .page-header-content {
+  max-width: 100%;
+}
+
+.page-header--legal .hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
