@@ -11,7 +11,6 @@
 
 <!-- Hreflang -->
 
-
 <!-- Preconnect for fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -135,7 +134,7 @@
 </style>
 
 </head>
-<body class="exec-compact">
+<body class="exec-compact legal-page" >
 <!-- HEADER -->
 <header class="header" id="header">
 <div class="header-inner">
@@ -177,17 +176,7 @@
 </button>
 <div class="lang-dropdown">
   <button class="lang-toggle" aria-label="Selecionar idioma">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" style="vertical-align: middle;">
-      <!-- Oceano (azul) -->
-      <circle cx="12" cy="12" r="10" fill="#4A90E2" stroke="#2E5C8A" stroke-width="1"/>
-      <!-- Continentes (verde) -->
-      <path d="M7 8 Q9 6 11 7 T13 9 Q14 10 13 12 T11 14 Q9 14 8 13 T7 11 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5"/>
-      <path d="M15 6 Q17 5 18 7 T17 10 Q16 11 15 10 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5"/>
-      <path d="M14 13 Q16 12 18 14 T17 17 Q15 18 14 16 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5"/>
-      <path d="M6 15 Q7 16 9 16 T10 18 Q9 19 7 18 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5"/>
-      <!-- Highlight (brilho) -->
-      <ellipse cx="9" cy="8" rx="2" ry="3" fill="rgba(255,255,255,0.2)" transform="rotate(-30 9 8)"/>
-    </svg>
+    
   </button>
   <div class="lang-menu">
     <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
@@ -234,16 +223,16 @@
       ]
     }
     </script>
-    
 
 <!-- MAIN CONTENT -->
 <main class="main">
 <div class="page active" id="page-politica-de-privacidade">
 <section class="page-header page-header--politica-privacidade">
-<div class="page-header-inner page-header--split">
+<div class="page-header-inner page-header--legal">
 <div class="page-header-content">
 <h1>Política de Privacidade e Proteção de Dados</h1>
-<p >Diretrizes aplicáveis ao tratamento de dados pessoais no contexto da custódia probatória digital.</p>
+    <div class="legal-divider"></div>
+    <p >Diretrizes aplicáveis ao tratamento de dados pessoais no contexto da custódia probatória digital.</p>
 </div>
 </div>
 </section>
@@ -462,6 +451,32 @@ document.addEventListener("DOMContentLoaded", function() {
   }, { threshold: 0.15 });
 
   elements.forEach(el => observer.observe(el));
+});
+</script>
+
+<!-- Script de Micro-Animações Jurídicas -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const sections = document.querySelectorAll(
+    ".page-header, .text-block, .features, .cta-final"
+  );
+
+  sections.forEach(section => {
+    section.classList.add("legal-animate");
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".legal-animate").forEach(el => {
+    observer.observe(el);
+  });
 });
 </script>
 
