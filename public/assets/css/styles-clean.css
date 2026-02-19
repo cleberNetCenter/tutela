@@ -289,203 +289,7 @@ body{
 			max-width: 560px;
 		}
 
-		/* Estilos para títulos e texto dentro do page-header */
-		.page-header h1,
-		.page-header-content h1 {
-			font-family: var(--font-display);
-			font-size: clamp(2rem, 4vw, 3rem);
-			font-weight: 500;
-			color: var(--color-text-strong);
-			margin-bottom: var(--space-md);
-			letter-spacing: -0.02em;
-			line-height: 1.2;
-		}
-
-		.page-header p,
-		.page-header-content p {
-			font-size: 1.125rem;
-			color: var(--color-text-muted);
-			line-height: 1.6;
-			margin-bottom: var(--space-lg);
-		}
-
-		/* Seções de conteúdo */
-		.content-section {
-			padding: var(--space-2xl) var(--space-lg);
-			background: var(--color-surface-light);
-		}
-
-		.content-section-inner {
-			max-width: var(--max-width);
-			margin: 0 auto;
-		}
-
-		.content-section h2 {
-			font-family: var(--font-display);
-			font-size: clamp(1.75rem, 3vw, 2.5rem);
-			font-weight: 500;
-			color: var(--color-text-strong);
-			margin-bottom: var(--space-lg);
-			letter-spacing: -0.01em;
-		}
-
-		.content-section h3 {
-			font-family: var(--font-body);
-			font-size: 1.25rem;
-			font-weight: 600;
-			color: var(--color-text-strong);
-			margin-bottom: var(--space-md);
-		}
-
-		.content-section p {
-			font-size: 1rem;
-			color: var(--color-text-base);
-			line-height: 1.7;
-			margin-bottom: var(--space-md);
-		}
-
-		/* Steps/Benefits sections */
-		.steps,
-		.benefits {
-			padding: var(--space-2xl) var(--space-lg);
-			background: var(--color-surface-muted);
-		}
-
-		.steps-inner,
-		.benefits-inner {
-			max-width: var(--max-width);
-			margin: 0 auto;
-		}
-
-		.steps h2,
-		.benefits h2 {
-			font-family: var(--font-display);
-			font-size: clamp(1.75rem, 3vw, 2.5rem);
-			font-weight: 500;
-			color: var(--color-text-strong);
-			text-align: center;
-			margin-bottom: var(--space-xl);
-			letter-spacing: -0.01em;
-		}
-
-		.steps-list,
-		.benefits-list {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-			gap: var(--space-lg);
-		}
-
-		.step-item,
-		.benefit-item {
-			background: var(--color-surface-light);
-			padding: var(--space-lg);
-			border: 1px solid var(--color-border-soft);
-			border-radius: 8px;
-		}
-
-		.step-item h3,
-		.benefit-item h3 {
-			font-family: var(--font-body);
-			font-size: 1.125rem;
-			font-weight: 600;
-			color: var(--color-text-strong);
-			margin-bottom: var(--space-sm);
-		}
-
-		.step-item p,
-		.benefit-item p {
-			font-size: 0.9375rem;
-			color: var(--color-text-base);
-			line-height: 1.6;
-		}
-
-		/* Responsividade para páginas MPA */
-		@media (max-width: 768px) {
-			.page-header--split {
-				grid-template-columns: 1fr;
-				gap: var(--space-lg);
-			}
-
-			.page-header-graphic {
-				display: none;
-			}
-
-			.page-header h1,
-			.page-header-content h1 {
-				font-size: 2rem;
-			}
-
-			.steps-list,
-			.benefits-list {
-				grid-template-columns: 1fr;
-			}
-		}
-
-
-        /* FEATURES */
-        .features {
-            padding: var(--space-2xl) var(--space-lg);
-            background: var(--color-surface-light);
-        }
-        
-        .features-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-        
-        .features h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 500;
-            color: var(--color-text-strong);
-            text-align: center;
-            margin-bottom: var(--space-xl);
-            letter-spacing: -0.01em;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-sm);
-        }
-        
-        .feature-item {
-            background: var(--color-surface-light);
-			padding: var(--space-lg);
-            border: 1px solid var(--color-border-soft);
-        }
 		
-		.feature-item,
-		.vertical-card {
-			background: var(--color-surface-light);
-			border: 1px solid var(--color-border-soft);
-		}
-
-		.feature-item h3,
-		.vertical-card h3 {
-			color: var(--color-text-strong);
-		}
-				
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: var(--space-md);
-            color: var(--color-text-base);
-        }
-        
-        .feature-item h3 {
-            font-family: var(--font-body);
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--color-text-strong);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .feature-item p {
-            color: var(--color-text-muted);
-            font-size: 0.9375rem;
-            line-height: 1.7;
-        }
 
 /* ===================== GRIDS ============================= */
 .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-sm)}
@@ -889,6 +693,189 @@ body.exec-compact .footer-link--social{font-size:.8125rem}
     margin-top: 35px;
     padding-top: 25px;
   }
+
+
+/* =======================================================
+   PÁGINAS MPA - CSS CONSOLIDADO
+   (governo.html, empresas.html, pessoas.html)
+   ======================================================= */
+
+/* ========== PAGE HEADER ========== */
+.page-header {
+  padding: var(--space-2xl) var(--space-lg);
+  background: linear-gradient(180deg, var(--color-surface-light), var(--color-surface-muted));
+}
+
+.page-header h1,
+.page-header-content h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  color: var(--color-text-strong);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.page-header p,
+.page-header-content p {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+/* ========== TEXT BLOCK ========== */
+.text-block {
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--color-surface-light);
+}
+
+.text-block-inner {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+}
+
+.text-block h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 500;
+  color: var(--color-text-strong);
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.01em;
+}
+
+.text-block p {
+  font-size: 1.0625rem;
+  color: var(--color-text-base);
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+/* ========== STEPS / BENEFITS ========== */
+.steps,
+.benefits {
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--color-surface-muted);
+}
+
+.steps-inner,
+.benefits-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.steps h2,
+.benefits h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 500;
+  color: var(--color-text-strong);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  letter-spacing: -0.01em;
+}
+
+.steps-list,
+.benefits-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.step-item,
+.benefit-item {
+  background: var(--color-surface-light);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-md);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-text-strong);
+  border: 2px solid var(--color-border-strong);
+  border-radius: 50%;
+}
+
+.step-item h3,
+.benefit-item h3 {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-strong);
+  margin-bottom: var(--space-sm);
+}
+
+.step-item p,
+.benefit-item p {
+  font-size: 0.9375rem;
+  color: var(--color-text-base);
+  line-height: 1.6;
+}
+
+/* ========== CTA FINAL ========== */
+.cta-final {
+  padding: var(--space-2xl) var(--space-lg);
+  background: linear-gradient(135deg, var(--color-green-900), var(--color-green-850));
+  text-align: center;
+}
+
+.cta-final-inner {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+}
+
+.cta-final h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 500;
+  color: var(--color-text-inverse);
+  margin-bottom: var(--space-md);
+}
+
+.cta-final p {
+  font-size: 1.125rem;
+  color: var(--color-text-inverse);
+  opacity: 0.9;
+  margin-bottom: var(--space-lg);
+}
+
+.cta-final .btn-primary {
+  background: var(--color-text-inverse);
+  color: var(--color-green-900);
+}
+
+.cta-final .btn-primary:hover {
+  background: transparent;
+  color: var(--color-text-inverse);
+  border-color: var(--color-text-inverse);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .page-header--split {
+    grid-template-columns: 1fr;
+  }
+  
+  .page-header-graphic {
+    display: none;
+  }
+  
+  .steps-list,
+  .benefits-list {
+    grid-template-columns: 1fr;
+  }
+}
 }
 
 /* Remove estilos antigos do footer */
