@@ -338,6 +338,12 @@
     background: rgba(0, 0, 0, 0.2);
     padding-left: 1rem;
     border-radius: 0;
+    display: none; /* Escondido por padrão */
+  }
+  
+  /* CRÍTICO: Mostrar dropdown quando .active */
+  .nav.active .nav-dropdown.active .dropdown-menu {
+    display: block !important;
   }
   
   .nav.active .dropdown-menu li {
