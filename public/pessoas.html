@@ -133,7 +133,7 @@
 </div>
 </nav>
 <a class="header-cta" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank" data-i18n="global.accessPlatform">Acessar a Plataforma</a>
-<button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+<button class="mobile-menu-btn">
 <span></span>
 <span></span>
 <span></span>
@@ -273,19 +273,7 @@
 
 
 
-<script>
-  function toggleMobileMenu() {
-    const nav = document.getElementById('nav');
-    nav.classList.toggle('mobile-open');
-  }
 
-  // Fecha o menu mobile ao clicar em qualquer link
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      document.getElementById('nav').classList.remove('mobile-open');
-    });
-  });
-</script>
   
 
 <!-- WhatsApp Floating Button -->

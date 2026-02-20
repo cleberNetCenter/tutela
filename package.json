@@ -5,8 +5,15 @@
   "scripts": {
     "check:i18n": "node scripts/check-i18n.js"
   },
-  "keywords": ["i18n", "validation", "tutela-digital"],
+  "keywords": [
+    "i18n",
+    "validation",
+    "tutela-digital"
+  ],
   "author": "Tutela Digital",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "glob": "^13.0.6"
+  }
 }
