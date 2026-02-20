@@ -3,8 +3,9 @@
 // Com transições suaves entre páginas
 // =======================================================
 
-const PAGE_TRANSITION_DURATION = 350; // ms (deve bater com o CSS)
-const PAGE_ROUTE_MAP = {
+// Usa `var` para tolerar recarregamento/acidental duplicação do script sem SyntaxError.
+var PAGE_TRANSITION_DURATION = 350; // ms (deve bater com o CSS)
+var PAGE_ROUTE_MAP = {
   home: '/',
   governo: '/governo.html',
   empresas: '/empresas.html',
