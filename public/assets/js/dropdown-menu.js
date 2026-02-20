@@ -1,100 +1,85 @@
-
 // =======================================================
 // NAVIGATION DROPDOWNS - Mobile & Desktop Support
 // Suporta MÚLTIPLOS dropdowns (Soluções, Base Jurídica, etc.)
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', function() {
-  
-  // Função para verificar se está em mobile
+  const MOBILE_MAX_WIDTH = 1200;
+  const navDropdowns = Array.from(document.querySelectorAll('.nav-dropdown'));
+
   function isMobile() {
-    return window.innerWidth <= 1200;
+    return window.innerWidth <= MOBILE_MAX_WIDTH;
   }
-  
-  // Selecionar TODOS os dropdowns
-  const navDropdowns = document.querySelectorAll('.nav-dropdown');
-  
+
+  function closeAllDropdowns(exceptDropdown) {
+    navDropdowns.forEach((dropdown) => {
+      if (dropdown !== exceptDropdown) {
+        dropdown.classList.remove('active');
+      }
+    });
+  }
+
   if (navDropdowns.length === 0) {
     console.log('[dropdown] Nenhum dropdown encontrado');
     return;
   }
-  
+
   console.log(`[dropdown] Inicializando ${navDropdowns.length} dropdown(s)`);
-  
-  // Configurar cada dropdown individualmente
+
+  // Mapa de toggles válidos por dropdown (mesma lógica anterior: filho direto A ou .nav-link)
+  const dropdownToggles = new Map();
   navDropdowns.forEach((dropdown, index) => {
-    // FIX: querySelector não aceita '>' no início - buscar filhos diretos manualmente
-    const toggle = Array.from(dropdown.children).find(el => 
-      el.tagName === 'A' || el.classList.contains('nav-link')
-    );
-    const menu = dropdown.querySelector('.dropdown-menu');
-    
-    if (!toggle || !menu) {
+    const toggle = Array.from(dropdown.children).find((el) => {
+      return el.tagName === 'A' || el.classList.contains('nav-link');
+    });
+
+    if (!toggle || !dropdown.querySelector('.dropdown-menu')) {
       console.warn(`[dropdown] Dropdown ${index} incompleto`);
       return;
     }
-    
-    // Mobile: toggle dropdown ao clicar
-    toggle.addEventListener('click', function(e) {
-      if (isMobile()) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Fechar outros dropdowns
-        navDropdowns.forEach((otherDropdown) => {
-          if (otherDropdown !== dropdown) {
-            otherDropdown.classList.remove('active');
-          }
-        });
-        
-        // Toggle este dropdown
-        dropdown.classList.toggle('active');
-        
-        console.log(`[dropdown] Toggle dropdown ${index}: ${dropdown.classList.contains('active')}`);
-      }
-    });
-    
-    // Fechar dropdown ao clicar em um link interno
-    const dropdownLinks = menu.querySelectorAll('a');
-    dropdownLinks.forEach(function(link) {
-      link.addEventListener('click', function() {
-        if (isMobile()) {
-          dropdown.classList.remove('active');
-          console.log(`[dropdown] Link clicado, fechando dropdown ${index}`);
-        }
-      });
-    });
+
+    dropdownToggles.set(dropdown, toggle);
   });
-  
-  // Fechar todos os dropdowns ao clicar fora (mobile only)
+
+  // Delegação no documento para manter suporte a clique fora + toggle/link interno
   document.addEventListener('click', function(e) {
-    if (!isMobile()) return;
-    
-    // Verificar se o clique foi dentro de algum dropdown
-    let clickedInside = false;
-    navDropdowns.forEach(dropdown => {
-      if (dropdown.contains(e.target)) {
-        clickedInside = true;
-      }
-    });
-    
-    // Se clicou fora, fechar todos
-    if (!clickedInside) {
-      navDropdowns.forEach(dropdown => {
-        dropdown.classList.remove('active');
-      });
-      console.log('[dropdown] Clique fora, fechando todos os dropdowns');
+    if (!isMobile()) {
+      return;
     }
+
+    const clickedDropdown = e.target.closest('.nav-dropdown');
+
+    // Clique fora de qualquer dropdown => fecha todos
+    if (!clickedDropdown) {
+      closeAllDropdowns();
+      return;
+    }
+
+    // Clique em link interno do menu => fechar apenas dropdown atual
+    if (e.target.closest('.dropdown-menu a')) {
+      clickedDropdown.classList.remove('active');
+      return;
+    }
+
+    // Toggle somente no elemento de topo previamente validado
+    const toggle = dropdownToggles.get(clickedDropdown);
+    if (!toggle || !toggle.contains(e.target)) {
+      return;
+    }
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    closeAllDropdowns(clickedDropdown);
+    clickedDropdown.classList.toggle('active');
   });
-  
+
   // Fechar dropdowns ao redimensionar para desktop
   window.addEventListener('resize', function() {
     if (!isMobile()) {
-      navDropdowns.forEach(dropdown => {
-        dropdown.classList.remove('active');
-      });
+      closeAllDropdowns();
     }
   });
-  
+
   console.log('[dropdown] Inicialização completa');
 });
