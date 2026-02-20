@@ -1,73 +1,65 @@
 /* =========================================================
-   MOBILE NAVIGATION CONTROLLER - ENTERPRISE GRADE
-   Cross-browser compatible (Chrome, Safari iOS, Android)
+   NAVIGATION CONTROLLER - ENTERPRISE FINAL
+   Single Source of Truth
    ========================================================= */
 
-(function() {
-  'use strict';
+document.addEventListener('DOMContentLoaded', function () {
 
-  // Dynamic viewport height for iOS Safari
-  function setAppHeight() {
-    const vh = window.innerHeight;
-    document.documentElement.style.setProperty('--app-height', vh + 'px');
+  const btn = document.querySelector('.mobile-menu-btn');
+  const nav = document.getElementById('nav');
+
+  if (!btn || !nav) {
+    console.warn('Navigation elements not found');
+    return;
   }
 
-  // Initialize viewport
-  setAppHeight();
-  window.addEventListener('resize', setAppHeight);
-  window.addEventListener('orientationchange', setAppHeight);
+  function openMenu() {
+    nav.classList.add('mobile-open');
+    btn.classList.add('active');
+    btn.setAttribute('aria-expanded', 'true');
+  }
 
-  // Wait for DOM
-  document.addEventListener('DOMContentLoaded', function() {
-    const mobileBtn = document.querySelector('.mobile-menu-btn');
-    const nav = document.getElementById('nav');
+  function closeMenu() {
+    nav.classList.remove('mobile-open');
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+  }
 
-    if (!mobileBtn || !nav) {
-      console.warn('Mobile menu elements not found');
-      return;
+  function toggleMenu(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (nav.classList.contains('mobile-open')) {
+      closeMenu();
+    } else {
+      openMenu();
     }
+  }
 
-    // Single event delegation for all menu interactions
-    document.addEventListener('click', function(e) {
-      // Mobile menu toggle
-      const btn = e.target.closest('.mobile-menu-btn');
-      if (btn) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        nav.classList.toggle('active');
-        btn.classList.toggle('active');
-        document.documentElement.classList.toggle('menu-open');
-        
-        return;
-      }
+  // Toggle via button
+  btn.addEventListener('click', toggleMenu);
 
-      // Desktop dropdown hover (desktop only)
-      // Mobile dropdown click
-      const dropdownLink = e.target.closest('.nav-dropdown > a');
-      if (dropdownLink) {
-        // On mobile, prevent default and toggle dropdown
-        if (window.innerWidth <= 1200) {
-          e.preventDefault();
-          const dropdown = dropdownLink.closest('.nav-dropdown');
-          if (dropdown) {
-            dropdown.classList.toggle('active');
-          }
-        }
-        return;
-      }
-
-      // Close menu when clicking navigation links
-      const navLink = e.target.closest('.nav a');
-      if (navLink && !navLink.closest('.nav-dropdown > a')) {
-        if (nav.classList.contains('active')) {
-          nav.classList.remove('active');
-          mobileBtn.classList.remove('active');
-          document.documentElement.classList.remove('menu-open');
-        }
-      }
-    });
-
-    console.log('Navigation controller initialized');
+  // Close when clicking a link inside nav
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) {
+      closeMenu();
+    }
   });
-})();
+
+  // Close when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!nav.contains(e.target) && !btn.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // Close on ESC key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeMenu();
+    }
+  });
+
+  console.log('Navigation controller initialized (enterprise version)');
+
+});
