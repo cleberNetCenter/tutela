@@ -7,6 +7,15 @@
 - **Fechamento de menus/dropdowns ao clicar fora** está distribuído entre múltiplos listeners globais (`document.addEventListener('click', ...)`) em `mobile-menu.js` e `dropdown-menu.js`.
 - **Fluxos de inicialização em `DOMContentLoaded`** estão repetidos em blocos separados nos scripts de navegação e menu.
 
+### Mapa objetivo de duplicações (ponto de partida)
+
+| Comportamento | Onde aparece hoje | Sugestão de unificação |
+|---|---|---|
+| Regra de mobile (`<=1200`) | `mobile-menu.js` (`isMobileViewport`) e `dropdown-menu.js` (`isMobile`) | `core/breakpoints.js` com `isMobileViewport()` |
+| Clique fora para fechar | listeners globais em `mobile-menu.js` (menu + idiomas) e `dropdown-menu.js` | helper `onClickOutside()` em `core/events.js` |
+| Lock de rolagem do body | `mobile-menu.js` altera `document.body.style.overflow` | `setBodyScrollLocked(true/false)` em `core/dom-utils.js` |
+| Fechar grupos de elementos ativos | `closeMobileMenu()` e `closeAllDropdowns()` | `closeAllBySelector(selector, className='active')` |
+
 ### Sugestão prática
 Consolidar utilidades em um módulo único (ex.: `ui-helpers.js`) com funções puras e reutilizáveis:
 - `isMobileViewport(maxWidth = 1200)`
@@ -83,6 +92,18 @@ registry[page]?.();
 3. Deixar `features` independentes e chamadas só quando necessárias por cada `pages/*`.
 
 **Benefício:** reduz efeitos colaterais, melhora performance e torna cada página previsível.
+
+### Matriz de isolamento recomendada
+
+| Página | `data-page` | O que inicializar | O que NÃO inicializar |
+|---|---|---|---|
+| Home | `home` | hero, destaques, CTA específicos | regras de páginas legais |
+| Empresas | `empresas` | blocos de soluções B2B + CTA dedicado | componentes de governo/pessoas |
+| Governo | `governo` | seções institucionais + fluxos de contratação | componentes comerciais de empresas |
+| Pessoas | `pessoas` | conteúdo cidadão e variações de jornada individual | fluxos específicos de governo |
+| Legal | `legal` | breadcrumbs, notices jurídicos, i18n legal | scripts de landing/hero comercial |
+
+> Observação: `features` globais (menu mobile, dropdown de navegação e troca de idioma) continuam reutilizáveis, porém carregados via `main.js` somente quando o DOM da página realmente contém os elementos-alvo.
 
 ---
 
