@@ -380,6 +380,16 @@ html.menu-open {
    State controlled by .mobile-open class
    ========================================================= */
 
+
+
+
+
+
+/* =========================================================
+   MOBILE MENU - DEFINITIVE FIX (iOS Safari Compatible)
+   Nav moved outside header to fix rendering issues
+   ========================================================= */
+
 @media (max-width: 900px) {
   .mobile-menu-btn {
     display: flex;
@@ -392,20 +402,33 @@ html.menu-open {
   .nav.mobile-open {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 100%;
+
+    position: fixed;
+    top: 80px; /* altura real do header */
     left: 0;
     right: 0;
+
+    width: 100vw;
+    height: calc(100vh - 80px);
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+
     background: var(--color-surface-base);
+
     padding: var(--space-lg, 1.5rem);
     gap: var(--space-md, 1rem);
-    z-index: 110;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    z-index: 9999;
+
+    /* Prevent iOS rendering bugs */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
   }
 
   .nav.mobile-open .nav-link,
   .nav.mobile-open .nav-dropdown > a {
-    padding: 0.875rem 1rem;
+    padding: 1rem 1.5rem;
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
@@ -426,34 +449,6 @@ html.menu-open {
   .nav-dropdown.active .dropdown-menu {
     display: flex;
     flex-direction: column;
-  }
-
-  .header-cta {
-    display: none;
-  }
-}
-
-@media (max-width: 1200px) {
-  .mobile-menu-btn {
-    display: flex;
-  }
-
-  .nav {
-    display: none;
-  }
-
-  .nav.mobile-open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--color-surface-base);
-    padding: var(--space-lg, 1.5rem);
-    gap: var(--space-md, 1rem);
-    z-index: 110;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .header-cta {
