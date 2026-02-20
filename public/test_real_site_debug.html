@@ -260,6 +260,33 @@
   <script src="/public/assets/js/mobile-menu.js"></script>
   <script src="/public/assets/js/dropdown-menu-debug.js"></script>
   
+  <!-- ========== FUNÇÃO GLOBAL toggleMobileMenu ========== -->
+  <script>
+    // Garantir que toggleMobileMenu está disponível globalmente
+    if (typeof toggleMobileMenu === 'undefined') {
+      window.toggleMobileMenu = function() {
+        const nav = document.getElementById('nav');
+        const btn = document.querySelector('.mobile-menu-btn');
+        
+        if (!nav || !btn) {
+          console.log('[DEBUG] Nav ou btn não encontrado');
+          return;
+        }
+        
+        nav.classList.toggle('active');
+        btn.classList.toggle('active');
+        
+        if (nav.classList.contains('active')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+        
+        console.log('[DEBUG] toggleMobileMenu executado, nav.active =', nav.classList.contains('active'));
+      };
+    }
+  </script>
+  
   <!-- ========== SCRIPT DE DEBUG ========== -->
   <script>
     const debugLog = document.getElementById('debug-log');
