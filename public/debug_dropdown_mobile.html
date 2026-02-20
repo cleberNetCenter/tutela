@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔍 DEBUG MOBILE DROPDOWN - ANÁLISE COMPLETA</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Courier New', monospace;
+      background: #0a0a0a;
+      color: #00ff00;
+      padding: 10px;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    
+    #debug-output {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    
+    .error { color: #ff0000; }
+    .success { color: #00ff00; }
+    .warning { color: #ffaa00; }
+    .info { color: #00aaff; }
+    
+    button {
+      background: #00ff00;
+      color: #000;
+      border: none;
+      padding: 15px 20px;
+      margin: 10px 5px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: calc(50% - 12px);
+    }
+    
+    button:active {
+      background: #00cc00;
+    }
+    
+    .test-section {
+      border: 2px solid #00ff00;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 DEBUG MOBILE DROPDOWN</h1>
+  <p>Este debug irá identificar EXATAMENTE o que impede os dropdowns de funcionar</p>
+  
+  <div style="margin: 20px 0;">
+    <button onclick="runFullDiagnostic()">▶️ DIAGNÓSTICO COMPLETO</button>
+    <button onclick="clearOutput()">🧹 LIMPAR</button>
+  </div>
+  
+  <div id="debug-output"></div>
+
+  <script>
+    const output = document.getElementById('debug-output');
+    
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const line = document.createElement('div');
+      line.className = type;
+      line.textContent = `[${timestamp}] ${message}`;
+      output.appendChild(line);
+      console.log(`[${type.toUpperCase()}] ${message}`);
+    }
+    
+    function clearOutput() {
+      output.innerHTML = '';
+      console.clear();
+      log('Console limpo', 'info');
+    }
+    
+    async function runFullDiagnostic() {
+      clearOutput();
+      log('═══════════════════════════════════════════════════════', 'info');
+      log('🔍 INICIANDO DIAGNÓSTICO COMPLETO DO DROPDOWN MOBILE', 'success');
+      log('═══════════════════════════════════════════════════════', 'info');
+      log('', 'info');
+      
+      // ========== TESTE 1: VIEWPORT ==========
+      log('━━━ TESTE 1: VIEWPORT E DIMENSÕES ━━━', 'info');
+      log(`Window Width: ${window.innerWidth}px`, 'info');
+      log(`Window Height: ${window.innerHeight}px`, 'info');
+      log(`Device Pixel Ratio: ${window.devicePixelRatio}`, 'info');
+      log(`User Agent: ${navigator.userAgent}`, 'info');
+      
+      const isMobileWidth = window.innerWidth <= 1200;
+      if (isMobileWidth) {
+        log('✅ Largura é mobile (≤1200px)', 'success');
+      } else {
+        log('❌ PROBLEMA: Largura é desktop (>1200px)', 'error');
+        log('💡 SOLUÇÃO: Ative o modo mobile no DevTools (Ctrl+Shift+M)', 'warning');
+      }
+      log('', 'info');
+      
+      // ========== TESTE 2: ARQUIVOS CSS ==========
+      log('━━━ TESTE 2: ARQUIVOS CSS CARREGADOS ━━━', 'info');
+      const stylesheets = Array.from(document.styleSheets);
+      log(`Total de stylesheets: ${stylesheets.length}`, 'info');
+      
+      const requiredCSS = [
+        'dropdown-menu.css',
+        'styles-header-final.css'
+      ];
+      
+      for (const required of requiredCSS) {
+        const found = stylesheets.some(sheet => 
+          sheet.href && sheet.href.includes(required)
+        );
+        if (found) {
+          log(`✅ ${required} carregado`, 'success');
+        } else {
+          log(`❌ ${required} NÃO carregado`, 'error');
+        }
+      }
+      log('', 'info');
+      
+      // ========== TESTE 3: ARQUIVOS JS ==========
+      log('━━━ TESTE 3: ARQUIVOS JAVASCRIPT ━━━', 'info');
+      const scripts = Array.from(document.querySelectorAll('script[src]'));
+      log(`Total de scripts externos: ${scripts.length}`, 'info');
+      
+      const requiredJS = [
+        'dropdown-menu.js',
+        'mobile-menu.js'
+      ];
+      
+      for (const required of requiredJS) {
+        const found = scripts.some(script => 
+          script.src.includes(required)
+        );
+        if (found) {
+          log(`✅ ${required} incluído`, 'success');
+        } else {
+          log(`❌ ${required} NÃO incluído`, 'error');
+        }
+      }
+      log('', 'info');
+      
+      // ========== TESTE 4: ELEMENTOS HTML ==========
+      log('━━━ TESTE 4: ESTRUTURA HTML ━━━', 'info');
+      
+      const nav = document.getElementById('nav');
+      if (nav) {
+        log(`✅ #nav encontrado`, 'success');
+        log(`   Classes: ${nav.className || '(nenhuma)'}`, 'info');
+        log(`   Display: ${window.getComputedStyle(nav).display}`, 'info');
+        log(`   Visibility: ${window.getComputedStyle(nav).visibility}`, 'info');
+        log(`   Position: ${window.getComputedStyle(nav).position}`, 'info');
+      } else {
+        log(`❌ #nav NÃO encontrado`, 'error');
+      }
+      
+      const mobileBtn = document.querySelector('.mobile-menu-btn');
+      if (mobileBtn) {
+        log(`✅ .mobile-menu-btn encontrado`, 'success');
+        log(`   Display: ${window.getComputedStyle(mobileBtn).display}`, 'info');
+      } else {
+        log(`❌ .mobile-menu-btn NÃO encontrado`, 'error');
+      }
+      
+      const dropdowns = document.querySelectorAll('.nav-dropdown');
+      log(`Dropdowns encontrados: ${dropdowns.length}`, 'info');
+      
+      dropdowns.forEach((dropdown, i) => {
+        log(``, 'info');
+        log(`  Dropdown ${i + 1}:`, 'info');
+        
+        const toggle = dropdown.querySelector('.nav-link');
+        if (toggle) {
+          log(`    ✅ Toggle encontrado: "${toggle.textContent.trim()}"`, 'success');
+        } else {
+          log(`    ❌ Toggle (.nav-link) NÃO encontrado`, 'error');
+        }
+        
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (menu) {
+          log(`    ✅ Menu encontrado`, 'success');
+          log(`       Display: ${window.getComputedStyle(menu).display}`, 'info');
+          log(`       Visibility: ${window.getComputedStyle(menu).visibility}`, 'info');
+          const links = menu.querySelectorAll('a');
+          log(`       Links: ${links.length}`, 'info');
+        } else {
+          log(`    ❌ Menu (.dropdown-menu) NÃO encontrado`, 'error');
+        }
+      });
+      log('', 'info');
+      
+      // ========== TESTE 5: EVENT LISTENERS ==========
+      log('━━━ TESTE 5: EVENT LISTENERS ━━━', 'info');
+      
+      if (dropdowns.length > 0) {
+        log('Testando se event listeners funcionam...', 'info');
+        
+        // Adicionar listener de teste
+        let clickDetected = false;
+        const testDropdown = dropdowns[0];
+        const testToggle = testDropdown.querySelector('.nav-link');
+        
+        if (testToggle) {
+          const testListener = (e) => {
+            clickDetected = true;
+            log('✅ Click detectado no toggle!', 'success');
+            log(`   Target: ${e.target.tagName}`, 'info');
+            log(`   CurrentTarget: ${e.currentTarget.tagName}`, 'info');
+            testToggle.removeEventListener('click', testListener);
+          };
+          
+          testToggle.addEventListener('click', testListener);
+          
+          // Simular click
+          testToggle.click();
+          
+          await new Promise(resolve => setTimeout(resolve, 100));
+          
+          if (clickDetected) {
+            log('✅ Event listener FUNCIONANDO', 'success');
+          } else {
+            log('❌ Event listener NÃO respondeu', 'error');
+          }
+        } else {
+          log('⚠️ Não foi possível testar (toggle não encontrado)', 'warning');
+        }
+      }
+      log('', 'info');
+      
+      // ========== TESTE 6: CSS RULES ==========
+      log('━━━ TESTE 6: REGRAS CSS MOBILE ━━━', 'info');
+      
+      // Verificar se regras mobile existem
+      let foundMobileMediaQuery = false;
+      let foundNavActive = false;
+      let foundDropdownActive = false;
+      
+      for (const sheet of stylesheets) {
+        try {
+          const rules = sheet.cssRules || sheet.rules;
+          if (!rules) continue;
+          
+          for (const rule of rules) {
+            if (rule.media && rule.media.mediaText.includes('max-width: 1200px')) {
+              foundMobileMediaQuery = true;
+              
+              // Procurar dentro da media query
+              const innerRules = rule.cssRules || [];
+              for (const innerRule of innerRules) {
+                if (innerRule.selectorText) {
+                  if (innerRule.selectorText.includes('.nav.active')) {
+                    foundNavActive = true;
+                  }
+                  if (innerRule.selectorText.includes('.nav-dropdown.active')) {
+                    foundDropdownActive = true;
+                  }
+                }
+              }
+            }
+          }
+        } catch (e) {
+          // CORS pode bloquear acesso a stylesheet externo
+          log(`⚠️ Não foi possível acessar stylesheet (CORS): ${sheet.href}`, 'warning');
+        }
+      }
+      
+      if (foundMobileMediaQuery) {
+        log('✅ Media query mobile (@media max-width: 1200px) encontrada', 'success');
+      } else {
+        log('❌ Media query mobile NÃO encontrada', 'error');
+      }
+      
+      if (foundNavActive) {
+        log('✅ Regra .nav.active encontrada', 'success');
+      } else {
+        log('⚠️ Regra .nav.active não detectada (pode ser CORS)', 'warning');
+      }
+      
+      if (foundDropdownActive) {
+        log('✅ Regra .nav-dropdown.active encontrada', 'success');
+      } else {
+        log('⚠️ Regra .nav-dropdown.active não detectada (pode ser CORS)', 'warning');
+      }
+      log('', 'info');
+      
+      // ========== TESTE 7: FUNÇÃO toggleMobileMenu ==========
+      log('━━━ TESTE 7: FUNÇÃO toggleMobileMenu ━━━', 'info');
+      
+      if (typeof toggleMobileMenu === 'function') {
+        log('✅ toggleMobileMenu está definida', 'success');
+        
+        // Testar a função
+        try {
+          log('Chamando toggleMobileMenu()...', 'info');
+          toggleMobileMenu();
+          
+          await new Promise(resolve => setTimeout(resolve, 100));
+          
+          if (nav && nav.classList.contains('active')) {
+            log('✅ toggleMobileMenu FUNCIONOU (nav.active = true)', 'success');
+            
+            // Fechar novamente
+            toggleMobileMenu();
+          } else {
+            log('❌ toggleMobileMenu NÃO adicionou .active ao #nav', 'error');
+          }
+        } catch (e) {
+          log(`❌ Erro ao chamar toggleMobileMenu: ${e.message}`, 'error');
+        }
+      } else {
+        log('❌ toggleMobileMenu NÃO está definida', 'error');
+        log('💡 PROBLEMA: mobile-menu.js não foi carregado ou executado', 'warning');
+      }
+      log('', 'info');
+      
+      // ========== TESTE 8: CONSOLE ERRORS ==========
+      log('━━━ TESTE 8: ERROS NO CONSOLE ━━━', 'info');
+      
+      // Capturar erros futuros
+      const originalError = console.error;
+      const errors = [];
+      console.error = function(...args) {
+        errors.push(args.join(' '));
+        originalError.apply(console, args);
+      };
+      
+      log('Monitorando console.error...', 'info');
+      log('(Verifique o console do navegador para erros completos)', 'warning');
+      log('', 'info');
+      
+      // ========== TESTE 9: SIMULAÇÃO DE CLICK ==========
+      log('━━━ TESTE 9: SIMULAÇÃO DE CLICKS ━━━', 'info');
+      
+      if (mobileBtn && nav) {
+        log('Simulando click no botão mobile...', 'info');
+        mobileBtn.click();
+        
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        const navIsActive = nav.classList.contains('active');
+        log(`Estado #nav.active: ${navIsActive}`, navIsActive ? 'success' : 'error');
+        
+        if (navIsActive) {
+          log('✅ Menu mobile ABRIU', 'success');
+          
+          // Testar dropdown
+          if (dropdowns.length > 0) {
+            const firstDropdown = dropdowns[0];
+            const firstToggle = firstDropdown.querySelector('.nav-link');
+            
+            if (firstToggle) {
+              log('', 'info');
+              log('Simulando click no primeiro dropdown...', 'info');
+              firstToggle.click();
+              
+              await new Promise(resolve => setTimeout(resolve, 300));
+              
+              const dropdownIsActive = firstDropdown.classList.contains('active');
+              log(`Estado .nav-dropdown.active: ${dropdownIsActive}`, dropdownIsActive ? 'success' : 'error');
+              
+              if (dropdownIsActive) {
+                log('✅ Dropdown ABRIU', 'success');
+                
+                // Verificar display
+                const menu = firstDropdown.querySelector('.dropdown-menu');
+                if (menu) {
+                  const display = window.getComputedStyle(menu).display;
+                  log(`Display do menu: ${display}`, display === 'flex' ? 'success' : 'error');
+                  
+                  if (display === 'flex') {
+                    log('✅ Menu está VISÍVEL (display: flex)', 'success');
+                  } else {
+                    log(`❌ Menu NÃO está visível (display: ${display})`, 'error');
+                    log('💡 PROBLEMA: CSS não está aplicando display: flex', 'warning');
+                  }
+                }
+              } else {
+                log('❌ Dropdown NÃO abriu', 'error');
+                log('💡 PROBLEMA: JavaScript não está adicionando .active', 'warning');
+              }
+            }
+          }
+        } else {
+          log('❌ Menu mobile NÃO abriu', 'error');
+          log('💡 PROBLEMA: toggleMobileMenu não está funcionando', 'warning');
+        }
+      } else {
+        log('⚠️ Não foi possível testar (botão ou nav não encontrado)', 'warning');
+      }
+      log('', 'info');
+      
+      // ========== RESUMO FINAL ==========
+      log('═══════════════════════════════════════════════════════', 'info');
+      log('📊 RESUMO DO DIAGNÓSTICO', 'info');
+      log('═══════════════════════════════════════════════════════', 'info');
+      
+      const issues = [];
+      
+      if (!isMobileWidth) issues.push('Viewport não está em modo mobile');
+      if (!document.querySelector('link[href*="dropdown-menu.css"]')) issues.push('CSS dropdown-menu.css não carregado');
+      if (!document.querySelector('script[src*="dropdown-menu.js"]')) issues.push('JS dropdown-menu.js não incluído');
+      if (!document.querySelector('script[src*="mobile-menu.js"]')) issues.push('JS mobile-menu.js não incluído');
+      if (!nav) issues.push('Elemento #nav não encontrado');
+      if (!mobileBtn) issues.push('Botão .mobile-menu-btn não encontrado');
+      if (dropdowns.length === 0) issues.push('Nenhum .nav-dropdown encontrado');
+      if (typeof toggleMobileMenu !== 'function') issues.push('Função toggleMobileMenu não definida');
+      
+      if (issues.length === 0) {
+        log('✅ NENHUM PROBLEMA CRÍTICO DETECTADO', 'success');
+        log('', 'info');
+        log('💡 Se ainda não funciona, verifique:', 'warning');
+        log('   1. Limpe o cache do navegador (Ctrl+Shift+Del)', 'warning');
+        log('   2. Faça hard refresh (Ctrl+Shift+F5)', 'warning');
+        log('   3. Verifique o console do navegador para erros', 'warning');
+        log('   4. Teste em aba anônima', 'warning');
+      } else {
+        log(`❌ ${issues.length} PROBLEMA(S) ENCONTRADO(S):`, 'error');
+        log('', 'info');
+        issues.forEach((issue, i) => {
+          log(`   ${i + 1}. ${issue}`, 'error');
+        });
+        log('', 'info');
+        log('🔧 PRÓXIMOS PASSOS:', 'warning');
+        log('   1. Corrija os problemas listados acima', 'warning');
+        log('   2. Execute o diagnóstico novamente', 'warning');
+        log('   3. Verifique os arquivos CSS/JS estão no caminho correto', 'warning');
+      }
+      
+      log('', 'info');
+      log('═══════════════════════════════════════════════════════', 'info');
+      log('🔍 DIAGNÓSTICO COMPLETO FINALIZADO', 'success');
+      log('═══════════════════════════════════════════════════════', 'info');
+    }
+    
+    // Auto-executar ao carregar
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        log('Página carregada. Clique em "DIAGNÓSTICO COMPLETO" para iniciar.', 'info');
+      }, 500);
+    });
+  </script>
+</body>
+</html>
