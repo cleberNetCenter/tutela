@@ -95,15 +95,10 @@
     display: none !important;
   }
   
-  /* Estilos mobile para dropdown (display é controlado por styles-header-final.css) */
-  .nav.active .dropdown-menu {
+  /* Posicionamento mobile para dropdown */
+  .dropdown-menu {
     position: relative;
-    left: auto;
-    top: auto;
     margin-top: 4px;
     margin-left: 10px;
-    border-left: 2px solid rgba(255,255,255,0.3);
-    border: 1px solid rgba(255,255,255,0.2);
-    background: rgba(255,255,255,0.05);
   }
 }

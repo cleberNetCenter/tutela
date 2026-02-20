@@ -55,6 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Verificar se está em mobile
     if (window.innerWidth > 1200) return;
     
+    // CRÍTICO: NÃO fechar se o clique foi em um dropdown ou dentro dele
+    const clickedDropdown = e.target.closest('.nav-dropdown');
+    if (clickedDropdown) {
+      return; // Deixar dropdown-menu.js gerenciar
+    }
+    
     // Verificar se clique foi fora do nav e do botão e do menu de idiomas
     if (!nav.contains(e.target) && 
         !btn.contains(e.target) && 
