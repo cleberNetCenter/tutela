@@ -23,7 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Configurar cada dropdown individualmente
   navDropdowns.forEach((dropdown, index) => {
-    const toggle = dropdown.querySelector('> a, > .nav-link');
+    // FIX: querySelector não aceita '>' no início - buscar filhos diretos manualmente
+    const toggle = Array.from(dropdown.children).find(el => 
+      el.tagName === 'A' || el.classList.contains('nav-link')
+    );
     const menu = dropdown.querySelector('.dropdown-menu');
     
     if (!toggle || !menu) {
