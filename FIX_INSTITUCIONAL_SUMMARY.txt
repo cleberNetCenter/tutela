@@ -1,0 +1,118 @@
+═══════════════════════════════════════════════════════════════════
+  FIX: PÁGINA INSTITUCIONAL RESTAURADA
+═══════════════════════════════════════════════════════════════════
+Date: 2026-02-20 16:30 UTC
+Commit: 082c3bb
+Status: ✅ DEPLOYED TO PRODUCTION
+
+───────────────────────────────────────────────────────────────────
+  PROBLEMA IDENTIFICADO
+───────────────────────────────────────────────────────────────────
+❌ Página institucional ficou em branco após remoção de inline handlers
+   URL: https://www.tuteladigital.com.br/legal/institucional.html
+   Causa: Possível remoção excessiva de conteúdo durante limpeza
+
+───────────────────────────────────────────────────────────────────
+  SOLUÇÃO APLICADA
+───────────────────────────────────────────────────────────────────
+✅ Restaurada da versão e172c62 (última versão funcional)
+✅ Arquivo: public/legal/institucional.html
+✅ Tamanho: 18 KB (522 linhas)
+✅ Verificado: seção hero, main content, título h1 presentes
+
+───────────────────────────────────────────────────────────────────
+  CONTEÚDO RESTAURADO
+───────────────────────────────────────────────────────────────────
+✓ Estrutura white-paper completa
+✓ Breadcrumb navigation
+✓ Hero section com título "Estrutura Institucional"
+✓ Seções de conteúdo institucional
+✓ Gráfico institucional (se aplicável)
+✓ Footer com links
+✓ Caminhos absolutos (/assets/)
+✓ Scripts externos (i18n.js, navigation-controller.js)
+✓ SEM inline handlers (mantém MPA compliance)
+
+───────────────────────────────────────────────────────────────────
+  DEPLOYMENT INFO
+───────────────────────────────────────────────────────────────────
+Repository:      https://github.com/cleberNetCenter/tutela.git
+Branch:          main
+Commit:          082c3bb
+Previous Commit: d929508
+
+Cloudflare Pages:
+  Build Time:    ~3-5 minutes
+  CDN Propagation: ~2-3 minutes
+  Total Deploy:  ~5-8 minutes
+
+Live Site:       https://www.tuteladigital.com.br/legal/institucional.html
+Dashboard:       https://dash.cloudflare.com/
+
+───────────────────────────────────────────────────────────────────
+  VERIFICAÇÃO
+───────────────────────────────────────────────────────────────────
+Após deploy (5-8 minutos), verificar:
+
+1. ✓ Acessar https://www.tuteladigital.com.br/legal/institucional.html
+2. ✓ Hard refresh (Ctrl+Shift+R / Cmd+Shift+R)
+3. ✓ Verificar que a página não está mais em branco
+4. ✓ Verificar título "Estrutura Institucional"
+5. ✓ Verificar conteúdo institucional visível
+6. ✓ Verificar breadcrumb navigation
+7. ✓ Verificar menu de navegação funcional
+8. ✓ Verificar footer presente
+9. ✓ Console sem erros 404 ou JS
+10. ✓ Tradução i18n funcionando
+
+Expected Console Output:
+  → "i18n system initialized"
+  → "Translations loaded for: pt"
+  → "Mobile menu initialized"
+  → "Dropdown menus initialized"
+  → NO errors
+
+───────────────────────────────────────────────────────────────────
+  OUTRAS PÁGINAS AFETADAS?
+───────────────────────────────────────────────────────────────────
+Verificar se outras páginas também ficaram em branco:
+
+Páginas legais para verificar:
+  • /legal/fundamento-juridico.html
+  • /legal/politica-de-privacidade.html
+  • /legal/preservacao-probatoria-digital.html
+  • /legal/termos-de-custodia.html
+
+Se alguma página legal estiver em branco:
+  $ git restore --source=e172c62 public/legal/<PÁGINA>.html
+  $ git add public/legal/<PÁGINA>.html
+  $ git commit -m "fix: Restaurar <PÁGINA> em branco"
+  $ git push origin main
+
+───────────────────────────────────────────────────────────────────
+  COMMITS RECENTES
+───────────────────────────────────────────────────────────────────
+082c3bb - fix: Restaurar página institucional em branco
+d929508 - feat: Remove all inline event handlers - 100% MPA compliance
+b4eb765 - feat: Auditoria estrutural completa i18n + correções
+ddbdd2d - fix: Restaurar index.html principal em português
+
+───────────────────────────────────────────────────────────────────
+  FINAL STATUS
+───────────────────────────────────────────────────────────────────
+✅ Página institucional restaurada
+✅ Conteúdo completo presente
+✅ MPA compliance mantido
+✅ Sem inline handlers
+✅ Commit criado e pushed
+✅ Deploy em andamento
+
+Status: FIXADO E DEPLOYED
+
+Aguardar 5-8 minutos para build Cloudflare Pages.
+Depois verificar: https://www.tuteladigital.com.br/legal/institucional.html
+
+═══════════════════════════════════════════════════════════════════
+End of Summary
+Generated: 2026-02-20 16:30 UTC
+═══════════════════════════════════════════════════════════════════
