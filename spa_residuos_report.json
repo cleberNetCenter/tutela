@@ -2,64 +2,73 @@
   "residuos_spa": [
     {
       "arquivo": "public/assets/js/navigation.js",
-      "linha": 27,
-      "codigo": "function navigateTo(page) { ... target.classList.add('active'); ... }",
-      "categoria": "renderização dinâmica",
-      "evidencia": "Alterna seções `.content` via classe `active` e scroll sem recarregar documento, comportamento típico de troca de view em SPA. No MPA atual isso tende a ser legado do `index.html` monolítico e não é necessário para navegação entre páginas físicas. [ref: public/assets/js/navigation.js:27-75]",
-      "classificacao": "resíduo removível",
-      "risco": "alto"
-    },
-    {
-      "arquivo": "public/assets/js/navigation.js",
       "linha": 8,
-      "codigo": "var PAGE_ROUTE_MAP = { ... }",
+      "codigo": "var PAGE_ROUTE_MAP = { home: '/', governo: '/governo.html', ... }",
       "categoria": "roteamento client-side",
-      "evidencia": "Mapa de rotas em JS para resolver destinos por chave de página, padrão de router em cliente. Em MPA, rotas já estão materializadas em `href` HTTP. Pode ser simplificado/removido conforme descontinuação do modo SPA no `index.html`. [ref: public/assets/js/navigation.js:8-20]",
+      "evidencia": "Mapa de rotas mantido no cliente para resolver navegação por chave de página, padrão de SPA router. Em MPA puro, a navegação deveria depender de hrefs diretos. Necessidade no MPA atual: baixa (legado/refatorável).",
       "classificacao": "resíduo refatorável",
       "risco": "médio"
     },
     {
       "arquivo": "public/assets/js/navigation.js",
-      "linha": 81,
-      "codigo": "(function initNavigation() { const allPages = document.querySelectorAll('.content'); ... navigateTo('home'); })();",
-      "categoria": "monitoramento/inicialização de navegação SPA",
-      "evidencia": "Bootstrapping procura múltiplas `.content` e força ativação inicial por JS, padrão de inicialização de app SPA. Em MPA puro cada HTML já renderiza seu conteúdo principal sem inicializador de páginas internas. [ref: public/assets/js/navigation.js:81-95]",
+      "linha": 27,
+      "codigo": "function navigateTo(page) { ... pages.forEach(p => p.classList.remove('active')); target.classList.add('active'); ... }",
+      "categoria": "renderização dinâmica",
+      "evidencia": "Função troca views no mesmo documento via classe .active sem reload, comportamento clássico de SPA (view switching). Em arquitetura MPA isso tende a ser desnecessário para páginas reais já separadas.",
       "classificacao": "resíduo removível",
-      "risco": "médio"
+      "risco": "alto"
     },
     {
       "arquivo": "public/assets/js/i18n.js",
       "linha": 131,
       "codigo": "// Método 2: Verifica se alguma das páginas legais está ativa no SPA",
       "categoria": "estado global herdado de SPA",
-      "evidencia": "Detecção de página legal consulta IDs internos e classe `active` de views em memória (`page-*`), explicitamente comentado como SPA. É resquício de compatibilidade; em MPA bastaria inferir por pathname/body class. [ref: public/assets/js/i18n.js:131-135]",
+      "evidencia": "A lógica de detecção de página legal depende de ids internos (page-*) e classe active, acoplada ao modo SPA. No MPA, pathname/body class geralmente bastam. Necessidade no MPA atual: parcial, mas o trecho SPA é dispensável.",
       "classificacao": "resíduo refatorável",
       "risco": "médio"
-    },
-    {
-      "arquivo": "public/assets/js/i18n.js",
-      "linha": 491,
-      "codigo": "const pageObserver = new MutationObserver(... if (target.classList.contains('page') && target.classList.contains('active')) ...)",
-      "categoria": "evento de navegação sem reload",
-      "evidencia": "`MutationObserver` reaplica traduções ao detectar troca de `.page.active`, com comentário explícito `RE-APLICAR ... (SPA)`. Em MPA esse observador é geralmente desnecessário porque a troca de página já reinicializa scripts. [ref: public/assets/js/i18n.js:487-509]",
-      "classificacao": "resíduo removível",
-      "risco": "alto"
     },
     {
       "arquivo": "public/assets/js/i18n.js",
       "linha": 109,
       "codigo": "const response = await fetch(`/assets/lang/${lang}.json?v=10`);",
       "categoria": "API SPA (fetch + atualização de DOM)",
-      "evidencia": "Carrega traduções via `fetch` e aplica no DOM sem requisição completa (`applyTranslations`, `innerHTML/textContent`). Isso é comportamento SPA-like, porém é dependência ativa de i18n client-side e pode ser legítima em MPA. [ref: public/assets/js/i18n.js:109-112,152-162,325-353]",
+      "evidencia": "Carrega JSON por fetch e aplica tradução em runtime sem nova resposta HTML do servidor. É padrão SPA-like, porém neste projeto funciona como i18n client-side e pode ser dependência ativa também em MPA.",
       "classificacao": "potencial dependência ativa",
       "risco": "baixo"
     },
     {
-      "arquivo": "public/index.html",
-      "linha": 437,
-      "codigo": "<div class=\"content\" id=\"page-home\"> ... múltiplos `id=page-*` no mesmo HTML",
+      "arquivo": "public/assets/js/i18n.js",
+      "linha": 159,
+      "codigo": "if (el.dataset.i18nHtml === 'true') { el.innerHTML = translation; }",
+      "categoria": "renderização dinâmica",
+      "evidencia": "Atualiza conteúdo do DOM em massa via data-i18n (innerHTML/textContent), substituindo conteúdo em tempo de execução sem reload. Em MPA isso pode continuar válido para i18n, mas mantém comportamento de UI dinâmica típico de SPA.",
+      "classificacao": "potencial dependência ativa",
+      "risco": "baixo"
+    },
+    {
+      "arquivo": "public/assets/js/i18n.js",
+      "linha": 491,
+      "codigo": "const pageObserver = new MutationObserver(... if (target.classList.contains('page') && target.classList.contains('active')) ...)",
+      "categoria": "monitoramento de navegação sem reload",
+      "evidencia": "MutationObserver reexecuta traduções quando uma .page vira active (comentário explícito de SPA nas linhas 487-488). Em MPA esse observador normalmente não é necessário.",
+      "classificacao": "resíduo removível",
+      "risco": "alto"
+    },
+    {
+      "arquivo": "public/en/index.html",
+      "linha": 145,
+      "codigo": "<a class=\"nav-link\" data-page=\"home\" href=\"#\" onclick=\"navigateTo('home'); return false;\">",
+      "categoria": "navegação interceptada por JS",
+      "evidencia": "Links de navegação anulam comportamento natural de anchor (href # + return false) e delegam a navegação ao JS. Isso é característico de SPA e reduz semântica de MPA.",
+      "classificacao": "resíduo removível",
+      "risco": "alto"
+    },
+    {
+      "arquivo": "public/en/index.html",
+      "linha": 188,
+      "codigo": "<div class=\"page active\" id=\"page-home\"> ... <div class=\"page\" id=\"page-governo\"> ...",
       "categoria": "container genérico de app SPA",
-      "evidencia": "`index.html` contém várias views internas (`page-home`, `page-governo`, `page-empresas`, etc.) no mesmo documento, padrão típico de SPA/one-page com roteamento interno por classes. Em MPA é redundante frente aos HTML dedicados existentes. [ref: public/index.html:437,513,576,637,698,758,829,935,1010,1108,1201]",
+      "evidencia": "Várias páginas coexistem no mesmo HTML e são ativadas por classe, padrão de shell SPA. Em MPA atual, tende a ser legado porque já existem arquivos dedicados por rota.",
       "classificacao": "resíduo removível",
       "risco": "crítico"
     },
@@ -68,25 +77,25 @@
       "linha": 373,
       "codigo": "<a class=\"btn btn-primary\" href=\"/\" onclick=\"navigateTo('seguranca'); return false;\">",
       "categoria": "navegação interceptada por JS",
-      "evidencia": "Link bloqueia navegação natural (`return false`) e delega a função JS herdada de SPA (`navigateTo`). Em MPA, isso pode quebrar fluxo esperado e deve virar link direto para rota destino. [ref: public/legal/institucional.html:373]",
+      "evidencia": "Página MPA ainda chama navigateTo herdado e cancela navegação normal; isso pode causar comportamento inconsistente se o script SPA não estiver carregado/ativo.",
       "classificacao": "resíduo removível",
       "risco": "alto"
     },
     {
       "arquivo": "public/index.html",
       "linha": 387,
-      "codigo": "<a href=\"#\" class=\"nav-link\"> ... </a>",
-      "categoria": "âncoras sem rota (navegação simulada)",
-      "evidencia": "Toggles de menu usam `href=\"#\"` (também em outras páginas) e são controlados por listener com `e.preventDefault()` em `dropdown-menu.js`, padrão de UI herdado de SPA. Em MPA pode permanecer para dropdown, mas idealmente com botão semântico (`<button>`) para evitar falsa navegação. [ref: public/index.html:387,396; public/assets/js/dropdown-menu.js:70-75]",
+      "codigo": "<a href=\"#\" class=\"nav-link\">...",
+      "categoria": "âncora simulando navegação",
+      "evidencia": "Uso de href # para toggles de menu (com preventDefault em JS) indica padrão comum em SPA. Em MPA pode ser mantido para dropdown, mas ideal é botão semântico para reduzir falso roteamento.",
       "classificacao": "resíduo refatorável",
       "risco": "baixo"
     }
   ],
   "sumario": {
-    "total_residuos": 9,
+    "total_residuos": 10,
     "criticos": 1,
-    "altos": 3,
-    "medios": 3,
-    "baixos": 2
+    "altos": 4,
+    "medios": 2,
+    "baixos": 3
   }
 }
