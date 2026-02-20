@@ -4,6 +4,24 @@
 // =======================================================
 
 const PAGE_TRANSITION_DURATION = 350; // ms (deve bater com o CSS)
+const PAGE_ROUTE_MAP = {
+  home: '/',
+  governo: '/governo.html',
+  empresas: '/empresas.html',
+  pessoas: '/pessoas.html',
+  'como-funciona': '/como-funciona.html',
+  seguranca: '/seguranca.html',
+  'preservacao-probatoria': '/legal/preservacao-probatoria-digital.html',
+  institucional: '/legal/institucional.html',
+  'fundamento-juridico': '/legal/fundamento-juridico.html',
+  'termos-de-custodia': '/legal/termos-de-custodia.html',
+  'politica-de-privacidade': '/legal/politica-de-privacidade.html'
+};
+
+function normalizePath(path) {
+  if (!path || path === '/') return '/';
+  return path.endsWith('/') ? path.slice(0, -1) : path;
+}
 
 function navigateTo(page) {
   const pages = document.querySelectorAll('.content');
@@ -11,7 +29,15 @@ function navigateTo(page) {
   const target = document.getElementById('page-' + page);
 
   if (!target) {
-    console.warn('[navigateTo] Page not found:', page);
+    const fallbackRoute = PAGE_ROUTE_MAP[page];
+    const currentPath = normalizePath(window.location.pathname);
+
+    if (fallbackRoute && normalizePath(fallbackRoute) !== currentPath) {
+      window.location.assign(fallbackRoute);
+      return;
+    }
+
+    console.warn('[navigateTo] Page not found and no redirect available:', page);
     return;
   }
 
@@ -52,8 +78,18 @@ function navigateTo(page) {
 // =======================================================
 
 (function initNavigation() {
+  const allPages = document.querySelectorAll('.content');
+  if (!allPages.length) {
+    return;
+  }
+
   const hasActive = document.querySelector('.content.active');
   if (!hasActive) {
-    navigateTo('home');
+    if (document.getElementById('page-home')) {
+      navigateTo('home');
+      return;
+    }
+
+    allPages[0].classList.add('active');
   }
 })();
