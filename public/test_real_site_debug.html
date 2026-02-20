@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutela Digital® - Preservação Probatória Digital</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/illustrations/favicon.svg">
+  
+  <!-- CSS DO SITE REAL -->
+  <link rel="stylesheet" href="/assets/css/dropdown-menu.css">
+  <link rel="stylesheet" href="/assets/css/styles-header-final.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      padding-top: 100px;
+      color: white;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    /* PAINEL DE DEBUG FIXO */
+    #debug-panel {
+      position: fixed;
+      top: 80px;
+      right: 10px;
+      width: 350px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.95);
+      border: 2px solid #00ff88;
+      border-radius: 12px;
+      padding: 15px;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5);
+    }
+    
+    #debug-panel h3 {
+      color: #00ff88;
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+    
+    #debug-log {
+      max-height: 400px;
+      overflow-y: auto;
+      margin: 10px 0;
+    }
+    
+    .debug-line {
+      margin: 3px 0;
+      padding: 3px 5px;
+      border-radius: 3px;
+      line-height: 1.4;
+    }
+    
+    .debug-line.info { color: #00aaff; }
+    .debug-line.success { color: #00ff88; background: rgba(0, 255, 136, 0.1); }
+    .debug-line.warning { color: #ffaa00; background: rgba(255, 170, 0, 0.1); }
+    .debug-line.error { color: #ff4444; background: rgba(255, 68, 68, 0.1); }
+    
+    .debug-btn {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      background: #00ff88;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .debug-btn:active {
+      background: #00cc77;
+      transform: scale(0.98);
+    }
+    
+    #debug-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      margin: 10px 0;
+    }
+    
+    .stat-box {
+      background: rgba(0, 255, 136, 0.1);
+      padding: 8px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    
+    .stat-label {
+      font-size: 9px;
+      color: #888;
+      text-transform: uppercase;
+    }
+    
+    .stat-value {
+      font-size: 16px;
+      color: #00ff88;
+      font-weight: bold;
+    }
+    
+    .content-area {
+      max-width: 900px;
+      margin: 0 auto 50px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      margin-right: 380px;
+    }
+    
+    .content-area h1 {
+      color: #00ff88;
+      margin-bottom: 20px;
+    }
+    
+    .content-area p {
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+    
+    .instructions {
+      background: rgba(0, 255, 136, 0.1);
+      border-left: 4px solid #00ff88;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    
+    @media (max-width: 1200px) {
+      #debug-panel {
+        position: static;
+        width: 100%;
+        max-height: none;
+        margin: 10px;
+      }
+      
+      .content-area {
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER REAL DO SITE ========== -->
+  <header>
+    <div class="container">
+      <a href="/" class="logo">
+        <strong>Tutela Digital®</strong>
+      </a>
+
+      <nav id="nav" class="nav">
+        <a href="/" class="nav-link">Início</a>
+        
+        <!-- Dropdown 1: Soluções -->
+        <div class="nav-dropdown">
+          <a href="#solucoes" class="nav-link">
+            Soluções
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/governo.html">Para Governo</a>
+            <a href="/empresas.html">Para Empresas</a>
+            <a href="/pessoas.html">Para Pessoas</a>
+          </div>
+        </div>
+
+        <!-- Dropdown 2: Base Jurídica -->
+        <div class="nav-dropdown">
+          <a href="#legal" class="nav-link">
+            Base Jurídica
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/legal/institucional.html">Institucional</a>
+            <a href="/legal/termos-de-custodia.html">Termos de Custódia</a>
+            <a href="/legal/politica-de-privacidade.html">Política de Privacidade</a>
+          </div>
+        </div>
+
+        <a href="/como-funciona.html" class="nav-link">Como Funciona</a>
+        <a href="/seguranca.html" class="nav-link">Segurança</a>
+      </nav>
+
+      <!-- Botão Menu Mobile -->
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== PAINEL DE DEBUG ========== -->
+  <div id="debug-panel">
+    <h3>🔍 DEBUG MOBILE DROPDOWN</h3>
+    
+    <div id="debug-stats">
+      <div class="stat-box">
+        <div class="stat-label">Largura</div>
+        <div class="stat-value" id="width-stat">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Modo</div>
+        <div class="stat-value" id="mode-stat">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Dropdowns</div>
+        <div class="stat-value" id="dropdown-stat">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Nav Active</div>
+        <div class="stat-value" id="nav-stat">-</div>
+      </div>
+    </div>
+    
+    <button class="debug-btn" onclick="runDiagnostic()">🔍 DIAGNOSTICAR</button>
+    <button class="debug-btn" onclick="testDropdowns()">🧪 TESTAR DROPDOWNS</button>
+    <button class="debug-btn" onclick="clearLog()">🧹 LIMPAR</button>
+    
+    <div id="debug-log"></div>
+  </div>
+
+  <!-- ========== CONTENT ========== -->
+  <div class="content-area">
+    <h1>🧪 Teste Debug - Site Real</h1>
+    
+    <div class="instructions">
+      <strong>📱 COMO USAR:</strong><br><br>
+      1. <strong>Ative modo mobile:</strong> Ctrl+Shift+M (DevTools)<br>
+      2. <strong>Selecione iPhone:</strong> iPhone 12 Pro<br>
+      3. <strong>Clique em "DIAGNOSTICAR"</strong> no painel à direita<br>
+      4. <strong>Depois clique em "TESTAR DROPDOWNS"</strong><br>
+      5. <strong>Observe os logs</strong> no painel de debug<br>
+    </div>
+    
+    <p>
+      Esta página é uma cópia do site real com header/CSS/JS originais + painel de debug lateral.
+    </p>
+    
+    <p>
+      <strong>Diferença das outras páginas:</strong> Esta tem TODO o código real do site (header, CSS, JS),
+      então os testes refletem exatamente o comportamento em produção.
+    </p>
+  </div>
+
+  <!-- ========== SCRIPTS DO SITE REAL ========== -->
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/dropdown-menu-debug.js"></script>
+  
+  <!-- ========== SCRIPT DE DEBUG ========== -->
+  <script>
+    const debugLog = document.getElementById('debug-log');
+    let logCount = 0;
+    
+    function log(message, type = 'info') {
+      const line = document.createElement('div');
+      line.className = `debug-line ${type}`;
+      const time = new Date().toLocaleTimeString();
+      line.textContent = `[${time}] ${message}`;
+      debugLog.appendChild(line);
+      debugLog.scrollTop = debugLog.scrollHeight;
+      
+      logCount++;
+      if (logCount > 50) {
+        debugLog.removeChild(debugLog.firstChild);
+        logCount--;
+      }
+    }
+    
+    function clearLog() {
+      debugLog.innerHTML = '';
+      logCount = 0;
+      log('Log limpo', 'info');
+      updateStats();
+    }
+    
+    function updateStats() {
+      document.getElementById('width-stat').textContent = window.innerWidth + 'px';
+      document.getElementById('mode-stat').textContent = window.innerWidth <= 1200 ? 'MOB' : 'DESK';
+      document.getElementById('dropdown-stat').textContent = document.querySelectorAll('.nav-dropdown').length;
+      
+      const nav = document.getElementById('nav');
+      document.getElementById('nav-stat').textContent = nav && nav.classList.contains('active') ? 'SIM' : 'NÃO';
+    }
+    
+    function runDiagnostic() {
+      clearLog();
+      log('═══ DIAGNÓSTICO INICIADO ═══', 'success');
+      
+      // Viewport
+      const width = window.innerWidth;
+      const isMobile = width <= 1200;
+      log(`Largura: ${width}px`, 'info');
+      log(`Modo: ${isMobile ? 'MOBILE ✓' : 'DESKTOP ✗'}`, isMobile ? 'success' : 'error');
+      
+      // CSS
+      const css = Array.from(document.styleSheets);
+      const hasDropdownCSS = css.some(s => s.href && s.href.includes('dropdown-menu.css'));
+      const hasHeaderCSS = css.some(s => s.href && s.href.includes('styles-header-final.css'));
+      log(`CSS dropdown: ${hasDropdownCSS ? '✓' : '✗'}`, hasDropdownCSS ? 'success' : 'error');
+      log(`CSS header: ${hasHeaderCSS ? '✓' : '✗'}`, hasHeaderCSS ? 'success' : 'error');
+      
+      // JS
+      const scripts = Array.from(document.querySelectorAll('script[src]'));
+      const hasDropdownJS = scripts.some(s => s.src.includes('dropdown-menu'));
+      const hasMobileJS = scripts.some(s => s.src.includes('mobile-menu.js'));
+      log(`JS dropdown: ${hasDropdownJS ? '✓' : '✗'}`, hasDropdownJS ? 'success' : 'error');
+      log(`JS mobile: ${hasMobileJS ? '✓' : '✗'}`, hasMobileJS ? 'success' : 'error');
+      
+      // HTML
+      const nav = document.getElementById('nav');
+      const btn = document.querySelector('.mobile-menu-btn');
+      const dropdowns = document.querySelectorAll('.nav-dropdown');
+      
+      log(`#nav: ${nav ? '✓' : '✗'}`, nav ? 'success' : 'error');
+      log(`.mobile-menu-btn: ${btn ? '✓' : '✗'}`, btn ? 'success' : 'error');
+      log(`.nav-dropdown: ${dropdowns.length}`, dropdowns.length > 0 ? 'success' : 'error');
+      
+      // Função
+      log(`toggleMobileMenu: ${typeof toggleMobileMenu === 'function' ? '✓' : '✗'}`, 
+        typeof toggleMobileMenu === 'function' ? 'success' : 'error');
+      
+      log('═══ DIAGNÓSTICO CONCLUÍDO ═══', 'success');
+      updateStats();
+    }
+    
+    async function testDropdowns() {
+      log('═══ TESTE DE DROPDOWNS ═══', 'warning');
+      
+      const nav = document.getElementById('nav');
+      const btn = document.querySelector('.mobile-menu-btn');
+      const dropdowns = document.querySelectorAll('.nav-dropdown');
+      
+      if (!nav || !btn) {
+        log('ERRO: Nav ou botão não encontrado', 'error');
+        return;
+      }
+      
+      if (dropdowns.length === 0) {
+        log('ERRO: Nenhum dropdown encontrado', 'error');
+        return;
+      }
+      
+      // Teste 1: Abrir menu mobile
+      log('Teste 1: Abrindo menu mobile...', 'warning');
+      btn.click();
+      
+      await new Promise(r => setTimeout(r, 300));
+      
+      if (nav.classList.contains('active')) {
+        log('✓ Menu mobile ABERTO', 'success');
+      } else {
+        log('✗ Menu mobile NÃO abriu', 'error');
+        return;
+      }
+      
+      // Teste 2: Clicar dropdown 1
+      log('Teste 2: Clicando dropdown 1...', 'warning');
+      const dropdown1 = dropdowns[0];
+      const toggle1 = dropdown1.querySelector('.nav-link');
+      
+      if (toggle1) {
+        toggle1.click();
+        await new Promise(r => setTimeout(r, 300));
+        
+        if (dropdown1.classList.contains('active')) {
+          log('✓ Dropdown 1 ABRIU', 'success');
+          
+          const menu = dropdown1.querySelector('.dropdown-menu');
+          if (menu) {
+            const display = window.getComputedStyle(menu).display;
+            log(`  Display: ${display}`, display === 'flex' ? 'success' : 'error');
+          }
+        } else {
+          log('✗ Dropdown 1 NÃO abriu', 'error');
+        }
+      }
+      
+      log('═══ TESTE CONCLUÍDO ═══', 'success');
+      updateStats();
+    }
+    
+    // Auto update stats
+    setInterval(updateStats, 1000);
+    
+    // Initial
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        log('Página carregada - clique em DIAGNOSTICAR', 'info');
+        updateStats();
+      }, 500);
+    });
+  </script>
+</body>
+</html>
