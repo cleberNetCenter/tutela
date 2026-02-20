@@ -90,12 +90,14 @@
 
 /* Mobile dropdown (click instead of hover) */
 @media (max-width: 1200px) {
+  /* Desabilitar hover no mobile */
   .nav-dropdown:hover .dropdown-menu {
-    display: none;
+    display: none !important;
   }
   
-  .nav-dropdown.active .dropdown-menu {
-    display: flex;
+  /* Mostrar dropdown APENAS quando menu mobile está aberto E dropdown clicado */
+  .nav.active .nav-dropdown.active .dropdown-menu {
+    display: flex !important;
   }
   
   .dropdown-menu {
