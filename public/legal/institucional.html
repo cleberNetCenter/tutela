@@ -178,7 +178,7 @@
 <a class="header-cta" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank">
 				  Acessar a Plataforma
 				</a>
-<button class="mobile-menu-btn">
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()">
 <span></span>
 <span></span>
 <span></span>
@@ -235,7 +235,7 @@
 
 <!-- MAIN CONTENT -->
 <main class="main">
-<div class="main" id="content-institucional">
+<div class="page active" id="page-institucional">
 <section class="page-header page-header--legal">
   <div class="page-header-inner page-header--legal">
     
@@ -370,7 +370,7 @@
 <div class="cta-final-inner">
 <h2 >Transparência Institucional e Confiabilidade Jurídica</h2>
 <p >Conheça também os fundamentos jurídicos e termos de custódia.</p>
-<a class="btn btn-primary" href="/">Ver Fundamento Jurídico</a>
+<a class="btn btn-primary" href="/" onclick="navigateTo('seguranca'); return false;">Ver Fundamento Jurídico</a>
 </div>
 </section>
 </div>
@@ -427,7 +427,19 @@
 </footer>
 </div>
 
+<script>
+  function toggleMobileMenu() {
+    const nav = document.getElementById('nav');
+    nav.classList.toggle('mobile-open');
+  }
 
+  // Fecha o menu mobile ao clicar em qualquer link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('nav').classList.remove('mobile-open');
+    });
+  });
+</script>
 
 <!-- WhatsApp Floating Button -->
 <a aria-label="" 
@@ -443,16 +455,66 @@
 </svg>
 </a>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const elements = document.querySelectorAll('.reveal-on-scroll');
 
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  elements.forEach(el => observer.observe(el));
+});
+</script>
 
 <!-- Script de Micro-Animações Jurídicas -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const sections = document.querySelectorAll(
+    ".page-header, .text-block, .features, .cta-final"
+  );
 
+  sections.forEach(section => {
+    section.classList.add("legal-animate");
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".legal-animate").forEach(el => {
+    observer.observe(el);
+  });
+});
+</script>
 
 
 <!-- Scripts de internacionalização e navegação -->
 
 <!-- Inicializar i18n para páginas legais -->
-
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  // Inicializa sistema i18n
+  await I18N.init();
+  
+  // Força exibição do aviso se não estiver em PT
+  if (I18N.currentLang !== 'pt') {
+    console.log('[Legal Page] Idioma atual:', I18N.currentLang, '- Exibindo aviso');
+    I18N.showLegalPageNoticeIfNeeded();
+  }
+});
+</script>
 
 <script src="/assets/js/i18n.js"></script>
 <script src="/assets/js/navigation-controller.js"></script>
