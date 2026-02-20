@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="/public/assets/css/styles-header-final.css?v=fix101">
     <link rel="stylesheet" href="/public/assets/css/dropdown-menu.css?v=fix101">
     
+    <!-- JavaScript files from the real site -->
+    <script src="/public/assets/js/dropdown-menu.js?v=fix101" defer></script>
+    
     <style>
         body {
             font-family: system-ui;
@@ -121,11 +124,13 @@
 <body>
 
 <div class="test-header">
-    <h1>✅ TESTE FINAL - PR #101</h1>
+    <h1>✅ TESTE FINAL - PR #101 (COM JAVASCRIPT REAL)</h1>
     <p><strong>Arquivos CSS:</strong> styles-header-final.css + dropdown-menu.css (ordem real do site)</p>
+    <p><strong>Arquivos JS:</strong> dropdown-menu.js (gerencia clicks nos dropdowns)</p>
     <p><strong>Especificidade aumentada:</strong> nav.nav.active .nav-dropdown.active > .dropdown-menu</p>
     <p><strong>Propriedades extras:</strong> visibility, opacity, position com !important</p>
     <p><strong>Largura atual:</strong> <span id="width"></span>px | <strong>Modo:</strong> <span id="mode"></span></p>
+    <p style="color: #00ff00; font-weight: bold;">⚠️ IMPORTANTE: Clique DIRETAMENTE nos links "Soluções" ou "Base Jurídica" para testar!</p>
 </div>
 
 <!-- Mobile menu button (hamburger) -->
@@ -205,48 +210,79 @@ function updateWidth() {
 
 function toggleMobileMenu() {
     nav.classList.toggle('active');
+    const btn = document.querySelector('.mobile-menu-btn');
     const isOpen = nav.classList.contains('active');
     document.getElementById('hamburger-icon').textContent = isOpen ? '✕' : '☰';
     
-    if (!isOpen) {
+    // Bloquear scroll quando menu aberto
+    if (isOpen) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
         // Fechar todos os dropdowns quando o menu fecha
         dropdown1.classList.remove('active');
         dropdown2.classList.remove('active');
     }
+    
+    log(`Menu mobile: ${isOpen ? 'ABERTO' : 'FECHADO'}`, isOpen ? 'success' : 'info');
 }
 
 function testeCompleto() {
-    output.innerHTML = '<h4>🧪 TESTE COMPLETO AUTOMÁTICO</h4>';
+    output.innerHTML = '<h4>🧪 TESTE COMPLETO AUTOMÁTICO (COM CLICKS REAIS)</h4>';
     
     // Passo 1: Abrir menu mobile
-    log('<strong>PASSO 1: Abrindo menu mobile</strong>', 'info');
-    nav.classList.add('active');
-    document.getElementById('hamburger-icon').textContent = '✕';
+    log('<strong>PASSO 1: Abrindo menu mobile (simulando click no hamburger)</strong>', 'info');
+    
+    // Se o menu já estiver aberto, fechar primeiro
+    if (nav.classList.contains('active')) {
+        toggleMobileMenu();
+        setTimeout(() => testeCompleto(), 500);
+        return;
+    }
+    
+    toggleMobileMenu(); // Usar a função real do site
     log('✅ Menu mobile aberto (.nav.active)', 'success');
     
     // Aguardar CSS aplicar
     setTimeout(() => {
-        // Passo 2: Abrir dropdown 1
-        log('<strong>PASSO 2: Abrindo dropdown "Soluções"</strong>', 'info');
-        dropdown1.classList.add('active');
-        log('✅ Dropdown 1 ativado (.nav-dropdown.active)', 'success');
+        // Passo 2: Clicar no link "Soluções" (simular click real)
+        log('<strong>PASSO 2: Clicando em "Soluções" (click real no link)</strong>', 'info');
         
-        setTimeout(() => {
-            diagnosticarDropdown1();
+        const toggleLink1 = dropdown1.querySelector('.nav-link');
+        if (toggleLink1) {
+            // Simular click REAL (vai acionar o event listener do dropdown-menu.js)
+            toggleLink1.click();
+            log('✅ Click executado no link "Soluções"', 'success');
             
-            // Passo 3: Fechar dropdown 1 e abrir dropdown 2
             setTimeout(() => {
-                log('<strong>PASSO 3: Testando dropdown "Base Jurídica"</strong>', 'info');
-                dropdown1.classList.remove('active');
-                dropdown2.classList.add('active');
-                log('✅ Dropdown 2 ativado', 'success');
+                // Verificar se a classe .active foi adicionada pelo JS real
+                const hasActive = dropdown1.classList.contains('active');
+                log(`Classe .active no dropdown: ${hasActive ? '✅ ADICIONADA' : '❌ NÃO ADICIONADA'}`, 
+                    hasActive ? 'success' : 'error');
                 
+                diagnosticarDropdown1();
+                
+                // Passo 3: Fechar dropdown 1 e abrir dropdown 2
                 setTimeout(() => {
-                    diagnosticarDropdown2();
-                }, 100);
-            }, 1000);
-        }, 100);
-    }, 100);
+                    log('<strong>PASSO 3: Testando dropdown "Base Jurídica" (click real)</strong>', 'info');
+                    
+                    const toggleLink2 = dropdown2.querySelector('.nav-link');
+                    if (toggleLink2) {
+                        toggleLink2.click();
+                        log('✅ Click executado no link "Base Jurídica"', 'success');
+                        
+                        setTimeout(() => {
+                            const hasActive2 = dropdown2.classList.contains('active');
+                            log(`Classe .active no dropdown 2: ${hasActive2 ? '✅ ADICIONADA' : '❌ NÃO ADICIONADA'}`, 
+                                hasActive2 ? 'success' : 'error');
+                            
+                            diagnosticarDropdown2();
+                        }, 200);
+                    }
+                }, 1000);
+            }, 200);
+        }
+    }, 200);
 }
 
 function diagnosticarDropdown1() {
