@@ -323,9 +323,15 @@ const I18N = {
    * Troca de idioma (aplica traduções dinamicamente)
    */
   async switchLanguage(lang) {
-    if (this.currentLang === lang) return;
+    const supportedLangs = ['pt', 'en', 'es'];
+    if (!supportedLangs.includes(lang)) {
+      console.warn('[i18n] Idioma não suportado:', lang);
+      return;
+    }
     
-    console.log('[i18n] Trocando idioma:', this.currentLang, '→', lang);
+    const previousLang = this.currentLang;
+    const isSameLanguage = previousLang === lang;
+    console.log('[i18n] Trocando idioma:', previousLang, '→', lang);
     
     // Salva idioma no localStorage
     localStorage.setItem('tutela_lang', lang);
@@ -337,8 +343,10 @@ const I18N = {
       dropdown.classList.remove('active');
     }
     
-    // Carrega traduções do novo idioma
-    await this.loadTranslations(lang);
+    // Carrega traduções do novo idioma (ou recarrega para re-aplicar PT se necessário)
+    if (!isSameLanguage || Object.keys(this.translations).length === 0) {
+      await this.loadTranslations(lang);
+    }
     
     // Aplica traduções na página
     this.applyTranslations();
@@ -352,7 +360,7 @@ const I18N = {
     // Atualiza schemas JSON-LD
     this.updateSchemaLanguage(lang);
     
-    console.log('[i18n] Idioma aplicado com sucesso:', lang);
+    console.log('[i18n] Idioma aplicado com sucesso:', lang, isSameLanguage ? '(reaplicado)' : '');
   },
 
   /**
