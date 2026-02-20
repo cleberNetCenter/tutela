@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (isMobile()) {
         e.preventDefault();
         e.stopPropagation();
+        e.stopImmediatePropagation(); // CRÍTICO: Impedir mobile-menu.js de processar
         
         // Fechar outros dropdowns
         navDropdowns.forEach((otherDropdown) => {
