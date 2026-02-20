@@ -42,52 +42,6 @@
     z-index: 1200;
   }
   
-  /* Menu mobile sobrepõe conteúdo */
-  .nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: var(--color-surface-base);
-    flex-direction: column;
-    padding: 1rem 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1150;
-    max-height: calc(100vh - 70px);
-    overflow-y: auto;
-  }
-  
-  .nav-link,
-  .nav-dropdown > a {
-    padding: 1rem 1.5rem;
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .nav-dropdown {
-    width: 100%;
-  }
-  
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    border: none;
-    background: rgba(0, 0, 0, 0.2);
-    padding-left: 1rem;
-  }
-  
-  .dropdown-menu li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .dropdown-menu li:last-child {
-    border-bottom: none;
-  }
-  
-  .dropdown-menu a {
-    padding: 0.75rem 1rem;
-  }
-  
   /* Ajustar header CTA no mobile */
   .header-cta {
     display: none;
@@ -306,7 +260,7 @@
   
   /* Mostrar menu quando classe active está presente */
   .nav.active {
-    display: flex !important;
+    display: flex;
     flex-direction: column;
     position: fixed;
     top: 70px;
@@ -329,42 +283,6 @@
   
   .nav.active .nav-dropdown {
     width: 100%;
-  }
-  
-  .nav.active .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    border: none;
-    background: rgba(0, 0, 0, 0.2);
-    padding-left: 1rem;
-    border-radius: 0;
-    display: none; /* Escondido por padrão */
-  }
-  
-  /* CRÍTICO: Desabilitar hover no mobile */
-  .nav-dropdown:hover .dropdown-menu {
-    display: none !important;
-  }
-  
-  /* CRÍTICO: Mostrar dropdown quando .active - MÁXIMA ESPECIFICIDADE */
-  nav.nav.active .nav-dropdown.active > .dropdown-menu,
-  .nav.active .nav-dropdown.active .dropdown-menu {
-    display: block !important;
-    position: static !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-  
-  .nav.active .dropdown-menu li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .nav.active .dropdown-menu li:last-child {
-    border-bottom: none;
-  }
-  
-  .nav.active .dropdown-menu a {
-    padding: 0.75rem 1rem;
   }
 }
 

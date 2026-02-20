@@ -1,32 +1,24 @@
 /* =========================================================
-   NAV DROPDOWN - STATE-DRIVEN ARCHITECTURE
-   Componente baseado em estados explícitos (classes)
-   ao invés de pseudo-classes (:hover)
+   DROPDOWN MENU - STATE DRIVEN ARCHITECTURE
+   ÚNICO ARQUIVO RESPONSÁVEL PELA VISIBILIDADE DO SUBMENU
    ========================================================= */
 
-/* =========================================================
-   1. ESTRUTURA BASE (Estado fechado por padrão)
-   ========================================================= */
-
+/* Estrutura base */
 .nav-dropdown {
   position: relative;
   display: inline-block;
-  margin: 0;
-  padding: 0;
 }
 
-/* Trigger link (âncora que abre o dropdown) */
-.nav-dropdown > a,
+/* Trigger */
 .nav-dropdown > .nav-link {
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.85rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   white-space: nowrap;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
   padding: 0.5rem 0;
   margin: 0;
   vertical-align: middle;
@@ -35,52 +27,29 @@
   transition: color 0.2s ease;
 }
 
-.nav-dropdown > a:hover,
 .nav-dropdown > .nav-link:hover {
   color: #ffffff;
 }
 
-/* =========================================================
-   2. DROPDOWN MENU - ESTADO FECHADO (padrão)
-   ========================================================= */
-
+/* Estado fechado padrão */
 .dropdown-menu {
-  /* Estado fechado: escondido */
   display: none;
-  
-  /* Estrutura base (aplicada sempre) */
   position: absolute;
   left: 0;
   top: calc(100% + 8px);
   flex-direction: column;
   min-width: 200px;
-  z-index: 1100;
-  
-  /* Visual */
   background: var(--color-surface-base);
   border: 1px solid var(--color-border-soft);
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  
-  /* Reset de list */
   padding: 0;
   margin: 0;
   list-style: none;
+  z-index: 1100;
 }
 
-/* =========================================================
-   3. ESTADO ABERTO - CONTROLADO POR CLASSE
-   Regra principal que governa a visibilidade
-   ========================================================= */
-
-.nav-dropdown.active > .dropdown-menu {
-  display: flex;
-}
-
-/* =========================================================
-   4. ITENS DO MENU
-   ========================================================= */
-
+/* Itens do menu */
 .dropdown-menu li {
   list-style: none;
   padding: 0;
@@ -106,101 +75,43 @@
   color: #ffffff;
 }
 
-/* =========================================================
-   5. DESKTOP - COMPORTAMENTO COMPLEMENTAR COM HOVER
-   O hover funciona APENAS como conveniência no desktop,
-   mas NÃO é a única forma de abrir o menu
-   ========================================================= */
+/* Estado aberto controlado por classe */
+.nav-dropdown.active > .dropdown-menu {
+  display: flex;
+}
 
+/* Desktop - hover complementar */
 @media (min-width: 1201px) {
-  /* Desktop: hover como comportamento complementar */
   .nav-dropdown:hover > .dropdown-menu,
   .nav-dropdown:focus-within > .dropdown-menu {
     display: flex;
   }
 }
 
-/* =========================================================
-   6. MOBILE - APENAS STATE-DRIVEN
-   Sem hover, apenas controle por classe .active
-   ========================================================= */
-
+/* Mobile */
 @media (max-width: 1200px) {
-  /* Desabilitar hover explicitamente */
-  .nav-dropdown:hover > .dropdown-menu,
-  .nav-dropdown:focus-within > .dropdown-menu {
-    display: none;
-  }
-  
-  /* Dropdown mobile: posicionamento relativo */
   .dropdown-menu {
-    position: relative;
-    top: auto;
-    left: auto;
-    margin-top: 4px;
-    margin-left: 10px;
+    position: static;
     box-shadow: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    background: rgba(0, 0, 0, 0.2);
+    margin-left: 1rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
   }
   
-  /* Estado aberto mobile - ÚNICA regra que controla visibilidade */
+  .dropdown-menu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .dropdown-menu li:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown-menu a {
+    padding: 0.75rem 1rem;
+  }
+  
   .nav-dropdown.active > .dropdown-menu {
     display: flex;
   }
 }
-
-/* =========================================================
-   7. MENU MOBILE ATIVO - ESTILOS ADICIONAIS
-   Quando o menu hamburger está aberto (.nav.active)
-   ========================================================= */
-
-@media (max-width: 1200px) {
-  .nav.active .nav-dropdown {
-    width: 100%;
-  }
-  
-  .nav.active .dropdown-menu {
-    border-left: 2px solid rgba(255, 255, 255, 0.3);
-  }
-  
-  .nav.active .dropdown-menu li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .nav.active .dropdown-menu li:last-child {
-    border-bottom: none;
-  }
-  
-  .nav.active .dropdown-menu a {
-    padding: 0.75rem 1rem;
-  }
-}
-
-/* =========================================================
-   RESUMO DA ARQUITETURA STATE-DRIVEN:
-   
-   Estado fechado (padrão):
-   .dropdown-menu { display: none; }
-   
-   Estado aberto (controlado por classe):
-   .nav-dropdown.active > .dropdown-menu { display: flex; }
-   
-   Desktop hover (complementar, não estrutural):
-   @media (min-width: 1201px) {
-     .nav-dropdown:hover > .dropdown-menu { display: flex; }
-   }
-   
-   Mobile (sem hover, apenas classe):
-   @media (max-width: 1200px) {
-     .nav-dropdown.active > .dropdown-menu { display: flex; }
-   }
-   
-   Vantagens:
-   ✓ Comportamento previsível (estado explícito)
-   ✓ Funciona em touch devices
-   ✓ Sem conflitos de especificidade
-   ✓ Fácil debug (inspecionar classe .active)
-   ✓ Testável (adicionar/remover classe)
-   ✓ Sem !important como muleta estrutural
-   ========================================================= */
