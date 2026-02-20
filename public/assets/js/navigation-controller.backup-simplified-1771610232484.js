@@ -1,6 +1,6 @@
 /* =========================================================
-   NAVIGATION CONTROLLER - SIMPLIFIED
-   No overlay, no body lock, just toggle
+   NAVIGATION CONTROLLER - FULL SCREEN OVERLAY
+   Enterprise-grade with body scroll lock
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -13,25 +13,28 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-  // Simple toggle
+  // Mobile menu toggle with body scroll lock
   btn.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
 
-    nav.classList.toggle('mobile-open');
-    btn.classList.toggle('active');
+    const isOpen = nav.classList.toggle('mobile-open');
+    btn.classList.toggle('active', isOpen);
+
+    // Bloquear scroll do body
+    document.body.style.overflow = isOpen ? 'hidden' : '';
 
     // Update ARIA
-    const isOpen = nav.classList.contains('mobile-open');
     btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 
-  // Close when clicking a link
+  // Close when clicking a link inside nav
   const navLinks = nav.querySelectorAll('a');
   navLinks.forEach(link => {
     link.addEventListener('click', function() {
       nav.classList.remove('mobile-open');
       btn.classList.remove('active');
+      document.body.style.overflow = '';
       btn.setAttribute('aria-expanded', 'false');
     });
   });
@@ -42,23 +45,22 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!nav.contains(e.target) && !btn.contains(e.target)) {
         nav.classList.remove('mobile-open');
         btn.classList.remove('active');
+        document.body.style.overflow = '';
         btn.setAttribute('aria-expanded', 'false');
       }
     }
   });
 
-  // Dropdown toggle (mobile)
-  document.addEventListener('click', function(e) {
-    const dropdownLink = e.target.closest('.nav-dropdown > a');
-    if (dropdownLink && window.innerWidth <= 900) {
-      e.preventDefault();
-      const dropdown = dropdownLink.closest('.nav-dropdown');
-      if (dropdown) {
-        dropdown.classList.toggle('active');
-      }
+  // Close on ESC key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('mobile-open')) {
+      nav.classList.remove('mobile-open');
+      btn.classList.remove('active');
+      document.body.style.overflow = '';
+      btn.setAttribute('aria-expanded', 'false');
     }
   });
 
-  console.log('Navigation controller initialized (simplified version)');
+  console.log('Navigation controller initialized (full-screen overlay version)');
 
 });

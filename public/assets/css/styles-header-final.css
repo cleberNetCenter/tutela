@@ -52,6 +52,15 @@
   left: 0;
   right: 0;
   z-index: 1000;
+
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   background: var(--color-surface-base);
   border-bottom: 1px solid var(--color-border-soft);
 
@@ -346,10 +355,6 @@ html.menu-open {
    Nav stays inside header, overlay covers entire screen
    ========================================================= */
 
-@media (max-width: 900px) {
-  .mobile-menu-btn {
-    display: flex;
-  }
 
   .nav {
     display: none;
@@ -402,5 +407,68 @@ html.menu-open {
 
   .header-cta {
     display: none;
+  }
+}
+
+
+/* =========================================================
+   MOBILE MENU - ORIGINAL PATTERN (iOS Safari Fixed)
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  .nav.mobile-open {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    background: var(--color-surface-base);
+
+    padding: var(--space-lg, 1.5rem);
+    gap: var(--space-md, 1rem);
+
+    z-index: 2000;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav.mobile-open .nav-link,
+  .nav.mobile-open .nav-dropdown > a {
+    padding: 1rem 1.5rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav.mobile-open .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-dropdown .dropdown-menu {
+    position: static;
+    display: none;
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    box-shadow: none;
+    padding-left: 1rem;
+  }
+
+  .nav-dropdown.active .dropdown-menu {
+    display: flex;
+    flex-direction: column;
   }
 }
