@@ -95,12 +95,8 @@
     display: none !important;
   }
   
-  /* Mostrar dropdown APENAS quando menu mobile está aberto E dropdown clicado */
-  .nav.active .nav-dropdown.active .dropdown-menu {
-    display: flex !important;
-  }
-  
-  .dropdown-menu {
+  /* Estilos mobile para dropdown (display é controlado por styles-header-final.css) */
+  .nav.active .dropdown-menu {
     position: relative;
     left: auto;
     top: auto;
