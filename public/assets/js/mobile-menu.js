@@ -3,8 +3,7 @@
 // =======================================================
 
 function toggleMobileMenu() {
-  const nav = document.getElementById('nav');
-  const btn = document.querySelector('.mobile-menu-btn');
+  const { nav, btn } = getMobileMenuElements();
   
   if (!nav || !btn) return;
   
@@ -20,6 +19,27 @@ function toggleMobileMenu() {
   }
 }
 
+function getMobileMenuElements() {
+  return {
+    nav: document.getElementById('nav'),
+    btn: document.querySelector('.mobile-menu-btn')
+  };
+}
+
+function closeMobileMenu() {
+  const { nav, btn } = getMobileMenuElements();
+
+  if (!nav || !btn || !nav.classList.contains('active')) return;
+
+  nav.classList.remove('active');
+  btn.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function isMobileViewport() {
+  return window.innerWidth <= 1200;
+}
+
 // Fechar menu ao clicar em um link
 document.addEventListener('DOMContentLoaded', function() {
   const navLinks = document.querySelectorAll('.nav a');
@@ -33,36 +53,26 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Fechar menu mobile
-      const nav = document.getElementById('nav');
-      const btn = document.querySelector('.mobile-menu-btn');
-      
-      if (nav && nav.classList.contains('active')) {
-        nav.classList.remove('active');
-        if (btn) btn.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+      closeMobileMenu();
     });
   });
   
   // Fechar menu ao clicar fora (apenas mobile)
   document.addEventListener('click', function(e) {
-    const nav = document.getElementById('nav');
-    const btn = document.querySelector('.mobile-menu-btn');
+    const { nav, btn } = getMobileMenuElements();
     const langDropdown = document.querySelector('.lang-dropdown');
     
     if (!nav || !btn) return;
     
     // Verificar se está em mobile
-    if (window.innerWidth > 1200) return;
+    if (!isMobileViewport()) return;
     
     // Verificar se clique foi fora do nav e do botão e do menu de idiomas
     if (!nav.contains(e.target) && 
         !btn.contains(e.target) && 
         (!langDropdown || !langDropdown.contains(e.target)) &&
         nav.classList.contains('active')) {
-      nav.classList.remove('active');
-      btn.classList.remove('active');
-      document.body.style.overflow = '';
+      closeMobileMenu();
     }
   });
 });
