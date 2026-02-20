@@ -207,6 +207,13 @@
   <div id="debug-panel">
     <h3>🔍 DEBUG MOBILE DROPDOWN</h3>
     
+    <div style="background: rgba(255, 170, 0, 0.1); border: 1px solid #ffaa00; padding: 10px; margin: 10px 0; border-radius: 6px; font-size: 10px; line-height: 1.4;">
+      <strong style="color: #ffaa00;">⚠️ INSTRUÇÕES:</strong><br>
+      1. Clique em "TESTAR DROPDOWNS" abaixo<br>
+      2. OU clique no hamburguer ☰ (canto superior direito do header)<br>
+      3. Depois clique em "Soluções" ou "Base Jurídica"
+    </div>
+    
     <div id="debug-stats">
       <div class="stat-box">
         <div class="stat-label">Largura</div>
@@ -371,8 +378,13 @@
       const btn = document.querySelector('.mobile-menu-btn');
       const dropdowns = document.querySelectorAll('.nav-dropdown');
       
-      if (!nav || !btn) {
-        log('ERRO: Nav ou botão não encontrado', 'error');
+      if (!nav) {
+        log('ERRO: #nav não encontrado', 'error');
+        return;
+      }
+      
+      if (!btn) {
+        log('ERRO: .mobile-menu-btn não encontrado', 'error');
         return;
       }
       
@@ -381,41 +393,98 @@
         return;
       }
       
-      // Teste 1: Abrir menu mobile
-      log('Teste 1: Abrindo menu mobile...', 'warning');
-      btn.click();
+      log(`Encontrados: nav=${!!nav}, btn=${!!btn}, dropdowns=${dropdowns.length}`, 'info');
       
-      await new Promise(r => setTimeout(r, 300));
-      
+      // Teste 1: Verificar se menu está fechado
       if (nav.classList.contains('active')) {
-        log('✓ Menu mobile ABERTO', 'success');
+        log('Menu já estava aberto, fechando primeiro...', 'warning');
+        toggleMobileMenu();
+        await new Promise(r => setTimeout(r, 300));
+      }
+      
+      // Teste 2: Abrir menu mobile
+      log('Teste 1: Abrindo menu mobile (simulando click no hamburguer)...', 'warning');
+      log(`Estado inicial nav.active: ${nav.classList.contains('active')}`, 'info');
+      
+      toggleMobileMenu();
+      
+      await new Promise(r => setTimeout(r, 500));
+      
+      const navIsActive = nav.classList.contains('active');
+      log(`Estado após toggle: nav.active = ${navIsActive}`, navIsActive ? 'success' : 'error');
+      
+      if (navIsActive) {
+        log('✓ Menu mobile ABERTO com sucesso!', 'success');
+        
+        // Verificar CSS do nav
+        const navDisplay = window.getComputedStyle(nav).display;
+        log(`  Display do #nav: ${navDisplay}`, navDisplay === 'flex' ? 'success' : 'error');
+        
       } else {
-        log('✗ Menu mobile NÃO abriu', 'error');
+        log('✗ Menu mobile NÃO abriu!', 'error');
+        log('PROBLEMA: toggleMobileMenu() não adicionou classe .active ao #nav', 'error');
+        log('Verifique o CSS: @media (max-width: 1200px) { .nav.active { display: flex !important; } }', 'warning');
         return;
       }
       
-      // Teste 2: Clicar dropdown 1
-      log('Teste 2: Clicando dropdown 1...', 'warning');
+      // Teste 3: Clicar dropdown 1
+      await new Promise(r => setTimeout(r, 300));
+      
+      log('', 'info');
+      log('Teste 2: Clicando no dropdown 1 (Soluções)...', 'warning');
+      
       const dropdown1 = dropdowns[0];
       const toggle1 = dropdown1.querySelector('.nav-link');
       
-      if (toggle1) {
-        toggle1.click();
-        await new Promise(r => setTimeout(r, 300));
-        
-        if (dropdown1.classList.contains('active')) {
-          log('✓ Dropdown 1 ABRIU', 'success');
-          
-          const menu = dropdown1.querySelector('.dropdown-menu');
-          if (menu) {
-            const display = window.getComputedStyle(menu).display;
-            log(`  Display: ${display}`, display === 'flex' ? 'success' : 'error');
-          }
-        } else {
-          log('✗ Dropdown 1 NÃO abriu', 'error');
-        }
+      if (!toggle1) {
+        log('✗ Toggle do dropdown 1 não encontrado', 'error');
+        return;
       }
       
+      log(`Toggle encontrado: "${toggle1.textContent.trim()}"`, 'info');
+      log(`Estado inicial dropdown1.active: ${dropdown1.classList.contains('active')}`, 'info');
+      
+      // Simular click
+      const clickEvent = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      });
+      
+      toggle1.dispatchEvent(clickEvent);
+      
+      await new Promise(r => setTimeout(r, 500));
+      
+      const dropdown1IsActive = dropdown1.classList.contains('active');
+      log(`Estado após click: dropdown1.active = ${dropdown1IsActive}`, dropdown1IsActive ? 'success' : 'error');
+      
+      if (dropdown1IsActive) {
+        log('✓ Dropdown 1 ABRIU!', 'success');
+        
+        const menu = dropdown1.querySelector('.dropdown-menu');
+        if (menu) {
+          const display = window.getComputedStyle(menu).display;
+          const visibility = window.getComputedStyle(menu).visibility;
+          
+          log(`  Display: ${display}`, display === 'flex' ? 'success' : 'error');
+          log(`  Visibility: ${visibility}`, 'info');
+          
+          if (display === 'flex') {
+            log('✓ Menu está VISÍVEL (display: flex)', 'success');
+            log('🎉 SUCESSO TOTAL! Dropdown funcionando corretamente!', 'success');
+          } else {
+            log('✗ Menu NÃO está visível', 'error');
+            log(`PROBLEMA: CSS não está aplicando display: flex quando .active`, 'error');
+            log('Verifique: @media (max-width: 1200px) { .nav-dropdown.active .dropdown-menu { display: flex !important; } }', 'warning');
+          }
+        }
+      } else {
+        log('✗ Dropdown 1 NÃO abriu', 'error');
+        log('PROBLEMA: Click não adicionou classe .active ao dropdown', 'error');
+        log('Verifique se o event listener foi adicionado (veja console principal)', 'warning');
+      }
+      
+      log('', 'info');
       log('═══ TESTE CONCLUÍDO ═══', 'success');
       updateStats();
     }
