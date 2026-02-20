@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧪 TESTE INLINE - DROPDOWN MOBILE</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --color-primary: #00ff88;
+      --color-bg-dark: #1a1a2e;
+      --color-surface-base: #2a2a3e;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--color-bg-dark) 0%, #16213e 100%);
+      color: white;
+      min-height: 100vh;
+    }
+    
+    /* ============ HEADER ============ */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    
+    .logo {
+      color: var(--color-primary);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    
+    /* ============ NAVIGATION ============ */
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      padding: 0.5rem 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    
+    .nav-link:hover {
+      color: var(--color-primary);
+    }
+    
+    /* ============ DROPDOWN ============ */
+    .nav-dropdown {
+      position: relative;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 200px;
+      background: var(--color-surface-base);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 8px 0;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    .dropdown-menu a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--color-primary);
+    }
+    
+    /* Desktop: hover */
+    @media (min-width: 1201px) {
+      .nav-dropdown:hover .dropdown-menu,
+      .nav-dropdown:focus-within .dropdown-menu {
+        display: flex;
+      }
+    }
+    
+    /* ============ MOBILE MENU BUTTON ============ */
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+    
+    .mobile-menu-btn span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+    
+    .mobile-menu-btn.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .mobile-menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-menu-btn.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* ============ MOBILE STYLES ============ */
+    @media (max-width: 1200px) {
+      .mobile-menu-btn {
+        display: flex;
+      }
+      
+      .nav {
+        display: none; /* HIDDEN BY DEFAULT */
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(26, 26, 46, 0.98);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 20px;
+        overflow-y: auto;
+      }
+      
+      /* 🔥 CRITICAL: Show menu when active */
+      .nav.active {
+        display: flex !important;
+      }
+      
+      .nav-link {
+        padding: 15px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .nav-dropdown {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .nav-dropdown > .nav-link {
+        border-bottom: none;
+      }
+      
+      .dropdown-menu {
+        position: relative;
+        top: auto;
+        left: auto;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid var(--color-primary);
+        margin: 0 0 0 20px;
+        padding: 0;
+        background: rgba(255, 255, 255, 0.03);
+        display: none; /* HIDDEN BY DEFAULT */
+      }
+      
+      /* 🔥 CRITICAL: Show dropdown when active */
+      .nav-dropdown.active .dropdown-menu {
+        display: flex !important;
+      }
+      
+      /* Disable hover on mobile */
+      .nav-dropdown:hover .dropdown-menu,
+      .nav-dropdown:focus-within .dropdown-menu {
+        display: none;
+      }
+    }
+    
+    /* ============ CONTENT ============ */
+    .content {
+      margin-top: 100px;
+      padding: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .debug-panel {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid var(--color-primary);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    
+    .debug-panel h3 {
+      color: var(--color-primary);
+      margin-bottom: 15px;
+    }
+    
+    .debug-info {
+      font-family: monospace;
+      font-size: 13px;
+      padding: 5px 0;
+      color: #ccc;
+    }
+    
+    .debug-info.success { color: #00ff88; }
+    .debug-info.error { color: #ff4444; }
+    .debug-info.warning { color: #ffaa00; }
+    
+    button.test-btn {
+      margin-top: 10px;
+      padding: 12px 20px;
+      background: var(--color-primary);
+      color: var(--color-bg-dark);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+    
+    button.test-btn:hover {
+      background: #00dd77;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="container">
+      <a href="/" class="logo">
+        Tutela Digital®
+      </a>
+
+      <nav id="nav" class="nav">
+        <!-- Dropdown 1: Soluções -->
+        <div class="nav-dropdown" data-dropdown="solucoes">
+          <a href="#" class="nav-link">
+            Soluções
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/governo.html">Para Governo</a>
+            <a href="/empresas.html">Para Empresas</a>
+            <a href="/pessoas.html">Para Pessoas</a>
+          </div>
+        </div>
+
+        <!-- Dropdown 2: Base Jurídica -->
+        <div class="nav-dropdown" data-dropdown="legal">
+          <a href="#" class="nav-link">
+            Base Jurídica
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/legal/institucional.html">Institucional</a>
+            <a href="/legal/termos-de-custodia.html">Termos de Custódia</a>
+            <a href="/legal/politica-de-privacidade.html">Política de Privacidade</a>
+          </div>
+        </div>
+
+        <a href="/como-funciona.html" class="nav-link">Como Funciona</a>
+        <a href="/seguranca.html" class="nav-link">Segurança</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ CONTENT ============ -->
+  <div class="content">
+    <h1 style="color: var(--color-primary); margin-bottom: 20px;">
+      🧪 Teste Mobile Dropdown - INLINE
+    </h1>
+    
+    <p style="line-height: 1.6; margin-bottom: 15px;">
+      Esta página testa o comportamento dos menus dropdown em mobile <strong>SEM DEPENDÊNCIAS EXTERNAS</strong>.
+      Todo o CSS e JS estão inline.
+    </p>
+    
+    <p style="line-height: 1.6; margin-bottom: 15px;">
+      <strong>Comportamento Esperado no Mobile (≤1200px):</strong>
+    </p>
+    <ul style="list-style: none; padding-left: 0; line-height: 2;">
+      <li>✅ Hamburguer abre/fecha o menu principal</li>
+      <li>✅ Clicar em "Soluções" ou "Base Jurídica" abre o dropdown</li>
+      <li>✅ Clicar no mesmo dropdown novamente fecha</li>
+      <li>✅ Abrir um dropdown fecha o outro</li>
+      <li>✅ Clicar fora fecha todos os dropdowns</li>
+    </ul>
+
+    <!-- Debug Panel -->
+    <div class="debug-panel">
+      <h3>🔍 Debug Console</h3>
+      <div id="debug-log"></div>
+      <button class="test-btn" onclick="runTests()">▶️ Executar Testes Automáticos</button>
+    </div>
+  </div>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // ========== LOGGER ==========
+    const debugLog = document.getElementById('debug-log');
+    
+    function log(message, type = 'info') {
+      const time = new Date().toLocaleTimeString();
+      const div = document.createElement('div');
+      div.className = `debug-info ${type}`;
+      div.textContent = `[${time}] ${message}`;
+      debugLog.appendChild(div);
+      console.log(`[DEBUG] ${message}`);
+      
+      // Limitar a 15 mensagens
+      while (debugLog.children.length > 15) {
+        debugLog.removeChild(debugLog.firstChild);
+      }
+    }
+    
+    // ========== MOBILE MENU TOGGLE ==========
+    function toggleMobileMenu() {
+      const nav = document.getElementById('nav');
+      const btn = document.querySelector('.mobile-menu-btn');
+      
+      if (!nav || !btn) {
+        log('❌ Nav ou botão não encontrado', 'error');
+        return;
+      }
+      
+      nav.classList.toggle('active');
+      btn.classList.toggle('active');
+      
+      const isActive = nav.classList.contains('active');
+      log(`📱 Menu mobile ${isActive ? 'ABERTO' : 'FECHADO'}`, 'success');
+      
+      // Bloquear scroll quando menu aberto
+      document.body.style.overflow = isActive ? 'hidden' : '';
+    }
+    
+    // ========== DROPDOWN MOBILE LOGIC ==========
+    document.addEventListener('DOMContentLoaded', function() {
+      log('🚀 Página carregada', 'success');
+      log(`📏 Largura: ${window.innerWidth}px`, 'info');
+      
+      const navDropdowns = document.querySelectorAll('.nav-dropdown');
+      log(`🎯 ${navDropdowns.length} dropdowns encontrados`, 'success');
+      
+      if (navDropdowns.length === 0) {
+        log('❌ ERRO: Nenhum dropdown encontrado!', 'error');
+        return;
+      }
+      
+      // Função para verificar se está em mobile
+      function isMobile() {
+        return window.innerWidth <= 1200;
+      }
+      
+      // Configurar cada dropdown
+      navDropdowns.forEach((dropdown, index) => {
+        // FIX: querySelector não aceita '>' no início
+        const toggle = Array.from(dropdown.children).find(el => 
+          el.tagName === 'A' || el.classList.contains('nav-link')
+        );
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        if (!toggle || !menu) {
+          log(`⚠️ Dropdown ${index} incompleto`, 'warning');
+          return;
+        }
+        
+        // Click handler no toggle
+        toggle.addEventListener('click', function(e) {
+          if (isMobile()) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const wasActive = dropdown.classList.contains('active');
+            
+            // Fechar outros dropdowns
+            navDropdowns.forEach((other) => {
+              if (other !== dropdown) {
+                other.classList.remove('active');
+              }
+            });
+            
+            // Toggle este dropdown
+            dropdown.classList.toggle('active');
+            
+            const name = dropdown.getAttribute('data-dropdown');
+            const nowActive = dropdown.classList.contains('active');
+            
+            log(`🔽 Dropdown "${name}" ${nowActive ? 'ABERTO' : 'FECHADO'}`, 'success');
+          }
+        });
+        
+        // Click nos links internos fecha o dropdown
+        const links = menu.querySelectorAll('a');
+        links.forEach(link => {
+          link.addEventListener('click', function(e) {
+            if (isMobile()) {
+              e.preventDefault(); // Para demo
+              dropdown.classList.remove('active');
+              log(`🔗 Link clicado, fechando dropdown`, 'info');
+            }
+          });
+        });
+      });
+      
+      // Click fora fecha todos os dropdowns (mobile only)
+      document.addEventListener('click', function(e) {
+        if (!isMobile()) return;
+        
+        const clickedInside = Array.from(navDropdowns).some(dropdown => 
+          dropdown.contains(e.target)
+        );
+        
+        if (!clickedInside) {
+          navDropdowns.forEach(dropdown => {
+            if (dropdown.classList.contains('active')) {
+              dropdown.classList.remove('active');
+              log(`🔼 Click fora, fechando dropdowns`, 'info');
+            }
+          });
+        }
+      });
+      
+      // Detectar modo
+      if (isMobile()) {
+        log('📱 MOBILE MODE detectado', 'success');
+      } else {
+        log('🖥️ DESKTOP MODE detectado', 'warning');
+        log('⚠️ Ative DevTools mobile para testar', 'warning');
+      }
+    });
+    
+    // ========== TESTES AUTOMÁTICOS ==========
+    function runTests() {
+      debugLog.innerHTML = '';
+      log('🧪 Iniciando testes automáticos...', 'warning');
+      
+      const isMobile = window.innerWidth <= 1200;
+      log(`📏 Largura atual: ${window.innerWidth}px`, 'info');
+      
+      if (!isMobile) {
+        log('❌ ERRO: Testes só funcionam em mobile (≤1200px)', 'error');
+        log('💡 Ative DevTools (F12) e modo mobile (Ctrl+Shift+M)', 'warning');
+        return;
+      }
+      
+      const nav = document.getElementById('nav');
+      const btn = document.querySelector('.mobile-menu-btn');
+      const dropdowns = document.querySelectorAll('.nav-dropdown');
+      
+      // Teste 1: Abrir menu mobile
+      setTimeout(() => {
+        log('TEST 1: Abrindo menu mobile...', 'warning');
+        btn.click();
+        
+        setTimeout(() => {
+          if (nav.classList.contains('active')) {
+            log('✅ PASSOU: Menu mobile aberto', 'success');
+          } else {
+            log('❌ FALHOU: Menu mobile NÃO abriu', 'error');
+          }
+        }, 300);
+      }, 500);
+      
+      // Teste 2: Abrir dropdown 1
+      setTimeout(() => {
+        log('TEST 2: Abrindo Dropdown 1 (Soluções)...', 'warning');
+        const toggle1 = dropdowns[0].querySelector('.nav-link');
+        toggle1.click();
+        
+        setTimeout(() => {
+          if (dropdowns[0].classList.contains('active')) {
+            log('✅ PASSOU: Dropdown 1 aberto', 'success');
+          } else {
+            log('❌ FALHOU: Dropdown 1 NÃO abriu', 'error');
+          }
+        }, 300);
+      }, 1500);
+      
+      // Teste 3: Abrir dropdown 2 (deve fechar dropdown 1)
+      setTimeout(() => {
+        log('TEST 3: Abrindo Dropdown 2 (Base Jurídica)...', 'warning');
+        const toggle2 = dropdowns[1].querySelector('.nav-link');
+        toggle2.click();
+        
+        setTimeout(() => {
+          const d1Active = dropdowns[0].classList.contains('active');
+          const d2Active = dropdowns[1].classList.contains('active');
+          
+          if (!d1Active && d2Active) {
+            log('✅ PASSOU: Dropdown 2 aberto, Dropdown 1 fechado', 'success');
+          } else {
+            log('❌ FALHOU: Comportamento incorreto', 'error');
+            log(`  Dropdown 1: ${d1Active ? 'aberto' : 'fechado'}`, 'info');
+            log(`  Dropdown 2: ${d2Active ? 'aberto' : 'fechado'}`, 'info');
+          }
+        }, 300);
+      }, 2500);
+      
+      // Teste 4: Fechar dropdown clicando novamente
+      setTimeout(() => {
+        log('TEST 4: Fechando Dropdown 2 (click toggle)...', 'warning');
+        const toggle2 = dropdowns[1].querySelector('.nav-link');
+        toggle2.click();
+        
+        setTimeout(() => {
+          if (!dropdowns[1].classList.contains('active')) {
+            log('✅ PASSOU: Dropdown 2 fechado', 'success');
+          } else {
+            log('❌ FALHOU: Dropdown 2 ainda aberto', 'error');
+          }
+          
+          log('🎉 Testes concluídos!', 'success');
+        }, 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

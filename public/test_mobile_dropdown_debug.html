@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧪 TESTE MOBILE DROPDOWN - DEBUG COMPLETO</title>
+  
+  <link rel="stylesheet" href="/assets/css/dropdown-menu.css">
+  <link rel="stylesheet" href="/assets/css/styles-header-final.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .debug-panel {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 2px solid #00ff88;
+      border-radius: 12px;
+      padding: 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      z-index: 10000;
+      max-width: 350px;
+      box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+    }
+    
+    .debug-panel h3 {
+      color: #00ff88;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    
+    .debug-info {
+      margin: 5px 0;
+      color: #00ff88;
+    }
+    
+    .debug-info.error {
+      color: #ff4444;
+    }
+    
+    .debug-info.success {
+      color: #00ff88;
+    }
+    
+    .debug-info.warning {
+      color: #ffaa00;
+    }
+    
+    .content-area {
+      margin-top: 120px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+    }
+    
+    .content-area h2 {
+      color: #00ff88;
+      margin-bottom: 15px;
+    }
+    
+    .content-area p {
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Garantir que o header seja visível */
+    header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 1000 !important;
+    }
+    
+    .test-buttons {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .test-buttons button {
+      padding: 12px;
+      background: #00ff88;
+      color: #1a1a2e;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .test-buttons button:hover {
+      background: #00dd77;
+      transform: translateY(-2px);
+    }
+    
+    .test-buttons button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== DEBUG PANEL ========== -->
+  <div class="debug-panel">
+    <h3>🧪 DEBUG MOBILE DROPDOWN</h3>
+    <div id="debug-info"></div>
+    <div class="test-buttons">
+      <button onclick="testClickDropdown1()">🔍 Testar Dropdown 1</button>
+      <button onclick="testClickDropdown2()">🔍 Testar Dropdown 2</button>
+      <button onclick="testMobileMenu()">📱 Testar Menu Mobile</button>
+      <button onclick="clearDebug()">🧹 Limpar Console</button>
+    </div>
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="container">
+      <a href="/" class="logo">
+        <strong>Tutela Digital®</strong>
+      </a>
+
+      <nav id="nav" class="nav">
+        <!-- Dropdown 1: Soluções -->
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">
+            Soluções
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/governo.html">Para Governo</a>
+            <a href="/empresas.html">Para Empresas</a>
+            <a href="/pessoas.html">Para Pessoas</a>
+          </div>
+        </div>
+
+        <!-- Dropdown 2: Base Jurídica -->
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">
+            Base Jurídica
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/legal/institucional.html">Institucional</a>
+            <a href="/legal/termos-de-custodia.html">Termos de Custódia</a>
+            <a href="/legal/politica-de-privacidade.html">Política de Privacidade</a>
+          </div>
+        </div>
+
+        <a href="/como-funciona.html" class="nav-link">Como Funciona</a>
+        <a href="/seguranca.html" class="nav-link">Segurança</a>
+      </nav>
+
+      <!-- Botão Menu Mobile -->
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Selector de Idiomas -->
+      <div class="lang-dropdown">
+        <button class="lang-toggle" aria-label="Selecionar idioma">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+          </svg>
+        </button>
+        <div class="lang-menu">
+          <button class="lang-option active" data-lang="pt">🇧🇷 Português</button>
+          <button class="lang-option" data-lang="en">🇺🇸 English</button>
+          <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CONTENT ========== -->
+  <div class="content-area">
+    <h2>📱 Teste de Dropdown Mobile</h2>
+    <p>
+      Esta página testa o comportamento dos menus dropdown em dispositivos móveis.
+      Abra o DevTools (F12) e ative o modo mobile (Ctrl+Shift+M).
+    </p>
+    <p style="margin-top: 15px;">
+      <strong>Comportamento Esperado no Mobile (≤1200px):</strong><br>
+      ✅ Hamburguer abre/fecha o menu principal<br>
+      ✅ Clicar em "Soluções" ou "Base Jurídica" abre o dropdown<br>
+      ✅ Clicar no mesmo dropdown novamente fecha<br>
+      ✅ Abrir um dropdown fecha o outro<br>
+      ✅ Clicar fora fecha todos os dropdowns<br>
+      ✅ Clicar em um link interno fecha o dropdown
+    </p>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="/assets/js/mobile-menu.js"></script>
+  <script src="/assets/js/dropdown-menu.js"></script>
+  
+  <script>
+    // ========== DEBUG UTILITIES ==========
+    
+    const debugInfo = document.getElementById('debug-info');
+    
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const div = document.createElement('div');
+      div.className = `debug-info ${type}`;
+      div.textContent = `[${timestamp}] ${message}`;
+      debugInfo.appendChild(div);
+      
+      // Limitar a 10 mensagens
+      while (debugInfo.children.length > 10) {
+        debugInfo.removeChild(debugInfo.firstChild);
+      }
+      
+      console.log(`[DEBUG] ${message}`);
+    }
+    
+    function clearDebug() {
+      debugInfo.innerHTML = '';
+      console.clear();
+      log('Console limpo', 'success');
+    }
+    
+    function testClickDropdown1() {
+      const dropdown1 = document.querySelectorAll('.nav-dropdown')[0];
+      const toggle = dropdown1.querySelector('.nav-link');
+      
+      log('🔍 Testando Dropdown 1 (Soluções)...', 'warning');
+      log(`Largura janela: ${window.innerWidth}px`, 'info');
+      
+      if (window.innerWidth > 1200) {
+        log('❌ Teste apenas funciona em mobile (≤1200px)', 'error');
+        return;
+      }
+      
+      // Simular clique
+      toggle.click();
+      
+      setTimeout(() => {
+        const isActive = dropdown1.classList.contains('active');
+        if (isActive) {
+          log('✅ Dropdown 1 aberto com sucesso!', 'success');
+        } else {
+          log('❌ Dropdown 1 NÃO abriu!', 'error');
+        }
+      }, 100);
+    }
+    
+    function testClickDropdown2() {
+      const dropdown2 = document.querySelectorAll('.nav-dropdown')[1];
+      const toggle = dropdown2.querySelector('.nav-link');
+      
+      log('🔍 Testando Dropdown 2 (Base Jurídica)...', 'warning');
+      log(`Largura janela: ${window.innerWidth}px`, 'info');
+      
+      if (window.innerWidth > 1200) {
+        log('❌ Teste apenas funciona em mobile (≤1200px)', 'error');
+        return;
+      }
+      
+      // Simular clique
+      toggle.click();
+      
+      setTimeout(() => {
+        const isActive = dropdown2.classList.contains('active');
+        if (isActive) {
+          log('✅ Dropdown 2 aberto com sucesso!', 'success');
+        } else {
+          log('❌ Dropdown 2 NÃO abriu!', 'error');
+        }
+      }, 100);
+    }
+    
+    function testMobileMenu() {
+      const nav = document.getElementById('nav');
+      const btn = document.querySelector('.mobile-menu-btn');
+      
+      log('📱 Testando Menu Mobile...', 'warning');
+      log(`Largura janela: ${window.innerWidth}px`, 'info');
+      
+      if (window.innerWidth > 1200) {
+        log('❌ Teste apenas funciona em mobile (≤1200px)', 'error');
+        return;
+      }
+      
+      // Simular clique no hamburguer
+      toggleMobileMenu();
+      
+      setTimeout(() => {
+        const isActive = nav.classList.contains('active');
+        if (isActive) {
+          log('✅ Menu mobile aberto com sucesso!', 'success');
+        } else {
+          log('❌ Menu mobile NÃO abriu!', 'error');
+        }
+      }, 100);
+    }
+    
+    // ========== AUTO DIAGNOSTICS ==========
+    
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        log('🚀 Página carregada', 'success');
+        log(`Largura: ${window.innerWidth}px`, 'info');
+        log(`Dropdowns: ${document.querySelectorAll('.nav-dropdown').length}`, 'info');
+        
+        const isMobile = window.innerWidth <= 1200;
+        if (isMobile) {
+          log('📱 Modo MOBILE detectado', 'success');
+          log('🎯 Clique nos botões abaixo para testar', 'warning');
+        } else {
+          log('🖥️ Modo DESKTOP detectado', 'warning');
+          log('⚠️ Ative DevTools mobile (F12 → Ctrl+Shift+M)', 'error');
+        }
+      }, 500);
+    });
+    
+    // Monitorar cliques nos dropdowns
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.nav-dropdown')) {
+        const dropdown = e.target.closest('.nav-dropdown');
+        const index = Array.from(document.querySelectorAll('.nav-dropdown')).indexOf(dropdown);
+        log(`🖱️ Clique no Dropdown ${index + 1}`, 'info');
+      }
+    });
+  </script>
+</body>
+</html>
