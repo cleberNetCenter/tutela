@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧪 TESTE FINAL - Dropdown Mobile</title>
+  
+  <!-- CSS ORIGINAL DO SITE -->
+  <link rel="stylesheet" href="/public/assets/css/styles-header-final.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      padding-top: 100px;
+      color: white;
+    }
+    
+    /* ==================== DROPDOWN CSS CORRIGIDO ==================== */
+    
+    /* Desktop: hover */
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu {
+      display: flex;
+    }
+    
+    /* Mobile: apenas quando clicado */
+    @media (max-width: 1200px) {
+      /* Desabilitar hover */
+      .nav-dropdown:hover .dropdown-menu {
+        display: none !important;
+      }
+      
+      /* CRÍTICO: Mostrar APENAS quando menu mobile aberto E dropdown clicado */
+      .nav.active .nav-dropdown.active .dropdown-menu {
+        display: flex !important;
+        flex-direction: column;
+        position: relative;
+        left: auto;
+        top: auto;
+        margin-top: 4px;
+        margin-left: 10px;
+        border-left: 2px solid rgba(255,255,255,0.3);
+        border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.05);
+      }
+    }
+    
+    /* Dropdown menu base */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 200px;
+      background: var(--color-surface-base);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px 0;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 1100;
+    }
+    
+    .dropdown-menu a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    
+    .dropdown-menu a:hover {
+      background: rgba(255,255,255,0.05);
+      color: var(--color-primary);
+    }
+    
+    /* Content area */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+    }
+    
+    .content h1 {
+      color: #00ff88;
+      margin-bottom: 20px;
+    }
+    
+    .instructions {
+      background: rgba(0,255,136,0.1);
+      border-left: 4px solid #00ff88;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 8px;
+      line-height: 1.8;
+    }
+    
+    .warning {
+      background: rgba(255,170,0,0.1);
+      border-left: 4px solid #ffaa00;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 8px;
+      color: #ffaa00;
+    }
+    
+    .success {
+      background: rgba(0,255,136,0.1);
+      border-left: 4px solid #00ff88;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 8px;
+      color: #00ff88;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER REAL ========== -->
+  <header>
+    <div class="container">
+      <a href="/" class="logo">
+        <strong>Tutela Digital®</strong>
+      </a>
+
+      <nav id="nav" class="nav">
+        <a href="/" class="nav-link">Início</a>
+        
+        <!-- Dropdown 1: Soluções -->
+        <div class="nav-dropdown">
+          <a href="#solucoes" class="nav-link">
+            Soluções
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/governo.html">Para Governo</a>
+            <a href="/empresas.html">Para Empresas</a>
+            <a href="/pessoas.html">Para Pessoas</a>
+          </div>
+        </div>
+
+        <!-- Dropdown 2: Base Jurídica -->
+        <div class="nav-dropdown">
+          <a href="#legal" class="nav-link">
+            Base Jurídica
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/legal/institucional.html">Institucional</a>
+            <a href="/legal/termos-de-custodia.html">Termos de Custódia</a>
+            <a href="/legal/politica-de-privacidade.html">Política de Privacidade</a>
+          </div>
+        </div>
+
+        <a href="/como-funciona.html" class="nav-link">Como Funciona</a>
+        <a href="/seguranca.html" class="nav-link">Segurança</a>
+      </nav>
+
+      <!-- Botão Menu Mobile -->
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== CONTENT ========== -->
+  <div class="content">
+    <h1>🧪 TESTE FINAL - CSS Corrigido Inline</h1>
+    
+    <div class="instructions">
+      <strong>📱 INSTRUÇÕES:</strong><br><br>
+      1. <strong>Ative modo mobile:</strong> F12 → Ctrl+Shift+M → iPhone 12 Pro<br>
+      2. <strong>Clique no hamburguer (☰)</strong> no canto superior direito<br>
+      3. <strong>Clique em "Soluções"</strong> ou <strong>"Base Jurídica"</strong><br>
+      4. <strong>O submenu DEVE aparecer agora!</strong>
+    </div>
+    
+    <div class="warning">
+      <strong>⚠️ DIFERENÇA DESTA PÁGINA:</strong><br><br>
+      Esta página tem o CSS <strong>CORRIGIDO INLINE</strong> (dentro do HTML).<br>
+      Se funcionar aqui, significa que o PR #99 vai resolver o problema!
+    </div>
+    
+    <div class="success">
+      <strong>✅ CSS APLICADO:</strong><br><br>
+      <code>
+        .nav.active .nav-dropdown.active .dropdown-menu {<br>
+        &nbsp;&nbsp;display: flex !important;<br>
+        &nbsp;&nbsp;/* Outros estilos mobile... */<br>
+        }
+      </code>
+    </div>
+    
+    <p style="margin-top: 30px; line-height: 1.8;">
+      <strong>O que deve acontecer:</strong>
+    </p>
+    <ul style="line-height: 2; padding-left: 20px;">
+      <li>✅ Clicar no hamburguer → Menu abre (fundo escuro)</li>
+      <li>✅ Clicar em "Soluções" → Submenu aparece com 3 itens</li>
+      <li>✅ Clicar em "Base Jurídica" → Submenu aparece com 3 itens</li>
+      <li>✅ Clicar fora → Dropdowns fecham</li>
+    </ul>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="/public/assets/js/mobile-menu.js"></script>
+  <script src="/public/assets/js/dropdown-menu.js"></script>
+  
+  <script>
+    // Garantir toggleMobileMenu global
+    if (typeof toggleMobileMenu === 'undefined') {
+      window.toggleMobileMenu = function() {
+        const nav = document.getElementById('nav');
+        const btn = document.querySelector('.mobile-menu-btn');
+        
+        if (!nav || !btn) return;
+        
+        nav.classList.toggle('active');
+        btn.classList.toggle('active');
+        
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        
+        console.log('[TEST] Menu mobile toggled:', nav.classList.contains('active'));
+      };
+    }
+    
+    // Log de debug
+    window.addEventListener('load', () => {
+      console.log('═══════════════════════════════════════');
+      console.log('🧪 PÁGINA DE TESTE CARREGADA');
+      console.log('═══════════════════════════════════════');
+      console.log('Width:', window.innerWidth);
+      console.log('Dropdowns:', document.querySelectorAll('.nav-dropdown').length);
+      console.log('CSS inline aplicado: SIM');
+      console.log('');
+      console.log('Agora teste clicando no hamburguer e nos dropdowns!');
+    });
+  </script>
+</body>
+</html>
