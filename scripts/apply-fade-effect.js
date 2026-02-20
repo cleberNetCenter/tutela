@@ -75,7 +75,7 @@ function applyToComoFunciona() {
   // Adiciona script antes de </body>
   html = html.replace('</body>', `${FADE_SCRIPT}\n</body>`);
   
-  fs.writeFileSync(filePath, 'utf8');
+  fs.writeFileSync(filePath, html, 'utf8');
   console.log('✅ Applied fade effect to como-funciona.html');
 }
 
