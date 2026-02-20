@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESTE FINAL - CSS Corrigido com Especificidade Aumentada</title>
+    
+    <!-- CSS files in the SAME order as the real site -->
+    <link rel="stylesheet" href="/public/assets/css/styles-header-final.css?v=fix101">
+    <link rel="stylesheet" href="/public/assets/css/dropdown-menu.css?v=fix101">
+    
+    <style>
+        body {
+            font-family: system-ui;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .test-header {
+            background: rgba(0,255,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+        }
+        
+        .test-header h1 {
+            margin: 0 0 10px 0;
+            color: #00ff00;
+        }
+        
+        .test-header p {
+            margin: 5px 0;
+        }
+        
+        .mobile-menu-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 8px;
+            z-index: 9999;
+            font-weight: bold;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: #00cc00;
+        }
+        
+        /* Header styling to match real site */
+        .header {
+            background: rgba(30, 30, 30, 0.95);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .debug-panel {
+            position: fixed;
+            right: 0;
+            top: 150px;
+            width: 350px;
+            max-height: calc(100vh - 160px);
+            background: rgba(0,0,0,0.95);
+            padding: 20px;
+            overflow-y: auto;
+            border-left: 2px solid #00ff00;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 9998;
+        }
+        
+        .debug-panel h3 {
+            color: #00ff00;
+            margin: 10px 0;
+        }
+        
+        .debug-info {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        
+        .success { color: #00ff00; }
+        .error { color: #ff0000; }
+        .warning { color: #ffaa00; }
+        
+        button.debug-btn {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            width: 100%;
+        }
+        
+        button.debug-btn:hover {
+            background: #00cc00;
+        }
+        
+        pre {
+            background: rgba(0,0,0,0.5);
+            padding: 5px;
+            margin: 5px 0;
+            overflow-x: auto;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="test-header">
+    <h1>✅ TESTE FINAL - PR #101</h1>
+    <p><strong>Arquivos CSS:</strong> styles-header-final.css + dropdown-menu.css (ordem real do site)</p>
+    <p><strong>Especificidade aumentada:</strong> nav.nav.active .nav-dropdown.active > .dropdown-menu</p>
+    <p><strong>Propriedades extras:</strong> visibility, opacity, position com !important</p>
+    <p><strong>Largura atual:</strong> <span id="width"></span>px | <strong>Modo:</strong> <span id="mode"></span></p>
+</div>
+
+<!-- Mobile menu button (hamburger) -->
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+    <span id="hamburger-icon">☰</span>
+</button>
+
+<!-- Header with navigation (matching real site structure) -->
+<header class="header">
+    <nav id="nav" class="nav">
+        <a href="#" class="nav-link">Início</a>
+        
+        <div class="nav-dropdown" id="dropdown1">
+            <a href="#solucoes" class="nav-link">
+                Soluções
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path d="M6 8L2 4h8z"/>
+                </svg>
+            </a>
+            <ul class="dropdown-menu" id="menu1">
+                <li><a href="/governo.html">Para Governo</a></li>
+                <li><a href="/empresas.html">Para Empresas</a></li>
+                <li><a href="/pessoas.html">Para Pessoas</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-dropdown" id="dropdown2">
+            <a href="#base" class="nav-link">
+                Base Jurídica
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path d="M6 8L2 4h8z"/>
+                </svg>
+            </a>
+            <ul class="dropdown-menu" id="menu2">
+                <li><a href="/institucional.html">Institucional</a></li>
+                <li><a href="/termos.html">Termos de Custódia</a></li>
+                <li><a href="/privacidade.html">Política de Privacidade</a></li>
+            </ul>
+        </div>
+        
+        <a href="#" class="nav-link">Como Funciona</a>
+        <a href="#" class="nav-link">Segurança</a>
+    </nav>
+</header>
+
+<!-- Debug Panel -->
+<div class="debug-panel">
+    <h3>🔬 DEBUG FINAL</h3>
+    
+    <button class="debug-btn" onclick="testeCompleto()">🧪 TESTE COMPLETO AUTOMÁTICO</button>
+    <button class="debug-btn" onclick="diagnosticarDropdown1()">🔍 DIAGNOSTICAR "Soluções"</button>
+    <button class="debug-btn" onclick="diagnosticarDropdown2()">🔍 DIAGNOSTICAR "Base Jurídica"</button>
+    <button class="debug-btn" onclick="resetAll()">🔄 RESETAR TUDO</button>
+    
+    <div id="debug-output"></div>
+</div>
+
+<script>
+const output = document.getElementById('debug-output');
+const nav = document.getElementById('nav');
+const dropdown1 = document.getElementById('dropdown1');
+const dropdown2 = document.getElementById('dropdown2');
+const menu1 = document.getElementById('menu1');
+const menu2 = document.getElementById('menu2');
+
+function log(msg, type = '') {
+    const className = type === 'success' ? 'success' : type === 'error' ? 'error' : type === 'warning' ? 'warning' : '';
+    output.innerHTML += `<div class="debug-info ${className}">${msg}</div>`;
+}
+
+function updateWidth() {
+    const width = window.innerWidth;
+    document.getElementById('width').textContent = width;
+    document.getElementById('mode').textContent = width <= 1200 ? 'MOBILE' : 'DESKTOP';
+    document.getElementById('mode').className = width <= 1200 ? 'success' : 'warning';
+}
+
+function toggleMobileMenu() {
+    nav.classList.toggle('active');
+    const isOpen = nav.classList.contains('active');
+    document.getElementById('hamburger-icon').textContent = isOpen ? '✕' : '☰';
+    
+    if (!isOpen) {
+        // Fechar todos os dropdowns quando o menu fecha
+        dropdown1.classList.remove('active');
+        dropdown2.classList.remove('active');
+    }
+}
+
+function testeCompleto() {
+    output.innerHTML = '<h4>🧪 TESTE COMPLETO AUTOMÁTICO</h4>';
+    
+    // Passo 1: Abrir menu mobile
+    log('<strong>PASSO 1: Abrindo menu mobile</strong>', 'info');
+    nav.classList.add('active');
+    document.getElementById('hamburger-icon').textContent = '✕';
+    log('✅ Menu mobile aberto (.nav.active)', 'success');
+    
+    // Aguardar CSS aplicar
+    setTimeout(() => {
+        // Passo 2: Abrir dropdown 1
+        log('<strong>PASSO 2: Abrindo dropdown "Soluções"</strong>', 'info');
+        dropdown1.classList.add('active');
+        log('✅ Dropdown 1 ativado (.nav-dropdown.active)', 'success');
+        
+        setTimeout(() => {
+            diagnosticarDropdown1();
+            
+            // Passo 3: Fechar dropdown 1 e abrir dropdown 2
+            setTimeout(() => {
+                log('<strong>PASSO 3: Testando dropdown "Base Jurídica"</strong>', 'info');
+                dropdown1.classList.remove('active');
+                dropdown2.classList.add('active');
+                log('✅ Dropdown 2 ativado', 'success');
+                
+                setTimeout(() => {
+                    diagnosticarDropdown2();
+                }, 100);
+            }, 1000);
+        }, 100);
+    }, 100);
+}
+
+function diagnosticarDropdown1() {
+    log('<h4>🔬 DIAGNÓSTICO: Dropdown "Soluções"</h4>', 'info');
+    diagnosticar(dropdown1, menu1, 1);
+}
+
+function diagnosticarDropdown2() {
+    log('<h4>🔬 DIAGNÓSTICO: Dropdown "Base Jurídica"</h4>', 'info');
+    diagnosticar(dropdown2, menu2, 2);
+}
+
+function diagnosticar(dropdown, menu, index) {
+    const navActive = nav.classList.contains('active');
+    const dropdownActive = dropdown.classList.contains('active');
+    
+    log(`<strong>Classes:</strong>`, 'info');
+    log(`• .nav.active: ${navActive ? '✅ SIM' : '❌ NÃO'}`, navActive ? 'success' : 'error');
+    log(`• .nav-dropdown.active: ${dropdownActive ? '✅ SIM' : '❌ NÃO'}`, dropdownActive ? 'success' : 'error');
+    
+    const computed = window.getComputedStyle(menu);
+    log(`<strong>CSS Computado:</strong>`, 'info');
+    log(`<pre>display: ${computed.display}
+position: ${computed.position}
+visibility: ${computed.visibility}
+opacity: ${computed.opacity}
+width: ${computed.width}
+height: ${computed.height}
+z-index: ${computed.zIndex}</pre>`, 'info');
+    
+    // Análise
+    let success = true;
+    
+    if (computed.display === 'none') {
+        log(`❌ FALHA: display é "none"`, 'error');
+        success = false;
+    } else if (computed.display === 'block' || computed.display === 'flex') {
+        log(`✅ display: ${computed.display}`, 'success');
+    }
+    
+    if (computed.visibility === 'hidden') {
+        log(`❌ FALHA: visibility é "hidden"`, 'error');
+        success = false;
+    } else {
+        log(`✅ visibility: ${computed.visibility}`, 'success');
+    }
+    
+    if (computed.opacity === '0') {
+        log(`❌ FALHA: opacity é 0`, 'error');
+        success = false;
+    } else {
+        log(`✅ opacity: ${computed.opacity}`, 'success');
+    }
+    
+    // Verificar posição e dimensões
+    const rect = menu.getBoundingClientRect();
+    log(`<strong>Dimensões Reais:</strong>`, 'info');
+    log(`<pre>width: ${rect.width}px
+height: ${rect.height}px
+top: ${rect.top}px
+left: ${rect.left}px</pre>`, 'info');
+    
+    if (rect.width === 0 || rect.height === 0) {
+        log(`❌ FALHA: Dimensões zeradas`, 'error');
+        success = false;
+    } else {
+        log(`✅ Dimensões: ${rect.width}x${rect.height}px`, 'success');
+    }
+    
+    // Resultado final
+    if (success && navActive && dropdownActive) {
+        log(`<strong>🎉 SUCESSO TOTAL! Dropdown ${index} está visível e funcional!</strong>`, 'success');
+    } else {
+        log(`<strong>❌ FALHA: Dropdown ${index} não está totalmente funcional</strong>`, 'error');
+    }
+    
+    // Media query
+    if (window.matchMedia('(max-width: 1200px)').matches) {
+        log(`✅ Media query ativa (mobile)`, 'success');
+    } else {
+        log(`⚠️ Media query NÃO ativa (desktop)`, 'warning');
+    }
+}
+
+function resetAll() {
+    nav.classList.remove('active');
+    dropdown1.classList.remove('active');
+    dropdown2.classList.remove('active');
+    document.getElementById('hamburger-icon').textContent = '☰';
+    output.innerHTML = '<div class="debug-info success">✅ Reset completo</div>';
+}
+
+// Update width on resize
+window.addEventListener('resize', updateWidth);
+updateWidth();
+
+// Auto-start info
+setTimeout(() => {
+    log('✅ Página carregada com arquivos CSS reais', 'success');
+    log(`Largura: ${window.innerWidth}px`, 'info');
+    if (window.innerWidth <= 1200) {
+        log('✅ Modo mobile detectado', 'success');
+        log('<strong>INSTRUÇÕES:</strong>', 'info');
+        log('1. Clique no botão verde "☰" no topo direito', 'info');
+        log('2. Clique em "Soluções" ou "Base Jurídica"', 'info');
+        log('3. Observe se o submenu aparece', 'info');
+        log('Ou clique em "🧪 TESTE COMPLETO AUTOMÁTICO"', 'info');
+    } else {
+        log('⚠️ Ative o modo mobile (F12 → Ctrl+Shift+M)', 'warning');
+    }
+}, 100);
+</script>
+
+</body>
+</html>
