@@ -252,37 +252,72 @@
    RESPONSIVE
    ========================================================= */
 
-/* Desktop médio: menu recolhe */
+/* =========================================================
+   MOBILE MENU (max-width: 1200px)
+   ========================================================= */
+
 @media (max-width: 1200px) {
-  .nav {
-    display: none;
+  .mobile-menu-btn {
+    display: flex;
   }
-  
-  /* Mostrar menu quando classe active está presente */
-  .nav.active {
+
+  .nav {
+    position: fixed;
+    inset: 0;
+    top: 70px;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
     background: var(--color-surface-base);
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    height: calc(var(--app-height) - 70px);
+    overflow-y: auto;
+    z-index: 9998;
+    will-change: transform;
     padding: 1rem 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1150;
-    max-height: calc(var(--app-height) - 70px);
-    overflow-y: auto;
   }
-  
-  .nav.active .nav-link,
-  .nav.active .nav-dropdown > a {
+
+  .nav.active {
+    transform: translateY(0);
+  }
+
+  .nav > a,
+  .nav .nav-dropdown > a {
     padding: 1rem 1.5rem;
     width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  
-  .nav.active .nav-dropdown {
+
+  .nav-dropdown {
     width: 100%;
+  }
+
+  .nav-dropdown .dropdown-menu {
+    position: static;
+    display: none;
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    box-shadow: none;
+  }
+
+  .nav-dropdown.active .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-dropdown .dropdown-menu a {
+    padding: 0.875rem 2rem;
+    font-size: 0.875rem;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  .lang-dropdown {
+    position: relative;
+    z-index: 1200;
   }
 }
 
@@ -372,4 +407,63 @@
   .whatsapp-tooltip {
     display: none; /* Oculta tooltip no mobile */
   }
+}
+
+
+/* =========================================================
+   DESKTOP MENU (min-width: 1201px)
+   ========================================================= */
+
+@media (min-width: 1201px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+
+  .nav {
+    display: flex !important;
+    position: relative;
+    flex-direction: row;
+    transform: none;
+    height: auto;
+    overflow: visible;
+  }
+
+  .nav-dropdown {
+    position: relative;
+  }
+
+  .nav-dropdown .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--color-surface-base);
+    border: 1px solid var(--color-border-soft);
+    display: none;
+    flex-direction: column;
+    min-width: 200px;
+    z-index: 1100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-dropdown:hover .dropdown-menu,
+  .nav-dropdown:focus-within .dropdown-menu {
+    display: flex;
+  }
+
+  .nav-dropdown .dropdown-menu a {
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+  }
+
+  .nav-dropdown .dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+  }
+}
+
+
+/* Prevent body scroll when mobile menu is open */
+html.menu-open {
+  overflow: hidden;
 }
