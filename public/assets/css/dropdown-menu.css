@@ -115,3 +115,44 @@
     display: flex;
   }
 }
+
+/* Mobile Menu - iOS Safari Compatible */
+@media (max-width: 1200px) {
+  .nav {
+    position: fixed;
+    inset: 0;
+    top: 70px;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface-base, #ffffff);
+    transform: translateY(-100%);
+    transition: transform 0.35s ease;
+    height: calc(var(--app-height) - 70px);
+    overflow-y: auto;
+    z-index: 9998;
+    will-change: transform;
+  }
+
+  .nav.active {
+    transform: translateY(0);
+  }
+}
+
+/* Stacking Context Isolation */
+.header {
+  isolation: isolate;
+  z-index: 1000;
+}
+
+.nav {
+  z-index: 9998;
+}
+
+.whatsapp-float {
+  z-index: 9999 !important;
+}
+
+/* Prevent body scroll when menu is open */
+html.menu-open {
+  overflow: hidden;
+}

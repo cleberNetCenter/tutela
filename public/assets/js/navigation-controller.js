@@ -1,9 +1,51 @@
+
+// iOS Safari viewport fix
+function setAppHeight() {
+  document.documentElement.style.setProperty(
+    '--app-height',
+    `${window.innerHeight}px`
+  );
+}
+
+window.addEventListener('resize', setAppHeight);
+window.addEventListener('orientationchange', setAppHeight);
+setAppHeight();
+
 /* =========================================================
    NAVIGATION CONTROLLER - UNIFIED ARCHITECTURE
    Single source of truth for all navigation interactions
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
+// Mobile menu event delegation
+document.addEventListener('click', function (e) {
+  const mobileBtn = e.target.closest('.mobile-menu-btn');
+  
+  if (mobileBtn) {
+    const nav = document.getElementById('nav');
+    if (nav) {
+      nav.classList.toggle('active');
+      mobileBtn.classList.toggle('active');
+      document.documentElement.classList.toggle('menu-open');
+    }
+    return;
+  }
+
+  // Close menu when clicking nav links
+  const navLink = e.target.closest('.nav a');
+  if (navLink) {
+    const nav = document.getElementById('nav');
+    if (nav) {
+      nav.classList.remove('active');
+      document.documentElement.classList.remove('menu-open');
+    }
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    if (mobileBtn) {
+      mobileBtn.classList.remove('active');
+    }
+  }
+});
+
 
   const nav = document.getElementById('nav');
   const mobileBtn = document.querySelector('.mobile-menu-btn');
@@ -59,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (target.closest('.nav a') && isMobile()) {
       nav.classList.remove('active');
       mobileBtn.classList.remove('active');
-      document.body.style.overflow = '';
+      
     }
 
     // GLOBAL CLOSE (click outside header)
@@ -67,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (nav) nav.classList.remove('active');
       if (mobileBtn) mobileBtn.classList.remove('active');
-      document.body.style.overflow = '';
+      
 
       document.querySelectorAll('.nav-dropdown.active')
         .forEach(d => d.classList.remove('active'));

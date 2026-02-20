@@ -270,7 +270,7 @@
     padding: 1rem 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1150;
-    max-height: calc(100vh - 70px);
+    max-height: calc(var(--app-height) - 70px);
     overflow-y: auto;
   }
   

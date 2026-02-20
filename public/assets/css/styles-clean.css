@@ -55,7 +55,7 @@ body{
 }
 
 /* ===================== LAYOUT ============================ */
-.app{min-height:100vh;display:flex;flex-direction:column}
+.app{min-height:var(--app-height);display:flex;flex-direction:column}
 .main{flex:1;padding-top:80px}
 /* =========================================================
    TRANSIÇÃO ENTRE PÁGINAS (SPA) – HERO PROTEGIDO
