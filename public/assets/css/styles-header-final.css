@@ -341,9 +341,18 @@
     display: none; /* Escondido por padrão */
   }
   
-  /* CRÍTICO: Mostrar dropdown quando .active */
+  /* CRÍTICO: Desabilitar hover no mobile */
+  .nav-dropdown:hover .dropdown-menu {
+    display: none !important;
+  }
+  
+  /* CRÍTICO: Mostrar dropdown quando .active - MÁXIMA ESPECIFICIDADE */
+  nav.nav.active .nav-dropdown.active > .dropdown-menu,
   .nav.active .nav-dropdown.active .dropdown-menu {
     display: block !important;
+    position: static !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   
   .nav.active .dropdown-menu li {
