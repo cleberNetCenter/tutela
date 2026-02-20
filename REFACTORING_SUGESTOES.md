@@ -16,6 +16,19 @@ Reduzir acoplamento entre scripts globais, eliminar duplicação no header e cri
 | Fechamento de itens ativos | lógica semelhante para menu, idioma e dropdown | Repetição de seleção/manipulação de classes | `core/dom.js` com `closeActiveBySelector(selector, activeClass='active')` |
 | Lock de scroll do body | manipulação direta de `document.body.style.overflow` | risco de esquecer unlock e criar estado inválido | `core/dom.js` com `setBodyScrollLocked(isLocked)` |
 
+### Mapeamento direto (estado atual → alvo)
+
+| Arquivo atual | Função/bloco atual | Novo módulo sugerido |
+|---|---|---|
+| `public/assets/js/dropdown-menu.js` | `isMobile()` | `core/breakpoints.isMobileViewport()` |
+| `public/assets/js/mobile-menu.js` | `isMobileViewport()` | `core/breakpoints.isMobileViewport()` |
+| `public/assets/js/dropdown-menu.js` | `closeAllDropdowns(exceptDropdown)` | `features/header/nav-dropdown.closeAll()` |
+| `public/assets/js/mobile-menu.js` | `closeMobileMenu()` | `features/header/mobile-menu.close()` |
+| `public/assets/js/mobile-menu.js` | listener de click fora (`onDocumentClick`) | `core/events.onClickOutside()` |
+| `public/assets/js/mobile-menu.js` | listener de idioma (`onDocumentLangClick`) | `core/events.onClickOutside()` |
+
+> Resultado esperado: reduzir duplicações de utilitários de viewport, click fora e fechamento de estados ativos em 1 ponto de verdade.
+
 ### Contrato recomendado de utilitários
 
 ```js
@@ -75,6 +88,23 @@ public/assets/js/
 1. Mover bloco de idioma para `features/header/language-switcher.js`.
 2. Renomear `dropdown-menu.js` para `features/header/nav-dropdown.js`.
 3. Criar `features/header/index.js` com `initHeaderFeatures()` para inicializar apenas menu + dropdown + idioma.
+4. Padronizar API mínima de cada feature com `init()` e `close()`.
+
+### Interface padrão sugerida para componentes de header
+
+```js
+// features/header/mobile-menu.js
+export function createMobileMenu(deps) {
+  const { nav, button, setBodyScrollLocked, isMobileViewport, onClickOutside } = deps;
+
+  function open() { /* ... */ }
+  function close() { /* ... */ }
+  function toggle() { /* ... */ }
+  function init() { /* ... */ }
+
+  return { init, open, close, toggle };
+}
+```
 
 ---
 
@@ -82,6 +112,8 @@ public/assets/js/
 
 ### Problema atual
 Parte dos scripts globais executa em páginas onde os elementos-alvo não existem, exigindo vários guard clauses e aumentando a chance de regressão cruzada.
+
+Além disso, há páginas com inclusão duplicada de scripts do header (por exemplo, `navigation.js` e `dropdown-menu.js` aparecem duas vezes em algumas páginas legais), o que aumenta risco de listeners duplicados e comportamento não determinístico.
 
 ### Padrão recomendado
 
@@ -127,6 +159,33 @@ pageRegistry[page]?.();
 </body>
 ```
 
+### Passo de transição (sem migrar tudo para ES modules de uma vez)
+
+Se quiser reduzir risco de rollout, primeiro mantenha scripts clássicos e use um bootstrap condicional:
+
+```html
+<body data-page="governo">
+  <script src="/assets/js/header.bundle.js"></script>
+  <script src="/assets/js/page-bootstrap.js"></script>
+</body>
+```
+
+```js
+// page-bootstrap.js
+(function initPageScope() {
+  const page = document.body.dataset.page;
+  const registry = {
+    home: window.TutelaPages?.home,
+    empresas: window.TutelaPages?.empresas,
+    governo: window.TutelaPages?.governo,
+    pessoas: window.TutelaPages?.pessoas,
+    legal: window.TutelaPages?.legal,
+  };
+
+  registry[page]?.init?.();
+})();
+```
+
 ---
 
 ## 4) Plano incremental de implementação
@@ -161,6 +220,7 @@ pageRegistry[page]?.();
 |---|---|---|---|
 | P0 | Unificar `isMobile` + body scroll lock | Alto | Baixo |
 | P0 | Criar `initHeaderFeatures()` | Alto | Baixo |
+| P0 | Remover inclusões duplicadas de `navigation.js`/`dropdown-menu.js` nas páginas legais | Alto | Baixo |
 | P1 | Extrair `onClickOutside` | Médio/Alto | Médio |
 | P1 | Introduzir `data-page` + `main.js` | Alto | Médio |
 | P2 | Remover logs de debug permanentes | Médio | Baixo |
