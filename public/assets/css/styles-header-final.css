@@ -472,3 +472,38 @@ html.menu-open {
     flex-direction: column;
   }
 }
+
+/* =====================================================
+   MOBILE MENU - UNIFIED SYSTEM (max-width: 1200px)
+   ===================================================== */
+
+@media (max-width: 1200px) {
+
+  .nav {
+    display: none;
+  }
+
+  .nav.active {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--color-surface-base);
+    padding: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 2000;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+
+  .nav.active .nav-link,
+  .nav.active .nav-dropdown > a {
+    padding: 1rem 1.5rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+}
+

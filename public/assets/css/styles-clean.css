@@ -220,16 +220,7 @@ body{
   .nav{display:none}
   .mobile-menu-btn{display:block}
   .header-cta{display:none}
-  .nav.mobile-open{
-    display:flex;
-    flex-direction:column;
-    position:absolute;
-    top:100%;left:0;right:0;
-    background:var(--color-surface-base);
-    padding:var(--space-lg);
-    gap:var(--space-md);
-	z-index: 110;
-  }
+  .nav
 }
 
 /* ===================== HERO / PAGE ======================= */
