@@ -279,7 +279,9 @@ const I18N = {
   applyInterfaceOnlyTranslations() {
     // Seletores de interface permitidos
     const interfaceSelectors = [
-      '.nav [data-i18n]',           // navegação
+      '.nav [data-i18n]',            // navegação (todos os links)
+      '.nav-link [data-i18n]',       // links de navegação
+      '.dropdown-menu [data-i18n]',  // itens dos dropdowns
       '.header [data-i18n]',         // cabeçalho
       '.footer [data-i18n]',         // rodapé
       '.lang-menu [data-i18n]',      // menu de idiomas
