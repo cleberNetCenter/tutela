@@ -1,0 +1,12 @@
+{
+  "name": "tutela-digital",
+  "version": "1.0.0",
+  "description": "Tutela Digital - Custódia Jurídica de Ativos Digitais",
+  "scripts": {
+    "check:i18n": "node scripts/check-i18n.js"
+  },
+  "keywords": ["i18n", "validation", "tutela-digital"],
+  "author": "Tutela Digital",
+  "license": "UNLICENSED",
+  "private": true
+}
