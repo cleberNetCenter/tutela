@@ -166,5 +166,9 @@
   "whatsapp": {
     "tooltip": "Speak to our specialist",
     "aria": "Speak to our specialist"
+  },
+  "footer": {
+    "platform": "Platform",
+    "audience": "Audience"
   }
 }

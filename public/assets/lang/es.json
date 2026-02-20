@@ -166,5 +166,9 @@
   "whatsapp": {
     "tooltip": "Habla con nuestro especialista",
     "aria": "Habla con nuestro especialista"
+  },
+  "footer": {
+    "platform": "Plataforma",
+    "audience": "Público"
   }
 }
