@@ -121,3 +121,43 @@ pageRegistry[page]?.();
 - Uma única fonte da verdade para breakpoint mobile.
 - Menos condicionais defensivas em scripts globais.
 - Menor impacto cruzado ao alterar páginas específicas.
+
+---
+
+## 6) Backlog recomendado (prioridade/impacto)
+
+| Prioridade | Item | Impacto esperado | Esforço |
+|---|---|---|---|
+| P0 | Unificar `isMobileViewport/isMobile` e lock de scroll | Reduz divergência de comportamento no header mobile | Baixo |
+| P0 | Criar `initHeaderFeatures()` (menu + dropdown + idioma) | Um único ponto de bootstrap compartilhado | Baixo |
+| P1 | Extrair `onClickOutside` e `closeActiveBySelector` | Menos listeners concorrentes e menor acoplamento | Médio |
+| P1 | Introduzir `data-page` + `main.js` com registry | Isolamento real por página e menos código defensivo | Médio |
+| P2 | Remover logs de debug em produção (`[dropdown] ...`) | Menos ruído e menor custo de manutenção | Baixo |
+
+### Ordem sugerida de execução
+1. **Padronizar infra mínima do header** (breakpoint, close helpers, body lock).
+2. **Consolidar inicialização** em `features/header.js`.
+3. **Adicionar escopo por página** com `data-page` e `pages/*`.
+4. **Encerrar dívida técnica** removendo wrappers globais antigos (`window.toggleMobileMenu` quando não for mais necessário).
+
+---
+
+## 7) Exemplo de isolamento por página no HTML
+
+```html
+<body data-page="home">
+  <!-- conteúdo -->
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+```
+
+Para páginas legais:
+
+```html
+<body data-page="legal">
+  <!-- conteúdo legal -->
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+```
+
+Com isso, o bootstrap passa a ser declarativo, reduzindo inicializações globais e garantindo que cada página execute apenas seu próprio escopo.
