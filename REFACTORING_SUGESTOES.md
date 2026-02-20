@@ -1,52 +1,37 @@
-# Sugestões de refatoração: consolidação, modularização e isolamento por página
+# Sugestões de refatoração: consolidação, extração de módulos e isolamento por página
 
 ## 1) Consolidação de funções duplicadas
 
-### Oportunidades observadas
-- **Detecção de viewport mobile** aparece em mais de um script (`isMobileViewport` em `mobile-menu.js` e `isMobile` em `dropdown-menu.js`) com a mesma regra (`<= 1200`).
-- **Fechamento de menus/dropdowns ao clicar fora** está distribuído entre múltiplos listeners globais (`document.addEventListener('click', ...)`) em `mobile-menu.js` e `dropdown-menu.js`.
-- **Fluxos de inicialização em `DOMContentLoaded`** estão repetidos em blocos separados nos scripts de navegação e menu.
+### Duplicações concretas detectadas
 
-### Mapa objetivo de duplicações (ponto de partida)
-
-| Comportamento | Onde aparece hoje | Sugestão de unificação |
+| Comportamento | Implementação atual | Sugestão de consolidação |
 |---|---|---|
-| Regra de mobile (`<=1200`) | `mobile-menu.js` (`isMobileViewport`) e `dropdown-menu.js` (`isMobile`) | `core/breakpoints.js` com `isMobileViewport()` |
-| Clique fora para fechar | listeners globais em `mobile-menu.js` (menu + idiomas) e `dropdown-menu.js` | helper `onClickOutside()` em `core/events.js` |
-| Lock de rolagem do body | `mobile-menu.js` altera `document.body.style.overflow` | `setBodyScrollLocked(true/false)` em `core/dom-utils.js` |
-| Fechar grupos de elementos ativos | `closeMobileMenu()` e `closeAllDropdowns()` | `closeAllBySelector(selector, className='active')` |
+| Regra de breakpoint mobile (`<= 1200`) | `isMobileViewport()` em `mobile-menu.js` e `isMobile()` em `dropdown-menu.js` | Criar `core/breakpoints.js` com `isMobileViewport(maxWidth = 1200)` |
+| Fechamento por clique fora | `document.addEventListener('click', ...)` separado em `mobile-menu.js` (menu + idioma) e `dropdown-menu.js` (dropdowns) | Criar helper `onClickOutside(container, handler, exceptions = [])` em `core/events.js` |
+| Fechamento em lote de elementos ativos | `closeMobileMenu()` e `closeAllDropdowns()` com lógica semelhante | Criar `closeActiveBySelector(selector, activeClass = 'active')` em `core/dom.js` |
+| Lock de scroll de `<body>` | `document.body.style.overflow` manipulado diretamente no menu mobile | Criar `setBodyScrollLocked(true/false)` em `core/dom.js` |
 
-### Sugestão prática
-Consolidar utilidades em um módulo único (ex.: `ui-helpers.js`) com funções puras e reutilizáveis:
-- `isMobileViewport(maxWidth = 1200)`
-- `onClickOutside(container, trigger, handler)`
-- `toggleBodyScroll(lock)`
-- `closeAll(elements, className = 'active')`
-
-**Benefício:** reduz duplicação de lógica e elimina divergência de comportamento entre menu mobile, dropdown de navegação e dropdown de idioma.
+### Quick win sugerido (baixo risco)
+1. Criar `MOBILE_BREAKPOINT = 1200` em um único módulo.
+2. Substituir chamadas locais de viewport para usar o helper único.
+3. Trocar listeners globais repetidos por uma função utilitária compartilhada.
 
 ---
 
-## 2) Extração de módulos (separação por responsabilidade)
+## 2) Extração de módulos por responsabilidade
 
-### Situação atual
-Os arquivos atuais já possuem separação inicial (`mobile-menu.js`, `dropdown-menu.js`, `i18n.js`), mas ainda carregam muita lógica de orquestração via listeners globais e acoplamento ao DOM completo.
-
-### Proposta de módulos
-Estrutura sugerida:
+### Estrutura alvo sugerida
 
 ```text
 public/assets/js/
   core/
-    dom-utils.js
-    events.js
     breakpoints.js
+    dom.js
+    events.js
   features/
     mobile-menu.js
     nav-dropdown.js
     language-switcher.js
-    legal-notice.js
-    i18n-engine.js
   pages/
     home.js
     empresas.js
@@ -56,29 +41,40 @@ public/assets/js/
   main.js
 ```
 
-### Critérios de extração
-- **`core/*`**: funções sem conhecimento de página (helpers e infraestrutura).
-- **`features/*`**: componentes reutilizáveis entre páginas.
-- **`pages/*`**: regra específica de conteúdo e comportamento local.
-- **`main.js`**: bootstrap e composição, sem regra de negócio.
+### Regras de fronteira
+- **`core/*`**: utilitários puros (sem dependência de elementos de página).
+- **`features/*`**: componentes compartilháveis (header/menu/dropdown/idioma).
+- **`pages/*`**: apenas comportamento específico da página.
+- **`main.js`**: bootstrap e composição por `data-page`.
 
-**Benefício:** facilita manutenção incremental e testes unitários por módulo.
+### Sugestão de extração imediata
+- Mover a lógica de dropdown de idioma para `features/language-switcher.js`.
+- Renomear `dropdown-menu.js` para `features/nav-dropdown.js` (papel mais claro).
+- Manter `navigation.js` apenas para navegação interna (ou descontinuar se o projeto já é MPA puro).
 
 ---
 
 ## 3) Isolamento de escopo por página
 
-### Problema típico atual
-Scripts globais tentam inicializar comportamentos em páginas onde os elementos não existem, exigindo muitos `if (!el) return` e gerando acoplamento implícito.
+### Problema atual
+Scripts globais inicializam em todas as páginas, mesmo quando os alvos não existem, aumentando `if (!el) return` e acoplamento implícito.
 
-### Estratégia recomendada
-1. Definir identificador de página no HTML (ex.: `<body data-page="governo">`).
-2. Em `main.js`, carregar/inicializar apenas o módulo correspondente:
+### Padrão recomendado
+1. Definir `data-page` no `<body>` de cada HTML.
+2. Centralizar inicialização em `main.js`.
+3. Executar apenas o módulo da página atual.
 
 ```js
+import { initHeaderFeatures } from './features/header.js';
+import { initHome } from './pages/home.js';
+import { initEmpresas } from './pages/empresas.js';
+import { initGoverno } from './pages/governo.js';
+import { initPessoas } from './pages/pessoas.js';
+import { initLegal } from './pages/legal.js';
+
 const page = document.body.dataset.page;
 
-const registry = {
+const pageRegistry = {
   home: initHome,
   empresas: initEmpresas,
   governo: initGoverno,
@@ -86,55 +82,42 @@ const registry = {
   legal: initLegal,
 };
 
-registry[page]?.();
+initHeaderFeatures();
+pageRegistry[page]?.();
 ```
 
-3. Deixar `features` independentes e chamadas só quando necessárias por cada `pages/*`.
+### Mapa sugerido de escopo
 
-**Benefício:** reduz efeitos colaterais, melhora performance e torna cada página previsível.
-
-### Matriz de isolamento recomendada
-
-| Página | `data-page` | O que inicializar | O que NÃO inicializar |
+| Página | `data-page` | Inicializar | Não inicializar |
 |---|---|---|---|
-| Home | `home` | hero, destaques, CTA específicos | regras de páginas legais |
-| Empresas | `empresas` | blocos de soluções B2B + CTA dedicado | componentes de governo/pessoas |
-| Governo | `governo` | seções institucionais + fluxos de contratação | componentes comerciais de empresas |
-| Pessoas | `pessoas` | conteúdo cidadão e variações de jornada individual | fluxos específicos de governo |
-| Legal | `legal` | breadcrumbs, notices jurídicos, i18n legal | scripts de landing/hero comercial |
-
-> Observação: `features` globais (menu mobile, dropdown de navegação e troca de idioma) continuam reutilizáveis, porém carregados via `main.js` somente quando o DOM da página realmente contém os elementos-alvo.
+| `index.html` | `home` | hero, CTA, destaques | regras legais |
+| `empresas.html` | `empresas` | jornadas B2B | fluxo cidadão e governo |
+| `governo.html` | `governo` | seções institucionais | blocos comerciais B2B |
+| `pessoas.html` | `pessoas` | jornadas individuais | fluxos de contratação pública |
+| `legal/*.html` | `legal` | breadcrumbs + ajustes jurídicos | scripts de hero comercial |
 
 ---
 
-## 4) Plano incremental de implementação (baixo risco)
+## 4) Plano incremental (4 fases)
 
-1. **Fase 1 — utilidades compartilhadas**
-   - Criar `core/breakpoints.js` e `core/dom-utils.js`.
-   - Migrar `isMobileViewport`/`isMobile` para uma única função.
-2. **Fase 2 — componentes de navegação**
-   - Extrair dropdown de idioma para `features/language-switcher.js`.
-   - Padronizar fechamento por clique externo com helper comum.
-3. **Fase 3 — bootstrap por página**
-   - Adicionar `data-page` nos HTMLs principais.
-   - Criar `main.js` com registry de inicialização.
-4. **Fase 4 — i18n desacoplado**
-   - Separar motor (`i18n-engine`) de comportamentos legais (`legal-notice`).
-
----
-
-## 5) Quick wins imediatos
-
-- Substituir constantes mágicas de breakpoint por constante central.
-- Unificar listeners de clique externo para evitar múltiplos handlers concorrentes.
-- Consolidar regras de lock de scroll (`document.body.style.overflow`) em helper único.
-- Introduzir convenção `initX()` + `destroyX()` para cada feature (preparando eventual navegação parcial futuramente).
+1. **Fase 1 – Core compartilhado**
+   - Criar `core/breakpoints.js`, `core/dom.js`, `core/events.js`.
+   - Substituir funções duplicadas nos arquivos atuais.
+2. **Fase 2 – Features desacopladas**
+   - Extrair idioma e dropdown para módulos próprios.
+   - Reduzir listeners globais concorrentes.
+3. **Fase 3 – Bootstrap por página**
+   - Adicionar `data-page` nos HTMLs.
+   - Introduzir `main.js` com registry.
+4. **Fase 4 – Limpeza e observabilidade**
+   - Remover logs de debug permanentes (`console.log`/`console.warn` não essenciais).
+   - Padronizar contrato `init()/destroy()` por feature.
 
 ---
 
-## 6) Métricas de sucesso da refatoração
+## 5) Métricas de sucesso
 
-- Redução do número total de listeners globais no `document`.
-- Redução de blocos defensivos (`if (!el) return`) em scripts globais.
-- Menor tempo de onboarding para alterar uma página sem impacto em outras.
-- Menor difusão de regras de breakpoint (uma única fonte da verdade).
+- Menos listeners no `document` e `window`.
+- Uma única fonte da verdade para breakpoint mobile.
+- Menos condicionais defensivas em scripts globais.
+- Menor impacto cruzado ao alterar páginas específicas.
