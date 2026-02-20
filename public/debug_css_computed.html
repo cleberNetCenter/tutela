@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEBUG - CSS Computado Dropdown Mobile</title>
+    
+    <!-- CSS files in the SAME order as the real site -->
+    <link rel="stylesheet" href="/public/assets/css/styles-header-final.css?v=4">
+    <link rel="stylesheet" href="/public/assets/css/dropdown-menu.css">
+    
+    <style>
+        body {
+            font-family: system-ui;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .debug-panel {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: rgba(0,0,0,0.95);
+            padding: 20px;
+            overflow-y: auto;
+            border-left: 2px solid #00ff00;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 9999;
+        }
+        .debug-panel h3 {
+            color: #00ff00;
+            margin: 10px 0;
+        }
+        .debug-info {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { color: #00ff00; }
+        .error { color: #ff0000; }
+        .warning { color: #ffaa00; }
+        button {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            width: 100%;
+        }
+        button:hover {
+            background: #00cc00;
+        }
+        pre {
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Reproduzir estrutura exata do site -->
+<header class="header">
+    <nav id="nav" class="nav">
+        <div class="nav-dropdown">
+            <a href="#solucoes" class="nav-link">
+                Soluções
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path d="M6 8L2 4h8z"/>
+                </svg>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/governo.html">Para Governo</a></li>
+                <li><a href="/empresas.html">Para Empresas</a></li>
+                <li><a href="/pessoas.html">Para Pessoas</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-dropdown">
+            <a href="#base" class="nav-link">
+                Base Jurídica
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path d="M6 8L2 4h8z"/>
+                </svg>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/institucional.html">Institucional</a></li>
+                <li><a href="/termos.html">Termos de Custódia</a></li>
+                <li><a href="/privacidade.html">Política de Privacidade</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+    <span>☰</span>
+</button>
+
+<!-- Debug Panel -->
+<div class="debug-panel">
+    <h3>🔍 DEBUG CSS COMPUTADO</h3>
+    
+    <button onclick="abrirMenuMobile()">1️⃣ ABRIR MENU MOBILE</button>
+    <button onclick="abrirDropdown1()">2️⃣ ABRIR DROPDOWN "Soluções"</button>
+    <button onclick="diagnosticarCSS()">🔬 DIAGNOSTICAR CSS</button>
+    <button onclick="listarTodasRegrasCSS()">📋 LISTAR TODAS REGRAS CSS</button>
+    
+    <div id="debug-output"></div>
+</div>
+
+<script>
+function log(msg, type = 'info') {
+    const output = document.getElementById('debug-output');
+    const color = type === 'success' ? 'success' : type === 'error' ? 'error' : type === 'warning' ? 'warning' : '';
+    output.innerHTML += `<div class="debug-info ${color}">${msg}</div>`;
+}
+
+function toggleMobileMenu() {
+    const nav = document.getElementById('nav');
+    const btn = document.querySelector('.mobile-menu-btn');
+    
+    nav.classList.toggle('active');
+    btn.classList.toggle('active');
+    
+    log(`Menu mobile: ${nav.classList.contains('active') ? 'ABERTO' : 'FECHADO'}`, 
+        nav.classList.contains('active') ? 'success' : 'warning');
+}
+
+function abrirMenuMobile() {
+    document.getElementById('debug-output').innerHTML = '';
+    log('<h3>PASSO 1: Abrindo menu mobile</h3>', 'info');
+    
+    const nav = document.getElementById('nav');
+    const btn = document.querySelector('.mobile-menu-btn');
+    
+    nav.classList.add('active');
+    btn.classList.add('active');
+    
+    log(`✅ Classes adicionadas: nav.active=${nav.classList.contains('active')}`, 'success');
+    
+    // Aguardar um frame para CSS aplicar
+    requestAnimationFrame(() => {
+        diagnosticarCSS();
+    });
+}
+
+function abrirDropdown1() {
+    log('<h3>PASSO 2: Abrindo dropdown "Soluções"</h3>', 'info');
+    
+    const dropdown = document.querySelectorAll('.nav-dropdown')[0];
+    dropdown.classList.add('active');
+    
+    log(`✅ Classe adicionada: .nav-dropdown.active`, 'success');
+    
+    requestAnimationFrame(() => {
+        diagnosticarCSS();
+    });
+}
+
+function diagnosticarCSS() {
+    log('<h3>🔬 DIAGNÓSTICO CSS COMPUTADO</h3>', 'info');
+    
+    const nav = document.getElementById('nav');
+    const dropdown1 = document.querySelectorAll('.nav-dropdown')[0];
+    const menu1 = dropdown1.querySelector('.dropdown-menu');
+    
+    // Estado das classes
+    log(`<strong>Estado das Classes:</strong>`, 'info');
+    log(`• nav.active: ${nav.classList.contains('active') ? '✅' : '❌'}`, 
+        nav.classList.contains('active') ? 'success' : 'error');
+    log(`• nav-dropdown.active: ${dropdown1.classList.contains('active') ? '✅' : '❌'}`, 
+        dropdown1.classList.contains('active') ? 'success' : 'error');
+    
+    // CSS computado
+    const computedStyle = window.getComputedStyle(menu1);
+    log(`<strong>CSS Computado do .dropdown-menu:</strong>`, 'info');
+    log(`<pre>display: ${computedStyle.display}
+position: ${computedStyle.position}
+visibility: ${computedStyle.visibility}
+opacity: ${computedStyle.opacity}
+z-index: ${computedStyle.zIndex}
+width: ${computedStyle.width}
+height: ${computedStyle.height}
+top: ${computedStyle.top}
+left: ${computedStyle.left}
+background: ${computedStyle.background}
+border: ${computedStyle.border}</pre>`, 'info');
+    
+    // Análise
+    if (computedStyle.display === 'none') {
+        log(`❌ PROBLEMA: display é "none" - O menu está ESCONDIDO!`, 'error');
+        log(`🔍 Possíveis causas:`, 'warning');
+        log(`1. Falta a classe .active no dropdown`, 'warning');
+        log(`2. Conflito de especificidade CSS`, 'warning');
+        log(`3. Ordem de carregamento dos arquivos CSS incorreta`, 'warning');
+    } else if (computedStyle.display === 'block' || computedStyle.display === 'flex') {
+        log(`✅ CSS CORRETO: display é "${computedStyle.display}"`, 'success');
+        
+        if (computedStyle.visibility === 'hidden') {
+            log(`❌ MAS visibility é "hidden"`, 'error');
+        } else if (computedStyle.opacity === '0') {
+            log(`❌ MAS opacity é 0`, 'error');
+        } else {
+            log(`✅ Menu deveria estar VISÍVEL na tela!`, 'success');
+        }
+    }
+    
+    // Dimensões
+    const rect = menu1.getBoundingClientRect();
+    log(`<strong>Posição e Dimensões Reais:</strong>`, 'info');
+    log(`<pre>x: ${rect.x}px
+y: ${rect.y}px
+width: ${rect.width}px
+height: ${rect.height}px
+top: ${rect.top}px
+left: ${rect.left}px
+bottom: ${rect.bottom}px
+right: ${rect.right}px</pre>`, 'info');
+    
+    if (rect.width === 0 || rect.height === 0) {
+        log(`❌ Menu tem dimensões ZERO - Está colapsado!`, 'error');
+    } else if (rect.top < 0 || rect.left < 0 || rect.top > window.innerHeight) {
+        log(`⚠️ Menu está FORA DA TELA (off-screen)`, 'warning');
+    } else {
+        log(`✅ Menu está na área visível`, 'success');
+    }
+}
+
+function listarTodasRegrasCSS() {
+    log('<h3>📋 TODAS AS REGRAS CSS APLICADAS</h3>', 'info');
+    
+    const menu1 = document.querySelector('.dropdown-menu');
+    const sheets = document.styleSheets;
+    let rules = [];
+    
+    try {
+        for (let sheet of sheets) {
+            try {
+                const cssRules = sheet.cssRules || sheet.rules;
+                for (let rule of cssRules) {
+                    if (rule.selectorText && rule.selectorText.includes('dropdown-menu')) {
+                        rules.push({
+                            selector: rule.selectorText,
+                            display: rule.style.display || 'não definido',
+                            file: sheet.href ? sheet.href.split('/').pop() : 'inline'
+                        });
+                    }
+                }
+            } catch (e) {
+                log(`⚠️ Não foi possível ler: ${sheet.href}`, 'warning');
+            }
+        }
+        
+        log(`<strong>Regras encontradas (${rules.length}):</strong>`, 'info');
+        rules.forEach(r => {
+            log(`<pre>${r.file}
+${r.selector} {
+  display: ${r.display};
+}</pre>`, 'info');
+        });
+        
+    } catch (err) {
+        log(`❌ Erro ao listar regras: ${err.message}`, 'error');
+    }
+}
+
+// Auto-diagnóstico ao carregar
+window.addEventListener('DOMContentLoaded', () => {
+    log('✅ Página carregada', 'success');
+    log(`Largura: ${window.innerWidth}px`, 'info');
+    log(`Mobile: ${window.innerWidth <= 1200 ? 'SIM' : 'NÃO'}`, 
+        window.innerWidth <= 1200 ? 'success' : 'warning');
+});
+</script>
+
+</body>
+</html>
