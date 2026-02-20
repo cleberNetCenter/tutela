@@ -1,0 +1,160 @@
+============================================================
+  AUDITORIA ESTRUTURAL COMPLETA - ARQUITETURA MPA
+  Data: 2026-02-20 15:02:12
+============================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ETAPA 1 — VALIDAÇÃO DA ESTRUTURA DE ARQUIVOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1.1 — Verificando arquivos OBRIGATÓRIOS:
+  ✅ public/assets/js/navigation-controller.js
+  ✅ public/assets/js/i18n.js
+  ✅ public/assets/lang/pt.json
+  ✅ public/assets/lang/en.json
+  ✅ public/assets/lang/es.json
+
+1.2 — Verificando arquivos PROIBIDOS (legado SPA):
+  ✅ public/assets/js/navigation.js (corretamente removido)
+  ✅ public/assets/js/mobile-menu.js (corretamente removido)
+  ✅ public/assets/js/dropdown-menu.js (corretamente removido)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ETAPA 2 — VARREDURA EM TODOS OS ARQUIVOS HTML
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📄 Total de arquivos HTML a auditar: 19
+
+2.1 — Verificando SCRIPTS PROIBIDOS:
+
+  ✅ Nenhum script proibido encontrado
+
+2.2 — Verificando CAMINHOS RELATIVOS INCORRETOS:
+
+  [1;33m⚠️  ERRO DE PATH: public/como-funciona.html contém href="assets/" (falta "/")[0m
+12:<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+  [1;33m⚠️  ERRO DE PATH: public/empresas.html contém href="assets/" (falta "/")[0m
+10:<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+  [1;33m⚠️  ERRO DE PATH: public/en/index.html contém href="assets/" (falta "/")[0m
+9:<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+  [1;33m⚠️  ERRO DE PATH: public/es/index.html contém href="assets/" (falta "/")[0m
+9:<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+  [1;33m⚠️  ERRO DE PATH: public/governo.html contém href="assets/" (falta "/")[0m
+10:<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+  [1;33m⚠️  ERRO DE PATH: public/index.html contém href="assets/" (falta "/")[0m
+11:<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+  [1;33m⚠️  ERRO DE PATH: public/pessoas.html contém href="assets/" (falta "/")[0m
+10:<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+  [1;33m⚠️  ERRO DE PATH: public/seguranca.html contém href="assets/" (falta "/")[0m
+11:<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+
+2.3 — Verificando SCRIPTS DUPLICADOS DE NAVEGAÇÃO:
+
+  [1;33m⚠️  DUPLICAÇÃO: public/legal/fundamento-juridico.html tem 3 listeners 'DOMContentLoaded' (esperado: 2)[0m
+  [1;33m⚠️  DUPLICAÇÃO: public/legal/institucional.html tem 3 listeners 'DOMContentLoaded' (esperado: 2)[0m
+  [1;33m⚠️  DUPLICAÇÃO: public/legal/politica-de-privacidade.html tem 3 listeners 'DOMContentLoaded' (esperado: 2)[0m
+  [1;33m⚠️  DUPLICAÇÃO: public/legal/preservacao-probatoria-digital.html tem 3 listeners 'DOMContentLoaded' (esperado: 2)[0m
+  [1;33m⚠️  DUPLICAÇÃO: public/legal/termos-de-custodia.html tem 3 listeners 'DOMContentLoaded' (esperado: 2)[0m
+
+2.4 — Verificando ORDEM DE CARREGAMENTO DOS SCRIPTS:
+
+  ✅ public/como-funciona.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/empresas.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/en/empresas.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/en/governo.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/en/index.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/en/pessoas.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/es/empresas.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/es/governo.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/es/index.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/es/pessoas.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/governo.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/index.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/legal/fundamento-juridico.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/legal/institucional.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/legal/politica-de-privacidade.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/legal/preservacao-probatoria-digital.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/legal/termos-de-custodia.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/pessoas.html - ordem correta (i18n.js → navigation-controller.js)
+  ✅ public/seguranca.html - ordem correta (i18n.js → navigation-controller.js)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ETAPA 3 — AUDITORIA DO i18n.js (FETCH ABSOLUTO)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✅ i18n.js usa fetch ABSOLUTO '/assets/lang/'
+109:      const response = await fetch(`/assets/lang/${lang}.json?v=10`);
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ETAPA 4 — DETECTAR RESQUÍCIOS DE ARQUITETURA SPA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 Procurando por: navigateTo(
+  [0;31m❌ RESQUÍCIO SPA DETECTADO:[0m
+public/en/index.html:141:<a class="logo" href="#" onclick="navigateTo('home'); return false;">
+public/en/index.html:145:<a class="nav-link" data-page="home" href="#" onclick="navigateTo('home'); return false;" data-i18n="nav_home">Início</a>
+public/en/index.html:146:<a class="nav-link" data-page="governo" href="#" onclick="navigateTo('governo'); return false;" data-i18n="nav_governo">Governo</a>
+public/en/index.html:147:<a class="nav-link" data-page="empresas" href="#" onclick="navigateTo('empresas'); return false;" data-i18n="nav_empresas">Empresas</a>
+public/en/index.html:148:<a class="nav-link" data-page="pessoas" href="#" onclick="navigateTo('pessoas'); return false;" data-i18n="nav_pessoas">Pessoas Físicas</a>
+
+🔍 Procurando por: .page.active
+  [0;31m❌ RESQUÍCIO SPA DETECTADO:[0m
+public/en/index.html:188:<div class="page active" id="page-home">
+public/es/index.html:188:<div class="page active" id="page-home">
+public/legal/institucional.html:238:<div class="page active" id="page-institucional">
+public/legal/politica-de-privacidade.html:251:<div class="page active" id="page-politica-de-privacidade">
+public/legal/termos-de-custodia.html:251:<div class="page active" id="page-termos-de-custodia">
+
+🔍 Procurando por: history.pushState
+  ✅ Nenhum resquício detectado
+
+🔍 Procurando por: history.replaceState
+  ✅ Nenhum resquício detectado
+
+🔍 Procurando por: data-page=
+  [0;31m❌ RESQUÍCIO SPA DETECTADO:[0m
+public/en/index.html:145:<a class="nav-link" data-page="home" href="#" onclick="navigateTo('home'); return false;" data-i18n="nav_home">Início</a>
+public/en/index.html:146:<a class="nav-link" data-page="governo" href="#" onclick="navigateTo('governo'); return false;" data-i18n="nav_governo">Governo</a>
+public/en/index.html:147:<a class="nav-link" data-page="empresas" href="#" onclick="navigateTo('empresas'); return false;" data-i18n="nav_empresas">Empresas</a>
+public/en/index.html:148:<a class="nav-link" data-page="pessoas" href="#" onclick="navigateTo('pessoas'); return false;" data-i18n="nav_pessoas">Pessoas Físicas</a>
+public/en/index.html:149:<a class="nav-link" data-page="como-funciona" href="#" onclick="navigateTo('como-funciona'); return false;" data-i18n="nav_como_funciona">Como Funciona</a>
+
+🔍 Procurando por: page-container
+  ✅ Nenhum resquício detectado
+
+🔍 Procurando por: initNavigation(
+  ✅ Nenhum resquício detectado
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ETAPA 5 — DETECTAR PATHS INCORRETOS EM /legal/
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✅ public/legal/fundamento-juridico.html usa '/assets/' (correto)
+  ✅ public/legal/institucional.html usa '/assets/' (correto)
+  ✅ public/legal/politica-de-privacidade.html usa '/assets/' (correto)
+  ✅ public/legal/preservacao-probatoria-digital.html usa '/assets/' (correto)
+  ✅ public/legal/termos-de-custodia.html usa '/assets/' (correto)
+✅ Nenhum path incorreto em /legal/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RELATÓRIO FINAL - RESUMO DA AUDITORIA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 ESTATÍSTICAS:
+  • Arquivos HTML auditados: 19
+  • Erros críticos: 0
+  • Erros de path: 8
+  • Resquícios SPA: 3
+  • Scripts duplicados: 5
+  ────────────────────────────
+  • TOTAL DE ERROS: 16
+
+[0;31m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[0;31m   ❌ REPROVADO — NECESSITA CORREÇÃO[0m
+[0;31m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+
+⚠️  Foram detectados 16 erros que precisam ser corrigidos.
+
+📄 Relatório salvo em: audit_report_20260220_150212.txt
+============================================================

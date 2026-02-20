@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title data-i18n="site_title">Tutela Digital® - Custódia Jurídica de Ativos Digitais</title>
 <meta content="Infraestrutura de custódia jurídica e governança de ativos digitais com validade legal, inviolabilidade técnica e cadeia de custódia auditável." name="description" data-i18n="site_description"/>
-<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- Hreflang for multilingual SEO -->
 <!-- Home Page -->
 
@@ -138,16 +138,16 @@
 <!-- HEADER -->
 <header class="header" id="header">
 <div class="header-inner">
-<a class="logo" href="#" onclick="navigateTo('home'); return false;">
+<a class="logo" href="/en/index.html">
                     Tutela Digital<sup>®</sup>
 </a>
 <nav class="nav" id="nav">
-<a class="nav-link" data-page="home" href="#" onclick="navigateTo('home'); return false;" data-i18n="nav_home">Início</a>
-<a class="nav-link" data-page="governo" href="#" onclick="navigateTo('governo'); return false;" data-i18n="nav_governo">Governo</a>
-<a class="nav-link" data-page="empresas" href="#" onclick="navigateTo('empresas'); return false;" data-i18n="nav_empresas">Empresas</a>
-<a class="nav-link" data-page="pessoas" href="#" onclick="navigateTo('pessoas'); return false;" data-i18n="nav_pessoas">Pessoas Físicas</a>
-<a class="nav-link" data-page="como-funciona" href="#" onclick="navigateTo('como-funciona'); return false;" data-i18n="nav_como_funciona">Como Funciona</a>
-<a class="nav-link" data-page="seguranca" href="#" onclick="navigateTo('seguranca'); return false;" data-i18n="nav_seguranca">Segurança</a>
+<a class="nav-link" href="/en/index.html" data-i18n="nav_home">Início</a>
+<a class="nav-link" href="/en/governo.html" data-i18n="nav_governo">Governo</a>
+<a class="nav-link" href="/en/empresas.html" data-i18n="nav_empresas">Empresas</a>
+<a class="nav-link" href="/en/pessoas.html" data-i18n="nav_pessoas">Pessoas Físicas</a>
+<a class="nav-link" href="/como-funciona.html" data-i18n="nav_como_funciona">Como Funciona</a>
+<a class="nav-link" href="/seguranca.html" data-i18n="nav_seguranca">Segurança</a>
 <li class="nav-dropdown">
 <a href="#" data-i18n="navigation.legal_base">Base Jurídica</a>
 <ul class="dropdown-menu">
@@ -185,7 +185,7 @@
 <!-- MAIN CONTENT -->
 <main class="main">
 <!-- ==================== HOME ==================== -->
-<div class="page active" id="page-home">
+<div class="main" id="content-home">
 <section class="hero">
 <div class="hero-inner">
 <h1>Tutela Digital<sup>®</sup></h1>
@@ -203,15 +203,12 @@
 <div class="verticals-inner">
 <h2 data-i18n="home_verticals_title">Soluções por Segmento</h2>
 <div class="verticals-grid">
-<div class="vertical-card" onclick="navigateTo('governo')">
 <h3 data-i18n="home_verticals_gov">Governo</h3>
 <p data-i18n="home_verticals_gov_desc">Custódia probatória de atos públicos com transparência e aderência normativa.</p>
 </div>
-<div class="vertical-card" onclick="navigateTo('empresas')">
 <h3 data-i18n="home_verticals_corp">Empresas</h3>
 <p data-i18n="home_verticals_corp_desc">Proteção de documentos estratégicos, compliance e governança digital corporativa.</p>
 </div>
-<div class="vertical-card" onclick="navigateTo('pessoas')">
 <h3 data-i18n="home_verticals_personal">Pessoas Físicas</h3>
 <p data-i18n="home_verticals_personal_desc">Proteção patrimonial digital, confidencialidade e planejamento sucessório.</p>
 </div>
@@ -260,7 +257,7 @@
 </section>
 </div>
 <!-- ==================== GOVERNO ==================== -->
-<div class="page" id="page-governo">
+<div class="main" id="content-governo">
 <section class="page-header page-header--governo">
 <div class="page-header-inner page-header--split">
 <!-- TEXTO À ESQUERDA -->
@@ -323,7 +320,7 @@
 </section>
 </div>
 <!-- ==================== EMPRESAS ==================== -->
-<div class="page" id="page-empresas">
+<div class="main" id="content-empresas">
 <section class="page-header page-header--empresas">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
@@ -384,7 +381,7 @@
 </section>
 </div>
 <!-- ==================== PESSOAS FÍSICAS ==================== -->
-<div class="page" id="page-pessoas">
+<div class="main" id="content-pessoas">
 <section class="page-header page-header--pessoas">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
@@ -445,7 +442,7 @@
 </section>
 </div>
 <!-- ==================== COMO FUNCIONA ==================== -->
-<div class="page" id="page-como-funciona">
+<div class="main" id="content-como-funciona">
 <section class="page-header page-header--como-funciona">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
@@ -505,7 +502,7 @@
 </section>
 </div>
 <!-- ==================== SEGURANÇA ==================== -->
-<div class="page" id="page-seguranca">
+<div class="main" id="content-seguranca">
 <section class="page-header page-header--seguranca">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
@@ -576,7 +573,7 @@
 </section>
 </div>
 <!-- ==================== PRESERVAÇÃO PROBATÓRIA ==================== -->
-<div class="page" id="page-preservacao-probatoria">
+<div class="main" id="content-preservacao-probatoria">
 <section class="page-header page-header--preservacao-probatoria">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
@@ -682,7 +679,7 @@
 </section>
 </div>
 <!-- ==================== INSTITUCIONAL ==================== -->
-<div class="page" id="page-institucional">
+<div class="main" id="content-institucional">
 <section class="page-header page-header--institucional">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
@@ -752,12 +749,12 @@
 <div class="cta-final-inner">
 <h2>Transparência Institucional e Confiabilidade Jurídica</h2>
 <p>Conheça também os fundamentos jurídicos e termos de custódia.</p>
-<a class="btn btn-primary" href="#" onclick="navigateTo('seguranca'); return false;">Ver Fundamento Jurídico</a>
+<a class="btn btn-primary" href="#">Ver Fundamento Jurídico</a>
 </div>
 </section>
 </div>
 <!-- ==================== FUNDAMENTO JURÍDICO ==================== -->
-<div class="page" id="page-fundamento-juridico">
+<div class="main" id="content-fundamento-juridico">
 <section class="page-header page-header--institucional">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
@@ -850,12 +847,12 @@
 <div class="cta-final-inner">
 <h2>Conheça também nossa Estrutura Institucional</h2>
 <p>Informações sobre a entidade responsável pela infraestrutura.</p>
-<a class="btn btn-primary" href="#" onclick="navigateTo('institucional'); return false;">Ver Estrutura Institucional</a>
+<a class="btn btn-primary" href="#">Ver Estrutura Institucional</a>
 </div>
 </section>
 </div>
 <!-- ==================== TERMOS DE CUSTÓDIA ==================== -->
-<div class="page" id="page-termos-de-custodia">
+<div class="main" id="content-termos-de-custodia">
 <section class="page-header page-header--institucional">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
@@ -943,12 +940,12 @@
 <div class="cta-final-inner">
 <h2>Conheça também o Fundamento Jurídico da Preservação Digital</h2>
 <p>Base normativa que sustenta a validade jurídica da prova digital.</p>
-<a class="btn btn-primary" href="#" onclick="navigateTo('fundamento-juridico'); return false;">Ver Fundamento Jurídico</a>
+<a class="btn btn-primary" href="#">Ver Fundamento Jurídico</a>
 </div>
 </section>
 </div>
 <!-- ==================== POLÍTICA DE PRIVACIDADE ==================== -->
-<div class="page" id="page-politica-de-privacidade">
+<div class="main" id="content-politica-de-privacidade">
 <section class="page-header page-header--institucional">
 <div class="page-header-inner page-header--split">
 <div class="page-header-content">
@@ -1062,12 +1059,12 @@ Informação sobre compartilhamento</p>
 <div class="cta-final-inner">
 <h2>Consulte também nossos Termos de Custódia</h2>
 <p>Condições jurídicas aplicáveis à preservação probatória de ativos digitais.</p>
-<a class="btn btn-primary" href="#" onclick="navigateTo('termos-de-custodia'); return false;">Ver Termos de Custódia</a>
+<a class="btn btn-primary" href="#">Ver Termos de Custódia</a>
 </div>
 </section>
 </div>
 <!-- ==================== LP GOVERNO ==================== -->
-<div class="page" id="page-lp-governo">
+<div class="main" id="content-lp-governo">
 <section class="lp-hero">
 <div class="lp-hero-inner">
 <h1>Custódia Jurídica<br/>para o Setor Público</h1>
@@ -1116,7 +1113,7 @@ Informação sobre compartilhamento</p>
 </section>
 </div>
 <!-- ==================== LP EMPRESAS ==================== -->
-<div class="page" id="page-lp-empresas">
+<div class="main" id="content-lp-empresas">
 <section class="lp-hero">
 <div class="lp-hero-inner">
 <h1>Governança de Ativos<br/>Digitais Corporativos</h1>
@@ -1165,7 +1162,7 @@ Informação sobre compartilhamento</p>
 </section>
 </div>
 <!-- ==================== LP PESSOAS ==================== -->
-<div class="page" id="page-lp-pessoas">
+<div class="main" id="content-lp-pessoas">
 <section class="lp-hero">
 <div class="lp-hero-inner">
 <h1>Proteção do Seu<br/>Patrimônio Digital</h1>
@@ -1229,16 +1226,6 @@ Informação sobre compartilhamento</p>
 </a>
 </div>
 <div class="footer-links">
-<span class="footer-link" onclick="navigateTo('governo')">Governo</span>
-<span class="footer-link" onclick="navigateTo('empresas')">Empresas</span>
-<span class="footer-link" onclick="navigateTo('pessoas')">Pessoas Físicas</span>
-<span class="footer-link" onclick="navigateTo('como-funciona')">Como Funciona</span>
-<span class="footer-link" onclick="navigateTo('seguranca')">Segurança</span>
-<span class="footer-link" onclick="navigateTo('preservacao-probatoria')">Preservação Probatória</span>
-<span class="footer-link" onclick="navigateTo('institucional')">Institucional</span>
-<span class="footer-link" onclick="navigateTo('fundamento-juridico')">Fundamento Jurídico</span>
-<span class="footer-link" onclick="navigateTo('termos-de-custodia')">Termos de Custódia</span>
-<span class="footer-link" onclick="navigateTo('politica-de-privacidade')">Política de Privacidade</span>
 </div>
 <div class="footer-copy">
                     © 2025 Tutela Digital®. Todos os direitos reservados.

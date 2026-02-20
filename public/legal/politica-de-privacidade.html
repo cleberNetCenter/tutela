@@ -248,7 +248,7 @@
 
 <!-- MAIN CONTENT -->
 <main class="main">
-<div class="page active" id="page-politica-de-privacidade">
+<div class="main" id="content-politica-de-privacidade">
 <section class="page-header page-header--legal">
   <div class="page-header-inner page-header--legal">
     
@@ -500,64 +500,16 @@ Informação sobre compartilhamento</p>
 </svg>
 </a>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const elements = document.querySelectorAll('.reveal-on-scroll');
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15 });
-
-  elements.forEach(el => observer.observe(el));
-});
-</script>
 
 <!-- Script de Micro-Animações Jurídicas -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const sections = document.querySelectorAll(
-    ".page-header, .text-block, .features, .cta-final"
-  );
 
-  sections.forEach(section => {
-    section.classList.add("legal-animate");
-  });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll(".legal-animate").forEach(el => {
-    observer.observe(el);
-  });
-});
-</script>
 
 
 <!-- Scripts de internacionalização e navegação -->
 
 <!-- Inicializar i18n para páginas legais -->
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-  // Inicializa sistema i18n
-  await I18N.init();
-  
-  // Força exibição do aviso se não estiver em PT
-  if (I18N.currentLang !== 'pt') {
-    console.log('[Legal Page] Idioma atual:', I18N.currentLang, '- Exibindo aviso');
-    I18N.showLegalPageNoticeIfNeeded();
-  }
-});
-</script>
+
 
 <script src="/assets/js/i18n.js"></script>
 <script src="/assets/js/navigation-controller.js"></script>
