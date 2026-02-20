@@ -230,3 +230,35 @@ Se quiser reduzir risco de rollout, primeiro mantenha scripts clássicos e use u
 2. Organizar header (`features/header/*`).
 3. Ativar bootstrap por página (`main.js`).
 4. Limpar legado e estabilizar (`destroy`, logs, globais).
+
+
+---
+
+## 7) Sugestão direta (curto prazo) para o cenário atual
+
+### Consolidar funções duplicadas (primeiro)
+- Criar `public/assets/js/core/breakpoints.js` e centralizar o breakpoint `1200`.
+  - `mobile-menu.js`: substituir `isMobileViewport()`.
+  - `dropdown-menu.js`: substituir `isMobile()`.
+- Criar `public/assets/js/core/scroll-lock.js` com `setBodyScrollLocked(isLocked)`.
+  - `mobile-menu.js`: trocar escrita direta em `document.body.style.overflow`.
+- Criar `public/assets/js/core/click-outside.js` com um helper único.
+  - Reusar no fechamento de menu mobile, dropdown de navegação e dropdown de idioma.
+
+### Extrair módulos por domínio (segundo)
+- Quebrar `mobile-menu.js` em 2 módulos:
+  - `features/header/mobile-menu.js`
+  - `features/header/language-switcher.js`
+- Evoluir `dropdown-menu.js` para `features/header/nav-dropdown.js`.
+- Manter um agregador único `features/header/index.js` com `initHeaderFeatures()`.
+
+### Isolar escopo por página (terceiro)
+- Adicionar `data-page` no `<body>` de cada página MPA.
+- Criar um bootstrap `public/assets/js/main.js` com registro por página:
+  - `home`, `empresas`, `governo`, `pessoas`, `legal`.
+- Inicializar sempre o header compartilhado e apenas o módulo da página atual.
+
+### Ganhos esperados
+- Menos regressões cruzadas entre páginas.
+- Menos listeners globais concorrentes no `document`.
+- Base pronta para remover scripts legados sem quebrar a navegação.
