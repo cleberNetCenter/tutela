@@ -82,7 +82,8 @@
   color: #ffffff;
 }
 
-/* Show dropdown on hover (desktop) */
+/* Show dropdown on hover/click (desktop) */
+.nav-dropdown.active .dropdown-menu,
 .nav-dropdown:hover .dropdown-menu,
 .nav-dropdown:focus-within .dropdown-menu {
   display: flex;
