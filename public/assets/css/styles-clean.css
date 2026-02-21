@@ -1434,7 +1434,7 @@ body.legal-page .page-header {
 
 /* Hero - garantir visibilidade do texto */
 .page-header--legal {
-  padding: 6rem 2rem 5rem 2rem;
+  padding: 2rem 2rem 5rem 2rem;
   text-align: center;
   background: linear-gradient(
     180deg,
