@@ -9,15 +9,19 @@ document.addEventListener("DOMContentLoaded", function () {
     ".text-block, .features, .cta-final"
   );
 
-  // 1️⃣ Hero anima imediatamente
+  // HERO — forçar transição real
   if (header) {
     header.classList.add("legal-animate");
+
+    // força reflow para garantir estado inicial aplicado
+    void header.offsetHeight;
+
     requestAnimationFrame(() => {
       header.classList.add("visible");
     });
   }
 
-  // 2️⃣ Restante anima com scroll
+  // Seções com scroll
   sections.forEach(section => {
     section.classList.add("legal-animate");
   });
