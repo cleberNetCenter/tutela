@@ -1493,31 +1493,21 @@ body.legal-page h3 {
   line-height: 1.7;
 }
 /* ==================================================
-   PADRONIZAÇÃO DE ALTURA DO HERO LEGAL (SEM ALTERAR TEXTO)
+   LEGAL – ESTABILIZAÇÃO VERTICAL SEM ALTERAR TIPOGRAFIA
    ================================================== */
 
+/* Reduz espaço superior excessivo */
 body.legal-page .page-header--legal {
-  min-height: 460px; /* altura padrão uniforme */
-  display: block; /* garante fluxo vertical natural */
+  padding: 3rem 2rem 4rem 2rem;
 }
 
-body.exec-compact.legal-page .page-header--legal {
-  min-height: 380px;
-}
-/* ==================================================
-   LEGAL – FIXAR POSIÇÃO DO GRÁFICO
-   ================================================== */
-
-/* Reserva altura fixa para o título */
-body.legal-page .page-header--legal h1 {
-  min-height: 150px; /* espaço suficiente para 2 linhas */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+/* Reserva área estável para bloco textual inteiro */
+body.legal-page .page-header--legal .page-header-inner {
+  min-height: 220px; /* estabiliza gráfico sem tocar na fonte */
 }
 
-/* Mantém o gráfico sempre na mesma posição */
-body.legal-page .legal-graphic {
-  margin-top: 0;
+/* Mantém gráfico sempre no mesmo eixo vertical */
+body.legal-page .legal-graphic,
+body.legal-page .wp-legal-graphic {
+  margin-top: 2rem;
 }
