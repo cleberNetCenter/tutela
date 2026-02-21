@@ -1492,3 +1492,15 @@ body.legal-page h3 {
   margin: 0 auto;
   line-height: 1.7;
 }
+/* ==================================================
+   PADRONIZAÇÃO DE ALTURA DO HERO LEGAL (SEM ALTERAR TEXTO)
+   ================================================== */
+
+body.legal-page .page-header--legal {
+  min-height: 460px; /* altura padrão uniforme */
+  display: block; /* garante fluxo vertical natural */
+}
+
+body.exec-compact.legal-page .page-header--legal {
+  min-height: 380px;
+}
