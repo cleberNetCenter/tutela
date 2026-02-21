@@ -4,11 +4,27 @@
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', function() {
+  if (window.__tutelaDropdownMenuInitialized) {
+    return;
+  }
+
+  window.__tutelaDropdownMenuInitialized = true;
+
   const MOBILE_MAX_WIDTH = 1200;
   const navDropdowns = Array.from(document.querySelectorAll('.nav-dropdown'));
+  let lastTouchLikeEventAt = 0;
 
   function isMobile() {
-    return window.innerWidth <= MOBILE_MAX_WIDTH;
+    return window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`).matches;
+  }
+
+  function isNavigableHref(href) {
+    if (!href) {
+      return false;
+    }
+
+    const normalizedHref = href.trim();
+    return normalizedHref !== '#' && !normalizedHref.toLowerCase().startsWith('javascript:');
   }
 
   function closeAllDropdowns(exceptDropdown) {
@@ -41,37 +57,62 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownToggles.set(dropdown, toggle);
   });
 
-  // Delegação no documento para manter suporte a clique fora + toggle/link interno
-  document.addEventListener('click', function(e) {
+  function handleDropdownInteraction(e) {
     if (!isMobile()) {
       return;
     }
 
     const clickedDropdown = e.target.closest('.nav-dropdown');
 
-    // Clique fora de qualquer dropdown => fecha todos
     if (!clickedDropdown) {
       closeAllDropdowns();
       return;
     }
 
-    // Clique em link interno do menu => fechar apenas dropdown atual
     if (e.target.closest('.dropdown-menu a')) {
       clickedDropdown.classList.remove('active');
       return;
     }
 
-    // Toggle somente no elemento de topo previamente validado
     const toggle = dropdownToggles.get(clickedDropdown);
     if (!toggle || !toggle.contains(e.target)) {
       return;
     }
 
-    e.preventDefault();
-    e.stopPropagation();
+    const isOpen = clickedDropdown.classList.contains('active');
+    const href = toggle.getAttribute('href');
 
-    closeAllDropdowns(clickedDropdown);
-    clickedDropdown.classList.toggle('active');
+    if (!isOpen) {
+      e.preventDefault();
+      closeAllDropdowns(clickedDropdown);
+      clickedDropdown.classList.add('active');
+      return;
+    }
+
+    if (!isNavigableHref(href)) {
+      e.preventDefault();
+      clickedDropdown.classList.remove('active');
+      return;
+    }
+
+    closeAllDropdowns();
+  }
+
+  document.addEventListener('pointerdown', function(e) {
+    if (e.pointerType === 'mouse') {
+      return;
+    }
+
+    lastTouchLikeEventAt = Date.now();
+    handleDropdownInteraction(e);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (Date.now() - lastTouchLikeEventAt < 700) {
+      return;
+    }
+
+    handleDropdownInteraction(e);
   });
 
   // Fechar dropdowns ao redimensionar para desktop
