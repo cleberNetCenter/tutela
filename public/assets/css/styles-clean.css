@@ -1429,11 +1429,13 @@ body.legal-page .page-header {
 
 
 /* ==================================================
-   LEGAL – HERO WHITE PAPER HIGH-END
+   CORREÇÕES HERO E TÍTULOS LEGAIS
    ================================================== */
 
+/* Hero - garantir visibilidade do texto */
 .page-header--legal {
-  padding: 2.75rem 2rem 3.75rem 2rem;
+  padding: 2rem 2rem 5rem 2rem;
+  text-align: center;
   background: linear-gradient(
     180deg,
     var(--color-surface-light),
@@ -1441,30 +1443,54 @@ body.legal-page .page-header {
   );
 }
 
-/* Área estável para título (evita deslocamento do gráfico) */
-body.legal-page .page-header--legal h1 {
-  min-height: 132px; /* calculado para 2 linhas confortáveis */
-  display: flex;
-  align-items: flex-end; /* gravidade inferior elegante */
-  justify-content: center;
-  text-align: center;
+.page-header--legal .page-header-inner {
+  max-width: 820px;
+  margin: 0 auto;
 }
 
-/* Gráfico com entrada precisa */
-body.legal-page .legal-graphic {
-  margin-top: 1rem;
-  margin-bottom: 1.25rem;
+.page-header--legal h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 500;
+  color: var(--color-text-strong);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
-/* Divider com ritmo refinado */
-.legal-divider {
-  margin: 1.75rem auto 2.25rem auto;
-}
-
-/* Subtítulo com respiração editorial */
 .page-header-subtitle {
-  margin-top: 0;
-  max-width: 640px;
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Títulos soltos - centralizar */
+body.legal-page h2,
+body.legal-page h3 {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Wrapper para seções especiais */
+.legal-section-wrapper {
+  max-width: 980px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+/* Sobrescrever estilos anteriores conflitantes */
+.page-header--legal .page-header-content {
+  max-width: 100%;
+}
+
+.page-header--legal .hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.7;
 }
 /* ==================================================
    PADRONIZAÇÃO DE ALTURA DO HERO LEGAL (SEM ALTERAR TEXTO)
