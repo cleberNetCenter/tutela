@@ -183,6 +183,7 @@ body{
   align-items:center;
   justify-content:space-between;
   gap:1.5rem;
+  position: relative;
 }
 .nav{display:flex;gap:var(--space-lg)}
 .nav-link{
@@ -244,6 +245,9 @@ body{
   background:none;
   border:none;
   cursor:pointer;
+
+  position: relative;   /* NECESSÁRIO */
+  z-index: 1300;        /* MAIOR que .nav.active (1150) */
 }
 .mobile-menu-btn span{
   display:block;
