@@ -13,6 +13,8 @@
   const MOBILE_MAX_WIDTH = 1200;
 
   function isMobileViewport() {
+    console.log("WIDTH:", window.innerWidth);
+    alert("WIDTH: " + window.innerWidth);
     return window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`).matches;
   }
 
