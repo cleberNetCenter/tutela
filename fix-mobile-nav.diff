@@ -1,0 +1,44 @@
+diff --git a/public/assets/css/styles-clean.css b/public/assets/css/styles-clean.css
+--- a/public/assets/css/styles-clean.css
++++ b/public/assets/css/styles-clean.css
+@@ -XXX,14 +XXX,6 @@
+ @media(max-width:900px){
+-  .nav{display:none}
+-  .mobile-menu-btn{display:block}
+-  .header-cta{display:none}
+-  .nav.mobile-open{
+-    display:flex;
+-    flex-direction:column;
+-    position:absolute;
+-    top:100%;
+-    left:0;
+-    right:0;
+-    background:var(--color-surface-base);
+-    padding:var(--space-lg);
+-    gap:var(--space-md);
+-    z-index:110;
+-  }
++  .nav{display:none}
++  .mobile-menu-btn{display:block}
++  .header-cta{display:none}
+ }
+
+@@ -YYY,6 +YYY,18 @@
+ @media (max-width: 1200px) {
+   .nav {
+     display: none;
+   }
+
++  /* Estado ativo padronizado */
++  .nav.active {
++    display: flex !important;
++    flex-direction: column;
++    position: fixed;
++    top: 70px;
++    left: 0;
++    right: 0;
++    background: var(--color-surface-base);
++    padding: 1rem 0;
++    z-index: 1150;
++  }
+ }
