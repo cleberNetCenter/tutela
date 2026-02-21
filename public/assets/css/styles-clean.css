@@ -1479,13 +1479,13 @@ body.legal-page h3 {
   margin: 0 auto;
   line-height: 1.7;
 }
+
 /* ==================================================
-   LEGAL – AJUSTE FINO 40% (NÃO INTRUSIVO)
+   LEGAL – CORREÇÃO DEFINITIVA DO OFFSET SUPERIOR
    ================================================== */
 
-/* Reduz apenas o padding-top herdado do .page-header */
 body.legal-page .page-header--legal {
-  padding-top: calc(var(--space-2xl) * 0.4);
+  padding-top: 2rem !important;
 }
 
 /* Mantém bloco interno estável para evitar variação visual */
