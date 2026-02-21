@@ -50,6 +50,8 @@
     nav.classList.add('active');
     menuBtn.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    alert("NAV display: " + getComputedStyle(nav).display);
   }
 
   function closeMobileMenu() {
