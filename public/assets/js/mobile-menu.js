@@ -115,18 +115,17 @@
     // ===================================================
     const dropdownToggle = target.closest('.nav-dropdown > a, .nav-dropdown > .nav-link');
     if (dropdownToggle) {
+      event.preventDefault();
+
       const dropdown = dropdownToggle.closest('.nav-dropdown');
+      if (!dropdown) return;
 
-      if (!dropdown || !canToggleDropdown(nav)) {
-        return;
-      }
+      const willOpen = !dropdown.classList.contains('active');
 
-      if (isMobileViewport()) {
-        event.preventDefault();
+      closeAllDropdowns();
 
-        const willOpen = !dropdown.classList.contains('active');
-        closeAllDropdowns(dropdown);
-        dropdown.classList.toggle('active', willOpen);
+      if (willOpen) {
+        dropdown.classList.add('active');
       }
 
       return;

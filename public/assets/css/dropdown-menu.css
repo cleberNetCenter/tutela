@@ -82,20 +82,13 @@
   color: #ffffff;
 }
 
-/* Show dropdown on hover/click (desktop) */
-.nav-dropdown.active .dropdown-menu,
-.nav-dropdown:hover .dropdown-menu,
-.nav-dropdown:focus-within .dropdown-menu {
+/* Show dropdown on click (desktop & mobile) */
+.nav-dropdown.active .dropdown-menu {
   display: flex;
 }
 
-/* Mobile dropdown (click instead of hover) */
+/* Mobile dropdown (click only) */
 @media (max-width: 1200px) {
-  /* Desabilitar hover no mobile */
-  .nav-dropdown:hover .dropdown-menu {
-    display: none !important;
-  }
-  
   /* Mostrar dropdown APENAS quando menu mobile está aberto E dropdown clicado */
   .nav.active .nav-dropdown.active .dropdown-menu {
     display: flex !important;
