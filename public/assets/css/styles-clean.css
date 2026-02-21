@@ -1504,3 +1504,20 @@ body.legal-page .page-header--legal {
 body.exec-compact.legal-page .page-header--legal {
   min-height: 380px;
 }
+/* ==================================================
+   LEGAL – FIXAR POSIÇÃO DO GRÁFICO
+   ================================================== */
+
+/* Reserva altura fixa para o título */
+body.legal-page .page-header--legal h1 {
+  min-height: 150px; /* espaço suficiente para 2 linhas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Mantém o gráfico sempre na mesma posição */
+body.legal-page .legal-graphic {
+  margin-top: 0;
+}
