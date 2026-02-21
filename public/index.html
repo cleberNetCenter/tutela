@@ -374,6 +374,7 @@ a.vertical-card h3 {
 <div class="app">
 <!-- HEADER -->
 <header class="header" id="header">
+<link rel="preload" as="image" href="/assets/images/hero/assinatura-digital-tablet.webp" type="image/webp">
 <div class="header-inner">
 <a class="logo" href="/">
                     Tutela Digital<sup>®</sup>
@@ -403,8 +404,10 @@ a.vertical-card h3 {
 </ul>
 </div>
 </nav>
-<a class="header-cta" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank" data-i18n="global.accessPlatform">Acessar a Plataforma</a>
-<button class="mobile-menu-btn" <button class="mobile-menu-btn">
+<a class="header-cta" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank" data-i18n="global.accessPlatform">
+				  Acessar a Plataforma
+				</a>
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()">
 <span></span>
 <span></span>
 <span></span>
@@ -422,6 +425,7 @@ a.vertical-card h3 {
       <!-- Highlight (brilho) -->
       <ellipse cx="9" cy="8" rx="2" ry="3" fill="rgba(255,255,255,0.2)" transform="rotate(-30 9 8)"/>
     </svg>
+  <span class="lang-code">PT</span>
   </button>
   <div class="lang-menu">
     <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
