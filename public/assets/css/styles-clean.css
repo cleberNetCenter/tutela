@@ -1429,21 +1429,12 @@ body.legal-page .page-header {
 
 
 /* ==================================================
-   LEGAL – HERO PADRONIZADO DEFINITIVO
+   CORREÇÕES HERO E TÍTULOS LEGAIS
    ================================================== */
 
-/* Remove qualquer padding conflitante anterior */
-body.legal-page .page-header {
-  padding: 0;
-}
-
-/* Hero legal único e soberano */
-body.legal-page .page-header--legal {
+/* Hero - garantir visibilidade do texto */
+.page-header--legal {
   padding: 6rem 2rem 5rem 2rem;
-  min-height: 420px; /* ALTURA PADRÃO FIXA */
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   background: linear-gradient(
     180deg,
@@ -1452,14 +1443,12 @@ body.legal-page .page-header--legal {
   );
 }
 
-/* Container interno */
-body.legal-page .page-header--legal .page-header-inner {
+.page-header--legal .page-header-inner {
   max-width: 820px;
   margin: 0 auto;
 }
 
-/* Título */
-body.legal-page .page-header--legal h1 {
+.page-header--legal h1 {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 4vw, 3rem);
   font-weight: 500;
@@ -1468,8 +1457,7 @@ body.legal-page .page-header--legal h1 {
   line-height: 1.2;
 }
 
-/* Subtítulo */
-body.legal-page .page-header-subtitle {
+.page-header-subtitle {
   font-size: 1.125rem;
   color: var(--color-text-muted);
   max-width: 680px;
@@ -1477,8 +1465,30 @@ body.legal-page .page-header-subtitle {
   line-height: 1.7;
 }
 
-/* Exec-compact respeita altura mínima */
-body.exec-compact.legal-page .page-header--legal {
-  min-height: 360px;
-  padding: 4rem 2rem 3.5rem 2rem;
+/* Títulos soltos - centralizar */
+body.legal-page h2,
+body.legal-page h3 {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Wrapper para seções especiais */
+.legal-section-wrapper {
+  max-width: 980px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+/* Sobrescrever estilos anteriores conflitantes */
+.page-header--legal .page-header-content {
+  max-width: 100%;
+}
+
+.page-header--legal .hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.7;
 }
