@@ -43,8 +43,10 @@ function setupEnvironment() {
   const dropdownParent = new FakeElement({ classes: ['nav-dropdown'] });
   const normalParent = new FakeElement({ classes: [] });
   const dropdownLink = new FakeElement({ classes: ['nav-link'] });
+  const dropdownLinkWithoutNavClass = new FakeElement({ classes: [] });
   const normalLink = new FakeElement({ classes: [] });
   dropdownLink.parentElement = dropdownParent;
+  dropdownLinkWithoutNavClass.parentElement = dropdownParent;
   normalLink.parentElement = normalParent;
 
   const langDropdown = new FakeElement({ classes: ['lang-dropdown'] });
@@ -57,7 +59,7 @@ function setupEnvironment() {
   const documentListeners = {};
   const document = {
     body: { style: {} },
-    _els: { nav, btn, dropdownLink, normalLink, langDropdown, langToggle, langMenu },
+    _els: { nav, btn, dropdownLink, dropdownLinkWithoutNavClass, normalLink, langDropdown, langToggle, langMenu },
     addEventListener(type, cb) {
       if (!documentListeners[type]) documentListeners[type] = [];
       documentListeners[type].push(cb);
@@ -76,7 +78,7 @@ function setupEnvironment() {
       return null;
     },
     querySelectorAll(selector) {
-      if (selector === '.nav a') return [dropdownLink, normalLink];
+      if (selector === '.nav a') return [dropdownLink, dropdownLinkWithoutNavClass, normalLink];
       return [];
     }
   };
@@ -91,21 +93,21 @@ function setupEnvironment() {
 
   document.dispatch('DOMContentLoaded');
 
-  return { context, document, window, nav, btn, dropdownLink, normalLink, langDropdown, langToggle, langOption };
+  return { context, document, window, nav, btn, dropdownLink, dropdownLinkWithoutNavClass, normalLink, langDropdown, langToggle, langOption };
 }
 
 (function runTests() {
   const env = setupEnvironment();
-  const { context, document, nav, btn, normalLink, dropdownLink, langDropdown, langToggle, langOption } = env;
+  const { context, document, nav, btn, normalLink, dropdownLink, dropdownLinkWithoutNavClass, langDropdown, langToggle, langOption } = env;
 
-  assert.strictEqual(typeof context.toggleMobileMenu, 'function', 'toggleMobileMenu must remain public');
+  assert.strictEqual(typeof context.window.toggleMobileMenu, 'function', 'toggleMobileMenu must remain public');
 
-  context.toggleMobileMenu();
+  context.window.toggleMobileMenu();
   assert.strictEqual(nav.classList.contains('active'), true, 'toggleMobileMenu opens nav');
   assert.strictEqual(btn.classList.contains('active'), true, 'toggleMobileMenu opens button');
   assert.strictEqual(document.body.style.overflow, 'hidden', 'body overflow hidden when menu opens');
 
-  context.toggleMobileMenu();
+  context.window.toggleMobileMenu();
   assert.strictEqual(nav.classList.contains('active'), false, 'toggleMobileMenu closes nav');
   assert.strictEqual(btn.classList.contains('active'), false, 'toggleMobileMenu closes button');
   assert.strictEqual(document.body.style.overflow, '', 'body overflow restored when menu closes');
@@ -115,6 +117,9 @@ function setupEnvironment() {
   document.body.style.overflow = 'hidden';
   dropdownLink.dispatch('click', {});
   assert.strictEqual(nav.classList.contains('active'), true, 'dropdown anchor click must not close mobile menu');
+
+  dropdownLinkWithoutNavClass.dispatch('click', {});
+  assert.strictEqual(nav.classList.contains('active'), true, 'dropdown anchor without nav-link class must not close mobile menu');
 
   normalLink.dispatch('click', {});
   assert.strictEqual(nav.classList.contains('active'), false, 'normal anchor click closes mobile menu');

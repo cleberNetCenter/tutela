@@ -45,8 +45,8 @@
 
     navLinks.forEach((link) => {
       link.addEventListener('click', function onNavClick() {
-        const isDropdownToggle = this.parentElement.classList.contains('nav-dropdown') &&
-          this.classList.contains('nav-link');
+        const isDropdownToggle = this.parentElement &&
+          this.parentElement.classList.contains('nav-dropdown');
 
         if (isDropdownToggle) {
           return;
