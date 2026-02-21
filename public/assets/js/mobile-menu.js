@@ -88,8 +88,9 @@
     // ===================================================
     // MOBILE MENU BUTTON
     // ===================================================
-    if (menuBtn.contains(target)) {
+    if (menuBtn === target || menuBtn.contains(target)) {
       event.preventDefault();
+      event.stopPropagation();
       toggleMobileMenu();
       return;
     }
