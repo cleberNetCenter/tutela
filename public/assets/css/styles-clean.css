@@ -1397,22 +1397,6 @@ body.exec-compact .footer-link--social{font-size:.8125rem}
 }
 
 /* ==================================================
-   LEGAL – RITMO VERTICAL INSTITUCIONAL
-   ================================================== */
-
-body.legal-page .text-block {
-  padding: 5rem 2rem;
-}
-
-body.legal-page .features {
-  padding: 5rem 2rem;
-}
-
-body.legal-page .page-header {
-  padding: 6rem 2rem 5rem 2rem;
-}
-
-/* ==================================================
    LEGAL – MICRO ANIMAÇÕES DISCRETAS
    ================================================== */
 
@@ -1493,21 +1477,15 @@ body.legal-page h3 {
   line-height: 1.7;
 }
 /* ==================================================
-   LEGAL – ESTABILIZAÇÃO VERTICAL SEM ALTERAR TIPOGRAFIA
+   LEGAL – AJUSTE FINO 40% (NÃO INTRUSIVO)
    ================================================== */
 
-/* Reduz espaço superior excessivo */
+/* Reduz apenas o padding-top herdado do .page-header */
 body.legal-page .page-header--legal {
-  padding: 3rem 2rem 4rem 2rem;
+  padding-top: calc(var(--space-2xl) * 0.4);
 }
 
-/* Reserva área estável para bloco textual inteiro */
+/* Mantém bloco interno estável para evitar variação visual */
 body.legal-page .page-header--legal .page-header-inner {
-  min-height: 220px; /* estabiliza gráfico sem tocar na fonte */
-}
-
-/* Mantém gráfico sempre no mesmo eixo vertical */
-body.legal-page .legal-graphic,
-body.legal-page .wp-legal-graphic {
-  margin-top: 2rem;
+  min-height: 240px;
 }
