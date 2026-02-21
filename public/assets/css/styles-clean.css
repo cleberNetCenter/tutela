@@ -1484,11 +1484,22 @@ body.legal-page h3 {
    LEGAL – CORREÇÃO DEFINITIVA DO OFFSET SUPERIOR
    ================================================== */
 
-body.legal-page .page-header--legal {
-  padding-top: 2rem !important;
-}
-
 /* Mantém bloco interno estável para evitar variação visual */
 body.legal-page .page-header--legal .page-header-inner {
   min-height: 240px;
+}
+/* ==================================================
+   HERO TOP – PADRÃO OFICIAL PARA PÁGINAS LEGAIS
+   ================================================== */
+
+body.legal-page .main {
+  padding-top: 80px; /* mantém compensação do header */
+}
+
+body.legal-page .main.main--hero-top {
+  padding-top: 0; /* hero encosta no header */
+}
+
+body.legal-page .main.main--hero-top .page-header--legal {
+  padding-top: 2rem;
 }
