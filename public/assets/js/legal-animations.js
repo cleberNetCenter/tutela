@@ -1,12 +1,23 @@
 // legal-animations.js
 
 document.addEventListener("DOMContentLoaded", function () {
+
   if (!document.body.classList.contains("legal-page")) return;
 
+  const header = document.querySelector(".page-header");
   const sections = document.querySelectorAll(
-    ".page-header, .text-block, .features, .cta-final"
+    ".text-block, .features, .cta-final"
   );
 
+  // 1️⃣ Hero anima imediatamente
+  if (header) {
+    header.classList.add("legal-animate");
+    requestAnimationFrame(() => {
+      header.classList.add("visible");
+    });
+  }
+
+  // 2️⃣ Restante anima com scroll
   sections.forEach(section => {
     section.classList.add("legal-animate");
   });
@@ -20,7 +31,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }, { threshold: 0.12 });
 
-  document.querySelectorAll(".legal-animate").forEach(el => {
-    observer.observe(el);
-  });
+  sections.forEach(el => observer.observe(el));
 });
