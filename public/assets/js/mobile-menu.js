@@ -11,10 +11,6 @@
   window.__tutelaNavigationControllerInitialized = true;
 
   const MOBILE_MAX_WIDTH = 1200;
-  const MENU_CLOSE_GUARD_MS = 300;
-  const POINTER_TO_CLICK_DEDUPE_MS = 450;
-  let suppressNextClickUntil = 0;
-  let ignoreGlobalCloseUntil = 0;
 
   function isMobileViewport() {
     return window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`).matches;
@@ -54,7 +50,6 @@
     nav.classList.add('active');
     menuBtn.classList.add('active');
     document.body.style.overflow = 'hidden';
-    ignoreGlobalCloseUntil = Date.now() + MENU_CLOSE_GUARD_MS;
   }
 
   function closeMobileMenu() {
@@ -83,20 +78,10 @@
   }
 
   function canToggleDropdownInCurrentState(nav) {
-    if (!isMobileViewport()) {
-      return true;
-    }
-
-    return Boolean(nav && nav.classList.contains('active'));
+    return Boolean(isMobileViewport() && nav && nav.classList.contains('active'));
   }
 
   function handleDropdownInteraction(event) {
-    if (event.type === 'pointerdown') {
-      suppressNextClickUntil = Date.now() + POINTER_TO_CLICK_DEDUPE_MS;
-    } else if (event.type === 'click' && Date.now() < suppressNextClickUntil) {
-      return;
-    }
-
     const target = event.target;
     const { header, nav, menuBtn, langDropdown, langToggle } = getHeaderElements();
 
@@ -154,10 +139,6 @@
 
     const clickedInsideHeader = header.contains(target);
     if (!clickedInsideHeader) {
-      if (isMobileViewport() && nav.classList.contains('active') && Date.now() < ignoreGlobalCloseUntil) {
-        return;
-      }
-
       closeAllDropdowns();
       closeLanguageDropdown();
 
@@ -188,7 +169,6 @@
   }
 
   function init() {
-    document.addEventListener('pointerdown', handleDropdownInteraction);
     document.addEventListener('click', handleDropdownInteraction);
     window.addEventListener('resize', handleResize);
     window.toggleMobileMenu = toggleMobileMenu;
