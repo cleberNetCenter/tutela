@@ -13,8 +13,6 @@
   const MOBILE_MAX_WIDTH = 1200;
 
   function isMobileViewport() {
-    console.log("WIDTH:", window.innerWidth);
-    alert("WIDTH: " + window.innerWidth);
     return window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`).matches;
   }
 
@@ -50,8 +48,6 @@
     nav.classList.add('active');
     menuBtn.classList.add('active');
     document.body.style.overflow = 'hidden';
-
-    alert("NAV display: " + getComputedStyle(nav).display);
   }
 
   function closeMobileMenu() {
@@ -193,7 +189,6 @@
   }
 
   function init() {
-    alert("WIDTH: " + window.innerWidth);
     document.addEventListener('click', handleDocumentClick);
     window.addEventListener('resize', handleResize);
     window.toggleMobileMenu = toggleMobileMenu;
