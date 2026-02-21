@@ -191,6 +191,7 @@
   }
 
   function init() {
+    alert("WIDTH: " + window.innerWidth);
     document.addEventListener('click', handleDocumentClick);
     window.addEventListener('resize', handleResize);
     window.toggleMobileMenu = toggleMobileMenu;
