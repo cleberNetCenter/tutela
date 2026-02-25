@@ -1,534 +1,577 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<link rel="preload" as="image" href="/assets/images/hero/assinatura-digital-tablet.webp" type="image/webp">
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Arquitetura de Segurança | Tutela Digital®</title>
-<meta content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação biométrica e cadeia de custódia verificável." name="description"/>
-<meta name="last-modified" content="2026-02-18"/>
-<link rel="canonical" href="https://tuteladigital.com.br/seguranca.html"/>
-<link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml"/>
+  <link rel="preload" as="image" href="/assets/images/hero/assinatura-digital-tablet.webp" type="image/webp">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Arquitetura de Segurança | Tutela Digital®</title>
+  <meta
+    content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação biométrica e cadeia de custódia verificável."
+    name="description" />
+  <meta name="last-modified" content="2026-02-18" />
+  <link rel="canonical" href="https://tuteladigital.com.br/seguranca.html" />
+  <link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml" />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="article"/>
-<meta property="og:url" content="https://tuteladigital.com.br/seguranca.html"/>
-<meta property="og:title" content="Arquitetura de Segurança | Tutela Digital®"/>
-<meta property="og:description" content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação biométrica e cadeia de custódia verificável."/>
-<meta property="og:site_name" content="Tutela Digital®"/>
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://tuteladigital.com.br/seguranca.html" />
+  <meta property="og:title" content="Arquitetura de Segurança | Tutela Digital®" />
+  <meta property="og:description"
+    content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação biométrica e cadeia de custódia verificável." />
+  <meta property="og:site_name" content="Tutela Digital®" />
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:url" content="https://tuteladigital.com.br/seguranca.html"/>
-<meta property="twitter:title" content="Arquitetura de Segurança | Tutela Digital®"/>
-<meta property="twitter:description" content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação biométrica e cadeia de custódia verificável."/>
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://tuteladigital.com.br/seguranca.html" />
+  <meta property="twitter:title" content="Arquitetura de Segurança | Tutela Digital®" />
+  <meta property="twitter:description"
+    content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação biométrica e cadeia de custódia verificável." />
 
-<!-- Hreflang -->
-<link rel="alternate" hreflang="pt-br" href="https://tuteladigital.com.br/seguranca.html"/>
-<link rel="alternate" hreflang="x-default" href="https://tuteladigital.com.br/seguranca.html"/>
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="pt-br" href="https://tuteladigital.com.br/seguranca.html" />
+  <link rel="alternate" hreflang="x-default" href="https://tuteladigital.com.br/seguranca.html" />
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
 
-<!-- CSS -->
-<link rel="stylesheet" href="assets/css/styles-clean.css?v=4">
-<link rel="stylesheet" href="assets/css/styles-header-final.css?v=4">
-<link rel="stylesheet" href="assets/css/styles-clean.exec-compact.css?v=4">
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/styles-clean.css?v=4">
+  <link rel="stylesheet" href="assets/css/styles-header-final.css?v=4">
+  <link rel="stylesheet" href="assets/css/styles-clean.exec-compact.css?v=4">
 
-<!-- Google Analytics -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KXVB267PYJ');
-</script>
-<style>
-/* Hierarquia Semântica H2→H4 */
-.section-title {
-  font-size: 2rem;
-  font-weight: 600;
-  margin: 2.5rem 0 1.5rem 0;
-  color: var(--color-primary, #1a1a1a);
-  line-height: 1.3;
-}
+  <!-- Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KXVB267PYJ');
+  </script>
+  <style>
+    /* Hierarquia Semântica H2→H4 */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 2.5rem 0 1.5rem 0;
+      color: var(--color-primary, #1a1a1a);
+      line-height: 1.3;
+    }
 
-.subsection-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 2rem 0 1rem 0;
-  color: var(--color-secondary, #333);
-  line-height: 1.4;
-}
+    .subsection-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem 0;
+      color: var(--color-secondary, #333);
+      line-height: 1.4;
+    }
 
-.detail-title {
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin: 1.5rem 0 0.75rem 0;
-  color: var(--color-text, #444);
-  line-height: 1.5;
-}
-</style>
+    .detail-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 1.5rem 0 0.75rem 0;
+      color: var(--color-text, #444);
+      line-height: 1.5;
+    }
+  </style>
   <link rel="stylesheet" href="/assets/css/dropdown-menu.css">
   <link rel="stylesheet" href="/assets/css/hero-image-backgrounds.css">
 
-<!-- CSS Exclusivo - Página Segurança -->
-<style>
-/* ================================
+  <!-- CSS Exclusivo - Página Segurança -->
+  <style>
+    /* ================================
    MAIN - FIX PARA HEADER FIXO
 ================================ */
-body.exec-compact .main.main--hero-top {
-  padding-top: 90px !important;
-  margin-top: 0 !important;
-}
+    body.exec-compact .main.main--hero-top {
+      padding-top: 90px !important;
+      margin-top: 0 !important;
+    }
 
-/* ================================
+    /* ================================
    HERO SECURITY - CENTRALIZADO
 ================================ */
-.page-header--security-centered {
-  background: linear-gradient(135deg, 
-    var(--color-surface-light) 0%, 
-    rgba(255,255,255,0.98) 100%);
-  padding: 2.5rem 2rem 4rem 2rem;
-  margin-top: 0;
-  text-align: center;
-}
+    .page-header--security-centered {
+      background: linear-gradient(135deg,
+          var(--color-surface-light) 0%,
+          rgba(255, 255, 255, 0.98) 100%);
+      padding: 2.5rem 2rem 4rem 2rem;
+      margin-top: 0;
+      text-align: center;
+    }
 
-.page-header--security {
-  max-width: 820px;
-  margin: 0 auto;
-}
+    .page-header--security {
+      max-width: 820px;
+      margin: 0 auto;
+    }
 
-.page-header--security h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 500;
-  color: var(--color-text-strong);
-  line-height: 1.25;
-  margin-bottom: 2rem;
-}
+    .page-header--security h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 500;
+      color: var(--color-text-strong);
+      line-height: 1.25;
+      margin-bottom: 2rem;
+    }
 
-.page-header--security .page-header-subtitle {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-  max-width: 680px;
-  margin: 0 auto;
-}
+    .page-header--security .page-header-subtitle {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--color-text-muted);
+      max-width: 680px;
+      margin: 0 auto;
+    }
 
-/* Gráfico Institucional */
-.security-graphic {
-  margin: 1.5rem auto 2.5rem auto;
-  max-width: 900px;
-  opacity: 0.9;
-}
+    /* Gráfico Institucional */
+    .security-graphic {
+      margin: 1.5rem auto 2.5rem auto;
+      max-width: 900px;
+      opacity: 0.9;
+    }
 
-.security-graphic svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+    .security-graphic svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-/* ================================
+    /* ================================
    SECURITY – CARDS CENTRALIZADOS
 ================================ */
-.security-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 3rem auto 0 auto;
-}
+    .security-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 3rem auto 0 auto;
+    }
 
-.security-cards .feature-item {
-  width: 100%;
-  padding: 2.2rem 2.4rem;
-  border-radius: 8px;
-  border: 1px solid var(--color-border-soft);
-  background: var(--color-surface-light);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
+    .security-cards .feature-item {
+      width: 100%;
+      padding: 2.2rem 2.4rem;
+      border-radius: 8px;
+      border: 1px solid var(--color-border-soft);
+      background: var(--color-surface-light);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
 
-/* Micro-elevação institucional */
-.security-cards .feature-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.05);
-}
+    /* Micro-elevação institucional */
+    .security-cards .feature-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+    }
 
-/* Títulos */
-.security-section-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.3rem);
-  font-weight: 500;
-  text-align: center;
-  color: var(--color-text-strong);
-  margin: 4rem 0 1.5rem 0;
-  letter-spacing: -0.01em;
-}
+    /* Títulos */
+    .security-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.3rem);
+      font-weight: 500;
+      text-align: center;
+      color: var(--color-text-strong);
+      margin: 4rem 0 1.5rem 0;
+      letter-spacing: -0.01em;
+    }
 
-.security-subtitle {
-  font-family: var(--font-display);
-  text-align: center;
-  font-size: 1.125rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  margin-bottom: 2.5rem;
-}
+    .security-subtitle {
+      font-family: var(--font-display);
+      text-align: center;
+      font-size: 1.125rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 2.5rem;
+    }
 
-/* Micro-animação discreta */
-.security-cards .feature-item {
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeSecurity 0.6s ease forwards;
-}
+    /* Micro-animação discreta */
+    .security-cards .feature-item {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeSecurity 0.6s ease forwards;
+    }
 
-.security-cards .feature-item:nth-child(1) { animation-delay: 0.05s; }
-.security-cards .feature-item:nth-child(2) { animation-delay: 0.10s; }
-.security-cards .feature-item:nth-child(3) { animation-delay: 0.15s; }
-.security-cards .feature-item:nth-child(4) { animation-delay: 0.20s; }
-.security-cards .feature-item:nth-child(5) { animation-delay: 0.25s; }
-.security-cards .feature-item:nth-child(6) { animation-delay: 0.30s; }
+    .security-cards .feature-item:nth-child(1) {
+      animation-delay: 0.05s;
+    }
 
-@keyframes fadeSecurity {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    .security-cards .feature-item:nth-child(2) {
+      animation-delay: 0.10s;
+    }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  body.exec-compact .main.main--hero-top {
-    padding-top: 70px !important;
-  }
-  
-  .security-graphic svg text {
-    font-size: 13px;
-  }
-  
-  .page-header--security-centered {
-    padding: 1.8rem 1.5rem 3rem 1.5rem;
-  }
-  
-  .security-cards {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    max-width: 100%;
-    padding: 0 1.5rem;
-  }
-  
-  .security-cards .feature-item {
-    padding: 1.8rem 2rem;
-  }
-}
-</style>
+    .security-cards .feature-item:nth-child(3) {
+      animation-delay: 0.15s;
+    }
 
-<style>
-/* ================================
+    .security-cards .feature-item:nth-child(4) {
+      animation-delay: 0.20s;
+    }
+
+    .security-cards .feature-item:nth-child(5) {
+      animation-delay: 0.25s;
+    }
+
+    .security-cards .feature-item:nth-child(6) {
+      animation-delay: 0.30s;
+    }
+
+    @keyframes fadeSecurity {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      body.exec-compact .main.main--hero-top {
+        padding-top: 70px !important;
+      }
+
+      .security-graphic svg text {
+        font-size: 13px;
+      }
+
+      .page-header--security-centered {
+        padding: 1.8rem 1.5rem 3rem 1.5rem;
+      }
+
+      .security-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 100%;
+        padding: 0 1.5rem;
+      }
+
+      .security-cards .feature-item {
+        padding: 1.8rem 2rem;
+      }
+    }
+  </style>
+
+  <style>
+    /* ================================
    CTA BUTTONS - 3D STYLE
 ================================ */
-.header-cta {
-  border-radius: 8px !important;
-  box-shadow: 
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.06),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-  position: relative;
-  top: 0;
-}
+    .header-cta {
+      border-radius: 8px !important;
+      box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.06),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      position: relative;
+      top: 0;
+    }
 
-.header-cta:hover {
-  box-shadow: 
-    0 6px 10px rgba(0, 0, 0, 0.15),
-    0 3px 6px rgba(0, 0, 0, 0.1),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.15);
-  top: -2px;
-}
+    .header-cta:hover {
+      box-shadow:
+        0 6px 10px rgba(0, 0, 0, 0.15),
+        0 3px 6px rgba(0, 0, 0, 0.1),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+      top: -2px;
+    }
 
-.header-cta:active {
-  box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    inset 0 2px 4px rgba(0, 0, 0, 0.15);
-  top: 2px;
-}
+    .header-cta:active {
+      box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.15);
+      top: 2px;
+    }
 
-.btn-primary {
-  border-radius: 8px !important;
-  box-shadow: 
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.06),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-  position: relative;
-  top: 0;
-}
+    .btn-primary {
+      border-radius: 8px !important;
+      box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.06),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      position: relative;
+      top: 0;
+    }
 
-.btn-primary:hover {
-  box-shadow: 
-    0 6px 10px rgba(0, 0, 0, 0.15),
-    0 3px 6px rgba(0, 0, 0, 0.1),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.15);
-  top: -2px;
-}
+    .btn-primary:hover {
+      box-shadow:
+        0 6px 10px rgba(0, 0, 0, 0.15),
+        0 3px 6px rgba(0, 0, 0, 0.1),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+      top: -2px;
+    }
 
-.btn-primary:active {
-  box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    inset 0 2px 4px rgba(0, 0, 0, 0.15);
-  top: 2px;
-}
+    .btn-primary:active {
+      box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.15);
+      top: 2px;
+    }
+  </style>
+</head>
 
-</style>
-</head><body class="exec-compact">
-<header class="header" id="header">
-<link rel="preload" as="image" href="/assets/images/hero/assinatura-digital-tablet.webp" type="image/webp">
-<div class="header-inner">
-<a class="logo" href="/">
-                    Tutela Digital<sup>®</sup>
-</a>
-<nav class="nav" id="nav">
-<a class="nav-link" href="/"><span data-i18n="nav.home">Início</span></a>
-<a class="nav-link" href="/como-funciona.html"><span data-i18n="nav.how_it_works">Como Funciona</span></a>
-<a class="nav-link" href="/seguranca.html"><span data-i18n="nav.security">Segurança</span></a>
+<body class="exec-compact">
+  <header class="header" id="header">
+    <link rel="preload" as="image" href="/assets/images/hero/assinatura-digital-tablet.webp" type="image/webp">
+    <div class="header-inner">
+      <a class="logo" href="/">
+        Tutela Digital<sup>®</sup>
+      </a>
+      <nav class="nav" id="nav">
+        <a class="nav-link" href="/"><span data-i18n="nav.home">Início</span></a>
+        <a class="nav-link" href="/como-funciona.html"><span data-i18n="nav.how_it_works">Como Funciona</span></a>
+        <a class="nav-link" href="/seguranca.html"><span data-i18n="nav.security">Segurança</span></a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link active"><span>Insights</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/insights/prova-digital/">Prova Digital</a></li>
+          </ul>
+        </div>
 
-<div class="nav-dropdown">
-<a href="#" class="nav-link"><span data-i18n="nav.solutions">Soluções</span></a>
-<ul class="dropdown-menu">
-<li><a href="/governo.html" data-i18n="navigation.government">Governo</a></li>
-<li><a href="/empresas.html" data-i18n="navigation.companies">Empresas</a></li>
-<li><a href="/pessoas.html" data-i18n="navigation.individuals">Pessoas</a></li>
-</ul>
-</div>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link"><span data-i18n="nav.solutions">Soluções</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/governo.html" data-i18n="navigation.government">Governo</a></li>
+            <li><a href="/empresas.html" data-i18n="navigation.companies">Empresas</a></li>
+            <li><a href="/pessoas.html" data-i18n="navigation.individuals">Pessoas</a></li>
+          </ul>
+        </div>
 
-<div class="nav-dropdown">
-<a href="#" class="nav-link"><span data-i18n="nav.legal_basis">Base Jurídica</span></a>
-<ul class="dropdown-menu">
-<li><a href="/legal/preservacao-probatoria-digital.html" data-i18n="navigation.preservation">Preservação Probatória</a></li>
-<li><a href="/legal/fundamento-juridico.html" data-i18n="navigation.legalBasis">Fundamento Jurídico</a></li>
-<li><a href="/legal/termos-de-custodia.html" data-i18n="navigation.terms">Termos de Custódia</a></li>
-<li><a href="/legal/politica-de-privacidade.html" data-i18n="navigation.privacy">Política de Privacidade</a></li>
-<li><a href="/legal/institucional.html" data-i18n="navigation.institucional">Institucional</a></li>
-</ul>
-</div>
-</nav>
-<a class="header-cta" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank" data-i18n="global.accessPlatform">
-				  Acessar a Plataforma
-				</a>
-<button class="mobile-menu-btn">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<div class="lang-dropdown">
-  <button class="lang-toggle" aria-label="Selecionar idioma">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" style="vertical-align: middle;">
-      <!-- Oceano (azul) -->
-      <circle cx="12" cy="12" r="10" fill="#4A90E2" stroke="#2E5C8A" stroke-width="1"/>
-      <!-- Continentes (verde) -->
-      <path d="M7 8 Q9 6 11 7 T13 9 Q14 10 13 12 T11 14 Q9 14 8 13 T7 11 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5"/>
-      <path d="M15 6 Q17 5 18 7 T17 10 Q16 11 15 10 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5"/>
-      <path d="M14 13 Q16 12 18 14 T17 17 Q15 18 14 16 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5"/>
-      <path d="M6 15 Q7 16 9 16 T10 18 Q9 19 7 18 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5"/>
-      <!-- Highlight (brilho) -->
-      <ellipse cx="9" cy="8" rx="2" ry="3" fill="rgba(255,255,255,0.2)" transform="rotate(-30 9 8)"/>
-    </svg>
-  <span class="lang-code">PT</span>
-  </button>
-  <div class="lang-menu">
-    <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
-    <button class="lang-option" data-lang="en">🇺🇸 English</button>
-    <button class="lang-option" data-lang="es">🇪🇸 Español</button>
-  </div>
-</div>
-</div>
-</header>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link"><span data-i18n="nav.legal_basis">Base Jurídica</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/legal/preservacao-probatoria-digital.html" data-i18n="navigation.preservation">Preservação
+                Probatória</a></li>
+            <li><a href="/legal/fundamento-juridico.html" data-i18n="navigation.legalBasis">Fundamento Jurídico</a></li>
+            <li><a href="/legal/termos-de-custodia.html" data-i18n="navigation.terms">Termos de Custódia</a></li>
+            <li><a href="/legal/politica-de-privacidade.html" data-i18n="navigation.privacy">Política de Privacidade</a>
+            </li>
+            <li><a href="/legal/institucional.html" data-i18n="navigation.institucional">Institucional</a></li>
+          </ul>
+        </div>
+      </nav>
+      <a class="header-cta" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank"
+        data-i18n="global.accessPlatform">
+        Acessar a Plataforma
+      </a>
+      <button class="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="lang-dropdown">
+        <button class="lang-toggle" aria-label="Selecionar idioma">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            style="vertical-align: middle;">
+            <!-- Oceano (azul) -->
+            <circle cx="12" cy="12" r="10" fill="#4A90E2" stroke="#2E5C8A" stroke-width="1" />
+            <!-- Continentes (verde) -->
+            <path d="M7 8 Q9 6 11 7 T13 9 Q14 10 13 12 T11 14 Q9 14 8 13 T7 11 Z" fill="#52B788" stroke="#2D6A4F"
+              stroke-width="0.5" />
+            <path d="M15 6 Q17 5 18 7 T17 10 Q16 11 15 10 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5" />
+            <path d="M14 13 Q16 12 18 14 T17 17 Q15 18 14 16 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5" />
+            <path d="M6 15 Q7 16 9 16 T10 18 Q9 19 7 18 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="0.5" />
+            <!-- Highlight (brilho) -->
+            <ellipse cx="9" cy="8" rx="2" ry="3" fill="rgba(255,255,255,0.2)" transform="rotate(-30 9 8)" />
+          </svg>
+          <span class="lang-code">PT</span>
+        </button>
+        <div class="lang-menu">
+          <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
+          <button class="lang-option" data-lang="en">🇺🇸 English</button>
+          <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<main class="main main--hero-top">
-<section class="page-header page-header--security-centered">
-  <div class="page-header-inner page-header--security">
-    
-    <h1 data-i18n="security.title">Arquitetura de Integridade Aplicada à Preservação Probatória Digital</h1>
+  <main class="main main--hero-top">
+    <section class="page-header page-header--security-centered">
+      <div class="page-header-inner page-header--security">
 
-    <div class="security-graphic">
-      <svg viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        
-        <!-- Linha Base -->
-        <line x1="100" y1="60" x2="800" y2="60"
-              stroke="var(--color-green-700)"
-              stroke-width="1.5"
-              opacity="0.35"/>
-        
-        <!-- Círculo 1 -->
-        <circle cx="250" cy="60" r="10"
-                fill="var(--color-green-700)"/>
-        
-        <text x="250" y="95"
-              text-anchor="middle"
-              font-size="16"
-              font-family="var(--font-body)"
+        <h1 data-i18n="security.title">Arquitetura de Integridade Aplicada à Preservação Probatória Digital</h1>
+
+        <div class="security-graphic">
+          <svg viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+            <!-- Linha Base -->
+            <line x1="100" y1="60" x2="800" y2="60" stroke="var(--color-green-700)" stroke-width="1.5" opacity="0.35" />
+
+            <!-- Círculo 1 -->
+            <circle cx="250" cy="60" r="10" fill="var(--color-green-700)" />
+
+            <text x="250" y="95" text-anchor="middle" font-size="16" font-family="var(--font-body)"
               fill="var(--color-text-strong)">
-          Integridade
-        </text>
-        
-        <!-- Círculo 2 -->
-        <circle cx="450" cy="60" r="10"
-                fill="var(--color-green-700)"/>
-        
-        <text x="450" y="95"
-              text-anchor="middle"
-              font-size="16"
-              font-family="var(--font-body)"
+              Integridade
+            </text>
+
+            <!-- Círculo 2 -->
+            <circle cx="450" cy="60" r="10" fill="var(--color-green-700)" />
+
+            <text x="450" y="95" text-anchor="middle" font-size="16" font-family="var(--font-body)"
               fill="var(--color-text-strong)">
-          Cadeia de Custódia
-        </text>
-        
-        <!-- Círculo 3 -->
-        <circle cx="650" cy="60" r="10"
-                fill="var(--color-green-700)"/>
-        
-        <text x="650" y="95"
-              text-anchor="middle"
-              font-size="16"
-              font-family="var(--font-body)"
+              Cadeia de Custódia
+            </text>
+
+            <!-- Círculo 3 -->
+            <circle cx="650" cy="60" r="10" fill="var(--color-green-700)" />
+
+            <text x="650" y="95" text-anchor="middle" font-size="16" font-family="var(--font-body)"
               fill="var(--color-text-strong)">
-          Validade Jurídica
-        </text>
-        
-      </svg>
+              Validade Jurídica
+            </text>
+
+          </svg>
+        </div>
+
+        <p class="page-header-subtitle"><span data-i18n="security.p1">Fundamentos técnicos e jurídicos que sustentam a
+            infraestrutura de preservação probatória.</span></p>
+
+      </div>
+    </section>
+    <section class="text-block">
+      <div class="text-block-inner">
+        <h2><span data-i18n="security.h2Main">Arquitetura de Segurança</span></h2>
+        <p><span data-i18n="security.p2">A infraestrutura da Tutela Digital® foi estruturada para oferecer mecanismos
+            técnicos de preservação de integridade e rastreabilidade combinados com documentação jurídica. Cada
+            componente do sistema foi desenvolvido considerando requisitos de segurança da informação, conformidade
+            regulatória e reconhecimento probatório.</span></p>
+        <p><span data-i18n="security.p3">A integração com o sistema e-Notariado garante que o processo de onboarding
+            seja realizado com fé pública, enquanto mecanismos técnicos estruturados asseguram a integridade e
+            rastreabilidade dos ativos ao longo de todo o ciclo de preservação.</span></p>
+      </div>
+    </section>
+    <section class="features">
+      <div class="features-inner">
+        <h2 class="security-section-title" data-i18n="security.h3AccessControl">Controle de Acesso Exclusivo ao Titular
+        </h2>
+        <h3 class="security-subtitle"><span data-i18n="security.h2Secondary">Pilares de Segurança</span></h3>
+        <div class="security-cards">
+          <div class="feature-item">
+
+            <h3><span data-i18n="security.eNotarialTitle">e-Notariado</span></h3>
+            <p><span data-i18n="security.eNotarialDesc">Onboarding com validação de identidade através da plataforma
+                oficial dos cartórios brasileiros, garantindo fé pública.</span></p>
+          </div>
+          <div class="feature-item">
+
+            <h3><span data-i18n="security.nonRepudiationTitle">Não Repúdio</span></h3>
+            <p><span data-i18n="security.nonRepudiationDesc">Mecanismos técnicos e jurídicos que impedem a negação de
+                autoria ou alteração dos ativos custodiados.</span></p>
+          </div>
+          <div class="feature-item">
+
+            <h3 class="subsection-title" data-i18n="security.h3Encryption">Criptografia de Ponta a Ponta</h3>
+            <p><span data-i18n="security.encryptionDesc">Algoritmos de criptografia de alto padrão que protegem os
+                ativos durante transmissão e armazenamento.</span></p>
+          </div>
+          <div class="feature-item">
+
+            <h3 class="subsection-title" data-i18n="security.h3ImmutableRegistration">Registro Técnico Imutável</h3>
+            <h4 class="detail-title" data-i18n="security.h4BlockchainRecord">Registro Distribuído como Prova
+              Complementar</h4>
+            <p><span data-i18n="security.blockchainDesc">Registro distribuído e imutável que garante a integridade e
+                rastreabilidade de todas as operações.</span></p>
+            <h4 class="detail-title" data-i18n="security.h4TemporalIntegrity">Integridade Temporal Verificável</h4>
+          </div>
+          <div class="feature-item">
+
+            <h3><span data-i18n="security.chainOfCustodyTitle">Cadeia de Custódia Imutável</span></h3>
+            <p><span data-i18n="security.chainOfCustodyDesc">Histórico completo e inalterável de todas as ações
+                realizadas sobre cada ativo digital custodiado.</span></p>
+          </div>
+          <div class="feature-item">
+
+            <h3><span data-i18n="security.evidentialValidityTitle">Validade Probatória</span></h3>
+            <p><span data-i18n="security.evidentialValidityDesc">Suporte à admissibilidade dos ativos preservados como
+                prova em procedimentos administrativos e judiciais.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="text-block">
+      <div class="text-block-inner">
+        <h2><span data-i18n="security.reliabilityTitle">Confiabilidade Probatória</span></h2>
+        <p><span data-i18n="security.reliabilityDesc">A confiabilidade jurídica da prova digital depende da demonstração
+            de integridade, rastreabilidade e controle de autoria. A arquitetura foi estruturada para atender a esses
+            requisitos técnicos.</span></p>
+      </div>
+    </section>
+    <section class="cta-final">
+      <div class="cta-final-inner">
+        <h2><span data-i18n="security.ctaTitle">Conheça nossa infraestrutura de segurança</span></h2>
+        <p><span data-i18n="security.ctaDesc">Acesse a plataforma e conheça nossa infraestrutura de preservação
+            probatória estruturada.</span></p>
+        <a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank"
+          data-i18n="global.accessPlatform">Acessar a Plataforma</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- COLUNA 1 – MARCA -->
+      <div class="footer-col footer-brand-col">
+        <h3 data-i18n="global.brand">Tutela Digital®</h3>
+        <p><a href="mailto:contato@tuteladigital.com.br" data-i18n="global.footerEmail">contato@tuteladigital.com.br</a>
+        </p>
+        <p><a href="https://www.instagram.com/tuteladigitalbr/" target="_blank" rel="noopener noreferrer"><svg
+              aria-hidden="true" class="footer-social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M7.75 2h8.5C19.99 2 22 4.01 22 6.25v8.5C22 19.99 19.99 22 16.25 22h-8.5C4.01 22 2 19.99 2 16.25v-8.5C2 4.01 4.01 2 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm4.75-.88a.88.88 0 1 1 0 1.75.88.88 0 0 1 0-1.75z"
+                fill="currentColor"></path>
+            </svg> <span data-i18n="global.footerInstagram">@tuteladigitalbr</span></a></p>
+      </div>
+
+      <!-- COLUNA 2 – PLATAFORMA -->
+      <div class="footer-col">
+        <h4 data-i18n="footer.platform">Plataforma</h4>
+        <ul>
+          <li><a href="/como-funciona.html" data-i18n="navigation.howItWorks">Como Funciona</a></li>
+          <li><a href="/seguranca.html" data-i18n="navigation.security">Segurança</a></li>
+          <li><a href="/legal/preservacao-probatoria-digital.html" data-i18n="navigation.preservation">Preservação
+              Probatória</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUNA 3 – PÚBLICO -->
+      <div class="footer-col">
+        <h4 data-i18n="footer.audience">Público</h4>
+        <ul>
+          <li><a href="/governo.html" data-i18n="navigation.government">Governo</a></li>
+          <li><a href="/empresas.html" data-i18n="navigation.companies">Empresas</a></li>
+          <li><a href="/pessoas.html" data-i18n="navigation.individuals">Pessoas Físicas</a></li>
+        </ul>
+      </div>
+
+      <!-- COLUNA 4 – BASE JURÍDICA -->
+      <div class="footer-col">
+        <h4 data-i18n="navigation.legal_base">Base Jurídica</h4>
+        <ul>
+          <li><a href="/legal/institucional.html" data-i18n="navigation.institucional">Institucional</a></li>
+          <li><a href="/legal/fundamento-juridico.html" data-i18n="navigation.legalBasis">Fundamento Jurídico</a></li>
+          <li><a href="/legal/termos-de-custodia.html" data-i18n="navigation.terms">Termos de Custódia</a></li>
+          <li><a href="/legal/politica-de-privacidade.html" data-i18n="navigation.privacy">Política de Privacidade</a>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
-    <p class="page-header-subtitle"><span data-i18n="security.p1">Fundamentos técnicos e jurídicos que sustentam a infraestrutura de preservação probatória.</span></p>
-
-  </div>
-</section>
-<section class="text-block">
-<div class="text-block-inner">
-<h2><span data-i18n="security.h2Main">Arquitetura de Segurança</span></h2>
-<p><span data-i18n="security.p2">A infraestrutura da Tutela Digital® foi estruturada para oferecer mecanismos técnicos de preservação de integridade e rastreabilidade combinados com documentação jurídica. Cada componente do sistema foi desenvolvido considerando requisitos de segurança da informação, conformidade regulatória e reconhecimento probatório.</span></p>
-<p><span data-i18n="security.p3">A integração com o sistema e-Notariado garante que o processo de onboarding seja realizado com fé pública, enquanto mecanismos técnicos estruturados asseguram a integridade e rastreabilidade dos ativos ao longo de todo o ciclo de preservação.</span></p>
-</div>
-</section>
-<section class="features">
-<div class="features-inner">
-<h2 class="security-section-title" data-i18n="security.h3AccessControl">Controle de Acesso Exclusivo ao Titular</h2>
-<h3 class="security-subtitle"><span data-i18n="security.h2Secondary">Pilares de Segurança</span></h3>
-<div class="security-cards">
-<div class="feature-item">
-
-<h3><span data-i18n="security.eNotarialTitle">e-Notariado</span></h3>
-<p><span data-i18n="security.eNotarialDesc">Onboarding com validação de identidade através da plataforma oficial dos cartórios brasileiros, garantindo fé pública.</span></p>
-</div>
-<div class="feature-item">
-
-<h3><span data-i18n="security.nonRepudiationTitle">Não Repúdio</span></h3>
-<p><span data-i18n="security.nonRepudiationDesc">Mecanismos técnicos e jurídicos que impedem a negação de autoria ou alteração dos ativos custodiados.</span></p>
-</div>
-<div class="feature-item">
-
-<h3 class="subsection-title" data-i18n="security.h3Encryption">Criptografia de Ponta a Ponta</h3>
-<p><span data-i18n="security.encryptionDesc">Algoritmos de criptografia de alto padrão que protegem os ativos durante transmissão e armazenamento.</span></p>
-</div>
-<div class="feature-item">
-
-<h3 class="subsection-title" data-i18n="security.h3ImmutableRegistration">Registro Técnico Imutável</h3>
-<h4 class="detail-title" data-i18n="security.h4BlockchainRecord">Registro Distribuído como Prova Complementar</h4>
-<p><span data-i18n="security.blockchainDesc">Registro distribuído e imutável que garante a integridade e rastreabilidade de todas as operações.</span></p>
-<h4 class="detail-title" data-i18n="security.h4TemporalIntegrity">Integridade Temporal Verificável</h4>
-</div>
-<div class="feature-item">
-
-<h3><span data-i18n="security.chainOfCustodyTitle">Cadeia de Custódia Imutável</span></h3>
-<p><span data-i18n="security.chainOfCustodyDesc">Histórico completo e inalterável de todas as ações realizadas sobre cada ativo digital custodiado.</span></p>
-</div>
-<div class="feature-item">
-
-<h3><span data-i18n="security.evidentialValidityTitle">Validade Probatória</span></h3>
-<p><span data-i18n="security.evidentialValidityDesc">Suporte à admissibilidade dos ativos preservados como prova em procedimentos administrativos e judiciais.</span></p>
-</div>
-</div>
-</div>
-</section>
-<section class="text-block">
-<div class="text-block-inner">
-<h2><span data-i18n="security.reliabilityTitle">Confiabilidade Probatória</span></h2>
-<p><span data-i18n="security.reliabilityDesc">A confiabilidade jurídica da prova digital depende da demonstração de integridade, rastreabilidade e controle de autoria. A arquitetura foi estruturada para atender a esses requisitos técnicos.</span></p>
-</div>
-</section>
-<section class="cta-final">
-<div class="cta-final-inner">
-<h2><span data-i18n="security.ctaTitle">Conheça nossa infraestrutura de segurança</span></h2>
-<p><span data-i18n="security.ctaDesc">Acesse a plataforma e conheça nossa infraestrutura de preservação probatória estruturada.</span></p>
-<a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank" data-i18n="global.accessPlatform">Acessar a Plataforma</a>
-</div>
-</section>
-</main>
-
-<footer class="footer">
-<div class="footer-container">
-
-<!-- COLUNA 1 – MARCA -->
-<div class="footer-col footer-brand-col">
-<h3 data-i18n="global.brand">Tutela Digital®</h3>
-<p><a href="mailto:contato@tuteladigital.com.br" data-i18n="global.footerEmail">contato@tuteladigital.com.br</a></p>
-<p><a href="https://www.instagram.com/tuteladigitalbr/" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true" class="footer-social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M7.75 2h8.5C19.99 2 22 4.01 22 6.25v8.5C22 19.99 19.99 22 16.25 22h-8.5C4.01 22 2 19.99 2 16.25v-8.5C2 4.01 4.01 2 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm4.75-.88a.88.88 0 1 1 0 1.75.88.88 0 0 1 0-1.75z" fill="currentColor"></path>
-</svg> <span data-i18n="global.footerInstagram">@tuteladigitalbr</span></a></p>
-</div>
-
-<!-- COLUNA 2 – PLATAFORMA -->
-<div class="footer-col">
-<h4 data-i18n="footer.platform">Plataforma</h4>
-<ul>
-<li><a href="/como-funciona.html" data-i18n="navigation.howItWorks">Como Funciona</a></li>
-<li><a href="/seguranca.html" data-i18n="navigation.security">Segurança</a></li>
-<li><a href="/legal/preservacao-probatoria-digital.html" data-i18n="navigation.preservation">Preservação Probatória</a></li>
-</ul>
-</div>
-
-<!-- COLUNA 3 – PÚBLICO -->
-<div class="footer-col">
-<h4 data-i18n="footer.audience">Público</h4>
-<ul>
-<li><a href="/governo.html" data-i18n="navigation.government">Governo</a></li>
-<li><a href="/empresas.html" data-i18n="navigation.companies">Empresas</a></li>
-<li><a href="/pessoas.html" data-i18n="navigation.individuals">Pessoas Físicas</a></li>
-</ul>
-</div>
-
-<!-- COLUNA 4 – BASE JURÍDICA -->
-<div class="footer-col">
-<h4 data-i18n="navigation.legal_base">Base Jurídica</h4>
-<ul>
-<li><a href="/legal/institucional.html" data-i18n="navigation.institucional">Institucional</a></li>
-<li><a href="/legal/fundamento-juridico.html" data-i18n="navigation.legalBasis">Fundamento Jurídico</a></li>
-<li><a href="/legal/termos-de-custodia.html" data-i18n="navigation.terms">Termos de Custódia</a></li>
-<li><a href="/legal/politica-de-privacidade.html" data-i18n="navigation.privacy">Política de Privacidade</a></li>
-</ul>
-</div>
-
-</div>
-
-<div class="footer-bottom">
-<p data-i18n="global.footerRights">© 2026 Tutela Digital®. Todos os direitos reservados.</p>
-</div>
-</footer>
-<!-- WhatsApp Floating Button -->
-<a aria-label="" 
-   class="whatsapp-float" 
-   href="https://wa.me/5531975460050" 
-   rel="noopener noreferrer" 
-   target="_blank"
-   data-i18n-aria="whatsapp.aria">
-<span class="whatsapp-tooltip" data-i18n="whatsapp.tooltip">Fale com nosso especialista</span>
-<svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.11 17.44c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.35-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.93-.96 2.27s.98 2.64 1.11 2.82c.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.21 1.25.18 1.72.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z"></path>
-<path d="M16 3C8.82 3 3 8.82 3 16c0 2.82.93 5.44 2.5 7.56L3 29l5.65-2.47A12.9 12.9 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.5c-2.3 0-4.45-.67-6.27-1.82l-.45-.28-3.35 1.47.89-3.56-.29-.46A10.4 10.4 0 0 1 5.6 16C5.6 10.27 10.27 5.6 16 5.6S26.4 10.27 26.4 16 21.73 26.5 16 26.5z"></path>
-</svg>
-</a>
+    <div class="footer-bottom">
+      <p data-i18n="global.footerRights">© 2026 Tutela Digital®. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  <!-- WhatsApp Floating Button -->
+  <a aria-label="" class="whatsapp-float" href="https://wa.me/5531975460050" rel="noopener noreferrer" target="_blank"
+    data-i18n-aria="whatsapp.aria">
+    <span class="whatsapp-tooltip" data-i18n="whatsapp.tooltip">Fale com nosso especialista</span>
+    <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M19.11 17.44c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.35-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.93-.96 2.27s.98 2.64 1.11 2.82c.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.21 1.25.18 1.72.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32z">
+      </path>
+      <path
+        d="M16 3C8.82 3 3 8.82 3 16c0 2.82.93 5.44 2.5 7.56L3 29l5.65-2.47A12.9 12.9 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.5c-2.3 0-4.45-.67-6.27-1.82l-.45-.28-3.35 1.47.89-3.56-.29-.46A10.4 10.4 0 0 1 5.6 16C5.6 10.27 10.27 5.6 16 5.6S26.4 10.27 26.4 16 21.73 26.5 16 26.5z">
+      </path>
+    </svg>
+  </a>
 
 
 
@@ -536,34 +579,35 @@ body.exec-compact .main.main--hero-top {
 
 
 
-<!-- Fade Effect Script -->
-<script>
-(function() {
-  // Intersection Observer for fade-in effect
-  const revealElements = document.querySelectorAll('.features, .steps, .text-block, .page-header');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('reveal-on-scroll', 'visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
-  
-  revealElements.forEach(el => {
-    el.classList.add('reveal-on-scroll');
-    observer.observe(el);
-  });
-})();
-</script>
+  <!-- Fade Effect Script -->
+  <script>
+    (function () {
+      // Intersection Observer for fade-in effect
+      const revealElements = document.querySelectorAll('.features, .steps, .text-block, .page-header');
 
-    <script src="/assets/js/navigation.js?v=202602210200"></script>
-    <script src="/assets/js/i18n.js?v=202602210200"></script>
-    <script src="/assets/js/dropdown-menu.js?v=202602210200"></script>
-    <script src="/assets/js/mobile-menu.js?v=202602210200"></script>
-  </body>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-on-scroll', 'visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      revealElements.forEach(el => {
+        el.classList.add('reveal-on-scroll');
+        observer.observe(el);
+      });
+    })();
+  </script>
+
+  <script src="/assets/js/navigation.js?v=202602210200"></script>
+  <script src="/assets/js/i18n.js?v=202602210200"></script>
+  <script src="/assets/js/dropdown-menu.js?v=202602210200"></script>
+  <script src="/assets/js/mobile-menu.js?v=202602210200"></script>
+</body>
+
 </html>
