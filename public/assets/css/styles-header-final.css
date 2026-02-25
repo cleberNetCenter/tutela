@@ -232,15 +232,55 @@
   margin-left: auto;
 }
 
+/* =========================================================
+   LANGUAGE SWITCH — REFINED MICRO INTERACTION
+   ========================================================= */
+
 .lang-flag {
   background: none;
   border: none;
   font-size: 1.1rem;
-  color: var(--color-text-inverse);
+  color: rgba(255,255,255,0.85);
   cursor: pointer;
-  padding: 0.2rem 0.35rem;
+  padding: 0.25rem 0.4rem;
   border-radius: 4px;
-  transition: transform 0.2s ease, background 0.2s ease;
+  position: relative;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+/* Hover — mesmo comportamento sutil da nav */
+.lang-flag:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Active language — underline institucional */
+.lang-flag.active {
+  color: #ffffff;
+}
+
+.lang-flag.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+  opacity: 0.9;
+}
+
+/* Focus acessível elegante */
+.lang-flag:focus {
+  outline: none;
+}
+
+.lang-flag:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.35);
+  outline-offset: 3px;
 }
 
 .lang-flag:hover {
