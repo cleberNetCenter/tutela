@@ -1,5 +1,3 @@
-
-
 /* =========================================================
    MOBILE MENU BUTTON
    ========================================================= */
@@ -35,13 +33,13 @@
   .mobile-menu-btn {
     display: flex;
   }
-  
+
   /* Garantir que menu de idiomas fique visível */
   .lang-dropdown {
     position: relative;
     z-index: 1200;
   }
-  
+
   /* Menu mobile sobrepõe conteúdo */
   .nav {
     position: fixed;
@@ -56,18 +54,18 @@
     max-height: calc(100vh - 70px);
     overflow-y: auto;
   }
-  
+
   .nav-link,
-  .nav-dropdown > a {
+  .nav-dropdown>a {
     padding: 1rem 1.5rem;
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-  
+
   .nav-dropdown {
     width: 100%;
   }
-  
+
   .dropdown-menu {
     position: static;
     box-shadow: none;
@@ -75,19 +73,19 @@
     background: rgba(0, 0, 0, 0.2);
     padding-left: 1rem;
   }
-  
+
   .dropdown-menu li {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
-  
+
   .dropdown-menu li:last-child {
     border-bottom: none;
   }
-  
+
   .dropdown-menu a {
     padding: 0.75rem 1rem;
   }
-  
+
   /* Ajustar header CTA no mobile */
   .header-cta {
     display: none;
@@ -98,11 +96,11 @@
   .mobile-menu-btn {
     display: flex;
   }
-  
+
   .header-inner {
     gap: 0.5rem;
   }
-  
+
   .lang-dropdown {
     margin-left: auto;
   }
@@ -170,8 +168,8 @@
 
 
 /* Alinhamento vertical de todos os itens do menu */
-.nav > a,
-.nav > div,
+.nav>a,
+.nav>div,
 .nav .nav-link,
 .nav .nav-item {
   display: flex;
@@ -187,7 +185,7 @@
 .nav-link {
   font-size: 0.85rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   white-space: nowrap;
   position: relative;
@@ -213,14 +211,14 @@
   flex: 0 0 auto;
   font-size: 0.8rem;
   padding: 0.45rem 1rem;
-  border: 1px solid rgba(255,255,255,0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .header-cta:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* =========================================================
@@ -230,6 +228,7 @@
 .lang-dropdown {
   position: relative;
   flex: 0 0 auto;
+  margin-left: auto;
 }
 
 .lang-toggle {
@@ -265,7 +264,7 @@
 .lang-option {
   padding: 0.6rem 0.9rem;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   background: none;
   border: none;
@@ -278,12 +277,12 @@
 .lang-menu a:hover,
 .lang-menu button:hover,
 .lang-option:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
 }
 
 .lang-option.active {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
   font-weight: 500;
 }
@@ -303,7 +302,7 @@
   .nav {
     display: none;
   }
-  
+
   /* Mostrar menu quando classe active está presente */
   .nav.active {
     display: flex !important;
@@ -319,18 +318,18 @@
     max-height: calc(100vh - 70px);
     overflow-y: auto;
   }
-  
+
   .nav.active .nav-link,
-  .nav.active .nav-dropdown > a {
+  .nav.active .nav-dropdown>a {
     padding: 1rem 1.5rem;
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-  
+
   .nav.active .nav-dropdown {
     width: 100%;
   }
-  
+
   .nav.active .dropdown-menu {
     position: static;
     box-shadow: none;
@@ -338,22 +337,23 @@
     background: rgba(0, 0, 0, 0.2);
     padding-left: 1rem;
     border-radius: 0;
-    display: none; /* Escondido por padrão */
+    display: none;
+    /* Escondido por padrão */
   }
-  
+
   /* CRÍTICO: Mostrar dropdown quando .active */
   .nav.active .nav-dropdown.active .dropdown-menu {
     display: block !important;
   }
-  
+
   .nav.active .dropdown-menu li {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
-  
+
   .nav.active .dropdown-menu li:last-child {
     border-bottom: none;
   }
-  
+
   .nav.active .dropdown-menu a {
     padding: 0.75rem 1rem;
   }
@@ -395,7 +395,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   z-index: 9999;
   transition: transform 0.3s ease;
   text-decoration: none;
@@ -436,13 +436,14 @@
     width: 54px;
     height: 54px;
   }
-  
+
   .whatsapp-icon {
     width: 28px;
     height: 28px;
   }
-  
+
   .whatsapp-tooltip {
-    display: none; /* Oculta tooltip no mobile */
+    display: none;
+    /* Oculta tooltip no mobile */
   }
 }
