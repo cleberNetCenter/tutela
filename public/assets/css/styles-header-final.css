@@ -236,6 +236,7 @@
   background: none;
   border: none;
   font-size: 1.1rem;
+  color: var(--color-text-inverse);
   cursor: pointer;
   padding: 0.2rem 0.35rem;
   border-radius: 4px;
@@ -243,7 +244,7 @@
 }
 
 .lang-flag:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   transform: translateY(-1px);
 }
 
@@ -252,12 +253,12 @@
 }
 
 .lang-flag:focus-visible {
-  outline: 2px solid rgba(255,255,255,0.4);
+  outline: 2px solid rgba(255, 255, 255, 0.4);
   outline-offset: 2px;
 }
 
 .lang-flag.active {
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 
