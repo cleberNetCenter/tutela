@@ -21,7 +21,7 @@ const I18N = {
     // Meta & Global
     'site_title': 'global.brand',
     'site_description': 'home.heroSubtitle',
-    
+
     // Navigation
     'nav_home': 'navigation.home',
     'nav_governo': 'navigation.government',
@@ -34,17 +34,17 @@ const I18N = {
     'nav_termos': 'navigation.terms',
     'nav_privacy': 'navigation.privacy',
     'nav_cta': 'global.accessPlatform',
-    
+
     // Home Hero
     'hero_subtitle': 'home.heroSubtitle',
     'home_verticals_title': 'home.heroTitle',
-    
+
     // Home Intro (Trust)
     'home_trust_title': 'home.introTitle',
     'home_trust_p1': 'home.introP1',
     'home_trust_p2': 'home.introP2',
     'home_trust_p3': 'home.introP3',
-    
+
     // Home Verticals (Soluções por Segmento)
     'home_verticals_gov': 'navigation.government',
     'home_verticals_gov_desc': 'government.heroTitle',
@@ -52,7 +52,7 @@ const I18N = {
     'home_verticals_corp_desc': 'companies.heroTitle',
     'home_verticals_personal': 'navigation.individuals',
     'home_verticals_personal_desc': 'individuals.heroTitle',
-    
+
     // Home Pillars
     'home_pillars_title': 'home.pillarsTitle',
     'home_pillars_preservation': 'home.pillar1Title',
@@ -63,11 +63,11 @@ const I18N = {
     'home_pillars_custody_desc': 'home.pillar3Desc',
     'home_pillars_admissibility': 'home.pillar3Title',
     'home_pillars_admissibility_desc': 'home.pillar3Desc',
-    
+
     // Home Applicability (chaves diretas em home.*) 
     'home_applicability_title': 'home.home_applicability_title',
     'home_applicability_desc': 'home.home_applicability_desc',
-    
+
     // Home CTA
     'home_cta_title': 'global.ctaPrimary',
     'home_cta_desc': 'global.ctaInstitutional',
@@ -82,22 +82,22 @@ const I18N = {
     const savedLang = localStorage.getItem('tutela_lang');
     const browserLang = navigator.language.split('-')[0];
     const supportedLangs = ['pt', 'en', 'es'];
-    
-    this.currentLang = savedLang || 
+
+    this.currentLang = savedLang ||
       (supportedLangs.includes(browserLang) ? browserLang : 'pt');
 
     // Carrega traduções
     await this.loadTranslations(this.currentLang);
-    
+
     // Aplica traduções
     this.applyTranslations();
-    
+
     // Atualiza UI do seletor de idioma
     this.updateLanguageSelector();
-    
+
     // Atualiza atributo lang do HTML
     document.documentElement.lang = this.getLangCode(this.currentLang);
-    
+
     console.log('[i18n] Sistema inicializado:', this.currentLang);
   },
 
@@ -127,7 +127,7 @@ const I18N = {
     if (document.body && document.body.classList.contains('legal-page')) {
       return true;
     }
-    
+
     // Método 2: Verifica se alguma das páginas legais está ativa no SPA
     return this.legalPages.some(pageId => {
       const page = document.getElementById(pageId);
@@ -140,7 +140,7 @@ const I18N = {
    */
   applyTranslations() {
     const isLegal = this.isLegalPage();
-    
+
     // Se é página legal E idioma não é PT, aplicar apenas interface
     if (isLegal && this.currentLang !== 'pt') {
       console.log('[i18n] Página jurídica detectada - aplicando apenas traduções de interface');
@@ -152,7 +152,7 @@ const I18N = {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       const translation = this.t(key);
-      
+
       if (translation) {
         // Suporta texto simples ou HTML
         if (el.dataset.i18nHtml === 'true') {
@@ -281,10 +281,8 @@ const I18N = {
     const interfaceSelectors = [
       '.nav [data-i18n]',            // navegação (todos os links)
       '.nav-link [data-i18n]',       // links de navegação
-      '.dropdown-menu [data-i18n]',  // itens dos dropdowns
       '.header [data-i18n]',         // cabeçalho
       '.footer [data-i18n]',         // rodapé
-      '.lang-menu [data-i18n]',      // menu de idiomas
       '.modal [data-i18n]',          // modais
       'button[data-i18n]',           // botões
       '.header-cta[data-i18n]',      // CTA do header
@@ -296,7 +294,7 @@ const I18N = {
       document.querySelectorAll(selector).forEach(el => {
         const key = el.dataset.i18n;
         const translation = this.t(key);
-        
+
         if (translation && translation !== key) {
           if (el.dataset.i18nHtml === 'true') {
             el.innerHTML = translation;
@@ -328,38 +326,32 @@ const I18N = {
       console.warn('[i18n] Idioma não suportado:', lang);
       return;
     }
-    
+
     const previousLang = this.currentLang;
     const isSameLanguage = previousLang === lang;
     console.log('[i18n] Trocando idioma:', previousLang, '→', lang);
-    
+
     // Salva idioma no localStorage
     localStorage.setItem('tutela_lang', lang);
     this.currentLang = lang;
-    
-    // Fecha o menu dropdown
-    const dropdown = document.querySelector('.lang-dropdown');
-    if (dropdown) {
-      dropdown.classList.remove('active');
-    }
-    
+
     // Carrega traduções do novo idioma (ou recarrega para re-aplicar PT se necessário)
     if (!isSameLanguage || Object.keys(this.translations).length === 0) {
       await this.loadTranslations(lang);
     }
-    
+
     // Aplica traduções na página
     this.applyTranslations();
-    
+
     // Atualiza UI do seletor
     this.updateLanguageSelector();
-    
+
     // Atualiza atributo lang do HTML
     document.documentElement.lang = this.getLangCode(lang);
-    
+
     // Atualiza schemas JSON-LD
     this.updateSchemaLanguage(lang);
-    
+
     console.log('[i18n] Idioma aplicado com sucesso:', lang, isSameLanguage ? '(reaplicado)' : '');
   },
 
@@ -367,16 +359,11 @@ const I18N = {
    * Atualiza UI do seletor de idioma
    */
   updateLanguageSelector() {
-    const langCode = document.querySelector('.lang-code');
-    if (langCode) {
-      langCode.textContent = this.currentLang.toUpperCase();
-    }
-
-    // Marca idioma ativo no menu
-    document.querySelectorAll('.lang-option').forEach(option => {
-      option.classList.toggle('active', option.dataset.lang === this.currentLang);
+    document.querySelectorAll('.lang-flag').forEach(flag => {
+      flag.classList.toggle('active', flag.dataset.lang === this.currentLang);
     });
   },
+
 
   /**
    * Retorna código de idioma completo
@@ -398,11 +385,11 @@ const I18N = {
       try {
         const schema = JSON.parse(script.textContent);
         const langCode = this.getLangCode(lang);
-        
+
         if (schema.inLanguage) {
           schema.inLanguage = langCode;
         }
-        
+
         // Atualiza script
         script.textContent = JSON.stringify(schema, null, 2);
       } catch (e) {
@@ -418,15 +405,15 @@ const I18N = {
    */
   t(key) {
     if (!key) return '';
-    
+
     // Converte chave antiga para nova (se existir no mapa)
     const mappedKey = this.keyMap[key] || key;
-    
+
     // Se a chave contém ponto, navega pelo objeto
     if (mappedKey.includes('.')) {
       const keys = mappedKey.split('.');
       let value = this.translations;
-      
+
       for (const k of keys) {
         value = value?.[k];
         if (value === undefined) {
@@ -434,10 +421,10 @@ const I18N = {
           return key;
         }
       }
-      
+
       return value || key;
     }
-    
+
     // Chave simples
     return this.translations[mappedKey] || key;
   }
@@ -456,27 +443,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // =======================================================
 
 document.addEventListener('click', (e) => {
-  // Troca de idioma
-  if (e.target.matches('.lang-option')) {
-    const lang = e.target.dataset.lang;
+  const button = e.target.closest('.lang-flag');
+  
+  if (button) {
+    const lang = button.dataset.lang;
     if (lang) {
       I18N.switchLanguage(lang);
     }
-  }
-
-  // Toggle dropdown
-  if (e.target.matches('.lang-toggle')) {
-    const dropdown = document.querySelector('.lang-dropdown');
-    if (dropdown) {
-      dropdown.classList.toggle('active');
-    }
-  }
-
-  // Fecha dropdown ao clicar fora
-  if (!e.target.closest('.lang-dropdown')) {
-    document.querySelectorAll('.lang-dropdown').forEach(d => {
-      d.classList.remove('active');
-    });
   }
 });
 
