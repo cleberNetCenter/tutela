@@ -1344,6 +1344,15 @@ body.legal-page .main.main--hero-top .page-header--legal {
   text-align: center;
 }
 
+.insight-cta-block {
+  margin: 5rem auto 6rem auto;   /* espaço acima e abaixo */
+  padding: 3.5rem 2rem;
+  background: var(--color-surface-muted);
+  text-align: center;
+  border-radius: 8px;
+  max-width: 900px;
+}
+
 .insight-cta-inner {
   max-width: var(--max-width-narrow);
   margin: 0 auto;
