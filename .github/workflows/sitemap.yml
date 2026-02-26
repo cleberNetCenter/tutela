@@ -28,10 +28,16 @@ jobs:
           for file in $FILES; do
             url=$(echo "$file" | sed 's|index.html||' | sed 's|.html||')
 
+            if [ "$url" = "" ]; then
+              priority="1.0"
+            else
+              priority="0.8"
+            fi
+
             echo "  <url>" >> sitemap.xml
             echo "    <loc>https://tuteladigital.com.br/$url</loc>" >> sitemap.xml
             echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-            echo "    <priority>0.8</priority>" >> sitemap.xml
+            echo "    <priority>$priority</priority>" >> sitemap.xml
             echo "  </url>" >> sitemap.xml
           done
 
