@@ -50,8 +50,10 @@
 }
 
 html {
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
 }
+
 
 body {
   font-family: var(--font-body);
@@ -117,6 +119,11 @@ body {
     0 2px 4px rgba(0, 0, 0, .1),
     inset 0 2px 4px rgba(0, 0, 0, .15);
   top: 2px;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-border-strong);
+  outline-offset: 3px;
 }
 
 /* TEXT BLOCK */
@@ -325,10 +332,12 @@ button.nav-link:focus-visible {
       var(--color-surface-muted));
 }
 
+/* Hero subtitle específico */
 .hero-subtitle,
 .lp-hero-subtitle {
   font-size: 1.125rem;
-  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-top: 1.5rem;
   margin-bottom: var(--space-xl);
 }
 
@@ -373,17 +382,25 @@ button.nav-link:focus-visible {
 
 
 /* ===================== FEATURE CARDS ==================== */
-.feature-item {
-  background: var(--color-surface-light);
-  padding: var(--space-lg);
-  border: 1px solid var(--color-border-soft);
-  border-radius: 4px;
-}
-
 .feature-item,
 .vertical-card {
   background: var(--color-surface-light);
+  padding: var(--space-lg);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  will-change: transform;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.feature-item {
   border: 1px solid var(--color-border-soft);
+}
+
+.vertical-card {
+  border: 1px solid transparent;
 }
 
 .feature-item h3,
@@ -410,18 +427,6 @@ button.nav-link:focus-visible {
   color: var(--color-text-muted);
   font-size: 0.9375rem;
   line-height: 1.7;
-}
-
-.vertical-card {
-  padding: var(--space-lg);
-  border-radius: 4px;
-}
-
-.vertical-card h3 {
-  font-family: var(--font-body);
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: var(--space-sm);
 }
 
 .vertical-card p {
@@ -546,23 +551,6 @@ body.exec-compact .features-grid--security {
   letter-spacing: -0.01em;
 }
 
-.verticals-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
-}
-
-
-.vertical-card {
-  background: var(--color-surface-light);
-  padding: var(--space-lg);
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
 
 .vertical-card:hover {
   border-color: var(--color-border-strong);
@@ -589,45 +577,6 @@ body.exec-compact .features-grid--security {
   }
 }
 
-/* ===================== CTA FINAL ========================= */
-.cta-final-inner {
-  max-width: var(--max-width-narrow);
-  margin: 0 auto
-}
-
-.cta-final h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: var(--space-md);
-}
-
-.cta-final p {
-  color: var(--color-border-soft);
-  margin-bottom: var(--space-xl);
-}
-
-.cta-final .btn-primary {
-  background: var(--color-surface-light);
-  color: var(--color-green-900);
-}
-
-.cta-final .btn-primary:hover {
-  background: #fff
-}
-
-/* EXEC COMPACT CTA */
-body.exec-compact .cta-final {
-  padding: 3rem var(--space-lg)
-}
-
-body.exec-compact .cta-final h2 {
-  font-size: 1.6rem
-}
-
-body.exec-compact .cta-final p {
-  font-size: .9375rem
-}
-
 /* ===================== FOOTER ============================ */
 .footer-logo {
   font-family: var(--font-display);
@@ -644,10 +593,11 @@ body.exec-compact .cta-final p {
 }
 
 .footer-social-icon {
-  width: 14px;
-  height: 14px
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 5px;
 }
-
 .footer-link {
   font-size: .875rem;
   color: var(--color-text-muted);
@@ -745,13 +695,6 @@ body.exec-compact .footer-link--social {
 
 .footer-brand-col a:hover {
   color: #ffffff;
-}
-
-.footer-social-icon {
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  margin-right: 5px;
 }
 
 .footer-bottom {
@@ -853,21 +796,6 @@ body.exec-compact .footer-link--social {
   text-align: center;
 }
 
-.step-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--space-md);
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--color-text-strong);
-  border: 2px solid var(--color-border-strong);
-  border-radius: 50%;
-}
-
 .step-item h3,
 .benefit-item h3 {
   font-family: var(--font-body);
@@ -938,20 +866,6 @@ body.exec-compact .footer-link--social {
   }
 }
 
-/* Remove estilos antigos do footer */
-.footer-inner {
-  display: none;
-}
-
-.footer-links {
-  display: none;
-}
-
-.footer-copy {
-  display: none;
-}
-
-
 /* =======================================================
    WHATSAPP FLOATING BUTTON
    ======================================================= */
@@ -968,7 +882,7 @@ body.exec-compact .footer-link--social {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 9999;
+  z-index: 1200;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
   cursor: pointer;
@@ -1070,14 +984,6 @@ body.exec-compact .footer-link--social {
   border-left: 3px solid var(--color-green-800);
   font-size: 0.95rem;
   color: var(--color-text-base);
-}
-
-/* Hero subtitle específico */
-.hero-subtitle {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.95);
-  margin-top: 1.5rem;
 }
 
 /* Responsivo para preservacao-intro */
@@ -1295,21 +1201,6 @@ body.legal-page .page-header {
 }
 
 /* ==================================================
-   LEGAL – DIVISOR INSTITUCIONAL
-   ================================================== */
-
-.legal-divider {
-  width: 72px;
-  height: 2px;
-  margin: 1.5rem auto 2.5rem auto;
-  background: linear-gradient(90deg,
-      transparent,
-      var(--color-green-800),
-      transparent);
-  opacity: 0.6;
-}
-
-/* ==================================================
    LEGAL – GRID 2x2 WHITE PAPER
    ================================================== */
 
@@ -1437,7 +1328,7 @@ body.legal-page .main.main--hero-top .page-header--legal {
    INSIGHTS – CTA INSTITUCIONAL
    ======================================================= */
 
-.insight-cta-block {
+.main--insights .insight-cta-block {
   margin-top: var(--space-2xl);
   padding: var(--space-2xl) var(--space-lg);
   background: var(--color-surface-muted);
