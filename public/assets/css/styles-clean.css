@@ -1022,7 +1022,7 @@ body.exec-compact .footer-link--social {
   width: 60px;
   height: 2px;
   background: var(--color-green-800);
-  margin: 3rem 0 2rem 0;
+  margin: 3rem auto 2rem auto; /* ← AUTO centraliza */
   opacity: 0.6;
 }
 
