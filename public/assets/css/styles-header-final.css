@@ -484,3 +484,40 @@
     "Noto Color Emoji",
     sans-serif !important;
 }
+
+/* =========================================================
+   LANGUAGE FLAGS - SVG VERSION
+   ========================================================= */
+
+.lang-flag {
+  background: none;
+  border: none;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang-flag img {
+  width: 22px;
+  height: 16px;
+  object-fit: cover;
+  display: block;
+}
+
+.lang-flag:hover {
+  transform: translateY(-1px);
+  opacity: 0.85;
+}
+
+.lang-flag.active {
+  background: rgba(255,255,255,0.15);
+}
+
+.lang-flag:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.35);
+  outline-offset: 3px;
+}
