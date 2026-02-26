@@ -319,6 +319,11 @@
     display: flex;
     margin-left: 0;
   }
+
+  /* Esconder CTA da plataforma no mobile */
+  .header-cta {
+    display: none !important;
+  }
 }
 
 /* Esconder código da língua, mostrar apenas globo */
