@@ -178,29 +178,29 @@
 .lang-flag {
   background: none;
   border: none;
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  line-height: 1;
   cursor: pointer;
-  padding: 0.25rem 0.4rem;
-  border-radius: 4px;
-  position: relative;
+  padding: 0.35rem 0.45rem;
+  border-radius: 6px;
+
   transition:
     transform 0.2s ease,
-    color 0.2s ease,
-    background 0.2s ease;
+    background 0.2s ease,
+    opacity 0.2s ease;
 }
 
-/* Hover — mesmo comportamento sutil da nav */
+/* Hover */
 .lang-flag:hover {
-  color: #ffffff;
   transform: translateY(-1px);
+  opacity: 0.9;
 }
-
-/* Active language — underline institucional */
+/* Estado ativo */
 .lang-flag.active {
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
 }
 
+/* Underline institucional */
 .lang-flag.active::after {
   content: "";
   position: absolute;
