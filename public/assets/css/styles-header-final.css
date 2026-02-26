@@ -14,6 +14,7 @@
   padding: 0;
   margin-left: 1rem;
   z-index: 10;
+  align-items: center;
 }
 
 .mobile-menu-btn span {
@@ -32,12 +33,6 @@
 @media (max-width: 1200px) {
   .mobile-menu-btn {
     display: flex;
-  }
-
-  /* Garantir que menu de idiomas fique visível */
-  .lang-dropdown {
-    position: relative;
-    z-index: 1200;
   }
 
   /* Menu mobile sobrepõe conteúdo */
@@ -102,10 +97,6 @@
     justify-content: space-between;
   }
 
-  .lang-dropdown {
-    margin-left: auto;
-  }
-
   .lang-switch {
     margin-left: 0;
   }
@@ -144,10 +135,17 @@
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 1rem 2rem;
+
   display: flex;
   align-items: center;
-  gap: 1.25rem;
   justify-content: space-between;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
 }
 
 /* Logo */
@@ -235,7 +233,6 @@
   display: flex;
   gap: 0.35rem;
   align-items: center;
-  margin-left: auto;
 }
 
 /* =========================================================
@@ -289,11 +286,6 @@
   outline-offset: 3px;
 }
 
-.lang-flag:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
-}
-
 .lang-flag:focus {
   outline: none;
 }
@@ -320,16 +312,19 @@
 
   /* Mostrar menu quando classe active está presente */
   .nav.active {
-    display: flex !important;
+    display: flex;
     flex-direction: column;
+
     position: fixed;
     top: 70px;
     left: 0;
     right: 0;
+
     background: var(--color-surface-base);
+
     padding: 1rem 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1150;
+    z-index: 1100;
+
     max-height: calc(100vh - 70px);
     overflow-y: auto;
   }
