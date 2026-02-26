@@ -269,12 +269,12 @@
 
 /* Mostrar dropdown */
 
-.nav-dropdown:hover .dropdown-menu {
+.nav-dropdown.active .dropdown-menu {
   display: block;
 }
 
-.nav-dropdown.active .dropdown-menu {
-  display: block;
+.dropdown-menu {
+  right: auto;
 }
 
 /* =========================================================
