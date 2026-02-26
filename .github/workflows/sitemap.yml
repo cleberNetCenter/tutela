@@ -24,26 +24,17 @@ jobs:
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
           FILES=$(git ls-files '*.html')
-          echo "ARQUIVOS ENCONTRADOS:"
-          echo "$FILES"
+
           for file in $FILES; do
-            if [[ $file == *.html ]]; then
+            clean=${file#public/}
+            url=${clean%index.html}
+            url=${url%.html}
 
-              clean=$file
-
-              # remove apenas index.html final
-              url=${clean%index.html}
-
-              # remove extensão .html quando não for index
-              url=${url%.html}
-
-              echo "  <url>" >> sitemap.xml
-              echo "    <loc>https://tuteladigital.com.br/$url</loc>" >> sitemap.xml
-              echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-              echo "    <priority>0.8</priority>" >> sitemap.xml
-              echo "  </url>" >> sitemap.xml
-
-            fi
+            echo "  <url>" >> sitemap.xml
+            echo "    <loc>https://tuteladigital.com.br/$url</loc>" >> sitemap.xml
+            echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
+            echo "    <priority>0.8</priority>" >> sitemap.xml
+            echo "  </url>" >> sitemap.xml
           done
 
           echo '</urlset>' >> sitemap.xml
