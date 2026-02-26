@@ -1017,6 +1017,11 @@ body.exec-compact .footer-link--social {
   margin: 0 auto;
 }
 
+body.legal-page .whitepaper-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 /* Separadores institucionais */
 .wp-divider {
   width: 60px;
@@ -1212,14 +1217,18 @@ body.legal-page .page-header {
 
 .legal-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
+  justify-content: center;
 }
 
 .legal-grid .feature-item {
   padding: 2.5rem;
   min-height: 230px;
   border-radius: 8px;
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: left;
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
