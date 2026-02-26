@@ -99,10 +99,15 @@
 
   .header-inner {
     gap: 0.5rem;
+    justify-content: space-between;
   }
 
   .lang-dropdown {
     margin-left: auto;
+  }
+
+  .lang-switch {
+    margin-left: 0;
   }
 }
 
@@ -142,6 +147,7 @@
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  justify-content: space-between;
 }
 
 /* Logo */
@@ -240,7 +246,7 @@
   background: none;
   border: none;
   font-size: 1.1rem;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
   padding: 0.25rem 0.4rem;
   border-radius: 4px;
@@ -279,7 +285,7 @@
 }
 
 .lang-flag:focus-visible {
-  outline: 2px solid rgba(255,255,255,0.35);
+  outline: 2px solid rgba(255, 255, 255, 0.35);
   outline-offset: 3px;
 }
 
