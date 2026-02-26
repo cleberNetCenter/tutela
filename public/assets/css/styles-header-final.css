@@ -28,17 +28,6 @@
   background: rgba(255, 255, 255, 0.85);
 }
 
-@media (max-width: 900px) {
-  .header-inner {
-    gap: 0.5rem;
-    justify-content: space-between;
-  }
-
-  .lang-switch {
-    margin-left: 0;
-  }
-}
-
 /* Estado ativo do mobile menu (hamburger -> X) */
 .mobile-menu-btn.active span:nth-child(1) {
   transform: rotate(45deg) translate(8px, 8px);
@@ -113,6 +102,10 @@
   align-items: center;
 }
 
+/* Estado padrão explícito */
+.nav {
+  display: flex;
+}
 
 /* Alinhamento vertical de todos os itens do menu */
 .nav>a,
@@ -242,6 +235,7 @@
 @media (max-width: 1200px) {
   .nav {
     display: none;
+    width: 100%;
   }
 
   /* Mostrar menu quando classe active está presente */

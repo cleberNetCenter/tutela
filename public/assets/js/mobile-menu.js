@@ -10,10 +10,10 @@
 
   window.__tutelaNavigationControllerInitialized = true;
 
-  const MOBILE_MAX_WIDTH = 1200;
+  const MOBILE_MAX_WIDTH = 1199;
 
   function isMobileViewport() {
-    return window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`).matches;
+    return window.innerWidth <= MOBILE_MAX_WIDTH;
   }
 
   function getHeaderElements() {
@@ -175,7 +175,7 @@
   }
 
   function handleResize() {
-    if (!isMobileViewport()) {
+    if (window.innerWidth > MOBILE_MAX_WIDTH) {
       document.body.style.overflow = '';
 
       const { nav, menuBtn } = getHeaderElements();
