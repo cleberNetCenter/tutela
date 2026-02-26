@@ -18,24 +18,21 @@ jobs:
 
       - name: Generate sitemap
         run: |
-          echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
+          rm -f sitemap.xml
+
+          echo '<?xml version="1.0" encoding="UTF-8"?>' >> sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
-          find . -name "*.html" \
-            ! -path "./.git/*" \
-            ! -path "./node_modules/*" \
-            ! -path "./partials/*" \
-            | while read file; do
+          FILES=$(git ls-files '*.html')
 
-              clean=$(echo "$file" | sed 's|^\./||')
-              url=$(echo "$clean" | sed 's|index.html||' | sed 's|.html||')
+          for file in $FILES; do
+            url=$(echo "$file" | sed 's|index.html||' | sed 's|.html||')
 
-              echo "  <url>" >> sitemap.xml
-              echo "    <loc>https://tuteladigital.com.br/$url</loc>" >> sitemap.xml
-              echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-              echo "    <priority>0.8</priority>" >> sitemap.xml
-              echo "  </url>" >> sitemap.xml
-
+            echo "  <url>" >> sitemap.xml
+            echo "    <loc>https://tuteladigital.com.br/$url</loc>" >> sitemap.xml
+            echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
+            echo "    <priority>0.8</priority>" >> sitemap.xml
+            echo "  </url>" >> sitemap.xml
           done
 
           echo '</urlset>' >> sitemap.xml
