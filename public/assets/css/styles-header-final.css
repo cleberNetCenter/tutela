@@ -178,7 +178,7 @@
 .lang-flag {
   background: none;
   border: none;
-  font-size: 1.15rem;
+  font-size: 0; /* evita interferência */
   line-height: 1;
   cursor: pointer;
   padding: 0.35rem 0.45rem;
@@ -224,6 +224,11 @@
 
 .lang-flag.active {
   background: rgba(255, 255, 255, 0.18);
+}
+
+.lang-flag .flag {
+  font-size: 1.15rem;
+  line-height: 1;
 }
 
 /* =========================================================
