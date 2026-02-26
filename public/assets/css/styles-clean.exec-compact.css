@@ -8,14 +8,11 @@
 /* ===================== MAIN CONTENT ====================== */
 /* Garantir espaço adequado para header fixo */
 body.exec-compact .main {
-  padding-top: 80px;
+  padding-top: 70px;
 }
 
 /* ===================== SEÇÕES ============================ */
 /* Primeira seção não precisa de padding-top (já tem no .main) */
-body.exec-compact .page > .page-header:first-child {
-  padding-top: 0;
-}
 
 body.exec-compact .hero,
 body.exec-compact .lp-hero,
@@ -106,23 +103,5 @@ body.exec-compact .footer-inner {
   body.exec-compact .cta-final {
     padding-top: 2rem;
     padding-bottom: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .whatsapp-float {
-    bottom: 20px;
-    right: 20px;
-    width: 54px;
-    height: 54px;
-  }
-  
-  .whatsapp-icon {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .whatsapp-tooltip {
-    display: none; /* Oculta tooltip no mobile */
   }
 }
