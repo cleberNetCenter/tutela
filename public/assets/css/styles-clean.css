@@ -1432,3 +1432,33 @@ body.legal-page .main.main--hero-top {
 body.legal-page .main.main--hero-top .page-header--legal {
   padding-top: 2rem;
 }
+
+/* =======================================================
+   INSIGHTS – CTA INSTITUCIONAL
+   ======================================================= */
+
+.insight-cta-block {
+  margin-top: var(--space-2xl);
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--color-surface-muted);
+  text-align: center;
+}
+
+.insight-cta-inner {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+}
+
+.insight-cta-block h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 1.8rem);
+  color: var(--color-text-strong);
+  margin-bottom: var(--space-md);
+}
+
+.insight-cta-block p {
+  color: var(--color-text-base);
+  margin-bottom: var(--space-lg);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
