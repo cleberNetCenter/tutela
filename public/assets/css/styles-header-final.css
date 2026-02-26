@@ -227,7 +227,7 @@
 }
 
 /* =========================================================
-   DROPDOWN MENU – DESKTOP FIX
+   DROPDOWN MENU – ANIMATED VERSION
    ========================================================= */
 
 .nav-dropdown {
@@ -239,20 +239,30 @@
   top: 100%;
   left: 0;
   min-width: 220px;
+
   background: var(--color-surface-base);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 0.5rem 0;
+  margin-top: 8px;
+
   list-style: none;
-  margin: 0;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  display: none; /* ESSENCIAL */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+
+  /* Estado inicial oculto */
+  opacity: 0;
+  transform: translateY(8px);
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    visibility 0.18s ease;
+
   z-index: 1100;
 }
 
-.dropdown-menu li {
-  list-style: none;
-}
-
+/* Links */
 .dropdown-menu a {
   display: block;
   padding: 0.65rem 1.25rem;
@@ -260,6 +270,7 @@
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   white-space: nowrap;
+  transition: background 0.2s ease;
 }
 
 .dropdown-menu a:hover {
@@ -267,14 +278,12 @@
   color: #ffffff;
 }
 
-/* Mostrar dropdown */
-
-.nav-dropdown.active .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu {
-  right: auto;
+/* Estado aberto controlado por JS */
+.nav-dropdown.active>.dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /* =========================================================
@@ -317,11 +326,12 @@
 
   .nav.active .dropdown-menu {
     position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
     box-shadow: none;
-    border: none;
-    background: transparent;
-    padding: 0 0 1rem 0;
-    display: none;
+    margin-top: 0;
   }
 
   .nav.active .dropdown-menu a {
