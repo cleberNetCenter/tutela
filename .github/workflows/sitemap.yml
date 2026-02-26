@@ -57,7 +57,7 @@ jobs:
               changefreq="yearly"
             fi
 
-            lastmod=$(git log -1 --format="%Y-%m-%d" -- "$file")
+            lastmod=$(git log -1 --format="%cd" --date=format:'%Y-%m-%d' -- "$file")
 
             echo "  <url>" >> public/sitemap.xml
             echo "    <loc>$final_url</loc>" >> public/sitemap.xml
