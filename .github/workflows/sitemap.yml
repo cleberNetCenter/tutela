@@ -18,10 +18,10 @@ jobs:
 
       - name: Generate sitemap
         run: |
-          rm -f sitemap.xml
+          rm -f public/sitemap.xml
 
-          echo '<?xml version="1.0" encoding="UTF-8"?>' >> sitemap.xml
-          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+          echo '<?xml version="1.0" encoding="UTF-8"?>' >> public/sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> public/sitemap.xml
 
           FILES=$(git ls-files '*.html')
 
@@ -30,19 +30,19 @@ jobs:
             url=${clean%index.html}
             url=${url%.html}
 
-            echo "  <url>" >> sitemap.xml
-            echo "    <loc>https://tuteladigital.com.br/$url</loc>" >> sitemap.xml
-            echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-            echo "    <priority>0.8</priority>" >> sitemap.xml
-            echo "  </url>" >> sitemap.xml
+            echo "  <url>" >> public/sitemap.xml
+            echo "    <loc>https://tuteladigital.com.br/$url</loc>" >> public/sitemap.xml
+            echo "    <changefreq>monthly</changefreq>" >> public/sitemap.xml
+            echo "    <priority>0.8</priority>" >> public/sitemap.xml
+            echo "  </url>" >> public/sitemap.xml
           done
 
-          echo '</urlset>' >> sitemap.xml
+          echo '</urlset>' >> public/sitemap.xml
 
       - name: Commit sitemap
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add sitemap.xml
+          git add public/sitemap.xml
           git commit -m "Auto update sitemap" || echo "No changes"
           git push
