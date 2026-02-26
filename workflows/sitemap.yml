@@ -1,41 +1,57 @@
-name: Auto Generate Sitemap
+name: Generate Sitemap
 
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
-  sitemap:
+  build-sitemap:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Generate sitemap
+      - name: Generate sitemap.xml
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
 
-          find . -name "*.html" ! -path "./.git/*" | while read file; do
-            url=$(echo $file | sed 's|^\./||' | sed 's|index.html||' | sed 's|.html||')
-            lastmod=$(git log -1 --format="%cI" "$file")
+          find . -name "*.html" \
+            ! -path "./.git/*" \
+            ! -path "./node_modules/*" \
+            ! -path "./partials/*" \
+            | while read file; do
 
-            echo "  <url>" >> sitemap.xml
-            echo "    <loc>https://tuteladigital.com.br/$url</loc>" >> sitemap.xml
-            echo "    <lastmod>$lastmod</lastmod>" >> sitemap.xml
-            echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-            echo "    <priority>0.8</priority>" >> sitemap.xml
-            echo "  </url>" >> sitemap.xml
+              clean=$(echo "$file" | sed 's|^\./||')
+
+              # Remove index.html
+              url=$(echo "$clean" | sed 's|index.html||')
+
+              # Remove extensão .html
+              url=$(echo "$url" | sed 's|.html||')
+
+              lastmod=$(git log -1 --format="%cI" "$file")
+
+              echo "  <url>" >> sitemap.xml
+              echo "    <loc>https://tuteladigital.com.br/$url</loc>" >> sitemap.xml
+              echo "    <lastmod>$lastmod</lastmod>" >> sitemap.xml
+              echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
+              echo "    <priority>0.8</priority>" >> sitemap.xml
+              echo "  </url>" >> sitemap.xml
+
           done
 
           echo '</urlset>' >> sitemap.xml
 
-      - name: Commit sitemap
+      - name: Commit and Push
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add sitemap.xml
-          git commit -m "Auto update sitemap" || echo "No changes"
+          git commit -m "Auto update sitemap" || echo "No changes to commit"
           git push
