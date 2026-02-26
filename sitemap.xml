@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tuteladigital.com.br/public/pessoas</loc>
+    <loc>https://tuteladigital.com.br/public/como-funciona</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/public/empresas</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -12,41 +17,6 @@
   </url>
   <url>
     <loc>https://tuteladigital.com.br/public/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tuteladigital.com.br/public/legal/termos-de-custodia</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tuteladigital.com.br/public/legal/preservacao-probatoria-digital</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tuteladigital.com.br/public/legal/institucional</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tuteladigital.com.br/public/legal/fundamento-juridico</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tuteladigital.com.br/public/legal/politica-de-privacidade</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tuteladigital.com.br/public/seguranca</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tuteladigital.com.br/public/empresas</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -66,12 +36,27 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tuteladigital.com.br/public/como-funciona</loc>
+    <loc>https://tuteladigital.com.br/public/legal/fundamento-juridico</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tuteladigital.com.br/public/partials/header</loc>
+    <loc>https://tuteladigital.com.br/public/legal/institucional</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/public/legal/politica-de-privacidade</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/public/legal/preservacao-probatoria-digital</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/public/legal/termos-de-custodia</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -81,7 +66,22 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://tuteladigital.com.br/public/partials/header</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://tuteladigital.com.br/public/partials/scripts</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/public/pessoas</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/public/seguranca</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
