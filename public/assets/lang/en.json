@@ -228,6 +228,8 @@
   },
   "footer": {
     "platform": "Platform",
-    "audience": "Audience"
+    "audience": "Audience",
+    "insightsAll": "All Insights",
+    "insightIntegrity": "Technical Integrity and Admissibility"
   }
 }

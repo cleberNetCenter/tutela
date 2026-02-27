@@ -273,6 +273,8 @@
   },
   "footer": {
     "platform": "Plataforma",
-    "audience": "Público"
+    "audience": "Público",
+    "insightsAll": "Todos os Insights",
+    "insightIntegrity": "Integridade Técnica e Admissibilidade"
   }
 }
