@@ -1490,13 +1490,13 @@ body.legal-page .main.main--hero-top .page-header--legal {
 
 .whitepaper-container a {
   color: var(--color-green-900);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: color .25s ease, text-decoration-color .25s ease;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-green-800);
+  padding-bottom: 1px;
+  transition: border-color .25s ease, color .25s ease;
 }
 
 .whitepaper-container a:hover {
+  border-color: var(--color-green-700);
   color: var(--color-green-700);
-  text-decoration-color: var(--color-green-700);
 }
