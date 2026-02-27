@@ -1028,8 +1028,8 @@ body.legal-page .whitepaper-container h2 {
   width: 60px;
   height: 2px;
   background: var(--color-green-800);
-  margin: 3rem auto 2rem auto; /* ← AUTO centraliza */
-  opacity: 0.6;
+  opacity: .5;
+  margin: 4rem auto;
 }
 
 /* Hierarquia tipográfica */
@@ -1439,6 +1439,10 @@ body.legal-page .main.main--hero-top .page-header--legal {
   position: relative;
 }
 
+.whitepaper-container h2::before {
+  content: none;
+}
+
 .whitepaper-container > p:first-of-type {
   font-size: .875rem;
   color: var(--color-text-muted);
@@ -1455,16 +1459,6 @@ body.legal-page .main.main--hero-top .page-header--legal {
   margin-bottom: 1.25rem;
   color: var(--color-text-strong);
   position: relative;
-}
-
-.whitepaper-container h2::before {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 2px;
-  background: var(--color-green-800);
-  opacity: .5;
-  margin-bottom: 1rem;
 }
 
 .whitepaper-container p {
