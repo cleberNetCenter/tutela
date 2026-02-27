@@ -71,14 +71,6 @@
     }
   }
 
-  function canToggleDropdown(nav) {
-    if (!isMobileViewport()) {
-      return true; // Desktop usa hover + clique opcional
-    }
-
-    return nav && nav.classList.contains('active');
-  }
-
   function handleDocumentClick(event) {
     const target = event.target;
     const { header, nav, menuBtn, langDropdown, langToggle } = getHeaderElements();
@@ -113,24 +105,28 @@
     // ===================================================
     // DROPDOWN TOGGLE
     // ===================================================
-    const dropdownToggle = target.closest('.nav-dropdown > a, .nav-dropdown > .nav-link');
+    const dropdownToggle = target.closest('.nav-dropdown > .nav-toggle');
     if (dropdownToggle) {
       event.preventDefault();
+      event.stopPropagation();
 
       const dropdown = dropdownToggle.closest('.nav-dropdown');
       if (!dropdown) return;
 
       const willOpen = !dropdown.classList.contains('active');
 
-      closeAllDropdowns();
+      closeAllDropdowns(dropdown);
 
       if (willOpen) {
         dropdown.classList.add('active');
       }
 
+      if (isMobileViewport()) {
+        dropdown.scrollIntoView({ block: 'nearest' });
+      }
+
       return;
     }
-
     // ===================================================
     // DROPDOWN ITEM CLICK
     // ===================================================

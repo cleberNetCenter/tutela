@@ -178,7 +178,8 @@
 .lang-flag {
   background: none;
   border: none;
-  font-size: 0; /* evita interferência */
+  font-size: 0;
+  /* evita interferência */
   line-height: 1;
   cursor: pointer;
   padding: 0.35rem 0.45rem;
@@ -195,6 +196,7 @@
   transform: translateY(-1px);
   opacity: 0.9;
 }
+
 /* Estado ativo */
 .lang-flag.active {
   background: rgba(255, 255, 255, 0.18);
@@ -329,14 +331,17 @@
     letter-spacing: 0.3px;
   }
 
+  /* MOBILE DROPDOWN CONTROLADO */
   .nav.active .dropdown-menu {
     position: static;
     transform: none;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
     box-shadow: none;
     margin-top: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    display: none;
   }
 
   .nav.active .dropdown-menu a {
@@ -368,9 +373,12 @@
   }
 
   /* CRÍTICO: Mostrar dropdown quando .active */
-  .nav.active .nav-dropdown.active .dropdown-menu {
-    display: block !important;
-  }
+  .nav.active .nav-dropdown.active > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  display: block;
+}
 
   .nav.active .dropdown-menu li {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -514,10 +522,10 @@
 }
 
 .lang-flag.active {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .lang-flag:focus-visible {
-  outline: 2px solid rgba(255,255,255,0.35);
+  outline: 2px solid rgba(255, 255, 255, 0.35);
   outline-offset: 3px;
 }
