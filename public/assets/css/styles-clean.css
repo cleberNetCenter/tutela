@@ -1467,3 +1467,19 @@ body.legal-page .main.main--hero-top .page-header--legal {
   color: var(--color-text-base);
   margin-bottom: 1.5rem;
 }
+
+/* =========================================
+   ARTICLE – REFERÊNCIAS
+   ========================================= */
+
+.article-references {
+  margin-top: 2rem;
+  padding-left: 1.2rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.article-references li {
+  margin-bottom: 1rem;
+}
