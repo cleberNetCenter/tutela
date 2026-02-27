@@ -1483,3 +1483,20 @@ body.legal-page .main.main--hero-top .page-header--legal {
 .article-references li {
   margin-bottom: 1rem;
 }
+
+/* =========================================
+   ARTICLE LINKS – PREMIUM STYLE
+   ========================================= */
+
+.whitepaper-container a {
+  color: var(--color-green-900);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .25s ease, text-decoration-color .25s ease;
+}
+
+.whitepaper-container a:hover {
+  color: var(--color-green-700);
+  text-decoration-color: var(--color-green-700);
+}
