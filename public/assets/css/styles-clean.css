@@ -1494,51 +1494,55 @@ body.legal-page .main.main--hero-top .page-header--legal {
   color: var(--color-green-900);
   text-decoration: none;
   border-bottom: 1px solid rgba(15, 58, 42, 0.25);
-
-  /* =========================================
-   ARTICLE – CITAÇÕES INSTITUCIONAIS
-   ========================================= */
-
-  .wp-quote {
-    margin: 2.5rem 0 3.5rem 0;
-    /* mais espaço abaixo do bloco */
-    padding: 1.75rem 2rem;
-    background: linear-gradient(135deg, #f7fbf9, #edf6f2);
-    border-left: 4px solid var(--color-green-800);
-  }
-
-  .wp-quote p {
-    margin-bottom: 0.75rem;
-    /* aproxima citação da fonte */
-  }
-
-  .wp-quote cite {
-    display: block;
-    margin-top: 0;
-    /* remove afastamento excessivo */
-    margin-bottom: 0;
-    /* evita colar no próximo parágrafo */
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    font-style: normal;
-    letter-spacing: .04em;
-  }
-
-  .wp-quote::before {
-    content: "“";
-    font-size: 2.5rem;
-    color: var(--color-green-800);
-    opacity: .2;
-    position: absolute;
-    margin-left: -1rem;
-  }
-
   padding-bottom: 1px;
-  transition: border-color .25s ease,
-  color .25s ease;
+  transition: border-color .25s ease, color .25s ease;
 }
 
 .whitepaper-container a:hover {
   border-color: var(--color-green-700);
   color: var(--color-green-700);
+}
+
+
+/* =========================================
+   ARTICLE – CITAÇÕES INSTITUCIONAIS
+   ========================================= */
+
+.wp-quote {
+  position: relative;
+  margin: 2.5rem 0 3rem 0;
+  padding: 1.75rem 2rem;
+  background: linear-gradient(135deg, #f7fbf9, #edf6f2);
+  border-left: 4px solid var(--color-green-800);
+}
+
+.wp-quote p {
+  margin-bottom: 0.75rem;
+}
+
+.wp-quote cite {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-style: normal;
+  letter-spacing: .04em;
+}
+
+/* Espaço real após citação */
+.wp-quote + p {
+  margin-top: 2rem;
+}
+
+/* Aspas decorativas discretas */
+.wp-quote::before {
+  content: "“";
+  position: absolute;
+  top: 1rem;
+  left: 0.75rem;
+  font-size: 2.2rem;
+  color: var(--color-green-800);
+  opacity: .15;
+  line-height: 1;
+  pointer-events: none;
 }
