@@ -638,11 +638,13 @@ body.exec-compact .footer-link--social {
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
+  padding: 3rem 2rem;
+
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2.5rem;
 }
 
 .footer-col h3 {
@@ -709,16 +711,15 @@ body.exec-compact .footer-link--social {
 }
 
 /* Responsividade Footer */
-@media (max-width: 992px) {
+@media (max-width: 900px) {
   .footer-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 35px;
   }
 }
 
 @media (max-width: 768px) {
-  .footer {
-    padding: 40px 20px 20px;
+  .footer-container {
+    grid-template-columns: 1fr;
   }
 
   .footer-container {
@@ -1530,7 +1531,7 @@ body.legal-page .main.main--hero-top .page-header--legal {
 }
 
 /* Espaço real após citação */
-.wp-quote + p {
+.wp-quote+p {
   margin-top: 2rem;
 }
 
