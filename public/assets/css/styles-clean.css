@@ -1547,3 +1547,15 @@ body.legal-page .main.main--hero-top .page-header--legal {
   line-height: 1;
   pointer-events: none;
 }
+
+/* CARD CLICÁVEL COMPLETO */
+.feature-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.feature-link:hover {
+  transform: translateY(-2px);
+}
