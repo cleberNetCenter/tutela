@@ -1,0 +1,69 @@
+/* ===================== VARIÁVEIS ======================== */
+:root {
+  --color-green-980: #081a13;
+  --color-green-950: #0b241b;
+  --color-green-900: #0f3a2a;
+  --color-green-850: #134634;
+  --color-green-800: #16503b;
+  --color-green-700: #1b6b4d;
+
+  --color-surface-dark: #081a13;
+  --color-surface-base: #0f3a2a;
+  --color-surface-muted: #e6f0eb;
+  --color-surface-light: #f2f7f5;
+
+  --color-text-strong: #0b241b;
+  --color-text-base: #123f30;
+  --color-text-muted: #4f7c6b;
+  --color-text-inverse: #e6f0eb;
+
+  --color-border-soft: #c8ddd4;
+  --color-border-strong: #9fbfb3;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --space-xs: .5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 10rem;
+
+  --max-width: 1200px;
+  --max-width-narrow: 800px;
+}
+
+/* ===================== RESET ============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-base);
+  background: var(--color-surface-light);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===================== LAYOUT ============================ */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding-top: 70px;
+}
