@@ -39,7 +39,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 html {
@@ -61,10 +61,10 @@ body {
 .app {
   min-height: 100vh;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .main {
   flex: 1;
-  padding-top: 70px
+  padding-top: 70px;
 }
