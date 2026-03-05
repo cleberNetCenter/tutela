@@ -1504,6 +1504,52 @@ body.legal-page .main.main--hero-top .page-header--legal {
   color: var(--color-green-700);
 }
 
+/* =========================================
+   ARTICLE INTERLINKS – EDITORIAL STYLE
+   ========================================= */
+
+.whitepaper-container a {
+  color: var(--color-green-900);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(15, 58, 42, 0.25);
+  padding-bottom: 1px;
+  transition: border-color .25s ease, color .25s ease;
+}
+
+.whitepaper-container a:hover {
+  color: var(--color-green-700);
+  border-color: var(--color-green-700);
+}
+
+/* =========================================
+   INSIGHT INTERNAL LINKS
+   ========================================= */
+
+.whitepaper-container a.insight-link {
+
+  background: rgba(15, 58, 42, 0.05);
+  padding: 0.1rem 0.25rem;
+  border-radius: 4px;
+
+  border-bottom: 1px solid rgba(15, 58, 42, 0.35);
+
+  color: var(--color-green-900);
+  text-decoration: none;
+
+  transition:
+    background .25s ease,
+    border-color .25s ease,
+    color .25s ease;
+
+}
+
+.whitepaper-container a.insight-link:hover {
+
+  background: rgba(15, 58, 42, 0.08);
+  border-color: var(--color-green-700);
+  color: var(--color-green-700);
+
+}
 
 /* =========================================
    ARTICLE – CITAÇÕES INSTITUCIONAIS
@@ -1558,4 +1604,69 @@ body.legal-page .main.main--hero-top .page-header--legal {
 
 .feature-link:hover {
   transform: translateY(-2px);
+}
+
+/* =========================================
+   RELATED INSIGHTS
+   ========================================= */
+
+.insight-related {
+
+  margin-top: 3rem;
+
+}
+
+.insight-related h2 {
+
+  margin-bottom: 1.25rem;
+
+}
+
+.insight-related-grid {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 1.25rem;
+
+}
+
+.related-item {
+
+  display: block;
+  padding: 1.25rem;
+
+  background: #f8fbfa;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 6px;
+
+  text-decoration: none;
+
+  transition:
+    transform .15s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+
+}
+
+.related-item h3 {
+
+  font-size: 1rem;
+  margin-bottom: .4rem;
+  color: var(--color-green-900);
+
+}
+
+.related-item p {
+
+  font-size: .9rem;
+  color: var(--color-text-muted);
+
+}
+
+.related-item:hover {
+
+  transform: translateY(-2px);
+  border-color: rgba(0,0,0,0.12);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+
 }
