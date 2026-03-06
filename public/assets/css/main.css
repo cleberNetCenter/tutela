@@ -1,7 +1,7 @@
 /* ===================== AGREGADOR PRINCIPAL ===================== */
 /* Compatibilidade: mantém cobertura completa das páginas legadas
    enquanto o modular é consolidado. */
-@import url("styles-clean.css");
+@import url("core-legacy.css");
 
 @import url("foundation/tokens.css");
 @import url("foundation/reset.css");
