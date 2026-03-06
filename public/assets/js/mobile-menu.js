@@ -20,9 +20,7 @@
     return {
       header: document.getElementById('header'),
       nav: document.getElementById('nav'),
-      menuBtn: document.querySelector('.mobile-menu-btn'),
-      langDropdown: document.querySelector('.lang-dropdown'),
-      langToggle: document.querySelector('.lang-toggle')
+      menuBtn: document.querySelector('.mobile-menu-btn')
     };
   }
 
@@ -32,13 +30,6 @@
         dropdown.classList.remove('active');
       }
     });
-  }
-
-  function closeLanguageDropdown() {
-    const { langDropdown } = getHeaderElements();
-    if (langDropdown) {
-      langDropdown.classList.remove('active');
-    }
   }
 
   function openMobileMenu() {
@@ -73,7 +64,7 @@
 
   function handleDocumentClick(event) {
     const target = event.target;
-    const { header, nav, menuBtn, langDropdown, langToggle } = getHeaderElements();
+    const { header, nav, menuBtn } = getHeaderElements();
 
     if (!header || !nav || !menuBtn) return;
 
@@ -84,21 +75,6 @@
       event.preventDefault();
       event.stopPropagation();
       toggleMobileMenu();
-      return;
-    }
-
-    // ===================================================
-    // LANGUAGE TOGGLE
-    // ===================================================
-    if (langToggle && langToggle.contains(target)) {
-      event.preventDefault();
-      langDropdown.classList.toggle('active');
-      return;
-    }
-
-    const langOption = target.closest('.lang-option');
-    if (langOption) {
-      closeLanguageDropdown();
       return;
     }
 
@@ -157,15 +133,9 @@
     // ===================================================
     if (!header.contains(target)) {
       closeAllDropdowns();
-      closeLanguageDropdown();
 
       if (isMobileViewport()) {
         closeMobileMenu();
-      }
-    } else {
-      // Clique dentro do header mas fora do idioma
-      if (!langDropdown || !langDropdown.contains(target)) {
-        closeLanguageDropdown();
       }
     }
   }
