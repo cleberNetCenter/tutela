@@ -19,3 +19,5 @@
 
 @import url("utilities/animations.css");
 @import url("utilities/responsive.css");
+
+@import url("legacy.css");
