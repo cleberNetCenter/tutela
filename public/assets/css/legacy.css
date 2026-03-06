@@ -56,6 +56,40 @@
   .whatsapp-tooltip {
     display: none;
   }
+
+  .footer-trust {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px auto 18px auto;
+    padding: 6px 14px;
+    font-size: 12px;
+    letter-spacing: .25px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    opacity: .85;
+    max-width: 290px;
+    text-align: center;
+    flex-wrap: wrap;
+    line-height: 1.4;
+  }
+  .footer-trust-icon {
+    width: 13px;
+    height: 13px;
+    min-width: 13px;
+    min-height: 13px;
+    opacity: .9;
+  }
+  .footer-trust:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+  .footer-trust span {
+    display: inline;
+  }
 }
 
 /* Feature Link */
