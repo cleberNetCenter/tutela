@@ -25,12 +25,6 @@
 	gap: var(--space-lg)
 }
 
-.verticals-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: var(--space-lg)
-}
-
 body.exec-compact .features-grid--security {
 	grid-template-columns: repeat(3, 1fr)
 }
