@@ -19,8 +19,7 @@
 }
 
 .text-block h2,
-.features h2,
-.steps h2 {
+.features h2 {
   margin-bottom: var(--space-md);
 }
 
