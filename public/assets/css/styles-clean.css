@@ -639,26 +639,12 @@ body.exec-compact .footer-link--social {
       #063d36 0%,
       #042f2a 100%);
 
-  padding-top: 40px;
   color: #d9efe7;
 
+  padding-top: 48px;
+
   box-shadow:
-    0 -12px 36px rgba(0, 0, 0, 0.25);
-}
-
-.footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 12px;
-
-  pointer-events: none;
-
-  background: linear-gradient(to bottom,
-      rgba(255, 255, 255, 0.06),
-      rgba(255, 255, 255, 0));
+    0 -8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .footer a {
@@ -917,6 +903,10 @@ body.exec-compact .footer-link--social {
   padding: var(--space-2xl) var(--space-lg);
   background: linear-gradient(135deg, var(--color-green-900), var(--color-green-850));
   text-align: center;
+  position: relative;
+
+  box-shadow:
+    inset 0 -40px 60px rgba(0, 0, 0, 0.12);
 }
 
 .cta-final-inner {
@@ -935,19 +925,32 @@ body.exec-compact .footer-link--social {
 .cta-final p {
   font-size: 1.125rem;
   color: var(--color-text-inverse);
-  opacity: 0.9;
+  opacity: 0.95;
   margin-bottom: var(--space-lg);
+  font-weight: 500;
 }
 
 .cta-final .btn-primary {
-  background: var(--color-text-inverse);
+  background: #ffffff;
   color: var(--color-green-900);
+
+  padding: 14px 36px;
+  font-weight: 600;
+  letter-spacing: .2px;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.18);
 }
 
 .cta-final .btn-primary:hover {
   background: transparent;
   color: var(--color-text-inverse);
   border-color: var(--color-text-inverse);
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.25);
 }
 
 /* ========== RESPONSIVE ========== */
