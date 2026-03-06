@@ -19,12 +19,6 @@
 	gap: var(--space-sm)
 }
 
-.steps-list {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	gap: var(--space-lg)
-}
-
 body.exec-compact .features-grid--security {
 	grid-template-columns: repeat(3, 1fr)
 }
