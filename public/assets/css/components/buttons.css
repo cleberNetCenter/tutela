@@ -1,0 +1,50 @@
+
+/* ===================== BOTÕES (BASE) ===================== */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--space-md) var(--space-xl);
+	font-family: var(--font-body);
+	font-size: .9375rem;
+	font-weight: 500;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	transition: all .25s ease;
+	letter-spacing: .02em;
+}
+
+.btn-primary {
+	background: var(--color-green-900);
+	color: var(--color-text-inverse);
+	border-radius: 8px;
+	box-shadow:
+		0 4px 6px rgba(0, 0, 0, .1),
+		0 2px 4px rgba(0, 0, 0, .06),
+		inset 0 -2px 0 rgba(0, 0, 0, .1);
+	position: relative;
+	top: 0;
+}
+
+.btn-primary:hover {
+	background: var(--color-green-950);
+	transform: translateY(-1px);
+	box-shadow:
+		0 6px 10px rgba(0, 0, 0, .15),
+		0 3px 6px rgba(0, 0, 0, .1),
+		inset 0 -2px 0 rgba(0, 0, 0, .15);
+	top: -2px;
+}
+
+.btn-primary:active {
+	box-shadow:
+		0 2px 4px rgba(0, 0, 0, .1),
+		inset 0 2px 4px rgba(0, 0, 0, .15);
+	top: 2px;
+}
+
+.btn:focus-visible {
+	outline: 2px solid var(--color-border-strong);
+	outline-offset: 3px;
+}

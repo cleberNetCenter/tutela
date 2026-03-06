@@ -1,0 +1,52 @@
+
+/* ===================== LAYOUT ============================ */
+/* ===================== LAYOUT ============================ */
+.app {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column
+}
+
+.main {
+	flex: 1;
+	padding-top: 70px
+}
+
+/* ===================== GRIDS ============================= */
+.features-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: var(--space-sm)
+}
+
+.steps-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: var(--space-lg)
+}
+
+.verticals-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--space-lg)
+}
+
+body.exec-compact .features-grid--security {
+	grid-template-columns: repeat(3, 1fr)
+}
+
+@media(max-width:1200px) {
+	body.exec-compact .features-grid--security {
+		grid-template-columns: repeat(2, 1fr)
+	}
+}
+
+@media(max-width:768px) {
+
+	.features-grid,
+	.steps-list,
+	.verticals-grid,
+	body.exec-compact .features-grid--security {
+		grid-template-columns: 1fr
+	}
+}
