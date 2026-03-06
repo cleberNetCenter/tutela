@@ -3,8 +3,6 @@
    enquanto o modular é consolidado. */
 @import url("styles-clean.css");
 
-@import url("styles-clean.exec-compact.css");
-
 @import url("foundation/tokens.css");
 @import url("foundation/reset.css");
 
@@ -22,7 +20,6 @@
 @import url("pages/legal.css");
 @import url("pages/insights.css");
 @import url("pages/preservacao.css");
-@import url("styles-clean.pages.css");
 
 @import url("utilities/animations.css");
 @import url("utilities/responsive.css");
