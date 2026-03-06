@@ -1726,3 +1726,7 @@ body.legal-page .main.main--hero-top .page-header--legal {
   background:rgba(255,255,255,0.12);
   margin-bottom:10px;
 }
+
+.footer-container{
+  margin-bottom:10px;
+}
