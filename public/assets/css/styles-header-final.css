@@ -191,30 +191,9 @@ button.nav-link:focus-visible {
    ========================================================= */
 
 .lang-flag {
-  background: none;
-  border: none;
   font-size: 0;
   /* evita interferência */
   line-height: 1;
-  cursor: pointer;
-  padding: 0.35rem 0.45rem;
-  border-radius: 6px;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    opacity 0.2s ease;
-}
-
-/* Hover */
-.lang-flag:hover {
-  transform: translateY(-1px);
-  opacity: 0.9;
-}
-
-/* Estado ativo */
-.lang-flag.active {
-  background: rgba(255, 255, 255, 0.18);
 }
 
 /* Underline institucional */
@@ -232,11 +211,6 @@ button.nav-link:focus-visible {
 /* Focus acessível elegante */
 .lang-flag:focus {
   outline: none;
-}
-
-.lang-flag:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.35);
-  outline-offset: 3px;
 }
 
 /* =========================================================
