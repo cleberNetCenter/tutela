@@ -775,13 +775,25 @@ body.exec-compact .footer-link--social {
   }
 
   .footer-trust {
-    font-size: 11px;
+    max-width: 280px;
+    margin: 10px auto 16px auto;
+
+    text-align: center;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 6px;
+    line-height: 1.45;
   }
 
   .footer-trust-icon {
     width: 12px;
     height: 12px;
+  }
+
+  .footer-trust span {
+    display: inline;
   }
 }
 
@@ -1799,7 +1811,7 @@ body.legal-page .main.main--hero-top .page-header--legal {
   font-size: 12px;
   opacity: 0.75;
   letter-spacing: 0.2px;
-  line-height:1.4;
+  line-height: 1.4;
 }
 
 .footer-trust-icon {
