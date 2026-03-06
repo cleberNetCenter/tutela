@@ -773,6 +773,16 @@ body.exec-compact .footer-link--social {
     margin-top: 35px;
     padding-top: 25px;
   }
+
+  .footer-trust {
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .footer-trust-icon {
+    width: 12px;
+    height: 12px;
+  }
 }
 
 
@@ -1778,21 +1788,26 @@ body.legal-page .main.main--hero-top .page-header--legal {
   margin: 14px auto 10px auto;
 }
 
-.footer-trust{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
+.footer-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-  margin:10px 0 16px 0;
+  margin: 10px 0 16px 0;
 
-  font-size:12px;
-  opacity:0.75;
-  letter-spacing:0.2px;
+  font-size: 12px;
+  opacity: 0.75;
+  letter-spacing: 0.2px;
+  line-height:1.4;
 }
 
-.footer-trust-icon{
-  width:16px;
-  height:16px;
-  opacity:0.8;
+.footer-trust-icon {
+  width: 14px;
+  height: 14px;
+
+  min-width: 14px;
+  min-height: 14px;
+
+  flex-shrink: 0;
 }
