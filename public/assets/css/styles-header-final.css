@@ -102,11 +102,6 @@
   align-items: center;
 }
 
-/* Estado padrão explícito */
-.nav {
-  display: flex;
-}
-
 /* Alinhamento vertical de todos os itens do menu */
 .nav>a,
 .nav>div,
