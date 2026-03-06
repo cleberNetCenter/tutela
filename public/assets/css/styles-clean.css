@@ -638,7 +638,7 @@ body.exec-compact .footer-link--social {
       #063d36 0%,
       #042f2a 100%);
 
-  padding-top: 60px;
+  padding-top: 40px;
   color: #d9efe7;
   box-shadow:
     0 -10px 40px rgba(0, 0, 0, 0.25);
@@ -669,12 +669,11 @@ body.exec-compact .footer-link--social {
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px 20px 20px;
-
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
-  gap: 40px;
   margin-bottom: 10px;
+  padding: 28px 20px 14px 20px;
+  gap: 28px;
 }
 
 .footer-col h3 {
@@ -699,7 +698,7 @@ body.exec-compact .footer-link--social {
 }
 
 .footer-col ul li {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .footer-col li {
@@ -738,16 +737,16 @@ body.exec-compact .footer-link--social {
   opacity: 0.9;
 }
 
-.footer-bottom{
-  text-align:center;
+.footer-bottom {
+  text-align: center;
 
-  margin-top:32px;
-  padding-top:20px;
+  margin-top: 32px;
+  padding-top: 20px;
 
-  border-top:1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 
-  font-size:12px;
-  opacity:0.75;
+  font-size: 12px;
+  opacity: 0.75;
 }
 
 /* Responsividade Footer */
@@ -773,26 +772,50 @@ body.exec-compact .footer-link--social {
   }
 
   .footer-bottom {
-    margin-top: 35px;
-    padding-top: 25px;
+    margin-top: 22px;
+    padding-top: 16px;
   }
 
   .footer-trust {
-    max-width: 280px;
-    margin: 10px auto 16px auto;
-
-    text-align: center;
-
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 6px;
-    line-height: 1.45;
+    gap: 8px;
+
+    margin: 8px auto 18px auto;
+    padding: 6px 14px;
+
+    font-size: 12px;
+    letter-spacing: .25px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+
+    backdrop-filter: blur(4px);
+
+    opacity: .85;
+
+    max-width: 290px;
+    text-align: center;
+    flex-wrap: wrap;
+    line-height: 1.4;
   }
 
   .footer-trust-icon {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
+
+    min-width: 13px;
+    min-height: 13px;
+
+    opacity: .9;
+
+  }
+
+  .footer-trust:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.18);
   }
 
   .footer-trust span {
@@ -1762,7 +1785,7 @@ body.legal-page .main.main--hero-top .page-header--legal {
   text-align: center;
   font-size: 12px;
   opacity: 0.75;
-  margin: 24px 0 10px 0;
+  margin: 10px 0 6px 0;
 }
 
 .footer-description {
@@ -1803,7 +1826,7 @@ body.legal-page .main.main--hero-top .page-header--legal {
   justify-content: center;
   gap: 8px;
 
-  margin: 10px 0 24px 0;
+  margin:8px auto 18px auto;
 
   font-size: 12px;
   opacity: 0.75;
