@@ -427,18 +427,6 @@ button.nav-link:focus-visible {
 }
 
 
-.lang-flag {
-  font-size: 1.2rem !important;
-  line-height: 1 !important;
-  font-family:
-    system-ui,
-    -apple-system,
-    "Segoe UI Emoji",
-    "Apple Color Emoji",
-    "Noto Color Emoji",
-    sans-serif !important;
-}
-
 /* =========================================================
    LANGUAGE FLAGS - SVG VERSION
    ========================================================= */
