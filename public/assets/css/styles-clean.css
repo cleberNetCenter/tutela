@@ -1823,3 +1823,7 @@ body.legal-page .main.main--hero-top .page-header--legal {
 
   flex-shrink: 0;
 }
+
+.footer-bottom-line:last-of-type{
+  display:none;
+}
