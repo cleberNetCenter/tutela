@@ -658,12 +658,12 @@ body.exec-compact .footer-link--social {
       transparent);
 }
 
-.footer a{
-  color:rgba(255,255,255,0.85);
+.footer a {
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.footer a:hover{
-  color:#ffffff;
+.footer a:hover {
+  color: #ffffff;
 }
 
 .footer-container {
@@ -672,7 +672,7 @@ body.exec-compact .footer-link--social {
   padding: 40px 20px 20px 20px;
 
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
   gap: 40px;
   margin-bottom: 10px;
 }
@@ -756,10 +756,6 @@ body.exec-compact .footer-link--social {
 
   .footer-brand-col {
     grid-column: 1 / -1;
-  }
-
-  .footer-institutional-block {
-    padding: 0 20px;
   }
 }
 
@@ -921,25 +917,32 @@ body.exec-compact .footer-link--social {
 
 .whatsapp-float {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 58px;
-  height: 58px;
-  background-color: #20ba5a;
+
+  right: 28px;
+  bottom: 28px;
+
+  width: 60px;
+  height: 60px;
+
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1200;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-decoration: none;
-  cursor: pointer;
+
+  background: #25D366;
+  color: white;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.25);
+
+  z-index: 999;
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.30);
 }
 
 .whatsapp-float .whatsapp-icon {
@@ -960,6 +963,7 @@ body.exec-compact .footer-link--social {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+  bottom: 75px;
 }
 
 .whatsapp-float:hover .whatsapp-tooltip {
@@ -969,10 +973,10 @@ body.exec-compact .footer-link--social {
 /* Mobile: esconder tooltip e reduzir botão */
 @media (max-width: 768px) {
   .whatsapp-float {
+    right: 18px;
+    bottom: 22px;
     width: 54px;
     height: 54px;
-    bottom: 20px;
-    right: 20px;
   }
 
   .whatsapp-float .whatsapp-icon {
@@ -1728,10 +1732,12 @@ body.legal-page .main.main--hero-top .page-header--legal {
   opacity: 0.65;
 }
 
-.footer-institutional-block {
-  max-width: 820px;
-  margin: 18px auto 12px auto;
+
+.footer-institutional {
   text-align: center;
+  font-size: 12px;
+  opacity: 0.75;
+  margin: 18px 0 10px 0;
 }
 
 .footer-description {
@@ -1768,7 +1774,25 @@ body.legal-page .main.main--hero-top .page-header--legal {
 }
 
 .footer-bottom-line {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.12);
-  margin-bottom: 10px;
+  max-width: 900px;
+  margin: 14px auto 10px auto;
+}
+
+.footer-trust{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  margin:10px 0 16px 0;
+
+  font-size:12px;
+  opacity:0.75;
+  letter-spacing:0.2px;
+}
+
+.footer-trust-icon{
+  width:16px;
+  height:16px;
+  opacity:0.8;
 }
