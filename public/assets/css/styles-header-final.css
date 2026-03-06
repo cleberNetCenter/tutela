@@ -186,16 +186,6 @@ button.nav-link:focus-visible {
   align-items: center;
 }
 
-/* =========================================================
-   LANGUAGE SWITCH — REFINED MICRO INTERACTION
-   ========================================================= */
-
-.lang-flag {
-  font-size: 0;
-  /* evita interferência */
-  line-height: 1;
-}
-
 /* Underline institucional */
 .lang-flag.active::after {
   content: "";
@@ -386,6 +376,9 @@ button.nav-link:focus-visible {
 .lang-flag {
   background: none;
   border: none;
+  font-size: 0;
+  /* evita interferência */
+  line-height: 1;
   padding: 4px;
   border-radius: 4px;
   cursor: pointer;
