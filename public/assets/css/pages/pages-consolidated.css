@@ -679,9 +679,9 @@ body.legal-page .main.main--hero-top .page-header--legal {
   color: var(--color-green-700);
 }
 
-/* Links inline em páginas legais fora de whitepaper-container */
-body.legal-page .text-block .insight-link,
-body.legal-page .text-block .insight-link:visited {
+/* Links inline em páginas legais (todas as seções do main) */
+body.legal-page .main .insight-link,
+body.legal-page .main .insight-link:visited {
   color: var(--color-green-900);
   text-decoration: none;
   border-bottom: 1px solid rgba(15, 58, 42, 0.25);
@@ -689,7 +689,7 @@ body.legal-page .text-block .insight-link:visited {
   transition: border-color .25s ease, color .25s ease;
 }
 
-body.legal-page .text-block .insight-link:hover {
+body.legal-page .main .insight-link:hover {
   border-color: var(--color-green-700);
   color: var(--color-green-700);
 }
