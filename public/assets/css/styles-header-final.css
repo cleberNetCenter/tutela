@@ -414,19 +414,6 @@ button.nav-link:focus-visible {
   }
 }
 
-/* Esconder código da língua, mostrar apenas globo */
-.lang-toggle .lang-code {
-  display: none;
-}
-
-/* Centralizar globo verticalmente */
-.lang-toggle svg {
-  vertical-align: middle;
-  margin: 0;
-  pointer-events: none;
-}
-
-
 /* =========================================================
    LANGUAGE FLAGS - SVG VERSION
    ========================================================= */
