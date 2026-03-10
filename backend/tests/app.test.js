@@ -5,11 +5,15 @@ jest.mock('../src/services/db', () => ({
 }));
 
 const db = require('../src/services/db');
+const checkoutService = require('../src/modules/payments/checkoutService');
+const subscriptionService = require('../src/modules/payments/subscriptionService');
+const webhookService = require('../src/modules/payments/webhookService');
 const app = require('../src/app');
 
 describe('Tutela API', () => {
   beforeEach(() => {
     db.query.mockReset();
+    jest.restoreAllMocks();
   });
 
   it('GET /health should return ok', async () => {
@@ -51,5 +55,71 @@ describe('Tutela API', () => {
     expect(response.status).toBe(201);
     expect(response.body.user.email).toBe('admin@tutela.test');
     expect(response.body.token).toBeDefined();
+  });
+
+  it('POST /api/checkout should create checkout', async () => {
+    jest.spyOn(checkoutService, 'create').mockResolvedValue({
+      checkoutStatus: 'CHECKOUT_CREATED',
+      gateway: 'cielo-checkout',
+      payment: {
+        id: 10,
+        status: 'CHECKOUT_CREATED',
+      },
+      checkoutUrl: 'https://cielo.test/checkout/order_123',
+    });
+
+    const response = await request(app).post('/api/checkout').send({
+      userId: 1,
+      amount: 1990,
+      customerName: 'Cliente Teste',
+    });
+
+    expect(response.status).toBe(201);
+    expect(response.body.checkoutStatus).toBe('CHECKOUT_CREATED');
+    expect(response.body.gateway).toBe('cielo-checkout');
+    expect(response.body.checkoutUrl).toBe('https://cielo.test/checkout/order_123');
+  });
+
+  it('POST /api/subscriptions should create subscription', async () => {
+    jest.spyOn(subscriptionService, 'create').mockResolvedValue({
+      subscriptionStatus: 'CHECKOUT_CREATED',
+      gateway: 'cielo-checkout',
+      subscription: {
+        id: 5,
+        gateway_subscription_id: null,
+        status: 'PENDING_CHECKOUT',
+      },
+      checkoutUrl: 'https://cielo.test/checkout/sub_123',
+    });
+
+    const response = await request(app).post('/api/subscriptions').send({
+      userId: 1,
+      planId: 2,
+      amount: 4990,
+      interval: 'Monthly',
+    });
+
+    expect(response.status).toBe(201);
+    expect(response.body.subscriptionStatus).toBe('CHECKOUT_CREATED');
+    expect(response.body.subscription.status).toBe('PENDING_CHECKOUT');
+    expect(response.body.checkoutUrl).toBe('https://cielo.test/checkout/sub_123');
+  });
+
+  it('POST /api/webhook/cielo should process webhook payload', async () => {
+    jest.spyOn(webhookService, 'process').mockResolvedValue({
+      processed: true,
+      paymentId: 'pay_123',
+      paymentStatus: 'PAID',
+      changeType: 'PaymentCaptured',
+    });
+
+    const response = await request(app).post('/api/webhook/cielo').send({
+      PaymentId: 'pay_123',
+      ChangeType: 'PaymentCaptured',
+    });
+
+    expect(response.status).toBe(200);
+    expect(response.body.processed).toBe(true);
+    expect(response.body.paymentStatus).toBe('PAID');
   });
 });
