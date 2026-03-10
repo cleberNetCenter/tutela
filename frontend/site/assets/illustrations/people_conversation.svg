@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="People conversation illustration">
+  <rect width="320" height="240" fill="#f9f7fc"/>
+  <circle cx="110" cy="90" r="30" fill="#6441a5"/>
+  <circle cx="210" cy="90" r="30" fill="#2e8bc0"/>
+  <rect x="70" y="130" width="80" height="70" rx="24" fill="#7c5fc2"/>
+  <rect x="170" y="130" width="80" height="70" rx="24" fill="#4ca3d9"/>
+  <rect x="130" y="40" width="60" height="40" rx="10" fill="#ffffff" stroke="#bbb"/>
+</svg>

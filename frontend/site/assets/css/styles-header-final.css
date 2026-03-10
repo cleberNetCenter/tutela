@@ -1,0 +1,410 @@
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
+
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+  align-items: center;
+}
+
+.mobile-menu-btn span {
+  width: 100%;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover span {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Estado ativo do mobile menu (hamburger -> X) */
+.mobile-menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+
+/* =========================================================
+   HEADER FINAL – MULTILÍNGUE COM DROPDOWN
+   ========================================================= */
+
+.header {
+  position: fixed;
+  height: 70px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--color-surface-base);
+  border-bottom: 1px solid var(--color-border-soft);
+  overflow: visible;
+}
+
+/* Container */
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+
+  position: relative;
+}
+
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
+}
+
+/* Logo */
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo sup {
+  font-size: 0.5em;
+}
+
+/* Navigation */
+.nav {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Alinhamento vertical de todos os itens do menu */
+.nav>a,
+.nav>div,
+.nav .nav-link,
+.nav .nav-item {
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
+.nav .dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Reset para nav-link usado em <button> (toggles de dropdown) */
+button.nav-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+button.nav-link:focus {
+  outline: none;
+  background: none;
+}
+
+button.nav-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 4px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ffffff;
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+}
+
+/* CTA */
+.header-cta {
+  flex: 0 0 auto;
+  font-size: 0.8rem;
+  padding: 0.45rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header-cta:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   LANGUAGE SWITCH (FLAGS)
+   ========================================================= */
+
+.lang-switch {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+/* Underline institucional */
+.lang-flag.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+  opacity: 0.9;
+}
+
+/* Focus acessível elegante */
+.lang-flag:focus {
+  outline: none;
+}
+
+/* =========================================================
+   DROPDOWN MENU – ANIMATED VERSION
+   ========================================================= */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+
+  background: var(--color-surface-base);
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  margin-top: 8px;
+
+  list-style: none;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+
+  /* Estado inicial oculto */
+  opacity: 0;
+  transform: translateY(8px);
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    visibility 0.18s ease;
+
+  z-index: 1100;
+}
+
+/* Links */
+.dropdown-menu a {
+  display: block;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+/* Estado aberto controlado por JS */
+.nav-dropdown.active>.dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* Desktop médio: menu recolhe */
+@media (max-width: 1200px) {
+  .nav {
+    display: none;
+    width: 100%;
+  }
+
+  /* Mostrar menu quando classe active está presente */
+  .nav.active {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--color-surface-base);
+    padding: 1.5rem 0;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+    z-index: 999;
+  }
+
+  .nav.active .nav-link {
+    padding: 1.2rem 1.75rem;
+    width: 100%;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  /* MOBILE DROPDOWN CONTROLADO */
+  .nav.active .dropdown-menu {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    margin-top: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    display: none;
+  }
+
+  .nav.active .dropdown-menu a {
+    padding: 0.75rem 2.5rem;
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  .nav.active .nav-link+.nav-link {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav.active .nav-toggle {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    opacity: 0.7;
+    padding: 1.5rem 1.75rem 0.75rem 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .nav.active .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav.active .nav-link:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* CRÍTICO: Mostrar dropdown quando .active */
+  .nav.active .nav-dropdown.active > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  display: block;
+}
+
+  .nav.active .dropdown-menu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav.active .dropdown-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    margin-left: 0;
+  }
+
+  /* Esconder CTA da plataforma no mobile */
+  .header-cta {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   LANGUAGE FLAGS - SVG VERSION
+   ========================================================= */
+
+.lang-flag {
+  background: none;
+  border: none;
+  font-size: 0;
+  /* evita interferência */
+  line-height: 1;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang-flag img {
+  width: 22px;
+  height: 16px;
+  object-fit: cover;
+  display: block;
+}
+
+.lang-flag:hover {
+  transform: translateY(-1px);
+  opacity: 0.85;
+}
+
+.lang-flag.active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.lang-flag:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 3px;
+}

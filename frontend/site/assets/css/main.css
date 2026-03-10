@@ -1,0 +1,22 @@
+/* ===================== AGREGADOR PRINCIPAL ===================== */
+@import url("foundation/tokens.css");
+@import url("foundation/reset.css");
+
+@import url("layout/layout.css");
+
+@import url("utilities/exec-compact.css");
+
+@import url("components/buttons.css");
+@import url("components/cards.css");
+
+@import url("sections/hero.css");
+@import url("sections/content.css");
+@import url("sections/steps.css");
+@import url("sections/verticals.css");
+@import url("sections/footer.css");
+
+@import url("pages/pages-consolidated.css");
+
+@import url("utilities/animations.css");
+
+@import url("legacy.css");
