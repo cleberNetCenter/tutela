@@ -48,6 +48,28 @@ export HOMOLOG_ADMIN_PASSWORD_HASH='$2b$10$...hash bcrypt...'
 export HOMOLOG_ADMIN_NAME='Administrador Homologacao'
 ```
 
+## Como Gerar o Hash Bcrypt do Admin
+No servidor ou em qualquer ambiente com as dependencias do backend instaladas:
+
+```bash
+cd /opt/tutela/backend
+npm install
+npm run hash-password -- 'SuaSenhaForteAqui'
+```
+
+O comando imprime um hash bcrypt para usar em `HOMOLOG_ADMIN_PASSWORD_HASH`.
+
+Exemplo de uso no bootstrap:
+
+```bash
+export HOMOLOG_ADMIN_EMAIL=admin@seudominio
+export HOMOLOG_ADMIN_NAME='Administrador Homologacao'
+export HOMOLOG_ADMIN_PASSWORD_HASH='COLE_AQUI_O_HASH_GERADO'
+
+cd /opt/tutela
+bash infra/scripts/bootstrap_homolog.sh
+```
+
 ## Banco Criado na Homologacao
 As migrations atuais criam:
 
