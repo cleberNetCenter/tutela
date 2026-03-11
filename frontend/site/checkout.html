@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Tutela Digital® - Checkout Seguro</title>
+  <meta
+    name="description"
+    content="Inicie a contratacao online da Tutela Digital e conclua o pagamento em ambiente seguro hospedado pela Cielo."
+  />
+  <link rel="canonical" href="https://tuteladigital.com.br/checkout.html" />
+  <link rel="icon" href="/assets/illustrations/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/css/main.css?v=5" />
+  <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=5" />
+</head>
+<body class="exec-compact">
+  <div class="app">
+    <!--#include virtual="/partials/header.html" -->
+    <main class="main">
+      <section class="hero hero--homepage">
+        <div class="hero-inner hero-content--homepage">
+          <h1>Checkout Seguro</h1>
+          <p class="hero-subtitle">
+            Contrate a Tutela Digital pelo site e conclua o pagamento em ambiente seguro hospedado pela Cielo.
+          </p>
+          <div class="hero-divider"></div>
+        </div>
+      </section>
+
+      <section class="checkout-shell">
+        <div class="checkout-shell-inner">
+          <article class="checkout-panel">
+            <h2>Como funciona a contratação online</h2>
+            <p>
+              Nesta etapa, coletamos apenas os dados mínimos para gerar o seu pedido. O pagamento acontece fora do nosso
+              ambiente, na página oficial da Cielo, com redirecionamento imediato após a criação do checkout.
+            </p>
+            <ul class="checkout-benefits">
+              <li>Pagamento concluído em página hospedada e protegida pela Cielo.</li>
+              <li>Fluxo preparado para homologação e posterior evolução do checkout próprio.</li>
+              <li>Resumo do plano exibido antes do redirecionamento para conferência final.</li>
+            </ul>
+            <p class="checkout-note">
+              Os dados enviados aqui são usados apenas para a criação inicial do pedido e para a continuidade do processo de
+              contratação.
+            </p>
+          </article>
+
+          <section class="checkout-form-card" aria-labelledby="checkout-form-title">
+            <h2 id="checkout-form-title">Iniciar contratação</h2>
+            <p>Escolha o plano e preencha os dados do comprador para abrir o checkout hospedado.</p>
+
+            <form class="checkout-form" data-checkout-form>
+              <div class="checkout-field">
+                <label for="plan">Plano</label>
+                <select id="plan" name="plan" required>
+                  <option value="essentials">Plano Essencial - R$ 49,90</option>
+                  <option value="business">Plano Corporativo - R$ 149,90</option>
+                </select>
+              </div>
+
+              <div class="checkout-plan-summary" aria-live="polite">
+                <strong data-plan-name>Plano Essencial Tutela</strong>
+                <span data-plan-price>R$ 49,90</span>
+              </div>
+
+              <div class="checkout-field-group">
+                <div class="checkout-field">
+                  <label for="customerName">Nome completo</label>
+                  <input id="customerName" name="customerName" type="text" autocomplete="name" required />
+                </div>
+
+                <div class="checkout-field">
+                  <label for="customerEmail">E-mail</label>
+                  <input id="customerEmail" name="customerEmail" type="email" autocomplete="email" required />
+                </div>
+              </div>
+
+              <div class="checkout-field-group">
+                <div class="checkout-field">
+                  <label for="customerIdentity">CPF ou CNPJ</label>
+                  <input id="customerIdentity" name="customerIdentity" type="text" inputmode="numeric" required />
+                </div>
+
+                <div class="checkout-field">
+                  <label for="customerPhone">Telefone</label>
+                  <input id="customerPhone" name="customerPhone" type="tel" autocomplete="tel" required />
+                </div>
+              </div>
+
+              <div class="checkout-actions">
+                <button class="btn btn-primary" type="submit">Ir para o checkout da Cielo</button>
+                <a class="btn btn-secondary" href="/">Voltar ao site</a>
+              </div>
+
+              <p class="checkout-status" data-checkout-status aria-live="polite"></p>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+    <!--#include virtual="/partials/footer.html" -->
+    <!--#include virtual="/partials/scripts.html" -->
+    <script src="/assets/js/checkout-hosted.js?v=2026031101" defer></script>
+  </div>
+</body>
+</html>
