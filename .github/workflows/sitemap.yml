@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/legal-structure
   workflow_dispatch:
 
 permissions:
@@ -15,6 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Generate sitemap
         run: |
