@@ -44,6 +44,18 @@ function buildCheckoutAuthHeader() {
   return `Basic ${encoded}`;
 }
 
+function normalizeProviderError(error) {
+  if (!error.response) {
+    return error.message;
+  }
+
+  const { status, data } = error.response;
+  return {
+    status,
+    data,
+  };
+}
+
 async function getCheckoutAccessToken() {
   if (process.env.CIELO_CHECKOUT_ACCESS_TOKEN) {
     return process.env.CIELO_CHECKOUT_ACCESS_TOKEN;
@@ -79,16 +91,25 @@ async function getCheckoutAccessToken() {
 }
 
 async function createCheckoutPage(payload) {
-  const accessToken = await getCheckoutAccessToken();
-  const response = await axios.post(`${getCheckoutBaseUrl()}/api/public/v1/orders/`, payload, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-    timeout: 10000,
-  });
+  try {
+    const accessToken = await getCheckoutAccessToken();
+    const response = await axios.post(`${getCheckoutBaseUrl()}/api/public/v1/orders/`, payload, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      timeout: 10000,
+    });
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    const details = normalizeProviderError(error);
+    const providerError = new Error('Checkout Cielo request failed');
+    providerError.details = details;
+    providerError.provider = 'cielo-checkout';
+
+    throw providerError;
+  }
 }
 
 async function createSale(payload) {

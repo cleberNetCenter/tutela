@@ -80,6 +80,28 @@ describe('Tutela API', () => {
     expect(response.body.checkoutUrl).toBe('https://cielo.test/checkout/order_123');
   });
 
+  it('POST /api/checkout should return provider details on failure', async () => {
+    const error = new Error('Checkout Cielo request failed');
+    error.details = {
+      status: 400,
+      data: {
+        message: 'Invalid request payload',
+      },
+    };
+
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+    jest.spyOn(checkoutService, 'create').mockRejectedValue(error);
+
+    const response = await request(app).post('/api/checkout').send({
+      amount: 1990,
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe('Falha ao criar checkout');
+    expect(response.body.details.status).toBe(400);
+    expect(response.body.details.data.message).toBe('Invalid request payload');
+  });
+
   it('POST /api/subscriptions should create subscription', async () => {
     jest.spyOn(subscriptionService, 'create').mockResolvedValue({
       subscriptionStatus: 'CHECKOUT_CREATED',
