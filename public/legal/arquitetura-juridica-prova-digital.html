@@ -170,6 +170,8 @@
 
   <!-- CSS Gráfico Institucional Legal -->
   <style>
+    
+    
     .legal-graphic {
       margin: 1.5rem auto 2.5rem auto;
       max-width: 900px;
@@ -192,22 +194,31 @@
       margin: 2rem auto 3rem auto;
     }
 
+    /* círculo base */
+
     .legal-graphic svg circle {
-      transition: transform 0.18s ease, opacity 0.18s ease;
+      transition: transform 0.18s ease, opacity 0.18s ease, filter 0.18s ease;
       transform-origin: center;
     }
 
-    /* hover aplicado diretamente no círculo */
+    /* halo suave (glow) */
 
     .legal-graphic svg a:hover circle {
       transform: scale(1.06);
-      opacity: 1;
+      filter: drop-shadow(0 0 6px rgba(15,58,42,0.25))
+        drop-shadow(0 0 10px rgba(15,58,42,0.15));
     }
 
-    /* impede o texto de interferir no hover */
+    /* texto não interfere no hover */
 
     .legal-graphic svg text {
       pointer-events: none;
+    }
+
+    /* evita cortes ao aplicar escala */
+
+    .legal-graphic svg {
+      overflow: visible;
     }
 
     .legal-graphic svg circle:hover {
@@ -218,6 +229,10 @@
       .legal-graphic svg text {
         font-size: 13px;
       }
+    }
+
+    .legal-graphic svg a {
+      cursor: pointer;
     }
   </style>
 </head>
