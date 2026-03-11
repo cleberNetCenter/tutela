@@ -188,6 +188,32 @@
       transition: 0.2s ease;
     }
 
+    .legal-graphic {
+      margin: 2rem auto 3rem auto;
+    }
+
+    .legal-graphic svg circle {
+      transition: transform 0.18s ease, opacity 0.18s ease;
+      transform-origin: center;
+    }
+
+    /* hover aplicado diretamente no círculo */
+
+    .legal-graphic svg a:hover circle {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+
+    /* impede o texto de interferir no hover */
+
+    .legal-graphic svg text {
+      pointer-events: none;
+    }
+
+    .legal-graphic svg circle:hover {
+      transform: scale(1.06);
+    }
+
     @media (max-width: 768px) {
       .legal-graphic svg text {
         font-size: 13px;
