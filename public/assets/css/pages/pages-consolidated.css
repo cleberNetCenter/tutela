@@ -755,3 +755,11 @@ body.legal-page .main .insight-link:hover {
   border-color: var(--color-green-700);
   color: var(--color-green-700);
 }
+.internal-links ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.internal-links li {
+  margin-bottom: 6px;
+}
