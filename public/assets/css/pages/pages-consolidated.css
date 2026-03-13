@@ -235,6 +235,9 @@ body.legal-page .whitepaper-container h2 {
   color: var(--color-text-base);
   margin: 0 auto 1.5rem auto;
   max-width: 720px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  margin-bottom: 1.5rem;
 }
 
 /* =========================================
@@ -247,32 +250,21 @@ body.legal-page .whitepaper-container h2 {
   padding: 0 2rem;
 }
 
-/* coluna editorial */
-.whitepaper-container p {
-  font-size: 1.0625rem;
-  line-height: 1.85;
-  color: var(--color-text-base);
-  margin: 0 auto 1.6rem auto;
-  max-width: 720px;
-}
-
-.whitepaper-container > p:first-of-type {
+.whitepaper-container>p:first-of-type {
   font-weight: 500;
 }
 
 /* melhor espaçamento após subtítulos */
-.whitepaper-container h2 + p {
+.whitepaper-container h2+p {
   margin-top: 1.2rem;
-}
-
-/* micro ajuste tipográfico */
-.whitepaper-container p {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
 }
 
 .whitepaper-container p:first-of-type {
   margin-top: 2rem;
+}
+
+.whitepaper-container p + p {
+  margin-top: 0.6rem;
 }
 
 /* Blocos analíticos (highlight) */
@@ -670,13 +662,6 @@ body.legal-page .main.main--hero-top .page-header--legal {
   color: var(--color-text-muted);
   margin-bottom: 2.5rem;
   letter-spacing: .02em;
-}
-
-.whitepaper-container p {
-  font-size: 1.0625rem;
-  line-height: 1.85;
-  color: var(--color-text-base);
-  margin-bottom: 1.5rem;
 }
 
 /* =========================================
