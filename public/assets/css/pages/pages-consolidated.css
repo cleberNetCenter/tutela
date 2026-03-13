@@ -256,9 +256,8 @@ body.legal-page .whitepaper-container h2 {
   max-width: 720px;
 }
 
-/* primeira linha mais elegante */
-.whitepaper-container p:first-of-type {
-  margin-top: 2.2rem;
+.whitepaper-container > p:first-of-type {
+  font-weight: 500;
 }
 
 /* melhor espaçamento após subtítulos */
