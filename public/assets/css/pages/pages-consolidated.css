@@ -120,6 +120,7 @@
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
+
   .steps-list,
   .benefits-list {
     grid-template-columns: 1fr;
@@ -231,6 +232,10 @@ body.legal-page .whitepaper-container h2 {
 .whitepaper-container p {
   font-size: 1.075rem;
   line-height: 1.85;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
 }
 
 /* Blocos analíticos (highlight) */
@@ -418,8 +423,8 @@ body.legal-page .page-header {
   background: var(--color-surface-light);
 
   transition:
-    transform .28s cubic-bezier(.4,0,.2,1),
-    box-shadow .28s cubic-bezier(.4,0,.2,1),
+    transform .28s cubic-bezier(.4, 0, .2, 1),
+    box-shadow .28s cubic-bezier(.4, 0, .2, 1),
     border-color .28s ease;
 }
 
@@ -508,6 +513,7 @@ body.legal-page .legal-section-wrapper {
   max-width: 980px;
   margin: 4rem auto;
   padding: 0 2rem;
+  margin-top: 40px;
 }
 
 /* Ajuste hero-top */
@@ -745,6 +751,7 @@ body.legal-page .main .insight-link:hover {
   border-color: var(--color-green-700);
   color: var(--color-green-700);
 }
+
 .internal-links ul {
   list-style: none;
   padding-left: 0;
@@ -767,4 +774,9 @@ body.legal-page .main .insight-link:hover {
 
 .breadcrumb a:hover {
   text-decoration: underline;
+}
+
+.insight-pillar-link {
+  margin-top: 32px;
+  margin-bottom: 12px;
 }
