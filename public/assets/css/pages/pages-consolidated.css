@@ -738,3 +738,20 @@ body.legal-page .main .insight-link:hover {
   pointer-events: none;
 }
 
+/* =========================================
+   INSIGHT LINKS – GLOBAL INSTITUTIONAL USE
+   ========================================= */
+
+.main .insight-link,
+.main .insight-link:visited {
+  color: var(--color-green-900);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(15, 58, 42, 0.25);
+  padding-bottom: 1px;
+  transition: border-color .25s ease, color .25s ease;
+}
+
+.main .insight-link:hover {
+  border-color: var(--color-green-700);
+  color: var(--color-green-700);
+}
