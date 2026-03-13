@@ -657,13 +657,6 @@ body.legal-page .main.main--hero-top .page-header--legal {
   content: none;
 }
 
-.whitepaper-container>p:first-of-type {
-  font-size: .875rem;
-  color: var(--color-text-muted);
-  margin-bottom: 2.5rem;
-  letter-spacing: .02em;
-}
-
 /* =========================================
    ARTICLE – REFERÊNCIAS
    ========================================= */
