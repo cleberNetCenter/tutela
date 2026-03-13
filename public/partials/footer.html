@@ -135,3 +135,320 @@
     </path>
   </svg>
 </a>
+
+<script>
+
+    /* ================================
+    CONFIG
+    ================================ */
+
+    const PLATFORM_URL = "https://app.tuteladigital.com.br/";
+
+    /* ================================
+    TOKEN
+    ================================ */
+
+    function generateToken(){
+      return crypto.randomUUID();
+    }
+
+    /* ================================
+    UTM
+    ================================ */
+
+    function getUTM(){
+
+      const params = new URLSearchParams(window.location.search);
+
+      return {
+        utm_source: params.get("utm_source") || "organic",
+        utm_medium: params.get("utm_medium") || "site",
+        utm_campaign: params.get("utm_campaign") || "institucional"
+      };
+
+    }
+
+    function persistSource(){
+
+      const utm = getUTM();
+
+      if(!localStorage.getItem("tutela_source")){
+
+        localStorage.setItem(
+          "tutela_source",
+          JSON.stringify(utm)
+        );
+
+      }
+
+    }
+
+    persistSource();
+
+    function getStoredSource(){
+
+      const source = localStorage.getItem("tutela_source");
+
+      if(source){
+        return JSON.parse(source);
+      }
+
+      return {
+        utm_source:"site",
+        utm_medium:"institutional",
+        utm_campaign:"direct"
+      };
+
+    }
+
+    /* ================================
+    PAGE TYPE
+    ================================ */
+
+    function getPageType(){
+
+      const path = window.location.pathname;
+
+      if(path === "/") return "home";
+
+      if(path.includes("/insights/")) return "insight_article";
+
+      if(path.includes("/legal/")) return "legal_page";
+
+      if(path.includes("/empresas")) return "segment_empresas";
+
+      if(path.includes("/governo")) return "segment_governo";
+
+      if(path.includes("/pessoas")) return "segment_pessoas";
+
+      return "institutional_page";
+
+    }
+
+    /* ================================
+    CTA CLICK TRACKING
+    ================================ */
+
+    document.querySelectorAll('a[href*="app.tuteladigital.com.br"]').forEach(function(link){
+
+      link.addEventListener("click", function(){
+
+        const token = generateToken();
+
+        const utm = getStoredSource();
+
+        const pageType = getPageType();
+
+        const ctaLocation =
+          link.id === "cta-header-platform"
+          ? "header"
+          : "page_cta";
+
+        const targetUrl =
+          PLATFORM_URL +
+          "?src=" + pageType +
+          "&token=" + token +
+          "&utm_source=" + utm.utm_source +
+          "&utm_medium=" + utm.utm_medium +
+          "&utm_campaign=" + utm.utm_campaign;
+
+        gtag('event','access_platform',{
+
+          event_category:'conversion',
+
+          page_type:pageType,
+
+          cta_location:ctaLocation,
+
+          page_location:window.location.href,
+
+          traffic_source: localStorage.getItem("tutela_traffic_source"),
+
+          token:token,
+
+          utm_source:utm.utm_source,
+          utm_medium:utm.utm_medium,
+          utm_campaign:utm.utm_campaign
+
+        });
+
+        link.href = targetUrl;
+
+      });
+
+    });
+
+    /* ================================
+    ARTICLE READING TRACKING
+    ================================ */
+
+    function isArticle(){
+
+      return window.location.pathname.includes("/insights/");
+
+    }
+
+    if(isArticle()){
+
+      let scrollTracked = false;
+      let startTime = Date.now();
+
+      window.addEventListener("scroll", function(){
+
+        if(scrollTracked) return;
+
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const pageHeight = document.documentElement.scrollHeight;
+
+        const scrollPercent = (scrollPosition/pageHeight)*100;
+
+        if(scrollPercent > 75){
+
+          scrollTracked = true;
+
+          gtag('event','article_read',{
+
+            article_url:window.location.pathname,
+
+            article_title:document.title,
+
+            scroll_depth:75
+
+          });
+
+        }
+
+      });
+
+      setInterval(function(){
+
+        const timeSpent = (Date.now()-startTime)/1000;
+
+        if(timeSpent > 30){
+
+          gtag('event','article_engaged',{
+
+            article_url:window.location.pathname,
+
+            article_title:document.title,
+
+            reading_time:Math.round(timeSpent)
+
+          });
+
+          startTime = Infinity;
+
+        }
+
+      },5000);
+
+    }
+
+    /* ================================
+    CTA VISIBILITY
+    ================================ */
+
+    const ctas = document.querySelectorAll('a[href*="app.tuteladigital.com.br"]');
+
+    const observer = new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+          gtag('event','cta_visible',{
+
+            page_location:window.location.pathname
+
+          });
+
+        }
+
+      });
+
+    });
+
+    ctas.forEach(cta => observer.observe(cta));
+    /* =====================================
+    CAPTURA ORIGEM DA VISITA
+    ===================================== */
+
+    function detectTrafficSource(){
+
+      const referrer = document.referrer;
+
+      if(!referrer) return "direct";
+
+      if(referrer.includes("google.")) return "google";
+
+      if(referrer.includes("bing.")) return "bing";
+
+      if(referrer.includes("duckduckgo.")) return "duckduckgo";
+
+      if(referrer.includes("linkedin.")) return "linkedin";
+
+      if(referrer.includes("instagram.")) return "instagram";
+
+      return "referral";
+
+    }
+
+    /* =====================================
+    SALVAR ORIGEM
+    ===================================== */
+
+    function persistTrafficSource(){
+
+      if(!localStorage.getItem("tutela_traffic_source")){
+
+        const source = detectTrafficSource();
+
+        localStorage.setItem(
+          "tutela_traffic_source",
+          source
+        );
+
+      }
+
+    }
+
+    persistTrafficSource();
+
+    /* =====================================
+    CAPTURA KEYWORD GOOGLE
+    ===================================== */
+
+    function captureGoogleKeyword(){
+
+      const params = new URLSearchParams(window.location.search);
+
+      const keyword = params.get("q");
+
+      if(keyword){
+
+        localStorage.setItem(
+          "tutela_google_keyword",
+          keyword
+        );
+
+      }
+
+    }
+
+    captureGoogleKeyword();
+
+    /* =====================================
+    EVENTO PAGE ORIGIN
+    ===================================== */
+
+    const trafficSource = localStorage.getItem("tutela_traffic_source");
+
+    gtag('event','traffic_source_detected',{
+
+      traffic_source:trafficSource,
+
+      page_location:window.location.pathname
+
+    });
+
+</script>
