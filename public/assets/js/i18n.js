@@ -79,11 +79,13 @@ const I18N = {
    */
   async init() {
     // Detecta idioma salvo ou do navegador
+    const pageLang = window.__PAGE_LANG__;
     const savedLang = localStorage.getItem('tutela_lang');
     const browserLang = navigator.language.split('-')[0];
     const supportedLangs = ['pt', 'en', 'es'];
 
-    this.currentLang = savedLang ||
+    this.currentLang = pageLang ||
+      savedLang ||
       (supportedLangs.includes(browserLang) ? browserLang : 'pt');
 
     // Carrega traduções
@@ -106,6 +108,12 @@ const I18N = {
    */
   async loadTranslations(lang) {
     try {
+      if (window.__I18N_PRELOADED__ && window.__I18N_PRELOADED_LANG__ === lang) {
+        this.translations = window.__I18N_PRELOADED__;
+        console.log(`[i18n] Traduções pré-carregadas usadas: ${lang}`);
+        return;
+      }
+
       const response = await fetch(`/assets/lang/${lang}.json?v=10`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       this.translations = await response.json();

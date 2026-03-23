@@ -14,6 +14,7 @@
     "home": "Inicio",
     "howItWorks": "Cómo Funciona",
     "security": "Seguridad",
+    "digitalAssets": "Activos Digitales",
     "insights": "Insights",
     "digitalEvidence": "Prueba Digital",
     "solutions": "Soluciones",
@@ -233,5 +234,118 @@
     "audience": "Público",
     "insightsAll": "Todos los Insights",
     "insightIntegrity": "Integridad Técnica y Admisibilidad"
+  },
+  "ativosDigitais": {
+    "pillar": {
+      "hero": {
+        "title": "Gestión de Activos Digitales en el Derecho Contemporáneo",
+        "subtitle": "Un enfoque jurídico para la custodia, gobernanza y sucesión de activos digitales con integridad verificable",
+        "cta": "Entienda cómo estructurar la protección de sus activos digitales"
+      },
+      "problem": {
+        "title": "El Problema Jurídico",
+        "text": "La creciente digitalización del patrimonio ha creado una nueva categoría de bienes — los activos digitales — cuya existencia frecuentemente no se refleja en las estructuras jurídicas tradicionales. La ausencia de inventario, custodia y documentación adecuada puede comprometer el acceso, la transmisión y el valor probatorio."
+      },
+      "scale": {
+        "title": "La Dimensión del Problema",
+        "items": [
+          "US$ 200 mil millones en Bitcoin inaccesible",
+          "12 millones de personas con criptoactivos en Brasil",
+          "Solo el 12% de las empresas con políticas formales",
+          "60 millones de personas expuestas"
+        ]
+      },
+      "taxonomy": {
+        "title": "¿Qué Son los Activos Digitales? (Perspectiva Jurídica)",
+        "categoryLabel": "Categorías",
+        "criticalLabel": "Punto crítico",
+        "items": [
+          "Activos financieros digitales (criptomonedas y tokens)",
+          "NFTs como bienes intangibles",
+          "Propiedad intelectual digital",
+          "Credenciales y claves criptográficas"
+        ],
+        "note": "La pérdida de credenciales puede comprometer el acceso al propio activo."
+      },
+      "regulatory": {
+        "title": "Vacíos Regulatorios",
+        "items": [
+          "Ausencia de marco consolidado para inventario digital",
+          "Regulación fragmentada de la sucesión de criptoactivos",
+          "Falta de estándares institucionales de custodia"
+        ]
+      },
+      "risks": {
+        "title": "Riesgos Concretos",
+        "items": [
+          "Documentos sin integridad verificable",
+          "Credenciales sin custodia formal",
+          "Activos no documentados",
+          "Falta de trazabilidad"
+        ]
+      },
+      "succession": {
+        "title": "Sucesión Digital",
+        "text": "La ausencia de estructura puede generar pérdida de acceso, dificultades en procesos sucesorios y potencial responsabilidad profesional.",
+        "recommendedLabel": "Estructura recomendada",
+        "steps": [
+          "Mapeo",
+          "Custodia",
+          "Documentación",
+          "Transmisión"
+        ]
+      },
+      "compliance": {
+        "title": "Cumplimiento y Gobernanza",
+        "items": [
+          "Protección de datos personales",
+          "Obligaciones de registro digital",
+          "Normativas anticorrupción",
+          "Estándares de seguridad (ISO 27001, NIST)"
+        ]
+      },
+      "infrastructure": {
+        "title": "Infraestructura Jurídico-Digital",
+        "text": "La gestión adecuada requiere identificación del titular, manifestación de voluntad, evidencia criptográfica, integridad verificable y trazabilidad auditable."
+      },
+      "implementation": {
+        "title": "Cómo se Implementa",
+        "items": [
+          "Autenticación mediante certificado digital",
+          "Consentimiento registrado mediante notarización digital",
+          "Firma electrónica cualificada",
+          "Sellado de tiempo cualificado (ICP-Brasil cuando aplique)",
+          "Cifrado y almacenamiento distribuido",
+          "Verificación mediante hash",
+          "Registros auditables con evidencia"
+        ]
+      },
+      "outcomes": {
+        "title": "Resultados Esperados",
+        "items": [
+          "Trazabilidad del ciclo de vida del activo",
+          "Integridad verificable de los registros",
+          "Estructura apta para uso probatorio",
+          "Base técnica para sustentar el no repudio"
+        ]
+      },
+      "usecases": {
+        "title": "Aplicaciones Prácticas",
+        "items": [
+          "Due diligence en M&A",
+          "Planificación sucesoria",
+          "Gestión de propiedad intelectual",
+          "Tesorería digital corporativa"
+        ]
+      },
+      "context": {
+        "title": "Contexto Regulatorio",
+        "text": "La convergencia regulatoria global (como MiCA en la UE) indica un aumento en las exigencias de gobernanza."
+      },
+      "ctaFinal": {
+        "text": "La estructuración de activos digitales ya no es opcional.",
+        "cta": "Descubra cómo implementar este enfoque"
+      }
+    }
   }
 }
