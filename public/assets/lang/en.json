@@ -14,6 +14,7 @@
     "home": "Home",
     "howItWorks": "How It Works",
     "security": "Security",
+    "digitalAssets": "Digital Assets",
     "insights": "Insights",
     "digitalEvidence": "Digital Evidence",
     "solutions": "Solutions",
@@ -231,5 +232,118 @@
     "audience": "Audience",
     "insightsAll": "All Insights",
     "insightIntegrity": "Technical Integrity and Admissibility"
+  },
+  "ativosDigitais": {
+    "pillar": {
+      "hero": {
+        "title": "Digital Asset Management in Contemporary Law",
+        "subtitle": "A legal approach to custody, governance, and succession of digital assets with verifiable integrity",
+        "cta": "Understand how to structure the protection of your digital assets"
+      },
+      "problem": {
+        "title": "The Legal Problem",
+        "text": "The increasing digitization of assets has created a new class of property — digital assets — whose existence is often not reflected in traditional legal structures. The absence of inventory, custody, and proper documentation may compromise access, transfer, and evidentiary use."
+      },
+      "scale": {
+        "title": "The Scale of the Problem",
+        "items": [
+          "$200 billion in inaccessible Bitcoin",
+          "12 million individuals in Brazil holding crypto assets",
+          "Only 12% of companies have formal custody policies",
+          "60 million individuals exposed to digital assets"
+        ]
+      },
+      "taxonomy": {
+        "title": "What Are Digital Assets (Legal Perspective)",
+        "categoryLabel": "Categories",
+        "criticalLabel": "Critical point",
+        "items": [
+          "Digital financial assets (cryptocurrencies and tokens)",
+          "Non-fungible tokens (NFTs) as intangible movable assets",
+          "Digital intellectual property",
+          "Credentials and cryptographic keys"
+        ],
+        "note": "Loss of credentials may compromise access to the asset itself."
+      },
+      "regulatory": {
+        "title": "Regulatory Gaps",
+        "items": [
+          "No consolidated legal framework for digital inventory",
+          "Fragmented regulation on cryptoasset succession",
+          "Limited institutional standards for digital custody"
+        ]
+      },
+      "risks": {
+        "title": "Concrete Risks",
+        "items": [
+          "Documents without verifiable integrity",
+          "Credentials without formal custody",
+          "Undocumented assets",
+          "Lack of traceability"
+        ]
+      },
+      "succession": {
+        "title": "Digital Succession",
+        "text": "Lack of structured guidance may lead to loss of access, difficulties in estate procedures, and potential professional liability.",
+        "recommendedLabel": "Recommended structure",
+        "steps": [
+          "Mapping",
+          "Custody",
+          "Documentation",
+          "Transfer"
+        ]
+      },
+      "compliance": {
+        "title": "Compliance and Governance",
+        "items": [
+          "Data protection regulations (e.g., GDPR-equivalent principles)",
+          "Digital record-keeping obligations",
+          "Anti-corruption compliance frameworks",
+          "Information security standards (ISO 27001, NIST)"
+        ]
+      },
+      "infrastructure": {
+        "title": "Legal-Digital Infrastructure",
+        "text": "Proper digital asset management requires identification of the holder, formal expression of intent, cryptographic evidence, verifiable integrity, and an auditable trail."
+      },
+      "implementation": {
+        "title": "How This Structure Is Implemented",
+        "items": [
+          "Authentication through digital certificates",
+          "Formal consent recorded via digital notarization",
+          "Qualified electronic signatures",
+          "Qualified timestamping (ICP-Brasil when applicable)",
+          "Encryption and distributed storage",
+          "Hash-based integrity verification",
+          "Auditable logs with evidence delivery"
+        ]
+      },
+      "outcomes": {
+        "title": "Expected Outcomes",
+        "items": [
+          "Lifecycle traceability of digital assets",
+          "Verifiable integrity of records",
+          "Structure suitable for evidentiary purposes",
+          "Technical basis to support non-repudiation"
+        ]
+      },
+      "usecases": {
+        "title": "Practical Applications",
+        "items": [
+          "M&A due diligence",
+          "Estate and succession planning",
+          "Intellectual property management",
+          "Corporate digital treasury"
+        ]
+      },
+      "context": {
+        "title": "Regulatory Context",
+        "text": "Global regulatory convergence (e.g., MiCA in the EU) indicates increasing requirements for governance of digital assets."
+      },
+      "ctaFinal": {
+        "text": "Structuring digital asset governance is no longer optional.",
+        "cta": "Learn how to implement this approach in practice"
+      }
+    }
   }
 }

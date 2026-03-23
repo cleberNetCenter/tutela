@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestão de Ativos Digitais no Direito Contemporâneo</title>
+  <meta name="description" content="Custódia, sucessão e governança de ativos digitais com base jurídica e integridade verificável" />
+  <link rel="canonical" href="https://tuteladigital.com.br/ativos-digitais/" />
+  <link rel="alternate" hreflang="x-default" href="https://tuteladigital.com.br/ativos-digitais/" />
+  <link rel="icon" type="image/svg+xml" href="/assets/illustrations/favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tuteladigital.com.br/ativos-digitais/" />
+  <meta property="og:title" content="Gestão de Ativos Digitais no Direito Contemporâneo" />
+  <meta property="og:description" content="Custódia, sucessão e governança de ativos digitais com base jurídica e integridade verificável" />
+  <meta property="og:site_name" content="Tutela Digital®" />
+  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:url" content="https://tuteladigital.com.br/ativos-digitais/" />
+  <meta property="twitter:title" content="Gestão de Ativos Digitais no Direito Contemporâneo" />
+  <meta property="twitter:description" content="Custódia, sucessão e governança de ativos digitais com base jurídica e integridade verificável" />
+  <link rel="stylesheet" href="/assets/css/main.css?v=7">
+  <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=7">
+  <link rel="stylesheet" href="/assets/css/dropdown-menu.css?v=202602190108">
+</head>
+
+<body class="exec-compact">
+  <div class="app">
+    <!--#include virtual="/partials/header.html" -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/" data-i18n="navigation.home"></a></li>
+        <li aria-current="page" data-i18n="navigation.digitalAssets"></li>
+      </ol>
+    </nav>
+    <!--#include virtual="/partials/ativos-digitais-pillar-main.html" -->
+    <!--#include virtual="/partials/footer.html" -->
+    <!--#include virtual="/partials/scripts.html" -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const applyMeta = () => {
+          if (!window.I18N || !I18N.translations || Object.keys(I18N.translations).length === 0) {
+            setTimeout(applyMeta, 50);
+            return;
+          }
+          document.title = I18N.t('ativosDigitais.pillar.hero.title');
+          const metaDescription = document.querySelector('meta[name="description"]');
+          const ogTitle = document.querySelector('meta[property="og:title"]');
+          const ogDescription = document.querySelector('meta[property="og:description"]');
+          const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+          const twitterDescription = document.querySelector('meta[property="twitter:description"]');
+          const description = I18N.currentLang === 'pt'
+            ? 'Custódia, sucessão e governança de ativos digitais com base jurídica e integridade verificável'
+            : I18N.currentLang === 'en'
+              ? 'Custody, succession, and governance of digital assets with legal basis and verifiable integrity'
+              : 'Custodia, sucesión y gobernanza de activos digitales con base jurídica e integridad verificable';
+          if (metaDescription) metaDescription.setAttribute('content', description);
+          if (ogTitle) ogTitle.setAttribute('content', document.title);
+          if (ogDescription) ogDescription.setAttribute('content', description);
+          if (twitterTitle) twitterTitle.setAttribute('content', document.title);
+          if (twitterDescription) twitterDescription.setAttribute('content', description);
+          document.documentElement.lang = I18N.getLangCode(I18N.currentLang);
+        };
+        applyMeta();
+      });
+    </script>
+  </div>
+</body>
+
+</html>
