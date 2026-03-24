@@ -51,39 +51,6 @@ body.assets-page {
     transform: translateY(0);
   }
 
-.assets-page .header {
-  position: relative;
-  z-index: 40;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(24, 52, 43, 0.10);
-}
-
-.assets-page .header .logo,
-.assets-page .header .nav-link,
-.assets-page .header .nav-toggle {
-  color: var(--ux-brand);
-}
-
-.assets-page .header .nav-link:hover,
-.assets-page .header .nav-toggle:hover,
-.assets-page .header .logo:hover {
-  color: var(--ux-brand-3);
-}
-
-.assets-page .header-cta {
-  border-radius: 999px;
-  background: var(--ux-brand);
-  border: 1px solid transparent;
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(15, 74, 54, 0.18);
-}
-
-.assets-page .header-cta:hover {
-  background: var(--ux-brand-3);
-  transform: translateY(-1px);
-}
-
 .assets-page .breadcrumb {
   max-width: var(--ux-max);
   margin: 0 auto;
@@ -614,8 +581,131 @@ body.assets-page {
     .assets-page .stat-card,
     .assets-page .steps li,
     .assets-page .checklist li,
-    .assets-page .btn.btn-primary {
+  .assets-page .btn.btn-primary {
       transition: none !important;
       transform: none !important;
     }
   }
+
+/* =========================================================
+   OVERRIDE FINAL — HERO E CTA MINIMALISTAS / EDITORIAIS
+   Inserir no FINAL do <style> da página de Ativos Digitais
+   ========================================================= */
+
+/* remover breadcrumb desta página */
+body.assets-page nav.breadcrumb {
+  display: none !important;
+}
+
+/* HERO */
+body.assets-page .page-header.page-header--legal {
+  margin-top: 0.5rem !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  background: transparent !important;
+}
+
+body.assets-page .page-header.page-header--legal .page-header-inner {
+  max-width: 920px !important;
+  margin: 0 auto !important;
+  padding: clamp(2.2rem, 3vw, 3rem) clamp(1.4rem, 3vw, 2rem) !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+body.assets-page .page-header.page-header--legal .page-header-inner::before,
+body.assets-page .page-header.page-header--legal .page-header-inner::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+body.assets-page .page-header.page-header--legal h1 {
+  max-width: 13ch !important;
+  margin: 0 auto 0.85rem !important;
+  color: #f5f7f3 !important;
+  font-size: clamp(2rem, 4vw, 3.5rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.028em !important;
+  text-wrap: balance !important;
+}
+
+body.assets-page .page-header.page-header--legal .page-header-subtitle {
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  color: rgba(236, 243, 239, 0.82) !important;
+  font-size: clamp(0.98rem, 1.15vw, 1.08rem) !important;
+  line-height: 1.65 !important;
+}
+
+body.assets-page .page-header.page-header--legal .insight-pillar-link {
+  max-width: 680px !important;
+  margin: 0.85rem auto 0 !important;
+  color: rgba(236, 243, 239, 0.62) !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0 !important;
+}
+
+/* CTA FINAL */
+body.assets-page .insight-cta-block {
+  margin-top: 0.75rem !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+body.assets-page .insight-cta-block .insight-cta-inner {
+  max-width: 920px !important;
+  margin: 0 auto !important;
+  padding: clamp(1.5rem, 2.4vw, 2rem) !important;
+  border-radius: 18px !important;
+  background: linear-gradient(180deg, #f7faf7 0%, #f2f6f3 100%) !important;
+  border: 1px solid rgba(24, 52, 43, 0.10) !important;
+  box-shadow: none !important;
+  text-align: center !important;
+}
+
+body.assets-page .insight-cta-block .insight-cta-inner::before,
+body.assets-page .insight-cta-block .insight-cta-inner::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+body.assets-page .insight-cta-block .insight-cta-inner h2 {
+  margin: 0 0 0.65rem !important;
+  color: #18493f !important;
+  font-size: clamp(1.55rem, 2.3vw, 2.1rem) !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.02em !important;
+}
+
+body.assets-page .insight-cta-block .insight-cta-inner p {
+  max-width: 680px !important;
+  margin: 0 auto 1.1rem !important;
+  color: #5b6c65 !important;
+  font-size: 0.98rem !important;
+  line-height: 1.65 !important;
+}
+
+body.assets-page .insight-cta-block .insight-cta-inner .btn.btn-primary {
+  min-width: 200px !important;
+  padding: 0.84rem 1.3rem !important;
+  border-radius: 999px !important;
+  border: 1px solid #18493f !important;
+  background: #18493f !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+body.assets-page .insight-cta-block .insight-cta-inner .btn.btn-primary:hover {
+  transform: none !important;
+  background: #143d35 !important;
+  color: #ffffff !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
