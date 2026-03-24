@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="/assets/css/main.css?v=7">
   <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=7">
   <link rel="stylesheet" href="/assets/css/dropdown-menu.css?v=202602190108">
+  <!--#include virtual="/partials/ativos-digitais-pillar-styles.html" -->
   <script>
     window.__PAGE_LANG__ = 'es';
     localStorage.setItem('tutela_lang', 'es');
@@ -33,7 +34,7 @@
   </script>
 </head>
 
-<body class="exec-compact">
+<body class="exec-compact assets-page">
   <div class="app">
     <!--#include virtual="/partials/header.html" -->
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -64,21 +65,33 @@
           </p>
 
           <h2>La Dimensión del Problema</h2>
-      <p>
-        US$ 200 mil millones en Bitcoin inaccesible
-      </p>
-      <p>
-        12 millones de personas con criptoactivos en Brasil
-      </p>
-      <p>
-        Solo el 12% de las empresas con políticas formales
-      </p>
-      <p>
-        60 millones de personas expuestas
-      </p>
+          <div class="stats-grid">
+        <div class="stat-card">
+          <p>
+            US$ 200 mil millones en Bitcoin inaccesible
+          </p>
+        </div>
+        <div class="stat-card">
+          <p>
+            12 millones de personas con criptoactivos en Brasil
+          </p>
+        </div>
+        <div class="stat-card">
+          <p>
+            Solo el 12% de las empresas con políticas formales
+          </p>
+        </div>
+        <div class="stat-card">
+          <p>
+            60 millones de personas expuestas
+          </p>
+        </div>
+          </div>
 
           <h2>¿Qué Son los Activos Digitales? (Perspectiva Jurídica)</h2>
-          <h3>Categorías</h3>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Categorías</h3>
       <p>
         Activos financieros digitales (criptomonedas y tokens)
       </p>
@@ -91,23 +104,13 @@
       <p>
         Credenciales y claves criptográficas
       </p>
-          <h3>Punto crítico</h3>
-          <p>
-            La pérdida de credenciales puede comprometer el acceso al propio activo.
-          </p>
-
-          <h2>Vacíos Regulatorios</h2>
-      <p>
-        Ausencia de marco consolidado para inventario digital
-      </p>
-      <p>
-        Regulación fragmentada de la sucesión de criptoactivos
-      </p>
-      <p>
-        Falta de estándares institucionales de custodia
-      </p>
-
-          <h2>Riesgos Concretos</h2>
+              <h3>Punto crítico</h3>
+              <p>
+                La pérdida de credenciales puede comprometer el acceso al propio activo.
+              </p>
+            </div>
+            <div class="card card-danger">
+              <h3>Riesgos Concretos</h3>
       <p>
         Documentos sin integridad verificable
       </p>
@@ -120,24 +123,33 @@
       <p>
         Falta de trazabilidad
       </p>
+            </div>
+          </div>
+
+          <h2>Vacíos Regulatorios</h2>
+          <div class="card">
+      <p>
+        Ausencia de marco consolidado para inventario digital
+      </p>
+      <p>
+        Regulación fragmentada de la sucesión de criptoactivos
+      </p>
+      <p>
+        Falta de estándares institucionales de custodia
+      </p>
+          </div>
 
           <h2>Sucesión Digital</h2>
           <p>
             La ausencia de estructura puede generar pérdida de acceso, dificultades en procesos sucesorios y potencial responsabilidad profesional.
           </p>
           <h3>Estructura recomendada</h3>
-      <p>
-        Mapeo
-      </p>
-      <p>
-        Custodia
-      </p>
-      <p>
-        Documentación
-      </p>
-      <p>
-        Transmisión
-      </p>
+          <ol class="steps">
+            <li>Mapeo</li>
+            <li>Custodia</li>
+            <li>Documentación</li>
+            <li>Transmisión</li>
+          </ol>
 
           <h2>Cumplimiento y Gobernanza</h2>
       <p>
@@ -159,27 +171,15 @@
           </p>
 
           <h2>Cómo se Implementa</h2>
-      <p>
-        Autenticación mediante certificado digital
-      </p>
-      <p>
-        Consentimiento registrado mediante notarización digital
-      </p>
-      <p>
-        Firma electrónica cualificada
-      </p>
-      <p>
-        Sellado de tiempo cualificado (ICP-Brasil cuando aplique)
-      </p>
-      <p>
-        Cifrado y almacenamiento distribuido
-      </p>
-      <p>
-        Verificación mediante hash
-      </p>
-      <p>
-        Registros auditables con evidencia
-      </p>
+          <ul class="checklist">
+            <li>Autenticación mediante certificado digital</li>
+            <li>Consentimiento registrado mediante notarización digital</li>
+            <li>Firma electrónica cualificada</li>
+            <li>Sellado de tiempo cualificado (ICP-Brasil cuando aplique)</li>
+            <li>Cifrado y almacenamiento distribuido</li>
+            <li>Verificación mediante hash</li>
+            <li>Registros auditables con evidencia</li>
+          </ul>
 
           <h2>Resultados Esperados</h2>
       <p>

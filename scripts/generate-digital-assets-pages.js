@@ -52,6 +52,18 @@ function paragraphList(items) {
   return items.map((item) => `      <p>\n        ${escapeHtml(item)}\n      </p>`).join('\n');
 }
 
+function statCards(items) {
+  return items.map((item) => `        <div class="stat-card">\n          <p>\n            ${escapeHtml(item)}\n          </p>\n        </div>`).join('\n');
+}
+
+function checklist(items) {
+  return items.map((item) => `            <li>${escapeHtml(item)}</li>`).join('\n');
+}
+
+function steps(items) {
+  return items.map((item) => `            <li>${escapeHtml(item)}</li>`).join('\n');
+}
+
 function buildPage(lang, locale, pillar) {
   const preloadedTranslations = JSON.stringify(readJson(path.join(langDir, `${lang}.json`)))
     .replace(/</g, '\\u003c')
@@ -83,6 +95,7 @@ function buildPage(lang, locale, pillar) {
   <link rel="stylesheet" href="/assets/css/main.css?v=7">
   <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=7">
   <link rel="stylesheet" href="/assets/css/dropdown-menu.css?v=202602190108">
+  <!--#include virtual="/partials/ativos-digitais-pillar-styles.html" -->
   <script>
     window.__PAGE_LANG__ = '${lang}';
     localStorage.setItem('tutela_lang', '${lang}');
@@ -92,7 +105,7 @@ function buildPage(lang, locale, pillar) {
   </script>
 </head>
 
-<body class="exec-compact">
+<body class="exec-compact assets-page">
   <div class="app">
     <!--#include virtual="/partials/header.html" -->
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -123,28 +136,39 @@ function buildPage(lang, locale, pillar) {
           </p>
 
           <h2>${escapeHtml(pillar.scale.title)}</h2>
-${paragraphList(pillar.scale.items)}
+          <div class="stats-grid">
+${statCards(pillar.scale.items)}
+          </div>
 
           <h2>${escapeHtml(pillar.taxonomy.title)}</h2>
-          <h3>${escapeHtml(pillar.taxonomy.categoryLabel)}</h3>
+          <div class="grid-2">
+            <div class="card">
+              <h3>${escapeHtml(pillar.taxonomy.categoryLabel)}</h3>
 ${paragraphList(pillar.taxonomy.items)}
-          <h3>${escapeHtml(pillar.taxonomy.criticalLabel)}</h3>
-          <p>
-            ${escapeHtml(pillar.taxonomy.note)}
-          </p>
+              <h3>${escapeHtml(pillar.taxonomy.criticalLabel)}</h3>
+              <p>
+                ${escapeHtml(pillar.taxonomy.note)}
+              </p>
+            </div>
+            <div class="card card-danger">
+              <h3>${escapeHtml(pillar.risks.title)}</h3>
+${paragraphList(pillar.risks.items)}
+            </div>
+          </div>
 
           <h2>${escapeHtml(pillar.regulatory.title)}</h2>
+          <div class="card">
 ${paragraphList(pillar.regulatory.items)}
-
-          <h2>${escapeHtml(pillar.risks.title)}</h2>
-${paragraphList(pillar.risks.items)}
+          </div>
 
           <h2>${escapeHtml(pillar.succession.title)}</h2>
           <p>
             ${escapeHtml(pillar.succession.text)}
           </p>
           <h3>${escapeHtml(pillar.succession.recommendedLabel)}</h3>
-${paragraphList(pillar.succession.steps)}
+          <ol class="steps">
+${steps(pillar.succession.steps)}
+          </ol>
 
           <h2>${escapeHtml(pillar.compliance.title)}</h2>
 ${paragraphList(pillar.compliance.items)}
@@ -155,7 +179,9 @@ ${paragraphList(pillar.compliance.items)}
           </p>
 
           <h2>${escapeHtml(pillar.implementation.title)}</h2>
-${paragraphList(pillar.implementation.items)}
+          <ul class="checklist">
+${checklist(pillar.implementation.items)}
+          </ul>
 
           <h2>${escapeHtml(pillar.outcomes.title)}</h2>
 ${paragraphList(pillar.outcomes.items)}

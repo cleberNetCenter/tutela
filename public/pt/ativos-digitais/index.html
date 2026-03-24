@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="/assets/css/main.css?v=7">
   <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=7">
   <link rel="stylesheet" href="/assets/css/dropdown-menu.css?v=202602190108">
+  <!--#include virtual="/partials/ativos-digitais-pillar-styles.html" -->
   <script>
     window.__PAGE_LANG__ = 'pt';
     localStorage.setItem('tutela_lang', 'pt');
@@ -33,7 +34,7 @@
   </script>
 </head>
 
-<body class="exec-compact">
+<body class="exec-compact assets-page">
   <div class="app">
     <!--#include virtual="/partials/header.html" -->
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -64,21 +65,33 @@
           </p>
 
           <h2>A Dimensão do Problema</h2>
-      <p>
-        US$ 200 bilhões em Bitcoin inacessível
-      </p>
-      <p>
-        12 milhões de brasileiros com criptoativos
-      </p>
-      <p>
-        Apenas 12% das empresas com políticas formais
-      </p>
-      <p>
-        60 milhões de brasileiros expostos a ativos digitais
-      </p>
+          <div class="stats-grid">
+        <div class="stat-card">
+          <p>
+            US$ 200 bilhões em Bitcoin inacessível
+          </p>
+        </div>
+        <div class="stat-card">
+          <p>
+            12 milhões de brasileiros com criptoativos
+          </p>
+        </div>
+        <div class="stat-card">
+          <p>
+            Apenas 12% das empresas com políticas formais
+          </p>
+        </div>
+        <div class="stat-card">
+          <p>
+            60 milhões de brasileiros expostos a ativos digitais
+          </p>
+        </div>
+          </div>
 
           <h2>O Que São Ativos Digitais (Perspectiva Jurídica)</h2>
-          <h3>Categorias</h3>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Categorias</h3>
       <p>
         Ativos financeiros digitais (criptomoedas e tokens)
       </p>
@@ -91,23 +104,13 @@
       <p>
         Credenciais e chaves criptográficas
       </p>
-          <h3>Ponto crítico</h3>
-          <p>
-            A perda de credenciais pode comprometer o acesso ao próprio ativo.
-          </p>
-
-          <h2>Lacunas Regulatórias</h2>
-      <p>
-        Ausência de estrutura consolidada para inventário digital
-      </p>
-      <p>
-        Regulação fragmentada da sucessão de criptoativos
-      </p>
-      <p>
-        Limitações na normatização da custódia institucional
-      </p>
-
-          <h2>Riscos Concretos</h2>
+              <h3>Ponto crítico</h3>
+              <p>
+                A perda de credenciais pode comprometer o acesso ao próprio ativo.
+              </p>
+            </div>
+            <div class="card card-danger">
+              <h3>Riscos Concretos</h3>
       <p>
         Documentos sem integridade verificável
       </p>
@@ -120,24 +123,33 @@
       <p>
         Ausência de rastreabilidade
       </p>
+            </div>
+          </div>
+
+          <h2>Lacunas Regulatórias</h2>
+          <div class="card">
+      <p>
+        Ausência de estrutura consolidada para inventário digital
+      </p>
+      <p>
+        Regulação fragmentada da sucessão de criptoativos
+      </p>
+      <p>
+        Limitações na normatização da custódia institucional
+      </p>
+          </div>
 
           <h2>Sucessão Digital</h2>
           <p>
             A ausência de estrutura adequada pode resultar em perda de acesso, dificuldades em processos sucessórios e potencial responsabilização profissional.
           </p>
           <h3>Estrutura recomendada</h3>
-      <p>
-        Mapeamento
-      </p>
-      <p>
-        Custódia
-      </p>
-      <p>
-        Documentação
-      </p>
-      <p>
-        Transmissão
-      </p>
+          <ol class="steps">
+            <li>Mapeamento</li>
+            <li>Custódia</li>
+            <li>Documentação</li>
+            <li>Transmissão</li>
+          </ol>
 
           <h2>Compliance e Governança</h2>
       <p>
@@ -159,27 +171,15 @@
           </p>
 
           <h2>Como Essa Estrutura é Implementada</h2>
-      <p>
-        Autenticação por certificado digital
-      </p>
-      <p>
-        Registro de consentimento via e-notariado
-      </p>
-      <p>
-        Assinatura eletrônica qualificada
-      </p>
-      <p>
-        Carimbo do tempo conforme ICP-Brasil
-      </p>
-      <p>
-        Criptografia e armazenamento distribuído
-      </p>
-      <p>
-        Registro de hash para verificação de integridade
-      </p>
-      <p>
-        Logs auditáveis com evidência das operações
-      </p>
+          <ul class="checklist">
+            <li>Autenticação por certificado digital</li>
+            <li>Registro de consentimento via e-notariado</li>
+            <li>Assinatura eletrônica qualificada</li>
+            <li>Carimbo do tempo conforme ICP-Brasil</li>
+            <li>Criptografia e armazenamento distribuído</li>
+            <li>Registro de hash para verificação de integridade</li>
+            <li>Logs auditáveis com evidência das operações</li>
+          </ul>
 
           <h2>Resultados Esperados</h2>
       <p>
