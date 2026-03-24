@@ -82,9 +82,12 @@
 
 /* ========== CTA FINAL ========== */
 .cta-final {
-  padding: var(--space-2xl) var(--space-lg);
-  background: linear-gradient(135deg, var(--color-green-900), var(--color-green-850));
+  padding: 2.5rem 2rem;
+  background: linear-gradient(180deg, #f7faf7 0%, #f2f6f3 100%);
   text-align: center;
+  border: 1px solid rgba(24, 52, 43, 0.10);
+  border-radius: 18px;
+  box-shadow: none;
 }
 
 .cta-final-inner {
@@ -94,28 +97,34 @@
 
 .cta-final h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(1.55rem, 2.3vw, 2rem);
   font-weight: 500;
-  color: var(--color-text-inverse);
-  margin-bottom: var(--space-md);
+  color: var(--color-text-strong);
+  margin-bottom: 0.75rem;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
 }
 
 .cta-final p {
-  font-size: 1.125rem;
-  color: var(--color-text-inverse);
-  opacity: 0.9;
-  margin-bottom: var(--space-lg);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  opacity: 1;
+  margin-bottom: 1.1rem;
+  line-height: 1.65;
 }
 
 .cta-final .btn-primary {
-  background: var(--color-text-inverse);
-  color: var(--color-green-900);
+  background: #18493f;
+  color: #ffffff;
+  border: 1px solid #18493f;
+  box-shadow: none;
 }
 
 .cta-final .btn-primary:hover {
-  background: transparent;
-  color: var(--color-text-inverse);
-  border-color: var(--color-text-inverse);
+  background: #143d35;
+  color: #ffffff;
+  border-color: #143d35;
+  box-shadow: none;
 }
 
 /* ========== RESPONSIVE ========== */
