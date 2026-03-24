@@ -53,7 +53,13 @@ function paragraphList(items) {
 }
 
 function statCards(items) {
-  return items.map((item) => `        <div class="stat-card">\n          <p>\n            ${escapeHtml(item)}\n          </p>\n        </div>`).join('\n');
+  const icons = [
+    '<path d="M4 19h16M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+    '<path d="M12 4v16M5 9h14M7 20h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+    '<path d="M6 18V8m6 10V5m6 13v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+    '<path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>'
+  ];
+  return items.map((item, index) => `        <div class="stat-card reveal">\n          <div class="card-icon" aria-hidden="true">\n            <svg viewBox="0 0 24 24" fill="none">\n              ${icons[index]}\n            </svg>\n          </div>\n          <p>\n            ${escapeHtml(item)}\n          </p>\n        </div>`).join('\n');
 }
 
 function checklist(items) {
@@ -64,8 +70,9 @@ function steps(items) {
   return items.map((item) => `            <li>${escapeHtml(item)}</li>`).join('\n');
 }
 
-function buildPage(lang, locale, pillar) {
-  const preloadedTranslations = JSON.stringify(readJson(path.join(langDir, `${lang}.json`)))
+function buildPage(lang, locale, translations) {
+  const pillar = translations.ativosDigitais.pillar;
+  const preloadedTranslations = JSON.stringify(translations)
     .replace(/</g, '\\u003c')
     .replace(/>/g, '\\u003e')
     .replace(/&/g, '\\u0026');
@@ -142,7 +149,12 @@ ${statCards(pillar.scale.items)}
 
           <h2>${escapeHtml(pillar.taxonomy.title)}</h2>
           <div class="grid-2">
-            <div class="card">
+            <div class="card reveal">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M5 7h14M5 12h14M5 17h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </div>
               <h3>${escapeHtml(pillar.taxonomy.categoryLabel)}</h3>
 ${paragraphList(pillar.taxonomy.items)}
               <h3>${escapeHtml(pillar.taxonomy.criticalLabel)}</h3>
@@ -150,14 +162,25 @@ ${paragraphList(pillar.taxonomy.items)}
                 ${escapeHtml(pillar.taxonomy.note)}
               </p>
             </div>
-            <div class="card card-danger">
+            <div class="card card-danger reveal">
+              <div class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 8v5m0 3h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94A2 2 0 0 0 22.18 18L13.71 3.86a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
               <h3>${escapeHtml(pillar.risks.title)}</h3>
 ${paragraphList(pillar.risks.items)}
             </div>
           </div>
 
           <h2>${escapeHtml(pillar.regulatory.title)}</h2>
-          <div class="card">
+          <div class="card reveal">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
 ${paragraphList(pillar.regulatory.items)}
           </div>
 
@@ -166,7 +189,7 @@ ${paragraphList(pillar.regulatory.items)}
             ${escapeHtml(pillar.succession.text)}
           </p>
           <h3>${escapeHtml(pillar.succession.recommendedLabel)}</h3>
-          <ol class="steps">
+          <ol class="steps reveal">
 ${steps(pillar.succession.steps)}
           </ol>
 
@@ -179,7 +202,7 @@ ${paragraphList(pillar.compliance.items)}
           </p>
 
           <h2>${escapeHtml(pillar.implementation.title)}</h2>
-          <ul class="checklist">
+          <ul class="checklist reveal">
 ${checklist(pillar.implementation.items)}
           </ul>
 
@@ -196,18 +219,30 @@ ${paragraphList(pillar.usecases.items)}
         </div>
       </section>
 
-      <section class="insight-cta-block">
-        <div class="insight-cta-inner">
+      <section class="cta-section">
+        <div class="cta-container">
           <h2>${escapeHtml(pillar.ctaFinal.text)}</h2>
-          <p>
+
+          <p class="cta-subtext">
             ${escapeHtml(pillar.ctaFinal.cta)}
           </p>
+
+          <a class="cta-primary"
+             href="https://app.tuteladigital.com.br/"
+             target="_blank"
+             rel="noopener noreferrer"
+             id="cta-page-platform">
+
+             <span>${escapeHtml(translations.nav_cta)}</span>
+
+          </a>
         </div>
       </section>
     </main>
 
     <!--#include virtual="/partials/footer.html" -->
     <!--#include virtual="/partials/scripts.html" -->
+    <!--#include virtual="/partials/ativos-digitais-pillar-scripts.html" -->
   </div>
 </body>
 
@@ -222,9 +257,7 @@ function renderPage(lang) {
   }
 
   const data = readJson(path.join(langDir, `${lang}.json`));
-  const pillar = data.ativosDigitais.pillar;
-
-  return buildPage(lang, locale, pillar);
+  return buildPage(lang, locale, data);
 }
 
 for (const [lang, locale] of Object.entries(locales)) {
