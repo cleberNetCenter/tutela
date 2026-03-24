@@ -231,7 +231,9 @@
     "platform": "Platform",
     "audience": "Audience",
     "insightsAll": "All Insights",
-    "insightIntegrity": "Technical Integrity and Admissibility"
+    "insightIntegrity": "Technical Integrity and Admissibility",
+    "institutionalLine": "Digital Evidence • Evidentiary Preservation • Auditable Chain of Custody • Cryptographic Hash",
+    "trustLine": "Secure infrastructure • Advanced cryptography • Auditable Chain of Custody"
   },
   "ativosDigitais": {
     "pillar": {

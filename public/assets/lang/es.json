@@ -233,7 +233,9 @@
     "platform": "Plataforma",
     "audience": "Público",
     "insightsAll": "Todos los Insights",
-    "insightIntegrity": "Integridad Técnica y Admisibilidad"
+    "insightIntegrity": "Integridad Técnica y Admisibilidad",
+    "institutionalLine": "Prueba Digital • Preservación Probatoria • Cadena de Custodia Auditable • Hash Criptográfico",
+    "trustLine": "Infraestructura segura • Criptografía avanzada • Cadena de Custodia Auditable"
   },
   "ativosDigitais": {
     "pillar": {
