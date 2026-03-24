@@ -1,0 +1,122 @@
+<style>
+  .assets-page .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .assets-page .stat-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    background: var(--color-surface-light);
+  }
+
+  .assets-page .stat-card p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    line-height: 1.45;
+    color: var(--color-text-strong);
+  }
+
+  .assets-page .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .assets-page .card {
+    padding: 1.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .assets-page .card-danger {
+    background: rgba(159, 54, 39, 0.04);
+    border-color: rgba(159, 54, 39, 0.18);
+  }
+
+  .assets-page .card h3,
+  .assets-page .card-danger h3 {
+    margin-top: 0;
+  }
+
+  .assets-page .steps {
+    counter-reset: assets-steps;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .assets-page .steps li {
+    position: relative;
+    padding: 1.25rem 1.25rem 1.25rem 3.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    background: #fff;
+    min-height: 88px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: var(--color-text-strong);
+  }
+
+  .assets-page .steps li::before {
+    counter-increment: assets-steps;
+    content: counter(assets-steps);
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 999px;
+    background: var(--color-green-700);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .assets-page .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 2.5rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .assets-page .checklist li {
+    position: relative;
+    padding: 1rem 1rem 1rem 2.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    background: var(--color-surface-light);
+    color: var(--color-text-strong);
+  }
+
+  .assets-page .checklist li::before {
+    content: "✓";
+    position: absolute;
+    left: 1rem;
+    top: 0.95rem;
+    font-weight: 700;
+    color: var(--color-green-700);
+  }
+
+  @media (max-width: 768px) {
+    .assets-page .stats-grid,
+    .assets-page .grid-2,
+    .assets-page .steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
