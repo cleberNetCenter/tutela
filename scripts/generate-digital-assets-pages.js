@@ -219,22 +219,20 @@ ${paragraphList(pillar.usecases.items)}
         </div>
       </section>
 
-      <section class="cta-section">
-        <div class="cta-container">
+      <section class="insight-cta-block">
+        <div class="insight-cta-inner">
           <h2>${escapeHtml(pillar.ctaFinal.text)}</h2>
 
-          <p class="cta-subtext">
+          <p>
             ${escapeHtml(pillar.ctaFinal.cta)}
           </p>
 
-          <a class="cta-primary"
+          <a class="btn btn-primary"
              href="https://app.tuteladigital.com.br/"
              target="_blank"
              rel="noopener noreferrer"
              id="cta-page-platform">
-
-             <span>${escapeHtml(translations.nav_cta)}</span>
-
+            <span>${escapeHtml(translations.global.accessPlatform)}</span>
           </a>
         </div>
       </section>
