@@ -530,7 +530,7 @@ body.legal-page .page-header {
 body.legal-page .page-header--legal {
   padding: 2rem 2rem 3rem 2rem;
   text-align: center;
-  background: transparent;
+  background: linear-gradient(180deg, #f7faf7 0%, #f2f6f3 100%);
   border: 1px solid rgba(24, 52, 43, 0.08);
   border-radius: 16px;
   box-shadow: none;
