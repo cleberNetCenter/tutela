@@ -1,13 +1,7 @@
-// =============================
-// VALIDAÇÃO DE EMAIL
-// =============================
 function validarEmail(email) {
   return email.includes("@") && email.includes(".");
 }
 
-// =============================
-// CONTROLE DE ESTADO DO BOTÃO
-// =============================
 function verificarEstadoBotao() {
   const consent = document.getElementById("consentimento").checked;
   const captcha = typeof grecaptcha !== "undefined" && grecaptcha.getResponse().length > 0;
@@ -22,36 +16,20 @@ function verificarEstadoBotao() {
   if (nome.length < 3) valido = false;
   if (!validarEmail(email)) valido = false;
 
-  if (consent && captcha && valido) {
-    btn.disabled = false;
-  } else {
-    btn.disabled = true;
-  }
+  btn.disabled = !(consent && captcha && valido);
 }
 
-// =============================
-// EVENTOS (CARREGAMENTO)
-// =============================
-document.addEventListener("DOMContentLoaded", function () {
-
-  const nome = document.getElementById("nome");
-  const email = document.getElementById("email");
-  const consent = document.getElementById("consentimento");
-
-  if (nome) nome.addEventListener("input", verificarEstadoBotao);
-  if (email) email.addEventListener("input", verificarEstadoBotao);
-  if (consent) consent.addEventListener("change", verificarEstadoBotao);
-
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("nome").addEventListener("input", verificarEstadoBotao);
+  document.getElementById("email").addEventListener("input", verificarEstadoBotao);
+  document.getElementById("consentimento").addEventListener("change", verificarEstadoBotao);
 });
 
-// =============================
-// ENVIO DO FORM
-// =============================
 function enviar() {
 
   const respostas = document.querySelectorAll("input[type=radio]:checked");
 
-  if (respostas.length < 2) {
+  if (respostas.length < 3) {
     alert("Responda todas as perguntas");
     return;
   }
@@ -60,19 +38,22 @@ function enviar() {
   respostas.forEach(r => score += parseInt(r.value));
 
   let nivel = "";
-  if (score <= 1) nivel = "Baixo risco";
-  else if (score <= 3) nivel = "Risco moderado";
-  else nivel = "Alto risco";
+  let mensagem = "";
+
+  if (score <= 2) {
+    nivel = "Baixo risco";
+    mensagem = "Seus ativos apresentam um nível inicial de organização, mas ainda podem ser aprimorados.";
+  } else if (score <= 4) {
+    nivel = "Risco moderado";
+    mensagem = "Há vulnerabilidades relevantes que podem comprometer acesso e controle dos ativos.";
+  } else {
+    nivel = "Alto risco";
+    mensagem = "Seus ativos digitais estão expostos a riscos estruturais relevantes.";
+  }
 
   const nome = document.getElementById("nome").value;
   const email = document.getElementById("email").value;
-
-  const token = typeof grecaptcha !== "undefined" ? grecaptcha.getResponse() : "";
-
-  if (!token) {
-    alert("Confirme o captcha");
-    return;
-  }
+  const token = grecaptcha.getResponse();
 
   fetch("/api/diagnostico", {
     method: "POST",
@@ -87,12 +68,13 @@ function enviar() {
       token
     })
   })
-  .then(res => res.json())
   .then(() => {
-    document.getElementById("resultado").innerText = nivel;
+    document.getElementById("resultado").innerHTML = `
+      <h3>${nivel}</h3>
+      <p>${mensagem}</p>
+    `;
   })
   .catch(() => {
     alert("Erro ao enviar");
   });
-
 }

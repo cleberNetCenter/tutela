@@ -1,0 +1,32 @@
+.form-diagnostico {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.question {
+  margin-bottom: 24px;
+}
+
+.question p {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+}
+
+.captcha-container {
+  margin: 20px 0;
+}
+
+.resultado-box {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
