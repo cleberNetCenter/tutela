@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Diagnóstico de Risco Digital</title>
+    <meta name="description"
+        content="Avalie o nível de risco dos seus ativos digitais com base em critérios jurídicos e operacionais." />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/diagnostico.css">
+</head>
+
+<body class="exec-compact">
+
+    <div class="app">
+
+        <!--#include virtual="/partials/header.html" -->
+
+        <main class="container">
+
+            <section class="section">
+
+                <h1>Diagnóstico de risco digital</h1>
+
+                <form id="form">
+
+                    <div class="question">
+                        <p>Você possui inventário dos ativos digitais?</p>
+                        <label><input type="radio" name="q1" value="0"> Sim</label>
+                        <label><input type="radio" name="q1" value="1"> Parcial</label>
+                        <label><input type="radio" name="q1" value="2"> Não</label>
+                    </div>
+
+                    <div class="question">
+                        <p>Existe acesso estruturado aos ativos?</p>
+                        <label><input type="radio" name="q2" value="0"> Sim</label>
+                        <label><input type="radio" name="q2" value="1"> Parcial</label>
+                        <label><input type="radio" name="q2" value="2"> Não</label>
+                    </div>
+
+                    <div class="question">
+                        <input type="text" id="nome" placeholder="Nome">
+                    </div>
+
+                    <div class="question">
+                        <input type="email" id="email" placeholder="Email">
+                    </div>
+
+                    <div class="question">
+                        <label>
+                            <input type="checkbox" id="consentimento">
+                            Aceito a política de privacidade
+                        </label>
+                    </div>
+
+                    <div class="g-recaptcha" data-sitekey="SUA_SITE_KEY" data-callback="verificarEstadoBotao"
+                        data-expired-callback="verificarEstadoBotao">
+                    </div>
+
+                    <button id="btnEnviar" type="button" disabled onclick="enviar()">
+                        Avaliar risco
+                    </button>
+
+                </form>
+
+                <div id="resultado"></div>
+
+            </section>
+
+        </main>
+
+        <!--#include virtual="/partials/footer.html" -->
+        <!--#include virtual="/partials/scripts.html" -->
+
+        <script src="/assets/js/diagnostico.js"></script>
+
+    </div>
+
+</body>
+
+</html>
