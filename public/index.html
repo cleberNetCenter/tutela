@@ -15,12 +15,12 @@
 
   <!-- 4️⃣ Title -->
   <title data-i18n="site_title">
-    Tutela Digital® - Custódia Jurídica de Ativos Digitais
+    Tutela Digital® | Infraestrutura Jurídica para Prova Digital
   </title>
 
   <!-- 5️⃣ Meta Description -->
   <meta name="description"
-    content="Infraestrutura de custódia jurídica e governança de ativos digitais com validade legal, inviolabilidade técnica e cadeia de custódia auditável."
+    content="Infraestrutura jurídica para preservação de prova digital com cadeia de custódia auditável, integridade técnica verificável e suporte à admissibilidade jurídica."
     data-i18n="site_description" />
 
   <!-- 6️⃣ Canonical -->
@@ -59,7 +59,8 @@
 
   <!-- 1️⃣3️⃣ CSS (ordem do mais estrutural para o mais específico) -->
   <link rel="stylesheet" href="/assets/css/main.css?v=4">
-  <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=4" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="/assets/css/styles-header-final.css?v=4" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
 
   <link rel="preload" href="/assets/css/homepage.css?v=4" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
@@ -73,7 +74,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-KXVB267PYJ');
+
+    gtag('config', 'G-KXVB267PYJ', {
+      linker: {
+        domains: ['tuteladigital.com.br', 'app.tuteladigital.com.br']
+      }
+    });
   </script>
 
   <!-- 1️⃣5️⃣ Structured Data (sempre no final do head) -->
@@ -128,9 +134,9 @@
       <!-- ==================== HOME ==================== -->
       <section class="hero hero--homepage">
         <div class="hero-inner hero-content--homepage">
-          <h1>Tutela Digital<sup>®</sup></h1>
-          <p class="hero-subtitle" data-i18n="hero_subtitle">Infraestrutura jurídica de custódia digital com
-            integridade técnica verificável e validade probatória estruturada.</p>
+          <h1>Tutela Digital<sup>®</sup> | Infraestrutura Jurídica para Preservação de Prova Digital</h1>
+          <p class="hero-subtitle" data-i18n="hero_subtitle">Infraestrutura jurídica para preservação estruturada
+            de prova digital, com integridade técnica verificável e cadeia de custódia auditável.</p>
           <div class="hero-divider"></div>
         </div>
       </section>
@@ -173,7 +179,7 @@
         <div class="features-inner">
           <div class="features-grid features-grid--2x2">
             <div class="feature-item">
-              <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+              <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               </svg>
               <h3 data-i18n="home_pillars_preservation">Preservação Probatória Estruturada</h3>
@@ -181,7 +187,7 @@
                 técnica de integridade.</p>
             </div>
             <div class="feature-item">
-              <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+              <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               </svg>
@@ -190,7 +196,7 @@
                 integridade e rastreabilidade.</p>
             </div>
             <div class="feature-item">
-              <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+              <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
               </svg>
@@ -199,7 +205,7 @@
                 ativos digitais.</p>
             </div>
             <div class="feature-item">
-              <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+              <svg class="feature-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14,2 14,8 20,8"></polyline>
                 <path d="M9 15l2 2 4-4"></path>
@@ -213,10 +219,55 @@
       </section>
       <section class="text-block">
         <div class="text-block-inner">
-          <h2 data-i18n="home_applicability_title">Aplicabilidade Jurídica</h2>
+          <h2 data-i18n="home_applicability_title">Fundamentos da Prova Digital</h2>
           <p data-i18n="home_applicability_desc">A preservação probatória digital pode ser utilizada para instrução de
             processos judiciais, defesas administrativas, procedimentos arbitrais, investigações internas e
             formalizações notariais, conforme avaliação da autoridade competente.</p>
+          <p>
+            A prova digital constitui meio de demonstração de fatos em processos
+            judiciais, administrativos ou arbitrais, desde que preservada com
+            integridade técnica verificável e cadeia de custódia documentada.
+          </p>
+        </div>
+      </section>
+      <section class="text-block">
+        <div class="text-block-inner">
+
+          <h2>Fundamentos Jurídicos da Prova Digital</h2>
+
+          <p>
+            A prova digital exige preservação técnica adequada para garantir
+            integridade, autenticidade e rastreabilidade das evidências.
+            Conheça os fundamentos jurídicos e técnicos da preservação de
+            prova digital.
+          </p>
+
+          <nav class="internal-links" aria-label="Conteúdos sobre prova digital">
+
+            <ul>
+
+              <li>
+                <a class="insight-link" href="/insights/prova-digital/">
+                  Fundamentos jurídicos da prova digital
+                </a>
+              </li>
+
+              <li>
+                <a class="insight-link" href="/insights/prova-digital/cadeia-custodia-prova-digital.html">
+                  Cadeia de custódia da prova digital
+                </a>
+              </li>
+
+              <li>
+                <a class="insight-link" href="/insights/prova-digital/producao-antecipada-prova-digital.html">
+                  Produção antecipada de prova digital
+                </a>
+              </li>
+
+            </ul>
+
+          </nav>
+
         </div>
       </section>
       <section class="cta-final">
@@ -230,7 +281,7 @@
     </main>
     <!-- FOOTER -->
     <!--#include virtual="/partials/footer.html" -->
-    <!--#include virtual="/partials/scripts.html" --> 
+    <!--#include virtual="/partials/scripts.html" -->
 </body>
 
 </html>
