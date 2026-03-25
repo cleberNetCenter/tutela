@@ -2,79 +2,122 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Diagnóstico de Risco Digital</title>
+    <title>Diagnóstico de Risco Digital | Tutela Digital®</title>
+
     <meta name="description"
-        content="Avalie o nível de risco dos seus ativos digitais com base em critérios jurídicos e operacionais." />
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <link rel="stylesheet" href="/assets/css/main.css">
+        content="Avalie o nível de risco dos seus ativos digitais e identifique vulnerabilidades jurídicas e operacionais." />
+
+    <link rel="canonical" href="https://tuteladigital.com.br/diagnostico.html" />
+
+    <!-- CSS BASE (EXATAMENTE COMO A HOME) -->
+    <link rel="stylesheet" href="/assets/css/main.css?v=4">
+    <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=4">
+
+    <!-- CSS DA PÁGINA -->
     <link rel="stylesheet" href="/assets/css/diagnostico.css">
+
+    <!-- CAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 <body class="exec-compact">
 
     <div class="app">
 
+        <!-- HEADER -->
         <!--#include virtual="/partials/header.html" -->
 
-        <main class="container">
+        <!-- MAIN PADRÃO (CRÍTICO) -->
+        <main class="main">
 
-            <section class="section">
+            <!-- HERO -->
+            <section class="hero">
+                <div class="hero-inner">
+                    <h1>Diagnóstico de Risco Digital</h1>
+                    <p class="hero-subtitle">
+                        Identifique vulnerabilidades jurídicas e operacionais nos seus ativos digitais.
+                    </p>
+                    <div class="hero-divider"></div>
+                </div>
+            </section>
 
-                <h1>Diagnóstico de risco digital</h1>
+            <!-- FORM -->
+            <section class="text-block">
+                <div class="text-block-inner">
 
-                <form id="form">
+                    <h2>Avaliação Estruturada</h2>
 
-                    <div class="question">
-                        <p>Você possui inventário dos ativos digitais?</p>
-                        <label><input type="radio" name="q1" value="0"> Sim</label>
-                        <label><input type="radio" name="q1" value="1"> Parcial</label>
-                        <label><input type="radio" name="q1" value="2"> Não</label>
-                    </div>
+                    <form id="form" class="diagnostico-form">
 
-                    <div class="question">
-                        <p>Existe acesso estruturado aos ativos?</p>
-                        <label><input type="radio" name="q2" value="0"> Sim</label>
-                        <label><input type="radio" name="q2" value="1"> Parcial</label>
-                        <label><input type="radio" name="q2" value="2"> Não</label>
-                    </div>
+                        <div class="question">
+                            <p>Você possui inventário dos ativos digitais?</p>
+                            <label><input type="radio" name="q1" value="0"> Sim</label>
+                            <label><input type="radio" name="q1" value="1"> Parcial</label>
+                            <label><input type="radio" name="q1" value="2"> Não</label>
+                        </div>
 
-                    <div class="question">
-                        <input type="text" id="nome" placeholder="Nome">
-                    </div>
+                        <div class="question">
+                            <p>Existe acesso estruturado aos ativos?</p>
+                            <label><input type="radio" name="q2" value="0"> Sim</label>
+                            <label><input type="radio" name="q2" value="1"> Parcial</label>
+                            <label><input type="radio" name="q2" value="2"> Não</label>
+                        </div>
 
-                    <div class="question">
-                        <input type="email" id="email" placeholder="Email">
-                    </div>
+                        <div class="question">
+                            <input type="text" id="nome" placeholder="Nome">
+                        </div>
 
-                    <div class="question">
-                        <label>
-                            <input type="checkbox" id="consentimento">
-                            Aceito a política de privacidade
-                        </label>
-                    </div>
+                        <div class="question">
+                            <input type="email" id="email" placeholder="Email">
+                        </div>
 
-                    <div class="g-recaptcha" data-sitekey="6Lcp7pcsAAAAAJFgWGRYjp6t_2QlcFbgJUlZrUNx" data-callback="verificarEstadoBotao"
-                        data-expired-callback="verificarEstadoBotao">
-                    </div>
+                        <div class="question">
+                            <label>
+                                <input type="checkbox" id="consentimento">
+                                Aceito a política de privacidade
+                            </label>
+                        </div>
 
-                    <button id="btnEnviar" type="button" disabled onclick="enviar()">
-                        Avaliar risco
-                    </button>
+                        <div class="captcha-container">
+                            <div class="g-recaptcha" data-sitekey="SUA_SITE_KEY" data-callback="verificarEstadoBotao"
+                                data-expired-callback="verificarEstadoBotao">
+                            </div>
+                        </div>
 
-                </form>
+                        <button id="btnEnviar" type="button" disabled onclick="enviar()" class="btn btn-primary">
+                            Avaliar risco
+                        </button>
 
-                <div id="resultado"></div>
+                    </form>
 
+                    <div id="resultado" class="resultado-box"></div>
+
+                </div>
+            </section>
+
+            <!-- CTA FINAL (PADRÃO DO SITE) -->
+            <section class="cta-final">
+                <div class="cta-final-inner">
+                    <h2>Estruture a proteção dos seus ativos digitais</h2>
+                    <p>Conheça a Tutela Digital® e implemente governança com validade jurídica.</p>
+                    <a class="btn btn-primary" href="/como-funciona.html">
+                        Entender como funciona
+                    </a>
+                </div>
             </section>
 
         </main>
 
+        <!-- FOOTER -->
         <!--#include virtual="/partials/footer.html" -->
         <!--#include virtual="/partials/scripts.html" -->
 
+        <!-- JS -->
         <script src="/assets/js/diagnostico.js"></script>
 
     </div>
