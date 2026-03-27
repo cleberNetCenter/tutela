@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="exec-compact">
+<body class="exec-compact diagnostico-page">
 
     <div class="app">
 
@@ -101,7 +101,7 @@
             </section>
 
             <!-- FORM -->
-            <section class="text-block">
+            <section class="text-block diagnostico-form-section">
                 <div class="text-block-inner">
 
                     <h2>Iniciar diagnóstico</h2>
@@ -111,39 +111,45 @@
                         <!-- PERGUNTAS -->
                         <div class="question">
                             <p>Você possui inventário estruturado dos seus ativos digitais?</p>
-                            <label><input type="radio" name="q1" value="0"> Sim</label>
-                            <label><input type="radio" name="q1" value="1"> Parcial</label>
-                            <label><input type="radio" name="q1" value="2"> Não</label>
+                            <div class="question-options">
+                                <label><input type="radio" name="q1" value="0"> <span>Sim</span></label>
+                                <label><input type="radio" name="q1" value="1"> <span>Parcial</span></label>
+                                <label><input type="radio" name="q1" value="2"> <span>Não</span></label>
+                            </div>
                         </div>
 
                         <div class="question">
                             <p>Existe controle de acesso e recuperação desses ativos?</p>
-                            <label><input type="radio" name="q2" value="0"> Sim</label>
-                            <label><input type="radio" name="q2" value="1"> Parcial</label>
-                            <label><input type="radio" name="q2" value="2"> Não</label>
+                            <div class="question-options">
+                                <label><input type="radio" name="q2" value="0"> <span>Sim</span></label>
+                                <label><input type="radio" name="q2" value="1"> <span>Parcial</span></label>
+                                <label><input type="radio" name="q2" value="2"> <span>Não</span></label>
+                            </div>
                         </div>
 
                         <div class="question">
                             <p>Seus ativos possuem rastreabilidade ou histórico verificável?</p>
-                            <label><input type="radio" name="q3" value="0"> Sim</label>
-                            <label><input type="radio" name="q3" value="1"> Parcial</label>
-                            <label><input type="radio" name="q3" value="2"> Não</label>
+                            <div class="question-options">
+                                <label><input type="radio" name="q3" value="0"> <span>Sim</span></label>
+                                <label><input type="radio" name="q3" value="1"> <span>Parcial</span></label>
+                                <label><input type="radio" name="q3" value="2"> <span>Não</span></label>
+                            </div>
                         </div>
 
                         <!-- DADOS -->
                         <div class="form-row">
-                            <input type="text" id="nome" placeholder="Nome completo">
+                            <input type="text" id="nome" placeholder="Nome completo" autocomplete="name">
                         </div>
 
                         <div class="form-row">
-                            <input type="email" id="email" placeholder="Email">
+                            <input type="email" id="email" placeholder="Email" autocomplete="email">
                         </div>
 
                         <!-- LGPD -->
-                        <div class="form-row">
+                        <div class="form-row form-row--consent">
                             <label class="checkbox">
                                 <input type="checkbox" id="consentimento">
-                                Aceito a política de privacidade
+                                <span>Aceito a política de privacidade</span>
                             </label>
                         </div>
 
@@ -155,7 +161,7 @@
                         </div>
 
                         <!-- BOTÃO -->
-                        <button id="btnEnviar" type="button" disabled onclick="enviar()" class="btn-primary">
+                        <button id="btnEnviar" type="button" disabled onclick="enviar()" class="btn btn-primary">
                             Avaliar meu nível de risco
                         </button>
 
