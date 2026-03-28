@@ -1357,3 +1357,122 @@ body.assets-page.assets-pillar-page .hero-subtitle {
 
   max-width: 640px;
 }
+
+/* ==========================================
+   PILLAR ROOT PAGE — NORMALIZAÇÃO VISUAL
+   (sem alterar HTML)
+   ========================================== */
+
+/* HERO → transformar page-header em hero */
+body.assets-page .page-header.page-header--legal {
+  background: var(--pillar-brand-dark);
+  padding: 5rem 0 3.5rem;
+}
+
+body.assets-page .page-header-inner {
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* título */
+body.assets-page .page-header h1 {
+  text-align: left !important;
+  max-width: 18ch !important;
+  margin: 0 0 1.25rem !important;
+  color: #ffffff !important;
+}
+
+/* subtitle */
+body.assets-page .page-header-subtitle {
+  text-align: left !important;
+  margin: 0 !important;
+  max-width: 640px !important;
+
+  border-left: 3px solid var(--pillar-accent-green);
+  padding-left: 1.25rem;
+
+  color: rgba(255,255,255,0.78) !important;
+  font-style: normal !important;
+}
+
+/* ==========================================
+   CONTEÚDO — remover visual de “card pesado”
+   ========================================== */
+
+body.assets-page .whitepaper-container {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* largura editorial */
+body.assets-page .legal-section-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* espaçamento vertical consistente */
+body.assets-page main > section {
+  padding: 3.5rem 0;
+}
+
+/* títulos */
+body.assets-page h2 {
+  margin-bottom: 1rem;
+}
+
+/* parágrafos */
+body.assets-page p {
+  max-width: 68ch;
+}
+
+/* ==========================================
+   LISTAS → mais editorial
+   ========================================== */
+
+body.assets-page ul {
+  padding-left: 1.2rem;
+  margin: 1rem 0;
+}
+
+body.assets-page ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* checklist mantém estilo, mas mais leve */
+body.assets-page .checklist li {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding-left: 1.8rem;
+}
+
+/* ==========================================
+   CARDS → reduzir peso visual
+   ========================================== */
+
+body.assets-page .card {
+  background: transparent !important;
+  border: 1px solid var(--pillar-border);
+  box-shadow: none !important;
+}
+
+/* grid mais respirado */
+body.assets-page .grid-2 {
+  gap: 2rem;
+}
+
+/* ==========================================
+   CTA → alinhar com padrão novo
+   ========================================== */
+
+body.assets-page .insight-cta-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
