@@ -1,0 +1,234 @@
+
+.tdf {
+	--bg: #0c2418;
+	--bg-deep: #091d13;
+	--green-bdr: #1e5535;
+	--text-1: #e8f0ea;
+	--text-2: #7faa8a;
+	--text-3: #4a7258;
+	--accent: #3ecf72;
+	--accent-s: rgba(62, 207, 114, 0.12);
+	font-family: var(--font-body);
+	background: var(--bg);
+	color: var(--text-1);
+	width: 100%;
+}
+
+.tdf * {
+	box-sizing: border-box;
+}
+
+.tdf a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.tdf-main {
+	max-width: 1600px;
+	margin: 0 auto;
+	padding: 32px 48px;
+	display: grid;
+	grid-template-columns: 1fr auto auto;
+	align-items: center;
+	gap: 0 48px;
+	border-bottom: 1px solid var(--green-bdr);
+}
+
+.tdf-brand-name {
+	font-size: 15px;
+	font-weight: 600;
+	color: var(--text-1);
+	margin: 0 0 6px;
+	letter-spacing: 0.01em;
+}
+
+.tdf-brand-copy {
+	font-size: 12px;
+	line-height: 1.6;
+	color: var(--text-2);
+	font-weight: 300;
+	max-width: 480px;
+	margin: 0;
+}
+
+.tdf-vsep {
+	width: 1px;
+	height: 52px;
+	background: var(--green-bdr);
+	flex-shrink: 0;
+}
+
+.tdf-contact {
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
+}
+
+.tdf-contact-link {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 12.5px;
+	color: var(--text-2);
+	transition: color 0.18s ease;
+	white-space: nowrap;
+}
+
+.tdf-contact-link:hover {
+	color: var(--text-1);
+}
+
+.tdf-contact-link svg {
+	display: block;
+	width: 13px;
+	height: 13px;
+	flex-shrink: 0;
+	opacity: 0.65;
+}
+
+.tdf-bottom {
+	max-width: 1600px;
+	margin: 0 auto;
+	padding: 14px 48px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	flex-wrap: wrap;
+}
+
+.tdf-bottom-left {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.tdf-copyright {
+	font-size: 11px;
+	color: var(--text-3);
+	white-space: nowrap;
+	margin: 0;
+}
+
+.tdf-bsep {
+	width: 1px;
+	height: 16px;
+	background: var(--green-bdr);
+	flex-shrink: 0;
+}
+
+.tdf-legal {
+	font-size: 11px;
+	color: var(--text-3);
+	white-space: nowrap;
+	margin: 0;
+}
+
+.tdf-trust {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+.tdf-trust-shield {
+	display: block;
+	width: 13px;
+	height: 13px;
+	color: var(--accent);
+	opacity: 0.75;
+	flex-shrink: 0;
+}
+
+.tdf-trust-pill {
+	font-size: 9.5px;
+	font-weight: 500;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	color: var(--text-3);
+	border: 1px solid var(--green-bdr);
+	border-radius: 4px;
+	padding: 3px 8px;
+	white-space: nowrap;
+}
+
+.tdf-wa {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	z-index: 9999;
+	width: 52px;
+	height: 52px;
+	background: #25d366;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+}
+
+.tdf-wa:hover {
+	transform: scale(1.1);
+	box-shadow: 0 6px 26px rgba(37, 211, 102, 0.5);
+}
+
+.tdf-wa .whatsapp-icon {
+	width: 27px;
+	height: 27px;
+	fill: white;
+}
+
+.tdf-wa svg {
+	width: 27px;
+	height: 27px;
+	fill: white;
+}
+
+.tdf-wa-tip {
+	position: absolute;
+	right: 60px;
+	background: var(--bg-deep);
+	border: 1px solid var(--green-bdr);
+	color: var(--text-1);
+	font-size: 11.5px;
+	padding: 6px 11px;
+	border-radius: 6px;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s ease;
+}
+
+.tdf-wa:hover .tdf-wa-tip {
+	opacity: 1;
+}
+
+@media (max-width: 900px) {
+	.tdf-main {
+		grid-template-columns: 1fr;
+		gap: 24px;
+		padding: 28px 24px;
+	}
+
+	.tdf-vsep {
+		display: none;
+	}
+
+	.tdf-bottom {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 16px 24px;
+		gap: 12px;
+	}
+
+	.tdf-legal {
+		white-space: normal;
+	}
+
+	.tdf-trust {
+		flex-wrap: wrap;
+	}
+}

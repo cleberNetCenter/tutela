@@ -1,0 +1,38 @@
+ .page-termos-de-custodia .breadcrumb {
+      padding: 1rem 2rem;
+      background: #f5f5f5;
+      font-size: 0.9rem;
+    } .page-termos-de-custodia .breadcrumb ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 0.5rem;
+    } .page-termos-de-custodia .breadcrumb li {
+      display: flex;
+      align-items: center;
+    } .page-termos-de-custodia .breadcrumb li:not(:last-child)::after {
+      content: "›";
+      margin-left: 0.5rem;
+      color: #666;
+    } .page-termos-de-custodia .breadcrumb a {
+      color: #2c5aa0;
+      text-decoration: none;
+    } .page-termos-de-custodia .breadcrumb a:hover {
+      text-decoration: underline;
+    } .page-termos-de-custodia .breadcrumb li[aria-current="page"] {
+      color: #666;
+      font-weight: 500;
+    } .page-termos-de-custodia .legal-graphic {
+      margin: 1.5rem auto 2.5rem auto;
+      max-width: 900px;
+      opacity: 0.9;
+    } .page-termos-de-custodia .legal-graphic svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    } .page-termos-de-custodia @media (max-width: 768px) {
+      .legal-graphic svg text {
+        font-size: 13px;
+      }
+    }

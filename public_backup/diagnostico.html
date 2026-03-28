@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Diagnóstico de Ativos Digitais: avalie seu nível de risco | Tutela Digital®</title>
+
+    <meta name="description"
+        content="Descubra seu nível de risco em ativos digitais. Avalie governança, acesso, rastreabilidade e identifique vulnerabilidades jurídicas e operacionais." />
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="/assets/css/main.css?v=4">
+    <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=4">
+
+    <!-- CSS LOCAL -->
+    <link rel="stylesheet" href="/assets/css/diagnostico.css">
+
+    <!-- CAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</head>
+
+<body class="exec-compact diagnostico-page">
+
+    <div class="app">
+
+        <!--#include virtual="/partials/header.html" -->
+
+        <main class="main">
+
+            <!-- HERO -->
+            <section class="hero hero--homepage">
+                <div class="hero-inner hero-content--homepage">
+
+                    <h1>Diagnóstico de ativos digitais: qual é o seu nível de risco?</h1>
+
+                    <p class="hero-subtitle">
+                        Avalie se seus ativos digitais possuem estrutura adequada de governança,
+                        acesso e rastreabilidade — e identifique riscos que podem comprometer
+                        seu valor, utilização ou validade jurídica.
+                    </p>
+
+                </div>
+            </section>
+
+            <!-- INTRO SEO -->
+            <section class="text-block">
+                <div class="text-block-inner">
+
+                    <h2>Por que avaliar seus ativos digitais</h2>
+
+                    <p>
+                        Ativos digitais não estruturados podem existir tecnicamente e, ainda assim,
+                        se tornarem inacessíveis, não comprováveis ou inutilizáveis em contextos
+                        jurídicos e operacionais.
+                    </p>
+
+                    <p>
+                        A ausência de organização, controle de acesso e rastreabilidade é hoje uma
+                        das principais causas de perda de valor e de inviabilidade de uso desses ativos.
+                    </p>
+
+                </div>
+            </section>
+
+            <!-- O QUE É ANALISADO -->
+            <section class="text-block">
+                <div class="text-block-inner">
+
+                    <h2>O que este diagnóstico analisa</h2>
+
+                    <p>Este diagnóstico avalia três dimensões críticas:</p>
+
+                    <ul>
+                        <li><strong>Inventário:</strong> existência de organização e mapeamento dos ativos</li>
+                        <li><strong>Acesso:</strong> controle e recuperação de credenciais</li>
+                        <li><strong>Rastreabilidade:</strong> capacidade de comprovação e histórico verificável</li>
+                    </ul>
+
+                </div>
+            </section>
+
+            <!-- BENEFÍCIOS -->
+            <section class="text-block">
+                <div class="text-block-inner">
+
+                    <h2>O que você vai descobrir</h2>
+
+                    <p>Ao concluir o diagnóstico, você terá:</p>
+
+                    <ul>
+                        <li>Nível atual de exposição a riscos digitais</li>
+                        <li>Identificação de fragilidades estruturais</li>
+                        <li>Visão clara sobre maturidade dos seus ativos digitais</li>
+                    </ul>
+
+                </div>
+            </section>
+
+            <!-- FORM -->
+            <section class="text-block diagnostico-form-section">
+                <div class="text-block-inner">
+
+                    <h2>Iniciar diagnóstico</h2>
+
+                    <form id="form" class="form-diagnostico">
+
+                        <!-- PERGUNTAS -->
+                        <div class="question">
+                            <p>Você possui inventário estruturado dos seus ativos digitais?</p>
+                            <div class="question-options">
+                                <label><input type="radio" name="q1" value="0"> <span>Sim</span></label>
+                                <label><input type="radio" name="q1" value="1"> <span>Parcial</span></label>
+                                <label><input type="radio" name="q1" value="2"> <span>Não</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <p>Existe controle de acesso e recuperação desses ativos?</p>
+                            <div class="question-options">
+                                <label><input type="radio" name="q2" value="0"> <span>Sim</span></label>
+                                <label><input type="radio" name="q2" value="1"> <span>Parcial</span></label>
+                                <label><input type="radio" name="q2" value="2"> <span>Não</span></label>
+                            </div>
+                        </div>
+
+                        <div class="question">
+                            <p>Seus ativos possuem rastreabilidade ou histórico verificável?</p>
+                            <div class="question-options">
+                                <label><input type="radio" name="q3" value="0"> <span>Sim</span></label>
+                                <label><input type="radio" name="q3" value="1"> <span>Parcial</span></label>
+                                <label><input type="radio" name="q3" value="2"> <span>Não</span></label>
+                            </div>
+                        </div>
+
+                        <!-- DADOS -->
+                        <div class="form-row">
+                            <input type="text" id="nome" placeholder="Nome completo" autocomplete="name">
+                        </div>
+
+                        <div class="form-row">
+                            <input type="email" id="email" placeholder="Email" autocomplete="email">
+                        </div>
+
+                        <!-- LGPD -->
+                        <div class="form-row form-row--consent">
+                            <label class="checkbox">
+                                <input type="checkbox" id="consentimento">
+                                <span>Aceito a política de privacidade</span>
+                            </label>
+                        </div>
+
+                        <!-- CAPTCHA -->
+                        <div class="captcha-container">
+                            <div class="g-recaptcha" data-sitekey="6Lcp7pcsAAAAAJFgWGRYjp6t_2QlcFbgJUlZrUNx"
+                                data-callback="verificarEstadoBotao" data-expired-callback="verificarEstadoBotao">
+                            </div>
+                        </div>
+
+                        <!-- BOTÃO -->
+                        <button id="btnEnviar" type="button" disabled onclick="enviar()" class="btn btn-primary">
+                            Avaliar meu nível de risco
+                        </button>
+
+                    </form>
+
+                    <!-- RESULTADO -->
+                    <div id="resultado" class="resultado-box"></div>
+
+                </div>
+            </section>
+
+            <!-- PÓS-DIAGNÓSTICO -->
+            <section class="text-block">
+                <div class="text-block-inner">
+
+                    <h2>Após o diagnóstico</h2>
+
+                    <p>
+                        Com base no seu resultado, será possível identificar os pontos críticos
+                        que comprometem a estrutura dos seus ativos digitais e entender quais
+                        medidas são necessárias para garantir controle, acesso e validade.
+                    </p>
+
+                    <p>
+                        <a href="/ativos-digitais/estrutura-juridica" class="insight-link">
+                            Entender como estruturar seus ativos digitais →
+                        </a>
+                    </p>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!--#include virtual="/partials/footer.html" -->
+        <!--#include virtual="/partials/scripts.html" -->
+
+        <script src="/assets/js/diagnostico.js"></script>
+
+    </div>
+
+</body>
+
+</html>
