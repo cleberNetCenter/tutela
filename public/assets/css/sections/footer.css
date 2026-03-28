@@ -79,8 +79,13 @@
 }
 
 .tdf-contact-link svg {
-	width: 13px;
-	height: 13px;
+	display: block;
+	width: 13px !important;
+	min-width: 13px;
+	max-width: 13px;
+	height: 13px !important;
+	min-height: 13px;
+	max-height: 13px;
 	flex-shrink: 0;
 	opacity: 0.65;
 }
@@ -162,8 +167,13 @@
 }
 
 .tdf-trust-shield {
-	width: 13px;
-	height: 13px;
+	display: block;
+	width: 13px !important;
+	min-width: 13px;
+	max-width: 13px;
+	height: 13px !important;
+	min-height: 13px;
+	max-height: 13px;
 	color: var(--accent);
 	opacity: 0.75;
 	flex-shrink: 0;
