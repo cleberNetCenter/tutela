@@ -28,7 +28,7 @@
 	margin: 0 auto;
 	padding: 32px 48px;
 	display: grid;
-	grid-template-columns: 1fr auto auto;
+	grid-template-columns: 1fr auto auto auto;
 	align-items: center;
 	gap: 0 48px;
 	border-bottom: 1px solid var(--green-bdr);
@@ -80,14 +80,39 @@
 
 .tdf-contact-link svg {
 	display: block;
-	width: 13px !important;
-	min-width: 13px;
-	max-width: 13px;
-	height: 13px !important;
-	min-height: 13px;
-	max-height: 13px;
+	width: 13px;
+	height: 13px;
 	flex-shrink: 0;
 	opacity: 0.65;
+}
+
+.tdf-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 10px 20px;
+	background: rgba(62, 207, 114, 0.12);
+	border: 1px solid rgba(62, 207, 114, 0.25);
+	border-radius: 7px;
+	font-size: 12.5px;
+	font-weight: 500;
+	color: var(--accent);
+	transition: background 0.2s, border-color 0.2s;
+	white-space: nowrap;
+}
+
+.tdf-cta:hover {
+	background: rgba(62, 207, 114, 0.2);
+	border-color: rgba(62, 207, 114, 0.42);
+}
+
+.tdf-cta-arr {
+	transition: transform 0.2s;
+	display: inline-block;
+}
+
+.tdf-cta:hover .tdf-cta-arr {
+	transform: translateX(3px);
 }
 
 .tdf-bottom {
@@ -138,12 +163,8 @@
 
 .tdf-trust-shield {
 	display: block;
-	width: 13px !important;
-	min-width: 13px;
-	max-width: 13px;
-	height: 13px !important;
-	min-height: 13px;
-	max-height: 13px;
+	width: 13px;
+	height: 13px;
 	color: var(--accent);
 	opacity: 0.75;
 	flex-shrink: 0;
@@ -189,6 +210,12 @@
 	fill: white;
 }
 
+.tdf-wa svg {
+	width: 27px;
+	height: 27px;
+	fill: white;
+}
+
 .tdf-wa-tip {
 	position: absolute;
 	right: 60px;
@@ -228,5 +255,9 @@
 
 	.tdf-legal {
 		white-space: normal;
+	}
+
+	.tdf-trust {
+		flex-wrap: wrap;
 	}
 }
