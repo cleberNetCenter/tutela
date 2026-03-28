@@ -1,44 +1,106 @@
-/* ===================== BASE TYPOGRAPHY ===================== */
+/* ============================================================
+   foundation/base.css
+   Tutela Digital® — Tipografia e elementos base globais
+   Depende de: foundation/tokens.css
+   ============================================================ */
 
-/* ===================== BASE TYPOGRAPHY ===================== */
 
+/* ──────────────────────────────────────────────────────────
+   BODY
+   ────────────────────────────────────────────────────────── */
 body {
-    font-family: var(--font-body);
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-base);
-    color: var(--color-text-base);
-    background: var(--color-surface-light);
-    -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+  color: var(--color-text-base);
+  background: var(--color-surface-light);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* HEADINGS */
 
+/* ──────────────────────────────────────────────────────────
+   HEADINGS
+   ────────────────────────────────────────────────────────── */
 h1 {
-    font-family: var(--font-display);
-    font-size: var(--font-size-2xl);
-    line-height: var(--line-height-tight);
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--space-md);
-    color: var(--color-text-strong);
+  font-family: var(--font-display);
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-md);
+  color: var(--color-text-strong);
 }
 
 h2 {
-    font-family: var(--font-display);
-    font-size: var(--font-size-xl);
-    line-height: var(--line-height-tight);
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-sm);
 }
 
 h3 {
-    font-size: var(--font-size-lg);
-    line-height: var(--line-height-base);
-    font-weight: var(--font-weight-medium);
-    margin-bottom: var(--space-xs);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-xs);
 }
 
-/* PARÁGRAFOS */
+h4 {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-xs);
+}
 
+
+/* ──────────────────────────────────────────────────────────
+   PARÁGRAFOS E TEXTO
+   ────────────────────────────────────────────────────────── */
 p {
-    margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ──────────────────────────────────────────────────────────
+   LINKS
+   ────────────────────────────────────────────────────────── */
+a {
+  color: var(--color-text-base);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--color-text-strong);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   LISTAS
+   ────────────────────────────────────────────────────────── */
+ul,
+ol {
+  padding-left: 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+li {
+  margin-bottom: var(--space-xs);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   IMAGENS
+   ────────────────────────────────────────────────────────── */
+img,
+svg {
+  display: block;
+  max-width: 100%;
 }

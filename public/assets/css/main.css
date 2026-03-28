@@ -1,4 +1,18 @@
-/* ===================== AGREGADOR PRINCIPAL ===================== */
+/* ============================================================
+   main.css
+   Tutela Digital® — Agregador principal de estilos
+   ============================================================
+   Ordem de carregamento:
+     1. Foundation  → tokens, reset, base
+     2. Layout      → grid, containers
+     3. Utilities   → helpers pontuais
+     4. Components  → botões, cards reutilizáveis
+     5. Sections    → blocos de seção recorrentes
+     6. Pages       → estilos específicos por página/template
+     7. Animations  → keyframes e classes utilitárias de animação
+     8. Legacy      → compatibilidade com markup antigo
+   ============================================================ */
+
 @import url("foundation/tokens.css");
 @import url("foundation/reset.css");
 @import url("foundation/base.css");
@@ -17,6 +31,13 @@
 @import url("sections/footer.css");
 
 @import url("pages/pages-consolidated.css");
+
+/* Página de Ativos Digitais
+   Carregada via <link> condicional no template da página,
+   NÃO aqui — para não aumentar o bundle global.
+   Mantido como referência de existência do arquivo:
+   @import url("pages/assets-digital.css");
+*/
 
 @import url("utilities/animations.css");
 
