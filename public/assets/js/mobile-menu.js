@@ -10,7 +10,7 @@
 
   window.__tutelaNavigationControllerInitialized = true;
 
-  const MOBILE_MAX_WIDTH = 1199;
+  const MOBILE_MAX_WIDTH = 1024;
 
   function isMobileViewport() {
     return window.innerWidth <= MOBILE_MAX_WIDTH;
@@ -28,6 +28,8 @@
     document.querySelectorAll('.nav-dropdown.active').forEach((dropdown) => {
       if (dropdown !== exceptDropdown) {
         dropdown.classList.remove('active');
+        const toggle = dropdown.querySelector('.nav-toggle');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
       }
     });
   }
@@ -38,6 +40,7 @@
 
     nav.classList.add('active');
     menuBtn.classList.add('active');
+    menuBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
 
@@ -47,6 +50,7 @@
 
     nav.classList.remove('active');
     menuBtn.classList.remove('active');
+    menuBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
     closeAllDropdowns();
   }
@@ -95,6 +99,7 @@
 
       if (willOpen) {
         dropdown.classList.add('active');
+        dropdownToggle.setAttribute('aria-expanded', 'true');
       }
 
       if (isMobileViewport()) {

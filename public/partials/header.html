@@ -1,14 +1,11 @@
 <header class="header" id="header">
   <div class="header-inner">
 
-    <!-- LOGO -->
     <a class="logo" href="/">
       Tutela Digital<sup>®</sup>
     </a>
 
-    <!-- NAVEGAÇÃO PRINCIPAL -->
     <nav class="nav" id="nav" aria-label="Navegação principal">
-
       <a class="nav-link" href="/" data-i18n="nav_home">
         Início
       </a>
@@ -28,34 +25,33 @@
         </button>
         <ul class="dropdown-menu">
           <li class="menu-subitem">
-            <a href="/ativos-digitais/" data-i18n="navigation.digitalAssets">
+            <a href="/ativos-digitais/" data-i18n="navigation.digitalAssetsOverview">
               Visão Geral
             </a>
           </li>
           <li class="menu-subitem">
-            <a href="/ativos-digitais/estrutura-juridica">
+            <a href="/ativos-digitais/estrutura-juridica" data-i18n="navigation.digitalAssetsLegalStructure">
               Estrutura Jurídica
             </a>
           </li>
           <li class="menu-subitem">
-            <a href="/ativos-digitais/protecao-e-riscos">
+            <a href="/ativos-digitais/protecao-e-riscos" data-i18n="navigation.digitalAssetsRisks">
               Riscos
             </a>
           </li>
           <li class="menu-subitem">
-            <a href="/ativos-digitais/prova-digital-judicial">
+            <a href="/ativos-digitais/prova-digital-judicial" data-i18n="navigation.digitalAssetsJudicialEvidence">
               Prova Digital Judicial
             </a>
           </li>
           <li class="menu-subitem">
-            <a href="/ativos-digitais/heranca-digital">
+            <a href="/ativos-digitais/heranca-digital" data-i18n="navigation.digitalAssetsInheritance">
               Herança Digital
             </a>
           </li>
         </ul>
       </div>
 
-      <!-- INSIGHTS -->
       <div class="nav-dropdown">
         <button type="button" class="nav-link nav-toggle" aria-expanded="false" aria-haspopup="true"
           data-i18n="navigation.insights">
@@ -67,10 +63,14 @@
               Prova Digital
             </a>
           </li>
+          <li>
+            <a href="/insights/" data-i18n="footer.insightsAll">
+              Todos os Insights
+            </a>
+          </li>
         </ul>
       </div>
 
-      <!-- SOLUÇÕES -->
       <div class="nav-dropdown">
         <button type="button" class="nav-link nav-toggle" aria-expanded="false" aria-haspopup="true"
           data-i18n="navigation.solutions">
@@ -83,7 +83,6 @@
         </ul>
       </div>
 
-      <!-- BASE JURÍDICA -->
       <div class="nav-dropdown">
         <button type="button" class="nav-link nav-toggle" aria-expanded="false" aria-haspopup="true"
           data-i18n="navigation.legalBase">
@@ -101,24 +100,31 @@
       </div>
 
     </nav>
+
     <div class="header-actions">
 
       <a class="header-cta" href="https://app.tuteladigital.com.br/" target="_blank" rel="noopener noreferrer"
-        data-i18n="nav_cta">
-        Acessar a Plataforma
+        >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 3h6v6"></path>
+          <path d="M10 14L21 3"></path>
+          <path d="M18 13v8H3V6h8"></path>
+        </svg>
+        <span data-i18n="nav_cta">Acessar a Plataforma</span>
       </a>
 
       <div class="lang-switch" aria-label="Selecionar idioma">
 
-        <button class="lang-flag" data-lang="pt" aria-label="Português">
+        <button class="lang-flag" data-lang="pt" aria-label="Português" title="Português">
           <img src="/assets/images/flags/br.svg" alt="Português" />
         </button>
 
-        <button class="lang-flag" data-lang="en" aria-label="English">
+        <button class="lang-flag" data-lang="en" aria-label="English" title="English">
           <img src="/assets/images/flags/us.svg" alt="English" />
         </button>
 
-        <button class="lang-flag" data-lang="es" aria-label="Español">
+        <button class="lang-flag" data-lang="es" aria-label="Español" title="Español">
           <img src="/assets/images/flags/es.svg" alt="Español" />
         </button>
 
