@@ -1,6 +1,7 @@
 /* ===================== AGREGADOR PRINCIPAL ===================== */
 @import url("foundation/tokens.css");
 @import url("foundation/reset.css");
+@import url("foundation/base.css");
 
 @import url("layout/layout.css");
 
