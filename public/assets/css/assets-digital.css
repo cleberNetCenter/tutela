@@ -746,7 +746,397 @@ body.assets-page.assets-pillar-page ul {
 
 
 /* ──────────────────────────────────────────────────────────
-   2.2  Hero
+   2.2  Alert banner
+   ────────────────────────────────────────────────────────── */
+body.assets-page.assets-pillar-page .alert-banner {
+  background: var(--ad-bg-white);
+  border-left: 4px solid var(--ad-accent);
+  border-radius: 0 var(--ad-radius-md) var(--ad-radius-md) 0;
+  box-shadow: var(--ad-shadow-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.75rem;
+}
+
+body.assets-page.assets-pillar-page .alert-banner svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+body.assets-page.assets-pillar-page .alert-banner p {
+  color: var(--ad-text-body);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   2.3  Criteria grid (critérios de utilização jurídica)
+   ────────────────────────────────────────────────────────── */
+body.assets-page.assets-pillar-page .criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+body.assets-page.assets-pillar-page .criteria-card {
+  background: var(--ad-bg-white);
+  border: 1px solid var(--ad-border);
+  border-radius: var(--ad-radius-md);
+  box-shadow: var(--ad-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.assets-page.assets-pillar-page .criteria-card:hover {
+  box-shadow: var(--ad-shadow-md);
+  transform: translateY(-3px);
+}
+
+body.assets-page.assets-pillar-page .criteria-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--ad-bg-alt);
+  border-radius: var(--ad-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.assets-page.assets-pillar-page .criteria-label {
+  color: var(--ad-accent-subtle);
+  font-family: var(--ad-ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+body.assets-page.assets-pillar-page .criteria-card h3 {
+  color: var(--ad-text-heading);
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+body.assets-page.assets-pillar-page .criteria-card p {
+  color: var(--ad-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+body.assets-page.assets-pillar-page .criteria-note {
+  border-top: 1px solid var(--ad-border);
+  color: var(--ad-text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   2.4  Timeline (pilares da estruturação)
+   ────────────────────────────────────────────────────────── */
+body.assets-page.assets-pillar-page .pilares-section {
+  background: var(--ad-bg-alt);
+}
+
+body.assets-page.assets-pillar-page .pilares-section h2 {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+body.assets-page.assets-pillar-page .timeline {
+  max-width: 720px;
+  margin-inline: auto;
+  position: relative;
+}
+
+body.assets-page.assets-pillar-page .timeline::before {
+  content: "";
+  position: absolute;
+  left: 28px;
+  top: 28px;
+  bottom: 28px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--ad-brand-dark), var(--ad-accent));
+}
+
+body.assets-page.assets-pillar-page .timeline-item {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+body.assets-page.assets-pillar-page .timeline-item:nth-child(1) { animation: adFadeUp 0.5s ease 0.05s both; }
+body.assets-page.assets-pillar-page .timeline-item:nth-child(2) { animation: adFadeUp 0.5s ease 0.15s both; }
+body.assets-page.assets-pillar-page .timeline-item:nth-child(3) { animation: adFadeUp 0.5s ease 0.25s both; }
+body.assets-page.assets-pillar-page .timeline-item:nth-child(4) { animation: adFadeUp 0.5s ease 0.35s both; }
+
+body.assets-page.assets-pillar-page .timeline-marker {
+  width: 58px;
+  height: 58px;
+  background: var(--ad-brand-dark);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px var(--ad-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+body.assets-page.assets-pillar-page .timeline-body {
+  background: var(--ad-bg-white);
+  border: 1px solid var(--ad-border);
+  border-radius: var(--ad-radius-md);
+  box-shadow: var(--ad-shadow-sm);
+  flex: 1;
+  padding: 1.5rem;
+}
+
+body.assets-page.assets-pillar-page .timeline-body h3 {
+  color: var(--ad-accent-subtle);
+  margin-bottom: 0.5rem;
+}
+
+body.assets-page.assets-pillar-page .timeline-body p {
+  color: var(--ad-text-muted);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   2.5  Aplicação grid (quando a estrutura se torna decisiva)
+   ────────────────────────────────────────────────────────── */
+body.assets-page.assets-pillar-page .aplicacao-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+body.assets-page.assets-pillar-page .aplicacao-card {
+  background: var(--ad-bg-white);
+  border: 1px solid var(--ad-border);
+  border-radius: var(--ad-radius-md);
+  box-shadow: var(--ad-shadow-sm);
+  overflow: hidden;
+  padding: 1.5rem;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+body.assets-page.assets-pillar-page .aplicacao-card:hover {
+  transform: translateY(-3px);
+}
+
+body.assets-page.assets-pillar-page .aplicacao-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ad-brand-dark), var(--ad-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+body.assets-page.assets-pillar-page .aplicacao-card:hover::after {
+  transform: scaleX(1);
+}
+
+body.assets-page.assets-pillar-page .aplicacao-icon {
+  margin-bottom: 1rem;
+}
+
+body.assets-page.assets-pillar-page .aplicacao-card h3 {
+  color: var(--ad-text-heading);
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+body.assets-page.assets-pillar-page .aplicacao-card p {
+  color: var(--ad-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   2.6  Legal basis (base jurídica e regulatória)
+   ────────────────────────────────────────────────────────── */
+body.assets-page.assets-pillar-page .legal-basis {
+  margin-top: 1.75rem;
+}
+
+body.assets-page.assets-pillar-page .legal-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--ad-border);
+  transition: background 0.15s ease;
+}
+
+body.assets-page.assets-pillar-page .legal-row:first-child {
+  border-top: 1px solid var(--ad-border);
+}
+
+body.assets-page.assets-pillar-page .legal-row:hover {
+  background: var(--ad-bg-alt);
+}
+
+body.assets-page.assets-pillar-page .legal-tag {
+  background: var(--ad-brand-dark);
+  border-radius: 3px;
+  color: #ffffff;
+  flex-shrink: 0;
+  font-family: var(--ad-ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+  padding: 3px 8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+body.assets-page.assets-pillar-page .legal-row p {
+  color: var(--ad-text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   2.7  Diferencial box (estruturar vs armazenar)
+   ────────────────────────────────────────────────────────── */
+body.assets-page.assets-pillar-page .diferencial-box {
+  background: var(--ad-brand-dark);
+  border-radius: var(--ad-radius-md);
+  color: var(--ad-bg-white);
+  overflow: hidden;
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+
+body.assets-page.assets-pillar-page .diferencial-box::before {
+  content: '"';
+  position: absolute;
+  right: 1.5rem;
+  top: -0.5rem;
+  color: rgba(255, 255, 255, 0.04);
+  font-family: var(--ad-ff-serif);
+  font-size: 12rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+body.assets-page.assets-pillar-page .diferencial-box h2 {
+  color: var(--ad-accent-light);
+  margin-bottom: 1.25rem;
+}
+
+body.assets-page.assets-pillar-page .diferencial-box p {
+  color: rgba(255, 255, 255, 0.70);
+  margin-bottom: 0.875rem;
+}
+
+body.assets-page.assets-pillar-page .diferencial-box p:last-child {
+  margin-bottom: 0;
+}
+
+body.assets-page.assets-pillar-page .compare-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+body.assets-page.assets-pillar-page .compare-col {
+  flex: 1;
+  min-width: 220px;
+  padding: 1.25rem 1.25rem 1.25rem 1rem;
+  border-radius: var(--ad-radius);
+}
+
+body.assets-page.assets-pillar-page .compare-col.negative {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid rgba(255, 255, 255, 0.20);
+}
+
+body.assets-page.assets-pillar-page .compare-col.positive {
+  background: rgba(29, 185, 84, 0.10);
+  border-left: 3px solid var(--ad-accent);
+}
+
+body.assets-page.assets-pillar-page .compare-col .label {
+  color: rgba(255, 255, 255, 0.40);
+  font-family: var(--ad-ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  display: block;
+}
+
+body.assets-page.assets-pillar-page .compare-col.positive .label {
+  color: var(--ad-accent-light);
+}
+
+body.assets-page.assets-pillar-page .compare-col p {
+  color: rgba(255, 255, 255, 0.60);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+body.assets-page.assets-pillar-page .compare-col.positive p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   2.8  Closing (seção final editorial)
+   ────────────────────────────────────────────────────────── */
+body.assets-page.assets-pillar-page .closing {
+  background: var(--ad-bg-alt);
+}
+
+body.assets-page.assets-pillar-page .closing-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+body.assets-page.assets-pillar-page .closing-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--ad-brand-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+body.assets-page.assets-pillar-page .closing h2 {
+  margin-bottom: 0.5rem;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   2.9  Hero
    ────────────────────────────────────────────────────────── */
 body.assets-page.assets-pillar-page .hero {
   background: var(--ad-brand-dark);
@@ -1477,11 +1867,58 @@ body.assets-page.assets-pillar-page .fade-up:nth-child(4) { animation-delay: 0.3
     flex-direction: column;
     gap: 0.75rem;
   }
+
+  /* Timeline */
+  body.assets-page.assets-pillar-page .timeline::before {
+    left: 22px;
+  }
+
+  body.assets-page.assets-pillar-page .timeline-marker {
+    width: 46px;
+    height: 46px;
+  }
+
+  body.assets-page.assets-pillar-page .timeline-item {
+    gap: 1.25rem;
+  }
+
+  /* Criteria grid — colapsa para 1 coluna */
+  body.assets-page.assets-pillar-page .criteria-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Aplicacao grid — colapsa para 1 coluna */
+  body.assets-page.assets-pillar-page .aplicacao-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Compare row — empilha verticalmente */
+  body.assets-page.assets-pillar-page .compare-row {
+    flex-direction: column;
+  }
+
+  body.assets-page.assets-pillar-page .compare-col {
+    min-width: 0;
+  }
+
+  /* Closing — empilha ícone + texto */
+  body.assets-page.assets-pillar-page .closing-inner {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* Alert banner — ajuste de padding */
+  body.assets-page.assets-pillar-page .alert-banner {
+    padding: 1rem 1.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   body.assets-page.assets-pillar-page .fade-up,
   body.assets-page.assets-pillar-page .check-item,
+  body.assets-page.assets-pillar-page .timeline-item,
+  body.assets-page.assets-pillar-page .criteria-card,
+  body.assets-page.assets-pillar-page .aplicacao-card,
   body.assets-page.assets-pillar-page .tipo-card,
   body.assets-page.assets-pillar-page .btn-cta {
     animation: none;
