@@ -1750,68 +1750,234 @@ body.assets-page.assets-pillar-page .impacto-bar p {
 }
 
 
-/* ──────────────────────────────────────────────────────────
-   2.9  CTA final (pillar)
-   ────────────────────────────────────────────────────────── */
+/* ── 2.9  CTA final ──────────────────────────────────── */
 body.assets-page.assets-pillar-page .cta-section {
-  background: linear-gradient(135deg, var(--ad-brand-dark) 0%, #061a0f 100%);
-  text-align: center;
-  padding: var(--ad-space-xl) 0;
+  background: #0c2418;
+  padding: 64px 24px 56px;
 }
 
+body.assets-page.assets-pillar-page .cta-section .container {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Eyebrow */
+body.assets-page.assets-pillar-page .cta-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ad-accent);
+  margin-bottom: 20px;
+}
+
+body.assets-page.assets-pillar-page .cta-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ad-accent);
+  opacity: 0.7;
+}
+
+/* Heading e subtítulo */
 body.assets-page.assets-pillar-page .cta-section h2 {
-  color: #fff;
-  margin-bottom: 1rem;
+  color: #e8f0ea;
+  font-size: clamp(24px, 4vw, 36px);
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+  max-width: 560px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+body.assets-page.assets-pillar-page .cta-section h2 em {
+  font-style: normal;
+  color: var(--ad-accent);
 }
 
 body.assets-page.assets-pillar-page .cta-section > .container > p {
-  color: rgba(255, 255, 255, 0.68);
-  max-width: 520px;
+  font-size: 15px;
+  color: #7faa8a;
+  max-width: 480px;
   margin-inline: auto;
-  margin-bottom: 2rem;
+  margin-bottom: 36px;
+  text-align: center;
 }
 
-body.assets-page.assets-pillar-page .btn-cta {
-  display: inline-flex;
+/* Card contentor */
+body.assets-page.assets-pillar-page .cta-card {
+  width: 100%;
+  max-width: 560px;
+  background: #112a1e;
+  border: 1px solid #1e5535;
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Checklist dentro do card */
+body.assets-page.assets-pillar-page .cta-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+body.assets-page.assets-pillar-page .cta-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #7faa8a;
+  line-height: 1.5;
+}
+
+body.assets-page.assets-pillar-page .cta-check-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(62, 207, 114, 0.14);
+  border: 1px solid rgba(62, 207, 114, 0.28);
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Divisor dentro do card */
+body.assets-page.assets-pillar-page .cta-divider {
+  height: 1px;
+  background: #1e5535;
+}
+
+/* Botão principal */
+body.assets-page.assets-pillar-page .btn-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   background: var(--ad-accent);
-  color: #fff;
-  font-family: var(--ad-ff-body);
-  font-weight: var(--font-weight-semibold);
-  font-size: 0.9375rem;
-  padding: 0.9rem 2.25rem;
-  border-radius: var(--ad-radius);
+  color: #0a1f12;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 14px 24px;
+  border-radius: 10px;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.15s ease;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 body.assets-page.assets-pillar-page .btn-cta:hover {
-  background: #17a348;
-  transform: translateY(-2px);
-  color: #fff;
+  opacity: 0.9;
+  transform: translateY(-1px);
+  color: #0a1f12;
   text-decoration: none;
 }
 
+body.assets-page.assets-pillar-page .btn-cta svg {
+  transition: transform 0.15s ease;
+}
+
+body.assets-page.assets-pillar-page .btn-cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* Trust items (dentro do card, abaixo do botão) */
 body.assets-page.assets-pillar-page .cta-trust {
-  margin-top: 1.75rem;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 6px;
   flex-wrap: wrap;
+  margin-top: 0;
 }
 
 body.assets-page.assets-pillar-page .cta-trust-item {
   display: flex;
   align-items: center;
-  gap: 0.375rem;
-  font-family: var(--ad-ff-mono);
-  font-size: 0.63rem;
-  color: rgba(255, 255, 255, 0.38);
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  color: #4a7258;
 }
 
+body.assets-page.assets-pillar-page .cta-trust-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #1e5535;
+}
+
+/* Barra de credenciais técnicas */
+body.assets-page.assets-pillar-page .cta-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #1e5535;
+  border: 1px solid #1e5535;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 28px;
+  width: 100%;
+  max-width: 560px;
+}
+
+body.assets-page.assets-pillar-page .cta-stat {
+  background: #112a1e;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+body.assets-page.assets-pillar-page .cta-stat-val {
+  font-size: 19px;
+  font-weight: 500;
+  color: #e8f0ea;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+body.assets-page.assets-pillar-page .cta-stat-val span {
+  color: var(--ad-accent);
+}
+
+body.assets-page.assets-pillar-page .cta-stat-label {
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #4a7258;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  body.assets-page.assets-pillar-page .cta-section {
+    padding: 48px 20px 40px;
+  }
+
+  body.assets-page.assets-pillar-page .cta-card {
+    padding: 20px 18px;
+  }
+
+  body.assets-page.assets-pillar-page .cta-stat-row {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+}
 
 /* ──────────────────────────────────────────────────────────
    2.10  Animações
