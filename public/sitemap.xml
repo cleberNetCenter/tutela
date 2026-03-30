@@ -1,146 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tuteladigital.com.br/ativos-digitais/estrutura-juridica/</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/ativos-digitais/heranca-digital/</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://tuteladigital.com.br/ativos-digitais/</loc>
-    <lastmod>2026-03-24</lastmod>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/ativos-digitais/protecao-e-riscos/</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/ativos-digitais/prova-digital-judicial/</loc>
+    <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/como-funciona</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/contato/</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/diagnostico</loc>
+    <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/empresas</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/en/digital-assets/</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/es/activos-digitales/</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/governo</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/insights/</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/insights/prova-digital/cadeia-custodia-prova-digital</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/insights/prova-digital/hash-criptografico-temporalidade</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/insights/prova-digital/</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/insights/prova-digital/integridade-tecnica-admissibilidade</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/insights/prova-digital/producao-antecipada-prova-digital</loc>
-    <lastmod>2026-03-06</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/insights/prova-digital/prova-digital-processo-civil-brasileiro</loc>
-    <lastmod>2026-03-18</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/legal/arquitetura-juridica-prova-digital</loc>
-    <lastmod>2026-03-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tuteladigital.com.br/legal/base-operacional-plataforma</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/legal/fundamento-juridico</loc>
-    <lastmod>2026-03-24</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/legal/institucional</loc>
-    <lastmod>2026-03-18</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/legal/politica-de-privacidade</loc>
-    <lastmod>2026-03-18</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/legal/preservacao-probatoria-digital</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/legal/termos-de-custodia</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/pessoas</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tuteladigital.com.br/prova-digital-validade-juridica/</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/pt/ativos-digitais/</loc>
-    <lastmod>2026-03-24</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tuteladigital.com.br/seguranca</loc>
-    <lastmod>2026-03-24</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
