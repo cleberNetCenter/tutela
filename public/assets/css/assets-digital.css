@@ -1695,6 +1695,25 @@ body.assets-page.assets-pillar-page .pill {
   padding: 4px 10px;
 }
 
+/* Links dentro do aside escuro (muda-aside) */
+body.assets-page.assets-pillar-page .muda-aside a {
+  color: var(--ad-accent-light);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(168, 217, 184, 0.30);
+  padding-bottom: 1px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+body.assets-page.assets-pillar-page .muda-aside a:visited {
+  color: var(--ad-accent-light);
+}
+
+body.assets-page.assets-pillar-page .muda-aside a:hover {
+  color: var(--ad-accent);
+  border-color: var(--ad-accent);
+  text-decoration: none;
+}
+
 
 /* ──────────────────────────────────────────────────────────
    2.8  Contexto (barras de impacto)
