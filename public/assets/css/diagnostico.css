@@ -35,9 +35,9 @@
    ────────────────────────────────────────────────────────── */
 .diag-hero {
   background: var(--dg-bg-hero);
-  padding: clamp(3.5rem, 6vw, 5.5rem) 1.5rem clamp(3rem, 5vw, 4.5rem);
   position: relative;
   overflow: hidden;
+  padding: calc(60px + 2rem) 1.5rem clamp(3rem, 5vw, 4.5rem);
 }
 
 .diag-hero::before {
@@ -655,7 +655,7 @@
    ────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .diag-hero {
-    padding: 3rem 1.25rem 2.5rem;
+    padding: calc(60px + 1.5rem) 1.25rem 2.5rem;
   }
 
   .diag-form-section {
@@ -711,14 +711,9 @@
   }
 }
 
-/* Remove o padding-top herdado do main global,
-   pois o hero já possui seu próprio espaçamento superior */
+/* ============================================================
+   FIX: Remove qualquer padding-top herdado do main global
+   ============================================================ */
 .diagnostico-page .main {
-  padding-top: 0;
-}
-
-/* Ajuste fino: caso ainda haja espaço residual,
-   remova o padding-top do hero (opcional) */
-.diagnostico-page .diag-hero {
-  padding-top: clamp(2rem, 4vw, 3.5rem);
+  padding-top: 0 !important;
 }
