@@ -1,0 +1,25 @@
+name: Deploy Homolog
+
+on:
+  push:
+    branches:
+      - homolog
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy na homologação via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 192.168.30.221
+          username: deploy
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /opt/tutela
+            git fetch origin
+            git reset --hard origin/homolog
+
+            cd /opt/tutela-v2
+            docker compose up -d --build
