@@ -710,3 +710,15 @@
     transform: none;
   }
 }
+
+/* Remove o padding-top herdado do main global,
+   pois o hero já possui seu próprio espaçamento superior */
+.diagnostico-page .main {
+  padding-top: 0;
+}
+
+/* Ajuste fino: caso ainda haja espaço residual,
+   remova o padding-top do hero (opcional) */
+.diagnostico-page .diag-hero {
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+}
