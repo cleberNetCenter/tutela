@@ -1,4 +1,10 @@
 {
+  "language": {
+    "selectorLabel": "Language",
+    "portuguese": "Portuguese",
+    "english": "English",
+    "spanish": "Spanish"
+  },
   "global": {
     "brand": "Tutela Digital®",
     "accessPlatform": "Access Platform",
