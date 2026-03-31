@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -7,708 +6,620 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ativos Digitais Governamentais | Tutela Digital®</title>
   <meta name="description"
-    content="Governança, rastreabilidade e integridade probatória para ativos digitais no setor público. Conformidade com LGPD, L
-AI, Lei de Improbidade e ICP-Brasil." />
+    content="Governança, rastreabilidade e integridade probatória para ativos digitais no setor público. Conformidade com LGPD, LAI, Lei de Improbidade e ICP-Brasil." />
+  <meta name="last-modified" content="2026-03-30" />
   <link rel="canonical" href="https://tuteladigital.com.br/governo.html" />
   <link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml" />
 
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://tuteladigital.com.br/governo.html" />
+  <meta property="og:title" content="Ativos Digitais Governamentais | Tutela Digital®" />
+  <meta property="og:description"
+    content="Governança, rastreabilidade e integridade probatória para ativos digitais no setor público. Conformidade com LGPD, LAI, Lei de Improbidade e ICP-Brasil." />
+  <meta property="og:site_name" content="Tutela Digital®" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://tuteladigital.com.br/governo.html" />
+  <meta property="twitter:title" content="Ativos Digitais Governamentais | Tutela Digital®" />
+  <meta property="twitter:description"
+    content="Governança, rastreabilidade e integridade probatória para ativos digitais no setor público. Conformidade com LGPD, LAI, Lei de Improbidade e ICP-Brasil." />
+
   <link rel="stylesheet" href="assets/css/main.css?v=4" />
   <link rel="stylesheet" href="assets/css/styles-header-final.css?v=4" />
+  <link rel="stylesheet" href="assets/css/assets-digital.css?v=2" />
 
-  <!-- CSS da vertical de soluções — desvinculado do pilar de ativos -->
-  <link rel="stylesheet" href="assets/css/pages/solucoes.css?v=1" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KXVB267PYJ');
+  </script>
 </head>
 
-<!--
-  Classes de escopo:
-    solucoes-page  → estilos base da vertical de soluções
-    governo-page   → token de cor --sol-vertical-hue no verde institucional
--->
-
-<body class="solucoes-page governo-page">
+<body class="assets-page governo-page">
 
   <!--#include virtual="/partials/header.html" -->
 
   <main>
 
-    <!-- ═══════════════════════════════════════════════════
-         HERO
-    ════════════════════════════════════════════════════ -->
-    <section class="sol-hero">
-      <div class="sol-watermark" aria-hidden="true"><span>GOV</span></div>
-      <div class="sol-hero-rule" aria-hidden="true"></div>
-
-      <div class="container">
-        <p class="sol-hero-eyebrow">Soluções · Setor Público</p>
-
-        <h1 class="sol-fade-up">
-          Ativos digitais no setor público:<br>
-          <em>existir não basta — é preciso controlar, rastrear e comprovar</em>
-        </h1>
-
-        <p class="sol-hero-subtitle sol-fade-up d1">
-          Documentos, evidências, contratos e registros digitais são ativos públicos. Sem estrutura de
-          governança, perdem rastreabilidade, integridade e valor probatório. A Tutela Digital® entrega
-          a camada técnica e jurídica que o poder público exige.
-        </p>
-
-        <div class="sol-hero-badges sol-fade-up d2">
-          <span class="sol-badge">
-            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-              <rect x="1" y="1" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.1" />
-              <path d="M3 5h5M3 7h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
+    <!-- ══════════════════════════════════════════
+         1. HERO
+    ══════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="hero-eyebrow" data-i18n="government.heroEyebrow"></p>
+        <h1 data-i18n="government.heroTitle"></h1>
+        <p class="hero-subtitle" data-i18n="government.heroSubtitle"></p>
+        <div class="hero-rule">
+          <span class="hero-stat">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <circle cx="6.5" cy="6.5" r="5.5" stroke="white" stroke-width="1.2" />
+              <path d="M6.5 3.5v3l2 1.5" stroke="white" stroke-width="1.2" stroke-linecap="round" />
             </svg>
-            Base constitucional e legal
+            <span data-i18n="global.readingTime">Leitura: ~7 min</span>
           </span>
-          <span class="sol-badge">
-            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-              <path d="M5.5 1L2 3v4c0 1.8 1.5 3.5 3.5 4 2-.5 3.5-2.2 3.5-4V3L5.5 1Z" stroke="currentColor"
-                stroke-width="1.1" stroke-linejoin="round" />
+          <span class="hero-stat">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <rect x="1.5" y="1.5" width="10" height="10" rx="2" stroke="white" stroke-width="1.2" />
+              <path d="M4 5h5M4 7.5h3" stroke="white" stroke-width="1.2" stroke-linecap="round" />
             </svg>
-            ICP-Brasil
+            <span data-i18n="government.heroBadge1">Base constitucional e legal</span>
           </span>
-          <span class="sol-badge">
-            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-              <circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.1" />
-              <path d="M3.5 5.5l1.5 1.5 3-3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
+          <span class="hero-stat">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <path d="M6.5 1L2 3.5V7c0 2.5 2 4.5 4.5 5 2.5-.5 4.5-2.5 4.5-5V3.5L6.5 1Z" stroke="white"
+                stroke-width="1.2" stroke-linejoin="round" />
             </svg>
-            LGPD · LAI
+            <span data-i18n="government.heroBadge2">ICP-Brasil | LGPD | LAI</span>
           </span>
         </div>
       </div>
     </section>
 
-
-    <!-- ═══════════════════════════════════════════════════
-         INTRO — o patrimônio digital do Estado
-    ════════════════════════════════════════════════════ -->
-    <section class="sol-intro">
+    <!-- ══════════════════════════════════════════
+         2. INTRO
+    ══════════════════════════════════════════ -->
+    <section>
       <div class="container">
-        <div class="sol-intro-grid">
-
-          <div class="sol-intro-lead">
-            <div class="sol-register-line">Fundamento · Contexto</div>
-            <h2>O patrimônio digital do Estado precisa de estrutura</h2>
-            <p>
-              Ativos digitais no setor público incluem desde contratos administrativos eletrônicos e evidências de
-              processos disciplinares até bases de dados sigilosas e registros de políticas públicas. Diferentemente de
-              ativos físicos, sua existência, controle e utilização dependem de sistemas técnicos e da capacidade de
-              acesso, registro e preservação da integridade.
-            </p>
-            <p>
-              Sem uma estrutura de governança, esses ativos podem existir legalmente, mas se tornarem inutilizáveis —
-              comprometendo a transparência, a accountability e a própria segurança jurídica da administração.
-            </p>
+        <div class="intro-split">
+          <div class="lead-text">
+            <h2 data-i18n="government.introTitle"></h2>
+            <p data-i18n="government.introP1"></p>
+            <p data-i18n="government.introP2"></p>
           </div>
-
-          <aside class="sol-aside sol-reveal">
-            <p class="sol-aside-label">Fundamento constitucional</p>
-            <p>
-              O art. 37 da Constituição Federal impõe à administração pública os princípios da legalidade,
-              impessoalidade, moralidade, publicidade e eficiência. A gestão de ativos digitais sem rastreabilidade e
-              integridade viola a publicidade e a eficiência, além de comprometer o dever de prestação de contas.
-            </p>
+          <aside class="intro-aside">
+            <p class="aside-label" data-i18n="government.asideLabel"></p>
+            <p data-i18n="government.asideContent"></p>
             <a href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank"
-              rel="noopener noreferrer" class="sol-aside-link">
-              CF/88, art. 37
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-                <path d="M2.5 5.5h6M6 3l2.5 2.5L6 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </a>
-          </aside>
-
-        </div>
-      </div>
-    </section>
-
-    <div class="sol-divider" role="separator"></div>
-
-
-    <!-- ═══════════════════════════════════════════════════
-         BASE NORMATIVA
-    ════════════════════════════════════════════════════ -->
-    <section class="sol-normativo sol-dots-bg">
-      <div class="container">
-        <div class="sol-normativo-header">
-          <span class="sol-tag">Base legal</span>
-          <h2 style="margin-top:1rem;">O que a lei exige da gestão de ativos digitais</h2>
-        </div>
-
-        <div class="sol-lei-grid">
-
-          <!-- LAI -->
-          <div class="sol-lei-card sol-reveal">
-            <span class="sol-lei-num">Lei 12.527/2011</span>
-            <div class="sol-seal">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <path d="M3 3h16v16H3z" stroke="#0a2218" stroke-width="1.4" />
-                <path d="M7 10h8M7 13h5" stroke="#2db560" stroke-width="1.3" stroke-linecap="round" />
-              </svg>
-            </div>
-            <h3>Lei de Acesso à Informação</h3>
-            <p>Exige transparência ativa e passiva, com registros acessíveis e auditáveis. A falta de rastreabilidade
-              pode configurar violação administrativa.</p>
-            <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm" target="_blank"
-              rel="noopener noreferrer" class="sol-lei-link">
-              Referência completa
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                <path d="M2 5h6M5.5 2.5L8 5l-2.5 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </a>
-          </div>
-
-          <!-- LGPD -->
-          <div class="sol-lei-card sol-reveal">
-            <span class="sol-lei-num">Lei 13.709/2018</span>
-            <div class="sol-seal">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="8" stroke="#0a2218" stroke-width="1.4" />
-                <path d="M8 11l2.5 2.5 4.5-5" stroke="#2db560" stroke-width="1.3" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
-            <h3>LGPD</h3>
-            <p>Obriga o controle de dados pessoais com registros de operações, segurança e comprovação de consentimento
-              e eliminação. O poder público sujeita-se ao regime específico dos arts. 23 a 32, com supervisão pela ANPD.
-            </p>
-            <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank"
-              rel="noopener noreferrer" class="sol-lei-link">
-              Referência completa
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                <path d="M2 5h6M5.5 2.5L8 5l-2.5 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </a>
-          </div>
-
-          <!-- Improbidade -->
-          <div class="sol-lei-card sol-reveal">
-            <span class="sol-lei-num">Lei 8.429/1992</span>
-            <div class="sol-seal">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <path d="M11 2L4 6v7c0 4 3.1 7.6 7 9 3.9-1.4 7-5 7-9V6L11 2Z" stroke="#0a2218" stroke-width="1.4"
-                  stroke-linejoin="round" />
-                <path d="M8 11l2.5 2.5 4-4" stroke="#2db560" stroke-width="1.3" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
-            <h3>Lei de Improbidade</h3>
-            <p>A ausência de integridade e rastreabilidade em ativos digitais pode caracterizar irregularidade
-              administrativa e, nas hipóteses em que restar demonstrado dolo específico (art. 1º, §1º da Lei
-              14.230/2021), configurar improbidade nos termos do art. 11.</p>
-            <a href="https://www.planalto.gov.br/ccivil_03/leis/l8429.htm" target="_blank" rel="noopener noreferrer"
-              class="sol-lei-link">
-              Referência completa
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                <path d="M2 5h6M5.5 2.5L8 5l-2.5 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </a>
-          </div>
-
-          <!-- Decreto -->
-          <div class="sol-lei-card sol-reveal">
-            <span class="sol-lei-num">Decreto 10.278/2020</span>
-            <div class="sol-seal">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <rect x="2" y="4" width="18" height="14" rx="2" stroke="#0a2218" stroke-width="1.4" />
-                <circle cx="11" cy="11" r="3" stroke="#2db560" stroke-width="1.3" />
-              </svg>
-            </div>
-            <h3>Integridade de documentos digitais</h3>
-            <p>Estabelece requisitos para preservação de documentos digitais oficiais, incluindo hashes, marcas
-              temporais e cadeia de custódia, com equivalência ao documento físico original.</p>
-            <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/decreto/d10278.htm" target="_blank"
-              rel="noopener noreferrer" class="sol-lei-link">
-              Referência completa
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                <path d="M2 5h6M5.5 2.5L8 5l-2.5 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <div class="sol-divider" role="separator"></div>
-
-
-    <!-- ═══════════════════════════════════════════════════
-         CONTRASTE — sem vs com governança
-    ════════════════════════════════════════════════════ -->
-    <section class="sol-contraste">
-      <div class="container">
-
-        <div class="sol-contraste-header">
-          <span class="sol-tag"
-            style="--sol-vertical-dim:rgba(168,217,184,0.12); color:var(--sol-accent-light);">Diagnóstico de
-            risco</span>
-          <h2 style="margin-top:1rem;">Onde está o risco para a administração</h2>
-          <p>
-            A ausência de governança de ativos digitais transforma direitos e documentos públicos em elementos de risco:
-            perda de controle, fragilidade probatória e exposição a sanções por violação de transparência e proteção de
-            dados.
-          </p>
-        </div>
-
-        <div class="sol-contraste-grid">
-
-          <!-- Coluna negativa -->
-          <div class="sol-col sol-col-neg">
-            <p class="sol-col-label">Sem governança</p>
-
-            <div class="sol-comp-item">
-              <div class="sol-comp-icon">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                  <path d="M2.5 2.5l5 5M7.5 2.5l-5 5" stroke="rgba(255,255,255,.3)" stroke-width="1.3"
-                    stroke-linecap="round" />
-                </svg>
-              </div>
-              <p>Acesso perdido ou contestado em processos</p>
-            </div>
-
-            <div class="sol-comp-item">
-              <div class="sol-comp-icon">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                  <path d="M2.5 2.5l5 5M7.5 2.5l-5 5" stroke="rgba(255,255,255,.3)" stroke-width="1.3"
-                    stroke-linecap="round" />
-                </svg>
-              </div>
-              <p>Violação à Lei de Acesso à Informação (Lei 12.527/2011)</p>
-            </div>
-
-            <div class="sol-comp-item">
-              <div class="sol-comp-icon">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                  <path d="M2.5 2.5l5 5M7.5 2.5l-5 5" stroke="rgba(255,255,255,.3)" stroke-width="1.3"
-                    stroke-linecap="round" />
-                </svg>
-              </div>
-              <p>Improbidade administrativa por falta de rastreabilidade</p>
-            </div>
-          </div>
-
-          <!-- Seta -->
-          <div class="sol-contraste-arrow" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <path d="M7 14h14M17 9l5 5-5 5" stroke="rgba(255,255,255,.20)" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </div>
-
-          <!-- Coluna positiva -->
-          <div class="sol-col sol-col-pos">
-            <p class="sol-col-label">Com governança (Tutela Digital®)</p>
-
-            <div class="sol-comp-item">
-              <div class="sol-comp-icon">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                  <path d="M2 5l2.5 2.5 4-4" stroke="#2db560" stroke-width="1.3" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </div>
-              <p>Acesso controlado e documentado com logs auditáveis</p>
-            </div>
-
-            <div class="sol-comp-item">
-              <div class="sol-comp-icon">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                  <path d="M2 5l2.5 2.5 4-4" stroke="#2db560" stroke-width="1.3" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </div>
-              <p>Atendimento à LAI e registro de operações de tratamento (LGPD, arts. 23 a 32)</p>
-            </div>
-
-            <div class="sol-comp-item">
-              <div class="sol-comp-icon">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                  <path d="M2 5l2.5 2.5 4-4" stroke="#2db560" stroke-width="1.3" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </div>
-              <p>Cadeia de custódia que atende aos requisitos técnicos de integridade e autenticidade recomendados para
-                produção de prova digital, conforme CPC, arts. 422 e 439, e Decreto 10.278/2020.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="sol-contraste-cta">
-          <a href="/diagnostico.html" class="sol-link-ghost" target="_blank" rel="noopener noreferrer">
-            Solicitar diagnóstico de ativos digitais
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M2.5 6h7M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <div class="sol-divider" role="separator"></div>
-
-
-    <!-- ═══════════════════════════════════════════════════
-         BENEFÍCIOS — o que muda com governança
-    ════════════════════════════════════════════════════ -->
-    <section class="sol-beneficios">
-      <div class="container">
-        <div class="sol-beneficios-grid">
-
-          <div>
-            <span class="sol-tag">O que muda</span>
-            <h2 style="margin-top:1rem;">O que muda com governança de ativos digitais</h2>
-            <p>
-              A Tutela Digital® transforma documentos e evidências digitais em ativos controláveis, com cadeia de
-              custódia verificável e conformidade técnica com os requisitos para produção de prova digital.
-            </p>
-
-            <ul class="sol-checklist">
-              <li class="sol-check-item sol-reveal">
-                <div class="sol-check-bullet">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </div>
-                <p>Rastreabilidade integral: quem acessou, quando e por quê</p>
-              </li>
-              <li class="sol-check-item sol-reveal">
-                <div class="sol-check-bullet">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </div>
-                <p>Integridade verificável por hash criptográfico (SHA-256)</p>
-              </li>
-              <li class="sol-check-item sol-reveal">
-                <div class="sol-check-bullet">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </div>
-                <p>Carimbo do tempo (RFC 3161) com autoridade certificadora ICP-Brasil</p>
-              </li>
-              <li class="sol-check-item sol-reveal">
-                <div class="sol-check-bullet">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </div>
-                <p>Atendimento aos requisitos técnicos recomendados para produção de prova digital em processos
-                  administrativos e judiciais, conforme Decreto 10.278/2020 e CPC, arts. 422 e 439.</p>
-              </li>
-            </ul>
-
-            <a href="https://app.tuteladigital.com.br/" class="sol-link-inline" target="_blank"
               rel="noopener noreferrer">
-              Conhecer a plataforma
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-                <path d="M2 5.5h7M6.5 3l2.5 2.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
+              <span data-i18n="government.asideLink">CF/88, art. 37</span>
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                <path d="M3 6.5h7M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
             </a>
-          </div>
-
-          <!-- Aside técnico -->
-          <aside class="sol-tech-aside sol-reveal">
-            <p class="sol-tech-label">
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-                <path d="M5.5 1L2 3v4c0 1.8 1.5 3.5 3.5 4 2-.5 3.5-2.2 3.5-4V3L5.5 1Z" stroke="currentColor"
-                  stroke-width="1.1" stroke-linejoin="round" />
-              </svg>
-              Mecanismos técnicos aplicados
-            </p>
-            <h3>Conformidade com ICP-Brasil e padrões internacionais</h3>
-            <p>
-              A plataforma utiliza assinatura eletrônica qualificada (ICP-Brasil), hash SHA-256, carimbo do tempo
-              conforme RFC 3161 e logs imutáveis. Todos os registros atendem aos requisitos técnicos recomendados
-              para produção de prova digital perante tribunais e órgãos de controle, conforme CPC, arts. 422 e 439,
-              e Decreto 10.278/2020. A admissibilidade da prova digital é apreciada pelo juízo competente.
-            </p>
-            <div class="sol-pills">
-              <span class="sol-pill">ICP-Brasil</span>
-              <span class="sol-pill">SHA-256</span>
-              <span class="sol-pill">RFC 3161</span>
-              <span class="sol-pill">Cadeia de Custódia</span>
-              <span class="sol-pill">Logs Auditáveis</span>
-            </div>
           </aside>
-
         </div>
       </div>
     </section>
 
-    <div class="sol-divider" role="separator"></div>
+    <div class="section-divider" role="separator"></div>
 
+    <!-- ══════════════════════════════════════════
+         3. DESAFIO — SEM ESTRUTURA VS COM GOVERNANÇA
+    ══════════════════════════════════════════ -->
+    <section class="desafio-section">
+      <div class="container desafio-inner">
+        <h2 data-i18n="government.desafioTitle"></h2>
+        <p class="desafio-lead" data-i18n="government.desafioLead"></p>
 
-    <!-- ═══════════════════════════════════════════════════
-         IMPACTO — aplicações diretas + barras
-    ════════════════════════════════════════════════════ -->
-    <section class="sol-impacto sol-dots-bg">
+        <div class="desafio-grid">
+          <div class="desafio-col sem-estrutura">
+            <p class="desafio-col-label" data-i18n="government.semEstruturaLabel"></p>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M3 3l6 6M9 3L3 9" stroke="rgba(255,255,255,.3)" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.sem1"></p>
+            </div>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M3 3l6 6M9 3L3 9" stroke="rgba(255,255,255,.3)" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.sem2"></p>
+            </div>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M3 3l6 6M9 3L3 9" stroke="rgba(255,255,255,.3)" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.sem3"></p>
+            </div>
+          </div>
+
+          <div class="desafio-arrow" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M8 16h16M20 10l6 6-6 6" stroke="rgba(255,255,255,.25)" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+
+          <div class="desafio-col com-estrutura">
+            <p class="desafio-col-label" data-i18n="government.comEstruturaLabel"></p>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6l3 3 4.5-4.5" stroke="#1db954" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.com1"></p>
+            </div>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6l3 3 4.5-4.5" stroke="#1db954" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.com2"></p>
+            </div>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6l3 3 4.5-4.5" stroke="#1db954" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.com3"></p>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://app.tuteladigital.com.br/" class="desafio-link" target="_blank" rel="noopener noreferrer">
+          <span data-i18n="government.demoLink">Solicitar demonstração para órgãos públicos</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <div class="section-divider" role="separator"></div>
+
+    <!-- ══════════════════════════════════════════
+         4. BASE NORMATIVA (cards com SVG)
+    ══════════════════════════════════════════ -->
+    <section>
       <div class="container">
-        <div class="sol-impacto-grid">
+        <h2 data-i18n="government.normativeTitle"></h2>
+        <div class="tipos-grid">
+          <div class="tipo-card">
+            <div class="tipo-icon">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <path d="M4 4h18v18H4z" stroke="#0a2218" stroke-width="1.6" />
+                <path d="M9 12h8M9 16h5" stroke="#2db560" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <p class="tipo-tag" data-i18n="government.normativeCard1Tag">Lei 12.527/2011</p>
+            <h3 data-i18n="government.normativeCard1Title">Lei de Acesso à Informação</h3>
+            <p data-i18n="government.normativeCard1Desc">Exige transparência ativa e passiva, com registros acessíveis e
+              auditáveis. A falta de rastreabilidade pode configurar violação administrativa.</p>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm" target="_blank"
+              class="link-arrow"><span data-i18n="government.normativeCard1Link">Referência completa →</span></a>
+          </div>
+          <div class="tipo-card">
+            <div class="tipo-icon">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <circle cx="13" cy="13" r="9" stroke="#0a2218" stroke-width="1.6" />
+                <path d="M9 13l3 3 5-6" stroke="#2db560" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <p class="tipo-tag" data-i18n="government.normativeCard2Tag">Lei 13.709/2018</p>
+            <h3 data-i18n="government.normativeCard2Title">LGPD</h3>
+            <p data-i18n="government.normativeCard2Desc">Obriga o controle de dados pessoais com registros de operações,
+              segurança e capacidade de comprovação de consentimento e eliminação.</p>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank"
+              class="link-arrow"><span data-i18n="government.normativeCard2Link">Referência completa →</span></a>
+          </div>
+          <div class="tipo-card">
+            <div class="tipo-icon">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <path d="M5 5l16 16M21 5L5 21" stroke="#0a2218" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M13 7v12M7 13h12" stroke="#2db560" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <p class="tipo-tag" data-i18n="government.normativeCard3Tag">Lei 8.429/1992</p>
+            <h3 data-i18n="government.normativeCard3Title">Lei de Improbidade</h3>
+            <p data-i18n="government.normativeCard3Desc">A ausência de integridade e rastreabilidade em ativos digitais
+              pode caracterizar irregularidade administrativa e, nas hipóteses de dolo comprovado, configurar
+              improbidade administrativa nos termos do art. 11 da Lei 8.429/1992 (com redação da Lei 11.650/2021).</p>
+            <a href="https://www.planalto.gov.br/ccivil_03/leis/l8429.htm" target="_blank" class="link-arrow"><span
+                data-i18n="government.normativeCard3Link">Referência completa →</span></a>
+          </div>
+          <div class="tipo-card">
+            <div class="tipo-icon">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <rect x="3" y="5" width="20" height="16" rx="2" stroke="#0a2218" stroke-width="1.6" />
+                <circle cx="13" cy="13" r="3" stroke="#2db560" stroke-width="1.5" />
+              </svg>
+            </div>
+            <p class="tipo-tag" data-i18n="government.normativeCard4Tag">Decreto 10.278/2020</p>
+            <h3 data-i18n="government.normativeCard4Title">Integridade de documentos digitais</h3>
+            <p data-i18n="government.normativeCard4Desc">Estabelece requisitos para preservação de documentos digitais
+              oficiais, incluindo hashes, marcas temporais e cadeia de custódia.</p>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/decreto/d10278.htm" target="_blank"
+              class="link-arrow"><span data-i18n="government.normativeCard4Link">Referência completa →</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Casos de uso -->
-          <div class="sol-impacto-text">
-            <span class="sol-tag">Casos de uso</span>
-            <h2 style="margin-top:1rem;">Aplicações diretas no setor público</h2>
-            <p>A Tutela Digital® é utilizada para garantir integridade, transparência e segurança jurídica.</p>
+    <div class="section-divider" role="separator"></div>
 
-            <ul class="sol-checklist" style="margin-top:1.5rem;">
-              <li class="sol-check-item sol-reveal">
-                <div class="sol-check-bullet" style="background:var(--sol-brand-mid);">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round"
+    <!-- ══════════════════════════════════════════
+         5. O QUE A TUTELA DIGITAL ENTREGA AO GOVERNO
+    ══════════════════════════════════════════ -->
+    <section class="muda-section">
+      <div class="container">
+        <div class="muda-layout">
+          <div>
+            <h2 data-i18n="government.whatChangesTitle"></h2>
+            <p data-i18n="government.whatChangesLead"></p>
+
+            <ul class="checklist-premium">
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
                       stroke-linejoin="round" />
                   </svg>
                 </div>
-                <p><strong>Processos administrativos disciplinares:</strong> custódia de evidências digitais com cadeia
-                  de custódia inquestionável.</p>
+                <p data-i18n="government.check1"></p>
               </li>
-              <li class="sol-check-item sol-reveal">
-                <div class="sol-check-bullet" style="background:var(--sol-brand-mid);">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round"
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
                       stroke-linejoin="round" />
                   </svg>
                 </div>
-                <p><strong>Licitações e contratos eletrônicos:</strong> armazenamento com integridade verificável e
-                  rastreabilidade para controle dos Tribunais de Contas.</p>
+                <p data-i18n="government.check2"></p>
               </li>
-              <li class="sol-check-item sol-reveal">
-                <div class="sol-check-bullet" style="background:var(--sol-brand-mid);">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round"
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
                       stroke-linejoin="round" />
                   </svg>
                 </div>
-                <p><strong>Ouvidorias e acesso à informação:</strong> gestão de pedidos LAI com registros imutáveis e
-                  comprovação de resposta.</p>
+                <p data-i18n="government.check3"></p>
               </li>
-              <li class="sol-check-item sol-reveal">
-                <div class="sol-check-bullet" style="background:var(--sol-brand-mid);">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round"
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
                       stroke-linejoin="round" />
                   </svg>
                 </div>
-                <p><strong>Proteção de dados pessoais (LGPD, arts. 23–32):</strong> registro de tratamentos, comprovação
-                  de bases legais e eliminação segura de dados.</p>
+                <p data-i18n="government.check4"></p>
               </li>
             </ul>
 
-            <p class="sol-disclaimer">
-              A conformidade legal depende da correta implementação e uso da plataforma pelo órgão contratante.
-              A admissibilidade de provas digitais é matéria processual apreciada pelo juízo competente no caso
-              concreto.
+            <p>
+              <a href="https://app.tuteladigital.com.br/" class="link-arrow" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="government.knowPlatformLink">Conhecer a plataforma</span>
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                  <path d="M3 6.5h7M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </a>
             </p>
           </div>
 
-          <!-- Barras de impacto -->
-          <div class="sol-bars">
-            <div class="sol-bar sol-reveal">
-              <div class="sol-bar-icon">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <rect x="2" y="5" width="16" height="12" rx="2" stroke="#0a2218" stroke-width="1.4" />
-                  <path d="M5 5V4.5A4.5 4.5 0 0114.5 5" stroke="#2db560" stroke-width="1.4" stroke-linecap="round" />
+          <aside class="muda-aside">
+            <p class="muda-aside-label">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 1L2 3.5V7c0 2.2 1.8 4.2 4 4.5 2.2-.3 4-2.3 4-4.5V3.5L6 1Z" stroke="#a8d9b8"
+                  stroke-width="1.2" stroke-linejoin="round" />
+              </svg>
+              <span data-i18n="government.mechanismsLabel">Mecanismos técnicos aplicados</span>
+            </p>
+            <h3 data-i18n="government.mechanismsTitle">Conformidade com ICP-Brasil e padrões internacionais</h3>
+            <p data-i18n="government.mechanismsDesc">A plataforma utiliza assinatura eletrônica qualificada
+              (ICP-Brasil), hash SHA-256, carimbo do tempo conforme RFC 3161 e logs imutáveis. Todos os registros
+              atendem aos requisitos técnicos exigidos para produção de prova digital perante tribunais e órgãos de
+              controle, conforme CPC, art. 422-A, e Decreto 10.278/2020. A admissibilidade é apreciada pelo juízo
+              competente no caso concreto.</p>
+            <div class="mecanismos-pills">
+              <span class="pill">ICP-Brasil</span>
+              <span class="pill">SHA-256</span>
+              <span class="pill">RFC 3161</span>
+              <span class="pill">Cadeia de Custódia</span>
+              <span class="pill">Logs Auditáveis</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" role="separator"></div>
+
+    <!-- ══════════════════════════════════════════
+         6. CASOS DE USO CONCRETOS
+    ══════════════════════════════════════════ -->
+    <section class="contexto-section">
+      <div class="container">
+        <div class="contexto-inner">
+          <div>
+            <h2 data-i18n="government.useCasesTitle2"></h2>
+            <p data-i18n="government.useCasesLead"></p>
+            <ul class="checklist-premium" style="margin-top: 1.5rem;">
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p><strong data-i18n="government.useCase1Title"></strong> <span
+                    data-i18n="government.useCase1Desc"></span></p>
+              </li>
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p><strong data-i18n="government.useCase2Title"></strong> <span
+                    data-i18n="government.useCase2Desc"></span></p>
+              </li>
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p><strong data-i18n="government.useCase3Title"></strong> <span
+                    data-i18n="government.useCase3Desc"></span></p>
+              </li>
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p><strong data-i18n="government.useCase4Title"></strong> <span
+                    data-i18n="government.useCase4Desc"></span></p>
+              </li>
+            </ul>
+
+            <p class="sol-disclaimer" style="margin-top:1.5rem; font-size:0.85rem; opacity:0.7; line-height:1.6;"
+              data-i18n="government.useCaseDisclaimer"></p>
+          </div>
+
+          <div class="contexto-visual">
+            <div class="impacto-bar fade-up">
+              <div class="impacto-bar-icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <rect x="2" y="6" width="18" height="13" rx="2" stroke="#0a2218" stroke-width="1.5" />
+                  <path d="M6 6V5a5 5 0 0110 0v1" stroke="#2db560" stroke-width="1.5" stroke-linecap="round" />
                 </svg>
               </div>
-              <div class="sol-bar-text">
-                <h4>Transparência ativa</h4>
-                <p>Atendimento automático à LAI com registros públicos auditáveis</p>
+              <div>
+                <h4 data-i18n="government.impactoBar1Title">Transparência ativa</h4>
+                <p data-i18n="government.impactoBar1Desc">Atendimento automático à LAI com registros públicos auditáveis
+                </p>
               </div>
             </div>
-
-            <div class="sol-bar sol-reveal">
-              <div class="sol-bar-icon">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <circle cx="10" cy="7" r="3.5" stroke="#0a2218" stroke-width="1.4" />
-                  <path d="M3.5 18c0-3.5 2.9-6.5 6.5-6.5s6.5 3 6.5 6.5" stroke="#2db560" stroke-width="1.4"
+            <div class="impacto-bar fade-up">
+              <div class="impacto-bar-icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <circle cx="11" cy="8" r="4" stroke="#0a2218" stroke-width="1.5" />
+                  <path d="M4 20c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#2db560" stroke-width="1.5"
                     stroke-linecap="round" />
                 </svg>
               </div>
-              <div class="sol-bar-text">
-                <h4>Proteção de dados</h4>
-                <p>Registros de operações e conformidade com o regime LGPD do poder público (arts. 23 a 32)</p>
+              <div>
+                <h4 data-i18n="government.impactoBar2Title">Proteção de dados</h4>
+                <p data-i18n="government.impactoBar2Desc">Registros de operações e comprovação de conformidade LGPD</p>
               </div>
             </div>
-
-            <div class="sol-bar sol-reveal">
-              <div class="sol-bar-icon">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M10 2L3 6v6c0 4 3.1 6.8 7 8 3.9-1.2 7-4 7-8V6L10 2Z" stroke="#0a2218" stroke-width="1.4"
-                    stroke-linejoin="round" />
-                  <path d="M7 10l2 2 4-4" stroke="#2db560" stroke-width="1.4" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </div>
-              <div class="sol-bar-text">
-                <h4>Conformidade técnica</h4>
-                <p>Evidências com conformidade técnica aos padrões ICP-Brasil, SHA-256 e RFC 3161</p>
-              </div>
-            </div>
-
-            <!-- Elemento novo — Selo de conformidade -->
-            <div class="sol-selo-wrapper sol-reveal" style="margin-top:0.25rem;">
-              <div class="sol-selo-icon">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                  <path d="M11 2L4 6v7c0 4 3.1 7.6 7 9 3.9-1.4 7-5 7-9V6L11 2Z" stroke="#174d38" stroke-width="1.5"
-                    stroke-linejoin="round" />
+            <div class="impacto-bar fade-up">
+              <div class="impacto-bar-icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M11 2L3 6v7c0 4.5 3.5 8.7 8 10 4.5-1.3 8-5.5 8-10V6L11 2Z" stroke="#0a2218"
+                    stroke-width="1.5" stroke-linejoin="round" />
                   <path d="M8 11l2 2 4-4" stroke="#2db560" stroke-width="1.5" stroke-linecap="round"
                     stroke-linejoin="round" />
                 </svg>
               </div>
-              <div class="sol-selo-text">
-                <strong>Solução auditável por órgãos de controle</strong>
-                <span>Compatível com TCU, TCEs e CGU · Logs com cadeia de custódia</span>
+              <div>
+                <h4 data-i18n="government.impactoBar3Title">Aptidão probatória</h4>
+                <p data-i18n="government.impactoBar3Desc">Registros que atendem aos requisitos técnicos para produção de
+                  prova digital</p>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- ═══════════════════════════════════════════════════
-         CTA FINAL
-    ════════════════════════════════════════════════════ -->
-    <section class="sol-cta">
+    <!-- ══════════════════════════════════════════
+         7. CTA FINAL
+    ══════════════════════════════════════════ -->
+    <section class="cta-section">
       <div class="container">
+        <div class="cta-eyebrow">
+          <div class="cta-eyebrow-dot"></div>
+          <span data-i18n="government.ctaEyebrow">Governo e setor público</span>
+        </div>
+        <h2 data-i18n="government.ctaTitle">Transforme seus ativos digitais em<br><em>controle, transparência e
+            segurança jurídica</em></h2>
+        <p data-i18n="government.ctaDesc">Solicite uma apresentação institucional para sua equipe técnica e jurídica.
+          Vamos diagnosticar a maturidade de governança de ativos digitais na sua instituição, mapear riscos e lacunas
+          normativas, e apresentar uma proposta personalizada de implantação da plataforma.</p>
 
-        <p class="sol-cta-eyebrow">Governo e setor público</p>
-
-        <h2>
-          Transforme seus ativos digitais em<br>
-          <em>controle, transparência e segurança jurídica</em>
-        </h2>
-
-        <p>
-          Solicite uma apresentação institucional para sua equipe técnica e jurídica. Diagnóstico de maturidade,
-          mapeamento de riscos e proposta personalizada de implantação.
-        </p>
-
-        <div class="sol-cta-card">
-          <ul class="sol-cta-list">
+        <div class="cta-card">
+          <ul class="cta-checklist">
             <li>
-              <div class="sol-cta-check">
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-                  <path d="M1.5 4.5l2 2 4-4" stroke="#3ecf72" stroke-width="1.3" stroke-linecap="round"
+              <div class="cta-check-icon">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 5l2.5 2.5 4-4" stroke="#3ecf72" stroke-width="1.4" stroke-linecap="round"
                     stroke-linejoin="round" />
                 </svg>
               </div>
-              Diagnóstico de maturidade em governança de ativos digitais
+              <span data-i18n="government.ctaCheck1">Diagnóstico de maturidade em governança de ativos digitais</span>
             </li>
             <li>
-              <div class="sol-cta-check">
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-                  <path d="M1.5 4.5l2 2 4-4" stroke="#3ecf72" stroke-width="1.3" stroke-linecap="round"
+              <div class="cta-check-icon">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 5l2.5 2.5 4-4" stroke="#3ecf72" stroke-width="1.4" stroke-linecap="round"
                     stroke-linejoin="round" />
                 </svg>
               </div>
-              Mapeamento de riscos e lacunas normativas
+              <span data-i18n="government.ctaCheck2">Mapeamento de riscos e lacunas normativas</span>
             </li>
             <li>
-              <div class="sol-cta-check">
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-                  <path d="M1.5 4.5l2 2 4-4" stroke="#3ecf72" stroke-width="1.3" stroke-linecap="round"
+              <div class="cta-check-icon">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 5l2.5 2.5 4-4" stroke="#3ecf72" stroke-width="1.4" stroke-linecap="round"
                     stroke-linejoin="round" />
                 </svg>
               </div>
-              Proposta técnica e jurídica personalizada
+              <span data-i18n="government.ctaCheck3">Proposta técnica e jurídica personalizada</span>
             </li>
           </ul>
 
-          <div class="sol-cta-sep"></div>
+          <div class="cta-divider"></div>
 
           <div>
-            <a href="/diagnostico.html" class="sol-btn-primary" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4.5l3.5 3.5L9 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            <a href="https://app.tuteladigital.com.br/" class="btn-cta" target="_blank" rel="noopener noreferrer">
+              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true">
+                <path d="M3 8.5h11M9.5 4.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
                   stroke-linejoin="round" />
               </svg>
-              Solicitar diagnóstico
+              <span data-i18n="government.ctaButton">Solicitar demonstração</span>
             </a>
-
-            <div class="sol-trust" style="margin-top:1rem;">
-              <span class="sol-trust-item">
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-                  <path d="M4.5 1L2 2.5V5c0 1.5 1.2 2.9 2.5 3.5C6.8 7.9 8 6.5 8 5V2.5L4.5 1Z" stroke="currentColor"
-                    stroke-width="0.9" stroke-linejoin="round" />
+            <div class="cta-trust">
+              <span class="cta-trust-item">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M5.5 1L2 3v4c0 1.8 1.5 3.5 3.5 4 2-.5 3.5-2.2 3.5-4V3L5.5 1Z" stroke="currentColor"
+                    stroke-width="1.1" stroke-linejoin="round" />
                 </svg>
-                Conformidade legal
+                <span data-i18n="government.trustLegal">Conformidade legal</span>
               </span>
-              <div class="sol-trust-dot"></div>
-              <span class="sol-trust-item">
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-                  <circle cx="4.5" cy="4.5" r="3.5" stroke="currentColor" stroke-width="0.9" />
-                  <path d="M3 4.5l1.2 1.2 2.5-2.5" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" />
+              <div class="cta-trust-sep"></div>
+              <span class="cta-trust-item">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.1" />
+                  <path d="M3.5 5.5l1.5 1.5 3-3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
                 </svg>
-                Implantação sob medida
+                <span data-i18n="government.trustCustom">Implantação sob medida</span>
               </span>
-              <div class="sol-trust-dot"></div>
-              <span class="sol-trust-item">
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true">
-                  <rect x="1" y="1" width="7" height="7" rx="1" stroke="currentColor" stroke-width="0.9" />
-                  <path d="M2.5 4h4M2.5 5.5h2.5" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" />
+              <div class="cta-trust-sep"></div>
+              <span class="cta-trust-item">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <rect x="1" y="1" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.1" />
+                  <path d="M3 5h5M3 7h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
                 </svg>
-                Integração com sistemas públicos
+                <span data-i18n="government.trustIntegration">Integração com sistemas públicos</span>
               </span>
             </div>
           </div>
         </div>
 
-        <!-- Credenciais técnicas -->
-        <div class="sol-cred-bar">
-          <div class="sol-cred">
-            <span class="sol-cred-val">ICP<span>-Brasil</span></span>
-            <span class="sol-cred-label">Assinatura qualificada</span>
+        <div class="cta-stat-row">
+          <div class="cta-stat">
+            <div class="cta-stat-val">ICP<span>-Brasil</span></div>
+            <div class="cta-stat-label" data-i18n="government.statQualifiedSignature">Assinatura qualificada</div>
           </div>
-          <div class="sol-cred">
-            <span class="sol-cred-val"><span>SHA</span>-256</span>
-            <span class="sol-cred-label">Integridade criptográfica</span>
+          <div class="cta-stat">
+            <div class="cta-stat-val"><span>SHA</span>-256</div>
+            <div class="cta-stat-label" data-i18n="government.statCryptoIntegrity">Integridade criptográfica</div>
           </div>
-          <div class="sol-cred">
-            <span class="sol-cred-val">RFC<span> 3161</span></span>
-            <span class="sol-cred-label">Carimbo do tempo</span>
+          <div class="cta-stat">
+            <div class="cta-stat-val">RFC<span> 3161</span></div>
+            <div class="cta-stat-label" data-i18n="government.statTimestamp">Carimbo do tempo</div>
           </div>
         </div>
-
       </div>
     </section>
-
   </main>
 
   <!--#include virtual="/partials/footer.html" -->
   <!--#include virtual="/partials/scripts.html" -->
 
-  <!-- Reveal via IntersectionObserver — opcional, progressivo -->
+  <!-- I18N SCRIPT (não interfere no layout) -->
   <script>
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-visible');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.sol-reveal').forEach(el => io.observe(el));
-    } else {
-      document.querySelectorAll('.sol-reveal').forEach(el => el.classList.add('is-visible'));
-    }
-  </script>
+    (function () {
+      async function loadLanguage(lang) {
+        try {
+          const res = await fetch(`/assets/i18n/${lang}.json`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const t = await res.json();
 
+          document.querySelectorAll('[data-i18n]').forEach(el => {
+            const keys = el.dataset.i18n.split('.');
+            let value = t;
+            for (let k of keys) {
+              if (value && value[k] !== undefined) value = value[k];
+              else { value = undefined; break; }
+            }
+            if (value !== undefined && value !== null) {
+              if (el.children.length === 0 || (el.children.length === 1 && el.children[0].tagName === 'SPAN' && !el.children[0].hasAttribute('data-i18n'))) {
+                // Elemento sem filhos i18n internos, podemos trocar o texto
+                el.textContent = value;
+              } else {
+                // Mantém a estrutura HTML interna, apenas troca o texto dos nós de texto
+                // Isso é mais seguro para elementos que contêm <strong> etc.
+                const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+                  acceptNode: function (node) {
+                    // Ignora textos dentro de nós que têm data-i18n
+                    if (node.parentElement && node.parentElement.closest('[data-i18n]') !== el) return NodeFilter.FILTER_REJECT;
+                    if (node.parentElement && node.parentElement.hasAttribute('data-i18n')) return NodeFilter.FILTER_REJECT;
+                    return NodeFilter.FILTER_ACCEPT;
+                  }
+                });
+                let textNode;
+                while (textNode = walker.nextNode()) {
+                  if (textNode.nodeValue.trim().length > 0) {
+                    textNode.nodeValue = value;
+                    break; // assume apenas um texto principal
+                  }
+                }
+              }
+            }
+          });
+        } catch (err) {
+          console.error('Erro ao carregar idioma:', err);
+        }
+      }
+
+      let currentLang = localStorage.getItem('lang') || 'pt-br';
+      if (currentLang === 'pt' || currentLang === 'pt_BR') currentLang = 'pt-br';
+      if (currentLang === 'en') currentLang = 'en';
+      if (currentLang === 'es') currentLang = 'es';
+      loadLanguage(currentLang);
+
+      window.addEventListener('storage', function (e) {
+        if (e.key === 'lang') {
+          const newLang = e.newValue || 'pt-br';
+          loadLanguage(newLang);
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>
