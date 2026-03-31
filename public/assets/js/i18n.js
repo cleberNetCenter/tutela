@@ -118,6 +118,9 @@ const I18N = {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       this.translations = await response.json();
       console.log(`[i18n] Traduções carregadas: ${lang}.json (${Object.keys(this.translations).length} seções)`);
+
+      // Dispara evento para que outros scripts saibam que as traduções estão prontas
+      window.dispatchEvent(new CustomEvent('i18n:translationsLoaded', { detail: { lang } }));
     } catch (error) {
       console.error(`[i18n] Erro ao carregar ${lang}.json:`, error);
       if (lang !== this.fallbackLang) {
@@ -361,8 +364,8 @@ const I18N = {
     this.updateSchemaLanguage(lang);
 
     // Dispara evento para que outras partes da página reajam
+    window.dispatchEvent(new CustomEvent('i18n:translationsLoaded', { detail: { lang } }));
     window.dispatchEvent(new CustomEvent('i18n:languageChanged', { detail: { lang } }));
-
 
     console.log('[i18n] Idioma aplicado com sucesso:', lang, isSameLanguage ? '(reaplicado)' : '');
   },
