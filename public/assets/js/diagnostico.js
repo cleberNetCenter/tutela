@@ -1,4 +1,4 @@
-/* diagnostico.js — lógica de steps, validação, resultado e integração com I18N */
+/* diagnostico.js — versão final com tratamento correto de eventos i18n */
 
 const TOTAL_STEPS = 4;
 let currentStep = 1;
@@ -13,27 +13,6 @@ function getStep(n) {
   return document.querySelector(`.diag-step[data-step="${n}"]`);
 }
 
-/**
- * Verifica se as traduções do diagnóstico estão disponíveis
- */
-function isDiagnosticI18nReady() {
-  return window.I18N && 
-         window.I18N.translations && 
-         window.I18N.translations.diagnostic &&
-         window.I18N.translations.diagnostic.progressQuestion;
-}
-
-/**
- * Tradução segura com fallback imediato
- */
-function t(key, fallback) {
-  if (window.I18N && window.I18N.t) {
-    const translated = window.I18N.t(key);
-    if (translated && translated !== key) return translated;
-  }
-  return fallback;
-}
-
 function updateProgress(step) {
   const pct = Math.round((step / TOTAL_STEPS) * 100);
   const bar = document.getElementById('progressBar');
@@ -41,13 +20,20 @@ function updateProgress(step) {
 
   if (bar) bar.style.setProperty('--progress', pct + '%');
 
-  if (!label) return;
-
-  if (step < TOTAL_STEPS) {
-    const template = t('diagnostic.progressQuestion', 'Pergunta {step} de {total}');
-    label.textContent = template.replace('{step}', step).replace('{total}', TOTAL_STEPS - 1);
-  } else {
-    label.textContent = t('diagnostic.progressData', 'Seus dados');
+  if (label && window.I18N && window.I18N.translations) {
+    if (step < TOTAL_STEPS) {
+      const template = I18N.t('diagnostic.progressQuestion') || 'Pergunta {step} de {total}';
+      label.textContent = template.replace('{step}', step).replace('{total}', TOTAL_STEPS - 1);
+    } else {
+      label.textContent = I18N.t('diagnostic.progressData') || 'Seus dados';
+    }
+  } else if (label) {
+    // fallback enquanto I18N não está pronto
+    if (step < TOTAL_STEPS) {
+      label.textContent = `Pergunta ${step} de ${TOTAL_STEPS - 1}`;
+    } else {
+      label.textContent = 'Seus dados';
+    }
   }
 }
 
@@ -110,18 +96,13 @@ function verificarEstadoBotao() {
 
 /* ── Carregamento do reCAPTCHA com idioma dinâmico ── */
 
-let recaptchaLoading = false;
-
 function loadReCaptcha(lang) {
-  if (recaptchaLoading) return; // evita múltiplas tentativas simultâneas
-  recaptchaLoading = true;
-
   let hl = 'pt-BR';
   if (lang === 'en') hl = 'en';
   else if (lang === 'es') hl = 'es';
   else hl = 'pt-BR';
 
-  // Remove script existente
+  // Remove script existente, se houver
   const oldScript = document.querySelector('script[src*="recaptcha/api.js"]');
   if (oldScript) oldScript.remove();
 
@@ -129,9 +110,15 @@ function loadReCaptcha(lang) {
   script.src = `https://www.google.com/recaptcha/api.js?hl=${hl}`;
   script.async = true;
   script.defer = true;
-  script.onload = () => { recaptchaLoading = false; };
-  script.onerror = () => { recaptchaLoading = false; };
   document.head.appendChild(script);
+
+  // Aguarda o reCAPTCHA carregar para revalidar o botão
+  const checkCaptcha = setInterval(() => {
+    if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
+      clearInterval(checkCaptcha);
+      verificarEstadoBotao();
+    }
+  }, 200);
 }
 
 /* ── Renderização do resultado (usa I18N.t) ── */
@@ -144,17 +131,17 @@ function renderResultado(score) {
   else riskKey = 'high';
 
   // Obtém as strings traduzidas
-  const title = t(`diagnostic.riskLevels.${riskKey}.title`, 'Risco');
-  const description = t(`diagnostic.riskLevels.${riskKey}.description`, '');
-  const recommendation = t(`diagnostic.riskLevels.${riskKey}.recommendation`, '');
-  const recommendLabel = t('diagnostic.recommendLabel', 'Recomendação:');
+  const title = I18N.t(`diagnostic.riskLevels.${riskKey}.title`) || 'Risco';
+  const description = I18N.t(`diagnostic.riskLevels.${riskKey}.description`) || '';
+  const recommendation = I18N.t(`diagnostic.riskLevels.${riskKey}.recommendation`) || '';
+  const recommendLabel = I18N.t('diagnostic.recommendLabel') || 'Recomendação:';
 
   // CTA conforme nível
   let ctaKey = '';
   if (riskKey === 'low') ctaKey = 'resultCtaLow';
   else if (riskKey === 'moderate') ctaKey = 'resultCtaModerate';
   else if (riskKey === 'high') ctaKey = 'resultCtaHigh';
-  const ctaText = t(`diagnostic.${ctaKey}`, 'Ver estrutura jurídica');
+  const ctaText = I18N.t(`diagnostic.${ctaKey}`) || 'Ver estrutura jurídica';
 
   const resultDiv = document.getElementById('resultado');
   resultDiv.innerHTML = `
@@ -216,7 +203,7 @@ function enviar() {
     .catch(() => alert('Erro ao enviar. Tente novamente.'));
 }
 
-/* ── Atualização dinâmica quando as traduções estão prontas ── */
+/* ── Atualização dinâmica quando o idioma muda ── */
 
 function updateDynamicContent() {
   // Atualiza barra de progresso com os novos textos
@@ -227,43 +214,31 @@ function updateDynamicContent() {
     renderResultado(ultimoResultado.score);
   }
 
-  // Recarrega o reCAPTCHA com o novo idioma (somente se o container existir)
-  if (document.querySelector('.g-recaptcha')) {
-    const lang = window.I18N ? window.I18N.currentLang : 'pt';
-    loadReCaptcha(lang);
-  }
+  // Recarrega o reCAPTCHA com o novo idioma
+  const lang = window.I18N ? window.I18N.currentLang : 'pt';
+  loadReCaptcha(lang);
 }
 
 /* ── Aguarda o I18N estar pronto e escuta mudanças ── */
 
 function init() {
-  // Se já estiver pronto, atualiza imediatamente
-  if (isDiagnosticI18nReady()) {
+  // Se as traduções já estiverem carregadas, atualiza imediatamente
+  if (window.I18N && window.I18N.translations && Object.keys(window.I18N.translations).length > 0) {
     updateDynamicContent();
   } else {
-    // Aguarda o evento disparado pelo i18n.js
+    // Aguarda o evento de carregamento das traduções
     window.addEventListener('i18n:translationsLoaded', () => {
-      if (isDiagnosticI18nReady()) {
-        updateDynamicContent();
-      }
+      updateDynamicContent();
     });
-    // Fallback: se o evento não for disparado, tenta após um tempo
-    const interval = setInterval(() => {
-      if (isDiagnosticI18nReady()) {
-        clearInterval(interval);
-        updateDynamicContent();
-      }
-    }, 200);
   }
 
-  // Escuta mudanças de idioma (útil após a primeira carga)
+  // Escuta mudanças de idioma (para recarregar reCAPTCHA e textos)
   window.addEventListener('i18n:languageChanged', () => {
     updateDynamicContent();
   });
 
-  // Configura eventos do formulário
+  // Configura eventos do formulário (apenas uma vez)
   setupOptions();
-  updateProgress(1);
 
   const nome = document.getElementById('nome');
   const email = document.getElementById('email');
@@ -272,6 +247,9 @@ function init() {
   if (nome) nome.addEventListener('input', verificarEstadoBotao);
   if (email) email.addEventListener('input', verificarEstadoBotao);
   if (consent) consent.addEventListener('change', verificarEstadoBotao);
+
+  // Força a barra de progresso inicial (usando fallback até traduções)
+  updateProgress(1);
 }
 
 // Inicializa quando o DOM estiver pronto
