@@ -1,8 +1,11 @@
-/* diagnostico.js — lógica de steps, validação e resultado */
+/* diagnostico.js — versão final com tratamento correto de eventos i18n */
 
 const TOTAL_STEPS = 4;
 let currentStep = 1;
 const respostas = {};
+
+// Armazena o último resultado para re-renderização em troca de idioma
+let ultimoResultado = null;
 
 /* ── Utilitários ── */
 
@@ -14,11 +17,23 @@ function updateProgress(step) {
   const pct = Math.round((step / TOTAL_STEPS) * 100);
   const bar = document.getElementById('progressBar');
   const label = document.getElementById('progressLabel');
+
   if (bar) bar.style.setProperty('--progress', pct + '%');
-  if (label) {
-    label.textContent = step < TOTAL_STEPS
-      ? `Pergunta ${step} de ${TOTAL_STEPS - 1}`
-      : 'Seus dados';
+
+  if (label && window.I18N && window.I18N.translations) {
+    if (step < TOTAL_STEPS) {
+      const template = I18N.t('diagnostic.progressQuestion') || 'Pergunta {step} de {total}';
+      label.textContent = template.replace('{step}', step).replace('{total}', TOTAL_STEPS - 1);
+    } else {
+      label.textContent = I18N.t('diagnostic.progressData') || 'Seus dados';
+    }
+  } else if (label) {
+    // fallback enquanto I18N não está pronto
+    if (step < TOTAL_STEPS) {
+      label.textContent = `Pergunta ${step} de ${TOTAL_STEPS - 1}`;
+    } else {
+      label.textContent = 'Seus dados';
+    }
   }
 }
 
@@ -40,17 +55,14 @@ function setupOptions() {
       const value = label.dataset.value;
       const step = parseInt(label.closest('.diag-step').dataset.step);
 
-      /* desmarca os outros do mesmo grupo */
       label.closest('.diag-step-options').querySelectorAll('.diag-opt').forEach(l => l.classList.remove('selected'));
       label.classList.add('selected');
 
-      /* marca o radio internamente */
       const radio = label.querySelector('input[type="radio"]');
       if (radio) radio.checked = true;
 
       respostas[name] = parseInt(value);
 
-      /* habilita botão próximo */
       const nextBtn = label.closest('.diag-step').querySelector('.diag-next-btn');
       if (nextBtn) nextBtn.disabled = false;
     });
@@ -79,32 +91,75 @@ function verificarEstadoBotao() {
   const nome = document.getElementById('nome').value.trim();
   const email = document.getElementById('email').value.trim();
   const btn = document.getElementById('btnEnviar');
-  btn.disabled = !(nome.length >= 3 && validarEmail(email) && consent && captcha);
+  if (btn) btn.disabled = !(nome.length >= 3 && validarEmail(email) && consent && captcha);
 }
 
-/* ── Render resultado ── */
+/* ── Carregamento do reCAPTCHA com idioma dinâmico ── */
 
-function renderResultado(nivel, mensagem) {
-  const map = {
-    'Baixo risco':    { cls: 'baixo',    badge: 'Baixo risco',    cta: 'Ver como manter a estrutura' },
-    'Risco moderado': { cls: 'moderado', badge: 'Risco moderado', cta: 'Entender como mitigar riscos' },
-    'Alto risco':     { cls: 'alto',     badge: 'Alto risco',     cta: 'Ver como estruturar urgentemente' },
-  };
-  const m = map[nivel] || { cls: 'moderado', badge: nivel, cta: 'Ver estrutura jurídica' };
+function loadReCaptcha(lang) {
+  let hl = 'pt-BR';
+  if (lang === 'en') hl = 'en';
+  else if (lang === 'es') hl = 'es';
+  else hl = 'pt-BR';
 
-  document.getElementById('resultado').innerHTML = `
-    <div class="diag-resultado-card ${m.cls}">
+  // Remove script existente, se houver
+  const oldScript = document.querySelector('script[src*="recaptcha/api.js"]');
+  if (oldScript) oldScript.remove();
+
+  const script = document.createElement('script');
+  script.src = `https://www.google.com/recaptcha/api.js?hl=${hl}`;
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
+
+  // Aguarda o reCAPTCHA carregar para revalidar o botão
+  const checkCaptcha = setInterval(() => {
+    if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
+      clearInterval(checkCaptcha);
+      verificarEstadoBotao();
+    }
+  }, 200);
+}
+
+/* ── Renderização do resultado (usa I18N.t) ── */
+
+function renderResultado(score) {
+  // Mapeia score para nível
+  let riskKey = 'low';
+  if (score <= 2) riskKey = 'low';
+  else if (score <= 4) riskKey = 'moderate';
+  else riskKey = 'high';
+
+  // Obtém as strings traduzidas
+  const title = I18N.t(`diagnostic.riskLevels.${riskKey}.title`) || 'Risco';
+  const description = I18N.t(`diagnostic.riskLevels.${riskKey}.description`) || '';
+  const recommendation = I18N.t(`diagnostic.riskLevels.${riskKey}.recommendation`) || '';
+  const recommendLabel = I18N.t('diagnostic.recommendLabel') || 'Recomendação:';
+
+  // CTA conforme nível
+  let ctaKey = '';
+  if (riskKey === 'low') ctaKey = 'resultCtaLow';
+  else if (riskKey === 'moderate') ctaKey = 'resultCtaModerate';
+  else if (riskKey === 'high') ctaKey = 'resultCtaHigh';
+  const ctaText = I18N.t(`diagnostic.${ctaKey}`) || 'Ver estrutura jurídica';
+
+  const resultDiv = document.getElementById('resultado');
+  resultDiv.innerHTML = `
+    <div class="diag-resultado-card ${riskKey}">
       <div class="diag-resultado-nivel">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
           <circle cx="5" cy="5" r="4.5" stroke="currentColor" stroke-width="1.2"/>
           <circle cx="5" cy="5" r="2" fill="currentColor"/>
         </svg>
-        ${m.badge}
+        ${title}
       </div>
-      <h3 class="diag-resultado-titulo">${nivel}</h3>
-      <p class="diag-resultado-msg">${mensagem}</p>
+      <h3 class="diag-resultado-titulo">${title}</h3>
+      <p class="diag-resultado-msg">${description}</p>
+      <div class="diag-resultado-recomend">
+        <strong>${recommendLabel}</strong> ${recommendation}
+      </div>
       <a href="/ativos-digitais/estrutura-juridica" class="diag-resultado-cta">
-        ${m.cta}
+        ${ctaText}
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -112,14 +167,14 @@ function renderResultado(nivel, mensagem) {
     </div>
   `;
 
-  /* oculta o form após envio */
+  // Oculta o formulário e mostra resultado
   document.getElementById('diagSteps').style.display = 'none';
   document.getElementById('progressWrap').style.display = 'none';
-
-  document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  resultDiv.style.display = 'block';
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/* ── Envio ── */
+/* ── Envio do formulário ── */
 
 function enviar() {
   const q1 = respostas['q1'];
@@ -132,37 +187,58 @@ function enviar() {
   }
 
   const score = q1 + q2 + q3;
-  let nivel, mensagem;
-
-  if (score <= 2) {
-    nivel = 'Baixo risco';
-    mensagem = 'Seus ativos apresentam um nível inicial de organização. A estrutura existente é um bom ponto de partida — mas sempre há espaço para reforçar rastreabilidade e aptidão probatória.';
-  } else if (score <= 4) {
-    nivel = 'Risco moderado';
-    mensagem = 'Há vulnerabilidades relevantes que podem comprometer acesso, controle e comprovação dos ativos. Algumas dimensões precisam de atenção antes que a exposição aumente.';
-  } else {
-    nivel = 'Alto risco';
-    mensagem = 'Seus ativos digitais estão expostos a riscos estruturais relevantes — incluindo perda de acesso, impossibilidade de comprovação e fragilidade probatória. A estruturação deve ser prioridade.';
-  }
-
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
   const token = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
 
+  // Armazena para re-renderização em troca de idioma
+  ultimoResultado = { score };
+
   fetch('/api/diagnostico', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, email, score, nivel, token })
+    body: JSON.stringify({ nome, email, score, token })
   })
-  .then(() => renderResultado(nivel, mensagem))
-  .catch(() => alert('Erro ao enviar. Tente novamente.'));
+    .then(() => renderResultado(score))
+    .catch(() => alert('Erro ao enviar. Tente novamente.'));
 }
 
-/* ── Init ── */
+/* ── Atualização dinâmica quando o idioma muda ── */
 
-document.addEventListener('DOMContentLoaded', () => {
+function updateDynamicContent() {
+  // Atualiza barra de progresso com os novos textos
+  updateProgress(currentStep);
+
+  // Se já houver resultado exibido, re-renderiza
+  if (ultimoResultado) {
+    renderResultado(ultimoResultado.score);
+  }
+
+  // Recarrega o reCAPTCHA com o novo idioma
+  const lang = window.I18N ? window.I18N.currentLang : 'pt';
+  loadReCaptcha(lang);
+}
+
+/* ── Aguarda o I18N estar pronto e escuta mudanças ── */
+
+function init() {
+  // Se as traduções já estiverem carregadas, atualiza imediatamente
+  if (window.I18N && window.I18N.translations && Object.keys(window.I18N.translations).length > 0) {
+    updateDynamicContent();
+  } else {
+    // Aguarda o evento de carregamento das traduções
+    window.addEventListener('i18n:translationsLoaded', () => {
+      updateDynamicContent();
+    });
+  }
+
+  // Escuta mudanças de idioma (para recarregar reCAPTCHA e textos)
+  window.addEventListener('i18n:languageChanged', () => {
+    updateDynamicContent();
+  });
+
+  // Configura eventos do formulário (apenas uma vez)
   setupOptions();
-  updateProgress(1);
 
   const nome = document.getElementById('nome');
   const email = document.getElementById('email');
@@ -171,4 +247,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (nome) nome.addEventListener('input', verificarEstadoBotao);
   if (email) email.addEventListener('input', verificarEstadoBotao);
   if (consent) consent.addEventListener('change', verificarEstadoBotao);
-});
+
+  // Força a barra de progresso inicial (usando fallback até traduções)
+  updateProgress(1);
+}
+
+// Inicializa quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', init);

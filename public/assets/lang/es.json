@@ -608,5 +608,73 @@
         "cta": "Descubra cómo implementar este enfoque"
       }
     }
+  },
+  "diagnostic": {
+    "metaTitle": "Diagnóstico de Activos Digitales: evalúe su nivel de riesgo | Tutela Digital®",
+    "metaDescription": "Descubra su nivel de riesgo en activos digitales. Evalúe gobernanza, acceso, trazabilidad e identifique vulnerabilidades jurídicas y operativas.",
+    "heroEyebrow": "Diagnóstico gratuito",
+    "heroTitle": "¿Cuál es el nivel de riesgo<br>de sus activos digitales?",
+    "heroSub": "Evalúe gobernanza, acceso y trazabilidad en menos de 2 minutos e identifique vulnerabilidades antes de que se vuelvan irreversibles.",
+    "statDimensions": "dimensiones evaluadas",
+    "statMinutes": "minutos",
+    "statConfidential": "confidencial",
+    "progressDefault": "Pregunta 1 de 3",
+    "progressQuestion": "Pregunta {step} de {total}",
+    "progressData": "Sus datos",
+    "q1Text": "¿Tiene un inventario estructurado de sus activos digitales?",
+    "q1Hint": "Considere cualquier forma de mapeo — hoja de cálculo, documento o sistema.",
+    "q1Opt0": "Sí, tengo inventario completo",
+    "q1Opt1": "Parcial — algunos activos mapeados",
+    "q1Opt2": "No, ningún mapeo",
+    "q2Text": "¿Existe control de acceso y recuperación de estos activos?",
+    "q2Hint": "Credenciales documentadas, protocolos de contingencia o acceso compartido de forma segura.",
+    "q2Opt0": "Sí, acceso documentado y controlado",
+    "q2Opt1": "Parcial — depende de una sola persona",
+    "q2Opt2": "No, sin control de acceso",
+    "q3Text": "¿Sus activos tienen trazabilidad o historial verificable?",
+    "q3Hint": "Pista de auditoría, registros de eventos, sello de tiempo o integridad criptográfica.",
+    "q3Opt0": "Sí, historial auditable y verificable",
+    "q3Opt1": "Parcial — registros incompletos",
+    "q3Opt2": "No, sin trazabilidad",
+    "nextBtn": "Siguiente",
+    "backBtn": "Volver",
+    "continueBtn": "Continuar",
+    "step4Title": "Casi listo — informe sus datos para recibir el resultado",
+    "step4Hint": "Sus datos se utilizan exclusivamente para enviar el diagnóstico. No se comparten con terceros.",
+    "fieldName": "Nombre completo",
+    "fieldNamePlaceholder": "Ej: Juan Pérez",
+    "fieldEmail": "Correo electrónico",
+    "fieldEmailPlaceholder": "Ej: juan@empresa.com",
+    "consentText": "Acepto la política de privacidad",
+    "submitBtn": "Evaluar mi nivel de riesgo",
+    "postTitle": "Después del diagnóstico",
+    "postDesc": "Con base en el resultado, identifica los puntos críticos y entiende qué medidas garantizan control, acceso y validez de sus activos.",
+    "postLink": "Entender cómo estructurar sus activos digitales",
+    "resultCtaLow": "Ver cómo mantener la estructura",
+    "resultCtaModerate": "Entender cómo mitigar riesgos",
+    "resultCtaHigh": "Ver cómo estructurar urgentemente",
+    "recommendLabel": "Recomendación:",
+    "riskLevels": {
+      "low": {
+        "title": "Riesgo bajo",
+        "description": "Sus activos digitales tienen una buena estructura de gobernanza, acceso y trazabilidad. Se recomienda revisión periódica para mantener la madurez.",
+        "recommendation": "Mantenga su inventario actualizado y revise los controles de acceso anualmente."
+      },
+      "moderate": {
+        "title": "Riesgo moderado",
+        "description": "Hay brechas en al menos una de las tres dimensiones evaluadas (inventario, acceso o trazabilidad). Las vulnerabilidades pueden volverse críticas a corto plazo.",
+        "recommendation": "Sugerimos implementar un inventario estructurado y documentar los protocolos de acceso y recuperación."
+      },
+      "high": {
+        "title": "Riesgo alto",
+        "description": "Debilidades significativas en gobernanza, acceso o trazabilidad. La probabilidad de pérdida, disputa o inadmisibilidad probatoria es elevada.",
+        "recommendation": "Recomendamos una evaluación técnica detallada e implementación de controles de integridad y cadena de custodia."
+      },
+      "critical": {
+        "title": "Riesgo crítico",
+        "description": "Ausencia de estructura mínima de gobernanza. Los activos pueden considerarse jurídicamente inexistentes o irrecuperables.",
+        "recommendation": "Intervención urgente necesaria. Consulte a especialistas en gobernanza de activos digitales."
+      }
+    }
   }
 }

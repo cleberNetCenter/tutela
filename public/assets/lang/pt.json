@@ -653,5 +653,73 @@
         "cta": "Conheça como implementar essa abordagem na prática"
       }
     }
+  },
+  "diagnostic": {
+    "metaTitle": "Diagnóstico de Ativos Digitais: avalie seu nível de risco | Tutela Digital®",
+    "metaDescription": "Descubra seu nível de risco em ativos digitais. Avalie governança, acesso, rastreabilidade e identifique vulnerabilidades jurídicas e operacionais.",
+    "heroEyebrow": "Diagnóstico gratuito",
+    "heroTitle": "Qual é o nível de risco<br>dos seus ativos digitais?",
+    "heroSub": "Avalie governança, acesso e rastreabilidade em menos de 2 minutos e identifique vulnerabilidades antes que se tornem irreversíveis.",
+    "statDimensions": "dimensões avaliadas",
+    "statMinutes": "minutos",
+    "statConfidential": "confidencial",
+    "progressDefault": "Pergunta 1 de 3",
+    "progressQuestion": "Pergunta {step} de {total}",
+    "progressData": "Seus dados",
+    "q1Text": "Você possui inventário estruturado dos seus ativos digitais?",
+    "q1Hint": "Considere qualquer forma de mapeamento — planilha, documento ou sistema.",
+    "q1Opt0": "Sim, tenho inventário completo",
+    "q1Opt1": "Parcial — alguns ativos mapeados",
+    "q1Opt2": "Não, nenhum mapeamento",
+    "q2Text": "Existe controle de acesso e recuperação desses ativos?",
+    "q2Hint": "Credenciais documentadas, protocolos de contingência ou acesso compartilhado de forma segura.",
+    "q2Opt0": "Sim, acesso documentado e controlado",
+    "q2Opt1": "Parcial — depende de uma única pessoa",
+    "q2Opt2": "Não, sem controle de acesso",
+    "q3Text": "Seus ativos possuem rastreabilidade ou histórico verificável?",
+    "q3Hint": "Trilha auditável, registros de eventos, carimbo do tempo ou integridade criptográfica.",
+    "q3Opt0": "Sim, histórico auditável e verificável",
+    "q3Opt1": "Parcial — registros incompletos",
+    "q3Opt2": "Não, sem rastreabilidade",
+    "nextBtn": "Próxima",
+    "backBtn": "Voltar",
+    "continueBtn": "Continuar",
+    "step4Title": "Quase lá — informe seus dados para receber o resultado",
+    "step4Hint": "Seus dados são usados exclusivamente para envio do diagnóstico. Nenhum dado é compartilhado com terceiros.",
+    "fieldName": "Nome completo",
+    "fieldNamePlaceholder": "Ex: João Silva",
+    "fieldEmail": "E-mail",
+    "fieldEmailPlaceholder": "Ex: joao@empresa.com.br",
+    "consentText": "Aceito a política de privacidade",
+    "submitBtn": "Avaliar meu nível de risco",
+    "postTitle": "Após o diagnóstico",
+    "postDesc": "Com base no resultado, você identifica os pontos críticos e entende quais medidas garantem controle, acesso e validade dos seus ativos.",
+    "postLink": "Entender como estruturar seus ativos digitais",
+    "resultCtaLow": "Ver como manter a estrutura",
+    "resultCtaModerate": "Entender como mitigar riscos",
+    "resultCtaHigh": "Ver como estruturar urgentemente",
+    "recommendLabel": "Recomendação:",
+    "riskLevels": {
+      "low": {
+        "title": "Baixo risco",
+        "description": "Seus ativos apresentam um nível inicial de organização. A estrutura existente é um bom ponto de partida — mas sempre há espaço para reforçar rastreabilidade e aptidão probatória.",
+        "recommendation": "Mantenha seu inventário atualizado e revise os controles de acesso anualmente."
+      },
+      "moderate": {
+        "title": "Risco moderado",
+        "description": "Há vulnerabilidades relevantes que podem comprometer acesso, controle e comprovação dos ativos. Algumas dimensões precisam de atenção antes que a exposição aumente.",
+        "recommendation": "Sugerimos implementar um inventário estruturado e documentar os protocolos de acesso e recuperação."
+      },
+      "high": {
+        "title": "Alto risco",
+        "description": "Seus ativos digitais estão expostos a riscos estruturais relevantes — incluindo perda de acesso, impossibilidade de comprovação e fragilidade probatória. A estruturação deve ser prioridade.",
+        "recommendation": "Recomendamos uma avaliação técnica detalhada e implementação de controles de integridade e cadeia de custódia."
+      },
+      "critical": {
+        "title": "Risco crítico",
+        "description": "Ausência de estrutura mínima de governança. Ativos podem ser considerados inexistentes juridicamente ou irrecuperáveis.",
+        "recommendation": "Intervenção urgente necessária. Consulte especialistas em governança de ativos digitais."
+      }
+    }
   }
 }

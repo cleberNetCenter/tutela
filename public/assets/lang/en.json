@@ -608,5 +608,73 @@
         "cta": "Learn how to implement this approach in practice"
       }
     }
+  },
+  "diagnostic": {
+    "metaTitle": "Digital Asset Risk Assessment | Tutela Digital®",
+    "metaDescription": "Discover your risk level in digital assets. Evaluate governance, access, traceability and identify legal and operational vulnerabilities.",
+    "heroEyebrow": "Free assessment",
+    "heroTitle": "What is the risk level<br>of your digital assets?",
+    "heroSub": "Evaluate governance, access and traceability in less than 2 minutes and identify vulnerabilities before they become irreversible.",
+    "statDimensions": "dimensions evaluated",
+    "statMinutes": "minutes",
+    "statConfidential": "confidential",
+    "progressDefault": "Question 1 of 3",
+    "progressQuestion": "Question {step} of {total}",
+    "progressData": "Your data",
+    "q1Text": "Do you have a structured inventory of your digital assets?",
+    "q1Hint": "Consider any form of mapping — spreadsheet, document or system.",
+    "q1Opt0": "Yes, I have a complete inventory",
+    "q1Opt1": "Partial — some assets mapped",
+    "q1Opt2": "No, no mapping",
+    "q2Text": "Is there access control and recovery for these assets?",
+    "q2Hint": "Documented credentials, contingency protocols or securely shared access.",
+    "q2Opt0": "Yes, documented and controlled access",
+    "q2Opt1": "Partial — depends on a single person",
+    "q2Opt2": "No, no access control",
+    "q3Text": "Do your assets have traceability or verifiable history?",
+    "q3Hint": "Audit trail, event logs, timestamp or cryptographic integrity.",
+    "q3Opt0": "Yes, auditable and verifiable history",
+    "q3Opt1": "Partial — incomplete records",
+    "q3Opt2": "No, no traceability",
+    "nextBtn": "Next",
+    "backBtn": "Back",
+    "continueBtn": "Continue",
+    "step4Title": "Almost there — provide your details to receive the result",
+    "step4Hint": "Your data is used exclusively to send the diagnosis. No data is shared with third parties.",
+    "fieldName": "Full name",
+    "fieldNamePlaceholder": "e.g., John Smith",
+    "fieldEmail": "Email",
+    "fieldEmailPlaceholder": "e.g., john@company.com",
+    "consentText": "I accept the privacy policy",
+    "submitBtn": "Assess my risk level",
+    "postTitle": "After the diagnosis",
+    "postDesc": "Based on the result, you identify critical points and understand which measures guarantee control, access and validity of your assets.",
+    "postLink": "Learn how to structure your digital assets",
+    "resultCtaLow": "See how to maintain the structure",
+    "resultCtaModerate": "Understand how to mitigate risks",
+    "resultCtaHigh": "See how to structure urgently",
+    "recommendLabel": "Recommendation:",
+    "riskLevels": {
+      "low": {
+        "title": "Low risk",
+        "description": "Your digital assets have a good governance, access and traceability structure. Periodic review is recommended to maintain maturity.",
+        "recommendation": "Keep your inventory updated and review access controls annually."
+      },
+      "moderate": {
+        "title": "Moderate risk",
+        "description": "There are gaps in at least one of the three evaluated dimensions (inventory, access or traceability). Vulnerabilities may become critical in the short term.",
+        "recommendation": "We suggest implementing a structured inventory and documenting access and recovery protocols."
+      },
+      "high": {
+        "title": "High risk",
+        "description": "Significant weaknesses in governance, access or traceability. The likelihood of loss, dispute or evidentiary inadmissibility is high.",
+        "recommendation": "We recommend a detailed technical assessment and implementation of integrity and chain of custody controls."
+      },
+      "critical": {
+        "title": "Critical risk",
+        "description": "Absence of minimum governance structure. Assets may be considered legally non-existent or unrecoverable.",
+        "recommendation": "Urgent intervention required. Consult digital asset governance specialists."
+      }
+    }
   }
 }
