@@ -4,182 +4,622 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO PRESERVADO -->
   <title>Ativos Digitais Governamentais | Tutela Digital®</title>
   <meta name="description"
-    content="Governança, rastreabilidade e integridade probatória para ativos digitais no setor público." />
+    content="Governança, rastreabilidade e integridade probatória para ativos digitais no setor público. Conformidade com LGPD, LAI, Lei de Improbidade e ICP-Brasil." />
+  <meta name="last-modified" content="2026-03-30" />
   <link rel="canonical" href="https://tuteladigital.com.br/governo.html" />
   <link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml" />
 
-  <!-- CSS ORIGINAL PRESERVADO -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://tuteladigital.com.br/governo.html" />
+  <meta property="og:title" content="Ativos Digitais Governamentais | Tutela Digital®" />
+  <meta property="og:description"
+    content="Governança, rastreabilidade e integridade probatória para ativos digitais no setor público. Conformidade com LGPD, LAI, Lei de Improbidade e ICP-Brasil." />
+  <meta property="og:site_name" content="Tutela Digital®" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://tuteladigital.com.br/governo.html" />
+  <meta property="twitter:title" content="Ativos Digitais Governamentais | Tutela Digital®" />
+  <meta property="twitter:description"
+    content="Governança, rastreabilidade e integridade probatória para ativos digitais no setor público. Conformidade com LGPD, LAI, Lei de Improbidade e ICP-Brasil." />
+
   <link rel="stylesheet" href="assets/css/main.css?v=4" />
   <link rel="stylesheet" href="assets/css/styles-header-final.css?v=4" />
-  <link rel="stylesheet" href="assets/css/pages/solucoes.css?v=1" />
+  <link rel="stylesheet" href="assets/css/assets-digital.css?v=2" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KXVB267PYJ');
+  </script>
 </head>
 
-<body class="solucoes-page governo-page">
+<body class="assets-page governo-page">
 
-  <!-- HEADER ORIGINAL -->
   <!--#include virtual="/partials/header.html" -->
 
   <main>
 
-    <!-- HERO (estrutura ORIGINAL preservada) -->
-    <section class="sol-hero">
-      <div class="sol-watermark" aria-hidden="true"><span>GOV</span></div>
-      <div class="sol-hero-rule" aria-hidden="true"></div>
-
-      <div class="container">
-        <p class="sol-hero-eyebrow" data-i18n="government.heroEyebrow"></p>
-
-        <h1 class="sol-fade-up">
-          <span data-i18n="government.heroTitle"></span>
-        </h1>
-
-        <p class="sol-hero-subtitle sol-fade-up d1" data-i18n="government.heroSubtitle"></p>
-
-        <!-- BADGES PRESERVADOS (não i18n para não quebrar layout SVG) -->
-        <div class="sol-hero-badges sol-fade-up d2">
-          <span class="sol-badge">Base constitucional e legal</span>
-          <span class="sol-badge">ICP-Brasil</span>
-          <span class="sol-badge">LGPD · LAI</span>
+    <!-- ══════════════════════════════════════════
+         1. HERO
+    ══════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="hero-eyebrow" data-i18n="government.heroEyebrow"></p>
+        <h1 data-i18n="government.heroTitle"></h1>
+        <p class="hero-subtitle" data-i18n="government.heroSubtitle"></p>
+        <div class="hero-rule">
+          <span class="hero-stat">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <circle cx="6.5" cy="6.5" r="5.5" stroke="white" stroke-width="1.2" />
+              <path d="M6.5 3.5v3l2 1.5" stroke="white" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+            <span data-i18n="global.readingTime">Leitura: ~7 min</span>
+          </span>
+          <span class="hero-stat">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <rect x="1.5" y="1.5" width="10" height="10" rx="2" stroke="white" stroke-width="1.2" />
+              <path d="M4 5h5M4 7.5h3" stroke="white" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+            <span data-i18n="government.heroBadge1">Base constitucional e legal</span>
+          </span>
+          <span class="hero-stat">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <path d="M6.5 1L2 3.5V7c0 2.5 2 4.5 4.5 5 2.5-.5 4.5-2.5 4.5-5V3.5L6.5 1Z" stroke="white"
+                stroke-width="1.2" stroke-linejoin="round" />
+            </svg>
+            <span data-i18n="government.heroBadge2">ICP-Brasil | LGPD | LAI</span>
+          </span>
         </div>
       </div>
     </section>
 
-    <!-- INTRO (estrutura preservada) -->
-    <section class="sol-intro">
+    <!-- ══════════════════════════════════════════
+         2. INTRO
+    ══════════════════════════════════════════ -->
+    <section>
       <div class="container">
-        <div class="sol-intro-grid">
-
-          <div class="sol-intro-lead">
+        <div class="intro-split">
+          <div class="lead-text">
             <h2 data-i18n="government.introTitle"></h2>
             <p data-i18n="government.introP1"></p>
             <p data-i18n="government.introP2"></p>
           </div>
-
-          <aside class="sol-aside">
-            <p class="sol-aside-label" data-i18n="government.asideLabel"></p>
+          <aside class="intro-aside">
+            <p class="aside-label" data-i18n="government.asideLabel"></p>
             <p data-i18n="government.asideContent"></p>
+            <a href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank"
+              rel="noopener noreferrer">
+              <span data-i18n="government.asideLink">CF/88, art. 37</span>
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                <path d="M3 6.5h7M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
           </aside>
-
         </div>
       </div>
     </section>
 
-    <div class="sol-divider"></div>
+    <div class="section-divider" role="separator"></div>
 
-    <!-- CONTRASTE (estrutura visual preservada) -->
-    <section class="sol-contraste">
-      <div class="container">
-
+    <!-- ══════════════════════════════════════════
+         3. DESAFIO — SEM ESTRUTURA VS COM GOVERNANÇA
+    ══════════════════════════════════════════ -->
+    <section class="desafio-section">
+      <div class="container desafio-inner">
         <h2 data-i18n="government.desafioTitle"></h2>
-        <p data-i18n="government.desafioLead"></p>
+        <p class="desafio-lead" data-i18n="government.desafioLead"></p>
 
-        <div class="sol-contraste-grid">
-
-          <div class="sol-col sol-col-neg">
-            <p class="sol-col-label" data-i18n="government.semEstruturaLabel"></p>
-
-            <p data-i18n="government.sem1"></p>
-            <p data-i18n="government.sem2"></p>
-            <p data-i18n="government.sem3"></p>
+        <div class="desafio-grid">
+          <div class="desafio-col sem-estrutura">
+            <p class="desafio-col-label" data-i18n="government.semEstruturaLabel"></p>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M3 3l6 6M9 3L3 9" stroke="rgba(255,255,255,.3)" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.sem1"></p>
+            </div>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M3 3l6 6M9 3L3 9" stroke="rgba(255,255,255,.3)" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.sem2"></p>
+            </div>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M3 3l6 6M9 3L3 9" stroke="rgba(255,255,255,.3)" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.sem3"></p>
+            </div>
           </div>
 
-          <div class="sol-col sol-col-pos">
-            <p class="sol-col-label" data-i18n="government.comEstruturaLabel"></p>
-
-            <p data-i18n="government.com1"></p>
-            <p data-i18n="government.com2"></p>
-            <p data-i18n="government.com3"></p>
+          <div class="desafio-arrow" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M8 16h16M20 10l6 6-6 6" stroke="rgba(255,255,255,.25)" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
           </div>
 
+          <div class="desafio-col com-estrutura">
+            <p class="desafio-col-label" data-i18n="government.comEstruturaLabel"></p>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6l3 3 4.5-4.5" stroke="#1db954" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.com1"></p>
+            </div>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6l3 3 4.5-4.5" stroke="#1db954" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.com2"></p>
+            </div>
+            <div class="desafio-item">
+              <div class="desafio-dot">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6l3 3 4.5-4.5" stroke="#1db954" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <p data-i18n="government.com3"></p>
+            </div>
+          </div>
         </div>
 
+        <a href="https://app.tuteladigital.com.br/" class="desafio-link" target="_blank" rel="noopener noreferrer">
+          <span data-i18n="government.demoLink">Solicitar demonstração para órgãos públicos</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
       </div>
     </section>
 
-    <div class="sol-divider"></div>
+    <div class="section-divider" role="separator"></div>
 
-    <!-- BENEFÍCIOS -->
-    <section class="sol-beneficios">
+    <!-- ══════════════════════════════════════════
+         4. BASE NORMATIVA (cards com SVG)
+    ══════════════════════════════════════════ -->
+    <section>
       <div class="container">
-
-        <h2 data-i18n="government.whatChangesTitle"></h2>
-        <p data-i18n="government.whatChangesLead"></p>
-
-        <ul class="sol-checklist">
-          <li data-i18n="government.check1"></li>
-          <li data-i18n="government.check2"></li>
-          <li data-i18n="government.check3"></li>
-          <li data-i18n="government.check4"></li>
-        </ul>
-
+        <h2 data-i18n="government.normativeTitle"></h2>
+        <div class="tipos-grid">
+          <div class="tipo-card">
+            <div class="tipo-icon">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <path d="M4 4h18v18H4z" stroke="#0a2218" stroke-width="1.6" />
+                <path d="M9 12h8M9 16h5" stroke="#2db560" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <p class="tipo-tag" data-i18n="government.normativeCard1Tag">Lei 12.527/2011</p>
+            <h3 data-i18n="government.normativeCard1Title">Lei de Acesso à Informação</h3>
+            <p data-i18n="government.normativeCard1Desc">Exige transparência ativa e passiva, com registros acessíveis e
+              auditáveis. A falta de rastreabilidade pode configurar violação administrativa.</p>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm" target="_blank"
+              class="link-arrow"><span data-i18n="government.normativeCard1Link">Referência completa →</span></a>
+          </div>
+          <div class="tipo-card">
+            <div class="tipo-icon">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <circle cx="13" cy="13" r="9" stroke="#0a2218" stroke-width="1.6" />
+                <path d="M9 13l3 3 5-6" stroke="#2db560" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <p class="tipo-tag" data-i18n="government.normativeCard2Tag">Lei 13.709/2018</p>
+            <h3 data-i18n="government.normativeCard2Title">LGPD</h3>
+            <p data-i18n="government.normativeCard2Desc">Obriga o controle de dados pessoais com registros de operações,
+              segurança e capacidade de comprovação de consentimento e eliminação.</p>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank"
+              class="link-arrow"><span data-i18n="government.normativeCard2Link">Referência completa →</span></a>
+          </div>
+          <div class="tipo-card">
+            <div class="tipo-icon">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <path d="M5 5l16 16M21 5L5 21" stroke="#0a2218" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M13 7v12M7 13h12" stroke="#2db560" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <p class="tipo-tag" data-i18n="government.normativeCard3Tag">Lei 8.429/1992</p>
+            <h3 data-i18n="government.normativeCard3Title">Lei de Improbidade</h3>
+            <p data-i18n="government.normativeCard3Desc">A ausência de integridade e rastreabilidade em ativos digitais
+              pode caracterizar irregularidade administrativa e, nas hipóteses de dolo comprovado, configurar
+              improbidade administrativa nos termos do art. 11 da Lei 8.429/1992 (com redação da Lei 11.650/2021).</p>
+            <a href="https://www.planalto.gov.br/ccivil_03/leis/l8429.htm" target="_blank" class="link-arrow"><span
+                data-i18n="government.normativeCard3Link">Referência completa →</span></a>
+          </div>
+          <div class="tipo-card">
+            <div class="tipo-icon">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <rect x="3" y="5" width="20" height="16" rx="2" stroke="#0a2218" stroke-width="1.6" />
+                <circle cx="13" cy="13" r="3" stroke="#2db560" stroke-width="1.5" />
+              </svg>
+            </div>
+            <p class="tipo-tag" data-i18n="government.normativeCard4Tag">Decreto 10.278/2020</p>
+            <h3 data-i18n="government.normativeCard4Title">Integridade de documentos digitais</h3>
+            <p data-i18n="government.normativeCard4Desc">Estabelece requisitos para preservação de documentos digitais
+              oficiais, incluindo hashes, marcas temporais e cadeia de custódia.</p>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/decreto/d10278.htm" target="_blank"
+              class="link-arrow"><span data-i18n="government.normativeCard4Link">Referência completa →</span></a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <div class="sol-divider"></div>
+    <div class="section-divider" role="separator"></div>
 
-    <!-- CASOS DE USO -->
-    <section class="sol-impacto">
+    <!-- ══════════════════════════════════════════
+         5. O QUE A TUTELA DIGITAL ENTREGA AO GOVERNO
+    ══════════════════════════════════════════ -->
+    <section class="muda-section">
       <div class="container">
+        <div class="muda-layout">
+          <div>
+            <h2 data-i18n="government.whatChangesTitle"></h2>
+            <p data-i18n="government.whatChangesLead"></p>
 
-        <h2 data-i18n="government.useCasesTitle2"></h2>
-        <p data-i18n="government.useCasesLead"></p>
+            <ul class="checklist-premium">
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p data-i18n="government.check1"></p>
+              </li>
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p data-i18n="government.check2"></p>
+              </li>
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p data-i18n="government.check3"></p>
+              </li>
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p data-i18n="government.check4"></p>
+              </li>
+            </ul>
 
-        <ul class="sol-checklist">
-          <li><strong data-i18n="government.useCase1Title"></strong> <span data-i18n="government.useCase1Desc"></span>
-          </li>
-          <li><strong data-i18n="government.useCase2Title"></strong> <span data-i18n="government.useCase2Desc"></span>
-          </li>
-          <li><strong data-i18n="government.useCase3Title"></strong> <span data-i18n="government.useCase3Desc"></span>
-          </li>
-          <li><strong data-i18n="government.useCase4Title"></strong> <span data-i18n="government.useCase4Desc"></span>
-          </li>
-        </ul>
+            <p>
+              <a href="https://app.tuteladigital.com.br/" class="link-arrow" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="government.knowPlatformLink">Conhecer a plataforma</span>
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                  <path d="M3 6.5h7M7 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </a>
+            </p>
+          </div>
 
-        <p data-i18n="government.useCaseDisclaimer"></p>
-
+          <aside class="muda-aside">
+            <p class="muda-aside-label">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 1L2 3.5V7c0 2.2 1.8 4.2 4 4.5 2.2-.3 4-2.3 4-4.5V3.5L6 1Z" stroke="#a8d9b8"
+                  stroke-width="1.2" stroke-linejoin="round" />
+              </svg>
+              <span data-i18n="government.mechanismsLabel">Mecanismos técnicos aplicados</span>
+            </p>
+            <h3 data-i18n="government.mechanismsTitle">Conformidade com ICP-Brasil e padrões internacionais</h3>
+            <p data-i18n="government.mechanismsDesc">A plataforma utiliza assinatura eletrônica qualificada
+              (ICP-Brasil), hash SHA-256, carimbo do tempo conforme RFC 3161 e logs imutáveis. Todos os registros
+              atendem aos requisitos técnicos exigidos para produção de prova digital perante tribunais e órgãos de
+              controle, conforme CPC, art. 422-A, e Decreto 10.278/2020. A admissibilidade é apreciada pelo juízo
+              competente no caso concreto.</p>
+            <div class="mecanismos-pills">
+              <span class="pill">ICP-Brasil</span>
+              <span class="pill">SHA-256</span>
+              <span class="pill">RFC 3161</span>
+              <span class="pill">Cadeia de Custódia</span>
+              <span class="pill">Logs Auditáveis</span>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <div class="sol-divider"></div>
+    <div class="section-divider" role="separator"></div>
 
-    <!-- CTA FINAL -->
-    <section class="sol-cta">
+    <!-- ══════════════════════════════════════════
+         6. CASOS DE USO CONCRETOS
+    ══════════════════════════════════════════ -->
+    <section class="contexto-section">
       <div class="container">
+        <div class="contexto-inner">
+          <div>
+            <h2 data-i18n="government.useCasesTitle2"></h2>
+            <p data-i18n="government.useCasesLead"></p>
+            <ul class="checklist-premium" style="margin-top: 1.5rem;">
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p><strong data-i18n="government.useCase1Title"></strong> <span
+                    data-i18n="government.useCase1Desc"></span></p>
+              </li>
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p><strong data-i18n="government.useCase2Title"></strong> <span
+                    data-i18n="government.useCase2Desc"></span></p>
+              </li>
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p><strong data-i18n="government.useCase3Title"></strong> <span
+                    data-i18n="government.useCase3Desc"></span></p>
+              </li>
+              <li class="check-item">
+                <div class="check-badge">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2.5 7l3 3 6-6" stroke="#1db954" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p><strong data-i18n="government.useCase4Title"></strong> <span
+                    data-i18n="government.useCase4Desc"></span></p>
+              </li>
+            </ul>
 
-        <h2 data-i18n="government.ctaSubtitle"></h2>
+            <p class="sol-disclaimer" style="margin-top:1.5rem; font-size:0.85rem; opacity:0.7; line-height:1.6;"
+              data-i18n="government.useCaseDisclaimer"></p>
+          </div>
 
-        <a href="/diagnostico.html" class="sol-btn-primary" data-i18n="global.ctaPrimary"></a>
-
+          <div class="contexto-visual">
+            <div class="impacto-bar fade-up">
+              <div class="impacto-bar-icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <rect x="2" y="6" width="18" height="13" rx="2" stroke="#0a2218" stroke-width="1.5" />
+                  <path d="M6 6V5a5 5 0 0110 0v1" stroke="#2db560" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </div>
+              <div>
+                <h4 data-i18n="government.impactoBar1Title">Transparência ativa</h4>
+                <p data-i18n="government.impactoBar1Desc">Atendimento automático à LAI com registros públicos auditáveis
+                </p>
+              </div>
+            </div>
+            <div class="impacto-bar fade-up">
+              <div class="impacto-bar-icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <circle cx="11" cy="8" r="4" stroke="#0a2218" stroke-width="1.5" />
+                  <path d="M4 20c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#2db560" stroke-width="1.5"
+                    stroke-linecap="round" />
+                </svg>
+              </div>
+              <div>
+                <h4 data-i18n="government.impactoBar2Title">Proteção de dados</h4>
+                <p data-i18n="government.impactoBar2Desc">Registros de operações e comprovação de conformidade LGPD</p>
+              </div>
+            </div>
+            <div class="impacto-bar fade-up">
+              <div class="impacto-bar-icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M11 2L3 6v7c0 4.5 3.5 8.7 8 10 4.5-1.3 8-5.5 8-10V6L11 2Z" stroke="#0a2218"
+                    stroke-width="1.5" stroke-linejoin="round" />
+                  <path d="M8 11l2 2 4-4" stroke="#2db560" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <h4 data-i18n="government.impactoBar3Title">Aptidão probatória</h4>
+                <p data-i18n="government.impactoBar3Desc">Registros que atendem aos requisitos técnicos para produção de
+                  prova digital</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- ══════════════════════════════════════════
+         7. CTA FINAL
+    ══════════════════════════════════════════ -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-eyebrow">
+          <div class="cta-eyebrow-dot"></div>
+          <span data-i18n="government.ctaEyebrow">Governo e setor público</span>
+        </div>
+        <h2 data-i18n="government.ctaTitle">Transforme seus ativos digitais em<br><em>controle, transparência e
+            segurança jurídica</em></h2>
+        <p data-i18n="government.ctaDesc">Solicite uma apresentação institucional para sua equipe técnica e jurídica.
+          Vamos diagnosticar a maturidade de governança de ativos digitais na sua instituição, mapear riscos e lacunas
+          normativas, e apresentar uma proposta personalizada de implantação da plataforma.</p>
+
+        <div class="cta-card">
+          <ul class="cta-checklist">
+            <li>
+              <div class="cta-check-icon">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 5l2.5 2.5 4-4" stroke="#3ecf72" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span data-i18n="government.ctaCheck1">Diagnóstico de maturidade em governança de ativos digitais</span>
+            </li>
+            <li>
+              <div class="cta-check-icon">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 5l2.5 2.5 4-4" stroke="#3ecf72" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span data-i18n="government.ctaCheck2">Mapeamento de riscos e lacunas normativas</span>
+            </li>
+            <li>
+              <div class="cta-check-icon">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 5l2.5 2.5 4-4" stroke="#3ecf72" stroke-width="1.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <span data-i18n="government.ctaCheck3">Proposta técnica e jurídica personalizada</span>
+            </li>
+          </ul>
+
+          <div class="cta-divider"></div>
+
+          <div>
+            <a href="https://app.tuteladigital.com.br/" class="btn-cta" target="_blank" rel="noopener noreferrer">
+              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true">
+                <path d="M3 8.5h11M9.5 4.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span data-i18n="government.ctaButton">Solicitar demonstração</span>
+            </a>
+            <div class="cta-trust">
+              <span class="cta-trust-item">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M5.5 1L2 3v4c0 1.8 1.5 3.5 3.5 4 2-.5 3.5-2.2 3.5-4V3L5.5 1Z" stroke="currentColor"
+                    stroke-width="1.1" stroke-linejoin="round" />
+                </svg>
+                <span data-i18n="government.trustLegal">Conformidade legal</span>
+              </span>
+              <div class="cta-trust-sep"></div>
+              <span class="cta-trust-item">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.1" />
+                  <path d="M3.5 5.5l1.5 1.5 3-3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
+                </svg>
+                <span data-i18n="government.trustCustom">Implantação sob medida</span>
+              </span>
+              <div class="cta-trust-sep"></div>
+              <span class="cta-trust-item">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <rect x="1" y="1" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.1" />
+                  <path d="M3 5h5M3 7h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
+                </svg>
+                <span data-i18n="government.trustIntegration">Integração com sistemas públicos</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-stat-row">
+          <div class="cta-stat">
+            <div class="cta-stat-val">ICP<span>-Brasil</span></div>
+            <div class="cta-stat-label" data-i18n="government.statQualifiedSignature">Assinatura qualificada</div>
+          </div>
+          <div class="cta-stat">
+            <div class="cta-stat-val"><span>SHA</span>-256</div>
+            <div class="cta-stat-label" data-i18n="government.statCryptoIntegrity">Integridade criptográfica</div>
+          </div>
+          <div class="cta-stat">
+            <div class="cta-stat-val">RFC<span> 3161</span></div>
+            <div class="cta-stat-label" data-i18n="government.statTimestamp">Carimbo do tempo</div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- FOOTER ORIGINAL -->
   <!--#include virtual="/partials/footer.html" -->
   <!--#include virtual="/partials/scripts.html" -->
 
   <!-- I18N SCRIPT (não interfere no layout) -->
   <script>
-    async function loadLanguage(lang) {
-      const res = await fetch(`/assets/i18n/${lang}.json`);
-      const t = await res.json();
+    (function () {
+      async function loadLanguage(lang) {
+        try {
+          const res = await fetch(`/assets/i18n/${lang}.json`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const t = await res.json();
 
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const keys = el.dataset.i18n.split('.');
-        let value = t;
-        keys.forEach(k => value = value?.[k]);
-        if (value) el.innerHTML = value;
+          document.querySelectorAll('[data-i18n]').forEach(el => {
+            const keys = el.dataset.i18n.split('.');
+            let value = t;
+            for (let k of keys) {
+              if (value && value[k] !== undefined) value = value[k];
+              else { value = undefined; break; }
+            }
+            if (value !== undefined && value !== null) {
+              if (el.children.length === 0 || (el.children.length === 1 && el.children[0].tagName === 'SPAN' && !el.children[0].hasAttribute('data-i18n'))) {
+                // Elemento sem filhos i18n internos, podemos trocar o texto
+                el.textContent = value;
+              } else {
+                // Mantém a estrutura HTML interna, apenas troca o texto dos nós de texto
+                // Isso é mais seguro para elementos que contêm <strong> etc.
+                const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+                  acceptNode: function (node) {
+                    // Ignora textos dentro de nós que têm data-i18n
+                    if (node.parentElement && node.parentElement.closest('[data-i18n]') !== el) return NodeFilter.FILTER_REJECT;
+                    if (node.parentElement && node.parentElement.hasAttribute('data-i18n')) return NodeFilter.FILTER_REJECT;
+                    return NodeFilter.FILTER_ACCEPT;
+                  }
+                });
+                let textNode;
+                while (textNode = walker.nextNode()) {
+                  if (textNode.nodeValue.trim().length > 0) {
+                    textNode.nodeValue = value;
+                    break; // assume apenas um texto principal
+                  }
+                }
+              }
+            }
+          });
+        } catch (err) {
+          console.error('Erro ao carregar idioma:', err);
+        }
+      }
+
+      let currentLang = localStorage.getItem('lang') || 'pt-br';
+      if (currentLang === 'pt' || currentLang === 'pt_BR') currentLang = 'pt-br';
+      if (currentLang === 'en') currentLang = 'en';
+      if (currentLang === 'es') currentLang = 'es';
+      loadLanguage(currentLang);
+
+      window.addEventListener('storage', function (e) {
+        if (e.key === 'lang') {
+          const newLang = e.newValue || 'pt-br';
+          loadLanguage(newLang);
+        }
       });
-    }
-
-    loadLanguage(localStorage.getItem('lang') || 'pt-br');
+    })();
   </script>
-
 </body>
 
 </html>
