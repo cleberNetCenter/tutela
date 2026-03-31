@@ -5,9 +5,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title data-i18n="government.heroTitle">Ativos Digitais Governamentais</title>
-  <meta name="description" data-i18n="government.content" content="" />
+  <!-- SEO PRESERVADO -->
+  <title>Ativos Digitais Governamentais | Tutela Digital®</title>
+  <meta name="description"
+    content="Governança, rastreabilidade e integridade probatória para ativos digitais no setor público." />
+  <link rel="canonical" href="https://tuteladigital.com.br/governo.html" />
+  <link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml" />
 
+  <!-- CSS ORIGINAL PRESERVADO -->
   <link rel="stylesheet" href="assets/css/main.css?v=4" />
   <link rel="stylesheet" href="assets/css/styles-header-final.css?v=4" />
   <link rel="stylesheet" href="assets/css/pages/solucoes.css?v=1" />
@@ -15,36 +20,40 @@
 
 <body class="solucoes-page governo-page">
 
+  <!-- HEADER ORIGINAL -->
   <!--#include virtual="/partials/header.html" -->
 
   <main>
 
-    <!-- HERO -->
+    <!-- HERO (estrutura ORIGINAL preservada) -->
     <section class="sol-hero">
-      <div class="container">
+      <div class="sol-watermark" aria-hidden="true"><span>GOV</span></div>
+      <div class="sol-hero-rule" aria-hidden="true"></div>
 
+      <div class="container">
         <p class="sol-hero-eyebrow" data-i18n="government.heroEyebrow"></p>
 
-        <h1 class="sol-fade-up" data-i18n="government.heroTitle"></h1>
+        <h1 class="sol-fade-up">
+          <span data-i18n="government.heroTitle"></span>
+        </h1>
 
-        <p class="sol-hero-subtitle" data-i18n="government.heroSubtitle"></p>
+        <p class="sol-hero-subtitle sol-fade-up d1" data-i18n="government.heroSubtitle"></p>
 
-        <div class="sol-hero-badges">
+        <!-- BADGES PRESERVADOS (não i18n para não quebrar layout SVG) -->
+        <div class="sol-hero-badges sol-fade-up d2">
           <span class="sol-badge">Base constitucional e legal</span>
           <span class="sol-badge">ICP-Brasil</span>
           <span class="sol-badge">LGPD · LAI</span>
         </div>
-
       </div>
     </section>
 
-    <!-- INTRO -->
+    <!-- INTRO (estrutura preservada) -->
     <section class="sol-intro">
       <div class="container">
-
         <div class="sol-intro-grid">
 
-          <div>
+          <div class="sol-intro-lead">
             <h2 data-i18n="government.introTitle"></h2>
             <p data-i18n="government.introP1"></p>
             <p data-i18n="government.introP2"></p>
@@ -56,13 +65,12 @@
           </aside>
 
         </div>
-
       </div>
     </section>
 
     <div class="sol-divider"></div>
 
-    <!-- RISCO -->
+    <!-- CONTRASTE (estrutura visual preservada) -->
     <section class="sol-contraste">
       <div class="container">
 
@@ -72,7 +80,7 @@
         <div class="sol-contraste-grid">
 
           <div class="sol-col sol-col-neg">
-            <p data-i18n="government.semEstruturaLabel"></p>
+            <p class="sol-col-label" data-i18n="government.semEstruturaLabel"></p>
 
             <p data-i18n="government.sem1"></p>
             <p data-i18n="government.sem2"></p>
@@ -80,7 +88,7 @@
           </div>
 
           <div class="sol-col sol-col-pos">
-            <p data-i18n="government.comEstruturaLabel"></p>
+            <p class="sol-col-label" data-i18n="government.comEstruturaLabel"></p>
 
             <p data-i18n="government.com1"></p>
             <p data-i18n="government.com2"></p>
@@ -101,7 +109,7 @@
         <h2 data-i18n="government.whatChangesTitle"></h2>
         <p data-i18n="government.whatChangesLead"></p>
 
-        <ul>
+        <ul class="sol-checklist">
           <li data-i18n="government.check1"></li>
           <li data-i18n="government.check2"></li>
           <li data-i18n="government.check3"></li>
@@ -120,22 +128,14 @@
         <h2 data-i18n="government.useCasesTitle2"></h2>
         <p data-i18n="government.useCasesLead"></p>
 
-        <ul>
-          <li>
-            <strong data-i18n="government.useCase1Title"></strong>
-            <span data-i18n="government.useCase1Desc"></span>
+        <ul class="sol-checklist">
+          <li><strong data-i18n="government.useCase1Title"></strong> <span data-i18n="government.useCase1Desc"></span>
           </li>
-          <li>
-            <strong data-i18n="government.useCase2Title"></strong>
-            <span data-i18n="government.useCase2Desc"></span>
+          <li><strong data-i18n="government.useCase2Title"></strong> <span data-i18n="government.useCase2Desc"></span>
           </li>
-          <li>
-            <strong data-i18n="government.useCase3Title"></strong>
-            <span data-i18n="government.useCase3Desc"></span>
+          <li><strong data-i18n="government.useCase3Title"></strong> <span data-i18n="government.useCase3Desc"></span>
           </li>
-          <li>
-            <strong data-i18n="government.useCase4Title"></strong>
-            <span data-i18n="government.useCase4Desc"></span>
+          <li><strong data-i18n="government.useCase4Title"></strong> <span data-i18n="government.useCase4Desc"></span>
           </li>
         </ul>
 
@@ -144,41 +144,42 @@
       </div>
     </section>
 
-    <!-- CTA -->
+    <div class="sol-divider"></div>
+
+    <!-- CTA FINAL -->
     <section class="sol-cta">
       <div class="container">
 
         <h2 data-i18n="government.ctaSubtitle"></h2>
 
-        <a href="/diagnostico.html" class="sol-btn-primary"
-           data-i18n="global.ctaPrimary"></a>
+        <a href="/diagnostico.html" class="sol-btn-primary" data-i18n="global.ctaPrimary"></a>
 
       </div>
     </section>
 
   </main>
 
+  <!-- FOOTER ORIGINAL -->
   <!--#include virtual="/partials/footer.html" -->
+  <!--#include virtual="/partials/scripts.html" -->
 
-  <!-- I18N -->
+  <!-- I18N SCRIPT (não interfere no layout) -->
   <script>
     async function loadLanguage(lang) {
       const res = await fetch(`/assets/i18n/${lang}.json`);
       const t = await res.json();
 
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const keys = el.dataset.i18n.split(".");
-        let val = t;
-
-        keys.forEach(k => val = val?.[k]);
-
-        if (val) el.innerHTML = val;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const keys = el.dataset.i18n.split('.');
+        let value = t;
+        keys.forEach(k => value = value?.[k]);
+        if (value) el.innerHTML = value;
       });
     }
 
-    const lang = localStorage.getItem("lang") || "pt-br";
-    loadLanguage(lang);
+    loadLanguage(localStorage.getItem('lang') || 'pt-br');
   </script>
 
 </body>
+
 </html>
