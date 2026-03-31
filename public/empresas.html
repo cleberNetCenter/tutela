@@ -29,8 +29,6 @@
 
   <link rel="stylesheet" href="assets/css/main.css?v=4" />
   <link rel="stylesheet" href="assets/css/styles-header-final.css?v=4" />
-
-  <!-- CSS exclusivo da vertical de soluções — desvinculado do pilar de ativos -->
   <link rel="stylesheet" href="assets/css/pages/solucoes.css?v=1" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
@@ -42,11 +40,6 @@
   </script>
 </head>
 
-<!--
-  Classes de escopo:
-    solucoes-page  → estilos base da vertical de soluções
-    empresas-page  → sobrescreve --sol-vertical-hue para azul corporativo
--->
 <body class="solucoes-page empresas-page">
 
   <!--#include virtual="/partials/header.html" -->
@@ -101,7 +94,7 @@
 
 
     <!-- ═══════════════════════════════════════════════════
-         INTRO — por que ativos digitais são ativos jurídicos
+         INTRO
     ════════════════════════════════════════════════════ -->
     <section class="sol-intro">
       <div class="container">
@@ -131,7 +124,9 @@
               forma estabelecida em lei e que sua autenticidade possa ser conferida. O art. 439 determina que o
               juiz apreciará a fé que merece o documento, em função dos elementos que o acompanham. Sem integridade
               verificável e cadeia de custódia, a empresa corre risco concreto de ter sua prova digital inadmitida
-              ou desconsiderada.
+              ou desconsiderada. Para processos que tramitam pelo PJe, recomenda-se orientação técnica sobre os
+              formatos aceitos pelo sistema (Resolução CNJ nº 335/2020), de modo a preservar a cadeia de custódia
+              durante a conversão.
             </p>
             <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
                target="_blank" rel="noopener noreferrer" class="sol-aside-link">
@@ -199,7 +194,8 @@
             <p>
               Os arts. 422 e 439 regem a admissibilidade e o valor probatório de documentos eletrônicos em juízo.
               Documentos sem integridade verificável (hash, carimbo de tempo) podem ser impugnados pela parte
-              adversa com fundamento na falta de autenticidade. A prova digital mal custodiada é prova frágil.
+              adversa com fundamento na falta de autenticidade. Para processos no PJe, os documentos devem atender
+              adicionalmente aos formatos e padrões estabelecidos pela Resolução CNJ nº 335/2020.
             </p>
             <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
                target="_blank" rel="noopener noreferrer" class="sol-lei-link">
@@ -235,7 +231,7 @@
             </a>
           </div>
 
-          <!-- CDC + Responsabilidade Civil -->
+          <!-- CDC -->
           <div class="sol-lei-card sol-reveal">
             <span class="sol-lei-num">Lei 8.078/1990 · CDC</span>
             <div class="sol-seal">
@@ -268,7 +264,7 @@
 
 
     <!-- ═══════════════════════════════════════════════════
-         CONTRASTE — sem vs com governança
+         CONTRASTE
     ════════════════════════════════════════════════════ -->
     <section class="sol-contraste">
       <div class="container">
@@ -284,7 +280,6 @@
 
         <div class="sol-contraste-grid">
 
-          <!-- Coluna negativa -->
           <div class="sol-col sol-col-neg">
             <p class="sol-col-label">Sem governança</p>
 
@@ -325,14 +320,12 @@
             </div>
           </div>
 
-          <!-- Seta -->
           <div class="sol-contraste-arrow" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
               <path d="M7 14h14M17 9l5 5-5 5" stroke="rgba(255,255,255,.20)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
 
-          <!-- Coluna positiva -->
           <div class="sol-col sol-col-pos">
             <p class="sol-col-label">Com governança (Tutela Digital®)</p>
 
@@ -391,7 +384,7 @@
 
 
     <!-- ═══════════════════════════════════════════════════
-         BENEFÍCIOS — o que muda com governança
+         BENEFÍCIOS
     ════════════════════════════════════════════════════ -->
     <section class="sol-beneficios">
       <div class="container">
@@ -402,7 +395,7 @@
             <h2 style="margin-top:1rem;">O que muda com custódia jurídica de ativos digitais</h2>
             <p>
               A Tutela Digital® transforma a infraestrutura documental da empresa em um ativo jurídico defensável —
-              com cada documento verificável, cada acesso rastreado e cada prova pronta para ser apresentada.
+              com cada documento verificável, cada acesso rastreado e cada prova tecnicamente apta para ser apresentada.
             </p>
 
             <ul class="sol-checklist">
@@ -456,7 +449,6 @@
             </a>
           </div>
 
-          <!-- Aside técnico -->
           <aside class="sol-tech-aside sol-reveal">
             <p class="sol-tech-label">
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
@@ -474,6 +466,8 @@
             <p>
               Todos os registros atendem aos requisitos técnicos recomendados para produção de prova digital
               conforme CPC, arts. 422 e 439. A admissibilidade é apreciada pelo juízo competente no caso concreto.
+              Para processos no PJe, recomenda-se orientação técnica sobre os formatos aceitos pelo sistema
+              (Resolução CNJ nº 335/2020), de modo a preservar a cadeia de custódia durante a conversão.
             </p>
             <div class="sol-pills">
               <span class="sol-pill">ICP-Brasil</span>
@@ -493,17 +487,16 @@
 
 
     <!-- ═══════════════════════════════════════════════════
-         IMPACTO — casos de uso + barras
+         IMPACTO — casos de uso
     ════════════════════════════════════════════════════ -->
     <section class="sol-impacto sol-dots-bg">
       <div class="container">
         <div class="sol-impacto-grid">
 
-          <!-- Casos de uso -->
           <div class="sol-impacto-text">
             <span class="sol-tag">Casos de uso</span>
             <h2 style="margin-top:1rem;">Aplicações diretas no ambiente corporativo</h2>
-            <p>A Tutela Digital® é aplicada em contextos que combinam risco jurídico elevado com alto volume documental.</p>
+            <p>A Tutela Digital® foi desenvolvida para contextos que combinam risco jurídico elevado com alto volume documental.</p>
 
             <ul class="sol-checklist" style="margin-top:1.5rem;">
               <li class="sol-check-item sol-reveal">
@@ -520,7 +513,7 @@
                     <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </div>
-                <p><strong>Contratos e negócios digitais:</strong> preservação de propostas, aceites eletrônicos, aditivos e distrate com integridade verificável — elimina impugnações por adulteração.</p>
+                <p><strong>Contratos e negócios digitais:</strong> preservação de propostas, aceites eletrônicos, aditivos e distrate com integridade verificável — reduz o risco de impugnações por alegação de adulteração.</p>
               </li>
               <li class="sol-check-item sol-reveal">
                 <div class="sol-check-bullet" style="background:var(--sol-brand-mid);">
@@ -528,7 +521,7 @@
                     <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </div>
-                <p><strong>Compliance e due diligence:</strong> documentação estruturada de processos de aprovação, registros de decisão societária e evidências de controles internos para auditorias e M&A.</p>
+                <p><strong>Compliance e due diligence:</strong> documentação estruturada de processos de aprovação, registros de decisão societária e evidências de controles internos para auditorias e M&amp;A.</p>
               </li>
               <li class="sol-check-item sol-reveal">
                 <div class="sol-check-bullet" style="background:var(--sol-brand-mid);">
@@ -544,18 +537,17 @@
                     <path d="M2.5 6l2.5 2.5 5-5" stroke="#a8d9b8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </div>
-                <p><strong>Arbitragem e mediação:</strong> entrega de provas digitais com conformidade técnica plena — câmaras arbitrais como ICC, CAM-CCBC e FGV têm exigido padrões cada vez mais rigorosos de autenticação documental.</p>
+                <p><strong>Arbitragem e mediação:</strong> entrega de provas digitais com integridade verificável e cadeia de custódia documentada — atendendo aos requisitos técnicos de autenticidade progressivamente adotados por câmaras como ICC, CAM-CCBC e FGV.</p>
               </li>
             </ul>
 
-            <p class="sol-disclaimer">
+            <p class="sol-disclaimer" style="margin-top:1.5rem; font-size:0.85rem; opacity:0.7; line-height:1.6;">
               A conformidade legal depende da correta implementação e uso da plataforma pela empresa contratante,
               conforme orientações técnicas fornecidas pela Tutela Digital®. A admissibilidade de provas digitais
               é matéria processual apreciada pelo juízo competente no caso concreto.
             </p>
           </div>
 
-          <!-- Barras de impacto -->
           <div class="sol-bars">
             <div class="sol-bar sol-reveal">
               <div class="sol-bar-icon">
@@ -566,7 +558,7 @@
               </div>
               <div class="sol-bar-text">
                 <h4>Contratos defensáveis</h4>
-                <p>Autenticidade e data verificáveis independentemente — elimina a principal alegação de impugnação</p>
+                <p>Autenticidade e data verificáveis independentemente — reduz a principal alegação de impugnação</p>
               </div>
             </div>
 
@@ -605,12 +597,12 @@
                 </svg>
               </div>
               <div class="sol-bar-text">
-                <h4>Due diligence e M&A</h4>
+                <h4>Due diligence e M&amp;A</h4>
                 <p>Documentação estruturada acelera auditorias e reduz contingências em processos de fusão e aquisição</p>
               </div>
             </div>
 
-            <!-- Selo de conformidade -->
+            <!-- Nota sobre arbitragem — substituição do selo de portfólio -->
             <div class="sol-selo-wrapper sol-reveal" style="margin-top:0.25rem;">
               <div class="sol-selo-icon">
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
@@ -619,8 +611,8 @@
                 </svg>
               </div>
               <div class="sol-selo-text">
-                <strong>Compatível com câmaras arbitrais nacionais e internacionais</strong>
-                <span>ICC · CAM-CCBC · FGV · CAMARB · CCI · CIESP · Câmara de Comércio Brasil-Canadá</span>
+                <strong>Padrões técnicos adequados para procedimentos arbitrais</strong>
+                <span>Os mecanismos de integridade e cadeia de custódia da plataforma atendem aos requisitos técnicos de autenticação progressivamente adotados por câmaras nacionais e internacionais, como ICC, CAM-CCBC, FGV e CAMARB.</span>
               </div>
             </div>
 
@@ -721,7 +713,6 @@
           </div>
         </div>
 
-        <!-- Credenciais técnicas -->
         <div class="sol-cred-bar">
           <div class="sol-cred">
             <span class="sol-cred-val">ICP<span>-Brasil</span></span>
@@ -745,7 +736,6 @@
   <!--#include virtual="/partials/footer.html" -->
   <!--#include virtual="/partials/scripts.html" -->
 
-  <!-- Reveal via IntersectionObserver — progressivo -->
   <script>
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
