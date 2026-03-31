@@ -648,6 +648,14 @@
     "postTitle": "Después del diagnóstico",
     "postDesc": "Con base en el resultado, identifica los puntos críticos y entiende qué medidas garantizan control, acceso y validez de sus activos.",
     "postLink": "Entender cómo estructurar sus activos digitales",
+    "resultProgressText": "Diagnóstico completado:",
+    "progressQuestion": "Pregunta {step} de {total}",
+    "progressData": "Sus datos",
+    "resultCtaLow": "Ver cómo mantener la estructura",
+    "resultCtaModerate": "Entender cómo mitigar riesgos",
+    "resultCtaHigh": "Ver cómo estructurar urgentemente",
+    "resultCtaCritical": "Ver estructura jurídica",
+    "recommendLabel": "Recomendación:",
     "riskLevels": {
       "low": {
         "title": "Riesgo bajo",
@@ -669,14 +677,6 @@
         "description": "Ausencia de estructura mínima de gobernanza. Los activos pueden considerarse jurídicamente inexistentes o irrecuperables.",
         "recommendation": "Intervención urgente necesaria. Consulte a especialistas en gobernanza de activos digitales."
       }
-    },
-    "resultProgressText": "Diagnóstico completado:",
-    "progressQuestion": "Pregunta {step} de {total}",
-    "progressData": "Sus datos",
-    "resultCtaLow": "Ver cómo mantener la estructura",
-    "resultCtaModerate": "Entender cómo mitigar riesgos",
-    "resultCtaHigh": "Ver cómo estructurar urgentemente",
-    "resultCtaCritical": "Ver estructura jurídica",
-    "recommendLabel": "Recomendación:"
+    }
   }
 }

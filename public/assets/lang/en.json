@@ -648,6 +648,14 @@
     "postTitle": "After the diagnosis",
     "postDesc": "Based on the result, you identify critical points and understand which measures guarantee control, access and validity of your assets.",
     "postLink": "Learn how to structure your digital assets",
+    "resultProgressText": "Diagnosis completed:",
+    "progressQuestion": "Question {step} of {total}",
+    "progressData": "Your data",
+    "resultCtaLow": "See how to maintain the structure",
+    "resultCtaModerate": "Understand how to mitigate risks",
+    "resultCtaHigh": "See how to structure urgently",
+    "resultCtaCritical": "See legal structure",
+    "recommendLabel": "Recommendation:",
     "riskLevels": {
       "low": {
         "title": "Low risk",
@@ -669,14 +677,6 @@
         "description": "Absence of minimum governance structure. Assets may be considered legally non-existent or unrecoverable.",
         "recommendation": "Urgent intervention required. Consult digital asset governance specialists."
       }
-    },
-    "resultProgressText": "Diagnosis completed:",
-    "progressQuestion": "Question {step} of {total}",
-    "progressData": "Your data",
-    "resultCtaLow": "See how to maintain the structure",
-    "resultCtaModerate": "Understand how to mitigate risks",
-    "resultCtaHigh": "See how to structure urgently",
-    "resultCtaCritical": "See legal structure",
-    "recommendLabel": "Recommendation:"
+    }
   }
 }
