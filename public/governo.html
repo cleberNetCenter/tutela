@@ -345,7 +345,8 @@
               </li>
             </ul>
 
-            <a href="https://app.tuteladigital.com.br/" class="sol-link-inline" target="_blank" rel="noopener noreferrer">
+            <a href="https://app.tuteladigital.com.br/" class="sol-link-inline" target="_blank"
+              rel="noopener noreferrer">
               <span data-i18n="government.knowPlatformLink">Conhecer a plataforma</span>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
                 <path d="M2 5.5h7M6.5 3l2.5 2.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
@@ -364,7 +365,11 @@
               <span data-i18n="government.mechanismsLabel">Mecanismos técnicos aplicados</span>
             </p>
             <h3 data-i18n="government.mechanismsTitle">Conformidade com ICP-Brasil e padrões internacionais</h3>
-            <p data-i18n="government.mechanismsDesc">A plataforma utiliza assinatura eletrônica qualificada (ICP-Brasil), hash SHA-256, carimbo do tempo conforme RFC 3161 e logs imutáveis. Todos os registros atendem aos requisitos técnicos recomendados para produção de prova digital perante tribunais e órgãos de controle, conforme CPC, arts. 422 e 439, e Decreto 10.278/2020. A admissibilidade da prova digital é apreciada pelo juízo competente.</p>
+            <p data-i18n="government.mechanismsDesc">A plataforma utiliza assinatura eletrônica qualificada
+              (ICP-Brasil), hash SHA-256, carimbo do tempo conforme RFC 3161 e logs imutáveis. Todos os registros
+              atendem aos requisitos técnicos recomendados para produção de prova digital perante tribunais e órgãos de
+              controle, conforme CPC, arts. 422 e 439, e Decreto 10.278/2020. A admissibilidade da prova digital é
+              apreciada pelo juízo competente.</p>
             <div class="sol-pills">
               <span class="sol-pill">ICP-Brasil</span>
               <span class="sol-pill">SHA-256</span>
@@ -398,7 +403,8 @@
                       stroke-linejoin="round" />
                   </svg>
                 </div>
-                <p><strong data-i18n="government.useCase1Title"></strong> <span data-i18n="government.useCase1Desc"></span></p>
+                <p><strong data-i18n="government.useCase1Title"></strong> <span
+                    data-i18n="government.useCase1Desc"></span></p>
               </li>
               <li class="sol-check-item sol-reveal">
                 <div class="sol-check-bullet" style="background:var(--sol-brand-mid);">
@@ -407,7 +413,8 @@
                       stroke-linejoin="round" />
                   </svg>
                 </div>
-                <p><strong data-i18n="government.useCase2Title"></strong> <span data-i18n="government.useCase2Desc"></span></p>
+                <p><strong data-i18n="government.useCase2Title"></strong> <span
+                    data-i18n="government.useCase2Desc"></span></p>
               </li>
               <li class="sol-check-item sol-reveal">
                 <div class="sol-check-bullet" style="background:var(--sol-brand-mid);">
@@ -416,7 +423,8 @@
                       stroke-linejoin="round" />
                   </svg>
                 </div>
-                <p><strong data-i18n="government.useCase3Title"></strong> <span data-i18n="government.useCase3Desc"></span></p>
+                <p><strong data-i18n="government.useCase3Title"></strong> <span
+                    data-i18n="government.useCase3Desc"></span></p>
               </li>
               <li class="sol-check-item sol-reveal">
                 <div class="sol-check-bullet" style="background:var(--sol-brand-mid);">
@@ -425,7 +433,8 @@
                       stroke-linejoin="round" />
                   </svg>
                 </div>
-                <p><strong data-i18n="government.useCase4Title"></strong> <span data-i18n="government.useCase4Desc"></span></p>
+                <p><strong data-i18n="government.useCase4Title"></strong> <span
+                    data-i18n="government.useCase4Desc"></span></p>
               </li>
             </ul>
 
@@ -486,7 +495,8 @@
               </div>
               <div class="sol-selo-text">
                 <strong data-i18n="government.auditSeloTitle">Solução auditável por órgãos de controle</strong>
-                <span data-i18n="government.auditSeloDesc">Compatível com TCU, TCEs e CGU · Logs com cadeia de custódia</span>
+                <span data-i18n="government.auditSeloDesc">Compatível com TCU, TCEs e CGU · Logs com cadeia de
+                  custódia</span>
               </div>
             </div>
           </div>
@@ -500,7 +510,7 @@
     <section class="sol-cta">
       <div class="container">
         <p class="sol-cta-eyebrow" data-i18n="government.ctaEyebrow">Governo e setor público</p>
-        <h2 data-i18n="government.ctaTitle"></h2>
+        <h2 data-i18n="government.ctaTitle" data-i18n-html="true"></h2>
         <p data-i18n="government.ctaDesc"></p>
 
         <div class="sol-cta-card">
@@ -614,12 +624,13 @@
 
   <!-- I18N SCRIPT (idêntico ao anterior, carrega o idioma salvo no localStorage) -->
   <script>
-    (function() {
+    (function () {
       async function loadLanguage(lang) {
         try {
           const res = await fetch(`/assets/i18n/${lang}.json`);
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const t = await res.json();
+
           document.querySelectorAll('[data-i18n]').forEach(el => {
             const keys = el.dataset.i18n.split('.');
             let value = t;
@@ -628,25 +639,12 @@
               else { value = undefined; break; }
             }
             if (value !== undefined && value !== null) {
-              // Se o elemento contiver apenas texto (ou filhos sem data-i18n), substitui o conteúdo
-              if (el.children.length === 0 || (el.children.length === 1 && el.children[0].tagName === 'SPAN' && !el.children[0].hasAttribute('data-i18n'))) {
-                el.textContent = value;
+              // Se o elemento tem a flag data-i18n-html, usa innerHTML
+              if (el.hasAttribute('data-i18n-html')) {
+                el.innerHTML = value;
               } else {
-                // Para elementos com estrutura interna (ex: <strong>), troca apenas o nó de texto principal
-                const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
-                  acceptNode: function(node) {
-                    if (node.parentElement && node.parentElement.closest('[data-i18n]') !== el) return NodeFilter.FILTER_REJECT;
-                    if (node.parentElement && node.parentElement.hasAttribute('data-i18n')) return NodeFilter.FILTER_REJECT;
-                    return NodeFilter.FILTER_ACCEPT;
-                  }
-                });
-                let textNode;
-                while (textNode = walker.nextNode()) {
-                  if (textNode.nodeValue.trim().length > 0) {
-                    textNode.nodeValue = value;
-                    break;
-                  }
-                }
+                // Caso contrário, usa textContent para evitar injeção
+                el.textContent = value;
               }
             }
           });
@@ -659,7 +657,7 @@
       if (currentLang === 'en') currentLang = 'en';
       if (currentLang === 'es') currentLang = 'es';
       loadLanguage(currentLang);
-      window.addEventListener('storage', function(e) {
+      window.addEventListener('storage', function (e) {
         if (e.key === 'lang') {
           const newLang = e.newValue || 'pt-br';
           loadLanguage(newLang);
