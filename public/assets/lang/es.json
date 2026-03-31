@@ -619,6 +619,8 @@
     "statMinutes": "minutos",
     "statConfidential": "confidencial",
     "progressDefault": "Pregunta 1 de 3",
+    "progressQuestion": "Pregunta {step} de {total}",
+    "progressData": "Sus datos",
     "q1Text": "¿Tiene un inventario estructurado de sus activos digitales?",
     "q1Hint": "Considere cualquier forma de mapeo — hoja de cálculo, documento o sistema.",
     "q1Opt0": "Sí, tengo inventario completo",
@@ -648,13 +650,9 @@
     "postTitle": "Después del diagnóstico",
     "postDesc": "Con base en el resultado, identifica los puntos críticos y entiende qué medidas garantizan control, acceso y validez de sus activos.",
     "postLink": "Entender cómo estructurar sus activos digitales",
-    "resultProgressText": "Diagnóstico completado:",
-    "progressQuestion": "Pregunta {step} de {total}",
-    "progressData": "Sus datos",
     "resultCtaLow": "Ver cómo mantener la estructura",
     "resultCtaModerate": "Entender cómo mitigar riesgos",
     "resultCtaHigh": "Ver cómo estructurar urgentemente",
-    "resultCtaCritical": "Ver estructura jurídica",
     "recommendLabel": "Recomendación:",
     "riskLevels": {
       "low": {

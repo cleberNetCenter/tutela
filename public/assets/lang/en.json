@@ -619,6 +619,8 @@
     "statMinutes": "minutes",
     "statConfidential": "confidential",
     "progressDefault": "Question 1 of 3",
+    "progressQuestion": "Question {step} of {total}",
+    "progressData": "Your data",
     "q1Text": "Do you have a structured inventory of your digital assets?",
     "q1Hint": "Consider any form of mapping — spreadsheet, document or system.",
     "q1Opt0": "Yes, I have a complete inventory",
@@ -648,13 +650,9 @@
     "postTitle": "After the diagnosis",
     "postDesc": "Based on the result, you identify critical points and understand which measures guarantee control, access and validity of your assets.",
     "postLink": "Learn how to structure your digital assets",
-    "resultProgressText": "Diagnosis completed:",
-    "progressQuestion": "Question {step} of {total}",
-    "progressData": "Your data",
     "resultCtaLow": "See how to maintain the structure",
     "resultCtaModerate": "Understand how to mitigate risks",
     "resultCtaHigh": "See how to structure urgently",
-    "resultCtaCritical": "See legal structure",
     "recommendLabel": "Recommendation:",
     "riskLevels": {
       "low": {

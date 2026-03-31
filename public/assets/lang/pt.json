@@ -664,6 +664,8 @@
     "statMinutes": "minutos",
     "statConfidential": "confidencial",
     "progressDefault": "Pergunta 1 de 3",
+    "progressQuestion": "Pergunta {step} de {total}",
+    "progressData": "Seus dados",
     "q1Text": "Você possui inventário estruturado dos seus ativos digitais?",
     "q1Hint": "Considere qualquer forma de mapeamento — planilha, documento ou sistema.",
     "q1Opt0": "Sim, tenho inventário completo",
@@ -693,28 +695,24 @@
     "postTitle": "Após o diagnóstico",
     "postDesc": "Com base no resultado, você identifica os pontos críticos e entende quais medidas garantem controle, acesso e validade dos seus ativos.",
     "postLink": "Entender como estruturar seus ativos digitais",
-    "resultProgressText": "Diagnóstico concluído:",
-    "progressQuestion": "Pergunta {step} de {total}",
-    "progressData": "Seus dados",
     "resultCtaLow": "Ver como manter a estrutura",
     "resultCtaModerate": "Entender como mitigar riscos",
     "resultCtaHigh": "Ver como estruturar urgentemente",
-    "resultCtaCritical": "Ver estrutura jurídica",
     "recommendLabel": "Recomendação:",
     "riskLevels": {
       "low": {
         "title": "Baixo risco",
-        "description": "Seus ativos digitais possuem boa estrutura de governança, acesso e rastreabilidade. Recomenda-se revisão periódica para manter a maturidade.",
-        "recommendation": "Mantenha seu inventário atualizado e revise anualmente os controles de acesso."
+        "description": "Seus ativos apresentam um nível inicial de organização. A estrutura existente é um bom ponto de partida — mas sempre há espaço para reforçar rastreabilidade e aptidão probatória.",
+        "recommendation": "Mantenha seu inventário atualizado e revise os controles de acesso anualmente."
       },
       "moderate": {
         "title": "Risco moderado",
-        "description": "Há lacunas em pelo menos uma das três dimensões avaliadas (inventário, acesso ou rastreabilidade). Vulnerabilidades podem se tornar críticas em curto prazo.",
+        "description": "Há vulnerabilidades relevantes que podem comprometer acesso, controle e comprovação dos ativos. Algumas dimensões precisam de atenção antes que a exposição aumente.",
         "recommendation": "Sugerimos implementar um inventário estruturado e documentar os protocolos de acesso e recuperação."
       },
       "high": {
         "title": "Alto risco",
-        "description": "Fragilidades significativas em governança, acesso ou rastreabilidade. A probabilidade de perda, disputa ou inadmissão probatória é elevada.",
+        "description": "Seus ativos digitais estão expostos a riscos estruturais relevantes — incluindo perda de acesso, impossibilidade de comprovação e fragilidade probatória. A estruturação deve ser prioridade.",
         "recommendation": "Recomendamos uma avaliação técnica detalhada e implementação de controles de integridade e cadeia de custódia."
       },
       "critical": {
