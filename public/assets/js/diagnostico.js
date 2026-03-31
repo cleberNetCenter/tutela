@@ -1,8 +1,30 @@
-/* diagnostico.js — lógica de steps, validação e resultado */
+/* diagnostico.js — lógica de steps, validação, resultado e integração i18n */
 
 const TOTAL_STEPS = 4;
 let currentStep = 1;
 const respostas = {};
+
+/* ── Referências globais para i18n ── */
+let diagnosticI18n = null;   // objeto completo da seção "diagnostic"
+let riskLevels = null;        // sub-objeto riskLevels (para facilitar)
+
+/* ── Função chamada pelo carregador de idioma (global) ── */
+window.updateDynamicI18n = function(i18nObj) {
+  if (i18nObj && i18nObj.diagnostic) {
+    diagnosticI18n = i18nObj.diagnostic;
+    riskLevels = diagnosticI18n.riskLevels;
+    updateProgress(currentStep);          // atualiza o texto da barra de progresso
+    // Se o resultado já estiver visível, re-renderizamos com as novas traduções
+    const resultadoDiv = document.getElementById('resultado');
+    if (resultadoDiv && resultadoDiv.style.display !== 'none' && resultadoDiv.innerHTML !== '') {
+      // O resultado já foi mostrado, mas podemos re-renderizar a partir dos dados salvos
+      // A variável `ultimoResultado` será salva no escopo do módulo
+      if (window.ultimoResultado) {
+        renderResultado(window.ultimoResultado.nivel, window.ultimoResultado.mensagem, window.ultimoResultado.score);
+      }
+    }
+  }
+};
 
 /* ── Utilitários ── */
 
@@ -15,10 +37,21 @@ function updateProgress(step) {
   const bar = document.getElementById('progressBar');
   const label = document.getElementById('progressLabel');
   if (bar) bar.style.setProperty('--progress', pct + '%');
-  if (label) {
-    label.textContent = step < TOTAL_STEPS
-      ? `Pergunta ${step} de ${TOTAL_STEPS - 1}`
-      : 'Seus dados';
+  if (label && diagnosticI18n) {
+    if (step < TOTAL_STEPS) {
+      // Pergunta {step} de {TOTAL_STEPS-1}
+      const template = diagnosticI18n.progressQuestion || 'Pergunta {step} de {total}';
+      label.textContent = template.replace('{step}', step).replace('{total}', TOTAL_STEPS - 1);
+    } else {
+      label.textContent = diagnosticI18n.progressData || 'Seus dados';
+    }
+  } else if (label) {
+    // fallback caso i18n ainda não carregado
+    if (step < TOTAL_STEPS) {
+      label.textContent = `Pergunta ${step} de ${TOTAL_STEPS - 1}`;
+    } else {
+      label.textContent = 'Seus dados';
+    }
   }
 }
 
@@ -82,29 +115,54 @@ function verificarEstadoBotao() {
   btn.disabled = !(nome.length >= 3 && validarEmail(email) && consent && captcha);
 }
 
-/* ── Render resultado ── */
+/* ── Render resultado (usa i18n) ── */
 
-function renderResultado(nivel, mensagem) {
-  const map = {
-    'Baixo risco':    { cls: 'baixo',    badge: 'Baixo risco',    cta: 'Ver como manter a estrutura' },
-    'Risco moderado': { cls: 'moderado', badge: 'Risco moderado', cta: 'Entender como mitigar riscos' },
-    'Alto risco':     { cls: 'alto',     badge: 'Alto risco',     cta: 'Ver como estruturar urgentemente' },
+function renderResultado(nivel, mensagem, score) {
+  // Guarda o resultado para possível re-renderização após troca de idioma
+  window.ultimoResultado = { nivel, mensagem, score };
+
+  if (!riskLevels) {
+    // Se ainda não carregou, tenta usar fallback do i18n global (se existir)
+    const globalI18n = window.i18nRisk || (window.diagnosticI18n && window.diagnosticI18n.riskLevels);
+    if (globalI18n) riskLevels = globalI18n;
+  }
+
+  let riskKey = 'low';
+  if (nivel === 'Baixo risco' || nivel === 'Low risk' || nivel === 'Riesgo bajo') riskKey = 'low';
+  else if (nivel === 'Risco moderado' || nivel === 'Moderate risk' || nivel === 'Riesgo moderado') riskKey = 'moderate';
+  else if (nivel === 'Alto risco' || nivel === 'High risk' || nivel === 'Riesgo alto') riskKey = 'high';
+  else if (nivel === 'Risco crítico' || nivel === 'Critical risk' || nivel === 'Riesgo crítico') riskKey = 'critical';
+
+  const risk = riskLevels?.[riskKey] || {
+    title: nivel,
+    description: mensagem,
+    recommendation: ''
   };
-  const m = map[nivel] || { cls: 'moderado', badge: nivel, cta: 'Ver estrutura jurídica' };
 
-  document.getElementById('resultado').innerHTML = `
-    <div class="diag-resultado-card ${m.cls}">
+  // CTA de acordo com o nível
+  let ctaText = '';
+  if (riskKey === 'low') ctaText = diagnosticI18n?.resultCtaLow || 'Ver como manter a estrutura';
+  else if (riskKey === 'moderate') ctaText = diagnosticI18n?.resultCtaModerate || 'Entender como mitigar riscos';
+  else if (riskKey === 'high') ctaText = diagnosticI18n?.resultCtaHigh || 'Ver como estruturar urgentemente';
+  else ctaText = diagnosticI18n?.resultCtaCritical || 'Ver estrutura jurídica';
+
+  const resultDiv = document.getElementById('resultado');
+  resultDiv.innerHTML = `
+    <div class="diag-resultado-card ${riskKey}">
       <div class="diag-resultado-nivel">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
           <circle cx="5" cy="5" r="4.5" stroke="currentColor" stroke-width="1.2"/>
           <circle cx="5" cy="5" r="2" fill="currentColor"/>
         </svg>
-        ${m.badge}
+        ${risk.title}
       </div>
-      <h3 class="diag-resultado-titulo">${nivel}</h3>
-      <p class="diag-resultado-msg">${mensagem}</p>
+      <h3 class="diag-resultado-titulo">${risk.title}</h3>
+      <p class="diag-resultado-msg">${risk.description}</p>
+      <div class="diag-resultado-recomend">
+        <strong>${riskLevels?.[riskKey]?.recommendLabel || diagnosticI18n?.recommendLabel || 'Recomendação:'}</strong> ${risk.recommendation}
+      </div>
       <a href="/ativos-digitais/estrutura-juridica" class="diag-resultado-cta">
-        ${m.cta}
+        ${ctaText}
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -115,11 +173,11 @@ function renderResultado(nivel, mensagem) {
   /* oculta o form após envio */
   document.getElementById('diagSteps').style.display = 'none';
   document.getElementById('progressWrap').style.display = 'none';
-
-  document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  resultDiv.style.display = 'block';
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/* ── Envio ── */
+/* ── Envio (calcula nível e chama renderResultado) ── */
 
 function enviar() {
   const q1 = respostas['q1'];
@@ -134,6 +192,7 @@ function enviar() {
   const score = q1 + q2 + q3;
   let nivel, mensagem;
 
+  // Define os textos em português (podem ser substituídos pelo i18n, mas o renderResultado usará as traduções)
   if (score <= 2) {
     nivel = 'Baixo risco';
     mensagem = 'Seus ativos apresentam um nível inicial de organização. A estrutura existente é um bom ponto de partida — mas sempre há espaço para reforçar rastreabilidade e aptidão probatória.';
@@ -149,16 +208,17 @@ function enviar() {
   const email = document.getElementById('email').value;
   const token = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
 
+  // Envia para o backend (opcional)
   fetch('/api/diagnostico', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nome, email, score, nivel, token })
   })
-  .then(() => renderResultado(nivel, mensagem))
+  .then(() => renderResultado(nivel, mensagem, score))
   .catch(() => alert('Erro ao enviar. Tente novamente.'));
 }
 
-/* ── Init ── */
+/* ── Inicialização ── */
 
 document.addEventListener('DOMContentLoaded', () => {
   setupOptions();
@@ -171,4 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (nome) nome.addEventListener('input', verificarEstadoBotao);
   if (email) email.addEventListener('input', verificarEstadoBotao);
   if (consent) consent.addEventListener('change', verificarEstadoBotao);
+
+  // Verifica se o idioma já foi carregado (pode ser via localStorage)
+  // A função updateDynamicI18n será chamada pelo loader de idioma assim que os dados estiverem prontos
 });
