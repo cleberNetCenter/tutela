@@ -360,6 +360,10 @@ const I18N = {
     // Atualiza schemas JSON-LD
     this.updateSchemaLanguage(lang);
 
+    // Dispara evento para que outras partes da página reajam
+    window.dispatchEvent(new CustomEvent('i18n:languageChanged', { detail: { lang } }));
+
+
     console.log('[i18n] Idioma aplicado com sucesso:', lang, isSameLanguage ? '(reaplicado)' : '');
   },
 
@@ -452,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('click', (e) => {
   const button = e.target.closest('.lang-flag');
-  
+
   if (button) {
     const lang = button.dataset.lang;
     if (lang) {
