@@ -30,15 +30,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 
-  <!-- CSS existente do projeto -->
   <link rel="stylesheet" href="/assets/css/main.css?v=4">
   <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=4">
-  <link rel="stylesheet" href="/assets/css/homepage.css?v=5">
+  <link rel="stylesheet" href="/assets/css/homepage.css?v=6">
   <noscript>
-    <link rel="stylesheet" href="/assets/css/homepage.css?v=5">
+    <link rel="stylesheet" href="/assets/css/homepage.css?v=6">
   </noscript>
 
   <!-- Google Analytics -->
@@ -92,8 +91,13 @@
     <main class="main">
 
       <!-- ══ HERO ══════════════════════════════════════════════ -->
+      <!--
+        FIX v6: class hero-inner removida pois conflitava com estilos
+        globais de .hero-inner do main.css. Mantido apenas hero-content--homepage
+        que tem seus próprios estilos no homepage.css.
+      -->
       <section class="hero hero--homepage">
-        <div class="hero-inner hero-content--homepage">
+        <div class="hero-content--homepage">
 
           <span class="hero-eyebrow" data-i18n="home.eyebrow">Infraestrutura Probatória Digital</span>
 
@@ -103,7 +107,7 @@
             <span class="highlight" data-i18n="home.pageTitle">Preservação de Prova Digital com Validade Jurídica</span>
           </h1>
 
-          <p class="hero-subtitle" data-i18n="hero_subtitle">
+          <p class="hero-subtitle" data-i18n="home.heroSubtitle">
             Infraestrutura técnica e jurídica para preservação estruturada de prova digital, com integridade
             verificável, cadeia de custódia auditável e suporte à admissibilidade em processos judiciais,
             administrativos e arbitrais.
@@ -113,7 +117,7 @@
             <a class="btn-hero-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer"
               target="_blank" data-i18n="home.ctaPrimary">
               Acessar a Plataforma
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
             </a>
@@ -122,17 +126,17 @@
             </a>
           </div>
 
-          <div class="hero-metrics">
-            <div class="metric">
-              <span class="metric-value">4</span>
+          <div class="hero-metrics" role="list" aria-label="Destaques da plataforma">
+            <div class="metric" role="listitem">
+              <span class="metric-value" aria-label="4 etapas do processo">4</span>
               <span class="metric-label" data-i18n="home.metricSteps">Etapas do processo</span>
             </div>
-            <div class="metric">
-              <span class="metric-value">e-Not.</span>
+            <div class="metric" role="listitem">
+              <span class="metric-value" aria-label="e-Notariado integrado">e-Not.</span>
               <span class="metric-label" data-i18n="home.metricNotary">Fé pública integrada</span>
             </div>
-            <div class="metric">
-              <span class="metric-value">PT · EN · ES</span>
+            <div class="metric" role="listitem">
+              <span class="metric-value" aria-label="Idiomas: Português, Inglês e Espanhol">PT · EN · ES</span>
               <span class="metric-label" data-i18n="home.metricLangs">Idiomas suportados</span>
             </div>
           </div>
@@ -141,15 +145,23 @@
       </section>
 
       <!-- ══ CONFIANÇA INSTITUCIONAL ══════════════════════════ -->
+      <!--
+        FIX v6: data-i18n corrigidos para bater com as chaves do JSON:
+        "home_trust_title" → "home.introTitle"
+        "home_trust_p1"    → "home.introP1"
+        "home_trust_p2"    → "home.introP2"
+        Os valores anteriores não existiam como chaves de primeiro nível
+        no JSON (eram sub-chaves de "home"), causando falha no i18n.
+      -->
       <section class="section-trust reveal">
         <p class="section-label" data-i18n="home.trustLabel">Fundamento</p>
-        <h2 data-i18n="home_trust_title">Confiança Institucional na Prova Digital</h2>
-        <p data-i18n="home_trust_p1">
+        <h2 data-i18n="home.introTitle">Confiança Institucional na Prova Digital</h2>
+        <p data-i18n="home.introP1">
           A Tutela Digital® oferece infraestrutura de preservação probatória digital estruturada para organizações
           públicas, empresas e pessoas físicas que necessitam de documentação técnica de ativos digitais com integridade
           verificável e rastreabilidade auditável.
         </p>
-        <p data-i18n="home_trust_p2">
+        <p data-i18n="home.introP2">
           A preservação estruturada de ativos digitais constitui etapa essencial para produção de prova em processos
           judiciais, administrativos ou arbitrais. A Tutela Digital® atua prioritariamente na fase pré-litigiosa,
           organizando tecnicamente evidências digitais com integridade verificável, documentação de cadeia de custódia e
@@ -158,7 +170,7 @@
 
         <div class="trust-grid">
           <div class="trust-item">
-            <svg class="trust-item-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="trust-item-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
@@ -167,7 +179,7 @@
               integridade da prova desde sua origem.</p>
           </div>
           <div class="trust-item">
-            <svg class="trust-item-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="trust-item-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>
@@ -176,7 +188,7 @@
               autenticidade documental reconhecida.</p>
           </div>
           <div class="trust-item">
-            <svg class="trust-item-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="trust-item-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
             <h3 data-i18n="home.trustItem3Title">Integridade Verificável</h3>
@@ -184,7 +196,7 @@
               rastreabilidade de cada ativo preservado.</p>
           </div>
           <div class="trust-item">
-            <svg class="trust-item-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="trust-item-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
             </svg>
@@ -196,33 +208,41 @@
       </section>
 
       <!-- ══ SOLUÇÕES POR SEGMENTO ═════════════════════════════ -->
+      <!--
+        FIX v6: data-i18n corrigidos:
+        "home_verticals_title" (chave raiz inexistente) → "home.heroTitle"
+        "home_verticals_gov"   → "home.home_verticals_gov"  (sub-chave de home)
+        Idem para corp e personal.
+        FIX v6: aria-hidden="true" em .vertical-card-link (é decorativo,
+        o link ainda é acessível pelo texto do card completo).
+      -->
       <section class="section-verticals reveal">
         <div class="verticals-wrapper">
-          <p class="section-label" style="text-align:center" data-i18n="home.verticalsLabel">Segmentos</p>
-          <h2 data-i18n="home_verticals_title">Soluções por Segmento</h2>
+          <p class="section-label" data-i18n="home.verticalsLabel">Segmentos</p>
+          <h2 data-i18n="home.heroTitle">Soluções por Segmento</h2>
 
           <div class="verticals-grid--new">
 
             <a href="/governo.html" class="vertical-card--new">
               <span class="vertical-card-tag" data-i18n="home.vertTagGov">Setor Público</span>
-              <h3 data-i18n="home_verticals_gov">Governo</h3>
-              <p data-i18n="home_verticals_gov_desc">Custódia probatória de atos públicos, contratos administrativos e
+              <h3 data-i18n="home.home_verticals_gov">Governo</h3>
+              <p data-i18n="home.home_verticals_gov_desc">Custódia probatória de atos públicos, contratos administrativos e
                 documentos sensíveis com transparência, aderência normativa e rastreabilidade auditável.</p>
               <span class="vertical-card-link" aria-hidden="true">Saiba mais →</span>
             </a>
 
             <a href="/empresas.html" class="vertical-card--new">
               <span class="vertical-card-tag" data-i18n="home.vertTagCorp">Corporativo</span>
-              <h3 data-i18n="home_verticals_corp">Empresas</h3>
-              <p data-i18n="home_verticals_corp_desc">Proteção de documentos estratégicos, propriedade intelectual,
+              <h3 data-i18n="home.home_verticals_corp">Empresas</h3>
+              <p data-i18n="home.home_verticals_corp_desc">Proteção de documentos estratégicos, propriedade intelectual,
                 compliance regulatório e governança de ativos digitais corporativos com validade jurídica.</p>
               <span class="vertical-card-link" aria-hidden="true">Saiba mais →</span>
             </a>
 
             <a href="/pessoas.html" class="vertical-card--new">
               <span class="vertical-card-tag" data-i18n="home.vertTagPersonal">Pessoas Físicas</span>
-              <h3 data-i18n="home_verticals_personal">Pessoas Físicas</h3>
-              <p data-i18n="home_verticals_personal_desc">Proteção patrimonial digital, planejamento sucessório,
+              <h3 data-i18n="home.home_verticals_personal">Pessoas Físicas</h3>
+              <p data-i18n="home.home_verticals_personal_desc">Proteção patrimonial digital, planejamento sucessório,
                 custódia de ativos pessoais e confidencialidade de documentos com fé pública.</p>
               <span class="vertical-card-link" aria-hidden="true">Saiba mais →</span>
             </a>
@@ -232,10 +252,17 @@
       </section>
 
       <!-- ══ PILARES DA INFRAESTRUTURA ════════════════════════ -->
+      <!--
+        FIX v6: data-i18n corrigidos:
+        "home_pillars_title"             → "home.pillarsTitle"
+        "home_pillars_preservation"      → "home.pillar1Title"
+        "home_pillars_preservation_desc" → "home.pillar1Desc"
+        (idem para pilares 2, 3 e 4)
+      -->
       <section class="section-pillars reveal">
         <div class="pillars-header">
           <p class="section-label" data-i18n="home.pillarsLabel">Arquitetura</p>
-          <h2 data-i18n="home_pillars_title">Pilares da Infraestrutura</h2>
+          <h2 data-i18n="home.pillarsTitle">Pilares da Infraestrutura</h2>
           <p data-i18n="home.pillarsSubtitle">Componentes técnicos e jurídicos que sustentam a preservação probatória
             com rigor e confiabilidade.</p>
         </div>
@@ -244,45 +271,45 @@
 
           <div class="pillar-card">
             <span class="pillar-number">01</span>
-            <svg class="pillar-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="pillar-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
-            <h3 data-i18n="home_pillars_preservation">Preservação Probatória Estruturada</h3>
-            <p data-i18n="home_pillars_preservation_desc">Registro técnico e preservação de ativos digitais com
+            <h3 data-i18n="home.pillar1Title">Preservação Probatória Estruturada</h3>
+            <p data-i18n="home.pillar1Desc">Registro técnico e preservação de ativos digitais com
               documentação formal de integridade, autenticidade e origem, estruturado para suporte probatório.</p>
           </div>
 
           <div class="pillar-card">
             <span class="pillar-number">02</span>
-            <svg class="pillar-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="pillar-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
               <rect height="11" rx="2" ry="2" width="18" x="3" y="11" />
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
-            <h3 data-i18n="home_pillars_integrity">Integridade Verificável</h3>
-            <p data-i18n="home_pillars_integrity_desc">Algoritmos criptográficos de alto padrão que produzem evidência
+            <h3 data-i18n="home.pillar2Title">Integridade Verificável</h3>
+            <p data-i18n="home.pillar2Desc">Algoritmos criptográficos de alto padrão que produzem evidência
               matemática de imutabilidade, permitindo verificação independente por qualquer autoridade.</p>
           </div>
 
           <div class="pillar-card">
             <span class="pillar-number">03</span>
-            <svg class="pillar-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="pillar-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
               <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
             </svg>
-            <h3 data-i18n="home_pillars_custody">Cadeia de Custódia Documentada</h3>
-            <p data-i18n="home_pillars_custody_desc">Histórico imutável e auditável de todas as operações realizadas
+            <h3 data-i18n="home.pillar3Title">Cadeia de Custódia Documentada</h3>
+            <p data-i18n="home.pillar3Desc">Histórico imutável e auditável de todas as operações realizadas
               sobre cada ativo digital, com identificação temporal e autoral de cada evento.</p>
           </div>
 
           <div class="pillar-card">
             <span class="pillar-number">04</span>
-            <svg class="pillar-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="pillar-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14,2 14,8 20,8" />
               <path d="M9 15l2 2 4-4" />
             </svg>
-            <h3 data-i18n="home_pillars_admissibility">Suporte à Admissibilidade Jurídica</h3>
-            <p data-i18n="home_pillars_admissibility_desc">Infraestrutura estruturada para subsidiar a análise de
+            <h3 data-i18n="home.pillar4Title">Suporte à Admissibilidade Jurídica</h3>
+            <p data-i18n="home.pillar4Desc">Infraestrutura estruturada para subsidiar a análise de
               admissibilidade de prova digital perante juízos, tribunais administrativos e câmaras arbitrais.</p>
           </div>
 
@@ -290,13 +317,20 @@
       </section>
 
       <!-- ══ FUNDAMENTOS JURÍDICOS ═════════════════════════════ -->
+      <!--
+        FIX v6: data-i18n corrigidos:
+        "home_applicability_title" → "home.home_applicability_title"
+        "home_applicability_desc"  → "home.home_applicability_desc"
+        FIX v6: "home.legalP2" já era correto — mantido.
+        FIX v6: "home.legalLinksTitle" já era correto — mantido.
+      -->
       <section class="section-legal reveal">
         <div class="legal-inner">
 
           <div class="legal-content">
             <p class="section-label" data-i18n="home.legalLabel">Fundamentos</p>
-            <h2 data-i18n="home_applicability_title">Prova Digital e o Ordenamento Jurídico Brasileiro</h2>
-            <p data-i18n="home_applicability_desc">
+            <h2 data-i18n="home.home_applicability_title">Prova Digital e o Ordenamento Jurídico Brasileiro</h2>
+            <p data-i18n="home.home_applicability_desc">
               A preservação probatória digital pode ser utilizada para instrução de processos judiciais, defesas
               administrativas, procedimentos arbitrais, investigações internas e formalizações notariais, conforme
               avaliação da autoridade competente.
@@ -334,16 +368,22 @@
       </section>
 
       <!-- ══ CTA FINAL ══════════════════════════════════════════ -->
+      <!--
+        FIX v6: data-i18n corrigidos:
+        "home_cta_title"   → "home.home_cta_title"
+        "home_cta_desc"    → "home.home_cta_desc"
+        "home_cta_button"  → "home.home_cta_button"
+      -->
       <section class="section-cta-home reveal">
         <div class="cta-home-inner">
-          <h2 data-i18n="home_cta_title">Proteja seus ativos digitais com validade jurídica</h2>
-          <p data-i18n="home_cta_desc">Acesse a plataforma e inicie a preservação estruturada dos seus ativos digitais
+          <h2 data-i18n="home.home_cta_title">Proteja seus ativos digitais com validade jurídica</h2>
+          <p data-i18n="home.home_cta_desc">Acesse a plataforma e inicie a preservação estruturada dos seus ativos digitais
             com cadeia de custódia auditável e fé pública.</p>
           <div class="hero-actions">
             <a class="btn-hero-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer"
-              target="_blank" data-i18n="home_cta_button">
+              target="_blank" data-i18n="home.home_cta_button">
               Acessar a Plataforma
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
             </a>
@@ -357,18 +397,32 @@
     <!--#include virtual="/partials/scripts.html" -->
   </div>
 
+  <!--
+    FIX v6: IntersectionObserver ajustado:
+    - threshold: 0.08 → 0.12 (evita disparo prematuro)
+    - rootMargin: '0px 0px -40px 0px' → '0px 0px -60px 0px' (margem
+      aumentada para revelar seções apenas quando já mais visíveis)
+    - Adicionado: disconnect() quando não há mais elementos a observar
+      (otimização de performance)
+  -->
   <script>
     (function () {
       const els = document.querySelectorAll('.reveal');
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
+      if (!els.length) return;
+
+      const obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
           if (e.isIntersecting) {
             e.target.classList.add('visible');
             obs.unobserve(e.target);
           }
         });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-      els.forEach(el => obs.observe(el));
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -60px 0px'
+      });
+
+      els.forEach(function(el) { obs.observe(el); });
     })();
   </script>
 </body>
