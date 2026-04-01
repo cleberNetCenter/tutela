@@ -17,6 +17,11 @@
   --sec-radius-lg:    20px;
 }
 
+body,
+.app {
+  background-color: #0a0f0d;  /* tom escuro consistente com a identidade */
+}
+
 /* ── PAGE HEADER ─────────────────────────────────────────── */
 .page-header--security-centered {
   position: relative;
