@@ -422,3 +422,8 @@ body,
   0%, 100% { opacity: 1; }
   50%       { opacity: .35; }
 }
+
+.page-header--inner {
+  background-color: #0d1410; /* mesmo tom escuro */
+  background-image: radial-gradient(...); /* mantém o efeito */
+}
