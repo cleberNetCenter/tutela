@@ -435,3 +435,8 @@ body,
     opacity: .35;
   }
 }
+
+.page-header {
+  background-color: #0d1410; /* mesmo tom escuro */
+  background-image: radial-gradient(...); /* mantém o efeito */
+}
