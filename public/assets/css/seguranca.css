@@ -435,6 +435,7 @@ body,
     opacity: .35;
   }
 }
+
 /* =============================================================
    FIX v5.1 - Garantia de fundo sólido e contraste
    ============================================================= */
@@ -442,14 +443,15 @@ body,
 /* Força fundo escuro sólido nas seções que usam apenas gradientes */
 .page-header--security-centered,
 .sec-cta {
-  background-color: #0a0f0d; /* mesmo tom do body */
+  background-color: #0a0f0d;
+  /* mesmo tom do body */
 }
 
 /* Mantém os gradientes sem sobreposição total */
 .page-header--security-centered {
   background-image: radial-gradient(ellipse 80% 50% at 50% -5%, rgba(34, 197, 94, .13) 0%, transparent 65%),
-                    linear-gradient(rgba(34, 197, 94, .035) 1px, transparent 1px) 0 0 / 64px 64px,
-                    linear-gradient(90deg, rgba(34, 197, 94, .035) 1px, transparent 1px) 0 0 / 64px 64px;
+    linear-gradient(rgba(34, 197, 94, .035) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(90deg, rgba(34, 197, 94, .035) 1px, transparent 1px) 0 0 / 64px 64px;
 }
 
 .sec-cta {
@@ -458,12 +460,14 @@ body,
 
 /* Se o header for fixo, ajusta o espaçamento para não sobrepor conteúdo */
 body.has-fixed-header .page-header--security-centered {
-  padding-top: calc(7rem + 80px); /* ajuste conforme altura real do header */
+  padding-top: calc(7rem + 80px);
+  /* ajuste conforme altura real do header */
 }
 
 /* Garante que os cards tenham altura mínima para conteúdo em diferentes idiomas */
 .sec-card {
-  min-height: 280px; /* evita que cards fiquem com alturas desiguais */
+  min-height: 280px;
+  /* evita que cards fiquem com alturas desiguais */
 }
 
 /* Melhora o contraste da checklist em telas pequenas */
@@ -477,7 +481,8 @@ body.has-fixed-header .page-header--security-centered {
 .sec-intro h2,
 .sec-pillars-header h2,
 .sec-reliability h2 {
-  color: #ffffff; /* fallback para o caso de variável não definida */
+  color: #ffffff;
+  /* fallback para o caso de variável não definida */
 }
 
 .sec-card p,
@@ -485,5 +490,20 @@ body.has-fixed-header .page-header--security-centered {
 .sec-pillars-header p,
 .sec-reliability p,
 .sec-cta p {
-  color: rgba(255, 255, 255, 0.7); /* fallback */
+  color: rgba(255, 255, 255, 0.7);
+  /* fallback */
+}
+
+/* Garante fundo escuro sólido no hero */
+.page-header--security-centered {
+  background-color: #0a0f0d;
+  /* mesma cor do body */
+  /* Mantém os gradientes e linhas sobre o fundo sólido */
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -5%, rgba(34, 197, 94, .13) 0%, transparent 65%),
+    linear-gradient(rgba(34, 197, 94, .035) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(90deg, rgba(34, 197, 94, .035) 1px, transparent 1px) 0 0 / 64px 64px;
+  background-repeat: no-repeat, repeat, repeat;
+  /* ajuste para o grid repetir */
+  background-position: center top, 0 0, 0 0;
 }
