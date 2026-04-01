@@ -17,6 +17,11 @@
   --cf-radius-lg: 20px;
 }
 
+body,
+.app {
+  background-color: #0a0f0d;
+}
+
 /* ── PAGE HEADER ─────────────────────────────────────────── */
 .page-header--como-funciona-centered {
   position: relative;
