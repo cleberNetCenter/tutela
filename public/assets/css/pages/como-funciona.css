@@ -589,3 +589,21 @@ body.has-fixed-header .main {
 .main {
   margin-top: 0;
 }
+
+.page-header.page-header--como-funciona-centered {
+  position: relative;
+  padding: 7rem 2rem 4rem;
+  overflow: hidden;
+
+  background-color: #0a0f0d;
+
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -5%, rgba(34, 197, 94, .13) 0%, transparent 65%),
+    linear-gradient(rgba(34, 197, 94, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, .035) 1px, transparent 1px);
+
+  background-size: auto, 64px 64px, 64px 64px;
+  background-repeat: no-repeat, repeat, repeat;
+
+  z-index: 1;
+}
