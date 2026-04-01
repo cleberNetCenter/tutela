@@ -507,3 +507,13 @@ body.has-fixed-header .page-header--security-centered {
   /* ajuste para o grid repetir */
   background-position: center top, 0 0, 0 0;
 }
+
+/* usando a própria classe do hero e a classe pai */
+section.page-header--security-centered {
+  background-color: #0a0f0d;
+  background-image: radial-gradient(ellipse 80% 50% at 50% -5%, rgba(34, 197, 94, .13) 0%, transparent 65%),
+    linear-gradient(rgba(34, 197, 94, .035) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(90deg, rgba(34, 197, 94, .035) 1px, transparent 1px) 0 0 / 64px 64px;
+  background-repeat: no-repeat, repeat, repeat;
+  background-position: center top, 0 0, 0 0;
+}
