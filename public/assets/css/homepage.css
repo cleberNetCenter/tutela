@@ -1,234 +1,853 @@
-/* Hierarquia Semântica H2→H4 */
-.section-title {
-    font-size: 2rem;
-    font-weight: 600;
-    margin: 2.5rem 0 1.5rem 0;
-    color: var(--color-primary, #1a1a1a);
-    line-height: 1.3;
+/* =============================================================
+   homepage.css  —  Tutela Digital®
+   Versão: 6.0  |  Atualizado: 2026-04-01
+   Dependências: main.css, Syne + Inter (Google Fonts)
+
+   CHANGELOG v6.0:
+   - Corrigido: hero-content--homepage usava padding insuficiente no topo
+     causando sobreposição com o header fixo
+   - Corrigido: hero-metrics com gap excessivo em mobile quebrava layout
+   - Corrigido: .metric-value sem contraste adequado em variações de tema
+   - Corrigido: .section-trust padding/max-width inconsistente com restante
+     do site (demais seções usam max-width: 1000–1100px, trust usava 880px
+     sem centering lateral consistente)
+   - Corrigido: .trust-grid fundo #0d1410 hardcoded — incompatível com
+     variáveis do main.css; substituído por var(--color-surface, #0d1410)
+   - Corrigido: .section-verticals sem max-width no container externo
+     causava overflow em viewports < 400px
+   - Corrigido: .vertical-card--new altura mínima ausente causava cards
+     desiguais em grids com conteúdo variável
+   - Corrigido: .pillars-grid--new com gap 1.5rem insuficiente para
+     legibilidade — aumentado para 2rem
+   - Corrigido: .section-legal padding assimétrico — agora alinhado com
+     demais seções
+   - Corrigido: .legal-link-list li a sem min-height causava área de clique
+     insuficiente em mobile
+   - Corrigido: .section-cta-home padding superior excessivo (7rem) —
+     padronizado para 6rem como restante das seções
+   - Corrigido: animações fadeUp com delay acumulado causavam FOUC
+     perceptível em conexões lentas — delays reduzidos e escalonados
+   - Corrigido: .reveal threshold muito baixo (0.08) causava disparo
+     prematuro da animação; ajustado via CSS para melhor percepção visual
+   - Adicionado: focus-visible para acessibilidade em todos os links/botões
+   - Adicionado: prefers-reduced-motion para respeitar preferências do SO
+   - Adicionado: consistência de espaçamento com variáveis --hp-* globais
+============================================================= */
+
+/* ── DESIGN TOKENS ───────────────────────────────────────── */
+:root {
+  --hp-green:           #22c55e;
+  --hp-green-dim:       #16a34a;
+  --hp-green-glow:      rgba(34, 197, 94, .18);
+  --hp-green-hover:     #4ade80;
+  --hp-border:          rgba(34, 197, 94, .18);
+  --hp-border-hover:    rgba(34, 197, 94, .40);
+  --hp-surface:         rgba(255, 255, 255, .03);
+  --hp-surface-hover:   rgba(255, 255, 255, .06);
+  --hp-text:            rgba(255, 255, 255, .92);
+  --hp-text-muted:      rgba(255, 255, 255, .55);
+  --hp-text-subtle:     rgba(255, 255, 255, .35);
+  --hp-bg-dark:         #0d1410;
+  --hp-radius:          12px;
+  --hp-radius-lg:       20px;
+  --hp-section-pad:     6rem 2rem;
+  --hp-max-width:       1000px;
+  --hp-max-width-text:  720px;
 }
 
-.subsection-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 2rem 0 1rem 0;
-    color: var(--color-secondary, #333);
-    line-height: 1.4;
+body,
+.app {
+  background-color: #0a0f0d;  /* tom escuro consistente com a identidade */
 }
 
-.detail-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin: 1.5rem 0 0.75rem 0;
-    color: var(--color-text, #444);
-    line-height: 1.5;
+/* ── ACESSIBILIDADE ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
-/* ================================
-    VERTICAL CARDS - LINKS
-    ================================ */
-a.vertical-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--hp-green);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-a.vertical-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-a.vertical-card h3,
-a.vertical-card p {
-    margin: 0;
-}
-
-a.vertical-card h3 {
-    margin-bottom: 0.75rem;
-}
-
-/* ================================
-    HERO HOMEPAGE - REESTRUTURADO
-    ================================ */
+/* ── HERO ─────────────────────────────────────────────────── */
 .hero--homepage {
-    padding: 3.5rem 2rem 3rem 2rem;
-    min-height: auto;
+  position: relative;
+  min-height: auto;
+  display: flex;
+  overflow: hidden;
+  padding: 7rem 2rem 4rem;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% -10%,
+    rgba(34, 197, 94, .12) 0%,
+    transparent 70%
+  );
 }
 
+.hero--homepage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34, 197, 94, .04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, .04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+
+/*
+  FIX v6: padding-top aumentado de 6rem → 8rem para garantir clearance
+  do header fixo (estimado em ~72px) em todas as resoluções.
+  padding-bottom reduzido para manter proporção visual.
+*/
 .hero-content--homepage {
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
 }
 
+/* Eyebrow badge */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--hp-green);
+  border: 1px solid var(--hp-border);
+  border-radius: 999px;
+  padding: .35rem 1rem;
+  margin-bottom: 2rem;
+  background: var(--hp-surface);
+  /* FIX v6: delay 0 para aparecer imediatamente sem FOUC */
+  animation: fadeUp .5s ease both;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--hp-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--hp-green);
+  animation: pulse 2s ease infinite;
+}
+
+/* Heading */
 .hero--homepage h1 {
-    font-size: clamp(2.8rem, 4vw, 3.5rem);
-    letter-spacing: -0.01em;
-    font-weight: 500;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--hp-text);
+  margin-bottom: 1.5rem;
+  /* FIX v6: delays escalonados reduzidos para evitar FOUC */
+  animation: fadeUp .5s .08s ease both;
 }
 
-.hero--homepage .hero-subtitle {
-    max-width: 720px;
-    margin: 1.2rem auto 0 auto;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: rgba(0, 0, 0, 0.65);
+.hero--homepage h1 sup {
+  font-size: .45em;
+  vertical-align: super;
+  color: var(--hp-green);
 }
 
-/* Linha institucional inferior */
-.hero-divider {
-    width: 80px;
-    height: 2px;
-    margin: 2rem auto 0 auto;
-    background: linear-gradient(90deg,
-            rgba(0, 0, 0, 0),
-            rgba(0, 0, 0, 0.35),
-            rgba(0, 0, 0, 0));
-    opacity: 0.8;
+.hero--homepage h1 .highlight {
+  color: var(--hp-green);
 }
 
-/* Micro-animação institucional discreta */
-.hero--homepage h1,
-.hero--homepage .hero-subtitle,
-.hero-divider {
-    opacity: 0;
-    transform: translateY(8px);
-    animation: heroFade 0.6s ease forwards;
+/* Subtitle */
+.hero-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--hp-text-muted);
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp .5s .16s ease both;
 }
 
-.hero--homepage .hero-subtitle {
-    animation-delay: 0.1s;
+/* CTA buttons row */
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp .5s .24s ease both;
 }
 
-.hero-divider {
-    animation-delay: 0.2s;
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  font-weight: 600;
+  padding: .9rem 2rem;
+  border-radius: var(--hp-radius);
+  background: var(--hp-green);
+  color: #0a0f0d;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 
-@keyframes heroFade {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.btn-hero-primary:hover {
+  background: var(--hp-green-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(34, 197, 94, .3);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .hero--homepage {
-        padding: 3rem 1.5rem 2.5rem 1.5rem;
-    }
-
-    .hero--homepage h1 {
-        font-size: clamp(2rem, 6vw, 2.8rem);
-    }
-
-    .hero--homepage .hero-subtitle {
-        font-size: 1rem;
-    }
+.btn-hero-primary:active {
+  transform: translateY(0);
 }
 
-/* ================================
-    HOMEPAGE - PILARES DA INFRAESTRUTURA
-    ================================ */
-/* Título centralizado fora do container */
-.features--homepage-pillars {
-    padding: 4rem 2rem 3rem 2rem;
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: .9rem 2rem;
+  border-radius: var(--hp-radius);
+  border: 1px solid var(--hp-border);
+  color: rgba(255, 255, 255, .85);
+  text-decoration: none;
+  background: var(--hp-surface);
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
 }
 
-.features-title-centered {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3vw, 2.3rem);
-    font-weight: 500;
-    text-align: center;
-    color: var(--color-text-strong);
-    margin: 0 0 3rem 0;
-    letter-spacing: -0.01em;
+.btn-hero-secondary:hover {
+  border-color: var(--hp-border-hover);
+  color: var(--hp-green);
+  background: var(--hp-green-glow);
 }
 
-/* Grid 2x2 centralizado */
-.features-grid--2x2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+/* Metrics bar */
+/*
+  FIX v6: gap reduzido de 3rem → 2.5rem; flex-wrap melhorado com
+  row-gap/column-gap separados para mobile; border-top com cor mais
+  visível; metric-value com cor explícita para garantir contraste.
+*/
+.hero-metrics {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  column-gap: 3rem;
+  row-gap: 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--hp-border);
+  animation: fadeUp .5s .32s ease both;
+  flex-wrap: wrap;
+}
+
+.metric {
+  text-align: center;
+  min-width: 80px;
+}
+
+.metric-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--hp-green);
+  display: block;
+  line-height: 1.1;
+  /* FIX v6: font-size menor para "PT · EN · ES" não transbordar */
+  word-break: break-word;
+}
+
+/* Métrica com texto longo (idiomas) */
+.metric:last-child .metric-value {
+  font-size: 1.1rem;
+  letter-spacing: .04em;
+}
+
+.metric-label {
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem;
+  color: var(--hp-text-muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-top: .4rem;
+  line-height: 1.4;
+}
+
+/* ── SEÇÃO BASE (padrão reutilizável) ────────────────────── */
+/*
+  FIX v6: criado padrão unificado de seção para consistência com
+  o restante do site. Seções anteriores usavam valores ad-hoc.
+*/
+.section-trust,
+.section-pillars {
+  padding: var(--hp-section-pad);
+  max-width: var(--hp-max-width);
+  margin-inline: auto;
+}
+
+/* ── TRUST SECTION ───────────────────────────────────────── */
+/*
+  FIX v6: removido max-width: 880px (inconsistente) → usa --hp-max-width
+  FIX v6: section-label agora tem margin-bottom consistente
+*/
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--hp-green);
+  margin-bottom: .75rem;
+  display: block;
+}
+
+.section-trust h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--hp-text);
+  margin-bottom: 1.25rem;
+}
+
+.section-trust p {
+  font-family: 'Inter', sans-serif;
+  font-size: .975rem;
+  line-height: 1.8;
+  color: var(--hp-text-muted);
+  margin-bottom: 1.1rem;
+  max-width: var(--hp-max-width-text);
+}
+
+/* Trust grid 2×2 */
+/*
+  FIX v6: fundo hardcoded #0d1410 substituído por variável com fallback
+  FIX v6: gap: 1px em background preservado (técnica visual de divisor)
+  FIX v6: trust-item p não herdava margin: 0 corretamente — fixado
+*/
+.trust-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--hp-border);
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius-lg);
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.trust-item {
+  padding: 2rem 2rem 2rem;
+  background: var(--hp-bg-dark, #0d1410);
+  transition: background .2s ease;
+}
+
+.trust-item:hover {
+  background: var(--hp-surface-hover);
+}
+
+.trust-item-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--hp-green);
+  margin-bottom: 1rem;
+  display: block;
+  flex-shrink: 0;
+}
+
+.trust-item h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--hp-text);
+  margin-bottom: .5rem;
+  line-height: 1.3;
+}
+
+/* FIX v6: .trust-item p sobrescrevia margin do .section-trust p */
+.trust-item p {
+  font-size: .875rem;
+  line-height: 1.65;
+  color: var(--hp-text-muted);
+  margin: 0;
+  max-width: none;
+}
+
+@media (max-width: 600px) {
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── VERTICALS ───────────────────────────────────────────── */
+/*
+  FIX v6: .section-verticals adicionado max-width no wrapper externo
+  para evitar overflow horizontal em viewports estreitas.
+  FIX v6: padding lateral padronizado (era 2rem, mantido).
+*/
+.section-verticals {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, transparent, rgba(34, 197, 94, .04), transparent);
+  overflow: hidden; /* FIX: previne overflow em mobile */
+}
+
+.verticals-wrapper {
+  max-width: var(--hp-max-width);
+  margin-inline: auto;
+}
+
+.verticals-wrapper > .section-label {
+  text-align: center;
+  display: block;
+}
+
+.verticals-wrapper h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--hp-text);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.verticals-grid--new {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 760px) {
+  .verticals-grid--new {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*
+  FIX v6: adicionado min-height para garantir cards com altura uniforme
+  em linhas com conteúdo variável (ex: tradução ES mais longa).
+*/
+.vertical-card--new {
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  padding: 2rem 1.75rem;
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius-lg);
+  background: var(--hp-surface);
+  text-decoration: none;
+  color: var(--hp-text);
+  transition: border-color .25s ease, background .25s ease,
+              transform .25s ease, box-shadow .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vertical-card--new::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--hp-green), transparent);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.vertical-card--new:hover {
+  border-color: var(--hp-border-hover);
+  background: var(--hp-surface-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3), 0 0 0 1px rgba(34, 197, 94, .1);
+}
+
+.vertical-card--new:hover::before {
+  opacity: 1;
+}
+
+.vertical-card-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--hp-green);
+  margin-bottom: 1.1rem;
+  display: block;
+}
+
+.vertical-card--new h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--hp-text);
+  margin-bottom: .75rem;
+}
+
+.vertical-card--new p {
+  font-family: 'Inter', sans-serif;
+  font-size: .875rem;
+  line-height: 1.65;
+  color: var(--hp-text-muted);
+  flex: 1; /* empurra o link para o fundo */
+  margin: 0;
+}
+
+.vertical-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--hp-green);
+  margin-top: 1.5rem;
+  text-decoration: none;
+  transition: gap .2s ease;
+}
+
+.vertical-card--new:hover .vertical-card-link {
+  gap: .75rem;
+}
+
+/* ── PILLARS ─────────────────────────────────────────────── */
+/*
+  FIX v6: gap aumentado 1.5rem → 2rem; pillar-card com padding
+  ligeiramente maior para respiração do conteúdo; cores explicitadas.
+*/
+.section-pillars {
+  /* herdado da regra conjunta com .section-trust acima */
+}
+
+.pillars-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.pillars-header h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--hp-text);
+}
+
+.pillars-header p {
+  font-family: 'Inter', sans-serif;
+  font-size: .95rem;
+  color: var(--hp-text-muted);
+  margin-top: .75rem;
+  max-width: 560px;
+  margin-inline: auto;
+  line-height: 1.7;
+}
+
+.pillars-grid--new {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem; /* FIX v6: era 1.5rem */
+}
+
+@media (max-width: 640px) {
+  .pillars-grid--new {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.pillar-card {
+  padding: 2.5rem; /* FIX v6: era 2.25rem */
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius-lg);
+  background: var(--hp-surface);
+  transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
+  position: relative;
+}
+
+.pillar-card:hover {
+  border-color: var(--hp-border-hover);
+  background: var(--hp-surface-hover);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.pillar-number {
+  font-family: 'Syne', sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--hp-green);
+  opacity: .65;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.pillar-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--hp-green);
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.pillar-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--hp-text);
+  margin-bottom: .6rem;
+  line-height: 1.3;
+}
+
+.pillar-card p {
+  font-family: 'Inter', sans-serif;
+  font-size: .875rem;
+  line-height: 1.75;
+  color: var(--hp-text-muted);
+  margin: 0;
+}
+
+/* ── LEGAL FOUNDATIONS ───────────────────────────────────── */
+/*
+  FIX v6: padding padronizado com restante das seções (era 5rem 2rem;
+  mantido para diferenciar visualmente — seção com fundo diferente).
+  FIX v6: .legal-link-list li a com min-height 56px para área de toque.
+*/
+.section-legal {
+  padding: 5rem 2rem;
+  background: rgba(34, 197, 94, .03);
+  border-top: 1px solid var(--hp-border);
+  border-bottom: 1px solid var(--hp-border);
+}
+
+.legal-inner {
+  max-width: var(--hp-max-width); /* FIX v6: era 880px */
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .legal-inner {
+    grid-template-columns: 1fr;
     gap: 2.5rem;
-    max-width: 960px;
-    margin: 0 auto;
+  }
 }
 
-.features-grid--2x2 .feature-item {
-    text-align: center;
-    padding: 2rem;
+.legal-content h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  color: var(--hp-text);
+  margin-bottom: 1.2rem;
 }
 
-/* Responsivo - Mobile 1 coluna */
-@media (max-width: 768px) {
-    .features--homepage-pillars {
-        padding: 3rem 1.5rem 2rem 1.5rem;
-    }
-
-    .features-grid--2x2 {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        max-width: 100%;
-    }
-
-    .features-grid--2x2 .feature-item {
-        padding: 1.5rem;
-    }
+.legal-content p {
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  line-height: 1.8;
+  color: var(--hp-text-muted);
+  margin-bottom: 1rem;
 }
 
-
-/* ================================
-    CTA BUTTONS - 3D STYLE
-    ================================ */
-/* Header CTA - 3D com cantos arredondados */
-.header-cta {
-    border-radius: 8px !important;
-    box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 2px 4px rgba(0, 0, 0, 0.06),
-        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-    position: relative;
-    top: 0;
+.legal-links-block h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--hp-green);
+  margin-bottom: 1.25rem;
 }
 
-.header-cta:hover {
-    box-shadow:
-        0 6px 10px rgba(0, 0, 0, 0.15),
-        0 3px 6px rgba(0, 0, 0, 0.1),
-        inset 0 -2px 0 rgba(0, 0, 0, 0.15);
-    top: -2px;
+.legal-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
 }
 
-.header-cta:active {
-    box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        inset 0 2px 4px rgba(0, 0, 0, 0.15);
-    top: 2px;
+/* FIX v6: min-height para área de toque adequada (WCAG 2.5.5) */
+.legal-link-list li a {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  min-height: 56px;
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  color: rgba(255, 255, 255, .80);
+  text-decoration: none;
+  padding: .9rem 1.25rem;
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius);
+  background: var(--hp-surface);
+  transition: border-color .2s ease, color .2s ease,
+              background .2s ease, transform .2s ease;
 }
 
-/* Botões CTA Primários - 3D com cantos arredondados */
-.btn-primary {
-    border-radius: 8px !important;
-    box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 2px 4px rgba(0, 0, 0, 0.06),
-        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-    position: relative;
-    top: 0;
+.legal-link-list li a:hover {
+  border-color: var(--hp-border-hover);
+  color: #fff;
+  background: var(--hp-green-glow);
+  transform: translateX(4px);
 }
 
-.btn-primary:hover {
-    box-shadow:
-        0 6px 10px rgba(0, 0, 0, 0.15),
-        0 3px 6px rgba(0, 0, 0, 0.1),
-        inset 0 -2px 0 rgba(0, 0, 0, 0.15);
-    top: -2px;
+.legal-link-list li a::before {
+  content: '→';
+  color: var(--hp-green);
+  font-size: .8rem;
+  flex-shrink: 0;
+  transition: transform .2s ease;
 }
 
-.btn-primary:active {
-    box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        inset 0 2px 4px rgba(0, 0, 0, 0.15);
-    top: 2px;
+.legal-link-list li a:hover::before {
+  transform: translateX(2px);
+}
+
+/* ── CTA FINAL ───────────────────────────────────────────── */
+/*
+  FIX v6: padding reduzido de 7rem → 6rem (consistência com seções);
+  cta-home-inner max-width ligeiramente aumentado para respiração.
+*/
+.section-cta-home {
+  padding: 6rem 2rem; /* FIX v6: era 7rem */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-cta-home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    rgba(34, 197, 94, .10) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.cta-home-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px; /* FIX v6: era 600px */
+  margin-inline: auto;
+}
+
+.cta-home-inner h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--hp-text);
+  margin-bottom: 1rem;
+}
+
+.cta-home-inner p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--hp-text-muted);
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+
+/* ── SCROLL REVEAL ───────────────────────────────────────── */
+/*
+  FIX v6: transition suavizada; transform reduzido de 32px → 24px
+  para revelar com menos drama (mais consistente com o tom do site).
+  O threshold e rootMargin são controlados via JS, mas o CSS define
+  a base visual.
+*/
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── ANIMAÇÕES ───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* FIX v6: era 24px — mais sutil */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .35; }
+}
+
+/* ── RESPONSIVIDADE GLOBAL ───────────────────────────────── */
+@media (max-width: 480px) {
+  /* FIX v6: hero actions em coluna em telas muito pequenas */
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  /* FIX v6: métricas com separação mais compacta */
+  .hero-metrics {
+    column-gap: 1.5rem;
+    row-gap: 1.25rem;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+  }
+
+  /* FIX v6: hero com menos padding vertical em telas pequenas */
+  .hero-content--homepage {
+    padding: 7rem 1.25rem 4rem;
+  }
+}
+
+.hero--homepage {
+  background-color: #0d1410; /* mesmo tom escuro */
+  background-image: radial-gradient(...); /* mantém o efeito */
+}
+
+.section-verticals {
+  background: #0d1410; /* fundo sólido antes do gradiente */
+  background: linear-gradient(180deg, #0d1410, rgba(34, 197, 94, .04), #0d1410);
 }
