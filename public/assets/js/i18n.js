@@ -13,7 +13,9 @@ const I18N = {
     'page-institucional',
     'page-politica-de-privacidade',
     'page-fundamento-juridico',
-    'page-termos-de-custodia'
+    'page-termos-de-custodia',
+    'page-arquitetura-juridica-prova-digital',
+    'page-termos-de-uso'
   ],
 
   // Mapa de compatibilidade: chaves antigas → novas
