@@ -84,33 +84,33 @@
     "legalLinksTitle": "Aprofunde-se",
     "legalLink1": "Fundamentos jurídicos da prova digital",
     "legalLink2": "Cadeia de custódia da prova digital",
-    "legalLink3": "Produção antecipada de prova digital"
+    "legalLink3": "Produção antecipada de prova digital",
+    "home_trust_title": "Confiança Institucional na Prova Digital",
+    "home_trust_p1": "A Tutela Digital® oferece infraestrutura de preservação probatória digital estruturada para organizações públicas, empresas e pessoas físicas que necessitam de documentação técnica de ativos digitais com integridade verificável e rastreabilidade auditável.",
+    "home_trust_p2": "A preservação estruturada de ativos digitais constitui etapa essencial para produção de prova em processos judiciais, administrativos ou arbitrais. A Tutela Digital® atua prioritariamente na fase pré-litigiosa, organizando tecnicamente evidências digitais com integridade verificável, documentação de cadeia de custódia e suporte à formalização notarial via e-Notariado.",
+    "home_verticals_title": "Soluções por Segmento",
+    "home_verticals_gov": "Governo",
+    "home_verticals_gov_desc": "Custódia probatória de atos públicos, contratos administrativos e documentos sensíveis com transparência, aderência normativa e rastreabilidade auditável.",
+    "home_verticals_corp": "Empresas",
+    "home_verticals_corp_desc": "Proteção de documentos estratégicos, propriedade intelectual, compliance regulatório e governança de ativos digitais corporativos com validade jurídica.",
+    "home_verticals_personal": "Pessoas Físicas",
+    "home_verticals_personal_desc": "Proteção patrimonial digital, planejamento sucessório, custódia de ativos pessoais e confidencialidade de documentos com fé pública.",
+    "home_pillars_title": "Pilares da Infraestrutura",
+    "home_pillars_preservation": "Preservação Probatória Estruturada",
+    "home_pillars_preservation_desc": "Registro técnico e preservação de ativos digitais com documentação formal de integridade, autenticidade e origem, estruturado para suporte probatório.",
+    "home_pillars_integrity": "Integridade Verificável",
+    "home_pillars_integrity_desc": "Algoritmos criptográficos de alto padrão que produzem evidência matemática de imutabilidade, permitindo verificação independente por qualquer autoridade.",
+    "home_pillars_custody": "Cadeia de Custódia Documentada",
+    "home_pillars_custody_desc": "Histórico imutável e auditável de todas as operações realizadas sobre cada ativo digital, com identificação temporal e autoral de cada evento.",
+    "home_pillars_admissibility": "Suporte à Admissibilidade Jurídica",
+    "home_pillars_admissibility_desc": "Infraestrutura estruturada para subsidiar a análise de admissibilidade de prova digital perante juízos, tribunais administrativos e câmaras arbitrais.",
+    "home_applicability_title": "Prova Digital e o Ordenamento Jurídico Brasileiro",
+    "home_applicability_desc": "A preservação probatória digital pode ser utilizada para instrução de processos judiciais, defesas administrativas, procedimentos arbitrais, investigações internas e formalizações notariais, conforme avaliação da autoridade competente.",
+    "home_cta_title": "Proteja seus ativos digitais com validade jurídica",
+    "home_cta_desc": "Acesse a plataforma e inicie a preservação estruturada dos seus ativos digitais com cadeia de custódia auditável e fé pública.",
+    "home_cta_button": "Acessar a Plataforma",
+    "hero_subtitle": "Infraestrutura técnica e jurídica para preservação estruturada de prova digital, com integridade verificável, cadeia de custódia auditável e suporte à admissibilidade em processos judiciais, administrativos e arbitrais.",
   },
-  "home_trust_title": "Confiança Institucional na Prova Digital",
-  "home_trust_p1": "A Tutela Digital® oferece infraestrutura de preservação probatória digital estruturada para organizações públicas, empresas e pessoas físicas que necessitam de documentação técnica de ativos digitais com integridade verificável e rastreabilidade auditável.",
-  "home_trust_p2": "A preservação estruturada de ativos digitais constitui etapa essencial para produção de prova em processos judiciais, administrativos ou arbitrais. A Tutela Digital® atua prioritariamente na fase pré-litigiosa, organizando tecnicamente evidências digitais com integridade verificável, documentação de cadeia de custódia e suporte à formalização notarial via e-Notariado.",
-  "home_verticals_title": "Soluções por Segmento",
-  "home_verticals_gov": "Governo",
-  "home_verticals_gov_desc": "Custódia probatória de atos públicos, contratos administrativos e documentos sensíveis com transparência, aderência normativa e rastreabilidade auditável.",
-  "home_verticals_corp": "Empresas",
-  "home_verticals_corp_desc": "Proteção de documentos estratégicos, propriedade intelectual, compliance regulatório e governança de ativos digitais corporativos com validade jurídica.",
-  "home_verticals_personal": "Pessoas Físicas",
-  "home_verticals_personal_desc": "Proteção patrimonial digital, planejamento sucessório, custódia de ativos pessoais e confidencialidade de documentos com fé pública.",
-  "home_pillars_title": "Pilares da Infraestrutura",
-  "home_pillars_preservation": "Preservação Probatória Estruturada",
-  "home_pillars_preservation_desc": "Registro técnico e preservação de ativos digitais com documentação formal de integridade, autenticidade e origem, estruturado para suporte probatório.",
-  "home_pillars_integrity": "Integridade Verificável",
-  "home_pillars_integrity_desc": "Algoritmos criptográficos de alto padrão que produzem evidência matemática de imutabilidade, permitindo verificação independente por qualquer autoridade.",
-  "home_pillars_custody": "Cadeia de Custódia Documentada",
-  "home_pillars_custody_desc": "Histórico imutável e auditável de todas as operações realizadas sobre cada ativo digital, com identificação temporal e autoral de cada evento.",
-  "home_pillars_admissibility": "Suporte à Admissibilidade Jurídica",
-  "home_pillars_admissibility_desc": "Infraestrutura estruturada para subsidiar a análise de admissibilidade de prova digital perante juízos, tribunais administrativos e câmaras arbitrais.",
-  "home_applicability_title": "Prova Digital e o Ordenamento Jurídico Brasileiro",
-  "home_applicability_desc": "A preservação probatória digital pode ser utilizada para instrução de processos judiciais, defesas administrativas, procedimentos arbitrais, investigações internas e formalizações notariais, conforme avaliação da autoridade competente.",
-  "home_cta_title": "Proteja seus ativos digitais com validade jurídica",
-  "home_cta_desc": "Acesse a plataforma e inicie a preservação estruturada dos seus ativos digitais com cadeia de custódia auditável e fé pública.",
-  "home_cta_button": "Acessar a Plataforma",
-  "hero_subtitle": "Infraestrutura técnica e jurídica para preservação estruturada de prova digital, com integridade verificável, cadeia de custódia auditável e suporte à admissibilidade em processos judiciais, administrativos e arbitrais.",
   "preservation": {
     "title": "Como Preservar Prova Digital com Integridade e Cadeia de Custódia Documentada",
     "p1": "Preservar evidência digital exige mecanismos técnicos capazes de registrar, de forma cronológica e estruturada, os eventos relacionados ao ativo, garantindo rastreabilidade e integridade verificável ao longo do tempo.",
@@ -139,114 +139,90 @@
     "h4DataProtection": "Compatibilidade com LGPD",
     "h4ConfidentialityLimits": "Limites da Confidencialidade Jurídica"
   },
- "security": {
+  "security": {
     "pageTitle": "Arquitetura de Segurança | Tutela Digital®",
     "metaDesc": "Infraestrutura de segurança com criptografia de ponta a ponta, autenticação com fé pública via e-Notariado, registro técnico imutável e cadeia de custódia verificável.",
-
     "eyebrow": "Infraestrutura Técnica e Jurídica",
     "title": "Arquitetura de Integridade Aplicada à Preservação Probatória",
     "p1": "Fundamentos técnicos e jurídicos que sustentam a infraestrutura de preservação probatória digital com rigor verificável.",
-
     "introLabel": "Arquitetura",
     "h2Main": "Segurança Estruturada para a Prova Digital",
     "p2": "A infraestrutura da Tutela Digital® foi desenvolvida para oferecer mecanismos técnicos de preservação de integridade e rastreabilidade combinados com documentação jurídica. Cada componente do sistema foi estruturado considerando requisitos de segurança da informação, conformidade regulatória e reconhecimento probatório perante autoridades competentes.",
     "p3": "A integração com o sistema e-Notariado garante que o processo de onboarding seja realizado com fé pública, enquanto mecanismos criptográficos estruturados asseguram a integridade e rastreabilidade dos ativos ao longo de todo o ciclo de preservação — desde o depósito até o eventual uso como prova.",
-
     "pillarsLabel": "Pilares",
     "h2Secondary": "Componentes da Arquitetura de Segurança",
     "pillarsSubtitle": "Seis camadas complementares que garantem integridade técnica, controle de acesso e validade probatória.",
-
     "h3AccessControl": "Controle de Acesso Exclusivo ao Titular",
-
     "eNotarialTag": "Fé Pública",
     "eNotarialTitle": "e-Notariado",
     "eNotarialDesc": "Onboarding com validação de identidade via plataforma oficial dos cartórios brasileiros, conferindo fé pública ao processo de custódia e garantindo não repúdio quanto à identidade do titular.",
-
     "encryptionTag": "Proteção de Dados",
     "h3Encryption": "Criptografia de Ponta a Ponta",
     "encryptionDesc": "Algoritmos criptográficos de alto padrão protegem os ativos em trânsito e em repouso, impedindo acesso não autorizado e garantindo confidencialidade ao longo de todo o ciclo de preservação.",
-
     "immutableTag": "Imutabilidade",
     "h3ImmutableRegistration": "Registro Técnico Imutável",
     "h4BlockchainRecord": "Registro Distribuído como Prova Complementar",
     "blockchainDesc": "Registro distribuído e temporalmente verificável que garante a integridade e rastreabilidade de todas as operações, funcionando como prova complementar de existência e imutabilidade do ativo.",
     "h4TemporalIntegrity": "Integridade Temporal Verificável",
-
     "nonRepudiationTag": "Autoria",
     "nonRepudiationTitle": "Não Repúdio",
     "nonRepudiationDesc": "Mecanismos técnicos e jurídicos combinados que impedem a negação de autoria ou a alegação de alteração posterior dos ativos custodiados, sustentando a validade probatória.",
-
     "custodyTag": "Rastreabilidade",
     "chainOfCustodyTitle": "Cadeia de Custódia Imutável",
     "chainOfCustodyDesc": "Histórico completo, cronológico e inalterável de todas as ações realizadas sobre cada ativo digital, com identificação de agente, timestamp verificável e natureza de cada operação.",
-
     "evidentialTag": "Admissibilidade",
     "evidentialValidityTitle": "Suporte à Validade Probatória",
     "evidentialValidityDesc": "Infraestrutura estruturada para subsidiar a admissibilidade dos ativos preservados como prova em procedimentos judiciais, administrativos e arbitrais, conforme avaliação da autoridade competente.",
-
     "reliabilityLabel": "Requisitos Técnicos",
     "reliabilityTitle": "Confiabilidade Probatória como Princípio de Design",
     "reliabilityDesc": "A confiabilidade jurídica da prova digital depende da demonstração técnica de integridade, rastreabilidade e controle de autoria. A arquitetura da Tutela Digital® foi estruturada a partir desses requisitos, não como recurso adicional, mas como fundamento da infraestrutura.",
     "reliabilityDesc2": "Cada decisão de design atende a critérios derivados do art. 369 do CPC, das normas de segurança da informação e das exigências de admissibilidade reconhecidas pela jurisprudência dos tribunais superiores.",
-
     "check1": "Integridade verificável por qualquer autoridade, sem dependência da plataforma",
     "check2": "Autenticidade atestada por fé pública notarial via e-Notariado",
     "check3": "Cadeia de custódia auditável e cronologicamente documentada",
     "check4": "Registro temporal imutável e independentemente verificável",
     "check5": "Controle exclusivo do titular com mecanismos de não repúdio",
     "check6": "Conformidade com LGPD, CPC e normas de segurança da informação",
-
     "ctaTitle": "Conheça a infraestrutura de preservação",
     "ctaDesc": "Acesse a plataforma e inicie a custódia dos seus ativos digitais com integridade verificável e fé pública."
   },
-
   "howItWorks": {
     "pageTitle": "Como Funciona a Preservação Probatória | Tutela Digital®",
     "metaDesc": "Processo técnico de preservação probatória digital: cadastro, onboarding notarial via e-Notariado, depósito e registro com cadeia de custódia auditável.",
-
     "eyebrow": "Processo Estruturado",
     "title": "Como Funciona a Preservação Probatória",
     "subtitle": "Processo estruturado em quatro etapas para preservação probatória de ativos digitais com registro verificável, fé pública e cadeia de custódia auditável.",
-
     "graphicIntegrity": "Integridade",
     "graphicChain": "Cadeia de Custódia",
     "graphicLegalValidity": "Validade Jurídica",
-
     "introLabel": "Sobre o Processo",
     "processTitle": "Rigor Jurídico com Simplicidade Operacional",
     "processDescription": "A Tutela Digital® desenvolveu um processo que combina a facilidade de uso de uma plataforma digital moderna com o rigor técnico-jurídico necessário para garantir a validade probatória da custódia. Em quatro etapas, você inicia a proteção dos seus ativos digitais com fé pública, integridade verificável e cadeia de custódia auditável.",
     "processDescription2": "Para compreender a aplicação dessa lógica na organização e proteção patrimonial, consulte",
     "linkAtivos": "Ativos Digitais",
-
     "stepsLabel": "Etapas",
     "stepsTitle": "Quatro Etapas para a Custódia Probatória",
     "stepsSubtitle": "Da criação da conta ao registro formal com fé pública, cada etapa é estruturada para garantir a integridade e admissibilidade da prova.",
-
     "step1Tag": "Acesso Inicial",
     "stepPlatformRegistrationTitle": "Cadastro na Plataforma",
     "stepPlatformRegistrationDesc": "Acesse a plataforma e realize seu cadastro inicial com informações básicas de identificação. O processo é intuitivo e pode ser iniciado em minutos — sem necessidade de instalação de software ou conhecimento técnico especializado.",
     "step1Note": "Dados protegidos por criptografia desde o primeiro acesso",
-
     "step2Tag": "Configuração",
     "stepPlanSelectionTitle": "Escolha do Plano de Custódia",
     "stepPlanSelectionDesc": "Selecione o plano adequado às suas necessidades de custódia, volume de ativos e capacidade de armazenamento. Os planos são estruturados para atender a pessoas físicas, empresas e organizações públicas, com diferentes níveis de capacidade e recursos.",
     "step2Note": "Todos os planos incluem cadeia de custódia e registro técnico",
-
     "step3Tag": "Fé Pública",
     "stepNotaryInterviewTitle": "Entrevista Cartorial via e-Notariado",
     "stepNotaryInterviewDesc": "Agende e realize a entrevista com o tabelião via plataforma oficial e-Notariado. Essa etapa confere fé pública ao processo de onboarding, vinculando juridicamente o titular à conta de custódia e assegurando o não repúdio quanto à identidade do responsável pelos ativos.",
     "step3Note": "Exigência legal para custódia com validade probatória plena",
-
     "step4Tag": "Preservação",
     "stepDepositAndRecordTitle": "Depósito e Registro Probatório",
     "stepDepositAndRecordDesc": "O ativo digital é submetido a mecanismos técnicos de preservação de integridade — incluindo hash criptográfico, registro temporal imutável e documentação da cadeia de custódia — iniciando formalmente o ciclo de preservação probatória com rastreabilidade verificável.",
     "step4Note": "A partir deste ponto, qualquer alteração no ativo é tecnicamente detectável",
-
     "legalLabel": "Fundamento",
     "legalValidityTitle": "Validade Jurídica e Admissibilidade",
     "legalValidityDesc": "A admissibilidade da prova digital é matéria sujeita à apreciação da autoridade competente — seja o juízo, o árbitro ou a autoridade administrativa. A infraestrutura da Tutela Digital® atua na preservação estruturada e documentação técnica do ativo, criando as condições para que a prova seja avaliada com o máximo de credibilidade.",
     "legalValidityDesc2": "Conforme o art. 369 do CPC, as partes têm direito de empregar todos os meios legais e moralmente legítimos para provar a verdade dos fatos. A preservação técnica estruturada é o primeiro passo para garantir que a evidência digital resista ao contraditório.",
-
     "infoBoxTitle": "Aplicabilidade Probatória",
     "infoItem1": "Instrução de processos judiciais cíveis e trabalhistas",
     "infoItem2": "Defesas em procedimentos administrativos e sancionatórios",
@@ -254,10 +230,8 @@
     "infoItem4": "Investigações internas e compliance corporativo",
     "infoItem5": "Formalizações notariais e registros cartoriais",
     "infoItem6": "Planejamento sucessório e proteção patrimonial",
-
     "relatedLabel": "Conteúdo relacionado",
     "relatedTitle": "Ativos Digitais — Proteção e Custódia Patrimonial",
-
     "ctaTitle": "Inicie sua custódia probatória",
     "ctaDesc": "Acesse a plataforma e comece o processo de preservação dos seus ativos digitais com fé pública, integridade verificável e cadeia de custódia auditável."
   },
