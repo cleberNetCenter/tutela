@@ -109,7 +109,7 @@
     "home_cta_title": "Protect your digital assets with legal validity",
     "home_cta_desc": "Access the platform and start the structured preservation of your digital assets with auditable chain of custody and notarial seal.",
     "home_cta_button": "Access Platform",
-    "hero_subtitle": "Technical and legal infrastructure for structured digital evidence preservation, with verifiable integrity, auditable chain of custody and support for admissibility in judicial, administrative and arbitral proceedings."
+    "herosubtitle": "Technical and legal infrastructure for structured digital evidence preservation, with verifiable integrity, auditable chain of custody and support for admissibility in judicial, administrative and arbitral proceedings."
   },
   "preservation": {
     "title": "How to Preserve Digital Evidence with Integrity and Documented Chain of Custody",
