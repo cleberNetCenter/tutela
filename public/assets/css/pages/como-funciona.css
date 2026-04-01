@@ -22,8 +22,10 @@
   position: relative;
   padding: 7rem 2rem 4rem;
   overflow: hidden;
+}
+
+.page-header.page-header--como-funciona-centered {
   background-color: #0a0f0d;
-  /* 👈 ESSENCIAL */
 }
 
 .page-header--como-funciona-centered::before {
