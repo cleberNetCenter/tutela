@@ -308,19 +308,7 @@
 
 
   <!-- Scripts de internacionalização e navegação -->
-  <!-- Inicializar i18n para páginas legais -->
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      // Inicializa sistema i18n
-      await I18N.init();
-
-      // Força exibição do aviso se não estiver em PT
-      if (I18N.currentLang !== 'pt') {
-        console.log('[Legal Page] Idioma atual:', I18N.currentLang, '- Exibindo aviso');
-        I18N.showLegalPageNoticeIfNeeded();
-      }
-    });
-  </script>
+  <!-- Inicializar i18n para páginas legais removido: agora automático via scripts.html -->
   <script src="/assets/js/legal-animations.js?v=20260221"></script>
   <!--#include virtual="/partials/scripts.html" -->
 </html>
