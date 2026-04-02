@@ -55,7 +55,12 @@
     "terms": "Términos de Custodia",
     "privacy": "Política de Privacidad",
     "institutional": "Institucional",
-    "nav_termos_uso": "Términos de Uso"
+    "termsOfUse": "Términos de Uso"
+  },
+  "legalNotice": {
+    "title": "Aviso de Idioma",
+    "message": "⚠️ Información Legal: Este documento está disponible solo en portugués. Para una comprensión completa, cambie a portugués (PT).",
+    "buttonText": "Cambiar a Portugués (PT)"
   },
   "home": {
     "eyebrow": "Infraestructura Probatoria Digital",
