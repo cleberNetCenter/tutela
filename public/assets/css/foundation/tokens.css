@@ -80,7 +80,7 @@
 :root {
   /* Famílias — site global */
   --font-display:  'Cormorant Garamond', Georgia, serif;
-  --font-body:     'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:     'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Famílias — extensão editorial (páginas de Ativos Digitais)
      Requerem carregamento via <link> no <head> das páginas

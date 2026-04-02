@@ -36,32 +36,34 @@
 
 /* ── DESIGN TOKENS ───────────────────────────────────────── */
 :root {
-  --hp-green:           #22c55e;
-  --hp-green-dim:       #16a34a;
-  --hp-green-glow:      rgba(34, 197, 94, .18);
-  --hp-green-hover:     #4ade80;
-  --hp-border:          rgba(34, 197, 94, .18);
-  --hp-border-hover:    rgba(34, 197, 94, .40);
-  --hp-surface:         rgba(255, 255, 255, .03);
-  --hp-surface-hover:   rgba(255, 255, 255, .06);
-  --hp-text:            rgba(255, 255, 255, .92);
-  --hp-text-muted:      rgba(255, 255, 255, .55);
-  --hp-text-subtle:     rgba(255, 255, 255, .35);
-  --hp-bg-dark:         #0d1410;
-  --hp-radius:          12px;
-  --hp-radius-lg:       20px;
-  --hp-section-pad:     6rem 2rem;
-  --hp-max-width:       1000px;
-  --hp-max-width-text:  720px;
+  --hp-green: #22c55e;
+  --hp-green-dim: #16a34a;
+  --hp-green-glow: rgba(34, 197, 94, .18);
+  --hp-green-hover: #4ade80;
+  --hp-border: rgba(34, 197, 94, .18);
+  --hp-border-hover: rgba(34, 197, 94, .40);
+  --hp-surface: rgba(255, 255, 255, .03);
+  --hp-surface-hover: rgba(255, 255, 255, .06);
+  --hp-text: rgba(255, 255, 255, .92);
+  --hp-text-muted: rgba(255, 255, 255, .55);
+  --hp-text-subtle: rgba(255, 255, 255, .35);
+  --hp-bg-dark: #0d1410;
+  --hp-radius: 12px;
+  --hp-radius-lg: 20px;
+  --hp-section-pad: 6rem 2rem;
+  --hp-max-width: 1000px;
+  --hp-max-width-text: 720px;
 }
 
 body,
 .app {
-  background-color: #0a0f0d;  /* tom escuro consistente com a identidade */
+  background-color: #0a0f0d;
+  /* tom escuro consistente com a identidade */
 }
 
 /* ── ACESSIBILIDADE ──────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -69,6 +71,7 @@ body,
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+
   .reveal {
     opacity: 1 !important;
     transform: none !important;
@@ -89,11 +92,9 @@ button:focus-visible {
   display: flex;
   overflow: hidden;
   padding: 7rem 2rem 4rem;
-  background: radial-gradient(
-    ellipse 80% 60% at 50% -10%,
-    rgba(34, 197, 94, .12) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(ellipse 80% 60% at 50% -10%,
+      rgba(34, 197, 94, .12) 0%,
+      transparent 70%);
 }
 
 .hero--homepage::before {
@@ -153,15 +154,16 @@ button:focus-visible {
 
 /* Heading */
 .hero--homepage h1 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2.2rem, 5.5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -.02em;
+  font-family: var(--font-display);
+  /* Cormorant */
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   color: var(--hp-text);
-  margin-bottom: 1.5rem;
-  /* FIX v6: delays escalonados reduzidos para evitar FOUC */
   animation: fadeUp .5s .08s ease both;
+  max-width: 900px;
+  margin-inline: auto;
 }
 
 .hero--homepage h1 sup {
@@ -171,6 +173,8 @@ button:focus-visible {
 }
 
 .hero--homepage h1 .highlight {
+  font-family: var(--font-display);
+  font-weight: 600;
   color: var(--hp-green);
 }
 
@@ -270,7 +274,7 @@ button:focus-visible {
 }
 
 .metric-value {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--hp-green);
@@ -325,7 +329,7 @@ button:focus-visible {
 }
 
 .section-trust h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 700;
   line-height: 1.2;
@@ -379,7 +383,7 @@ button:focus-visible {
 }
 
 .trust-item h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
   color: var(--hp-text);
@@ -411,7 +415,8 @@ button:focus-visible {
 .section-verticals {
   padding: 5rem 2rem;
   background: linear-gradient(180deg, transparent, rgba(34, 197, 94, .04), transparent);
-  overflow: hidden; /* FIX: previne overflow em mobile */
+  overflow: hidden;
+  /* FIX: previne overflow em mobile */
 }
 
 .verticals-wrapper {
@@ -419,13 +424,13 @@ button:focus-visible {
   margin-inline: auto;
 }
 
-.verticals-wrapper > .section-label {
+.verticals-wrapper>.section-label {
   text-align: center;
   display: block;
 }
 
 .verticals-wrapper h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 700;
   color: var(--hp-text);
@@ -460,7 +465,7 @@ button:focus-visible {
   text-decoration: none;
   color: var(--hp-text);
   transition: border-color .25s ease, background .25s ease,
-              transform .25s ease, box-shadow .25s ease;
+    transform .25s ease, box-shadow .25s ease;
   position: relative;
   overflow: hidden;
 }
@@ -499,7 +504,7 @@ button:focus-visible {
 }
 
 .vertical-card--new h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--hp-text);
@@ -511,7 +516,8 @@ button:focus-visible {
   font-size: .875rem;
   line-height: 1.65;
   color: var(--hp-text-muted);
-  flex: 1; /* empurra o link para o fundo */
+  flex: 1;
+  /* empurra o link para o fundo */
   margin: 0;
 }
 
@@ -547,7 +553,7 @@ button:focus-visible {
 }
 
 .pillars-header h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 700;
   color: var(--hp-text);
@@ -566,7 +572,8 @@ button:focus-visible {
 .pillars-grid--new {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem; /* FIX v6: era 1.5rem */
+  gap: 2rem;
+  /* FIX v6: era 1.5rem */
 }
 
 @media (max-width: 640px) {
@@ -577,7 +584,8 @@ button:focus-visible {
 }
 
 .pillar-card {
-  padding: 2.5rem; /* FIX v6: era 2.25rem */
+  padding: 2.5rem;
+  /* FIX v6: era 2.25rem */
   border: 1px solid var(--hp-border);
   border-radius: var(--hp-radius-lg);
   background: var(--hp-surface);
@@ -592,7 +600,7 @@ button:focus-visible {
 }
 
 .pillar-number {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: .7rem;
   font-weight: 700;
   letter-spacing: .12em;
@@ -611,7 +619,7 @@ button:focus-visible {
 }
 
 .pillar-card h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--hp-text);
@@ -641,7 +649,8 @@ button:focus-visible {
 }
 
 .legal-inner {
-  max-width: var(--hp-max-width); /* FIX v6: era 880px */
+  max-width: var(--hp-max-width);
+  /* FIX v6: era 880px */
   margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -657,7 +666,7 @@ button:focus-visible {
 }
 
 .legal-content h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   font-weight: 700;
   color: var(--hp-text);
@@ -673,7 +682,7 @@ button:focus-visible {
 }
 
 .legal-links-block h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: .85rem;
   font-weight: 600;
   letter-spacing: .06em;
@@ -706,7 +715,7 @@ button:focus-visible {
   border-radius: var(--hp-radius);
   background: var(--hp-surface);
   transition: border-color .2s ease, color .2s ease,
-              background .2s ease, transform .2s ease;
+    background .2s ease, transform .2s ease;
 }
 
 .legal-link-list li a:hover {
@@ -734,7 +743,8 @@ button:focus-visible {
   cta-home-inner max-width ligeiramente aumentado para respiração.
 */
 .section-cta-home {
-  padding: 6rem 2rem; /* FIX v6: era 7rem */
+  padding: 6rem 2rem;
+  /* FIX v6: era 7rem */
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -744,23 +754,22 @@ button:focus-visible {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 70% 60% at 50% 50%,
-    rgba(34, 197, 94, .10) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(ellipse 70% 60% at 50% 50%,
+      rgba(34, 197, 94, .10) 0%,
+      transparent 70%);
   pointer-events: none;
 }
 
 .cta-home-inner {
   position: relative;
   z-index: 1;
-  max-width: 640px; /* FIX v6: era 600px */
+  max-width: 640px;
+  /* FIX v6: era 600px */
   margin-inline: auto;
 }
 
 .cta-home-inner h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 800;
   line-height: 1.15;
@@ -798,8 +807,10 @@ button:focus-visible {
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(20px); /* FIX v6: era 24px — mais sutil */
+    transform: translateY(20px);
+    /* FIX v6: era 24px — mais sutil */
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -807,12 +818,20 @@ button:focus-visible {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: .35; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .35;
+  }
 }
 
 /* ── RESPONSIVIDADE GLOBAL ───────────────────────────────── */
 @media (max-width: 480px) {
+
   /* FIX v6: hero actions em coluna em telas muito pequenas */
   .hero-actions {
     flex-direction: column;
@@ -843,11 +862,14 @@ button:focus-visible {
 }
 
 .hero--homepage {
-  background-color: #0d1410; /* mesmo tom escuro */
-  background-image: radial-gradient(...); /* mantém o efeito */
+  background-color: #0d1410;
+  /* mesmo tom escuro */
+  background-image: radial-gradient(...);
+  /* mantém o efeito */
 }
 
 .section-verticals {
-  background: #0d1410; /* fundo sólido antes do gradiente */
+  background: #0d1410;
+  /* fundo sólido antes do gradiente */
   background: linear-gradient(180deg, #0d1410, rgba(34, 197, 94, .04), #0d1410);
 }

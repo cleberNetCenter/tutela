@@ -25,7 +25,7 @@
   },
   "site_title": "Tutela Digital® | Infraestrutura Jurídica para Prova Digital",
   "site_description": "Infraestrutura jurídica para preservação de prova digital com cadeia de custódia auditável, integridade técnica verificável e suporte à admissibilidade jurídica.",
-  "navigation": {
+    "navigation": {
     "home": "Início",
     "howItWorks": "Como Funciona",
     "security": "Segurança",
@@ -55,7 +55,12 @@
     "terms": "Termos de Custódia",
     "privacy": "Política de Privacidade",
     "institutional": "Institucional",
-    "nav_termos_uso": "Termos de Uso"
+    "termsOfUse": "Termos de Uso"
+  },
+  "legalNotice": {
+    "title": "",
+    "message": "",
+    "buttonText": ""
   },
   "home": {
     "eyebrow": "Infraestrutura Probatória Digital",

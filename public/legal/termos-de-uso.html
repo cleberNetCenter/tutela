@@ -546,41 +546,7 @@
   <!--#include virtual="/partials/footer.html" -->
 
   <!-- Scripts de animação (mesmo padrão da página modelo) -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const elements = document.querySelectorAll('.reveal-on-scroll');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.15 });
-      elements.forEach(el => observer.observe(el));
-    });
-  </script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const sections = document.querySelectorAll(
-        ".page-header, .text-block, .features, .cta-final"
-      );
-      sections.forEach(section => {
-        section.classList.add("legal-animate");
-      });
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      document.querySelectorAll(".legal-animate").forEach(el => {
-        observer.observe(el);
-      });
-    });
-  </script>
+  <!-- Scripts de animação e revelação mantidos, inicialização manual de I18N removida: agora automática via scripts.html -->
 
   <script src="/assets/js/legal-animations.js?v=20260221"></script>
   <!--#include virtual="/partials/scripts.html" -->

@@ -1,7 +1,13 @@
 /* =============================================================
    como-funciona.css  —  Tutela Digital®
-   Versão: 5.0  |  Atualizado: 2026-04-01
+   Versão: 5.1  |  Atualizado: 2026-04-02
    Dependências: main.css, Syne + Inter (Google Fonts)
+   
+   AJUSTES DE COR E LEGIBILIDADE:
+   - Aumento do contraste de textos secundários e mutados
+   - Melhoria na opacidade de elementos informativos
+   - Refinamento das cores de fundo e bordas para melhor hierarquia
+   - Garantia de acessibilidade para leitura prolongada
 ============================================================= */
 
 /* ── DESIGN TOKENS ───────────────────────────────────────── */
@@ -9,10 +15,12 @@
   --cf-green: #22c55e;
   --cf-green-dim: #16a34a;
   --cf-green-glow: rgba(34, 197, 94, .15);
-  --cf-border: rgba(34, 197, 94, .16);
-  --cf-surface: rgba(255, 255, 255, .03);
-  --cf-surface-2: rgba(255, 255, 255, .055);
-  --cf-text-muted: rgba(255, 255, 255, .5);
+  --cf-border: rgba(34, 197, 94, .2);        /* + leve aumento de opacidade */
+  --cf-surface: rgba(255, 255, 255, .04);    /* + levemente mais visível */
+  --cf-surface-2: rgba(255, 255, 255, .07);
+  --cf-text-muted: rgba(255, 255, 255, .75); /* ↑ de .5 para .75 (contraste ~7:1) */
+  --cf-text-soft: rgba(255, 255, 255, .65);  /* novo: para elementos ainda suaves */
+  --cf-text-note: rgba(255, 255, 255, .55);  /* ↑ de .4 para .55 */
   --cf-radius: 12px;
   --cf-radius-lg: 20px;
 }
@@ -38,8 +46,8 @@ body,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(34, 197, 94, .03) 1px, transparent 1px) 0 0 / 64px 64px,
-    linear-gradient(90deg, rgba(34, 197, 94, .03) 1px, transparent 1px) 0 0 / 64px 64px;
+    linear-gradient(rgba(34, 197, 94, .02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, .02) 1px, transparent 1px);
   pointer-events: none;
 }
 
@@ -82,13 +90,15 @@ body,
 
 /* Heading */
 .page-header--como-funciona h1 {
-  font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -.025em;
   margin-bottom: 1.5rem;
   animation: fadeUp .65s .1s ease both;
+  color: #ffffff;  /* explícito para garantir contraste máximo */
+  max-width: 900px;
+  margin-inline: auto;
 }
 
 .page-header--como-funciona h1 em {
@@ -131,10 +141,10 @@ body,
 }
 
 .cf-intro h2 {
-  font-family: 'Syne', sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 700;
   margin-bottom: 1.25rem;
+  color: #ffffff;
 }
 
 .cf-intro p {
@@ -149,7 +159,7 @@ body,
 .cf-intro a {
   color: var(--cf-green);
   text-decoration: none;
-  border-bottom: 1px solid rgba(34, 197, 94, .3);
+  border-bottom: 1px solid rgba(34, 197, 94, .4); /* + contraste */
   transition: border-color .2s;
 }
 
@@ -170,10 +180,10 @@ body,
 }
 
 .cf-steps-header h2 {
-  font-family: 'Syne', sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 700;
   margin-bottom: .5rem;
+  color: #ffffff;
 }
 
 .cf-steps-header p {
@@ -205,7 +215,7 @@ body,
       var(--cf-green) 10%,
       var(--cf-green) 90%,
       transparent);
-  opacity: .3;
+  opacity: .5;  /* ↑ de .3 para melhor visibilidade */
 }
 
 @media (max-width: 600px) {
@@ -263,7 +273,6 @@ body,
 }
 
 .cf-step-num span {
-  font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--cf-green);
@@ -292,16 +301,16 @@ body,
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--cf-green);
-  opacity: .75;
+  opacity: .85;  /* mais legível */
   margin-bottom: .4rem;
 }
 
 .cf-step-body h3 {
-  font-family: 'Syne', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: .75rem;
   line-height: 1.3;
+  color: #ffffff;
 }
 
 .cf-step-body p {
@@ -318,7 +327,7 @@ body,
   gap: .4rem;
   font-family: 'Inter', sans-serif;
   font-size: .78rem;
-  color: rgba(255, 255, 255, .4);
+  color: var(--cf-text-note);  /* usando token ajustado */
   font-style: italic;
 }
 
@@ -331,7 +340,7 @@ body,
 /* ── VALIDADE JURÍDICA ───────────────────────────────────── */
 .cf-legal {
   padding: 5rem 2rem;
-  background: rgba(34, 197, 94, .03);
+  background: rgba(34, 197, 94, .06); /* ↑ de .03 para melhor contraste de superfície */
   border-top: 1px solid var(--cf-border);
   border-bottom: 1px solid var(--cf-border);
 }
@@ -353,10 +362,10 @@ body,
 }
 
 .cf-legal-content h2 {
-  font-family: 'Syne', sans-serif;
   font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   font-weight: 700;
   margin-bottom: 1.25rem;
+  color: #ffffff;
 }
 
 .cf-legal-content p {
@@ -379,7 +388,6 @@ body,
   display: flex;
   align-items: center;
   gap: .6rem;
-  font-family: 'Syne', sans-serif;
   font-size: .9rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -408,7 +416,7 @@ body,
   font-family: 'Inter', sans-serif;
   font-size: .84rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, .7);
+  color: rgba(255, 255, 255, .8); /* ↑ de .7 para .8 -> melhor leitura */
 }
 
 .cf-info-list li::before {
@@ -442,7 +450,7 @@ body,
 }
 
 .cf-related-card:hover {
-  border-color: rgba(34, 197, 94, .4);
+  border-color: rgba(34, 197, 94, .5);
   background: var(--cf-surface-2);
   transform: translateY(-2px);
 }
@@ -457,9 +465,9 @@ body,
 }
 
 .cf-related-card-text h3 {
-  font-family: 'Syne', sans-serif;
   font-size: 1rem;
   font-weight: 600;
+  color: #ffffff;
 }
 
 .cf-related-card-arrow {
@@ -486,7 +494,7 @@ body,
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 65% 55% at 50% 50%,
-      rgba(34, 197, 94, .09) 0%,
+      rgba(34, 197, 94, .12) 0%,  /* + sutil aumento */
       transparent 70%);
   pointer-events: none;
 }
@@ -499,11 +507,11 @@ body,
 }
 
 .cf-cta h2 {
-  font-family: 'Syne', sans-serif;
   font-size: clamp(1.7rem, 3.5vw, 2.5rem);
   font-weight: 800;
   line-height: 1.15;
   margin-bottom: 1rem;
+  color: #ffffff;
 }
 
 .cf-cta p {
@@ -593,16 +601,36 @@ body.has-fixed-header .main {
   position: relative;
   padding: 7rem 2rem 4rem;
   overflow: hidden;
-
   background-color: #0a0f0d;
-
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -5%, rgba(34, 197, 94, .13) 0%, transparent 65%),
-    linear-gradient(rgba(34, 197, 94, .035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34, 197, 94, .035) 1px, transparent 1px);
-
+    radial-gradient(ellipse 80% 50% at 50% -5%, rgba(34, 197, 94, .15) 0%, transparent 65%),
+    linear-gradient(rgba(34, 197, 94, .04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, .04) 1px, transparent 1px);
   background-size: auto, 64px 64px, 64px 64px;
   background-repeat: no-repeat, repeat, repeat;
-
   z-index: 1;
+}
+
+/* ============================================================
+   TYPOGRAPHY OVERRIDE — COMO FUNCIONA (GLOBAL FIX)
+   ============================================================ */
+
+.page-header--como-funciona h1,
+.cf-intro h2,
+.cf-steps-header h2,
+.cf-step-num span,
+.cf-step-body h3,
+.cf-legal-content h2,
+.cf-info-box-title,
+.cf-related-card-text h3,
+.cf-cta h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Destaques (verde no hero) */
+.page-header--como-funciona h1 em {
+  font-family: var(--font-display);
+  font-weight: 600;
 }

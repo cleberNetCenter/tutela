@@ -55,7 +55,12 @@
     "terms": "Custody Terms",
     "privacy": "Privacy Policy",
     "institutional": "Institutional",
-    "nav_termos_uso": "Terms of Use"
+    "termsOfUse": "Terms of Use"
+  },
+  "legalNotice": {
+    "title": "Language Notice",
+    "message": "⚠️ Legal Information: This document is available in Portuguese only. For complete understanding, please switch to Portuguese (PT).",
+    "buttonText": "Switch to Portuguese (PT)"
   },
   "home": {
     "eyebrow": "Digital Evidentiary Infrastructure",

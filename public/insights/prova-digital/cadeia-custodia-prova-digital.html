@@ -424,14 +424,7 @@
   </script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      await I18N.init();
-
-      if (I18N.currentLang !== 'pt') {
-        console.log('[Legal Page] Idioma atual:', I18N.currentLang, '- Exibindo aviso');
-        I18N.showLegalPageNoticeIfNeeded();
-      }
-    });
+    <!-- Inicialização manual do I18N removida: agora automática via scripts.html -->
   </script>
   <script src="/assets/js/legal-animations.js?v=20260221"></script>
   <!--#include virtual="/partials/scripts.html" -->
