@@ -82,7 +82,7 @@ body,
 
 /* Heading */
 .page-header--como-funciona h1 {
-  font-family: 'Syne', sans-serif;
+  
   font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 800;
   line-height: 1.12;
@@ -131,7 +131,7 @@ body,
 }
 
 .cf-intro h2 {
-  font-family: 'Syne', sans-serif;
+  
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 700;
   margin-bottom: 1.25rem;
@@ -170,7 +170,7 @@ body,
 }
 
 .cf-steps-header h2 {
-  font-family: 'Syne', sans-serif;
+  
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 700;
   margin-bottom: .5rem;
@@ -263,7 +263,7 @@ body,
 }
 
 .cf-step-num span {
-  font-family: 'Syne', sans-serif;
+  
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--cf-green);
@@ -297,7 +297,7 @@ body,
 }
 
 .cf-step-body h3 {
-  font-family: 'Syne', sans-serif;
+  
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: .75rem;
@@ -353,7 +353,7 @@ body,
 }
 
 .cf-legal-content h2 {
-  font-family: 'Syne', sans-serif;
+  
   font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   font-weight: 700;
   margin-bottom: 1.25rem;
@@ -379,7 +379,7 @@ body,
   display: flex;
   align-items: center;
   gap: .6rem;
-  font-family: 'Syne', sans-serif;
+  
   font-size: .9rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -457,7 +457,7 @@ body,
 }
 
 .cf-related-card-text h3 {
-  font-family: 'Syne', sans-serif;
+  
   font-size: 1rem;
   font-weight: 600;
 }
@@ -499,7 +499,7 @@ body,
 }
 
 .cf-cta h2 {
-  font-family: 'Syne', sans-serif;
+  
   font-size: clamp(1.7rem, 3.5vw, 2.5rem);
   font-weight: 800;
   line-height: 1.15;
@@ -605,4 +605,27 @@ body.has-fixed-header .main {
   background-repeat: no-repeat, repeat, repeat;
 
   z-index: 1;
+}
+/* ============================================================
+   TYPOGRAPHY OVERRIDE — COMO FUNCIONA (GLOBAL FIX)
+   ============================================================ */
+
+.page-header--como-funciona h1,
+.cf-intro h2,
+.cf-steps-header h2,
+.cf-step-num span,
+.cf-step-body h3,
+.cf-legal-content h2,
+.cf-info-box-title,
+.cf-related-card-text h3,
+.cf-cta h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Destaques (verde no hero) */
+.page-header--como-funciona h1 em {
+  font-family: var(--font-display);
+  font-weight: 600;
 }
