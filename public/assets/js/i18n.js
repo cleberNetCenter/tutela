@@ -1,6 +1,6 @@
 // =======================================================
 // SISTEMA DE INTERNACIONALIZAÇÃO — Tutela Digital®
-// Inicialização automática, sem necessidade de scripts inline
+// Inicialização automática, sem scripts inline
 // =======================================================
 
 const I18N = {
@@ -16,7 +16,8 @@ const I18N = {
     this.applyTranslations();
     this.updateLanguageSelector();
     document.documentElement.lang = this.getLangCode(this.currentLang);
-    this.showLegalPageNoticeIfNeeded(); // automatico
+    // ⚠️ ESSA LINHA É CRUCIAL: exibe o banner se necessário
+    this.showLegalPageNoticeIfNeeded();
     console.log('[i18n] Sistema inicializado:', this.currentLang);
   },
 
@@ -90,11 +91,10 @@ const I18N = {
         else el.textContent = translation;
       }
     });
-    // Atributos especiais
+    // atributos especiais
     document.querySelectorAll('[data-i18n-aria]').forEach(el => {
-      const key = el.dataset.i18nAria;
-      const translation = this.t(key);
-      if (translation && translation !== key) el.setAttribute('aria-label', translation);
+      const translation = this.t(el.dataset.i18nAria);
+      if (translation && translation !== el.dataset.i18nAria) el.setAttribute('aria-label', translation);
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const translation = this.t(el.dataset.i18nPlaceholder);
@@ -136,15 +136,22 @@ const I18N = {
       return;
     }
     if (existing) return;
-    // Aguarda traduções carregadas
+    // Aguarda as traduções estarem carregadas (caso chamado antes do fim do load)
     if (!this.translations || Object.keys(this.translations).length === 0) {
+      console.warn('[i18n] Traduções ainda não carregadas, tentando novamente em 200ms');
       setTimeout(() => this.showLegalPageNoticeIfNeeded(), 200);
       return;
     }
     const noticeData = this.translations.legalNotice;
-    if (!noticeData?.message) return;
+    if (!noticeData || !noticeData.message) {
+      console.error('[i18n] legalNotice não encontrado no idioma', this.currentLang);
+      return;
+    }
     const main = document.querySelector('.main');
-    if (!main) return;
+    if (!main) {
+      console.error('[i18n] Elemento .main não encontrado');
+      return;
+    }
     const notice = document.createElement('div');
     notice.id = 'legal-lang-notice';
     notice.style.cssText = `
@@ -166,6 +173,7 @@ const I18N = {
       ">${noticeData.buttonText || 'Switch to Portuguese (PT)'}</button>
     `;
     main.insertBefore(notice, main.firstChild);
+    console.log('[i18n] Aviso de idioma exibido');
   },
 
   async switchLanguage(lang) {
@@ -219,13 +227,13 @@ const I18N = {
 // Inicialização automática após o DOM estar pronto
 document.addEventListener('DOMContentLoaded', () => I18N.init());
 
-// Eventos para seletor de idioma (delegação)
+// Eventos para seletor de idioma
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.lang-flag');
   if (btn?.dataset.lang) I18N.switchLanguage(btn.dataset.lang);
 });
 
-// Observer para páginas SPA (se houver navegação interna)
+// Observer para páginas SPA
 const pageObserver = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
