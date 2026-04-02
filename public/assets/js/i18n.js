@@ -23,7 +23,7 @@ const I18N = {
 
   async loadConfig() {
     try {
-      const res = await fetch('/config/i18n-config.json');
+      const res = await fetch('/assets/config/i18n-config.json');
       this.config = await res.json();
       this.fallbackLang = this.config.fallbackLang;
     } catch (error) {
