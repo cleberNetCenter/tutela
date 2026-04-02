@@ -1,4 +1,30 @@
 <header class="header" id="header">
+
+  <!-- FONT LOADER GLOBAL (garante consistência em todas páginas) -->
+  <script>
+    (function () {
+      if (document.getElementById('global-fonts-loaded')) return;
+
+      const linkPreconnect1 = document.createElement('link');
+      linkPreconnect1.rel = 'preconnect';
+      linkPreconnect1.href = 'https://fonts.googleapis.com';
+
+      const linkPreconnect2 = document.createElement('link');
+      linkPreconnect2.rel = 'preconnect';
+      linkPreconnect2.href = 'https://fonts.gstatic.com';
+      linkPreconnect2.crossOrigin = 'true';
+
+      const linkFonts = document.createElement('link');
+      linkFonts.id = 'global-fonts-loaded';
+      linkFonts.rel = 'stylesheet';
+      linkFonts.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap';
+
+      document.head.appendChild(linkPreconnect1);
+      document.head.appendChild(linkPreconnect2);
+      document.head.appendChild(linkFonts);
+    })();
+  </script>
+
   <div class="header-inner">
 
     <a class="logo" href="/">
@@ -66,47 +92,29 @@
           <li><a href="/legal/fundamento-juridico.html" data-i18n="navigation.legalBasis">Fundamento Jurídico</a></li>
           <li><a href="/legal/termos-de-custodia.html" data-i18n="navigation.terms">Termos de Custódia</a></li>
           <li><a href="/legal/termos-de-uso.html" data-i18n="navigation.termsOfUse">Termos de Uso</a></li>
-          <li><a href="/legal/politica-de-privacidade.html" data-i18n="navigation.privacy">Política de Privacidade</a></li>
+          <li><a href="/legal/politica-de-privacidade.html" data-i18n="navigation.privacy">Política de Privacidade</a>
+          </li>
           <li><a href="/legal/institucional.html" data-i18n="navigation.institutional">Institucional</a></li>
         </ul>
       </div>
 
-      <div class="lang-switch-mobile" aria-label="Selecionar idioma" data-i18n-aria="language.selectorLabel">
-        <button class="lang-flag" data-lang="pt" aria-label="Português" data-i18n-aria="language.portuguese">
-          <img src="/assets/images/flags/br.svg" alt="Português" data-i18n-alt="language.portuguese">
-        </button>
-        <button class="lang-flag" data-lang="en" aria-label="English" data-i18n-aria="language.english">
-          <img src="/assets/images/flags/us.svg" alt="English" data-i18n-alt="language.english">
-        </button>
-        <button class="lang-flag" data-lang="es" aria-label="Español" data-i18n-aria="language.spanish">
-          <img src="/assets/images/flags/es.svg" alt="Español" data-i18n-alt="language.spanish">
-        </button>
+      <div class="lang-switch-mobile" aria-label="Selecionar idioma">
+        <button class="lang-flag" data-lang="pt"><img src="/assets/images/flags/br.svg" alt="Português"></button>
+        <button class="lang-flag" data-lang="en"><img src="/assets/images/flags/us.svg" alt="English"></button>
+        <button class="lang-flag" data-lang="es"><img src="/assets/images/flags/es.svg" alt="Español"></button>
       </div>
 
     </nav>
 
     <div class="header-actions">
 
-      <div class="lang-switch" aria-label="Selecionar idioma" data-i18n-aria="language.selectorLabel">
-        <button class="lang-flag active" data-lang="pt" aria-label="Português" data-i18n-aria="language.portuguese">
-          <img src="/assets/images/flags/br.svg" alt="Português" data-i18n-alt="language.portuguese" />
-        </button>
-        <button class="lang-flag" data-lang="en" aria-label="English" data-i18n-aria="language.english">
-          <img src="/assets/images/flags/us.svg" alt="English" data-i18n-alt="language.english" />
-        </button>
-        <button class="lang-flag" data-lang="es" aria-label="Español" data-i18n-aria="language.spanish">
-          <img src="/assets/images/flags/es.svg" alt="Español" data-i18n-alt="language.spanish" />
-        </button>
+      <div class="lang-switch">
+        <button class="lang-flag active" data-lang="pt"><img src="/assets/images/flags/br.svg"></button>
+        <button class="lang-flag" data-lang="en"><img src="/assets/images/flags/us.svg"></button>
+        <button class="lang-flag" data-lang="es"><img src="/assets/images/flags/es.svg"></button>
       </div>
 
-      <a class="header-cta" href="https://app.tuteladigital.com.br/" target="_blank" rel="noopener noreferrer"
-        data-i18n="global.accessPlatform">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" aria-hidden="true">
-          <path d="M15 3h6v6" />
-          <path d="M10 14L21 3" />
-          <path d="M18 13v8H3V6h8" />
-        </svg>
+      <a class="header-cta" href="https://app.tuteladigital.com.br/" target="_blank" rel="noopener noreferrer">
         Acessar a Plataforma
       </a>
 
