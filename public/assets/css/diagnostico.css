@@ -426,6 +426,11 @@
   margin-top: 0.25rem;
 }
 
+.diag-consent-control {
+  display: grid;
+  gap: 0.5rem;
+}
+
 .diag-checkbox {
   display: inline-flex;
   align-items: flex-start;
@@ -434,16 +439,6 @@
   font-size: 0.9rem;
   color: var(--dg-text-body);
   line-height: 1.5;
-}
-
-.diag-checkbox a {
-  color: var(--dg-text-title);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.diag-checkbox a:hover {
-  color: #0f4a36;
 }
 
 .diag-checkbox input[type="checkbox"] {
@@ -470,6 +465,188 @@
 .diag-checkbox input:checked + .diag-checkbox-box {
   background: #3ecf72;
   border-color: #3ecf72;
+}
+
+.diag-privacy-trigger {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #0f4a36;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+}
+
+.diag-privacy-trigger:hover {
+  color: #0a1f12;
+}
+
+.diag-privacy-modal[hidden] {
+  display: none;
+}
+
+.diag-privacy-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.diag-privacy-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 18, 13, 0.62);
+  backdrop-filter: blur(4px);
+}
+
+.diag-privacy-dialog {
+  position: relative;
+  width: min(880px, 100%);
+  max-height: min(88vh, 920px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: linear-gradient(180deg, #f7fbf8 0%, #ffffff 100%);
+  border: 1px solid rgba(15, 74, 54, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 30px 80px rgba(7, 18, 13, 0.22);
+  overflow: hidden;
+}
+
+.diag-privacy-header,
+.diag-privacy-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.4rem;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.diag-privacy-header {
+  border-bottom: 1px solid rgba(15, 74, 54, 0.08);
+}
+
+.diag-privacy-footer {
+  border-top: 1px solid rgba(15, 74, 54, 0.08);
+}
+
+.diag-privacy-eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4a6a5a;
+}
+
+.diag-privacy-header h2 {
+  margin: 0;
+  color: #0a1f12;
+}
+
+.diag-privacy-close {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 74, 54, 0.14);
+  background: #fff;
+  color: #0f4a36;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.diag-privacy-body {
+  overflow: auto;
+  padding: 1.4rem;
+}
+
+.diag-privacy-loading {
+  margin: 0;
+  color: #406454;
+}
+
+.diag-privacy-content {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.diag-privacy-content:empty {
+  display: none;
+}
+
+.diag-privacy-content section {
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(15, 74, 54, 0.08);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.diag-privacy-content h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.02rem;
+  color: #0a1f12;
+}
+
+.diag-privacy-content p {
+  margin: 0.45rem 0 0;
+  color: #325244;
+}
+
+.diag-privacy-content a {
+  color: #0f4a36;
+}
+
+.diag-privacy-fullpage {
+  color: #0f4a36;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.diag-privacy-done {
+  padding: 0.8rem 1.1rem;
+  border: 0;
+  border-radius: 10px;
+  background: #0f4a36;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+body.diag-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 720px) {
+  .diag-privacy-modal {
+    padding: 0.75rem;
+  }
+
+  .diag-privacy-dialog {
+    max-height: 92vh;
+    border-radius: 18px;
+  }
+
+  .diag-privacy-header,
+  .diag-privacy-footer {
+    padding: 1rem;
+  }
+
+  .diag-privacy-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .diag-privacy-done,
+  .diag-privacy-fullpage {
+    text-align: center;
+  }
 }
 
 .captcha-container {

@@ -238,18 +238,20 @@
                     data-i18n-placeholder="diagnostic.fieldEmailPlaceholder">
                 </div>
                 <div class="diag-field diag-field--consent">
-                  <label class="diag-checkbox">
-                    <input type="checkbox" id="consentimento">
-                    <span class="diag-checkbox-box">
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M1.5 5l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg>
-                    </span>
-                    <span data-i18n="diagnostic.consentText" data-i18n-html="true">Aceito a <a
-                        href="/legal/politica-de-privacidade.html" target="_blank"
-                        rel="noopener noreferrer">política de privacidade</a></span>
-                  </label>
+                  <div class="diag-consent-control">
+                    <label class="diag-checkbox">
+                      <input type="checkbox" id="consentimento">
+                      <span class="diag-checkbox-box">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                          <path d="M1.5 5l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                      </span>
+                      <span data-i18n="diagnostic.consentText">Li e aceito a Política de Privacidade</span>
+                    </label>
+                    <button type="button" class="diag-privacy-trigger" id="openPrivacyModal"
+                      data-i18n="diagnostic.privacyLink">Ler Política de Privacidade</button>
+                  </div>
                 </div>
               </div>
 
@@ -294,6 +296,31 @@
           </div>
         </div>
       </section>
+
+      <div class="diag-privacy-modal" id="privacyModal" hidden aria-hidden="true">
+        <div class="diag-privacy-backdrop" data-close-privacy></div>
+        <div class="diag-privacy-dialog" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+          <div class="diag-privacy-header">
+            <div>
+              <p class="diag-privacy-eyebrow" data-i18n="diagnostic.privacyEyebrow">Leitura sem sair do diagnóstico</p>
+              <h2 id="privacyModalTitle" data-i18n="diagnostic.privacyTitle">Política de Privacidade</h2>
+            </div>
+            <button type="button" class="diag-privacy-close" id="closePrivacyModal"
+              aria-label="Fechar política de privacidade"
+              data-i18n-aria="diagnostic.privacyCloseAria">&times;</button>
+          </div>
+          <div class="diag-privacy-body">
+            <p class="diag-privacy-loading" id="privacyModalStatus" data-i18n="diagnostic.privacyLoading">Carregando política de privacidade...</p>
+            <div class="diag-privacy-content" id="privacyModalContent"></div>
+          </div>
+          <div class="diag-privacy-footer">
+            <a href="/legal/politica-de-privacidade.html" class="diag-privacy-fullpage"
+              data-i18n="diagnostic.privacyFullPage">Abrir versão completa da política</a>
+            <button type="button" class="diag-privacy-done" id="donePrivacyModal"
+              data-i18n="diagnostic.privacyDone">Voltar ao diagnóstico</button>
+          </div>
+        </div>
+      </div>
 
     </main>
 
