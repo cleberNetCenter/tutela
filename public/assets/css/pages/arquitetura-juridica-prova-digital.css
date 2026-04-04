@@ -1,68 +1,29 @@
- .page-arquitetura-juridica-prova-digital .breadcrumb {
-      padding: 1rem 2rem;
-      background: #f5f5f5;
-      font-size: 0.9rem;
-    } .page-arquitetura-juridica-prova-digital .breadcrumb ol {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      gap: 0.5rem;
-    } .page-arquitetura-juridica-prova-digital .breadcrumb li {
-      display: flex;
-      align-items: center;
-    } .page-arquitetura-juridica-prova-digital .breadcrumb li:not(:last-child)::after {
-      content: "›";
-      margin-left: 0.5rem;
-      color: #666;
-    } .page-arquitetura-juridica-prova-digital .breadcrumb a {
-      color: #2c5aa0;
-      text-decoration: none;
-    } .page-arquitetura-juridica-prova-digital .breadcrumb a:hover {
-      text-decoration: underline;
-    } .page-arquitetura-juridica-prova-digital .breadcrumb li[aria-current="page"] {
-      color: #666;
-      font-weight: 500;
-    } .page-arquitetura-juridica-prova-digital .legal-graphic {
-      margin: 1.5rem auto 2.5rem auto;
-      max-width: 900px;
-      opacity: 0.9;
-    } .page-arquitetura-juridica-prova-digital .legal-graphic svg {
-      width: 100%;
-      height: auto;
-      display: block;
-    } .page-arquitetura-juridica-prova-digital .legal-graphic a circle:hover {
-      opacity: 1;
-      transform: scale(1.08);
-      transition: 0.2s ease;
-    } .page-arquitetura-juridica-prova-digital .legal-graphic {
-      margin: 2rem auto 3rem auto;
-    } .page-arquitetura-juridica-prova-digital /* círculo base */
+.page-arquitetura-juridica-prova-digital .legal-graphic {
+  margin: 2rem auto 3rem;
+}
 
-    .legal-graphic svg circle {
-      transition: transform 0.18s ease, opacity 0.18s ease, filter 0.18s ease;
-      transform-origin: center;
-    } .page-arquitetura-juridica-prova-digital /* halo suave (glow) */
+.page-arquitetura-juridica-prova-digital .legal-graphic svg {
+  overflow: visible;
+}
 
-    .legal-graphic svg a:hover circle {
-      transform: scale(1.06);
-      filter: drop-shadow(0 0 6px rgba(15,58,42,0.25))
-        drop-shadow(0 0 10px rgba(15,58,42,0.15));
-    } .page-arquitetura-juridica-prova-digital /* texto não interfere no hover */
+.page-arquitetura-juridica-prova-digital .legal-graphic svg circle {
+  transition: transform 0.18s ease, opacity 0.18s ease, filter 0.18s ease;
+  transform-origin: center;
+}
 
-    .legal-graphic svg text {
-      pointer-events: none;
-    } .page-arquitetura-juridica-prova-digital /* evita cortes ao aplicar escala */
+.page-arquitetura-juridica-prova-digital .legal-graphic a circle:hover,
+.page-arquitetura-juridica-prova-digital .legal-graphic svg circle:hover,
+.page-arquitetura-juridica-prova-digital .legal-graphic svg a:hover circle {
+  opacity: 1;
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 6px rgba(15, 58, 42, 0.25))
+    drop-shadow(0 0 10px rgba(15, 58, 42, 0.15));
+}
 
-    .legal-graphic svg {
-      overflow: visible;
-    } .page-arquitetura-juridica-prova-digital .legal-graphic svg circle:hover {
-      transform: scale(1.06);
-    } .page-arquitetura-juridica-prova-digital @media (max-width: 768px) {
-      .legal-graphic svg text {
-        font-size: 13px;
-      } .page-arquitetura-juridica-prova-digital }
+.page-arquitetura-juridica-prova-digital .legal-graphic svg text {
+  pointer-events: none;
+}
 
-    .legal-graphic svg a {
-      cursor: pointer;
-    }
+.page-arquitetura-juridica-prova-digital .legal-graphic svg a {
+  cursor: pointer;
+}
