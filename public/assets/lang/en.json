@@ -728,7 +728,7 @@
     "fieldNamePlaceholder": "e.g., John Smith",
     "fieldEmail": "Email",
     "fieldEmailPlaceholder": "e.g., john@company.com",
-    "consentText": "I accept the privacy policy",
+    "consentText": "I accept the <a href=\"/legal/politica-de-privacidade.html\" target=\"_blank\" rel=\"noopener noreferrer\">privacy policy</a>",
     "submitBtn": "Assess my risk level",
     "postTitle": "After the diagnosis",
     "postDesc": "Based on the result, you identify critical points and understand which measures guarantee control, access and validity of your assets.",

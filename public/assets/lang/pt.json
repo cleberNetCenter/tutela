@@ -773,7 +773,7 @@
     "fieldNamePlaceholder": "Ex: João Silva",
     "fieldEmail": "E-mail",
     "fieldEmailPlaceholder": "Ex: joao@empresa.com.br",
-    "consentText": "Aceito a política de privacidade",
+    "consentText": "Aceito a <a href=\"/legal/politica-de-privacidade.html\" target=\"_blank\" rel=\"noopener noreferrer\">política de privacidade</a>",
     "submitBtn": "Avaliar meu nível de risco",
     "postTitle": "Após o diagnóstico",
     "postDesc": "Com base no resultado, você identifica os pontos críticos e entende quais medidas garantem controle, acesso e validade dos seus ativos.",

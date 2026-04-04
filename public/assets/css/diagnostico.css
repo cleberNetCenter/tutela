@@ -436,6 +436,16 @@
   line-height: 1.5;
 }
 
+.diag-checkbox a {
+  color: var(--dg-text-title);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.diag-checkbox a:hover {
+  color: #0f4a36;
+}
+
 .diag-checkbox input[type="checkbox"] {
   position: absolute;
   opacity: 0;
