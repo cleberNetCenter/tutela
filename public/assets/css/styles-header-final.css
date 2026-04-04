@@ -38,6 +38,14 @@
   white-space: nowrap;
   margin-right: 40px;
   flex-shrink: 0;
+  transition: color 0.18s ease, opacity 0.18s ease;
+}
+
+.logo:hover,
+.logo:focus-visible {
+  color: #ffffff;
+  opacity: 0.96;
+  text-decoration: none;
 }
 
 .logo sup {
