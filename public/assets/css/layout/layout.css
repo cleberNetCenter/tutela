@@ -56,8 +56,7 @@ nav[aria-label="breadcrumb"] {
 
 /* 1. HEADER / NAV - nunca mostrar bullet */
 .header ul,
-.nav ul,
-.dropdown-menu {
+.nav ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;

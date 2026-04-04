@@ -11,83 +11,22 @@
 ============================================================= */
 
 /* ── DESIGN TOKENS ───────────────────────────────────────── */
-:root {
+body.page-como-funciona {
+  --editorial-accent: #22c55e;
+  --editorial-border: rgba(34, 197, 94, 0.2);
+  --editorial-surface: rgba(255, 255, 255, 0.04);
+  --editorial-text-muted: rgba(255, 255, 255, 0.75);
   --cf-green: #22c55e;
   --cf-green-dim: #16a34a;
   --cf-green-glow: rgba(34, 197, 94, .15);
-  --cf-border: rgba(34, 197, 94, .2);        /* + leve aumento de opacidade */
-  --cf-surface: rgba(255, 255, 255, .04);    /* + levemente mais visível */
+  --cf-border: rgba(34, 197, 94, .2);
+  --cf-surface: rgba(255, 255, 255, .04);
   --cf-surface-2: rgba(255, 255, 255, .07);
-  --cf-text-muted: rgba(255, 255, 255, .75); /* ↑ de .5 para .75 (contraste ~7:1) */
-  --cf-text-soft: rgba(255, 255, 255, .65);  /* novo: para elementos ainda suaves */
-  --cf-text-note: rgba(255, 255, 255, .55);  /* ↑ de .4 para .55 */
+  --cf-text-muted: rgba(255, 255, 255, .75);
+  --cf-text-soft: rgba(255, 255, 255, .65);
+  --cf-text-note: rgba(255, 255, 255, .55);
   --cf-radius: 12px;
   --cf-radius-lg: 20px;
-}
-
-body,
-.app {
-  background-color: #0a0f0d;
-}
-
-/* ── PAGE HEADER ─────────────────────────────────────────── */
-
-/* Eyebrow badge */
-.page-header--como-funciona .page-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  font-family: 'Inter', sans-serif;
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: var(--cf-green);
-  border: 1px solid var(--cf-border);
-  border-radius: 999px;
-  padding: .3rem 1rem;
-  margin-bottom: 1.75rem;
-  background: var(--cf-surface);
-  animation: fadeUp .6s ease both;
-}
-
-.page-header--como-funciona .page-eyebrow::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: var(--cf-green);
-  border-radius: 50%;
-  box-shadow: 0 0 7px var(--cf-green);
-  animation: blink 2.2s ease infinite;
-}
-
-/* Heading */
-.page-header--como-funciona h1 {
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -.025em;
-  margin-bottom: 1.5rem;
-  animation: fadeUp .65s .1s ease both;
-  color: #ffffff;  /* explícito para garantir contraste máximo */
-  max-width: 900px;
-  margin-inline: auto;
-}
-
-.page-header--como-funciona h1 em {
-  font-style: normal;
-  color: var(--cf-green);
-}
-
-/* Subtitle */
-.page-header--como-funciona .page-header-subtitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  line-height: 1.75;
-  color: var(--cf-text-muted);
-  max-width: 580px;
-  margin: 0 auto 3rem;
-  animation: fadeUp .65s .2s ease both;
 }
 
 /* SVG graphic */
