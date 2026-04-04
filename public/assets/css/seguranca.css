@@ -11,80 +11,21 @@
 ============================================================= */
 
 /* ── DESIGN TOKENS ───────────────────────────────────────── */
-:root {
+body.page-seguranca {
+  --editorial-accent: #22c55e;
+  --editorial-border: rgba(34, 197, 94, 0.2);
+  --editorial-surface: rgba(255, 255, 255, 0.04);
+  --editorial-text-muted: rgba(255, 255, 255, 0.75);
   --sec-green: #22c55e;
   --sec-green-dim: #16a34a;
   --sec-green-glow: rgba(34, 197, 94, .15);
-  --sec-border: rgba(34, 197, 94, .2);        /* + leve aumento de opacidade */
-  --sec-surface: rgba(255, 255, 255, .04);    /* + levemente mais visível */
+  --sec-border: rgba(34, 197, 94, .2);
+  --sec-surface: rgba(255, 255, 255, .04);
   --sec-surface-2: rgba(255, 255, 255, .07);
-  --sec-text-muted: rgba(255, 255, 255, .75); /* ↑ de .5 para .75 (contraste ~7:1) */
-  --sec-text-soft: rgba(255, 255, 255, .65);  /* novo: para elementos ainda suaves */
+  --sec-text-muted: rgba(255, 255, 255, .75);
+  --sec-text-soft: rgba(255, 255, 255, .65);
   --sec-radius: 12px;
   --sec-radius-lg: 20px;
-}
-
-body,
-.app {
-  background-color: #0a0f0d;
-}
-
-/* ── PAGE HEADER ─────────────────────────────────────────── */
-
-/* Eyebrow badge */
-.page-header--security .page-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  font-family: 'Inter', sans-serif;
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: var(--sec-green);
-  border: 1px solid var(--sec-border);
-  border-radius: 999px;
-  padding: .3rem 1rem;
-  margin-bottom: 1.75rem;
-  background: var(--sec-surface);
-  animation: fadeUp .6s ease both;
-}
-
-.page-header--security .page-eyebrow::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: var(--sec-green);
-  border-radius: 50%;
-  box-shadow: 0 0 7px var(--sec-green);
-  animation: blink 2s ease infinite;
-}
-
-/* Heading */
-.page-header--security h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -.025em;
-  margin-bottom: 1.5rem;
-  animation: fadeUp .65s .1s ease both;
-  color: #ffffff;  /* explícito para garantir contraste máximo */
-}
-
-.page-header--security h1 em {
-  font-style: normal;
-  color: var(--sec-green);
-}
-
-/* Subtitle */
-.page-header--security .page-header-subtitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  line-height: 1.75;
-  color: var(--sec-text-muted);
-  max-width: 580px;
-  margin: 0 auto 3rem;
-  animation: fadeUp .65s .2s ease both;
 }
 
 /* SVG graphic */

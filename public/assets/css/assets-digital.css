@@ -44,6 +44,56 @@
    1.1  Reset de escopo e fundo
    ────────────────────────────────────────────────────────── */
 body.assets-page {
+  --assets-index-hero-margin-top: 0.5rem;
+  --assets-index-hero-padding-inline: 1.5rem;
+  --assets-index-hero-inner-padding: clamp(3.2rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
+  --assets-index-hero-inner-radius: var(--ad-radius-xl);
+  --assets-index-hero-inner-background: linear-gradient(160deg, #1a4a3a 0%, #22584a 60%, #2b6a5a 100%);
+  --assets-index-hero-inner-border: 1px solid rgba(255, 255, 255, 0.08);
+  --assets-index-hero-inner-shadow:
+    0 20px 48px rgba(10, 30, 22, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --assets-index-hero-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 32%);
+  --assets-index-hero-orb-display: block;
+  --assets-index-hero-title-max-width: 16ch;
+  --assets-index-hero-title-margin: 0 auto 1.1rem;
+  --assets-index-hero-title-color: #f4f8f4;
+  --assets-index-hero-title-size: clamp(2.4rem, 4.8vw, 4rem);
+  --assets-index-hero-title-letter-spacing: -0.03em;
+  --assets-index-hero-subtitle-max-width: 680px;
+  --assets-index-hero-subtitle-margin: 0 auto;
+  --assets-index-hero-subtitle-color: rgba(232, 242, 237, 0.85);
+  --assets-index-hero-subtitle-size: clamp(1rem, 1.3vw, 1.13rem);
+  --assets-index-hero-link-max-width: 720px;
+  --assets-index-hero-link-margin: 1.2rem auto 0;
+  --assets-index-hero-link-color: rgba(210, 228, 220, 0.80);
+  --assets-index-hero-link-size: 0.94rem;
+  --assets-index-hero-link-letter-spacing: 0.01em;
+  --assets-index-cta-margin-top: 0.85rem;
+  --assets-index-cta-padding-inline: 1.5rem;
+  --assets-index-cta-inner-padding: clamp(1.7rem, 2.3vw, 2.25rem);
+  --assets-index-cta-inner-radius: var(--ad-radius-xl);
+  --assets-index-cta-inner-background: linear-gradient(180deg, #164238 0%, #19473d 100%);
+  --assets-index-cta-inner-border: 1px solid rgba(255, 255, 255, 0.06);
+  --assets-index-cta-inner-shadow:
+    0 10px 22px rgba(8, 22, 18, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  --assets-index-cta-heading-margin: 0 0 0.65rem;
+  --assets-index-cta-heading-color: #f2f7f3;
+  --assets-index-cta-heading-size: clamp(1.6rem, 2.25vw, 2.05rem);
+  --assets-index-cta-heading-letter-spacing: -0.015em;
+  --assets-index-cta-copy-max-width: 680px;
+  --assets-index-cta-copy-margin: 0 auto 1.15rem;
+  --assets-index-cta-copy-color: rgba(231, 239, 235, 0.74);
+  --assets-index-cta-button-padding: 0.85rem 1.25rem;
+  --assets-index-cta-button-radius: 999px;
+  --assets-index-cta-button-border: 1px solid rgba(255, 255, 255, 0.08);
+  --assets-index-cta-button-background: #f4f6f3;
+  --assets-index-cta-button-color: #18453a;
+  --assets-index-cta-button-shadow: 0 4px 12px rgba(5, 18, 14, 0.08);
+  --assets-index-cta-button-hover-background: var(--assets-index-cta-button-background);
+  --assets-index-cta-button-hover-color: var(--assets-index-cta-button-color);
+  --assets-index-cta-button-hover-shadow: 0 6px 14px rgba(5, 18, 14, 0.10);
   background:
     radial-gradient(circle at top center, rgba(31, 94, 74, 0.07), transparent 32%),
     linear-gradient(180deg, var(--ad-bg-page) 0, var(--ad-bg-page) 100%);
@@ -91,8 +141,8 @@ body.assets-page .reveal.is-visible {
    ────────────────────────────────────────────────────────── */
 body.assets-page .page-header.page-header--legal {
   max-width: var(--max-width);
-  margin: 0.5rem auto 0;
-  padding: 0 1.5rem;
+  margin: var(--assets-index-hero-margin-top) auto 0;
+  padding: 0 var(--assets-index-hero-padding-inline);
   background: transparent;
 }
 
@@ -101,20 +151,18 @@ body.assets-page .page-header-inner {
   overflow: hidden;
   max-width: 920px;
   margin: 0 auto;
-  padding: clamp(3.2rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
-  border-radius: var(--ad-radius-xl);
-  background: linear-gradient(160deg, #1a4a3a 0%, #22584a 60%, #2b6a5a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 20px 48px rgba(10, 30, 22, 0.13),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  padding: var(--assets-index-hero-inner-padding);
+  border-radius: var(--assets-index-hero-inner-radius);
+  background: var(--assets-index-hero-inner-background);
+  border: var(--assets-index-hero-inner-border);
+  box-shadow: var(--assets-index-hero-inner-shadow);
 }
 
 body.assets-page .page-header-inner::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 32%);
+  background: var(--assets-index-hero-overlay);
   pointer-events: none;
 }
 
@@ -125,6 +173,7 @@ body.assets-page .page-header-inner::after {
   height: 220px;
   right: -120px;
   top: -120px;
+  display: var(--assets-index-hero-orb-display);
   border-radius: 50%;
   background: radial-gradient(circle,
     var(--ad-accent-gold-bg) 0%,
@@ -136,37 +185,37 @@ body.assets-page .page-header-inner::after {
 body.assets-page .page-header h1 {
   position: relative;
   z-index: 1;
-  max-width: 16ch;
-  margin: 0 auto 1.1rem;
+  max-width: var(--assets-index-hero-title-max-width);
+  margin: var(--assets-index-hero-title-margin);
   text-align: center;
-  color: #f4f8f4;
+  color: var(--assets-index-hero-title-color);
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 4.8vw, 4rem);
+  font-size: var(--assets-index-hero-title-size);
   line-height: 1.06;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--assets-index-hero-title-letter-spacing);
   text-wrap: balance;
 }
 
 body.assets-page .page-header-subtitle {
   position: relative;
   z-index: 1;
-  max-width: 680px;
-  margin: 0 auto;
+  max-width: var(--assets-index-hero-subtitle-max-width);
+  margin: var(--assets-index-hero-subtitle-margin);
   text-align: center;
-  font-size: clamp(1rem, 1.3vw, 1.13rem);
+  font-size: var(--assets-index-hero-subtitle-size);
   line-height: 1.72;
-  color: rgba(232, 242, 237, 0.85);
+  color: var(--assets-index-hero-subtitle-color);
 }
 
 body.assets-page .insight-pillar-link {
   position: relative;
   z-index: 1;
-  max-width: 720px;
-  margin: 1.2rem auto 0;
+  max-width: var(--assets-index-hero-link-max-width);
+  margin: var(--assets-index-hero-link-margin);
   text-align: center;
-  color: rgba(210, 228, 220, 0.80);
-  font-size: 0.94rem;
-  letter-spacing: 0.01em;
+  color: var(--assets-index-hero-link-color);
+  font-size: var(--assets-index-hero-link-size);
+  letter-spacing: var(--assets-index-hero-link-letter-spacing);
 }
 
 
@@ -536,8 +585,8 @@ body.assets-page .checklist li:hover {
    ────────────────────────────────────────────────────────── */
 body.assets-page .insight-cta-block {
   max-width: var(--max-width);
-  margin: 0.85rem auto 0;
-  padding: 0 1.5rem;
+  margin: var(--assets-index-cta-margin-top) auto 0;
+  padding: 0 var(--assets-index-cta-padding-inline);
 }
 
 body.assets-page .insight-cta-inner {
@@ -545,39 +594,37 @@ body.assets-page .insight-cta-inner {
   overflow: hidden;
   max-width: 920px;
   margin: 0 auto;
-  padding: clamp(1.7rem, 2.3vw, 2.25rem);
-  border-radius: var(--ad-radius-xl);
-  background: linear-gradient(180deg, #164238 0%, #19473d 100%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow:
-    0 10px 22px rgba(8, 22, 18, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  padding: var(--assets-index-cta-inner-padding);
+  border-radius: var(--assets-index-cta-inner-radius);
+  background: var(--assets-index-cta-inner-background);
+  border: var(--assets-index-cta-inner-border);
+  box-shadow: var(--assets-index-cta-inner-shadow);
   text-align: center;
 }
 
 body.assets-page .insight-cta-inner h2 {
-  margin: 0 0 0.65rem;
-  color: #f2f7f3;
+  margin: var(--assets-index-cta-heading-margin);
+  color: var(--assets-index-cta-heading-color);
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.25vw, 2.05rem);
+  font-size: var(--assets-index-cta-heading-size);
   line-height: 1.18;
-  letter-spacing: -0.015em;
+  letter-spacing: var(--assets-index-cta-heading-letter-spacing);
 }
 
 body.assets-page .insight-cta-inner p {
-  margin: 0 auto 1.15rem;
-  max-width: 680px;
-  color: rgba(231, 239, 235, 0.74);
+  margin: var(--assets-index-cta-copy-margin);
+  max-width: var(--assets-index-cta-copy-max-width);
+  color: var(--assets-index-cta-copy-color);
 }
 
 body.assets-page .insight-cta-inner .btn.btn-primary {
   min-width: 210px;
-  padding: 0.85rem 1.25rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #f4f6f3;
-  color: #18453a;
-  box-shadow: 0 4px 12px rgba(5, 18, 14, 0.08);
+  padding: var(--assets-index-cta-button-padding);
+  border-radius: var(--assets-index-cta-button-radius);
+  border: var(--assets-index-cta-button-border);
+  background: var(--assets-index-cta-button-background);
+  color: var(--assets-index-cta-button-color);
+  box-shadow: var(--assets-index-cta-button-shadow);
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.01em;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -585,7 +632,9 @@ body.assets-page .insight-cta-inner .btn.btn-primary {
 
 body.assets-page .insight-cta-inner .btn.btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(5, 18, 14, 0.10);
+  background: var(--assets-index-cta-button-hover-background);
+  color: var(--assets-index-cta-button-hover-color);
+  box-shadow: var(--assets-index-cta-button-hover-shadow);
 }
 
 
