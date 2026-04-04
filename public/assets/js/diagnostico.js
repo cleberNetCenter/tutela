@@ -6,6 +6,9 @@ const respostas = {};
 
 // Armazena o último resultado para re-renderização em troca de idioma
 let ultimoResultado = null;
+let privacyModalInitialized = false;
+let privacyContentLoaded = false;
+let lastFocusedElement = null;
 
 /* ── Utilitários ── */
 
@@ -92,6 +95,100 @@ function verificarEstadoBotao() {
   const email = document.getElementById('email').value.trim();
   const btn = document.getElementById('btnEnviar');
   if (btn) btn.disabled = !(nome.length >= 3 && validarEmail(email) && consent && captcha);
+}
+
+function getPrivacyModalElements() {
+  return {
+    modal: document.getElementById('privacyModal'),
+    content: document.getElementById('privacyModalContent'),
+    status: document.getElementById('privacyModalStatus'),
+    openBtn: document.getElementById('openPrivacyModal'),
+    closeBtn: document.getElementById('closePrivacyModal'),
+    doneBtn: document.getElementById('donePrivacyModal')
+  };
+}
+
+async function loadPrivacyPolicyContent() {
+  const { content, status } = getPrivacyModalElements();
+  if (!content || !status || privacyContentLoaded) return;
+
+  status.hidden = false;
+
+  try {
+    const response = await fetch('/legal/politica-de-privacidade.html', { credentials: 'same-origin' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const html = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const sections = Array.from(doc.querySelectorAll('main .text-block'));
+
+    if (!sections.length) throw new Error('Conteudo da politica nao encontrado');
+
+    content.innerHTML = '';
+    sections.forEach(section => {
+      content.appendChild(section.cloneNode(true));
+    });
+
+    privacyContentLoaded = true;
+    status.hidden = true;
+  } catch (error) {
+    console.error('[diagnostico] Erro ao carregar politica:', error);
+    status.hidden = false;
+    const errorText = window.I18N
+      ? I18N.t('diagnostic.privacyError')
+      : 'Nao foi possivel carregar a politica agora. Use a versao completa.';
+    status.textContent = errorText || 'Nao foi possivel carregar a politica agora. Use a versao completa.';
+  }
+}
+
+function openPrivacyModal() {
+  const { modal, closeBtn } = getPrivacyModalElements();
+  if (!modal) return;
+
+  lastFocusedElement = document.activeElement;
+  modal.hidden = false;
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('diag-modal-open');
+  closeBtn?.focus();
+  loadPrivacyPolicyContent();
+}
+
+function closePrivacyModal() {
+  const { modal } = getPrivacyModalElements();
+  if (!modal) return;
+
+  modal.hidden = true;
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('diag-modal-open');
+  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+    lastFocusedElement.focus();
+  }
+}
+
+function setupPrivacyModal() {
+  if (privacyModalInitialized) return;
+
+  const { modal, openBtn, closeBtn, doneBtn } = getPrivacyModalElements();
+  if (!modal || !openBtn || !closeBtn || !doneBtn) return;
+
+  openBtn.addEventListener('click', openPrivacyModal);
+  closeBtn.addEventListener('click', closePrivacyModal);
+  doneBtn.addEventListener('click', closePrivacyModal);
+
+  modal.addEventListener('click', event => {
+    if (event.target.hasAttribute('data-close-privacy')) {
+      closePrivacyModal();
+    }
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !modal.hidden) {
+      closePrivacyModal();
+    }
+  });
+
+  privacyModalInitialized = true;
 }
 
 /* ── Carregamento do reCAPTCHA com idioma dinâmico ── */
@@ -217,6 +314,14 @@ function updateDynamicContent() {
   // Recarrega o reCAPTCHA com o novo idioma
   const lang = window.I18N ? window.I18N.currentLang : 'pt';
   loadReCaptcha(lang);
+
+  if (!privacyContentLoaded) {
+    const { status } = getPrivacyModalElements();
+    const loadingText = window.I18N
+      ? I18N.t('diagnostic.privacyLoading')
+      : 'Carregando politica de privacidade...';
+    if (status) status.textContent = loadingText || 'Carregando politica de privacidade...';
+  }
 }
 
 /* ── Aguarda o I18N estar pronto e escuta mudanças ── */
@@ -247,6 +352,7 @@ function init() {
   if (nome) nome.addEventListener('input', verificarEstadoBotao);
   if (email) email.addEventListener('input', verificarEstadoBotao);
   if (consent) consent.addEventListener('change', verificarEstadoBotao);
+  setupPrivacyModal();
 
   // Força a barra de progresso inicial (usando fallback até traduções)
   updateProgress(1);
