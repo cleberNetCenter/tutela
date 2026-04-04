@@ -22,6 +22,9 @@
     if (!btn || !menu) return;
     btn.setAttribute("aria-expanded", "false");
     menu.classList.remove("open");
+    if (!isMobile() && document.activeElement === btn) {
+      btn.blur();
+    }
   }
 
   function closeAll() {
