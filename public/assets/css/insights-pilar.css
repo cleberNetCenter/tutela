@@ -253,6 +253,32 @@ html {
   padding: 30px;
 }
 
+.td-intro__left {
+  background: linear-gradient(180deg, #fffdf8 0%, #f8f4ec 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 10px 30px rgba(8, 17, 12, 0.06);
+}
+
+.td-intro-highlight {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(199, 255, 88, 0.18), rgba(255, 255, 255, 0.8));
+  border: 1px solid rgba(29, 60, 43, 0.18);
+  box-shadow: 0 6px 18px rgba(8, 17, 12, 0.06);
+}
+
+.td-intro-highlight strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #1d3c2b;
+}
+
+.td-intro-highlight p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 .td-intro__heading,
 .td-articles__heading,
 .td-concepts__heading {
@@ -265,6 +291,15 @@ html {
 
 .td-intro__body {
   margin-top: 18px;
+  max-width: 520px;
+}
+
+.td-intro__body p + p {
+  margin-top: 14px;
+}
+
+.td-intro__heading {
+  max-width: 580px;
 }
 
 .td-intro__body a,
