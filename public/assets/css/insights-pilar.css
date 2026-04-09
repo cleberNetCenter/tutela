@@ -164,6 +164,13 @@ html {
   background: rgba(255, 255, 255, 0.66);
 }
 
+.td-section-tag {
+  color: #1d3c2b;
+  background: rgba(29, 60, 43, 0.08);
+  border-color: rgba(29, 60, 43, 0.30);
+  font-weight: 600;
+}
+
 .td-hero__title {
   position: relative;
   margin-top: 18px;
@@ -397,7 +404,8 @@ html {
 .td-quick-nav__item.is-pillar {
   background: linear-gradient(135deg, #ffffff 0%, #f3ffe8 100%);
   border: 1px solid rgba(29, 60, 43, 0.35);
-  border-left: 3px solid #1d3c2b;
+  border-left: 4px solid #1d3c2b !important;
+  border-radius: 0 18px 18px 0;
   box-shadow: 0 12px 28px rgba(8, 17, 12, 0.12), 0 4px 10px rgba(8, 17, 12, 0.08);
   transform: scale(1.02);
 }
