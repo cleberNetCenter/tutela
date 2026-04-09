@@ -547,9 +547,9 @@
 }
 
 .td-btn-primary {
-  background: var(--color-green-900);
-  color: var(--color-text-inverse);
-  border: 1px solid transparent;
+  background: linear-gradient(135deg, #f8fff9 0%, #e8fff1 54%, #e0fbe7 100%);
+  color: #18342b;
+  border: 1px solid #d2f8e2;
 }
 
 .td-btn-ghost {
@@ -560,7 +560,7 @@
 
 .td-btn-primary:hover,
 .td-btn-primary:focus-visible {
-  background: var(--color-green-950);
+  background: linear-gradient(135deg, #e8fff1 0%, #d2f8e2 100%);
 }
 
 .td-btn-primary:hover,
