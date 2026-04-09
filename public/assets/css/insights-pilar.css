@@ -1,24 +1,23 @@
 /* Link destacado para CTA interno */
 .td-link-highlight {
-  display: inline-block;
   font-weight: 600;
   font-size: 15px;
-  color: #1a5535;
-  background: #e8fff1;
-  border-radius: 999px;
-  padding: 12px 22px;
-  text-decoration: none;
+  color: #18342b;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
   margin-bottom: 8px;
   margin-right: 12px;
-  box-shadow: 0 2px 12px rgba(24, 85, 53, 0.06);
-  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: none;
+  text-decoration: none;
+  transition: color 0.18s;
 }
 
 .td-link-highlight:hover,
 .td-link-highlight:focus-visible {
-  background: #d2f8e2;
-  color: #0e2d1a;
-  box-shadow: 0 4px 18px rgba(24, 85, 53, 0.10);
+  color: #145c30;
+  text-decoration: underline;
 }
 .td-insights,
 .td-footer {
