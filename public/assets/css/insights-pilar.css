@@ -411,7 +411,7 @@
   display: inline-flex;
   padding: 10px 14px;
   border-radius: 999px;
-  background: var(--td-surface-strong);
+  background: linear-gradient(135deg, #f8fff9 0%, #e8fff1 54%, #e0fbe7 100%);
   color: var(--td-ink-muted);
   font-size: 12px;
   letter-spacing: 0.08em;
