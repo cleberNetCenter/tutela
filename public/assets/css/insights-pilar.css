@@ -318,7 +318,7 @@
   padding: 24px;
   border: 1px solid var(--td-line);
   border-radius: 26px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 243, 234, 0.92));
+  background: linear-gradient(135deg, #f8fff9 0%, #e8fff1 54%, #e0fbe7 100%);
   text-decoration: none;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -334,8 +334,8 @@
   grid-column: span 2;
   min-height: 300px;
   background:
-    radial-gradient(circle at top right, rgba(199, 255, 88, 0.18), transparent 30%),
-    linear-gradient(180deg, #fffef8 0%, #f4eddf 100%);
+    radial-gradient(circle at top right, rgba(180, 255, 210, 0.13), transparent 30%),
+    linear-gradient(135deg, #f8fff9 0%, #e8fff1 54%, #e0fbe7 100%);
 }
 
 .td-article-card__number {
