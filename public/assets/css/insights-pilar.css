@@ -56,12 +56,12 @@
 }
 
 .td-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 8px 0 28px;
-  font-size: 13px;
-  color: var(--td-ink-muted);
+  display: none !important;
+}
+/* Ajuste de topo para Insights: reduz espaço acima do hero */
+.main--hero-top {
+  padding-top: 18px !important;
+  margin-top: 0 !important;
 }
 
 .td-breadcrumb a {
