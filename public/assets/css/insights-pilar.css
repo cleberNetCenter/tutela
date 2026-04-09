@@ -547,14 +547,20 @@
 }
 
 .td-btn-primary {
-  background: var(--td-accent);
-  color: #0b170f;
+  background: var(--color-green-900);
+  color: var(--color-text-inverse);
+  border: 1px solid transparent;
 }
 
 .td-btn-ghost {
   border: 1px solid rgba(255, 255, 255, 0.16);
   color: #f4f7f2;
   background: rgba(255, 255, 255, 0.02);
+}
+
+.td-btn-primary:hover,
+.td-btn-primary:focus-visible {
+  background: var(--color-green-950);
 }
 
 .td-btn-primary:hover,
