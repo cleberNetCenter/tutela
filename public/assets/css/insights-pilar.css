@@ -1,13 +1,16 @@
 /* Link destacado para CTA interno */
 .td-link-highlight {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
   font-weight: 600;
   font-size: 15px;
   color: #18342b;
   background: none;
   border: none;
   border-radius: 0;
-  padding: 0;
-  margin-bottom: 8px;
+  padding: 0 8px 0 0;
+  margin-bottom: 0;
   margin-right: 12px;
   box-shadow: none;
   text-decoration: none;
