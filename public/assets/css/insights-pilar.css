@@ -56,12 +56,12 @@
 }
 
 .td-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 8px 0 28px;
-  font-size: 13px;
-  color: var(--td-ink-muted);
+  display: none !important;
+}
+/* Ajuste de topo para Insights */
+.main--hero-top.legal-page {
+  padding-top: 24px !important;
+  margin-top: 0 !important;
 }
 
 .td-breadcrumb a {
@@ -87,11 +87,11 @@
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at top left, rgba(199, 255, 88, 0.16), transparent 36%),
-    linear-gradient(135deg, #fffaf0 0%, #f6efe3 54%, #efe6d8 100%);
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.13), transparent 36%),
+    linear-gradient(135deg, #eaffea 0%, #d2f8e2 54%, #b6eecb 100%);
   border: 1px solid var(--td-line);
   border-radius: 34px;
-  padding: 42px 42px 34px;
+  padding: 32px 32px 24px;
   box-shadow: var(--td-shadow);
 }
 
