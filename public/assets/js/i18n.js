@@ -13,7 +13,9 @@ const I18N = {
     await this.loadConfig();
     await this.detectLanguage();
     await this.loadTranslations(this.currentLang);
-    this.applyTranslations();
+    if (document.body) {
+      this.applyTranslations();
+    }
     this.updateLanguageSelector();
     document.documentElement.lang = this.getLangCode(this.currentLang);
     // ⚠️ ESSA LINHA É CRUCIAL: exibe o banner se necessário
@@ -181,7 +183,9 @@ const I18N = {
     localStorage.setItem('tutela_lang', lang);
     this.currentLang = lang;
     await this.loadTranslations(lang);
-    this.applyTranslations();
+    if (document.body) {
+      this.applyTranslations();
+    }
     this.updateLanguageSelector();
     document.documentElement.lang = this.getLangCode(lang);
     this.updateSchemaLanguage(lang);
@@ -205,7 +209,7 @@ const I18N = {
         const schema = JSON.parse(script.textContent);
         if (schema.inLanguage) schema.inLanguage = this.getLangCode(lang);
         script.textContent = JSON.stringify(schema, null, 2);
-      } catch (e) {}
+      } catch (e) { }
     });
   },
 
@@ -234,17 +238,20 @@ document.addEventListener('click', (e) => {
 });
 
 // Observer para páginas SPA
-const pageObserver = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-      const target = mutation.target;
-      if (target.classList?.contains('page') && target.classList.contains('active')) {
-        I18N.applyTranslations();
-        I18N.showLegalPageNoticeIfNeeded();
-      }
-    }
-  });
-});
+//const pageObserver = new MutationObserver((mutations) => {
+//  mutations.forEach((mutation) => {
+//    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+//    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+//    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+//      const target = mutation.target;
+//      if (target.classList?.contains('page') && target.classList.contains('active')) {
+//        I18N.applyTranslations();
+//        I18N.showLegalPageNoticeIfNeeded();
+//      }
+//    }
+//  });
+//});
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.page').forEach(page => {
     pageObserver.observe(page, { attributes: true, attributeFilter: ['class'] });
