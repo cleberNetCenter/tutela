@@ -637,6 +637,105 @@ body.assets-page .insight-cta-inner .btn.btn-primary:hover {
   box-shadow: var(--assets-index-cta-button-hover-shadow);
 }
 
+/* ── Cluster de links relacionados ── */
+.cluster-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--td-line);
+  margin-bottom: 22px;
+}
+
+.cluster-icon-wrap {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: rgba(29, 60, 43, 0.08);
+  border: 1px solid rgba(29, 60, 43, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.cluster-intro {
+  font-size: 14px;
+  line-height: 1.72;
+  color: var(--td-ink-soft);
+  max-width: 680px;
+  margin-bottom: 22px;
+}
+
+.cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cluster-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  border: 1.5px solid rgba(20, 37, 28, 0.14);
+  border-left: 4px solid rgba(29, 60, 43, 0.22);
+  border-radius: 0 16px 16px 0;
+  background: #ffffff;
+  text-decoration: none;
+  color: var(--td-ink);
+  transition: border-left-color 0.18s ease, background 0.18s ease;
+}
+
+.cluster-card:hover {
+  border-left-color: #1d3c2b;
+  background: #fafff9;
+}
+
+.cluster-card-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--td-ink-muted);
+  font-weight: 600;
+}
+
+.cluster-card h3 {
+  font-family: var(--td-font-display);
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--td-ink);
+  margin: 0;
+}
+
+.cluster-card p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--td-ink-soft);
+  margin: 0;
+  flex: 1;
+}
+
+.cluster-card-arrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1d3c2b;
+  margin-top: 4px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .cluster-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cluster-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
 
 /* ──────────────────────────────────────────────────────────
    1.11  Responsivo — página índice
