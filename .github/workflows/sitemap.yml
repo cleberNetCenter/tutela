@@ -79,4 +79,12 @@ jobs:
           git config user.email "github-actions@github.com"
           git add public/sitemap.xml
           git commit -m "Auto update sitemap" || echo "No changes"
-          git push
+          git push origin main
+
+      # 🔥 NOVO BLOCO — SINCRONIZAÇÃO COM HOMOLOG
+      - name: Sync main to homolog
+        run: |
+          git fetch origin
+          git checkout homolog
+          git merge origin/main --no-edit
+          git push origin homolog
