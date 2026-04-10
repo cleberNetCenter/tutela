@@ -1,4 +1,3 @@
-
 /* ===================== LAYOUT ============================ */
 .app {
 	min-height: 100vh;
@@ -34,4 +33,50 @@ body.exec-compact .features-grid--security {
 	body.exec-compact .features-grid--security {
 		grid-template-columns: 1fr
 	}
+}
+
+/* =====================================
+   BREADCRUMB VISUAL HIDDEN (SEO ONLY)
+===================================== */
+
+.breadcrumb,
+nav[aria-label="breadcrumb"] {
+	position: absolute;
+	left: -9999px;
+	top: auto;
+
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+/* =====================================
+   LIST NORMALIZATION (SAFE)
+===================================== */
+
+/* 1. HEADER / NAV - nunca mostrar bullet */
+.header ul,
+.nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* 2. LISTAS DE CONTEÚDO */
+.main ul {
+	margin: 16px 0;
+	padding-left: 20px;
+	line-height: 1.6;
+}
+
+/* 3. ESPAÇAMENTO ENTRE ITENS */
+.main ul li {
+	margin-bottom: 8px;
+}
+
+/* 4. LISTAS ESPECIAIS (preservar estilo) */
+.checklist,
+.article-references {
+	list-style: none;
+	padding-left: 0;
 }

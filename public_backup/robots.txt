@@ -2,22 +2,25 @@
 # MPA Architecture - SEO Jurídico Nacional
 
 User-agent: *
-
-# Permitir páginas PT
 Allow: /
-Allow: /como-funciona.html
-Allow: /seguranca.html
-Allow: /governo.html
-Allow: /empresas.html
-Allow: /pessoas.html
-Allow: /legal/
 
-# Bloquear páginas EN/ES (noindex já aplicado)
-Disallow: /en/
-Disallow: /es/
+User-agent: GPTBot
+Allow: /
 
-# Assets
-Allow: /assets/
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
 
 # Sitemap
 Sitemap: https://tuteladigital.com.br/sitemap.xml

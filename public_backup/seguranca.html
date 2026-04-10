@@ -4,42 +4,40 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Arquitetura de Segurança | Tutela Digital®</title>
-  <meta
-    content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação biométrica e cadeia de custódia verificável."
-    name="description" />
+  <title data-i18n="security.pageTitle">Arquitetura de Segurança | Tutela Digital®</title>
+  <meta name="description"
+    content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação com fé pública via e-Notariado, registro técnico imutável e cadeia de custódia verificável."
+    data-i18n="security.metaDesc" />
   <meta name="last-modified" content="2026-02-18" />
-  <link rel="canonical" href="https://tuteladigital.com.br/seguranca.html" />
+  <link rel="canonical" href="https://tuteladigital.com.br/seguranca" />
   <link href="assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml" />
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://tuteladigital.com.br/seguranca.html" />
+  <meta property="og:url" content="https://tuteladigital.com.br/seguranca" />
   <meta property="og:title" content="Arquitetura de Segurança | Tutela Digital®" />
   <meta property="og:description"
-    content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação biométrica e cadeia de custódia verificável." />
+    content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação com fé pública e cadeia de custódia verificável." />
   <meta property="og:site_name" content="Tutela Digital®" />
-
-  <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://tuteladigital.com.br/seguranca.html" />
-  <meta property="twitter:title" content="Arquitetura de Segurança | Tutela Digital®" />
-  <meta property="twitter:description"
-    content="Infraestrutura de segurança com criptografia de ponta a ponta, autenticação biométrica e cadeia de custódia verificável." />
 
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="pt-br" href="https://tuteladigital.com.br/seguranca.html" />
-  <link rel="alternate" hreflang="x-default" href="https://tuteladigital.com.br/seguranca.html" />
+  <link rel="alternate" hreflang="pt-br" href="https://tuteladigital.com.br/seguranca" />
+  <link rel="alternate" hreflang="x-default" href="https://tuteladigital.com.br/seguranca" />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- CSS -->
+  <link href="https://fonts.googleapis.com/css2?
+    family=Cormorant+Garamond:wght@400;500;600;700&
+    family=Inter:wght@300;400;500;600&
+    display=swap" rel="stylesheet">
+
+  <!-- CSS existente do projeto -->
   <link rel="stylesheet" href="assets/css/main.css?v=4">
   <link rel="stylesheet" href="assets/css/styles-header-final.css?v=4">
-  <link rel="stylesheet" href="assets/css/seguranca.css?v=4">
-  
+  <link rel="stylesheet" href="assets/css/seguranca.css?v=5">
+
   <!-- Google Analytics -->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
   <script>
@@ -55,153 +53,211 @@
   <!--#include virtual="/partials/header.html" -->
 
   <main class="main">
+
+    <!-- ══ PAGE HEADER ════════════════════════════════════════ -->
     <section class="page-header page-header--security-centered">
       <div class="page-header-inner page-header--security">
 
-        <h1 data-i18n="security.title">Arquitetura de Integridade Aplicada à Preservação Probatória Digital</h1>
+        <span class="page-eyebrow" data-i18n="security.eyebrow">Infraestrutura Técnica e Jurídica</span>
+
+        <h1 data-i18n="security.title">
+          Arquitetura de <em>Integridade</em><br>Aplicada à Preservação Probatória
+        </h1>
 
         <div class="security-graphic">
           <svg viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
-            <!-- Linha Base -->
-            <line x1="100" y1="60" x2="800" y2="60" stroke="var(--color-green-700)" stroke-width="1.5" opacity="0.35" />
-
-            <!-- Círculo 1 -->
-            <circle cx="250" cy="60" r="10" fill="var(--color-green-700)" />
-
-            <text x="250" y="95" text-anchor="middle" font-size="16" font-family="var(--font-body)"
-              fill="var(--color-text-strong)">
-              Integridade
-            </text>
-
-            <!-- Círculo 2 -->
-            <circle cx="450" cy="60" r="10" fill="var(--color-green-700)" />
-
-            <text x="450" y="95" text-anchor="middle" font-size="16" font-family="var(--font-body)"
-              fill="var(--color-text-strong)">
-              Cadeia de Custódia
-            </text>
-
-            <!-- Círculo 3 -->
-            <circle cx="650" cy="60" r="10" fill="var(--color-green-700)" />
-
-            <text x="650" y="95" text-anchor="middle" font-size="16" font-family="var(--font-body)"
-              fill="var(--color-text-strong)">
-              Validade Jurídica
-            </text>
-
+            <line x1="100" y1="60" x2="800" y2="60" stroke="var(--color-green-700,#16a34a)" stroke-width="1.5"
+              opacity="0.35" />
+            <circle cx="250" cy="60" r="10" fill="var(--color-green-700,#16a34a)" />
+            <text x="250" y="95" text-anchor="middle" font-size="15" font-family="Inter,sans-serif"
+              fill="rgba(255,255,255,.75)">Integridade</text>
+            <circle cx="450" cy="60" r="10" fill="var(--color-green-700,#16a34a)" />
+            <text x="450" y="95" text-anchor="middle" font-size="15" font-family="Inter,sans-serif"
+              fill="rgba(255,255,255,.75)">Cadeia de Custódia</text>
+            <circle cx="650" cy="60" r="10" fill="var(--color-green-700,#16a34a)" />
+            <text x="650" y="95" text-anchor="middle" font-size="15" font-family="Inter,sans-serif"
+              fill="rgba(255,255,255,.75)">Validade Jurídica</text>
           </svg>
         </div>
 
-        <p class="page-header-subtitle"><span data-i18n="security.p1">Fundamentos técnicos e jurídicos que sustentam a
-            infraestrutura de preservação probatória.</span></p>
+        <p class="page-header-subtitle" data-i18n="security.p1">
+          Fundamentos técnicos e jurídicos que sustentam a infraestrutura de preservação probatória digital com rigor
+          verificável.
+        </p>
 
       </div>
     </section>
-    <section class="text-block">
-      <div class="text-block-inner">
-        <h2><span data-i18n="security.h2Main">Arquitetura de Segurança</span></h2>
-        <p><span data-i18n="security.p2">A infraestrutura da Tutela Digital® foi estruturada para oferecer mecanismos
-            técnicos de preservação de integridade e rastreabilidade combinados com documentação jurídica. Cada
-            componente do sistema foi desenvolvido considerando requisitos de segurança da informação, conformidade
-            regulatória e reconhecimento probatório.</span></p>
-        <p><span data-i18n="security.p3">A integração com o sistema e-Notariado garante que o processo de onboarding
-            seja realizado com fé pública, enquanto mecanismos técnicos estruturados asseguram a integridade e
-            rastreabilidade dos ativos ao longo de todo o ciclo de preservação.</span></p>
-      </div>
+
+    <!-- ══ INTRODUÇÃO ═══════════════════════════════════════ -->
+    <section class="sec-intro reveal">
+      <p class="sec-section-label" data-i18n="security.introLabel">Arquitetura</p>
+      <h2 data-i18n="security.h2Main">Segurança Estruturada para a Prova Digital</h2>
+      <p data-i18n="security.p2">
+        A infraestrutura da Tutela Digital® foi desenvolvida para oferecer mecanismos técnicos de preservação de
+        integridade e rastreabilidade combinados com documentação jurídica. Cada componente do sistema foi estruturado
+        considerando requisitos de segurança da informação, conformidade regulatória e reconhecimento probatório perante
+        autoridades competentes.
+      </p>
+      <p data-i18n="security.p3">
+        A integração com o sistema e-Notariado garante que o processo de onboarding seja realizado com fé pública,
+        enquanto mecanismos criptográficos estruturados asseguram a integridade e rastreabilidade dos ativos ao longo de
+        todo o ciclo de preservação — desde o depósito até o eventual uso como prova.
+      </p>
     </section>
-    <section class="features">
-      <div class="features-inner">
-        <h2 class="security-section-title" data-i18n="security.h3AccessControl">Controle de Acesso Exclusivo ao Titular
-        </h2>
-        <h3 class="security-subtitle"><span data-i18n="security.h2Secondary">Pilares de Segurança</span></h3>
-        <div class="security-cards">
-          <div class="feature-item">
 
-            <h3><span data-i18n="security.eNotarialTitle">e-Notariado</span></h3>
-            <p><span data-i18n="security.eNotarialDesc">Onboarding com validação de identidade através da plataforma
-                oficial dos cartórios brasileiros, garantindo fé pública.</span></p>
-          </div>
-          <div class="feature-item">
+    <!-- ══ PILARES DE SEGURANÇA ══════════════════════════════ -->
+    <section class="sec-pillars reveal">
+      <div class="sec-pillars-header">
+        <p class="sec-section-label" data-i18n="security.pillarsLabel">Pilares</p>
+        <h2 data-i18n="security.h2Secondary">Componentes da Arquitetura de Segurança</h2>
+        <p data-i18n="security.pillarsSubtitle">Seis camadas complementares que garantem integridade técnica, controle
+          de acesso e validade probatória.</p>
+      </div>
 
-            <h3><span data-i18n="security.nonRepudiationTitle">Não Repúdio</span></h3>
-            <p><span data-i18n="security.nonRepudiationDesc">Mecanismos técnicos e jurídicos que impedem a negação de
-                autoria ou alteração dos ativos custodiados.</span></p>
-          </div>
-          <div class="feature-item">
+      <div class="sec-cards-grid">
 
-            <h3 class="subsection-title" data-i18n="security.h3Encryption">Criptografia de Ponta a Ponta</h3>
-            <p><span data-i18n="security.encryptionDesc">Algoritmos de criptografia de alto padrão que protegem os
-                ativos durante transmissão e armazenamento.</span></p>
-          </div>
-          <div class="feature-item">
-
-            <h3 class="subsection-title" data-i18n="security.h3ImmutableRegistration">Registro Técnico Imutável</h3>
-            <h4 class="detail-title" data-i18n="security.h4BlockchainRecord">Registro Distribuído como Prova
-              Complementar</h4>
-            <p><span data-i18n="security.blockchainDesc">Registro distribuído e imutável que garante a integridade e
-                rastreabilidade de todas as operações.</span></p>
-            <h4 class="detail-title" data-i18n="security.h4TemporalIntegrity">Integridade Temporal Verificável</h4>
-          </div>
-          <div class="feature-item">
-
-            <h3><span data-i18n="security.chainOfCustodyTitle">Cadeia de Custódia Imutável</span></h3>
-            <p><span data-i18n="security.chainOfCustodyDesc">Histórico completo e inalterável de todas as ações
-                realizadas sobre cada ativo digital custodiado.</span></p>
-          </div>
-          <div class="feature-item">
-
-            <h3><span data-i18n="security.evidentialValidityTitle">Validade Probatória</span></h3>
-            <p><span data-i18n="security.evidentialValidityDesc">Suporte à admissibilidade dos ativos preservados como
-                prova em procedimentos administrativos e judiciais.</span></p>
-          </div>
+        <!-- e-Notariado — destacado -->
+        <div class="sec-card sec-card--featured">
+          <svg class="sec-card-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path
+              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <p class="sec-card-tag" data-i18n="security.eNotarialTag">Fé Pública</p>
+          <h3 data-i18n="security.eNotarialTitle">e-Notariado</h3>
+          <p data-i18n="security.eNotarialDesc">Onboarding com validação de identidade via plataforma oficial dos
+            cartórios brasileiros, conferindo fé pública ao processo de custódia e garantindo não repúdio quanto à
+            identidade do titular.</p>
         </div>
+
+        <!-- Criptografia -->
+        <div class="sec-card">
+          <svg class="sec-card-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <rect height="11" rx="2" ry="2" width="18" x="3" y="11" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          <p class="sec-card-tag" data-i18n="security.encryptionTag">Proteção de Dados</p>
+          <h3 data-i18n="security.h3Encryption">Criptografia de Ponta a Ponta</h3>
+          <p data-i18n="security.encryptionDesc">Algoritmos criptográficos de alto padrão protegem os ativos em trânsito
+            e em repouso, impedindo acesso não autorizado e garantindo confidencialidade ao longo de todo o ciclo de
+            preservação.</p>
+        </div>
+
+        <!-- Registro Imutável -->
+        <div class="sec-card">
+          <svg class="sec-card-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          <p class="sec-card-tag" data-i18n="security.immutableTag">Imutabilidade</p>
+          <h3 data-i18n="security.h3ImmutableRegistration">Registro Técnico Imutável</h3>
+          <p data-i18n="security.blockchainDesc">Registro distribuído e temporalmente verificável que garante a
+            integridade e rastreabilidade de todas as operações, funcionando como prova complementar de existência e
+            imutabilidade do ativo.</p>
+        </div>
+
+        <!-- Não Repúdio -->
+        <div class="sec-card">
+          <svg class="sec-card-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path
+              d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+          </svg>
+          <p class="sec-card-tag" data-i18n="security.nonRepudiationTag">Autoria</p>
+          <h3 data-i18n="security.nonRepudiationTitle">Não Repúdio</h3>
+          <p data-i18n="security.nonRepudiationDesc">Mecanismos técnicos e jurídicos combinados que impedem a negação de
+            autoria ou a alegação de alteração posterior dos ativos custodiados, sustentando a validade probatória.</p>
+        </div>
+
+        <!-- Cadeia de Custódia -->
+        <div class="sec-card">
+          <svg class="sec-card-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path
+              d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+          </svg>
+          <p class="sec-card-tag" data-i18n="security.custodyTag">Rastreabilidade</p>
+          <h3 data-i18n="security.chainOfCustodyTitle">Cadeia de Custódia Imutável</h3>
+          <p data-i18n="security.chainOfCustodyDesc">Histórico completo, cronológico e inalterável de todas as ações
+            realizadas sobre cada ativo digital, com identificação de agente, timestamp verificável e natureza de cada
+            operação.</p>
+        </div>
+
+        <!-- Validade Probatória -->
+        <div class="sec-card">
+          <svg class="sec-card-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <p class="sec-card-tag" data-i18n="security.evidentialTag">Admissibilidade</p>
+          <h3 data-i18n="security.evidentialValidityTitle">Suporte à Validade Probatória</h3>
+          <p data-i18n="security.evidentialValidityDesc">Infraestrutura estruturada para subsidiar a admissibilidade dos
+            ativos preservados como prova em procedimentos judiciais, administrativos e arbitrais, conforme avaliação da
+            autoridade competente.</p>
+        </div>
+
       </div>
     </section>
-    <section class="text-block">
-      <div class="text-block-inner">
-        <h2><span data-i18n="security.reliabilityTitle">Confiabilidade Probatória</span></h2>
-        <p><span data-i18n="security.reliabilityDesc">A confiabilidade jurídica da prova digital depende da demonstração
-            de integridade, rastreabilidade e controle de autoria. A arquitetura foi estruturada para atender a esses
-            requisitos técnicos.</span></p>
+
+    <!-- ══ CONFIABILIDADE PROBATÓRIA ═════════════════════════ -->
+    <section class="sec-reliability reveal">
+      <div class="sec-reliability-inner">
+
+        <div>
+          <p class="sec-section-label" data-i18n="security.reliabilityLabel">Requisitos Técnicos</p>
+          <h2 data-i18n="security.reliabilityTitle">Confiabilidade Probatória como Princípio de Design</h2>
+          <p data-i18n="security.reliabilityDesc">
+            A confiabilidade jurídica da prova digital depende da demonstração técnica de integridade, rastreabilidade e
+            controle de autoria. A arquitetura da Tutela Digital® foi estruturada a partir desses requisitos, não como
+            recurso adicional, mas como fundamento da infraestrutura.
+          </p>
+          <p data-i18n="security.reliabilityDesc2">
+            Cada decisão de design atende a critérios derivados do art. 369 do CPC, das normas de segurança da
+            informação e das exigências de admissibilidade reconhecidas pela jurisprudência dos tribunais superiores.
+          </p>
+        </div>
+
+        <ul class="sec-checklist">
+          <li data-i18n="security.check1">Integridade verificável por qualquer autoridade, sem dependência da plataforma
+          </li>
+          <li data-i18n="security.check2">Autenticidade atestada por fé pública notarial via e-Notariado</li>
+          <li data-i18n="security.check3">Cadeia de custódia auditável e cronologicamente documentada</li>
+          <li data-i18n="security.check4">Registro temporal imutável e independentemente verificável</li>
+          <li data-i18n="security.check5">Controle exclusivo do titular com mecanismos de não repúdio</li>
+          <li data-i18n="security.check6">Conformidade com LGPD, CPC e normas de segurança da informação</li>
+        </ul>
+
       </div>
     </section>
-    <section class="cta-final">
-      <div class="cta-final-inner">
-        <h2><span data-i18n="security.ctaTitle">Conheça nossa infraestrutura de segurança</span></h2>
-        <p><span data-i18n="security.ctaDesc">Acesse a plataforma e conheça nossa infraestrutura de preservação
-            probatória estruturada.</span></p>
-        <a class="btn btn-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank"
-          data-i18n="global.accessPlatform">Acessar a Plataforma</a>
+
+    <!-- ══ CTA FINAL ══════════════════════════════════════════ -->
+    <section class="sec-cta reveal">
+      <div class="sec-cta-inner">
+        <h2 data-i18n="security.ctaTitle">Conheça a infraestrutura de preservação</h2>
+        <p data-i18n="security.ctaDesc">Acesse a plataforma e inicie a custódia dos seus ativos digitais com integridade
+          verificável e fé pública.</p>
+        <a class="btn-sec-primary" href="https://app.tuteladigital.com.br/" rel="noopener noreferrer" target="_blank"
+          data-i18n="global.accessPlatform">
+          Acessar a Plataforma
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
       </div>
     </section>
+
   </main>
 
   <!--#include virtual="/partials/footer.html" -->
 
-
-  <!-- Fade Effect Script -->
   <script>
     (function () {
-      // Intersection Observer for fade-in effect
-      const revealElements = document.querySelectorAll('.features, .steps, .text-block, .page-header');
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-on-scroll', 'visible');
-            observer.unobserve(entry.target);
+      const els = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
           }
         });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-
-      revealElements.forEach(el => {
-        el.classList.add('reveal-on-scroll');
-        observer.observe(el);
-      });
+      }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(el => obs.observe(el));
     })();
   </script>
 

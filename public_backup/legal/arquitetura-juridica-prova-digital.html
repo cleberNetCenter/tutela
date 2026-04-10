@@ -12,12 +12,12 @@
   <meta name="description"
     content="Estrutura jurídica e técnica que sustenta a preservação probatória digital: hash criptográfico, cadeia de custódia, temporalidade verificável e fundamento no processo civil brasileiro." />
 
-  <link rel="canonical" href="https://tuteladigital.com.br/legal/arquitetura-juridica-prova-digital.html" />
+  <link rel="canonical" href="https://tuteladigital.com.br/legal/arquitetura-juridica-prova-digital" />
   <link href="/assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://tuteladigital.com.br/legal/arquitetura-juridica-prova-digital.html" />
+  <meta property="og:url" content="https://tuteladigital.com.br/legal/arquitetura-juridica-prova-digital" />
   <meta property="og:title" content="Arquitetura Jurídica da Prova Digital | Tutela Digital®" />
   <meta property="og:description"
     content="Estrutura jurídica e técnica que sustenta a preservação probatória digital: hash criptográfico, cadeia de custódia, temporalidade verificável e fundamento no processo civil brasileiro." />
@@ -25,7 +25,7 @@
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://tuteladigital.com.br/legal/arquitetura-juridica-prova-digital.html" />
+  <meta property="twitter:url" content="https://tuteladigital.com.br/legal/arquitetura-juridica-prova-digital" />
   <meta property="twitter:title" content="Arquitetura Jurídica da Prova Digital | Tutela Digital®" />
   <meta property="twitter:description"
     content="Estrutura jurídica e técnica que sustenta a preservação probatória digital: hash criptográfico, cadeia de custódia, temporalidade verificável e fundamento no processo civil brasileiro." />
@@ -127,117 +127,14 @@
 }
 </script>
 
-  <style>
-    .breadcrumb {
-      padding: 1rem 2rem;
-      background: #f5f5f5;
-      font-size: 0.9rem;
-    }
-
-    .breadcrumb ol {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .breadcrumb li {
-      display: flex;
-      align-items: center;
-    }
-
-    .breadcrumb li:not(:last-child)::after {
-      content: "›";
-      margin-left: 0.5rem;
-      color: #666;
-    }
-
-    .breadcrumb a {
-      color: #2c5aa0;
-      text-decoration: none;
-    }
-
-    .breadcrumb a:hover {
-      text-decoration: underline;
-    }
-
-    .breadcrumb li[aria-current="page"] {
-      color: #666;
-      font-weight: 500;
-    }
-  </style>
+  
 
   <!-- CSS Gráfico Institucional Legal -->
-  <style>
-    
-    
-    .legal-graphic {
-      margin: 1.5rem auto 2.5rem auto;
-      max-width: 900px;
-      opacity: 0.9;
-    }
-
-    .legal-graphic svg {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .legal-graphic a circle:hover {
-      opacity: 1;
-      transform: scale(1.08);
-      transition: 0.2s ease;
-    }
-
-    .legal-graphic {
-      margin: 2rem auto 3rem auto;
-    }
-
-    /* círculo base */
-
-    .legal-graphic svg circle {
-      transition: transform 0.18s ease, opacity 0.18s ease, filter 0.18s ease;
-      transform-origin: center;
-    }
-
-    /* halo suave (glow) */
-
-    .legal-graphic svg a:hover circle {
-      transform: scale(1.06);
-      filter: drop-shadow(0 0 6px rgba(15,58,42,0.25))
-        drop-shadow(0 0 10px rgba(15,58,42,0.15));
-    }
-
-    /* texto não interfere no hover */
-
-    .legal-graphic svg text {
-      pointer-events: none;
-    }
-
-    /* evita cortes ao aplicar escala */
-
-    .legal-graphic svg {
-      overflow: visible;
-    }
-
-    .legal-graphic svg circle:hover {
-      transform: scale(1.06);
-    }
-
-    @media (max-width: 768px) {
-      .legal-graphic svg text {
-        font-size: 13px;
-      }
-    }
-
-    .legal-graphic svg a {
-      cursor: pointer;
-    }
-  </style>
+  
+  <link rel="stylesheet" href="/assets/css/pages/arquitetura-juridica-prova-digital.css?v=1">
 </head>
 
-<body class="exec-compact page legal-page">
+<body class="exec-compact page legal-page page page-arquitetura-juridica-prova-digital">
   <!--#include virtual="/partials/header.html" -->
 
   <!-- Breadcrumb -->
@@ -705,19 +602,7 @@
   </script>
 
   <!-- Scripts de internacionalização e navegação -->
-  <!-- Inicializar i18n para páginas legais -->
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      // Inicializa sistema i18n
-      await I18N.init();
-
-      // Força exibição do aviso se não estiver em PT
-      if (I18N.currentLang !== 'pt') {
-        console.log('[Legal Page] Idioma atual:', I18N.currentLang, '- Exibindo aviso');
-        I18N.showLegalPageNoticeIfNeeded();
-      }
-    });
-  </script>
+  <!-- Inicializar i18n para páginas legais removido: agora automático via scripts.html -->
   <script src="/assets/js/legal-animations.js?v=20260221"></script>
   <!--#include virtual="/partials/scripts.html" -->
 

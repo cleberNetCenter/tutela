@@ -1,0 +1,13 @@
+{
+  "legalPages": [
+    "page-institucional",
+    "page-politica-de-privacidade",
+    "page-fundamento-juridico",
+    "page-termos-de-custodia",
+    "page-arquitetura-juridica-prova-digital",
+    "page-termos-de-uso",
+    "page-preservacao-probatoria-digital"
+  ],
+  "fallbackLang": "pt",
+  "supportedLangs": ["pt", "en", "es"]
+}
