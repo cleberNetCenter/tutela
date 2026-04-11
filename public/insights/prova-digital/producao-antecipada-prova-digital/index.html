@@ -22,6 +22,45 @@
 
   <link rel="icon" href="/assets/illustrations/favicon.svg" type="image/svg+xml">
 
+  <style>
+    /* FORÇA HERO ESCURO EM PÁGINAS PILLAR */
+    body.assets-page.assets-pillar-page .page-header.page-header--legal,
+    body.assets-page.assets-pillar-page .page-header.page-header--legal.hero {
+      background: #0c2418 !important;
+      padding: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    body.assets-page.assets-pillar-page .page-header-inner {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+      padding: clamp(3rem, 6vw, 5rem) 1.5rem !important;
+      text-align: center !important;
+    }
+
+    body.assets-page.assets-pillar-page .page-header-inner h1 {
+      color: #ffffff !important;
+      margin-bottom: 1rem !important;
+    }
+
+    body.assets-page.assets-pillar-page .page-header-subtitle {
+      color: rgba(255, 255, 255, 0.68) !important;
+      border-left: 3px solid #2db560 !important;
+      padding-left: 1.25rem !important;
+      font-style: italic !important;
+      max-width: 680px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    /* Remove pseudo-elementos que possam adicionar camadas claras */
+    body.assets-page.assets-pillar-page .page-header-inner::before,
+    body.assets-page.assets-pillar-page .page-header-inner::after {
+      display: none !important;
+    }
+  </style>
+
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
