@@ -2060,3 +2060,19 @@ body.assets-page.assets-pillar-page .muda-aside a:hover {
   color: #ffffff;
   text-decoration-color: rgba(255,255,255,0.60);
 }
+
+body.assets-page.assets-pillar-page .muda-aside p a,
+body.assets-page.assets-pillar-page .muda-aside p a:visited {
+  color: #a8d9b8;
+  font-weight: 500;
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration-color: rgba(168,217,184,0.40);
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+body.assets-page.assets-pillar-page .muda-aside p a:hover {
+  color: #ffffff;
+  text-decoration-color: rgba(255,255,255,0.60);
+}
