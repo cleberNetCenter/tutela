@@ -1,21 +1,37 @@
 /*
  * institucional.css — Tutela Digital®
  * Página: /legal/institucional.html ("Sobre")
- * Versão: 3 — tokens corrigidos conforme foundation/tokens.css
+ * Versão: 4
  *
- * Variáveis disponíveis (fonte: tokens.css + base.css):
- *   Superfícies:  --color-surface-light (#f2f7f5) | --color-surface-muted (#e6f0eb)
- *   Texto:        --color-text-strong (#0b241b) | --color-text-base (#0f3a2a) | --color-text-muted (#4f7c6b)
- *   Bordas:       --color-border-soft (#c8ddd4) | --color-border-strong (#9fbfb3)
- *   Acento:       --color-accent (#1db954) | --primitive-green-700 (#1b6b4d)
- *   Tipografia:   --font-display (Cormorant Garamond) | --font-body (Inter)
- *   Espaçamento:  --space-xs/sm/md/lg/xl/2xl
+ * CASCATA RESPEITADA:
+ *   main.css → foundation/tokens.css + base.css
+ *   pages-consolidated.css → define .page-header--legal, .whitepaper-container,
+ *                             .finalidade-grid, .finalidade-item, .wp-highlight,
+ *                             .wp-summary, .reveal-on-scroll, .legal-animate
+ *
+ * Este arquivo ESTENDE o consolidated sem sobrescrever o que já funciona.
+ * Regras marcadas como [OVERRIDE] substituem intencionalmente o consolidated.
+ * Regras marcadas como [NEW] adicionam componentes novos.
  */
 
 
-/* ─────────────────────────────────────────────
-   1. SUPERTÍTULO DE SEÇÃO
-   ───────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────
+   1. HERO — gradiente verde já definido em pages-consolidated
+      body.legal-page .page-header--legal usa:
+        background: linear-gradient(180deg, #f7faf7 0%, #f2f6f3 100%)
+        border: 1px solid rgba(24, 52, 43, 0.08)
+        border-radius: 16px
+      Não sobrescrevemos — apenas ajustamos o espaçamento
+      e adicionamos os elementos novos (pills, overtitle).
+   ───────────────────────────────────────────────────────── */
+
+/* [OVERRIDE] margin-top para dar respiro do breadcrumb */
+body.legal-page .page-header--legal {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+/* [NEW] Supertítulo de seção — "ESTRUTURA INSTITUCIONAL" */
 .section-overtitle {
   display: block;
   font-family: var(--font-body);
@@ -27,46 +43,13 @@
   margin-bottom: var(--space-xs);
 }
 
-
-/* ─────────────────────────────────────────────
-   2. PAGE HEADER — hero
-   ───────────────────────────────────────────── */
-.page-header--legal {
-  padding: var(--space-2xl) var(--space-md) var(--space-xl);
-  text-align: center;
-  /* Card branco sobre o fundo #f2f7f5 do body — igual ao hero de seguranca.html */
-  background: #ffffff;
-  border: 1px solid var(--color-border-soft);
-  border-radius: 8px;
-  max-width: 780px;
-  margin: var(--space-lg) auto var(--space-xl);
-}
-
-.page-header--legal h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 600;
-  line-height: 1.15;
-  color: var(--color-text-strong);
-  margin-bottom: var(--space-sm);
-}
-
-.page-header-subtitle {
-  font-family: var(--font-body);
-  font-size: 0.975rem;
-  color: var(--color-text-muted);
-  max-width: 52ch;
-  margin: var(--space-sm) auto 0;
-  line-height: var(--line-height-relaxed);
-}
-
-/* Pills de atributos — "Integridade · Cadeia de Custódia · Validade Jurídica" */
+/* [NEW] Pills de atributos — "INTEGRIDADE · CADEIA DE CUSTÓDIA · VALIDADE JURÍDICA" */
 .page-header-pills {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-xs);
-  margin: var(--space-md) auto 0;
+  margin: var(--space-sm) auto 0;
 }
 
 .page-header-pills .pill {
@@ -84,96 +67,33 @@
   background: transparent;
 }
 
+/* Divisor decorativo */
 .legal-divider {
   width: 40px;
   height: 2px;
   background: var(--primitive-green-700);
-  margin: var(--space-md) auto 0;
+  margin: var(--space-sm) auto 0;
   opacity: 0.45;
 }
 
-
-/* ─────────────────────────────────────────────
-   3. CONTAINER PRINCIPAL
-   ───────────────────────────────────────────── */
-.whitepaper-container {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 0 var(--space-md) var(--space-xl);
+/* [OVERRIDE] Remove o SVG gráfico da versão anterior — agora usamos pills */
+.legal-graphic {
+  display: none;
 }
 
 
-/* ─────────────────────────────────────────────
-   4. TEXT-BLOCK — seções de texto
-   ───────────────────────────────────────────── */
-.text-block {
-  padding: var(--space-lg) 0;
-  border-bottom: 1px solid var(--color-border-soft);
-}
+/* ─────────────────────────────────────────────────────────
+   2. IDENTIFICAÇÃO JURÍDICA — bloco de dados estruturado
+      [NEW] substitui o parágrafo corrido por grid de labels
+   ───────────────────────────────────────────────────────── */
 
-.text-block:last-of-type {
-  border-bottom: none;
-}
-
-.text-block-inner h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-  font-weight: 600;
-  color: var(--color-text-strong);
-  margin-bottom: var(--space-sm);
-  padding-left: var(--space-sm);
-  border-left: 3px solid var(--primitive-green-700);
-  line-height: var(--line-height-tight);
-}
-
-.text-block-inner p {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-base);
-  margin-bottom: 0.85rem;
-}
-
-.text-block-inner p:last-child {
-  margin-bottom: 0;
-}
-
-/* Destaque — box com borda esquerda */
-.wp-highlight {
-  background: var(--color-surface-muted);
-  border-left: 3px solid var(--primitive-green-700);
-  border-radius: 0 4px 4px 0;
-  padding: 0.9rem 1.1rem;
-  font-size: 0.9rem !important;
-  color: var(--color-text-strong) !important;
-  line-height: 1.65 !important;
-  margin-bottom: var(--space-sm) !important;
-}
-
-/* Links inline */
-.insight-link {
-  color: var(--primitive-green-700);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: opacity 0.15s ease;
-}
-
-.insight-link:hover {
-  opacity: 0.7;
-}
-
-
-/* ─────────────────────────────────────────────
-   5. IDENTIFICAÇÃO JURÍDICA — grid de dados
-   ───────────────────────────────────────────── */
 .legal-id-block {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-sm);
   margin-top: var(--space-md);
   padding: var(--space-md);
-  background: #ffffff;
+  background: linear-gradient(135deg, #f7fbf9, #edf6f2);
   border: 1px solid var(--color-border-soft);
   border-radius: 4px;
 }
@@ -201,23 +121,78 @@
 }
 
 
-/* ─────────────────────────────────────────────
-   6. FEATURES — seções com h2 e grid
-   ───────────────────────────────────────────── */
-.features {
+/* ─────────────────────────────────────────────────────────
+   3. TEXT-BLOCK — seções de texto
+      pages-consolidated define .whitepaper-container h2 e p.
+      Adicionamos apenas a linha lateral verde nos h2.
+   ───────────────────────────────────────────────────────── */
+
+/* [NEW] Linha lateral verde nos títulos de seção */
+.page-institucional .text-block-inner h2,
+.page-institucional .features-inner h2 {
+  padding-left: var(--space-sm);
+  border-left: 3px solid var(--primitive-green-700);
+  text-align: left; /* [OVERRIDE] consolidated centraliza todos os h2 em legal-page */
+}
+
+/* [OVERRIDE] consolidated centraliza h2 em body.legal-page — revertemos para esta página */
+body.legal-page.page-institucional h2,
+body.legal-page.page-institucional h3 {
+  text-align: left;
+}
+
+/* Separador de seção */
+.text-block {
   padding: var(--space-lg) 0;
   border-bottom: 1px solid var(--color-border-soft);
 }
 
-.features-inner h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+.text-block:last-of-type {
+  border-bottom: none;
+}
+
+/* [OVERRIDE] wp-highlight — versão mais refinada que a do consolidated */
+.page-institucional .wp-highlight {
+  background: linear-gradient(135deg, #f7fbf9, #edf6f2);
+  border-left: 4px solid var(--primitive-green-700);
+  border-radius: 0 4px 4px 0;
+  padding: 1rem 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   4. TECH BADGES — linha de tags padrão governo.html [NEW]
+   ───────────────────────────────────────────────────────── */
+
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: var(--space-md);
+}
+
+.tech-badge {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
   font-weight: 600;
-  color: var(--color-text-strong);
-  margin-bottom: 0.4rem;
-  padding-left: var(--space-sm);
-  border-left: 3px solid var(--primitive-green-700);
-  line-height: var(--line-height-tight);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 2px;
+  padding: 0.22rem 0.65rem;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   5. CAMADAS DE CONFIANÇA — 4 cards [NEW]
+   ───────────────────────────────────────────────────────── */
+
+.features {
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--color-border-soft);
 }
 
 .features-subtitle {
@@ -225,14 +200,9 @@
   font-size: 0.875rem;
   color: var(--color-text-muted);
   margin-bottom: var(--space-md);
-  padding-left: var(--space-sm);
   line-height: var(--line-height-base);
 }
 
-
-/* ─────────────────────────────────────────────
-   7. CAMADAS DE CONFIANÇA — 4 cards
-   ───────────────────────────────────────────── */
 .camadas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -245,15 +215,15 @@
   flex-direction: column;
   gap: 0.4rem;
   padding: var(--space-md) var(--space-sm);
-  background: #ffffff;
+  background: linear-gradient(135deg, #f7fbf9, #edf6f2);
   border: 1px solid var(--color-border-soft);
   border-top: 3px solid var(--primitive-green-700);
   border-radius: 4px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
 }
 
 .camada-card:hover {
-  box-shadow: 0 6px 20px rgba(11, 36, 27, 0.08);
+  box-shadow: 0 8px 18px rgba(16, 24, 40, 0.07);
   transform: translateY(-2px);
 }
 
@@ -283,188 +253,77 @@
 }
 
 
-/* ─────────────────────────────────────────────
-   8. FINALIDADE — grid de itens
-   ───────────────────────────────────────────── */
-.finalidade-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.6rem;
-  margin-top: var(--space-md);
-}
+/* ─────────────────────────────────────────────────────────
+   6. FINALIDADE — grid de itens com links
+      pages-consolidated já define .finalidade-grid e
+      .finalidade-item com border-left verde.
+      [OVERRIDE] adicionamos hover para itens linkados.
+   ───────────────────────────────────────────────────────── */
 
-.finalidade-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0.85rem 0.75rem;
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--color-text-strong);
-  background: #ffffff;
-  border: 1px solid var(--color-border-soft);
-  border-radius: 3px;
+/* Links dentro da grade de finalidade */
+a.finalidade-item {
   text-decoration: none;
-  min-height: 54px;
-  line-height: 1.3;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  display: flex;
+  align-items: flex-start;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 
 a.finalidade-item:hover {
-  border-color: var(--primitive-green-700);
+  border-left-color: var(--primitive-green-700);
   color: var(--primitive-green-700);
+  background: linear-gradient(135deg, #f7fbf9, #edf6f2);
 }
 
 
-/* ─────────────────────────────────────────────
-   9. TECH BADGES
-   ───────────────────────────────────────────── */
-.tech-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: var(--space-md);
-}
-
-.tech-badge {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  background: var(--color-surface-muted);
-  border: 1px solid var(--color-border-soft);
-  border-radius: 2px;
-  padding: 0.22rem 0.65rem;
-}
-
-
-/* ─────────────────────────────────────────────
-   10. RESUMO TÉCNICO
-   ───────────────────────────────────────────── */
-.wp-summary {
-  background: var(--color-surface-muted);
-  border-top: 1px solid var(--color-border-soft);
-  border-bottom: 1px solid var(--color-border-soft);
-  padding: var(--space-xl) var(--space-md);
-}
-
-.wp-summary-inner {
-  max-width: 640px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.wp-summary-inner h2 {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--color-text-strong);
-  margin-bottom: var(--space-sm);
-}
+/* ─────────────────────────────────────────────────────────
+   7. RESUMO TÉCNICO
+      pages-consolidated define .wp-summary e .wp-summary-inner.
+      [NEW] adiciona apenas o link inline dentro do resumo.
+   ───────────────────────────────────────────────────────── */
 
 .wp-summary-inner p {
-  font-family: var(--font-body);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   line-height: var(--line-height-relaxed);
-  color: var(--color-text-muted);
 }
 
 
-/* ─────────────────────────────────────────────
-   11. CTA FINAL
-   ───────────────────────────────────────────── */
-.cta-final {
-  padding: var(--space-2xl) var(--space-md);
-  text-align: center;
-}
-
-.cta-final-inner {
-  max-width: 560px;
-  margin: 0 auto;
-}
-
-.cta-final-inner h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 3vw, 1.85rem);
-  font-weight: 600;
-  color: var(--color-text-strong);
-  margin-bottom: 0.75rem;
-  line-height: var(--line-height-tight);
-}
-
-.cta-final-inner p {
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-lg);
-  line-height: var(--line-height-base);
-}
+/* ─────────────────────────────────────────────────────────
+   8. CTA FINAL
+      pages-consolidated define .cta-final com gradiente,
+      border-radius 18px e estilos de botão.
+      [NEW] adicionamos apenas o segundo botão e o wrapper.
+   ───────────────────────────────────────────────────────── */
 
 .cta-actions {
   display: flex;
   gap: var(--space-sm);
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: var(--space-sm);
+}
+
+/* [OVERRIDE] consolidated define margin-bottom: 1.1rem no .cta-final p
+   — mantemos mas ajustamos para o caso de dois botões */
+.page-institucional .cta-final p {
+  margin-bottom: 0;
 }
 
 
-/* ─────────────────────────────────────────────
-   12. ANIMAÇÕES
+/* ─────────────────────────────────────────────────────────
+   9. RESPONSIVIDADE
    ───────────────────────────────────────────── */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
 
-.reveal-on-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.legal-animate {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-
-.legal-animate.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-/* ─────────────────────────────────────────────
-   13. RESPONSIVIDADE
-   ───────────────────────────────────────────── */
 @media (max-width: 600px) {
-  .page-header--legal {
-    margin: var(--space-sm) var(--space-sm) var(--space-lg);
-    padding: var(--space-xl) var(--space-sm) var(--space-lg);
-  }
-
-  .whitepaper-container {
-    padding: 0 var(--space-sm) var(--space-lg);
-  }
-
-  .text-block {
-    padding: var(--space-md) 0;
-  }
-
   .camadas-grid {
     grid-template-columns: 1fr;
   }
 
-  .finalidade-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .legal-id-block {
     grid-template-columns: 1fr;
+  }
+
+  .page-header-pills {
+    gap: 0.4rem;
   }
 
   .cta-actions {
