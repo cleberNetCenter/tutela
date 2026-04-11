@@ -1715,74 +1715,146 @@ body.assets-page.assets-pillar-page .timeline-body p {
   margin: 0;
 }
 
-/* ── Diferencial box (estrutura vs armazenamento) ────────── */
+/* ── Diferencial box — fundo escuro, alto impacto visual ──── */
 body.assets-page.assets-pillar-page .diferencial-box {
-  background: #ffffff;
-  border: 1px solid rgba(29, 60, 43, 0.1);
-  border-radius: 20px;
-  padding: 2.5rem;
-  box-shadow: 0 4px 20px rgba(10, 34, 24, 0.05);
+  background: #0c2418;
+  border-radius: 24px;
+  padding: 3rem 2.75rem;
+  position: relative;
+  overflow: hidden;
+}
+body.assets-page.assets-pillar-page .diferencial-box::before {
+  content: "≠";
+  position: absolute;
+  right: 2rem;
+  top: -1rem;
+  font-family: var(--ad-ff-serif);
+  font-size: clamp(7rem, 14vw, 12rem);
+  color: rgba(45, 181, 96, 0.055);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+body.assets-page.assets-pillar-page .diferencial-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2.75rem;
+  right: 2.75rem;
+  height: 2px;
+  background: linear-gradient(90deg, #2db560 0%, rgba(45, 181, 96, 0.06) 100%);
+  border-radius: 0 0 999px 999px;
 }
 body.assets-page.assets-pillar-page .diferencial-box h2 {
+  color: #f2f7f3;
   margin-top: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  letter-spacing: -0.02em;
+}
+body.assets-page.assets-pillar-page .diferencial-box .diferencial-eyebrow {
+  font-family: var(--ad-ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2db560;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0.75rem;
+}
+body.assets-page.assets-pillar-page .diferencial-box .diferencial-eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2db560;
+  opacity: 0.7;
+  flex-shrink: 0;
 }
 body.assets-page.assets-pillar-page .diferencial-box > p {
   font-size: 0.9rem;
-  line-height: 1.75;
-  color: var(--ad-text-muted);
-  margin-bottom: 0.75rem;
+  line-height: 1.78;
+  color: rgba(255, 255, 255, 0.52);
+  margin-bottom: 0.65rem;
+  position: relative;
+  z-index: 1;
 }
 body.assets-page.assets-pillar-page .diferencial-box > p:last-child {
   margin-bottom: 0;
 }
 body.assets-page.assets-pillar-page .diferencial-box a {
-  color: #1d3c2b;
+  color: #2db560;
   font-weight: 500;
+  text-decoration: none;
+}
+body.assets-page.assets-pillar-page .diferencial-box a:hover {
+  text-decoration: underline;
 }
 
-/* Compare row dentro do diferencial */
+/* Compare row — versão escura */
 body.assets-page.assets-pillar-page .compare-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin-bottom: 1.75rem;
+  gap: 1rem;
+  margin: 1.75rem 0 2rem;
+  position: relative;
+  z-index: 1;
 }
 body.assets-page.assets-pillar-page .compare-col {
-  border-radius: 14px;
-  padding: 1.375rem 1.5rem;
+  border-radius: 16px;
+  padding: 1.5rem 1.625rem;
 }
 body.assets-page.assets-pillar-page .compare-col.negative {
-  background: #fff8f5;
-  border: 1px solid rgba(180, 60, 30, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 body.assets-page.assets-pillar-page .compare-col.positive {
-  background: #f0f9f4;
-  border: 1px solid rgba(45, 181, 96, 0.2);
+  background: rgba(45, 181, 96, 0.09);
+  border: 1px solid rgba(45, 181, 96, 0.28);
 }
 body.assets-page.assets-pillar-page .compare-col .label {
   font-family: var(--ad-ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.75rem;
   font-style: normal;
+  display: block;
 }
 body.assets-page.assets-pillar-page .compare-col.negative .label {
-  color: #8a3520;
+  color: rgba(255, 255, 255, 0.32);
 }
 body.assets-page.assets-pillar-page .compare-col.positive .label {
-  color: #1d6b3a;
+  color: #2db560;
 }
 body.assets-page.assets-pillar-page .compare-col p:not(.label) {
   font-size: 0.875rem;
-  line-height: 1.7;
+  line-height: 1.72;
   margin: 0;
-  color: var(--ad-text-muted);
+}
+body.assets-page.assets-pillar-page .compare-col.negative p:not(.label) {
+  color: rgba(255, 255, 255, 0.48);
+}
+body.assets-page.assets-pillar-page .compare-col.positive p:not(.label) {
+  color: rgba(255, 255, 255, 0.84);
 }
 body.assets-page.assets-pillar-page .compare-col a {
-  color: #1d3c2b;
+  color: #2db560;
   font-weight: 500;
+}
+@media (max-width: 640px) {
+  body.assets-page.assets-pillar-page .diferencial-box {
+    padding: 2rem 1.5rem;
+  }
+  body.assets-page.assets-pillar-page .diferencial-box::after {
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+  body.assets-page.assets-pillar-page .compare-row {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
 }
 
 /* ── Closing section ─────────────────────────────────────── */
