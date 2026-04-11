@@ -1474,3 +1474,421 @@ body.assets-page.assets-pillar-page .section-divider {
     transform: none;
   }
 }
+
+/* ============================================================
+   PARTE 3 — COMPONENTES EXCLUSIVOS DA PÁGINA DE RISCOS
+   Escopo: body.assets-page.assets-pillar-page--risks
+   (e reutilizáveis nas demais páginas pillar)
+   ============================================================ */
+
+/* ── Alert banner ────────────────────────────────────────── */
+body.assets-page.assets-pillar-page .alert-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #f0f9f4;
+  border: 1px solid rgba(45, 181, 96, 0.25);
+  border-left: 4px solid #2db560;
+  border-radius: 0 14px 14px 0;
+  padding: 1.1rem 1.375rem;
+  margin: 1.75rem 0;
+}
+body.assets-page.assets-pillar-page .alert-banner svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+body.assets-page.assets-pillar-page .alert-banner p {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #1a3d28;
+  margin: 0;
+}
+body.assets-page.assets-pillar-page .alert-banner strong {
+  font-weight: 700;
+  color: #0c2418;
+}
+body.assets-page.assets-pillar-page .alert-banner a {
+  color: #1d3c2b;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── Criteria grid (cinco riscos) ────────────────────────── */
+body.assets-page.assets-pillar-page .criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.125rem;
+  margin: 1.75rem 0 1.25rem;
+}
+body.assets-page.assets-pillar-page .criteria-card {
+  background: #ffffff;
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+body.assets-page.assets-pillar-page .criteria-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2db560, rgba(45, 181, 96, 0.1));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+body.assets-page.assets-pillar-page .criteria-card:hover {
+  box-shadow: 0 10px 28px rgba(10, 34, 24, 0.09);
+  transform: translateY(-3px);
+  border-color: rgba(29, 60, 43, 0.18);
+}
+body.assets-page.assets-pillar-page .criteria-card:hover::before {
+  transform: scaleX(1);
+}
+body.assets-page.assets-pillar-page .criteria-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #eef6f1;
+  border: 1px solid rgba(29, 60, 43, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+  flex-shrink: 0;
+}
+body.assets-page.assets-pillar-page .criteria-label {
+  font-family: var(--ad-ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2db560;
+  margin: 0;
+}
+body.assets-page.assets-pillar-page .criteria-card h3 {
+  font-size: 0.975rem;
+  font-weight: 700;
+  color: #0c2418;
+  margin: 0 0 0.4rem;
+  line-height: 1.25;
+}
+body.assets-page.assets-pillar-page .criteria-card p {
+  font-size: 0.85rem;
+  line-height: 1.68;
+  color: var(--ad-text-muted);
+  margin: 0;
+}
+body.assets-page.assets-pillar-page .criteria-card a {
+  color: #1d3c2b;
+  font-weight: 500;
+}
+body.assets-page.assets-pillar-page .criteria-note {
+  font-size: 0.875rem;
+  color: var(--ad-text-muted);
+  font-style: italic;
+  line-height: 1.7;
+  border-left: 3px solid rgba(29, 60, 43, 0.15);
+  padding-left: 1rem;
+  margin: 0.5rem 0 0;
+}
+
+/* ── Aplicacao grid (impactos reais) ─────────────────────── */
+body.assets-page.assets-pillar-page .aplicacao-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.125rem;
+  margin: 1.75rem 0;
+}
+body.assets-page.assets-pillar-page .aplicacao-card {
+  background: #ffffff;
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+body.assets-page.assets-pillar-page .aplicacao-card:hover {
+  box-shadow: 0 8px 24px rgba(10, 34, 24, 0.08);
+  transform: translateY(-2px);
+}
+body.assets-page.assets-pillar-page .aplicacao-icon {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+body.assets-page.assets-pillar-page .aplicacao-icon svg {
+  display: block;
+}
+body.assets-page.assets-pillar-page .aplicacao-card h3 {
+  font-size: 0.975rem;
+  font-weight: 700;
+  color: #0c2418;
+  margin: 0 0 0.25rem;
+  line-height: 1.25;
+}
+body.assets-page.assets-pillar-page .aplicacao-card p {
+  font-size: 0.85rem;
+  line-height: 1.68;
+  color: var(--ad-text-muted);
+  margin: 0;
+}
+body.assets-page.assets-pillar-page .aplicacao-card a {
+  color: #1d3c2b;
+  font-weight: 500;
+}
+
+/* ── Timeline (quem está exposto) ────────────────────────── */
+body.assets-page.assets-pillar-page .pilares-section {
+  background: var(--ad-bg-alt, #f4f7f4);
+}
+body.assets-page.assets-pillar-page .timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+  padding-left: 28px;
+}
+body.assets-page.assets-pillar-page .timeline::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(29, 60, 43, 0.15), rgba(29, 60, 43, 0.06));
+  border-radius: 999px;
+}
+body.assets-page.assets-pillar-page .timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  position: relative;
+}
+body.assets-page.assets-pillar-page .timeline-item + .timeline-item {
+  border-top: 1px solid rgba(29, 60, 43, 0.07);
+}
+body.assets-page.assets-pillar-page .timeline-marker {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0c2418;
+  border: 3px solid #f4f7f4;
+  box-shadow: 0 0 0 1px rgba(29, 60, 43, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  margin-left: -24px;
+}
+body.assets-page.assets-pillar-page .timeline-body {
+  flex: 1;
+  padding-bottom: 0.25rem;
+}
+body.assets-page.assets-pillar-page .timeline-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0c2418;
+  margin: 0 0 0.4rem;
+  line-height: 1.25;
+}
+body.assets-page.assets-pillar-page .timeline-body p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--ad-text-muted);
+  margin: 0;
+}
+
+/* ── Diferencial box (estrutura vs armazenamento) ────────── */
+body.assets-page.assets-pillar-page .diferencial-box {
+  background: #ffffff;
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(10, 34, 24, 0.05);
+}
+body.assets-page.assets-pillar-page .diferencial-box h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+body.assets-page.assets-pillar-page .diferencial-box > p {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--ad-text-muted);
+  margin-bottom: 0.75rem;
+}
+body.assets-page.assets-pillar-page .diferencial-box > p:last-child {
+  margin-bottom: 0;
+}
+body.assets-page.assets-pillar-page .diferencial-box a {
+  color: #1d3c2b;
+  font-weight: 500;
+}
+
+/* Compare row dentro do diferencial */
+body.assets-page.assets-pillar-page .compare-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+body.assets-page.assets-pillar-page .compare-col {
+  border-radius: 14px;
+  padding: 1.375rem 1.5rem;
+}
+body.assets-page.assets-pillar-page .compare-col.negative {
+  background: #fff8f5;
+  border: 1px solid rgba(180, 60, 30, 0.12);
+}
+body.assets-page.assets-pillar-page .compare-col.positive {
+  background: #f0f9f4;
+  border: 1px solid rgba(45, 181, 96, 0.2);
+}
+body.assets-page.assets-pillar-page .compare-col .label {
+  font-family: var(--ad-ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  font-style: normal;
+}
+body.assets-page.assets-pillar-page .compare-col.negative .label {
+  color: #8a3520;
+}
+body.assets-page.assets-pillar-page .compare-col.positive .label {
+  color: #1d6b3a;
+}
+body.assets-page.assets-pillar-page .compare-col p:not(.label) {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin: 0;
+  color: var(--ad-text-muted);
+}
+body.assets-page.assets-pillar-page .compare-col a {
+  color: #1d3c2b;
+  font-weight: 500;
+}
+
+/* ── Closing section ─────────────────────────────────────── */
+body.assets-page.assets-pillar-page .closing {
+  background: var(--ad-bg-alt, #f4f7f4);
+}
+body.assets-page.assets-pillar-page .closing-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.75rem;
+  padding: 2rem;
+  background: #0c2418;
+  border-radius: 20px;
+}
+body.assets-page.assets-pillar-page .closing-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+body.assets-page.assets-pillar-page .closing-inner h2 {
+  color: #f2f7f3;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
+}
+body.assets-page.assets-pillar-page .closing-inner > div > p {
+  font-size: 0.9rem;
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0 0 0.5rem;
+}
+body.assets-page.assets-pillar-page .closing-inner .link-arrow {
+  color: #2db560;
+  font-size: 0.875rem;
+  gap: 0.4rem;
+}
+body.assets-page.assets-pillar-page .closing-inner .link-arrow:hover {
+  text-decoration: underline;
+}
+
+/* ── Utilitários de seção ────────────────────────────────── */
+body.assets-page.assets-pillar-page .td-section-tag {
+  font-family: var(--ad-ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2db560;
+  margin-bottom: 0.25rem;
+}
+body.assets-page.assets-pillar-page .td-articles__heading {
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  color: var(--ad-text-heading);
+  margin: 0;
+}
+
+/* ── Responsivo para componentes da página de riscos ─────── */
+@media (max-width: 900px) {
+  body.assets-page.assets-pillar-page .aplicacao-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  body.assets-page.assets-pillar-page .criteria-grid {
+    grid-template-columns: 1fr;
+  }
+  body.assets-page.assets-pillar-page .aplicacao-grid {
+    grid-template-columns: 1fr;
+  }
+  body.assets-page.assets-pillar-page .compare-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  body.assets-page.assets-pillar-page .closing-inner {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+  }
+  body.assets-page.assets-pillar-page .diferencial-box {
+    padding: 1.5rem;
+  }
+  body.assets-page.assets-pillar-page .timeline {
+    padding-left: 16px;
+  }
+  body.assets-page.assets-pillar-page .timeline-marker {
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+  }
+  body.assets-page.assets-pillar-page .timeline-item {
+    gap: 1rem;
+  }
+  body.assets-page.assets-pillar-page .alert-banner {
+    padding: 0.9rem 1rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.assets-page.assets-pillar-page .criteria-card,
+  body.assets-page.assets-pillar-page .aplicacao-card {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
