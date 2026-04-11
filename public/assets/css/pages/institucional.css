@@ -1,114 +1,114 @@
 /*
  * institucional.css — Tutela Digital®
  * Página: /legal/institucional.html ("Sobre")
- * Versão: 2 — alinhada ao design system das páginas seguranca.html e governo.html
+ * Versão: 3 — tokens corrigidos conforme foundation/tokens.css
  *
- * Depende de:
- *   main.css         → variáveis globais, reset, tipografia
- *   styles-header-final.css → header
- *   dropdown-menu.css
- *
- * Este arquivo cobre APENAS os componentes exclusivos desta página.
- * Nenhum override de variáveis globais — usa exclusivamente os tokens do design system.
+ * Variáveis disponíveis (fonte: tokens.css + base.css):
+ *   Superfícies:  --color-surface-light (#f2f7f5) | --color-surface-muted (#e6f0eb)
+ *   Texto:        --color-text-strong (#0b241b) | --color-text-base (#0f3a2a) | --color-text-muted (#4f7c6b)
+ *   Bordas:       --color-border-soft (#c8ddd4) | --color-border-strong (#9fbfb3)
+ *   Acento:       --color-accent (#1db954) | --primitive-green-700 (#1b6b4d)
+ *   Tipografia:   --font-display (Cormorant Garamond) | --font-body (Inter)
+ *   Espaçamento:  --space-xs/sm/md/lg/xl/2xl
  */
 
+
 /* ─────────────────────────────────────────────
-   0. SUPERTÍTULO DE SEÇÃO (padrão governo.html)
+   1. SUPERTÍTULO DE SEÇÃO
    ───────────────────────────────────────────── */
 .section-overtitle {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-green-700);
-  margin-bottom: 0.6rem;
+  color: var(--primitive-green-700);
+  margin-bottom: var(--space-xs);
 }
 
+
 /* ─────────────────────────────────────────────
-   1. PAGE HEADER — hero institucional
+   2. PAGE HEADER — hero
    ───────────────────────────────────────────── */
 .page-header--legal {
-  padding: 5rem 1.5rem 3.5rem;
+  padding: var(--space-2xl) var(--space-md) var(--space-xl);
   text-align: center;
-  border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.08));
+  /* Card branco sobre o fundo #f2f7f5 do body — igual ao hero de seguranca.html */
+  background: #ffffff;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 8px;
+  max-width: 780px;
+  margin: var(--space-lg) auto var(--space-xl);
 }
 
 .page-header--legal h1 {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 600;
   line-height: 1.15;
   color: var(--color-text-strong);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-sm);
 }
 
-/* Subtítulo sob o h1 — italic, alinhado ao padrão seguranca.html */
-.page-header--legal .page-header-subtitle {
+.page-header-subtitle {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.975rem;
   color: var(--color-text-muted);
   max-width: 52ch;
-  margin: 1.2rem auto 0;
-  line-height: 1.65;
+  margin: var(--space-sm) auto 0;
+  line-height: var(--line-height-relaxed);
 }
 
-/* Pill badges — igual aos de seguranca.html ("Integridade · Cadeia de Custódia · Validade Jurídica") */
+/* Pills de atributos — "Integridade · Cadeia de Custódia · Validade Jurídica" */
 .page-header-pills {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem;
-  margin: 1.5rem auto 0;
+  gap: var(--space-xs);
+  margin: var(--space-md) auto 0;
 }
 
 .page-header-pills .pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-green-700);
-  background: transparent;
-  border: 1px solid var(--color-green-700);
+  color: var(--primitive-green-700);
+  border: 1px solid var(--color-border-soft);
   border-radius: 2px;
-  padding: 0.3rem 0.75rem;
-}
-
-/* SVG gráfico decorativo — mantido, só ajusta margem */
-.legal-graphic {
-  margin: 2rem auto 0;
-  max-width: 700px;
-  opacity: 0.85;
+  padding: 0.28rem 0.8rem;
+  background: transparent;
 }
 
 .legal-divider {
-  width: 48px;
+  width: 40px;
   height: 2px;
-  background: var(--color-green-700);
-  margin: 2rem auto 0;
-  opacity: 0.5;
+  background: var(--primitive-green-700);
+  margin: var(--space-md) auto 0;
+  opacity: 0.45;
 }
 
+
 /* ─────────────────────────────────────────────
-   2. CONTAINER PRINCIPAL
+   3. CONTAINER PRINCIPAL
    ───────────────────────────────────────────── */
 .whitepaper-container {
   max-width: 780px;
   margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+  padding: 0 var(--space-md) var(--space-xl);
 }
 
+
 /* ─────────────────────────────────────────────
-   3. TEXT-BLOCK — seções de texto corrido
+   4. TEXT-BLOCK — seções de texto
    ───────────────────────────────────────────── */
 .text-block {
-  padding: 3rem 0;
-  border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.07));
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--color-border-soft);
 }
 
 .text-block:last-of-type {
@@ -116,21 +116,21 @@
 }
 
 .text-block-inner h2 {
-  font-family: var(--font-heading);
-  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
   font-weight: 600;
   color: var(--color-text-strong);
-  margin-bottom: 1rem;
-  /* Linha verde à esquerda — padrão observado nos cards de seguranca.html */
-  padding-left: 1rem;
-  border-left: 3px solid var(--color-green-700);
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-sm);
+  border-left: 3px solid var(--primitive-green-700);
+  line-height: var(--line-height-tight);
 }
 
 .text-block-inner p {
   font-family: var(--font-body);
   font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--color-text);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-base);
   margin-bottom: 0.85rem;
 }
 
@@ -138,21 +138,21 @@
   margin-bottom: 0;
 }
 
-/* Destaque em caixa — wp-highlight */
+/* Destaque — box com borda esquerda */
 .wp-highlight {
-  background: var(--color-surface-subtle, rgba(0,0,0,0.03));
-  border-left: 3px solid var(--color-green-700);
+  background: var(--color-surface-muted);
+  border-left: 3px solid var(--primitive-green-700);
   border-radius: 0 4px 4px 0;
   padding: 0.9rem 1.1rem;
   font-size: 0.9rem !important;
   color: var(--color-text-strong) !important;
   line-height: 1.65 !important;
-  margin-bottom: 1.1rem !important;
+  margin-bottom: var(--space-sm) !important;
 }
 
-/* Links inline — insight-link */
+/* Links inline */
 .insight-link {
-  color: var(--color-green-700);
+  color: var(--primitive-green-700);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -160,34 +160,35 @@
 }
 
 .insight-link:hover {
-  opacity: 0.72;
+  opacity: 0.7;
 }
 
+
 /* ─────────────────────────────────────────────
-   4. IDENTIFICAÇÃO JURÍDICA — bloco especial
+   5. IDENTIFICAÇÃO JURÍDICA — grid de dados
    ───────────────────────────────────────────── */
 .legal-id-block {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1.25rem;
-  padding: 1.5rem;
-  background: var(--color-surface-subtle, rgba(0,0,0,0.025));
-  border: 1px solid var(--color-border, rgba(0,0,0,0.07));
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: #ffffff;
+  border: 1px solid var(--color-border-soft);
   border-radius: 4px;
 }
 
 .legal-id-item {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.25rem;
 }
 
 .legal-id-item .label {
   font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -196,94 +197,100 @@
   font-family: var(--font-body);
   font-size: 0.9rem;
   color: var(--color-text-strong);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
+
 /* ─────────────────────────────────────────────
-   5. CAMADAS DE CONFIANÇA — grid de 4 cards
-      (padrão dos 6 pilares de seguranca.html)
+   6. FEATURES — seções com h2 e grid
    ───────────────────────────────────────────── */
 .features {
-  padding: 3rem 0;
-  border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.07));
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--color-border-soft);
 }
 
 .features-inner h2 {
-  font-family: var(--font-heading);
-  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
   font-weight: 600;
   color: var(--color-text-strong);
-  margin-bottom: 0.35rem;
-  padding-left: 1rem;
-  border-left: 3px solid var(--color-green-700);
+  margin-bottom: 0.4rem;
+  padding-left: var(--space-sm);
+  border-left: 3px solid var(--primitive-green-700);
+  line-height: var(--line-height-tight);
 }
 
-.features-inner .features-subtitle {
+.features-subtitle {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.875rem;
   color: var(--color-text-muted);
-  margin-bottom: 2rem;
-  padding-left: 1rem;
+  margin-bottom: var(--space-md);
+  padding-left: var(--space-sm);
+  line-height: var(--line-height-base);
 }
 
-/* Grid de camadas */
+
+/* ─────────────────────────────────────────────
+   7. CAMADAS DE CONFIANÇA — 4 cards
+   ───────────────────────────────────────────── */
 .camadas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
 }
 
 .camada-card {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.4rem 1.25rem;
-  border: 1px solid var(--color-border, rgba(0,0,0,0.08));
-  border-top: 3px solid var(--color-green-700);
+  gap: 0.4rem;
+  padding: var(--space-md) var(--space-sm);
+  background: #ffffff;
+  border: 1px solid var(--color-border-soft);
+  border-top: 3px solid var(--primitive-green-700);
   border-radius: 4px;
-  background: var(--color-surface, #fff);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .camada-card:hover {
-  box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+  box-shadow: 0 6px 20px rgba(11, 36, 27, 0.08);
   transform: translateY(-2px);
 }
 
-.camada-card .camada-label {
+.camada-label {
   font-family: var(--font-body);
-  font-size: 0.65rem;
+  font-size: 0.63rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-green-700);
+  color: var(--primitive-green-700);
 }
 
-.camada-card .camada-title {
-  font-family: var(--font-heading);
-  font-size: 1rem;
+.camada-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--color-text-strong);
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
-.camada-card .camada-desc {
+.camada-desc {
   font-family: var(--font-body);
   font-size: 0.83rem;
-  line-height: 1.6;
+  line-height: var(--line-height-base);
   color: var(--color-text-muted);
   margin: 0;
 }
 
+
 /* ─────────────────────────────────────────────
-   6. FINALIDADE — grid de itens clicáveis
+   8. FINALIDADE — grid de itens
    ───────────────────────────────────────────── */
 .finalidade-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.75rem;
-  margin-top: 1.5rem;
+  gap: 0.6rem;
+  margin-top: var(--space-md);
 }
 
 .finalidade-item {
@@ -291,62 +298,58 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0.9rem 1rem;
+  padding: 0.85rem 0.75rem;
   font-family: var(--font-body);
   font-size: 0.82rem;
   font-weight: 500;
   color: var(--color-text-strong);
-  border: 1px solid var(--color-border, rgba(0,0,0,0.1));
+  background: #ffffff;
+  border: 1px solid var(--color-border-soft);
   border-radius: 3px;
-  background: var(--color-surface, #fff);
-  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
   text-decoration: none;
-  min-height: 56px;
+  min-height: 54px;
   line-height: 1.3;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
 
-a.finalidade-item {
-  cursor: pointer;
+a.finalidade-item:hover {
+  border-color: var(--primitive-green-700);
+  color: var(--primitive-green-700);
 }
 
-a.finalidade-item:hover,
-.finalidade-item:hover {
-  border-color: var(--color-green-700);
-  color: var(--color-green-700);
-  background: var(--color-surface-subtle, rgba(0,0,0,0.02));
-}
 
 /* ─────────────────────────────────────────────
-   7. TECH BADGES — linha de tags (padrão governo.html)
+   9. TECH BADGES
    ───────────────────────────────────────────── */
 .tech-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1.25rem;
+  gap: 0.45rem;
+  margin-top: var(--space-md);
 }
 
 .tech-badge {
   font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  background: var(--color-surface-subtle, rgba(0,0,0,0.04));
-  border: 1px solid var(--color-border, rgba(0,0,0,0.1));
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border-soft);
   border-radius: 2px;
-  padding: 0.25rem 0.65rem;
+  padding: 0.22rem 0.65rem;
 }
 
+
 /* ─────────────────────────────────────────────
-   8. RESUMO TÉCNICO
+   10. RESUMO TÉCNICO
    ───────────────────────────────────────────── */
 .wp-summary {
-  background: var(--color-surface-subtle, rgba(0,0,0,0.025));
-  border-top: 1px solid var(--color-border, rgba(0,0,0,0.07));
-  border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.07));
-  padding: 3rem 1.5rem;
+  background: var(--color-surface-muted);
+  border-top: 1px solid var(--color-border-soft);
+  border-bottom: 1px solid var(--color-border-soft);
+  padding: var(--space-xl) var(--space-md);
 }
 
 .wp-summary-inner {
@@ -356,26 +359,26 @@ a.finalidade-item:hover,
 }
 
 .wp-summary-inner h2 {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--color-text-strong);
-  margin-bottom: 1rem;
-  letter-spacing: 0.02em;
+  margin-bottom: var(--space-sm);
 }
 
 .wp-summary-inner p {
   font-family: var(--font-body);
   font-size: 0.92rem;
-  line-height: 1.75;
+  line-height: var(--line-height-relaxed);
   color: var(--color-text-muted);
 }
 
+
 /* ─────────────────────────────────────────────
-   9. CTA FINAL — dois botões
+   11. CTA FINAL
    ───────────────────────────────────────────── */
 .cta-final {
-  padding: 4.5rem 1.5rem;
+  padding: var(--space-2xl) var(--space-md);
   text-align: center;
 }
 
@@ -385,31 +388,32 @@ a.finalidade-item:hover,
 }
 
 .cta-final-inner h2 {
-  font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.85rem);
   font-weight: 600;
   color: var(--color-text-strong);
   margin-bottom: 0.75rem;
-  line-height: 1.25;
+  line-height: var(--line-height-tight);
 }
 
 .cta-final-inner p {
   font-family: var(--font-body);
   font-size: 0.92rem;
   color: var(--color-text-muted);
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+  line-height: var(--line-height-base);
 }
 
 .cta-actions {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-sm);
   flex-wrap: wrap;
   justify-content: center;
 }
 
+
 /* ─────────────────────────────────────────────
-   10. ANIMAÇÕES DE ENTRADA — reveal-on-scroll
+   12. ANIMAÇÕES
    ───────────────────────────────────────────── */
 .reveal-on-scroll {
   opacity: 0;
@@ -422,7 +426,6 @@ a.finalidade-item:hover,
   transform: translateY(0);
 }
 
-/* legal-animate — micro-animação por seção */
 .legal-animate {
   opacity: 0;
   transform: translateY(12px);
@@ -434,20 +437,22 @@ a.finalidade-item:hover,
   transform: translateY(0);
 }
 
+
 /* ─────────────────────────────────────────────
-   11. RESPONSIVIDADE
+   13. RESPONSIVIDADE
    ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .page-header--legal {
-    padding: 3.5rem 1.25rem 2.5rem;
+    margin: var(--space-sm) var(--space-sm) var(--space-lg);
+    padding: var(--space-xl) var(--space-sm) var(--space-lg);
   }
 
   .whitepaper-container {
-    padding: 0 1.25rem 3rem;
+    padding: 0 var(--space-sm) var(--space-lg);
   }
 
   .text-block {
-    padding: 2.25rem 0;
+    padding: var(--space-md) 0;
   }
 
   .camadas-grid {
@@ -473,4 +478,3 @@ a.finalidade-item:hover,
     text-align: center;
   }
 }
-/* Shared legal-page styles were consolidated into pages-consolidated.css. */
