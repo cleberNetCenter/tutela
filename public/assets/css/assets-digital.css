@@ -1041,3 +1041,138 @@ body.assets-page.assets-pillar-page .fade-up:nth-child(4) {
   }
 }
 
+/* ============================================================
+   CORREÇÃO DO HERO E RESTAURAÇÃO DE FORMATAÇÃO
+   ============================================================ */
+
+/* 1. Garantir que o hero use alinhamento à esquerda */
+body.assets-page.assets-pillar-page .hero .hero-inner,
+body.assets-page.assets-pillar-page .hero .container {
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* 2. Título e subtítulo alinhados à esquerda, sem centralização */
+body.assets-page.assets-pillar-page .hero h1,
+body.assets-page.assets-pillar-page .hero .hero-subtitle {
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* 3. Eyebrow (tag "Ativos Digitais") alinhado à esquerda */
+body.assets-page.assets-pillar-page .hero-eyebrow {
+  text-align: left;
+  display: block;
+}
+
+/* 4. Container dos stats: flex row por padrão (desktop) */
+body.assets-page.assets-pillar-page .hero-rule {
+  display: flex;
+  flex-direction: row !important;      /* força linha no desktop */
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;         /* alinha à esquerda */
+  margin-top: 1.5rem;
+}
+
+/* 5. Cada stat como elemento inline (ou flex) */
+body.assets-page.assets-pillar-page .hero-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;                 /* evita quebra de texto dentro do item */
+}
+
+/* 6. No mobile, os stats podem quebrar/empilhar */
+@media (max-width: 768px) {
+  body.assets-page.assets-pillar-page .hero-rule {
+    flex-direction: column !important;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  body.assets-page.assets-pillar-page .hero-stat {
+    white-space: normal;               /* permite quebra se necessário no mobile */
+  }
+}
+
+/* ============================================================
+   RESTAURAÇÃO DE FORMATAÇÃO GERAL (outros elementos)
+   ============================================================ */
+
+/* Garantir que grids e flex containers que podem ter perdido layout voltem ao normal */
+body.assets-page.assets-pillar-page .intro-split {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+  align-items: start;
+}
+
+body.assets-page.assets-pillar-page .tipos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+body.assets-page.assets-pillar-page .desafio-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+body.assets-page.assets-pillar-page .muda-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+}
+
+body.assets-page.assets-pillar-page .contexto-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* Restaurar margens e paddings padrão das seções */
+body.assets-page.assets-pillar-page main > section {
+  padding: 3rem 0;
+}
+
+body.assets-page.assets-pillar-page .container {
+  width: min(1200px, 92%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ajuste para listas e cards que possam ter perdido espaçamento */
+body.assets-page.assets-pillar-page .checklist-premium,
+body.assets-page.assets-pillar-page .cta-checklist {
+  list-style: none;
+  padding-left: 0;
+}
+
+body.assets-page.assets-pillar-page .check-item,
+body.assets-page.assets-pillar-page .cta-checklist li {
+  margin-bottom: 0.75rem;
+}
+
+/* Responsivo: em telas menores, empilhar grids */
+@media (max-width: 768px) {
+  body.assets-page.assets-pillar-page .intro-split,
+  body.assets-page.assets-pillar-page .tipos-grid,
+  body.assets-page.assets-pillar-page .desafio-grid,
+  body.assets-page.assets-pillar-page .muda-layout,
+  body.assets-page.assets-pillar-page .contexto-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  body.assets-page.assets-pillar-page .desafio-arrow {
+    transform: rotate(90deg);
+    justify-self: center;
+  }
+}
