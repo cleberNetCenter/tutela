@@ -72,15 +72,17 @@
     </ol>
   </nav>
 
+  <!-- MAIN -->
   <main class="main main--hero-top">
 
-    <!-- ── HERO ESCURO ──────────────────────────────── -->
+    <!-- ── HERO ──────────────────────────────────── -->
     <section class="page-header page-header--legal">
-      <div class="page-header-inner">
+      <div class="page-header-inner page-header--legal">
 
         <span class="section-overtitle">Estrutura Institucional</span>
         <h1>Sobre a Tutela Digital®</h1>
 
+        <!-- Pills — padrão seguranca.html -->
         <div class="page-header-pills" aria-hidden="true">
           <span class="pill">Integridade</span>
           <span class="pill">Cadeia de Custódia</span>
@@ -93,18 +95,19 @@
           Informações jurídicas e estruturais da entidade responsável pela preservação probatória digital.
         </p>
 
-        <div class="hero-rule" aria-hidden="true"></div>
       </div>
     </section>
 
     <!-- ── CONTEÚDO PRINCIPAL ─────────────────────── -->
     <div class="whitepaper-container">
 
-      <!-- 1. Identificação Jurídica — fundo claro -->
+      <!-- 1. Identificação Jurídica -->
       <section class="text-block reveal-on-scroll">
         <div class="text-block-inner">
           <h2>Identificação Jurídica</h2>
           <p>A Tutela Digital® é infraestrutura privada de preservação probatória digital desenvolvida no Brasil, com atuação nacional.</p>
+
+          <!-- Bloco de dados estruturados — mais legível que parágrafo corrido -->
           <div class="legal-id-block" aria-label="Dados da razão social">
             <div class="legal-id-item">
               <span class="label">Razão Social</span>
@@ -122,7 +125,7 @@
         </div>
       </section>
 
-      <!-- 2. Natureza da Atividade — fundo claro -->
+      <!-- 2. Natureza da Atividade -->
       <section class="text-block reveal-on-scroll">
         <div class="text-block-inner">
           <h2>Natureza da Atividade</h2>
@@ -136,21 +139,41 @@
         </div>
       </section>
 
-    </div><!-- /whitepaper-container -->
+      <!-- 3. Arquitetura de Preservação -->
+      <section class="text-block reveal-on-scroll">
+        <div class="text-block-inner">
+          <h2>Arquitetura de Preservação Digital</h2>
+          <p>Os ativos digitais submetidos à plataforma passam por geração de hash criptográfico com algoritmo de padrão SHA-256 e processo de criptografia antes do armazenamento.</p>
+          <p>Após a criptografia, os ativos são replicados em infraestrutura distribuída em nuvem de escala empresarial, com redundância geográfica e disponibilidade contínua.</p>
+          <p>A integridade de cada ativo é ancorada em registro imutável em blockchain público, garantindo rastreabilidade histórica independente da plataforma.</p>
+          <p>O armazenamento utiliza protocolo de sistema de arquivos distribuído (IPFS), eliminando ponto único de falha e garantindo que o conteúdo seja verificável por hash independentemente do provedor.</p>
+          <p>A Tutela Digital® não possui acesso ao conteúdo dos ativos preservados, limitando-se ao processamento técnico de registros operacionais necessários à manutenção da
+            <a class="insight-link" href="/legal/preservacao-probatoria-digital/">cadeia de custódia digital auditável</a>.</p>
+          <p>O conteúdo permanece sob controle exclusivo do titular, mediante autenticação baseada em certificado digital ICP-Brasil.</p>
 
-    <!-- 3. Arquitetura de Preservação — SEÇÃO ESCURA (fora do container) -->
-    <section class="features section-dark reveal-on-scroll" aria-labelledby="arquitetura-titulo">
-      <div class="whitepaper-container">
+          <!-- Tech badges — padrão governo.html -->
+          <div class="tech-badges" aria-label="Tecnologias utilizadas">
+            <span class="tech-badge">SHA-256</span>
+            <span class="tech-badge">Blockchain público</span>
+            <span class="tech-badge">IPFS</span>
+            <span class="tech-badge">ICP-Brasil</span>
+            <span class="tech-badge">RFC 3161</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Camadas de Confiança — nova seção com cards -->
+      <section class="features reveal-on-scroll">
         <div class="features-inner">
           <span class="section-overtitle">Infraestrutura</span>
-          <h2 id="arquitetura-titulo">Arquitetura de Preservação Digital</h2>
-          <p class="features-subtitle">Quatro camadas independentes e verificáveis que sustentam a integridade probatória.</p>
+          <h2>Camadas de Confiança</h2>
+          <p class="features-subtitle">Quatro camadas complementares que garantem integridade técnica e validade probatória.</p>
 
           <div class="camadas-grid">
             <div class="camada-card">
               <span class="camada-label">Integridade</span>
-              <span class="camada-title">Criptografia SHA-256</span>
-              <p class="camada-desc">Hash criptográfico e cifragem aplicados antes do armazenamento. Qualquer alteração posterior é detectável.</p>
+              <span class="camada-title">Criptografia</span>
+              <p class="camada-desc">Hash SHA-256 e cifragem aplicados antes do armazenamento, tornando qualquer alteração detectável.</p>
             </div>
             <div class="camada-card">
               <span class="camada-label">Imutabilidade</span>
@@ -159,8 +182,8 @@
             </div>
             <div class="camada-card">
               <span class="camada-label">Disponibilidade</span>
-              <span class="camada-title">Armazenamento IPFS</span>
-              <p class="camada-desc">Protocolo de arquivos distribuído com redundância geográfica. Sem ponto único de falha.</p>
+              <span class="camada-title">Armazenamento distribuído</span>
+              <p class="camada-desc">Protocolo IPFS com redundância geográfica. Sem ponto único de falha.</p>
             </div>
             <div class="camada-card">
               <span class="camada-label">Autenticidade</span>
@@ -168,26 +191,16 @@
               <p class="camada-desc">Carimbo do tempo conforme RFC 3161 e autenticação com validade jurídica reconhecida.</p>
             </div>
           </div>
-
-          <div class="tech-badges" aria-label="Padrões técnicos">
-            <span class="tech-badge">SHA-256</span>
-            <span class="tech-badge">Blockchain público</span>
-            <span class="tech-badge">IPFS</span>
-            <span class="tech-badge">ICP-Brasil</span>
-            <span class="tech-badge">RFC 3161</span>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <div class="whitepaper-container">
-
-      <!-- 4. Finalidade da Infraestrutura — fundo claro -->
-      <section class="features reveal-on-scroll" aria-labelledby="finalidade-titulo">
+      <!-- 5. Finalidade da Infraestrutura -->
+      <section class="features reveal-on-scroll">
         <div class="features-inner">
           <span class="section-overtitle">Casos de uso</span>
-          <h2 id="finalidade-titulo">Finalidade da Infraestrutura</h2>
+          <h2>Finalidade da Infraestrutura</h2>
           <p class="features-subtitle">A plataforma atende diferentes contextos de preservação probatória.</p>
+
           <div class="finalidade-grid">
             <a class="finalidade-item" href="/ativos-digitais/prova-digital-judicial/">Produção de prova judicial</a>
             <div class="finalidade-item">Preservação pré-litígio</div>
@@ -199,7 +212,7 @@
         </div>
       </section>
 
-      <!-- 5. Base Jurídica — fundo claro -->
+      <!-- 6. Base Jurídica -->
       <section class="text-block reveal-on-scroll">
         <div class="text-block-inner">
           <h2>Base Jurídica Aplicável</h2>
@@ -218,7 +231,7 @@
         </div>
       </section>
 
-      <!-- 6. Interoperabilidade Cartorial -->
+      <!-- 7. Interoperabilidade Cartorial -->
       <section class="text-block reveal-on-scroll">
         <div class="text-block-inner">
           <h2>Interoperabilidade Cartorial</h2>
@@ -229,7 +242,7 @@
         </div>
       </section>
 
-      <!-- 7. Desenvolvimento e Governança -->
+      <!-- 8. Desenvolvimento e Governança -->
       <section class="text-block reveal-on-scroll">
         <div class="text-block-inner">
           <h2>Desenvolvimento e Governança</h2>
@@ -241,7 +254,7 @@
 
     </div><!-- /whitepaper-container -->
 
-    <!-- ── RESUMO TÉCNICO — fundo muted ─────────────── -->
+    <!-- ── RESUMO TÉCNICO ─────────────────────────── -->
     <section class="wp-summary reveal-on-scroll">
       <div class="wp-summary-inner">
         <h2>Resumo Técnico</h2>
@@ -255,10 +268,9 @@
       </div>
     </section>
 
-    <!-- ── CTA FINAL ESCURO ───────────────────────────── -->
+    <!-- ── CTA FINAL ──────────────────────────────── -->
     <section class="cta-final">
       <div class="cta-final-inner">
-        <div class="cta-eyebrow" aria-hidden="true">Próximo passo</div>
         <h2>Transparência Institucional e Confiabilidade Jurídica</h2>
         <p>Conheça os fundamentos jurídicos ou preserve sua primeira evidência digital agora.</p>
         <div class="cta-actions">
