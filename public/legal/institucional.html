@@ -12,6 +12,25 @@
   <link rel="stylesheet" href="/assets/css/main.css?v=4">
   <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=4">
   <link rel="stylesheet" href="/assets/css/dropdown-menu.css?v=202602190108">
+  <link rel="stylesheet" href="/assets/css/legal-shared.css?v=1">
+  <link rel="stylesheet" href="/assets/css/pages/institucional.css?v=6">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Sobre | Tutela Digital®</title>
+  <meta content="Informações institucionais, jurídicas e estruturais da infraestrutura de preservação probatória digital Tutela Digital®." name="description" />
+  <link rel="canonical" href="https://tuteladigital.com.br/legal/institucional" />
+  <link href="/assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link rel="stylesheet" href="/assets/css/main.css?v=4">
+  <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=4">
+  <link rel="stylesheet" href="/assets/css/dropdown-menu.css?v=202602190108">
   <link rel="stylesheet" href="/assets/css/pages/institucional.css?v=5">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
   <script>
@@ -207,10 +226,291 @@
             <a class="insight-link" href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11419.htm" target="_blank" rel="noopener noreferrer">Lei nº 11.419/2006</a>,
             na <a class="insight-link" href="https://www.planalto.gov.br/ccivil_03/mpv/antigas_2001/2200-2.htm" target="_blank" rel="noopener noreferrer">Medida Provisória nº 2.200-2/2001</a>,
             na <a class="insight-link" href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm" target="_blank" rel="noopener noreferrer">Lei nº 12.965/2014 (Marco Civil da Internet)</a>
+            e na <a class="insight-link" href="/legal/politica-de-privacidade/">Lei nº 13.709/2018 (LGPD)</a>.
+          </p>
+          <p>A integridade e autenticidade são demonstradas por hash criptográfico verificável, registro em blockchain público com carimbo do tempo certificado ICP-Brasil e
+            <a class="insight-link" href="/legal/preservacao-probatoria-digital/">cadeia de custódia digital auditável</a>
+            — mecanismos reconhecidos como tecnicamente idôneos para fins probatórios.</p>
+          <p>Para contextualização jurídica aplicada à evidência digital, consulte
+            <a class="insight-link" href="/insights/prova-digital/prova-digital-processo-civil-brasileiro/">prova digital no processo civil brasileiro</a>.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6. Interoperabilidade Cartorial -->
+      <section class="text-block reveal-on-scroll">
+        <div class="text-block-inner">
+          <h2>Interoperabilidade Cartorial</h2>
+          <p>A infraestrutura permite interoperabilidade com tabelionatos para eventual emissão de
+            <a class="insight-link" href="/legal/fundamento-juridico/">ata notarial</a>,
+            mediante solicitação do titular.</p>
+          <p>A formalização notarial ocorre exclusivamente pelo tabelionato competente.</p>
+        </div>
+      </section>
+
+      <!-- 7. Desenvolvimento e Governança -->
+      <section class="text-block reveal-on-scroll">
+        <div class="text-block-inner">
+          <h2>Desenvolvimento e Governança</h2>
+          <p>A plataforma foi desenvolvida pela NetCenter, empresa com mais de 30 anos de atuação em tecnologia da informação.</p>
+          <p>O produto Tutela Digital® opera como unidade especializada com foco exclusivo em preservação probatória digital.</p>
+          <p>Detalhes técnicos proprietários não são divulgados publicamente para preservação de segurança e propriedade intelectual.</p>
+        </div>
+      </section>
+
+    </div><!-- /whitepaper-container -->
+
+    <!-- ── RESUMO TÉCNICO — fundo muted ─────────────── -->
+    <section class="wp-summary reveal-on-scroll">
+      <div class="wp-summary-inner">
+        <h2>Resumo Técnico</h2>
+        <p>
+          A Tutela Digital® consolida preservação probatória digital com
+          <a class="insight-link" href="/legal/preservacao-probatoria-digital/">cadeia de custódia digital auditável</a>,
+          blockchain público, armazenamento IPFS distribuído, certificação ICP-Brasil,
+          interoperabilidade cartorial sob demanda e governança técnica sob responsabilidade da NetCenter,
+          empresa com três décadas de atuação em infraestrutura digital.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── CTA FINAL ESCURO ───────────────────────────── -->
+    <section class="cta-final">
+      <div class="cta-final-inner">
+        <div class="cta-eyebrow" aria-hidden="true">Próximo passo</div>
+        <h2>Transparência Institucional e Confiabilidade Jurídica</h2>
+        <p>Conheça os fundamentos jurídicos ou preserve sua primeira evidência digital agora.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="/legal/fundamento-juridico/">Ver Fundamento Jurídico</a>
+          <a class="btn btn-secondary"
+             href="https://app.tuteladigital.com.br/"
+             target="_blank"
+             rel="noopener noreferrer">Preservar minha primeira evidência</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!--#include virtual="/partials/footer.html" -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.10 });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+        el.classList.add('legal-animate');
+        observer.observe(el);
+      });
+    });
+  </script>
+
+  <script src="/assets/js/legal-animations.js?v=20260221"></script>
+  <!--#include virtual="/partials/scripts.html" -->
+
+</body>
+</html>
+    gtag('js', new Date());
+    gtag('config', 'G-KXVB267PYJ');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.tuteladigital.com.br/#organization",
+    "name": "Tutela Digital®",
+    "url": "https://www.tuteladigital.com.br",
+    "logo": "https://www.tuteladigital.com.br/assets/illustrations/favicon.svg",
+    "description": "Infraestrutura de custódia jurídica de ativos digitais com cadeia de custódia auditável e validade probatória.",
+    "foundingDate": "2025",
+    "email": "contato@tuteladigital.com.br",
+    "sameAs": ["https://www.instagram.com/tuteladigitalbr/"],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "NetCenter",
+      "description": "Empresa de tecnologia com 30 anos de atuação em infraestrutura digital."
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Sobre a Tutela Digital®",
+    "description": "Infraestrutura tecnológica para preservação probatória digital com cadeia de custódia verificável",
+    "url": "https://www.tuteladigital.com.br/legal/institucional.html",
+    "publisher": { "@id": "https://www.tuteladigital.com.br/#organization" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://tuteladigital.com.br/" },
+      { "@type": "ListItem", "position": 2, "name": "Sobre", "item": "https://tuteladigital.com.br/legal/institucional.html" }
+    ]
+  }
+  </script>
+</head>
+
+<body class="exec-compact page legal-page page-institucional">
+
+  <!--#include virtual="/partials/header.html" -->
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Início</a></li>
+      <li aria-current="page">Sobre</li>
+    </ol>
+  </nav>
+
+  <main class="main main--hero-top">
+
+    <!-- ── HERO ESCURO ──────────────────────────────── -->
+    <section class="page-header page-header--legal">
+      <div class="page-header-inner">
+
+        <span class="section-overtitle">Estrutura Institucional</span>
+        <h1>Sobre a Tutela Digital®</h1>
+
+        <div class="page-header-pills" aria-hidden="true">
+          <span class="pill">Integridade</span>
+          <span class="pill">Cadeia de Custódia</span>
+          <span class="pill">Validade Jurídica</span>
+        </div>
+
+        <div class="legal-divider"></div>
+
+        <p class="page-header-subtitle">
+          Informações jurídicas e estruturais da entidade responsável pela preservação probatória digital.
+        </p>
+
+        <div class="hero-rule" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ── CONTEÚDO PRINCIPAL ─────────────────────── -->
+    <div class="whitepaper-container">
+
+      <!-- 1. Identificação Jurídica — fundo claro -->
+      <section class="text-block reveal-on-scroll">
+        <div class="text-block-inner">
+          <h2>Identificação Jurídica</h2>
+          <p>A Tutela Digital® é infraestrutura privada de preservação probatória digital desenvolvida no Brasil, com atuação nacional.</p>
+          <div class="legal-id-block" aria-label="Dados da razão social">
+            <div class="legal-id-item">
+              <span class="label">Razão Social</span>
+              <span class="value">Novaes &amp; Coelho Ltda — NetCenter</span>
+            </div>
+            <div class="legal-id-item">
+              <span class="label">CNPJ</span>
+              <span class="value">00.810.662/0001-27</span>
+            </div>
+            <div class="legal-id-item">
+              <span class="label">Sede</span>
+              <span class="value">Av. Raja Gabaglia, 1710 — Sala 408<br>Gutierrez · Belo Horizonte · MG · 30441-194</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Natureza da Atividade — fundo claro -->
+      <section class="text-block reveal-on-scroll">
+        <div class="text-block-inner">
+          <h2>Natureza da Atividade</h2>
+          <p class="wp-highlight">A Tutela Digital® não exerce função cartorial e não substitui tabelionato.</p>
+          <p>Sua atuação consiste na preservação técnica estruturada de ativos digitais com
+            <a class="insight-link" href="/legal/preservacao-probatoria-digital/">cadeia de custódia digital auditável</a>,
+            integridade criptográfica e registro temporal verificável.</p>
+          <p>Quando solicitado, os ativos podem ser submetidos à formalização cartorial por meio de
+            <a class="insight-link" href="/legal/fundamento-juridico/">ata notarial</a>
+            junto a tabelionato competente.</p>
+        </div>
+      </section>
+
+    </div><!-- /whitepaper-container -->
+
+    <!-- 3. Arquitetura de Preservação — SEÇÃO ESCURA (fora do container) -->
+    <section class="features section-dark reveal-on-scroll" aria-labelledby="arquitetura-titulo">
+      <div class="whitepaper-container">
+        <div class="features-inner">
+          <span class="section-overtitle">Infraestrutura</span>
+          <h2 id="arquitetura-titulo">Arquitetura de Preservação Digital</h2>
+          <p class="features-subtitle">Quatro camadas independentes e verificáveis que sustentam a integridade probatória.</p>
+
+          <div class="camadas-grid">
+            <div class="camada-card">
+              <span class="camada-label">Integridade</span>
+              <span class="camada-title">Criptografia SHA-256</span>
+              <p class="camada-desc">Hash criptográfico e cifragem aplicados antes do armazenamento. Qualquer alteração posterior é detectável.</p>
+            </div>
+            <div class="camada-card">
+              <span class="camada-label">Imutabilidade</span>
+              <span class="camada-title">Blockchain público</span>
+              <p class="camada-desc">Registro imutável auditável por terceiros, sem dependência da plataforma para verificação.</p>
+            </div>
+            <div class="camada-card">
+              <span class="camada-label">Disponibilidade</span>
+              <span class="camada-title">Armazenamento IPFS</span>
+              <p class="camada-desc">Protocolo de arquivos distribuído com redundância geográfica. Sem ponto único de falha.</p>
+            </div>
+            <div class="camada-card">
+              <span class="camada-label">Autenticidade</span>
+              <span class="camada-title">Certificação ICP-Brasil</span>
+              <p class="camada-desc">Carimbo do tempo conforme RFC 3161 e autenticação com validade jurídica reconhecida.</p>
+            </div>
+          </div>
+
+          <div class="tech-badges" aria-label="Padrões técnicos">
+            <span class="tech-badge">SHA-256</span>
+            <span class="tech-badge">Blockchain público</span>
+            <span class="tech-badge">IPFS</span>
+            <span class="tech-badge">ICP-Brasil</span>
+            <span class="tech-badge">RFC 3161</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="whitepaper-container">
+
+      <!-- 4. Finalidade da Infraestrutura — fundo claro -->
+      <section class="features reveal-on-scroll" aria-labelledby="finalidade-titulo">
+        <div class="features-inner">
+          <span class="section-overtitle">Casos de uso</span>
+          <h2 id="finalidade-titulo">Finalidade da Infraestrutura</h2>
+          <p class="features-subtitle">A plataforma atende diferentes contextos de preservação probatória.</p>
+          <div class="finalidade-grid">
+            <a class="finalidade-item" href="/ativos-digitais/prova-digital-judicial/">Produção de prova judicial</a>
+            <div class="finalidade-item">Preservação pré-litígio</div>
+            <div class="finalidade-item">Arbitragem</div>
+            <a class="finalidade-item" href="/governo.html">Defesa administrativa</a>
+            <a class="finalidade-item" href="/empresas.html">Compliance regulatório</a>
+            <div class="finalidade-item">Investigação interna</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Base Jurídica — fundo claro -->
+      <section class="text-block reveal-on-scroll">
+        <div class="text-block-inner">
+          <h2>Base Jurídica Aplicável</h2>
+          <p class="wp-highlight">A admissibilidade da prova digital fundamenta-se no Código de Processo Civil, na
+            <a class="insight-link" href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11419.htm" target="_blank" rel="noopener noreferrer">Lei nº 11.419/2006</a>,
+            na <a class="insight-link" href="https://www.planalto.gov.br/ccivil_03/mpv/antigas_2001/2200-2.htm" target="_blank" rel="noopener noreferrer">Medida Provisória nº 2.200-2/2001</a>,
+            na <a class="insight-link" href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm" target="_blank" rel="noopener noreferrer">Lei nº 12.965/2014 (Marco Civil da Internet)</a>
             e na <a class="insight-link" href="/legal/politica-de-privacidade.html">Lei nº 13.709/2018 (LGPD)</a>.
           </p>
           <p>A integridade e autenticidade são demonstradas por hash criptográfico verificável, registro em blockchain público com carimbo do tempo certificado ICP-Brasil e
-            <a class="insight-link" href="/legal/preservacao-probatoria-digital.html">cadeia de custódia digital auditável</a>
+            <a class="insight-link" href="/legal/preservacao-probatoria-digital/">cadeia de custódia digital auditável</a>
             — mecanismos reconhecidos como tecnicamente idôneos para fins probatórios.</p>
           <p>Para contextualização jurídica aplicada à evidência digital, consulte
             <a class="insight-link" href="/insights/prova-digital/prova-digital-processo-civil-brasileiro/">prova digital no processo civil brasileiro</a>.
