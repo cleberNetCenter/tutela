@@ -192,9 +192,6 @@ body.assets-page .whitepaper-container li {
   line-height: 1.8;
 }
 
-/* Stats, grid, cards, steps, checklist (mantidos originais, omitidos por brevidade – mas você mantém os que já tinha) */
-/* ... (aqui entrariam as regras de .stats-grid, .stat-card, .grid-2, .card, .steps, .checklist, etc.) ... */
-
 /* Cluster de links */
 .cluster-header {
   display: flex;
@@ -219,34 +216,53 @@ body.assets-page .whitepaper-container li {
 .cluster-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 .cluster-card {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 18px 20px;
-  border: 1.5px solid rgba(20, 37, 28, 0.14);
-  border-left: 4px solid rgba(29, 60, 43, 0.22);
-  border-radius: 0 16px 16px 0;
+  padding: 22px 24px;
+  border: 1px solid rgba(20, 37, 28, 0.12);
+  border-radius: 16px;
   background: #ffffff;
   text-decoration: none;
-  transition: border-left-color 0.18s ease, background 0.18s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.cluster-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: #1d3c2b;
+  border-radius: 16px 0 0 16px;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.2s ease;
 }
 .cluster-card:hover {
-  border-left-color: #1d3c2b;
-  background: #fafff9;
+  box-shadow: 0 8px 24px rgba(10, 34, 24, 0.09);
+  border-color: rgba(29, 60, 43, 0.22);
+  transform: translateY(-2px);
+}
+.cluster-card:hover::before {
+  transform: scaleY(1);
 }
 .cluster-card h3 {
   font-family: var(--td-font-display);
-  font-size: 20px;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  font-size: 1rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   color: var(--td-ink);
   margin: 0;
+  font-weight: 600;
 }
 .cluster-card p {
-  font-size: 13px;
+  font-size: 0.875rem;
   line-height: 1.65;
   color: var(--td-ink-soft);
   margin: 0;
@@ -308,11 +324,11 @@ body.assets-page.assets-pillar-page *::after {
   box-sizing: border-box;
 }
 body.assets-page.assets-pillar-page .container {
-  width: min(var(--ad-max-width), 92%);
+  width: min(var(--ad-max-width, 1200px), 92%);
   margin-inline: auto;
 }
 body.assets-page.assets-pillar-page main > section {
-  padding: var(--ad-space-lg) 0;
+  padding: 4rem 0;
 }
 
 /* Tipografia editorial */
@@ -338,11 +354,11 @@ body.assets-page.assets-pillar-page p {
 body.assets-page.assets-pillar-page ul { list-style: none; padding: 0; }
 
 /* ──────────────────────────────────────────────────────────
-   2.2  Hero (para páginas que usam a classe .hero)
+   2.2  Hero — centralizado na página, conteúdo à esquerda
    ────────────────────────────────────────────────────────── */
 body.assets-page.assets-pillar-page .hero {
   background: #0c2418;
-  padding: var(--ad-space-xl) 0 var(--ad-space-lg);
+  padding: var(--ad-space-xl, 5rem) 0 var(--ad-space-lg, 3.5rem);
   position: relative;
   overflow: hidden;
 }
@@ -365,10 +381,45 @@ body.assets-page.assets-pillar-page .hero::after {
   pointer-events: none;
   user-select: none;
 }
+
+/* Container do hero: centralizado na página */
+body.assets-page.assets-pillar-page .hero .container {
+  width: min(var(--ad-max-width, 1200px), 92%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Inner do hero: conteúdo alinhado à esquerda */
+body.assets-page.assets-pillar-page .hero .container.hero-inner,
+body.assets-page.assets-pillar-page .hero .hero-inner {
+  text-align: left;
+  max-width: 860px;
+  /* herda margin-left: auto / margin-right: auto do .container pai
+     e por ser mais estreito que o max-width do container, ficará
+     naturalmente centralizado no viewport mas com texto à esquerda */
+}
+
+/* Quando hero-inner é direto filho do hero sem .container wrapper */
+body.assets-page.assets-pillar-page .hero > .container.hero-inner {
+  max-width: min(860px, 92%);
+}
+
+body.assets-page.assets-pillar-page .hero-eyebrow {
+  font-family: var(--ad-ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ad-accent-light);
+  display: block;
+  text-align: left;
+  margin-bottom: 1rem;
+}
 body.assets-page.assets-pillar-page .hero h1 {
   color: #fff;
   margin-bottom: 1.5rem;
   max-width: 780px;
+  text-align: left;
+  margin-left: 0;
 }
 body.assets-page.assets-pillar-page .hero-subtitle {
   color: rgba(255, 255, 255, 0.72);
@@ -378,13 +429,27 @@ body.assets-page.assets-pillar-page .hero-subtitle {
   padding-left: 1.25rem;
   font-style: italic;
   line-height: 1.72;
+  text-align: left;
+  margin-left: 0;
 }
-body.assets-page.assets-pillar-page .hero-eyebrow {
-  font-family: var(--ad-ff-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ad-accent-light);
+
+/* Stats row */
+body.assets-page.assets-pillar-page .hero-rule {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 2rem;
+}
+body.assets-page.assets-pillar-page .hero-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  white-space: nowrap;
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -425,7 +490,7 @@ body.assets-page.assets-pillar-page .page-header-inner .wp-divider {
 }
 
 /* ──────────────────────────────────────────────────────────
-   2.4  Seções editoriais (.art-section, .art-h2-num, .art-highlight, .art-alert)
+   2.4  Seções editoriais
    ────────────────────────────────────────────────────────── */
 body.assets-page.assets-pillar-page .art-section {
   padding: 1.75rem 0;
@@ -614,79 +679,486 @@ body.assets-page.assets-pillar-page .insight-cta-inner .btn.btn-primary:hover {
 }
 
 /* ──────────────────────────────────────────────────────────
-   2.8  Demais componentes originais (criteria, timeline, aplicacao, legal, etc.)
-   (mantidos exatamente como no seu arquivo original, sem alterações)
+   2.8  Intro split
    ────────────────────────────────────────────────────────── */
-/* Aqui vão todas as regras que estavam na PARTE 2 original, como:
-   .alert-banner, .criteria-grid, .timeline, .aplicacao-grid, .legal-basis,
-   .diferencial-box, .compare-row, .closing, .intro-split, .nova-classe,
-   .tipos-grid, .desafio-section, .muda-section, .contexto-section, .cta-section,
-   etc. Para não repetir 2000 linhas, mantenha exatamente o que você já tinha
-   (desde que não haja duplicação com as regras acima). 
-   Certifique-se de remover qualquer bloco .hero duplicado ou .page-header duplicado
-   que porventura exista nessa seção. O código acima já fornece as versões corretas.
-*/
-
-/* ──────────────────────────────────────────────────────────
-   2.8  Contexto (barras de impacto)
-   ────────────────────────────────────────────────────────── */
-body.assets-page.assets-pillar-page .contexto-section {
-  background: var(--ad-bg-alt);
+body.assets-page.assets-pillar-page .intro-split {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 3rem;
+  align-items: start;
 }
 
+body.assets-page.assets-pillar-page .intro-aside {
+  background: var(--ad-bg-alt, #f4f7f4);
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 2rem;
+}
+body.assets-page.assets-pillar-page .aside-label {
+  font-family: var(--ad-ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ad-text-muted);
+  margin-bottom: 0.75rem;
+}
+body.assets-page.assets-pillar-page .intro-aside a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1d3c2b;
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+body.assets-page.assets-pillar-page .intro-aside a:hover {
+  text-decoration: underline;
+}
+
+/* ── Nova classe patrimonial ─────────────────────────────── */
+body.assets-page.assets-pillar-page .nova-classe {
+  background: var(--ad-bg-alt, #f4f7f4);
+}
+body.assets-page.assets-pillar-page .nova-classe-inner {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+body.assets-page.assets-pillar-page .nova-classe-stat {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  box-shadow: 0 4px 16px rgba(10, 34, 24, 0.06);
+}
+body.assets-page.assets-pillar-page .big-num {
+  font-family: var(--ad-ff-serif);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #0c2418;
+  line-height: 1;
+}
+body.assets-page.assets-pillar-page .big-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ad-text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ── Tipos de ativos — grade 2×2 ─────────────────────────── */
+body.assets-page.assets-pillar-page .tipos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+body.assets-page.assets-pillar-page .tipo-card {
+  background: #ffffff;
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+body.assets-page.assets-pillar-page .tipo-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2db560, rgba(45, 181, 96, 0.15));
+  border-radius: 0 0 16px 16px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+body.assets-page.assets-pillar-page .tipo-card:hover {
+  box-shadow: 0 12px 32px rgba(10, 34, 24, 0.1);
+  transform: translateY(-3px);
+  border-color: rgba(29, 60, 43, 0.2);
+}
+body.assets-page.assets-pillar-page .tipo-card:hover::after {
+  transform: scaleX(1);
+}
+body.assets-page.assets-pillar-page .tipo-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #eef6f1;
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+}
+body.assets-page.assets-pillar-page .tipo-tag {
+  font-family: var(--ad-ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2db560;
+  margin: 0 0 0.4rem;
+}
+body.assets-page.assets-pillar-page .tipo-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0c2418;
+  margin: 0 0 0.6rem;
+  line-height: 1.25;
+}
+body.assets-page.assets-pillar-page .tipo-card p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--ad-text-muted);
+  margin: 0;
+}
+body.assets-page.assets-pillar-page .tipo-card a {
+  color: #1d3c2b;
+  font-weight: 500;
+}
+
+/* ── Cluster links ───────────────────────────────────────── */
+body.assets-page.assets-pillar-page .cluster-links {
+  background: var(--ad-bg-alt, #f4f7f4);
+}
+body.assets-page.assets-pillar-page .cluster-intro {
+  max-width: 620px;
+  font-size: 0.95rem;
+  color: var(--ad-text-muted);
+  margin-bottom: 1.75rem;
+  line-height: 1.7;
+}
+body.assets-page.assets-pillar-page .cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+body.assets-page.assets-pillar-page .cluster-card {
+  background: #ffffff;
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+body.assets-page.assets-pillar-page .cluster-card:hover {
+  box-shadow: 0 10px 28px rgba(10, 34, 24, 0.09);
+  transform: translateY(-2px);
+  border-color: rgba(29, 60, 43, 0.2);
+}
+body.assets-page.assets-pillar-page .cluster-card h3 {
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: #0c2418;
+  margin: 0;
+  line-height: 1.3;
+}
+body.assets-page.assets-pillar-page .cluster-card p {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--ad-text-muted);
+  margin: 0;
+}
+
+/* ── Desafio section ─────────────────────────────────────── */
+body.assets-page.assets-pillar-page .desafio-section {
+  background: #0c2418;
+}
+body.assets-page.assets-pillar-page .desafio-inner h2 {
+  color: #f2f7f3;
+  margin-bottom: 0.75rem;
+}
+body.assets-page.assets-pillar-page .desafio-lead {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.95rem;
+  max-width: 640px;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+body.assets-page.assets-pillar-page .desafio-lead a {
+  color: #2db560;
+  text-decoration: none;
+}
+body.assets-page.assets-pillar-page .desafio-lead a:hover {
+  text-decoration: underline;
+}
+body.assets-page.assets-pillar-page .desafio-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 2rem 0 2rem;
+}
+body.assets-page.assets-pillar-page .desafio-col {
+  border-radius: 16px;
+  padding: 1.75rem;
+}
+body.assets-page.assets-pillar-page .desafio-col.sem-estrutura {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+body.assets-page.assets-pillar-page .desafio-col.com-estrutura {
+  background: rgba(45, 181, 96, 0.08);
+  border: 1px solid rgba(45, 181, 96, 0.2);
+}
+body.assets-page.assets-pillar-page .desafio-col-label {
+  font-family: var(--ad-ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 1.1rem;
+}
+body.assets-page.assets-pillar-page .com-estrutura .desafio-col-label {
+  color: #2db560;
+}
+body.assets-page.assets-pillar-page .desafio-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+body.assets-page.assets-pillar-page .desafio-item:last-child {
+  margin-bottom: 0;
+}
+body.assets-page.assets-pillar-page .desafio-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2px;
+}
+body.assets-page.assets-pillar-page .com-estrutura .desafio-dot {
+  background: rgba(45, 181, 96, 0.12);
+  border-color: rgba(45, 181, 96, 0.25);
+}
+body.assets-page.assets-pillar-page .desafio-item p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  line-height: 1.55;
+}
+body.assets-page.assets-pillar-page .com-estrutura .desafio-item p {
+  color: rgba(255, 255, 255, 0.82);
+}
+body.assets-page.assets-pillar-page .desafio-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+body.assets-page.assets-pillar-page .desafio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #2db560;
+  text-decoration: none;
+  border: 1px solid rgba(45, 181, 96, 0.3);
+  border-radius: 40px;
+  padding: 0.6rem 1.1rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+body.assets-page.assets-pillar-page .desafio-link:hover {
+  background: rgba(45, 181, 96, 0.08);
+  border-color: rgba(45, 181, 96, 0.5);
+}
+
+/* ── O que muda — checklist + aside ─────────────────────── */
+body.assets-page.assets-pillar-page .muda-section {
+  background: #ffffff;
+}
+body.assets-page.assets-pillar-page .muda-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  align-items: start;
+}
+body.assets-page.assets-pillar-page .checklist-premium {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+body.assets-page.assets-pillar-page .check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+body.assets-page.assets-pillar-page .check-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #eef6f1;
+  border: 1px solid rgba(45, 181, 96, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+body.assets-page.assets-pillar-page .check-item p {
+  font-size: 0.9375rem;
+  color: var(--ad-text-body);
+  margin: 0;
+  line-height: 1.6;
+}
+body.assets-page.assets-pillar-page .check-item a {
+  color: #1d3c2b;
+  font-weight: 500;
+}
+body.assets-page.assets-pillar-page .link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1d3c2b;
+  text-decoration: none;
+}
+body.assets-page.assets-pillar-page .link-arrow:hover {
+  text-decoration: underline;
+}
+
+/* Aside técnico */
+body.assets-page.assets-pillar-page .muda-aside {
+  background: #f4f7f4;
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  border-radius: 18px;
+  padding: 1.75rem;
+  position: sticky;
+  top: 2rem;
+}
+body.assets-page.assets-pillar-page .muda-aside-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--ad-ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2db560;
+  margin-bottom: 0.875rem;
+}
+body.assets-page.assets-pillar-page .muda-aside h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0c2418;
+  margin: 0 0 0.75rem;
+}
+body.assets-page.assets-pillar-page .muda-aside p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--ad-text-muted);
+  margin-bottom: 0.75rem;
+}
+body.assets-page.assets-pillar-page .muda-aside a {
+  color: #1d3c2b;
+  font-weight: 500;
+}
+body.assets-page.assets-pillar-page .mecanismos-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+body.assets-page.assets-pillar-page .pill {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #1d3c2b;
+  background: #deeade;
+  border: 1px solid rgba(29, 60, 43, 0.18);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* ──────────────────────────────────────────────────────────
+   2.9  Contexto (barras de impacto)
+   ────────────────────────────────────────────────────────── */
+body.assets-page.assets-pillar-page .contexto-section {
+  background: var(--ad-bg-alt, #f4f7f4);
+}
 body.assets-page.assets-pillar-page .contexto-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
 }
-
 body.assets-page.assets-pillar-page .contexto-visual {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-
 body.assets-page.assets-pillar-page .impacto-bar {
-  background: var(--ad-bg-white);
-  border: 1px solid var(--ad-border);
-  border-radius: var(--ad-radius-md);
+  background: #ffffff;
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  border-radius: 14px;
   padding: 1.1rem 1.25rem;
-  box-shadow: var(--ad-shadow-sm);
+  box-shadow: 0 2px 8px rgba(10, 34, 24, 0.04);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-
+body.assets-page.assets-pillar-page .impacto-bar:hover {
+  box-shadow: 0 6px 20px rgba(10, 34, 24, 0.08);
+  transform: translateX(4px);
+}
 body.assets-page.assets-pillar-page .impacto-bar-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: var(--ad-radius);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--ad-bg-alt);
+  background: #eef6f1;
+  border: 1px solid rgba(29, 60, 43, 0.08);
 }
-
 body.assets-page.assets-pillar-page .impacto-bar h4 {
   font-size: 0.9375rem;
-  margin-bottom: 0.2rem;
+  font-weight: 600;
+  color: #0c2418;
+  margin: 0 0 0.2rem;
+  line-height: 1.2;
 }
-
 body.assets-page.assets-pillar-page .impacto-bar p {
   font-size: 0.825rem;
   color: var(--ad-text-muted);
   margin: 0;
+  line-height: 1.55;
+}
+body.assets-page.assets-pillar-page .impacto-bar a {
+  color: #1d3c2b;
+  font-weight: 500;
 }
 
-
-/* ── 2.9  CTA final ──────────────────────────────────── */
+/* ── 2.10  CTA final ──────────────────────────────────────── */
 body.assets-page.assets-pillar-page .cta-section {
   background: #0c2418;
   padding: 64px 24px 56px;
 }
-
 body.assets-page.assets-pillar-page .cta-section .container {
   max-width: 720px;
   display: flex;
@@ -706,7 +1178,6 @@ body.assets-page.assets-pillar-page .cta-eyebrow {
   color: var(--ad-accent);
   margin-bottom: 20px;
 }
-
 body.assets-page.assets-pillar-page .cta-eyebrow-dot {
   width: 6px;
   height: 6px;
@@ -725,13 +1196,11 @@ body.assets-page.assets-pillar-page .cta-section h2 {
   margin-bottom: 14px;
   text-align: center;
 }
-
 body.assets-page.assets-pillar-page .cta-section h2 em {
   font-style: normal;
   color: var(--ad-accent);
 }
-
-body.assets-page.assets-pillar-page .cta-section>.container>p {
+body.assets-page.assets-pillar-page .cta-section > .container > p {
   font-size: 15px;
   color: #7faa8a;
   max-width: 480px;
@@ -746,7 +1215,7 @@ body.assets-page.assets-pillar-page .cta-card {
   max-width: 560px;
   background: #112a1e;
   border: 1px solid #1e5535;
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 28px 28px 24px;
   display: flex;
   flex-direction: column;
@@ -762,7 +1231,6 @@ body.assets-page.assets-pillar-page .cta-checklist {
   flex-direction: column;
   gap: 11px;
 }
-
 body.assets-page.assets-pillar-page .cta-checklist li {
   display: flex;
   align-items: flex-start;
@@ -771,7 +1239,6 @@ body.assets-page.assets-pillar-page .cta-checklist li {
   color: #7faa8a;
   line-height: 1.5;
 }
-
 body.assets-page.assets-pillar-page .cta-check-icon {
   width: 18px;
   height: 18px;
@@ -791,6 +1258,17 @@ body.assets-page.assets-pillar-page .cta-divider {
   background: #1e5535;
 }
 
+/* Link desafio dentro do cta-card */
+body.assets-page.assets-pillar-page .cta-card .desafio-lead {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8125rem;
+  margin: 0;
+  line-height: 1.6;
+}
+body.assets-page.assets-pillar-page .cta-card .desafio-lead a {
+  color: #2db560;
+}
+
 /* Botão principal */
 body.assets-page.assets-pillar-page .btn-cta {
   display: flex;
@@ -803,27 +1281,24 @@ body.assets-page.assets-pillar-page .btn-cta {
   font-weight: 600;
   letter-spacing: -0.01em;
   padding: 14px 24px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-decoration: none;
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
-
 body.assets-page.assets-pillar-page .btn-cta:hover {
   opacity: 0.9;
   transform: translateY(-1px);
   color: #0a1f12;
   text-decoration: none;
 }
-
 body.assets-page.assets-pillar-page .btn-cta svg {
   transition: transform 0.15s ease;
 }
-
 body.assets-page.assets-pillar-page .btn-cta:hover svg {
   transform: translateX(3px);
 }
 
-/* Trust items (dentro do card, abaixo do botão) */
+/* Trust items */
 body.assets-page.assets-pillar-page .cta-trust {
   display: flex;
   align-items: center;
@@ -832,7 +1307,6 @@ body.assets-page.assets-pillar-page .cta-trust {
   flex-wrap: wrap;
   margin-top: 0;
 }
-
 body.assets-page.assets-pillar-page .cta-trust-item {
   display: flex;
   align-items: center;
@@ -843,7 +1317,6 @@ body.assets-page.assets-pillar-page .cta-trust-item {
   text-transform: uppercase;
   color: #4a7258;
 }
-
 body.assets-page.assets-pillar-page .cta-trust-sep {
   width: 3px;
   height: 3px;
@@ -858,13 +1331,12 @@ body.assets-page.assets-pillar-page .cta-stat-row {
   gap: 1px;
   background: #1e5535;
   border: 1px solid #1e5535;
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
   margin-top: 28px;
   width: 100%;
   max-width: 560px;
 }
-
 body.assets-page.assets-pillar-page .cta-stat {
   background: #112a1e;
   padding: 16px 12px;
@@ -874,7 +1346,6 @@ body.assets-page.assets-pillar-page .cta-stat {
   gap: 4px;
   text-align: center;
 }
-
 body.assets-page.assets-pillar-page .cta-stat-val {
   font-size: 19px;
   font-weight: 500;
@@ -882,11 +1353,9 @@ body.assets-page.assets-pillar-page .cta-stat-val {
   line-height: 1;
   letter-spacing: -0.02em;
 }
-
 body.assets-page.assets-pillar-page .cta-stat-val span {
   color: var(--ad-accent);
 }
-
 body.assets-page.assets-pillar-page .cta-stat-label {
   font-size: 10.5px;
   letter-spacing: 0.07em;
@@ -894,339 +1363,49 @@ body.assets-page.assets-pillar-page .cta-stat-label {
   color: #4a7258;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  body.assets-page.assets-pillar-page .cta-section {
-    padding: 48px 20px 40px;
-  }
-
-  body.assets-page.assets-pillar-page .cta-card {
-    padding: 20px 18px;
-  }
-
-  body.assets-page.assets-pillar-page .cta-stat-row {
-    grid-template-columns: 1fr;
-    gap: 1px;
-  }
-}
-
 /* ──────────────────────────────────────────────────────────
-   2.10  Animações
+   2.11  Animações
    ────────────────────────────────────────────────────────── */
 @keyframes adFadeUp {
   from {
     opacity: 0;
     transform: translateY(16px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 body.assets-page.assets-pillar-page .fade-up {
   animation: adFadeUp 0.55s ease both;
 }
+body.assets-page.assets-pillar-page .fade-up:nth-child(2) { animation-delay: 0.10s; }
+body.assets-page.assets-pillar-page .fade-up:nth-child(3) { animation-delay: 0.20s; }
+body.assets-page.assets-pillar-page .fade-up:nth-child(4) { animation-delay: 0.30s; }
 
-body.assets-page.assets-pillar-page .fade-up:nth-child(2) {
-  animation-delay: 0.10s;
+/* Section divider */
+body.assets-page.assets-pillar-page .section-divider {
+  height: 1px;
+  background: rgba(29, 60, 43, 0.08);
+  margin: 0;
 }
-
-body.assets-page.assets-pillar-page .fade-up:nth-child(3) {
-  animation-delay: 0.20s;
-}
-
-body.assets-page.assets-pillar-page .fade-up:nth-child(4) {
-  animation-delay: 0.30s;
-}
-
 
 /* ──────────────────────────────────────────────────────────
-   2.11  Responsivo — páginas pillar
+   2.12  Responsivo — páginas pillar
    ────────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-
-  body.assets-page.assets-pillar-page .intro-split,
-  body.assets-page.assets-pillar-page .muda-layout,
-  body.assets-page.assets-pillar-page .contexto-inner {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
+@media (max-width: 900px) {
   body.assets-page.assets-pillar-page .nova-classe-inner {
     grid-template-columns: 1fr;
   }
-
   body.assets-page.assets-pillar-page .nova-classe-stat {
     display: none;
   }
-
-  body.assets-page.assets-pillar-page .tipos-grid {
-    grid-template-columns: 1fr;
-  }
-
-  body.assets-page.assets-pillar-page .desafio-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  body.assets-page.assets-pillar-page .desafio-arrow {
-    transform: rotate(90deg);
-    padding: 0.75rem 0;
-  }
-
-  body.assets-page.assets-pillar-page .hero-rule {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  /* Timeline */
-  body.assets-page.assets-pillar-page .timeline::before {
-    left: 22px;
-  }
-
-  body.assets-page.assets-pillar-page .timeline-marker {
-    width: 46px;
-    height: 46px;
-  }
-
-  body.assets-page.assets-pillar-page .timeline-item {
-    gap: 1.25rem;
-  }
-
-  /* Criteria grid — colapsa para 1 coluna */
-  body.assets-page.assets-pillar-page .criteria-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Aplicacao grid — colapsa para 1 coluna */
-  body.assets-page.assets-pillar-page .aplicacao-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Compare row — empilha verticalmente */
-  body.assets-page.assets-pillar-page .compare-row {
-    flex-direction: column;
-  }
-
-  body.assets-page.assets-pillar-page .compare-col {
-    min-width: 0;
-  }
-
-  /* Closing — empilha ícone + texto */
-  body.assets-page.assets-pillar-page .closing-inner {
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  /* Alert banner — ajuste de padding */
-  body.assets-page.assets-pillar-page .alert-banner {
-    padding: 1rem 1.25rem;
-  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-
-  body.assets-page.assets-pillar-page .fade-up,
-  body.assets-page.assets-pillar-page .check-item,
-  body.assets-page.assets-pillar-page .timeline-item,
-  body.assets-page.assets-pillar-page .criteria-card,
-  body.assets-page.assets-pillar-page .aplicacao-card,
-  body.assets-page.assets-pillar-page .tipo-card,
-  body.assets-page.assets-pillar-page .btn-cta {
-    animation: none;
-    transition: none;
-    transform: none;
-  }
-}
-
-/* ============================================================
-   CORREÇÃO DO HERO E RESTAURAÇÃO DE FORMATAÇÃO
-   ============================================================ */
-
-/* 1. Garantir que o hero use alinhamento à esquerda */
-body.assets-page.assets-pillar-page .hero .hero-inner,
-body.assets-page.assets-pillar-page .hero .container {
-  text-align: left;
-  margin-left: 0;
-  margin-right: auto;
-}
-
-/* 2. Título e subtítulo alinhados à esquerda, sem centralização */
-body.assets-page.assets-pillar-page .hero h1,
-body.assets-page.assets-pillar-page .hero .hero-subtitle {
-  text-align: left;
-  margin-left: 0;
-  margin-right: auto;
-}
-
-/* 3. Eyebrow (tag "Ativos Digitais") alinhado à esquerda */
-body.assets-page.assets-pillar-page .hero-eyebrow {
-  text-align: left;
-  display: block;
-}
-
-/* 4. Container dos stats: flex row por padrão (desktop) */
-body.assets-page.assets-pillar-page .hero-rule {
-  display: flex;
-  flex-direction: row !important;      /* força linha no desktop */
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: flex-start;         /* alinha à esquerda */
-  margin-top: 1.5rem;
-}
-
-/* 5. Cada stat como elemento inline (ou flex) */
-body.assets-page.assets-pillar-page .hero-stat {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
-  white-space: nowrap;                 /* evita quebra de texto dentro do item */
-}
-
-/* 6. No mobile, os stats podem quebrar/empilhar */
 @media (max-width: 768px) {
-  body.assets-page.assets-pillar-page .hero-rule {
-    flex-direction: column !important;
-    align-items: flex-start;
-    gap: 0.75rem;
+  body.assets-page.assets-pillar-page .hero {
+    padding: 3rem 0 2.5rem;
   }
-  body.assets-page.assets-pillar-page .hero-stat {
-    white-space: normal;               /* permite quebra se necessário no mobile */
-  }
-}
-
-/* ============================================================
-   RESTAURAÇÃO DE FORMATAÇÃO GERAL (outros elementos)
-   ============================================================ */
-
-/* Garantir que grids e flex containers que podem ter perdido layout voltem ao normal */
-body.assets-page.assets-pillar-page .intro-split {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 2rem;
-  align-items: start;
-}
-
-body.assets-page.assets-pillar-page .tipos-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-body.assets-page.assets-pillar-page .desafio-grid {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-body.assets-page.assets-pillar-page .muda-layout {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 2rem;
-}
-
-body.assets-page.assets-pillar-page .contexto-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-/* Restaurar margens e paddings padrão das seções */
-body.assets-page.assets-pillar-page main > section {
-  padding: 3rem 0;
-}
-
-body.assets-page.assets-pillar-page .container {
-  width: min(1200px, 92%);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Ajuste para listas e cards que possam ter perdido espaçamento */
-body.assets-page.assets-pillar-page .checklist-premium,
-body.assets-page.assets-pillar-page .cta-checklist {
-  list-style: none;
-  padding-left: 0;
-}
-
-body.assets-page.assets-pillar-page .check-item,
-body.assets-page.assets-pillar-page .cta-checklist li {
-  margin-bottom: 0.75rem;
-}
-
-/* Responsivo: em telas menores, empilhar grids */
-@media (max-width: 768px) {
-  body.assets-page.assets-pillar-page .intro-split,
-  body.assets-page.assets-pillar-page .tipos-grid,
-  body.assets-page.assets-pillar-page .desafio-grid,
-  body.assets-page.assets-pillar-page .muda-layout,
-  body.assets-page.assets-pillar-page .contexto-inner {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  body.assets-page.assets-pillar-page .desafio-arrow {
-    transform: rotate(90deg);
-    justify-self: center;
-  }
-}
-
-/* ============================================================
-   CORREÇÃO DEFINITIVA DO HERO
-   ============================================================ */
-
-/* Garante que o container fique centralizado (comportamento padrão) */
-body.assets-page.assets-pillar-page .hero .container {
-  width: min(var(--ad-max-width, 1200px), 92%);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* O conteúdo interno do hero (dentro do container) deve ter alinhamento à esquerda */
-body.assets-page.assets-pillar-page .hero .hero-inner {
-  text-align: left;
-  max-width: 900px;        /* opcional: controla a largura máxima do texto */
-  margin-left: 0;          /* gruda na esquerda do container */
-  margin-right: auto;      /* não centraliza o conteúdo, só o container */
-}
-
-/* Eyebrow, título e subtítulo alinhados à esquerda */
-body.assets-page.assets-pillar-page .hero-eyebrow,
-body.assets-page.assets-pillar-page .hero h1,
-body.assets-page.assets-pillar-page .hero .hero-subtitle {
-  text-align: left;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-/* Stats em linha (flex row) no desktop */
-body.assets-page.assets-pillar-page .hero-rule {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: 1.5rem;
-}
-
-body.assets-page.assets-pillar-page .hero-stat {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
-  white-space: nowrap;
-}
-
-/* No mobile, stats empilham verticalmente */
-@media (max-width: 768px) {
   body.assets-page.assets-pillar-page .hero-rule {
     flex-direction: column;
     align-items: flex-start;
@@ -1234,5 +1413,64 @@ body.assets-page.assets-pillar-page .hero-stat {
   }
   body.assets-page.assets-pillar-page .hero-stat {
     white-space: normal;
+  }
+  body.assets-page.assets-pillar-page .intro-split {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  body.assets-page.assets-pillar-page .intro-aside {
+    position: static;
+  }
+  body.assets-page.assets-pillar-page .tipos-grid {
+    grid-template-columns: 1fr;
+  }
+  body.assets-page.assets-pillar-page .desafio-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  body.assets-page.assets-pillar-page .desafio-arrow {
+    transform: rotate(90deg);
+    justify-self: center;
+    padding: 0.5rem 0;
+  }
+  body.assets-page.assets-pillar-page .muda-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  body.assets-page.assets-pillar-page .muda-aside {
+    position: static;
+  }
+  body.assets-page.assets-pillar-page .contexto-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  body.assets-page.assets-pillar-page .cta-section {
+    padding: 48px 20px 40px;
+  }
+  body.assets-page.assets-pillar-page .cta-card {
+    padding: 20px 18px;
+  }
+  body.assets-page.assets-pillar-page .cta-stat-row {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+  body.assets-page.assets-pillar-page .cluster-grid {
+    grid-template-columns: 1fr;
+  }
+  body.assets-page.assets-pillar-page main > section {
+    padding: 2.5rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.assets-page.assets-pillar-page .fade-up,
+  body.assets-page.assets-pillar-page .check-item,
+  body.assets-page.assets-pillar-page .tipo-card,
+  body.assets-page.assets-pillar-page .cluster-card,
+  body.assets-page.assets-pillar-page .impacto-bar,
+  body.assets-page.assets-pillar-page .btn-cta {
+    animation: none;
+    transition: none;
+    transform: none;
   }
 }
