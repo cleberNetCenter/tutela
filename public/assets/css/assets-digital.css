@@ -1176,3 +1176,63 @@ body.assets-page.assets-pillar-page .cta-checklist li {
     justify-self: center;
   }
 }
+
+/* ============================================================
+   CORREÇÃO DEFINITIVA DO HERO
+   ============================================================ */
+
+/* Garante que o container fique centralizado (comportamento padrão) */
+body.assets-page.assets-pillar-page .hero .container {
+  width: min(var(--ad-max-width, 1200px), 92%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* O conteúdo interno do hero (dentro do container) deve ter alinhamento à esquerda */
+body.assets-page.assets-pillar-page .hero .hero-inner {
+  text-align: left;
+  max-width: 900px;        /* opcional: controla a largura máxima do texto */
+  margin-left: 0;          /* gruda na esquerda do container */
+  margin-right: auto;      /* não centraliza o conteúdo, só o container */
+}
+
+/* Eyebrow, título e subtítulo alinhados à esquerda */
+body.assets-page.assets-pillar-page .hero-eyebrow,
+body.assets-page.assets-pillar-page .hero h1,
+body.assets-page.assets-pillar-page .hero .hero-subtitle {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Stats em linha (flex row) no desktop */
+body.assets-page.assets-pillar-page .hero-rule {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1.5rem;
+}
+
+body.assets-page.assets-pillar-page .hero-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+
+/* No mobile, stats empilham verticalmente */
+@media (max-width: 768px) {
+  body.assets-page.assets-pillar-page .hero-rule {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  body.assets-page.assets-pillar-page .hero-stat {
+    white-space: normal;
+  }
+}
