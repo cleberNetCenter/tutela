@@ -2474,3 +2474,47 @@ body.assets-page.assets-pillar-page .page-header-subtitle {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ============================================================
+   CORREÇÃO DEFINITIVA: Hero escuro para artigos (pillar pages)
+   ============================================================ */
+body.assets-page.assets-pillar-page .page-header.page-header--legal {
+  background: #0c2418;          /* fundo escuro da marca */
+  padding: 0;
+  margin-top: 0;
+}
+
+body.assets-page.assets-pillar-page .page-header-inner {
+  background: transparent !important;  /* remove gradiente branco */
+  box-shadow: none !important;
+  border: none !important;
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+  text-align: center;
+}
+
+/* remove pseudo-elementos decorativos (círculos, etc.) */
+body.assets-page.assets-pillar-page .page-header-inner::before,
+body.assets-page.assets-pillar-page .page-header-inner::after {
+  display: none !important;
+}
+
+body.assets-page.assets-pillar-page .page-header h1 {
+  color: #ffffff !important;
+  margin-bottom: 1rem;
+}
+
+body.assets-page.assets-pillar-page .page-header-subtitle {
+  color: rgba(255, 255, 255, 0.68) !important;
+  border-left: 3px solid #2db560;
+  padding-left: 1.25rem;
+  font-style: italic;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ajuste do divider (wp-divider) dentro do hero – opcional, mantém discreto */
+body.assets-page.assets-pillar-page .page-header-inner .wp-divider {
+  background: rgba(255, 255, 255, 0.15);
+  margin: 1rem auto;
+}
