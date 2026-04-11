@@ -2068,3 +2068,75 @@ body.assets-page.assets-pillar-page .td-articles__heading {
   color: #ffffff;
   text-decoration-color: rgba(255,255,255,0.60);
 }
+
+/* ══ ASIDE LEITURA RELACIONADA — fundo verde ══ */
+.muda-aside {
+  background: linear-gradient(145deg, #0f3a2a 0%, #1b6b4d 65%, #2db560 100%) !important;
+  border: 1px solid rgba(45,181,96,0.25) !important;
+  border-radius: 8px;
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.muda-aside::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(45deg,  rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.muda-aside::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,181,96,0.22) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.muda-aside .muda-aside-label {
+  color: #a8d9b8 !important;
+  position: relative;
+  z-index: 1;
+}
+
+.muda-aside .muda-aside-label svg path {
+  stroke: #a8d9b8 !important;
+}
+
+.muda-aside h3,
+.muda-aside h3 a {
+  color: #ffffff !important;
+  position: relative;
+  z-index: 1;
+}
+
+.muda-aside h3 a {
+  text-decoration-color: rgba(255,255,255,0.30);
+}
+
+.muda-aside h3 a:hover {
+  text-decoration-color: rgba(255,255,255,0.75);
+}
+
+.muda-aside p {
+  color: rgba(255,255,255,0.65) !important;
+  position: relative;
+  z-index: 1;
+}
+
+.muda-aside p a {
+  color: #7ec99a !important;
+}
+
+.muda-aside p a:hover {
+  color: #ffffff !important;
+}
