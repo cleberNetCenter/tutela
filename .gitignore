@@ -1,1 +1,20 @@
 node_modules/
+
+# Backups e diretórios temporários
+public_backup/
+*_backup/
+*.bak
+bak/
+
+# Scripts de migração/desenvolvimento
+scripts/
+
+# Metadados do Windows (Zone.Identifier)
+*:Zone.Identifier
+
+# Arquivos de análise/documentação avulsos
+sitemap-homolog-analysis.md
+
+# Configurações de editor
+.vscode/
+.codex
