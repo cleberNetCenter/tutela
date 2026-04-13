@@ -1394,6 +1394,83 @@ body.solucoes-page .sol-slide-right {
   animation: solSlideRight 0.5s ease both;
 }
 
+/* ── CONTEÚDO RELACIONADO ────────────────────────────────── */
+body.solucoes-page .sol-related {
+  background: var(--sol-bg);
+  border-top: 1px solid var(--sol-border);
+}
+
+body.solucoes-page .sol-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+body.solucoes-page .sol-related-card {
+  background: var(--sol-bg-white);
+  border: 1px solid var(--sol-border);
+  border-radius: var(--sol-r-md);
+  padding: 1.6rem 1.5rem 1.5rem;
+  box-shadow: var(--sol-shadow-xs);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-decoration: none;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+body.solucoes-page .sol-related-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sol-brand-mid), var(--sol-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+body.solucoes-page .sol-related-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sol-shadow-md);
+}
+body.solucoes-page .sol-related-card:hover::before {
+  transform: scaleX(1);
+}
+
+body.solucoes-page .sol-related-card h3 {
+  font-size: 0.95rem;
+  color: var(--sol-text-head);
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+
+body.solucoes-page .sol-related-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--sol-ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--sol-vertical-hue);
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--sol-border);
+  transition: opacity 0.15s;
+}
+body.solucoes-page .sol-related-card:hover .sol-related-link { opacity: 0.65; }
+
+@media (max-width: 640px) {
+  body.solucoes-page .sol-related-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Reveal via IntersectionObserver (JS opcional) */
 body.solucoes-page .sol-reveal {
   opacity: 0;
