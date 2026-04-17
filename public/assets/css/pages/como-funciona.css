@@ -467,14 +467,6 @@ body.page-como-funciona {
   transform: translateY(0);
 }
 
-.main {
-  margin-top: 0;
-}
-
-.page-header--como-funciona h1 {
-  color: #ffffff;
-}
-
 /* ============================================================
    TYPOGRAPHY OVERRIDE — COMO FUNCIONA (GLOBAL FIX)
    ============================================================ */

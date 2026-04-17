@@ -21,19 +21,6 @@
  * Nenhum override estrutural necessário além dos abaixo.
  */
 
- /*
- * institucional.css — Tutela Digital®
- * Página: /legal/institucional.html ("Sobre")
- * Versão: 5
- *
- * Estratégia visual:
- *   — Hero: card com gradiente verde mais presente
- *   — Seções alternadas: clara (#f4f7f5) / escura (#0c2418) / clara
- *   — Cards com borda-topo verde e hover lift
- *   — CTA final escuro, padrão do solucoes.css
- *
- * Cascata: estende pages-consolidated.css sem quebrar tokens globais.
- */
 
 
 /* ═══════════════════════════════════════════════════════
@@ -625,12 +612,3 @@ body.page-institucional .page-header--legal .legal-graphic {
   display: none;
 }
 
-/* Gradiente hero ligeiramente diferente — mais vivo */
-body.legal-page.page-institucional .page-header--legal {
-  background: linear-gradient(
-    160deg,
-    #0f3a2a 0%,
-    #1b6b4d 55%,
-    #2db560 100%
-  );
-}

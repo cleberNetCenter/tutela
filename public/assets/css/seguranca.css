@@ -402,14 +402,6 @@ body.page-seguranca {
   transform: translateY(0);
 }
 
-/* ── ANIMATIONS ──────────────────────────────────────────── */
-.page-header--security h1 {
-  color: #ffffff;
-}
-
-.main {
-  margin-top: 0;
-}
 /* ============================================================
    TYPOGRAPHY OVERRIDE — SEGURANÇA (GLOBAL FIX)
    ============================================================ */
