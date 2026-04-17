@@ -5,12 +5,6 @@
    NÃO altera variáveis globais nem estrutura de grid
    ========================================================= */
 
-/* ===================== MAIN CONTENT ====================== */
-/* Garantir espaço adequado para header fixo */
-body.exec-compact .main {
-  padding-top: 70px;
-}
-
 /* ===================== SEÇÕES ============================ */
 /* Primeira seção não precisa de padding-top (já tem no .main) */
 

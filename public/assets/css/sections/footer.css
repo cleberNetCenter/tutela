@@ -232,10 +232,8 @@
 	}
 }
 
-.tdf {
-	color: var(--text-1);
-}
-
+/* Força herança de cor em todos os filhos do footer para evitar
+   que regras globais de base.css sobrescrevam as cores locais. */
 .tdf * {
 	color: inherit !important;
 }

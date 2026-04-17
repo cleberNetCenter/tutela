@@ -146,7 +146,31 @@
 
 
 /* ──────────────────────────────────────────────────────────
-   5. EXTENSÃO: ATIVOS DIGITAIS  (--ad-*)
+   5. ALIASES DE COMPATIBILIDADE
+   Nomes encurtados referenciados em components/ e pages/.
+   Mapeados sobre os primitivos para manter única fonte de verdade.
+   ────────────────────────────────────────────────────────── */
+:root {
+  /* Aliases de cor (uso em buttons, legacy, pages-consolidated) */
+  --color-green-950: var(--primitive-green-950);  /* #0b241b */
+  --color-green-900: var(--primitive-green-900);  /* #0f3a2a */
+  --color-green-850: var(--primitive-green-850);  /* #134634 */
+  --color-green-800: var(--primitive-green-800);  /* #16503b */
+  --color-green-700: var(--primitive-green-700);  /* #1b6b4d */
+
+  /* Tokens CTA (usados em pages-consolidated .cta-final) */
+  --color-cta-primary:       #18493f;
+  --color-cta-primary-hover: #143d35;
+
+  /* Fallbacks genéricos referenciados em pages-consolidated
+     com sintaxe var(--color-secondary, #333) */
+  --color-secondary: var(--color-text-muted);
+  --color-text:      var(--color-text-base);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   6. EXTENSÃO: ATIVOS DIGITAIS  (--ad-*)
    Tokens específicos para as páginas /ativos-digitais/.
    Referenciados em assets-digital.css.
    Declarados aqui para manter a fonte de verdade única.

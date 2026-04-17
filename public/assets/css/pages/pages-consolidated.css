@@ -107,16 +107,16 @@
 }
 
 .cta-final .btn-primary {
-  background: #18493f;
+  background: var(--color-cta-primary);
   color: #ffffff;
-  border: 1px solid #18493f;
+  border: 1px solid var(--color-cta-primary);
   box-shadow: none;
 }
 
 .cta-final .btn-primary:hover {
-  background: #143d35;
+  background: var(--color-cta-primary-hover);
   color: #ffffff;
-  border-color: #143d35;
+  border-color: var(--color-cta-primary-hover);
   box-shadow: none;
 }
 
@@ -460,12 +460,13 @@ body.legal-page .whitepaper-container h2 {
 
 .whitepaper-container h2 {
   font-family: var(--font-display);
-  font-size: var(--font-size-title);
+  font-size: var(--font-size-title);   /* 1.75rem */
   font-weight: 500;
   line-height: 1.3;
   margin-top: 3.5rem;
   margin-bottom: 1.25rem;
   color: var(--color-text-strong);
+  position: relative;
 }
 
 .whitepaper-container h3 {
@@ -517,19 +518,6 @@ body.legal-page .whitepaper-container h2 {
 
 .whitepaper-container>p:first-of-type {
   font-weight: 500;
-}
-
-/* melhor espaçamento após subtítulos */
-.whitepaper-container h2+p {
-  margin-top: 1.2rem;
-}
-
-.whitepaper-container p:first-of-type {
-  margin-top: 2rem;
-}
-
-.whitepaper-container p + p {
-  margin-top: 0.6rem;
 }
 
 /* Blocos analíticos (highlight) */
@@ -604,10 +592,6 @@ body.legal-page .whitepaper-container h2 {
 
 /* Responsivo */
 @media (max-width: 768px) {
-  .whitepaper-container h2 {
-    font-size: 1.75rem;
-  }
-
   .whitepaper-container p {
     font-size: 1rem;
   }
@@ -908,17 +892,7 @@ body.legal-page .main.main--hero-top .page-header--legal {
    ARTICLE – WHITE PAPER REFINEMENT
    ========================================= */
 
-.whitepaper-container h2 {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  font-weight: 500;
-  line-height: 1.3;
-  margin-top: 3.5rem;
-  margin-bottom: 1.25rem;
-  color: var(--color-text-strong);
-  position: relative;
-}
-
+/* Desativa qualquer ::before herdado de regras globais */
 .whitepaper-container h2::before {
   content: none;
 }

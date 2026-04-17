@@ -861,15 +861,3 @@ button:focus-visible {
   }
 }
 
-.hero--homepage {
-  background-color: #0d1410;
-  /* mesmo tom escuro */
-  background-image: radial-gradient(...);
-  /* mantém o efeito */
-}
-
-.section-verticals {
-  background: #0d1410;
-  /* fundo sólido antes do gradiente */
-  background: linear-gradient(180deg, #0d1410, rgba(34, 197, 94, .04), #0d1410);
-}
