@@ -419,7 +419,7 @@
 
 /* FEATURED */
 .td-quick-nav__item.is-featured {
-  background: #ffffff;
+  background: var(--primitive-neutral-000);
   border: 1px solid rgba(20, 37, 28, 0.14);
   border-left: 3px solid rgba(29, 60, 43, 0.22) !important;
   border-radius: 0 13px 13px 0;
@@ -1042,7 +1042,7 @@
   border: 1.5px solid rgba(20,37,28,0.14);
   border-left: 4px solid rgba(29,60,43,0.22);
   border-radius: 0 16px 16px 0;
-  background: #fff;
+  background: var(--primitive-neutral-000);
   text-decoration: none;
   color: var(--td-ink);
   transition: border-left-color 0.18s ease, background 0.18s ease;

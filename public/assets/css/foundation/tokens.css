@@ -18,7 +18,9 @@
    ────────────────────────────────────────────────────────── */
 :root {
   /* Verdes */
+  --primitive-green-990: #0a0f0d;   /* near-black — fundo editorial escuro */
   --primitive-green-980: #081a13;
+  --primitive-green-970: #0c2418;   /* header/footer brand dark */
   --primitive-green-950: #0b241b;
   --primitive-green-900: #0f3a2a;
   --primitive-green-850: #134634;
@@ -26,6 +28,7 @@
   --primitive-green-700: #1b6b4d;
   --primitive-green-500: #1db954;
   --primitive-green-400: #2db560;
+  --primitive-green-300: #4ade80;   /* verde brilhante — hover states */
   --primitive-green-200: #a8d9b8;
   --primitive-green-100: #deeade;
   --primitive-green-050: #edf4ed;
@@ -70,7 +73,12 @@
   /* Acento global */
   --color-accent:         var(--primitive-green-500);
   --color-accent-subtle:  var(--primitive-green-400);
+  --color-accent-bright:  var(--primitive-green-300);  /* hover states */
   --color-accent-light:   var(--primitive-green-200);
+
+  /* Fundos escuros */
+  --color-surface-brand:   var(--primitive-green-970);  /* header, footer, UI dark */
+  --color-surface-darkest: var(--primitive-green-990);  /* editorial near-black */
 }
 
 

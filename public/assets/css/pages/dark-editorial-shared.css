@@ -27,7 +27,7 @@ body.page-seguranca,
 body.page-como-funciona,
 body.page-seguranca .app,
 body.page-como-funciona .app {
-  background-color: #0a0f0d;
+  background-color: var(--color-surface-darkest);
 }
 
 .page-header.page-header--security-centered,
@@ -35,7 +35,7 @@ body.page-como-funciona .app {
   position: relative;
   padding: 7rem 2rem 4rem;
   overflow: hidden;
-  background-color: #0a0f0d;
+  background-color: var(--color-surface-darkest);
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -5%, rgba(34, 197, 94, 0.15) 0%, transparent 65%),
     linear-gradient(rgba(34, 197, 94, 0.04) 1px, transparent 1px),
@@ -91,7 +91,7 @@ body.page-como-funciona .app {
   letter-spacing: -0.025em;
   margin-bottom: 1.5rem;
   animation: fadeUp 0.65s 0.1s ease both;
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
 }
 
 .page-header--security h1 em,

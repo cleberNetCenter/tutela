@@ -76,8 +76,8 @@ body.legal-page .page-header--legal {
   background: linear-gradient(
     155deg,
     var(--primitive-green-950) 0%,
-    #16503b 50%,
-    #1b6b4d 100%
+    var(--primitive-green-800) 50%,
+    var(--primitive-green-700) 100%
   );
   border: none;
   border-radius: 14px;
@@ -125,7 +125,7 @@ body.legal-page .page-header--legal .page-header-inner {
 
 /* H1 invertido */
 body.legal-page .page-header--legal h1 {
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
   font-size: clamp(1.75rem, 3.6vw, 2.8rem);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -434,7 +434,7 @@ body.legal-page .legal-grid {
 
 /* Card individual */
 body.legal-page .legal-grid .feature-item {
-  background: #ffffff;
+  background: var(--primitive-neutral-000);
   border: 1px solid var(--color-border-soft);
   border-top: 3px solid var(--primitive-green-700);
   border-radius: 4px;
@@ -489,7 +489,7 @@ body.legal-page .section-dark .legal-grid .feature-item:hover {
 }
 
 body.legal-page .section-dark .legal-grid .feature-item h3 {
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
 }
 
 body.legal-page .section-dark .legal-grid .feature-item p {
@@ -509,7 +509,7 @@ body.legal-page .section-dark .legal-grid .feature-item p {
 }
 
 .camada-card {
-  background: #ffffff;
+  background: var(--primitive-neutral-000);
   border: 1px solid var(--color-border-soft);
   border-top: 3px solid var(--primitive-green-700);
   border-radius: 4px;
@@ -567,7 +567,7 @@ body.legal-page .section-dark .camada-label {
 }
 
 body.legal-page .section-dark .camada-title {
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
 }
 
 body.legal-page .section-dark .camada-desc {
@@ -589,7 +589,7 @@ body.legal-page .applications-grid {
 
 body.legal-page .finalidade-item,
 body.legal-page .application-item {
-  background: #ffffff;
+  background: var(--primitive-neutral-000);
   border-left: 3px solid var(--primitive-green-700);
   padding: 0.9rem 1rem;
   font-size: 0.9rem;
@@ -826,7 +826,7 @@ body.legal-page .cta-final .btn-secondary {
 
 body.legal-page .cta-final .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.07);
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
   border-color: rgba(255, 255, 255, 0.38);
 }
 

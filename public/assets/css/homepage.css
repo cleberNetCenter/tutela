@@ -39,7 +39,7 @@
   --hp-green: #22c55e;
   --hp-green-dim: #16a34a;
   --hp-green-glow: rgba(34, 197, 94, .18);
-  --hp-green-hover: #4ade80;
+  --hp-green-hover: var(--color-accent-bright);  /* #4ade80 */
   --hp-border: rgba(34, 197, 94, .18);
   --hp-border-hover: rgba(34, 197, 94, .40);
   --hp-surface: rgba(255, 255, 255, .03);
@@ -48,6 +48,7 @@
   --hp-text-muted: rgba(255, 255, 255, .55);
   --hp-text-subtle: rgba(255, 255, 255, .35);
   --hp-bg-dark: #0d1410;
+  --hp-bg-page: var(--color-surface-darkest);   /* #0a0f0d */
   --hp-radius: 12px;
   --hp-radius-lg: 20px;
   --hp-section-pad: 6rem 2rem;
@@ -57,7 +58,7 @@
 
 body,
 .app {
-  background-color: #0a0f0d;
+  background-color: var(--hp-bg-page);
   /* tom escuro consistente com a identidade */
 }
 
@@ -209,7 +210,7 @@ button:focus-visible {
   padding: .9rem 2rem;
   border-radius: var(--hp-radius);
   background: var(--hp-green);
-  color: #0a0f0d;
+  color: var(--hp-bg-page);
   text-decoration: none;
   border: none;
   cursor: pointer;
@@ -720,7 +721,7 @@ button:focus-visible {
 
 .legal-link-list li a:hover {
   border-color: var(--hp-border-hover);
-  color: #fff;
+  color: var(--primitive-neutral-000);
   background: var(--hp-green-glow);
   transform: translateX(4px);
 }

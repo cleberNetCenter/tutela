@@ -28,7 +28,7 @@
    ═══════════════════════════════════════════════════════ */
 
 body.legal-page.page-institucional .page-header--legal {
-  background: linear-gradient(160deg, #0f3a2a 0%, #1b6b4d 55%, #2db560 100%);
+  background: linear-gradient(160deg, var(--primitive-green-900) 0%, var(--primitive-green-700) 55%, var(--primitive-green-400) 100%);
   border: none;
   border-radius: 16px;
   margin-top: var(--space-md);
@@ -65,7 +65,7 @@ body.legal-page.page-institucional .page-header--legal::after {
 
 /* H1 invertido */
 body.legal-page.page-institucional .page-header--legal h1 {
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
   position: relative;
   z-index: 1;
 }
@@ -370,7 +370,7 @@ body.legal-page.page-institucional h3 {
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
   line-height: 1.2;
 }
 
@@ -564,7 +564,7 @@ a.finalidade-item:hover {
 
 .page-institucional .cta-final .btn-secondary:hover {
   background: rgba(255,255,255,0.07);
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
   border-color: rgba(255,255,255,0.38);
 }
 

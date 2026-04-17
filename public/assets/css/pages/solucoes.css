@@ -38,7 +38,7 @@ body.solucoes-page {
 
   /* Marca — verde institucional Tutela Digital */
   --sol-brand-deep:      #071a11;
-  --sol-brand-dark:      #0c2418;
+  --sol-brand-dark:      var(--primitive-green-970);   /* #0c2418 */
   --sol-brand-mid:       #174d38;
   --sol-brand-surface:   #1e5535;
   --sol-accent:          #2db560;
@@ -51,15 +51,16 @@ body.solucoes-page {
 
   /* Superfícies */
   --sol-bg:              #f4f7f5;
-  --sol-bg-white:        #ffffff;
+  --sol-bg-white:        var(--primitive-neutral-000);
   --sol-bg-alt:          #eef2ef;
-  --sol-bg-ink:          #0c2418;
+  --sol-bg-ink:          var(--primitive-green-970);   /* #0c2418 */
 
   /* Tipografia */
   --sol-text-head:       #0a1e14;
   --sol-text-body:       #2c4038;
   --sol-text-muted:      #4a6358;
   --sol-text-faint:      #7f9a8c;
+  --sol-text-light:      #e8f0ea;   /* texto claro sobre fundos escuros */
 
   /* Bordas */
   --sol-border:          rgba(10, 34, 24, 0.10);
@@ -410,7 +411,7 @@ body.solucoes-page .sol-hero-eyebrow::after {
 
 /* Título */
 body.solucoes-page .sol-hero h1 {
-  color: #ffffff;
+  color: var(--sol-bg-white);
   max-width: 820px;
   margin-bottom: 1.5rem;
   font-size: clamp(2rem, 4.5vw, 3.4rem);
@@ -951,7 +952,7 @@ body.solucoes-page .sol-tech-label {
 }
 
 body.solucoes-page .sol-tech-aside h3 {
-  color: #fff;
+  color: var(--primitive-neutral-000);
   font-size: 1.05rem;
   margin-bottom: 1rem;
 }
@@ -1132,7 +1133,7 @@ body.solucoes-page .sol-cta-eyebrow::after {
 }
 
 body.solucoes-page .sol-cta h2 {
-  color: #e8f0ea;
+  color: var(--sol-text-light);
   font-size: clamp(1.6rem, 3.5vw, 2.5rem);
   letter-spacing: -0.02em;
   margin-bottom: 0.75rem;
@@ -1205,7 +1206,7 @@ body.solucoes-page .sol-btn-primary {
   justify-content: center;
   gap: 8px;
   background: var(--sol-accent);
-  color: #071a11;
+  color: var(--sol-brand-deep);
   font-size: 0.9375rem;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -1219,7 +1220,7 @@ body.solucoes-page .sol-btn-primary {
 body.solucoes-page .sol-btn-primary:hover {
   opacity: 0.88;
   transform: translateY(-1px);
-  color: #071a11;
+  color: var(--sol-brand-deep);
   text-decoration: none;
 }
 body.solucoes-page .sol-btn-primary svg {
@@ -1283,7 +1284,7 @@ body.solucoes-page .sol-cred {
 body.solucoes-page .sol-cred-val {
   font-size: 1.1rem;
   font-weight: 500;
-  color: #e8f0ea;
+  color: var(--sol-text-light);
   letter-spacing: -0.02em;
   line-height: 1;
 }

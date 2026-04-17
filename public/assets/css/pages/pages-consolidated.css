@@ -108,14 +108,14 @@
 
 .cta-final .btn-primary {
   background: var(--color-cta-primary);
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
   border: 1px solid var(--color-cta-primary);
   box-shadow: none;
 }
 
 .cta-final .btn-primary:hover {
   background: var(--color-cta-primary-hover);
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
   border-color: var(--color-cta-primary-hover);
   box-shadow: none;
 }
@@ -318,7 +318,7 @@ body.legal-page .breadcrumb li[aria-current="page"] {
 /* Nova seção editorial após hero */
 .preservacao-intro {
   padding: 5rem 2rem;
-  background: #ffffff;
+  background: var(--primitive-neutral-000);
 }
 
 .preservacao-intro-inner {
@@ -353,7 +353,7 @@ body.legal-page .breadcrumb li[aria-current="page"] {
 }
 
 .application-item {
-  background: #ffffff;
+  background: var(--primitive-neutral-000);
   padding: 1.25rem;
   border-left: 3px solid var(--color-green-800);
   font-size: 0.95rem;
@@ -486,7 +486,7 @@ body.legal-page .whitepaper-container h2 {
 }
 
 .finalidade-item {
-  background: #ffffff;
+  background: var(--primitive-neutral-000);
   padding: 1.25rem;
   border-left: 3px solid var(--color-green-800);
   font-size: 0.95rem;
@@ -1004,7 +1004,7 @@ body.assets-page--estrutura-juridica {
   --gold: #2db560;
   --gold-lt: #a8d9b8;
   --cta: #1db954;
-  --white: #ffffff;
+  --white: var(--primitive-neutral-000);
   --shadow-card: 0 2px 20px rgba(10, 34, 24, .08), 0 1px 4px rgba(10, 34, 24, .05);
   background: var(--paper);
   color: var(--ink);
@@ -1100,7 +1100,7 @@ body.assets-page--estrutura-juridica .cta-final-inner {
 
 body.assets-page--estrutura-juridica .page-header.page-header--legal h1,
 body.assets-page--estrutura-juridica .page-header.page-header--legal h2 {
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
 }
 
 body.assets-page--estrutura-juridica .page-header.page-header--legal .hero-subtitle {
@@ -1286,7 +1286,7 @@ body.assets-page--estrutura-juridica .cta-final {
 
 body.assets-page--estrutura-juridica .cta-final .btn-primary {
   background: var(--cta);
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
   box-shadow: 0 6px 24px rgba(10, 34, 24, .18);
 }
 

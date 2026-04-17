@@ -1,5 +1,5 @@
 :root {
-  --bg: #0c2418;
+  --bg: var(--primitive-green-970);   /* #0c2418 */
   --bg-deep: #091d13;
   --bg-drop: #0e2c1e;
   --green-bdr: #1e5535;
@@ -43,7 +43,7 @@
 
 .logo:hover,
 .logo:focus-visible {
-  color: #ffffff;
+  color: var(--primitive-neutral-000);
   opacity: 0.96;
   text-decoration: none;
 }

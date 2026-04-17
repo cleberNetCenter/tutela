@@ -1,5 +1,5 @@
 .tdf {
-	--bg: #0c2418;
+	--bg: var(--primitive-green-970);   /* #0c2418 */
 	--bg-deep: #091d13;
 	--green-bdr: #1e5535;
 	--text-1: #e8f0ea;

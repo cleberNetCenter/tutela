@@ -5,7 +5,7 @@ body.page-ativos-digitais.assets-page {
   --assets-index-hero-margin-top: 1.1rem;
   --assets-index-hero-inner-padding: clamp(2.75rem, 4vw, 4.25rem);
   --assets-index-hero-inner-radius: 22px;
-  --assets-index-hero-inner-background: linear-gradient(180deg, #18493f 0%, #143d35 100%);
+  --assets-index-hero-inner-background: linear-gradient(180deg, var(--color-cta-primary) 0%, var(--color-cta-primary-hover) 100%);
   --assets-index-hero-inner-border: 1px solid rgba(255, 255, 255, 0.08);
   --assets-index-hero-inner-shadow: 0 12px 28px rgba(9, 23, 18, 0.12);
   --assets-index-hero-overlay: none;
@@ -38,9 +38,9 @@ body.page-ativos-digitais.assets-page {
   --assets-index-cta-button-padding: 0.88rem 1.35rem;
   --assets-index-cta-button-border: 1px solid rgba(255, 255, 255, 0.14);
   --assets-index-cta-button-background: #f5f7f3;
-  --assets-index-cta-button-color: #18493f;
+  --assets-index-cta-button-color: var(--color-cta-primary);
   --assets-index-cta-button-shadow: none;
-  --assets-index-cta-button-hover-background: #ffffff;
-  --assets-index-cta-button-hover-color: #143d35;
+  --assets-index-cta-button-hover-background: var(--primitive-neutral-000);
+  --assets-index-cta-button-hover-color: var(--color-cta-primary-hover);
   --assets-index-cta-button-hover-shadow: none;
 }
