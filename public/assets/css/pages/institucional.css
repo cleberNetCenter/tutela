@@ -1,0 +1,614 @@
+/*
+ * institucional.css — Tutela Digital®
+ * Página: /legal/institucional.html ("Sobre")
+ * Versão: 6
+ *
+ * Este arquivo contém APENAS os overrides específicos desta página.
+ * A identidade visual compartilhada do pilar Legal está em:
+ *   /assets/css/legal-shared.css
+ *
+ * Ordem de carregamento no <head>:
+ *   <link rel="stylesheet" href="/assets/css/main.css?v=4">
+ *   <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=4">
+ *   <link rel="stylesheet" href="/assets/css/dropdown-menu.css?v=...">
+ *   <link rel="stylesheet" href="/assets/css/legal-shared.css?v=1">
+ *   <link rel="stylesheet" href="/assets/css/pages/institucional.css?v=6">
+ */
+
+/*
+ * A página institucional não tem section-muted no HTML —
+ * usa section-dark (seção de arquitetura) e seções claras.
+ * Nenhum override estrutural necessário além dos abaixo.
+ */
+
+
+
+/* ═══════════════════════════════════════════════════════
+   1. HERO — mais presença, gradiente visível
+   ═══════════════════════════════════════════════════════ */
+
+body.legal-page.page-institucional .page-header--legal {
+  background: linear-gradient(160deg, var(--primitive-green-900) 0%, var(--primitive-green-700) 55%, var(--primitive-green-400) 100%);
+  border: none;
+  border-radius: 16px;
+  margin-top: var(--space-md);
+  margin-bottom: 0;
+  padding: 3.5rem 2rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grade diagonal de fundo — mesma do sol-hero */
+body.legal-page.page-institucional .page-header--legal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(45deg,  rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+}
+
+/* Vinheta radial decorativa no canto */
+body.legal-page.page-institucional .page-header--legal::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  right: -60px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,181,96,0.18) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+/* H1 invertido */
+body.legal-page.page-institucional .page-header--legal h1 {
+  color: var(--primitive-neutral-000);
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtítulo invertido */
+body.legal-page.page-institucional .page-header-subtitle {
+  color: rgba(255,255,255,0.72);
+  position: relative;
+  z-index: 1;
+}
+
+/* Supertítulo */
+.section-overtitle {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primitive-green-200, #a8d9b8);
+  margin-bottom: var(--space-xs);
+  position: relative;
+  z-index: 1;
+}
+
+/* Pills sobre fundo escuro */
+.page-header-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: var(--space-sm) auto 0;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header-pills .pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.80);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 2px;
+  padding: 0.28rem 0.85rem;
+  background: rgba(255,255,255,0.07);
+}
+
+/* Divisor claro sobre escuro */
+.legal-divider {
+  width: 40px;
+  height: 2px;
+  background: rgba(255,255,255,0.35);
+  margin: var(--space-sm) auto 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove o SVG antigo */
+.legal-graphic { display: none; }
+
+/* Linha de corte no final do hero — mesmo padrão sol-hero-rule */
+.hero-rule {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(45,181,96,0.6) 30%,
+    rgba(168,217,184,0.8) 50%,
+    rgba(45,181,96,0.6) 70%,
+    transparent 100%
+  );
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   2. WRAPPER GERAL — remove padding-top excessivo
+   ═══════════════════════════════════════════════════════ */
+
+.whitepaper-container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   3. TEXT-BLOCK — seções claras com h2 alinhado à esquerda
+   ═══════════════════════════════════════════════════════ */
+
+/* [OVERRIDE] consolidated centraliza h2 em legal-page */
+body.legal-page.page-institucional h2,
+body.legal-page.page-institucional h3 {
+  text-align: left;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.text-block {
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.text-block:last-of-type {
+  border-bottom: none;
+}
+
+/* Linha lateral verde nos títulos */
+.text-block-inner h2 {
+  padding-left: var(--space-sm);
+  border-left: 3px solid var(--primitive-green-700);
+  line-height: var(--line-height-tight);
+}
+
+/* wp-highlight refinado */
+.page-institucional .wp-highlight {
+  background: linear-gradient(135deg, #f7fbf9, #edf6f2);
+  border-left: 4px solid var(--primitive-green-700);
+  border-radius: 0 4px 4px 0;
+  padding: 1rem 1.25rem;
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   4. IDENTIFICAÇÃO JURÍDICA — grid de dados
+   ═══════════════════════════════════════════════════════ */
+
+.legal-id-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: linear-gradient(135deg, #f7fbf9, #edf6f2);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 4px;
+}
+
+.legal-id-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.legal-id-item .label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.legal-id-item .value {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text-strong);
+  line-height: 1.45;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   5. SEÇÃO ESCURA — ARQUITETURA DE PRESERVAÇÃO
+      Aplica fundo escuro na seção de arquitetura técnica
+      via classe .section-dark adicionada no HTML
+   ═══════════════════════════════════════════════════════ */
+
+.section-dark {
+  background: var(--primitive-green-950, #0b241b);
+  margin: 0 -2rem; /* sangra além do whitepaper-container */
+  padding: var(--space-xl) 2rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.section-dark h2 {
+  color: var(--primitive-green-200, #a8d9b8) !important;
+  border-left-color: var(--primitive-green-500, #1db954) !important;
+}
+
+.section-dark p {
+  color: rgba(255,255,255,0.65);
+}
+
+.section-dark .section-overtitle {
+  color: var(--primitive-green-500, #1db954);
+}
+
+/* Tech badges sobre fundo escuro */
+.section-dark .tech-badges {
+  margin-top: var(--space-md);
+}
+
+.section-dark .tech-badge {
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.12);
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   6. TECH BADGES
+   ═══════════════════════════════════════════════════════ */
+
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: var(--space-md);
+}
+
+.tech-badge {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 2px;
+  padding: 0.22rem 0.65rem;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   7. CAMADAS DE CONFIANÇA — 4 cards sobre escuro
+   ═══════════════════════════════════════════════════════ */
+
+.features {
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.features.section-dark {
+  border-bottom: none;
+}
+
+.features-inner h2 {
+  padding-left: var(--space-sm);
+  border-left: 3px solid var(--primitive-green-700);
+}
+
+.features-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+  line-height: var(--line-height-base);
+}
+
+.section-dark .features-subtitle {
+  color: rgba(255,255,255,0.50);
+}
+
+.camadas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+/* Cards sobre fundo escuro */
+.section-dark .camada-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-top: 3px solid var(--primitive-green-500, #1db954);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: var(--space-md) var(--space-sm);
+  transition: box-shadow 0.22s ease, transform 0.22s ease, background 0.22s ease;
+}
+
+.section-dark .camada-card:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.section-dark .camada-label {
+  font-family: var(--font-body);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--primitive-green-500, #1db954);
+}
+
+.section-dark .camada-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primitive-neutral-000);
+  line-height: 1.2;
+}
+
+.section-dark .camada-desc {
+  font-family: var(--font-body);
+  font-size: 0.83rem;
+  line-height: var(--line-height-base);
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+}
+
+/* Cards sobre fundo claro */
+.camada-card {
+  background: linear-gradient(135deg, #f7fbf9, #edf6f2);
+  border: 1px solid var(--color-border-soft);
+  border-top: 3px solid var(--primitive-green-700);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: var(--space-md) var(--space-sm);
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.camada-card:hover {
+  box-shadow: 0 8px 18px rgba(16,24,40,0.07);
+  transform: translateY(-2px);
+}
+
+.camada-label {
+  font-family: var(--font-body);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--primitive-green-700);
+}
+
+.camada-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text-strong);
+  line-height: 1.2;
+}
+
+.camada-desc {
+  font-family: var(--font-body);
+  font-size: 0.83rem;
+  line-height: var(--line-height-base);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   8. FINALIDADE — grid com links
+   ═══════════════════════════════════════════════════════ */
+
+/* [OVERRIDE] consolidated usa border-left; mantemos e adicionamos hover */
+a.finalidade-item {
+  text-decoration: none;
+  display: flex;
+  align-items: flex-start;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  cursor: pointer;
+}
+
+a.finalidade-item:hover {
+  border-left-color: var(--primitive-green-700);
+  color: var(--primitive-green-700);
+  background: linear-gradient(135deg, #f7fbf9, #edf6f2);
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   9. RESUMO TÉCNICO — fundo alternado
+      pages-consolidated define .wp-summary com
+      background: var(--color-surface-muted) — mantemos.
+   ═══════════════════════════════════════════════════════ */
+
+.wp-summary-inner p {
+  font-size: 0.95rem;
+  line-height: var(--line-height-relaxed);
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   10. CTA FINAL ESCURO
+       [OVERRIDE] consolidated usa gradiente claro.
+       Aqui usamos fundo escuro igual ao sol-cta.
+   ═══════════════════════════════════════════════════════ */
+
+.page-institucional .cta-final {
+  background: var(--primitive-green-950, #0b241b);
+  border: none;
+  border-radius: 0;
+  padding: 4.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Detalhe geométrico de fundo */
+.page-institucional .cta-final::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: 1px solid rgba(45,181,96,0.08);
+  pointer-events: none;
+}
+
+.page-institucional .cta-final::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  border: 1px solid rgba(45,181,96,0.05);
+  pointer-events: none;
+}
+
+.page-institucional .cta-final h2 {
+  color: var(--primitive-green-100, #deeade);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-institucional .cta-final p {
+  color: rgba(255,255,255,0.50);
+  margin-bottom: 0;
+}
+
+/* Eyebrow decorativo no CTA */
+.cta-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.63rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primitive-green-500, #1db954);
+  margin-bottom: var(--space-sm);
+}
+
+.cta-eyebrow::before,
+.cta-eyebrow::after {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--primitive-green-500, #1db954);
+  opacity: 0.45;
+}
+
+/* Dois botões lado a lado */
+.cta-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-md);
+}
+
+/* Botão primário sobre escuro */
+.page-institucional .cta-final .btn-primary {
+  background: var(--primitive-green-500, #1db954);
+  color: #071a11;
+  border: 1px solid var(--primitive-green-500, #1db954);
+  font-weight: 700;
+}
+
+.page-institucional .cta-final .btn-primary:hover {
+  background: #17a348;
+  border-color: #17a348;
+  color: #071a11;
+}
+
+/* Botão secundário como outline claro */
+.page-institucional .cta-final .btn-secondary {
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.22);
+}
+
+.page-institucional .cta-final .btn-secondary:hover {
+  background: rgba(255,255,255,0.07);
+  color: var(--primitive-neutral-000);
+  border-color: rgba(255,255,255,0.38);
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   11. RESPONSIVIDADE
+   ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 600px) {
+  .section-dark {
+    margin: 0 -1.25rem;
+    padding: var(--space-lg) 1.25rem;
+  }
+
+  .camadas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .legal-id-block {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header-pills {
+    gap: 0.4rem;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-actions .btn {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  .page-institucional .cta-final {
+    padding: 3rem 1.25rem;
+  }
+}
+
+/* Hero sem SVG legal-graphic — usa pills em vez do gráfico */
+body.page-institucional .page-header--legal .legal-graphic {
+  display: none;
+}
+

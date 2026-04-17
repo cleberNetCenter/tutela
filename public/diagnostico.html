@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="diagnostic.metaTitle">Diagnóstico de Ativos Digitais: avalie seu nível de risco | Tutela Digital®
+  </title>
+  <meta name="description" data-i18n="diagnostic.metaDescription"
+    content="Descubra seu nível de risco em ativos digitais. Avalie governança, acesso, rastreabilidade e identifique vulnerabilidades jurídicas e operacionais." />
+
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tuteladigital.com.br/diagnostico/" />
+  <link href="/assets/illustrations/favicon.svg" rel="icon" type="image/svg+xml" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tuteladigital.com.br/diagnostico/" />
+  <meta property="og:title" content="Diagnóstico de Ativos Digitais: avalie seu nível de risco | Tutela Digital®" />
+  <meta property="og:description" content="Descubra seu nível de risco em ativos digitais. Avalie governança, acesso, rastreabilidade e identifique vulnerabilidades jurídicas e operacionais." />
+  <meta property="og:site_name" content="Tutela Digital®" />
+  <meta property="og:image" content="https://tuteladigital.com.br/assets/images/og-image.jpg" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://tuteladigital.com.br/diagnostico/" />
+  <meta property="twitter:title" content="Diagnóstico de Ativos Digitais: avalie seu nível de risco | Tutela Digital®" />
+  <meta property="twitter:description" content="Descubra seu nível de risco em ativos digitais. Avalie governança, acesso, rastreabilidade e identifique vulnerabilidades jurídicas e operacionais." />
+  <meta property="twitter:image" content="https://tuteladigital.com.br/assets/images/og-image.jpg" />
+
+  <link rel="alternate" hreflang="pt-br" href="https://tuteladigital.com.br/diagnostico/" />
+  <link rel="alternate" hreflang="x-default" href="https://tuteladigital.com.br/diagnostico/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXVB267PYJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KXVB267PYJ', {
+      linker: { domains: ['tuteladigital.com.br', 'app.tuteladigital.com.br'] }
+    });
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=7">
+  <link rel="stylesheet" href="/assets/css/styles-header-final.css?v=7">
+  <link rel="stylesheet" href="/assets/css/diagnostico.css?v=202604041755">
+
+</head>
+
+<body class="exec-compact diagnostico-page">
+  <div class="app">
+
+    <!--#include virtual="/partials/header.html" -->
+
+    <main class="main">
+
+      <!-- HERO -->
+      <section class="diag-hero">
+        <div class="diag-hero-inner">
+
+          <p class="diag-eyebrow">
+            <span class="diag-eyebrow-dot"></span>
+            <span data-i18n="diagnostic.heroEyebrow">Diagnóstico gratuito</span>
+          </p>
+
+          <h1 data-i18n="diagnostic.heroTitle" data-i18n-html="true">Qual é o nível de risco<br>dos seus ativos
+            digitais?</h1>
+
+          <p class="diag-hero-sub" data-i18n="diagnostic.heroSub">
+            Avalie governança, acesso e rastreabilidade em menos de 2 minutos
+            e identifique vulnerabilidades antes que se tornem irreversíveis.
+          </p>
+
+          <div class="diag-hero-stats">
+            <div class="diag-hero-stat">
+              <span class="diag-hero-stat-val">3</span>
+              <span class="diag-hero-stat-label" data-i18n="diagnostic.statDimensions">dimensões avaliadas</span>
+            </div>
+            <div class="diag-hero-sep"></div>
+            <div class="diag-hero-stat">
+              <span class="diag-hero-stat-val">~2</span>
+              <span class="diag-hero-stat-label" data-i18n="diagnostic.statMinutes">minutos</span>
+            </div>
+            <div class="diag-hero-sep"></div>
+            <div class="diag-hero-stat">
+              <span class="diag-hero-stat-val">100%</span>
+              <span class="diag-hero-stat-label" data-i18n="diagnostic.statConfidential">confidencial</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FORM SECTION -->
+      <section class="diag-form-section">
+        <div class="diag-form-wrap">
+
+          <!-- PROGRESSO -->
+          <div class="diag-progress" id="progressWrap">
+            <div class="diag-progress-bar" id="progressBar"></div>
+            <span class="diag-progress-label" id="progressLabel" data-i18n="diagnostic.progressDefault">Pergunta 1 de
+              3</span>
+          </div>
+
+          <!-- CARDS DE PERGUNTAS -->
+          <div class="diag-steps" id="diagSteps">
+
+            <!-- STEP 1 -->
+            <div class="diag-step active" data-step="1">
+              <div class="diag-step-num">01</div>
+              <p class="diag-step-q" data-i18n="diagnostic.q1Text">Você possui inventário estruturado dos seus ativos
+                digitais?</p>
+              <p class="diag-step-hint" data-i18n="diagnostic.q1Hint">Considere qualquer forma de mapeamento — planilha,
+                documento ou sistema.</p>
+              <div class="diag-step-options">
+                <label class="diag-opt" data-name="q1" data-value="0">
+                  <input type="radio" name="q1" value="0">
+                  <span class="diag-opt-check">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diag-opt-label" data-i18n="diagnostic.q1Opt0">Sim, tenho inventário completo</span>
+                </label>
+                <label class="diag-opt" data-name="q1" data-value="1">
+                  <input type="radio" name="q1" value="1">
+                  <span class="diag-opt-check">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diag-opt-label" data-i18n="diagnostic.q1Opt1">Parcial — alguns ativos mapeados</span>
+                </label>
+                <label class="diag-opt" data-name="q1" data-value="2">
+                  <input type="radio" name="q1" value="2">
+                  <span class="diag-opt-check">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diag-opt-label" data-i18n="diagnostic.q1Opt2">Não, nenhum mapeamento</span>
+                </label>
+              </div>
+              <button class="diag-next-btn" onclick="nextStep(1)" disabled
+                data-i18n="diagnostic.nextBtn">Próxima</button>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="diag-step" data-step="2">
+              <div class="diag-step-num">02</div>
+              <p class="diag-step-q" data-i18n="diagnostic.q2Text">Existe controle de acesso e recuperação desses
+                ativos?</p>
+              <p class="diag-step-hint" data-i18n="diagnostic.q2Hint">Credenciais documentadas, protocolos de
+                contingência ou acesso compartilhado de forma segura.</p>
+              <div class="diag-step-options">
+                <label class="diag-opt" data-name="q2" data-value="0">
+                  <input type="radio" name="q2" value="0">
+                  <span class="diag-opt-check">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diag-opt-label" data-i18n="diagnostic.q2Opt0">Sim, acesso documentado e controlado</span>
+                </label>
+                <label class="diag-opt" data-name="q2" data-value="1">
+                  <input type="radio" name="q2" value="1">
+                  <span class="diag-opt-check">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diag-opt-label" data-i18n="diagnostic.q2Opt1">Parcial — depende de uma única
+                    pessoa</span>
+                </label>
+                <label class="diag-opt" data-name="q2" data-value="2">
+                  <input type="radio" name="q2" value="2">
+                  <span class="diag-opt-check">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diag-opt-label" data-i18n="diagnostic.q2Opt2">Não, sem controle de acesso</span>
+                </label>
+              </div>
+              <div class="diag-step-nav">
+                <button class="diag-back-btn" onclick="prevStep(2)" data-i18n="diagnostic.backBtn">Voltar</button>
+                <button class="diag-next-btn" onclick="nextStep(2)" disabled
+                  data-i18n="diagnostic.nextBtn">Próxima</button>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="diag-step" data-step="3">
+              <div class="diag-step-num">03</div>
+              <p class="diag-step-q" data-i18n="diagnostic.q3Text">Seus ativos possuem rastreabilidade ou histórico
+                verificável?</p>
+              <p class="diag-step-hint" data-i18n="diagnostic.q3Hint">Trilha auditável, registros de eventos, carimbo do
+                tempo ou integridade criptográfica.</p>
+              <div class="diag-step-options">
+                <label class="diag-opt" data-name="q3" data-value="0">
+                  <input type="radio" name="q3" value="0">
+                  <span class="diag-opt-check">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diag-opt-label" data-i18n="diagnostic.q3Opt0">Sim, histórico auditável e
+                    verificável</span>
+                </label>
+                <label class="diag-opt" data-name="q3" data-value="1">
+                  <input type="radio" name="q3" value="1">
+                  <span class="diag-opt-check">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diag-opt-label" data-i18n="diagnostic.q3Opt1">Parcial — registros incompletos</span>
+                </label>
+                <label class="diag-opt" data-name="q3" data-value="2">
+                  <input type="radio" name="q3" value="2">
+                  <span class="diag-opt-check">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diag-opt-label" data-i18n="diagnostic.q3Opt2">Não, sem rastreabilidade</span>
+                </label>
+              </div>
+              <div class="diag-step-nav">
+                <button class="diag-back-btn" onclick="prevStep(3)" data-i18n="diagnostic.backBtn">Voltar</button>
+                <button class="diag-next-btn" onclick="nextStep(3)" disabled
+                  data-i18n="diagnostic.continueBtn">Continuar</button>
+              </div>
+            </div>
+
+            <!-- STEP 4 — Dados + envio -->
+            <div class="diag-step" data-step="4">
+              <div class="diag-step-num">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 2L3 5.5V10c0 4.08 3.312 7.892 7 9 3.688-1.108 7-4.92 7-9V5.5L10 2Z" stroke="#3ecf72"
+                    stroke-width="1.4" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <p class="diag-step-q" data-i18n="diagnostic.step4Title">Quase lá — informe seus dados para receber o
+                resultado</p>
+              <p class="diag-step-hint" data-i18n="diagnostic.step4Hint">Seus dados são usados exclusivamente para envio
+                do diagnóstico. Nenhum dado é compartilhado com terceiros.</p>
+
+              <div class="diag-fields">
+                <div class="diag-field">
+                  <label for="nome" data-i18n="diagnostic.fieldName">Nome completo</label>
+                  <input type="text" id="nome" placeholder="Ex: João Silva" autocomplete="name"
+                    data-i18n-placeholder="diagnostic.fieldNamePlaceholder">
+                </div>
+                <div class="diag-field">
+                  <label for="email" data-i18n="diagnostic.fieldEmail">E-mail</label>
+                  <input type="email" id="email" placeholder="Ex: joao@empresa.com.br" autocomplete="email"
+                    data-i18n-placeholder="diagnostic.fieldEmailPlaceholder">
+                </div>
+                <div class="diag-field diag-field--consent">
+                  <div class="diag-consent-control">
+                    <label class="diag-checkbox">
+                      <input type="checkbox" id="consentimento">
+                      <span class="diag-checkbox-box">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                          <path d="M1.5 5l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                      </span>
+                      <span data-i18n="diagnostic.consentText">Li e aceito a Política de Privacidade</span>
+                    </label>
+                    <button type="button" class="diag-privacy-trigger" id="openPrivacyModal"
+                      data-i18n="diagnostic.privacyLink">Ler Política de Privacidade</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="captcha-container">
+                <div class="g-recaptcha" data-sitekey="6Lcp7pcsAAAAAJFgWGRYjp6t_2QlcFbgJUlZrUNx"
+                  data-callback="verificarEstadoBotao" data-expired-callback="verificarEstadoBotao">
+                </div>
+              </div>
+
+              <div class="diag-step-nav">
+                <button class="diag-back-btn" onclick="prevStep(4)" data-i18n="diagnostic.backBtn">Voltar</button>
+                <button id="btnEnviar" type="button" disabled onclick="enviar()" class="diag-submit-btn"
+                  data-i18n="diagnostic.submitBtn">Avaliar meu nível de risco</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RESULTADO -->
+          <div id="resultado" class="diag-resultado"></div>
+
+        </div>
+      </section>
+
+      <!-- PÓS-DIAGNÓSTICO -->
+      <section class="diag-post">
+        <div class="diag-post-inner">
+          <div class="diag-post-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M11 2L3 6v7c0 4.5 3.5 8.7 8 10 4.5-1.3 8-5.5 8-10V6L11 2Z" stroke="#3ecf72" stroke-width="1.5"
+                stroke-linejoin="round" />
+              <path d="M7.5 11l2.5 2.5 5-5" stroke="#3ecf72" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div>
+            <h2 data-i18n="diagnostic.postTitle">Após o diagnóstico</h2>
+            <p data-i18n="diagnostic.postDesc">Com base no resultado, você identifica os pontos críticos e entende quais
+              medidas garantem controle, acesso e validade dos seus ativos.</p>
+            <a href="/ativos-digitais/estrutura-juridica" class="diag-post-link"
+              data-i18n="diagnostic.postLink">Entender como estruturar seus ativos digitais</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="diag-privacy-modal" id="privacyModal" hidden aria-hidden="true">
+        <div class="diag-privacy-backdrop" data-close-privacy></div>
+        <div class="diag-privacy-dialog" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+          <div class="diag-privacy-header">
+            <div>
+              <h2 id="privacyModalTitle" data-i18n="diagnostic.privacyTitle">Política de Privacidade</h2>
+            </div>
+            <button type="button" class="diag-privacy-close" id="closePrivacyModal"
+              aria-label="Fechar política de privacidade"
+              data-i18n-aria="diagnostic.privacyCloseAria">&times;</button>
+          </div>
+          <div class="diag-privacy-body">
+            <p class="diag-privacy-loading" id="privacyModalStatus" data-i18n="diagnostic.privacyLoading">Carregando política de privacidade...</p>
+            <div class="diag-privacy-content" id="privacyModalContent"></div>
+          </div>
+          <div class="diag-privacy-footer">
+            <a href="/legal/politica-de-privacidade/" class="diag-privacy-fullpage"
+              data-i18n="diagnostic.privacyFullPage">Abrir versão completa da política</a>
+            <button type="button" class="diag-privacy-done" id="donePrivacyModal"
+              data-i18n="diagnostic.privacyDone">Voltar ao diagnóstico</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!--#include virtual="/partials/footer.html" -->
+    <!--#include virtual="/partials/scripts.html" -->
+    <!-- Inicialização manual do I18N removida: agora automática via scripts.html -->
+
+    <script src="/assets/js/diagnostico.js"></script>
+  </div>
+</body>
+
+</html>

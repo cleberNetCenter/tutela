@@ -9,18 +9,14 @@
   margin: 0 auto;
 }
 
-.text-block h2 {
+.text-block h2,
+.features h2 {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 500;
   color: var(--color-text-strong);
-  margin-bottom: var(--space-lg);
-  letter-spacing: -0.01em;
-}
-
-.text-block h2,
-.features h2 {
   margin-bottom: var(--space-md);
+  letter-spacing: -0.01em;
 }
 
 .text-block p {

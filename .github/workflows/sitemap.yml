@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - homolog
+      - feature/legal-structure
   workflow_dispatch:
 
 permissions:
@@ -15,6 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Generate sitemap
         run: |
@@ -27,33 +31,43 @@ jobs:
 
           for file in $FILES; do
 
+            # ❌ Ignora partials
             if [[ "$file" == public/partials/* ]]; then
               continue
             fi
 
             clean=${file#public/}
-            url=${clean%index.html}
-            url=${url%.html}
 
+            # 🔥 TRATAMENTO CORRETO DE INDEX
+            if [[ "$clean" == "index.html" ]]; then
+              url=""
+            elif [[ "$clean" == */index.html ]]; then
+              url=${clean%index.html}
+            else
+              url=${clean%.html}
+            fi
+
+            # 🔥 GARANTE SLASH FINAL
+            if [[ "$url" == "" ]]; then
+              final_url="https://tuteladigital.com.br/"
+            else
+              final_url="https://tuteladigital.com.br/${url%/}/"
+            fi
+
+            # 🎯 PRIORIDADE INTELIGENTE
             priority="0.8"
             changefreq="monthly"
 
             if [[ "$url" == "" ]]; then
               priority="1.0"
               changefreq="weekly"
-              final_url="https://tuteladigital.com.br/"
-            else
-              final_url="https://tuteladigital.com.br/$url"
-            fi
-
-            if [[ "$url" == insights/ ]]; then
+            elif [[ "$url" == insights/ ]]; then
               priority="0.8"
               changefreq="weekly"
             elif [[ "$url" == insights/* ]]; then
               priority="0.7"
-              changefreq="monthly"
             elif [[ "$url" == legal/* ]]; then
-              priority="0.6"
+              priority="0.5"
               changefreq="yearly"
             fi
 
@@ -74,6 +88,18 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+
           git add public/sitemap.xml
-          git commit -m "Auto update sitemap" || echo "No changes"
-          git push
+          git commit -m "chore: auto update sitemap" || echo "No changes"
+
+          # 🔥 PUSH NA BRANCH ATUAL (CORRETO)
+          git push origin HEAD
+
+      # 🔄 SINCRONIZAÇÃO COM HOMOLOG (SEGURA)
+      - name: Sync main to homolog
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git fetch origin
+          git checkout homolog
+          git merge origin/main --no-edit
+          git push origin homolog

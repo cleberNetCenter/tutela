@@ -7,41 +7,30 @@
 	padding: var(--space-md) var(--space-xl);
 	font-family: var(--font-body);
 	font-size: .9375rem;
-	font-weight: 500;
+	font-weight: 600;
 	text-decoration: none;
 	border: none;
 	cursor: pointer;
-	transition: all .25s ease;
-	letter-spacing: .02em;
+	transition: background-color .22s ease, color .22s ease, border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+	letter-spacing: .01em;
 }
 
 .btn-primary {
 	background: var(--color-green-900);
 	color: var(--color-text-inverse);
-	border-radius: 8px;
-	box-shadow:
-		0 4px 6px rgba(0, 0, 0, .1),
-		0 2px 4px rgba(0, 0, 0, .06),
-		inset 0 -2px 0 rgba(0, 0, 0, .1);
-	position: relative;
-	top: 0;
+	border-radius: 999px;
+	border: 1px solid transparent;
+	box-shadow: none;
 }
 
 .btn-primary:hover {
 	background: var(--color-green-950);
-	transform: translateY(-1px);
-	box-shadow:
-		0 6px 10px rgba(0, 0, 0, .15),
-		0 3px 6px rgba(0, 0, 0, .1),
-		inset 0 -2px 0 rgba(0, 0, 0, .15);
-	top: -2px;
+	transform: none;
+	box-shadow: none;
 }
 
 .btn-primary:active {
-	box-shadow:
-		0 2px 4px rgba(0, 0, 0, .1),
-		inset 0 2px 4px rgba(0, 0, 0, .15);
-	top: 2px;
+	box-shadow: none;
 }
 
 .btn:focus-visible {

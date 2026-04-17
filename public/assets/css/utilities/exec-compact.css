@@ -5,12 +5,6 @@
    NÃO altera variáveis globais nem estrutura de grid
    ========================================================= */
 
-/* ===================== MAIN CONTENT ====================== */
-/* Garantir espaço adequado para header fixo */
-body.exec-compact .main {
-  padding-top: 70px;
-}
-
 /* ===================== SEÇÕES ============================ */
 /* Primeira seção não precisa de padding-top (já tem no .main) */
 
@@ -31,15 +25,15 @@ body.exec-compact .verticals {
 
 /* ===================== TÍTULOS =========================== */
 body.exec-compact h1 {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-sm);
 }
 
 body.exec-compact h2 {
-  margin-bottom: 1.25rem;
+  margin-bottom: calc(var(--space-xs) * 1.5);
 }
 
 body.exec-compact h3 {
-  margin-bottom: .5rem;
+  margin-bottom: var(--space-xs);
 }
 
 /* ===================== HERO SUBTITLE ===================== */

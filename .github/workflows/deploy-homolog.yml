@@ -1,0 +1,20 @@
+name: Deploy Homolog
+
+on:
+  push:
+    branches:
+      - homolog
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, homolog]
+
+    steps:
+      - name: Deploy local (runner)
+        run: |
+          cd /opt/tutela
+          git fetch origin
+          git reset --hard origin/homolog
+
+          cd /opt/tutela-v2
+          docker compose up -d --build

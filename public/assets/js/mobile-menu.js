@@ -1,168 +1,118 @@
-// =======================================================
-// NAVIGATION CONTROLLER - Tutela Digital
-// MPA Pura - Estável - Determinística - Produção
-// =======================================================
-
-(function initNavigationController() {
+(function () {
   if (window.__tutelaNavigationControllerInitialized) {
     return;
   }
 
   window.__tutelaNavigationControllerInitialized = true;
 
-  const MOBILE_MAX_WIDTH = 1199;
+  const dropdowns = document.querySelectorAll(".nav-dropdown");
+  const isMobile = () => window.innerWidth <= 1024;
+  const normalizePath = (value) => {
+    if (!value || value === "/") return "/";
+    return value.endsWith("/") ? value.slice(0, -1) : value;
+  };
 
-  function isMobileViewport() {
-    return window.innerWidth <= MOBILE_MAX_WIDTH;
+  function openDrop(btn, menu) {
+    if (!btn || !menu) return;
+    btn.setAttribute("aria-expanded", "true");
+    menu.classList.add("open");
   }
 
-  function getHeaderElements() {
-    return {
-      header: document.getElementById('header'),
-      nav: document.getElementById('nav'),
-      menuBtn: document.querySelector('.mobile-menu-btn')
-    };
+  function closeDrop(btn, menu) {
+    if (!btn || !menu) return;
+    btn.setAttribute("aria-expanded", "false");
+    menu.classList.remove("open");
+    if (!isMobile() && document.activeElement === btn) {
+      btn.blur();
+    }
   }
 
-  function closeAllDropdowns(exceptDropdown) {
-    document.querySelectorAll('.nav-dropdown.active').forEach((dropdown) => {
-      if (dropdown !== exceptDropdown) {
-        dropdown.classList.remove('active');
-      }
+  function closeAll() {
+    dropdowns.forEach((dropdown) => {
+      closeDrop(
+        dropdown.querySelector(".nav-toggle"),
+        dropdown.querySelector(".dropdown-menu")
+      );
     });
   }
 
-  function openMobileMenu() {
-    const { nav, menuBtn } = getHeaderElements();
-    if (!nav || !menuBtn) return;
+  dropdowns.forEach((drop) => {
+    const btn = drop.querySelector(".nav-toggle");
+    const menu = drop.querySelector(".dropdown-menu");
 
-    nav.classList.add('active');
-    menuBtn.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+    drop.addEventListener("mouseenter", () => {
+      if (!isMobile()) {
+        closeAll();
+        openDrop(btn, menu);
+      }
+    });
 
-  function closeMobileMenu() {
-    const { nav, menuBtn } = getHeaderElements();
-    if (!nav || !menuBtn) return;
+    drop.addEventListener("mouseleave", () => {
+      if (!isMobile()) {
+        closeDrop(btn, menu);
+      }
+    });
 
-    nav.classList.remove('active');
-    menuBtn.classList.remove('active');
-    document.body.style.overflow = '';
-    closeAllDropdowns();
-  }
-
-  function toggleMobileMenu() {
-    const { nav } = getHeaderElements();
-    if (!nav) return;
-
-    if (nav.classList.contains('active')) {
-      closeMobileMenu();
-    } else {
-      openMobileMenu();
-    }
-  }
-
-  function handleDocumentClick(event) {
-    const target = event.target;
-    const { header, nav, menuBtn } = getHeaderElements();
-
-    if (!header || !nav || !menuBtn) return;
-
-    // ===================================================
-    // MOBILE MENU BUTTON
-    // ===================================================
-    if (menuBtn === target || menuBtn.contains(target)) {
-      event.preventDefault();
+    btn.addEventListener("click", (event) => {
       event.stopPropagation();
-      toggleMobileMenu();
-      return;
-    }
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      closeAll();
+      if (!isOpen) {
+        openDrop(btn, menu);
+      }
+    });
+  });
 
-    // ===================================================
-    // DROPDOWN TOGGLE
-    // ===================================================
-    const dropdownToggle = target.closest('.nav-dropdown > .nav-toggle');
-    if (dropdownToggle) {
-      event.preventDefault();
+  document.addEventListener("click", closeAll);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeAll();
+    }
+  });
+
+  const mobileBtn = document.querySelector(".mobile-menu-btn");
+  const nav = document.getElementById("nav");
+
+  if (mobileBtn && nav) {
+    mobileBtn.addEventListener("click", (event) => {
       event.stopPropagation();
-
-      const dropdown = dropdownToggle.closest('.nav-dropdown');
-      if (!dropdown) return;
-
-      const willOpen = !dropdown.classList.contains('active');
-
-      closeAllDropdowns(dropdown);
-
-      if (willOpen) {
-        dropdown.classList.add('active');
-      }
-
-      if (isMobileViewport()) {
-        dropdown.scrollIntoView({ block: 'nearest' });
-      }
-
-      return;
-    }
-    // ===================================================
-    // DROPDOWN ITEM CLICK
-    // ===================================================
-    const dropdownItemLink = target.closest('.dropdown-menu a');
-    if (dropdownItemLink) {
-      closeAllDropdowns();
-
-      if (isMobileViewport()) {
-        closeMobileMenu();
-      }
-
-      return; // Navegação natural ocorre
-    }
-
-    // ===================================================
-    // NORMAL NAV LINK (não dropdown)
-    // ===================================================
-    const navLink = target.closest('.nav a');
-    if (navLink && !navLink.closest('.nav-dropdown')) {
-      if (isMobileViewport()) {
-        closeMobileMenu();
-      }
-      return; // Navegação natural
-    }
-
-    // ===================================================
-    // CLICK FORA DO HEADER
-    // ===================================================
-    if (!header.contains(target)) {
-      closeAllDropdowns();
-
-      if (isMobileViewport()) {
-        closeMobileMenu();
-      }
-    }
+      const isOpen = mobileBtn.getAttribute("aria-expanded") === "true";
+      mobileBtn.setAttribute("aria-expanded", String(!isOpen));
+      nav.classList.toggle("open", !isOpen);
+    });
   }
 
-  function handleResize() {
-    if (window.innerWidth > MOBILE_MAX_WIDTH) {
-      document.body.style.overflow = '';
-
-      const { nav, menuBtn } = getHeaderElements();
-
-      if (nav) nav.classList.remove('active');
-      if (menuBtn) menuBtn.classList.remove('active');
-
-      closeAllDropdowns();
+  const path = normalizePath(window.location.pathname);
+  document.querySelectorAll(".nav-link[href]").forEach((link) => {
+    if (normalizePath(link.getAttribute("href")) === path) {
+      link.classList.add("active");
     }
+  });
+
+  document.querySelectorAll(".lang-flag").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".lang-flag").forEach((flag) => {
+        flag.classList.remove("active");
+      });
+      btn.classList.add("active");
+
+      if (window.I18N && typeof window.I18N.switchLanguage === "function") {
+        window.I18N.switchLanguage(btn.dataset.lang);
+      }
+    });
+  });
+
+  const header = document.getElementById("header");
+  if (header) {
+    window.addEventListener("scroll", () => {
+      header.style.borderBottomColor = window.scrollY > 10 ? "#2a6642" : "#1e5535";
+    }, { passive: true });
   }
 
-  function init() {
-    document.addEventListener('click', handleDocumentClick);
-    window.addEventListener('resize', handleResize);
-    window.toggleMobileMenu = toggleMobileMenu;
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  } else {
-    init();
-  }
-
-})();
+  window.addEventListener("resize", () => {
+    if (!isMobile() && nav && mobileBtn) {
+      nav.classList.remove("open");
+      mobileBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+}());
