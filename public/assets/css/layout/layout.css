@@ -2,23 +2,23 @@
 .app {
 	min-height: 100vh;
 	display: flex;
-	flex-direction: column
+	flex-direction: column;
 }
 
 .main {
 	flex: 1;
-	padding-top: 70px
+	padding-top: 70px;
 }
 
 /* ===================== GRIDS ============================= */
 .features-grid {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: var(--space-sm)
+	gap: var(--space-sm);
 }
 
 body.exec-compact .features-grid--security {
-	grid-template-columns: repeat(3, 1fr)
+	grid-template-columns: repeat(3, 1fr);
 }
 
 @media(max-width:1200px) {
