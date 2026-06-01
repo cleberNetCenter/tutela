@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@storacha/client": "^2.1.4",
+    "ipfs-http-client": "^60.0.1",
+    "multiformats": "^14.0.0"
+  }
+}
