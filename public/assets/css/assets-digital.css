@@ -2076,3 +2076,70 @@ body.assets-page.assets-pillar-page .muda-aside p a:hover {
   color: var(--primitive-neutral-000);
   text-decoration-color: rgba(255,255,255,0.60);
 }
+
+/* ─── Pipeline Flow — fluxo técnico de depósito ──────────────────── */
+/* Usado em: /insights/prova-digital/ia-custodia-qualificada/         */
+
+body.assets-page.assets-pillar-page .pipeline-flow-wrapper {
+  background: var(--primitive-neutral-000);
+  border: 1px solid rgba(29, 60, 43, 0.1);
+  border-left: 4px solid var(--ad-accent-subtle);
+  border-radius: 0 var(--ad-radius-lg) var(--ad-radius-lg) 0;
+  padding: var(--space-md) var(--space-lg);
+  margin-top: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+body.assets-page.assets-pillar-page .pipeline-flow-title {
+  font-family: var(--ad-ff-serif);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  color: var(--ad-text-heading);
+  margin: 0;
+}
+
+body.assets-page.assets-pillar-page .pipeline-flow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 2rem;
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--ad-text-body);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  list-style: decimal;
+}
+
+body.assets-page.assets-pillar-page .pipeline-flow li strong {
+  color: var(--ad-text-heading);
+}
+
+body.assets-page.assets-pillar-page .pipeline-flow-note {
+  font-size: 0.875rem;
+  color: var(--ad-text-muted);
+  margin: 0;
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--ad-border);
+  line-height: var(--line-height-relaxed);
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  body.assets-page.assets-pillar-page .pipeline-flow {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  body.assets-page.assets-pillar-page .pipeline-flow-wrapper {
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.assets-page.assets-pillar-page .pipeline-flow-wrapper {
+    transition: none;
+  }
+}
+/* ─────────────────────────────────────────────────────────────────── */
