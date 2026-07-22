@@ -774,5 +774,11 @@
         "recommendation": "Urgent intervention required. Consult digital asset governance specialists."
       }
     }
+  },
+  "search": {
+    "ariaLabel": "Search",
+    "placeholder": "Search the site...",
+    "noResults": "No results found.",
+    "hint": "Type at least 2 characters."
   }
 }
