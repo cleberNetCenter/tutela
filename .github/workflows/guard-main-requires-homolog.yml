@@ -7,6 +7,7 @@ on:
 
 jobs:
   check-homolog-ancestor:
+    if: github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
