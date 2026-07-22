@@ -422,3 +422,13 @@ body.page-seguranca {
   font-family: var(--font-display);
   font-weight: 600;
 }
+
+/* Correção de contraste — pages-consolidated.css define
+   ".page-header h1" com --color-text-strong (quase preto, #0b241b).
+   Como essa regra é importada depois de dark-editorial-shared.css e
+   tem a mesma especificidade de ".page-header--security h1", ela
+   vence a cascata e deixa o título quase invisível sobre o fundo
+   --color-surface-darkest (#0a0f0d). Reforça o branco aqui. */
+.page-header--security h1 {
+  color: var(--primitive-neutral-000);
+}
