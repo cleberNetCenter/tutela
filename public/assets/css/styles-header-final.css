@@ -349,6 +349,12 @@
   overflow: hidden;
 }
 
+.search-result-desc mark {
+  background: none;
+  color: var(--accent);
+  font-weight: 700;
+}
+
 .search-empty,
 .search-hint {
   padding: 16px 10px;
