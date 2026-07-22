@@ -774,5 +774,11 @@
         "recommendation": "Intervención urgente necesaria. Consulte a especialistas en gobernanza de activos digitales."
       }
     }
+  },
+  "search": {
+    "ariaLabel": "Buscar",
+    "placeholder": "Buscar en el sitio...",
+    "noResults": "No se encontraron resultados.",
+    "hint": "Escriba al menos 2 caracteres."
   }
 }
