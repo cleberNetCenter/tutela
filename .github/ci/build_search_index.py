@@ -9,11 +9,15 @@ Para cada página:
 - Se não tiver data-i18n (página sem tradução, ou já é uma página física
   só de um idioma, como /en/... ou /es/...), usa o mesmo texto para todos
   os idiomas em que a página está disponível
+- Extrai também o texto completo do <body>, guardado uma vez por página
+  (não por idioma) — usado pra permitir busca por qualquer trecho do
+  site, não só título/resumo
 
 Não depende de bibliotecas externas (só stdlib), no mesmo espírito do
 sitemap.yml existente.
 """
 import glob
+import html as html_lib
 import json
 import re
 
@@ -78,6 +82,24 @@ def extract_description(html):
     return "", None
 
 
+def extract_body_text(html):
+    """Extrai todo o texto visível do <body> da página: remove <script>,
+    <style> e <svg> (esses últimos são só gráficos decorativos do hero,
+    não conteúdo), depois derruba as tags restantes e normaliza espaços.
+    É esse texto que permite buscar por qualquer trecho do site — um
+    número de lei citado no meio de um parágrafo, por exemplo — não só
+    título e resumo."""
+    body_match = re.search(r"<body\b[^>]*>(.*?)</body>", html, re.S | re.I)
+    body_html = body_match.group(1) if body_match else html
+    body_html = re.sub(r"<script\b.*?</script>", " ", body_html, flags=re.S | re.I)
+    body_html = re.sub(r"<style\b.*?</style>", " ", body_html, flags=re.S | re.I)
+    body_html = re.sub(r"<svg\b.*?</svg>", " ", body_html, flags=re.S | re.I)
+    text = re.sub(r"<[^>]+>", " ", body_html)
+    text = html_lib.unescape(text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
 def is_redirect_stub(html):
     """Detecta páginas que só existem para redirecionar (meta refresh ou
     window.location.replace), como o-que-sao-ativos-digitais/index.html,
@@ -118,6 +140,7 @@ def build():
 
         title_pt, title_key = extract_title(html)
         desc_pt, desc_key = extract_description(html)
+        body_pt = extract_body_text(html)
 
         if not title_pt:
             continue  # página sem título utilizável, não indexa
@@ -133,7 +156,12 @@ def build():
                 d = get_nested(lang_data[lang], desc_key) or desc_pt
                 variants[lang] = {"title": t, "description": d}
 
-        entries.append({"url": url_path, "variants": variants})
+        # O corpo do texto fica uma vez só por página (não por idioma):
+        # não existe tradução parágrafo a parágrafo nesse site — só
+        # título/resumo/alguns headings têm data-i18n — então guardar o
+        # mesmo texto embaixo de "pt", "en" e "es" seria triplicar o
+        # índice à toa (testado: ~318KB de duplicação nas 36 páginas).
+        entries.append({"url": url_path, "body": body_pt, "variants": variants})
 
     with open(f"{ROOT}/assets/search-index.json", "w", encoding="utf-8") as f:
         json.dump(entries, f, ensure_ascii=False, separators=(",", ":"))

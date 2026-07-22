@@ -81,13 +81,33 @@
       .map((item) => {
         const v = item.variants[lang] || item.variants.pt;
         if (!v) return null;
-        const haystack = normalize(v.title + " " + v.description);
-        const score = haystack.indexOf(normQuery);
-        return score === -1 ? null : { item, variant: v, score };
+        const inTitleOrDesc = normalize(v.title + " " + v.description).indexOf(normQuery);
+        if (inTitleOrDesc !== -1) {
+          // Match no título/resumo pesa mais — página é sobre o assunto,
+          // não só menciona ele de passagem.
+          return { item, variant: v, score: inTitleOrDesc, snippet: null };
+        }
+        const normBody = normalize(item.body || "");
+        const bodyIdx = normBody.indexOf(normQuery);
+        if (bodyIdx === -1) return null;
+        return { item, variant: v, score: 100000 + bodyIdx, snippet: makeSnippet(item.body, query, bodyIdx) };
       })
       .filter(Boolean)
       .sort((a, b) => a.score - b.score)
       .slice(0, MAX_RESULTS);
+  }
+
+  function makeSnippet(body, query, matchIndex) {
+    // matchIndex é a posição no texto normalizado; como normalize() não
+    // muda o tamanho da string (só remove acentos e baixa a caixa),
+    // a posição bate com o texto original também (testado).
+    const radius = 70;
+    const start = Math.max(0, matchIndex - radius);
+    const end = Math.min(body.length, matchIndex + query.length + radius);
+    let snippet = body.slice(start, end);
+    if (start > 0) snippet = "…" + snippet;
+    if (end < body.length) snippet = snippet + "…";
+    return snippet;
   }
 
   function renderResults(matches, query) {
@@ -96,11 +116,12 @@
       return;
     }
     resultsEl.innerHTML = matches
-      .map(({ item, variant }) => {
+      .map(({ item, variant, snippet }) => {
+        const descHtml = snippet ? highlight(snippet, query) : highlight(variant.description, query);
         return (
           '<a class="search-result" href="' + item.url + '">' +
           '<div class="search-result-title">' + highlight(variant.title, query) + "</div>" +
-          '<div class="search-result-desc">' + highlight(variant.description, query) + "</div>" +
+          '<div class="search-result-desc">' + descHtml + "</div>" +
           "</a>"
         );
       })
