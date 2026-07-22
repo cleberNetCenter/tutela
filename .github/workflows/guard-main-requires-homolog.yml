@@ -1,0 +1,26 @@
+name: Guard - main requer homolog
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-homolog-ancestor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verifica se o commit já passou por homolog
+        run: |
+          git fetch origin homolog
+          if git merge-base --is-ancestor ${{ github.event.pull_request.head.sha }} origin/homolog; then
+            echo "✅ Commit já está em homolog. Promoção liberada."
+          else
+            echo "❌ Este PR ainda não passou por homolog."
+            echo "Abra o PR contra 'homolog' primeiro, valide lá, e só então"
+            echo "abra um novo PR de homolog → main para promover."
+            exit 1
+          fi

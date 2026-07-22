@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   build:
@@ -103,3 +104,20 @@ jobs:
           git checkout homolog
           git merge origin/main --no-edit
           git push origin homolog
+
+      # 🚀 GARANTE O REDEPLOY REAL DE HOMOLOG
+      # O push acima é feito com o GITHUB_TOKEN do próprio workflow. Por
+      # proteção anti-recursão do GitHub, pushes feitos com o GITHUB_TOKEN
+      # não disparam outros workflows — então o "Deploy Homolog" (que só
+      # escuta push em homolog) nunca era acionado por essa sincronização,
+      # e o servidor de homolog ficava com o container desatualizado mesmo
+      # com a branch já sincronizada. workflow_dispatch via API é uma das
+      # exceções permitidas para o GITHUB_TOKEN, então disparamos explicitamente.
+      - name: Trigger Deploy Homolog
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl -sS -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/deploy-homolog.yml/dispatches" \
+            -d '{"ref":"homolog"}'
