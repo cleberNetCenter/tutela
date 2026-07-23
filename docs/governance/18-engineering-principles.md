@@ -1,6 +1,6 @@
 # 18 — Engineering Principles
 
-# Objetivo
+## Objetivo
 
 Este documento responde a uma pergunta prática: **como desenvolvemos software neste projeto, dia a dia?**
 
@@ -10,9 +10,11 @@ Este documento **não define princípios arquiteturais** — isso é papel exclu
 
 Sempre que uma prática descrita aqui parecer entrar em conflito com um princípio do Manifesto, o Manifesto prevalece — este documento existe para servir aos princípios, não para competir com eles.
 
+Este é o documento que [17-architectural-manifesto.md](../architecture/17-architectural-manifesto.md) identifica, em "Papel da Documentação", pelo papel de "Guia de Engenharia" ("como, no dia a dia"). O nome do arquivo (`Engineering Principles`) descreve seu conteúdo; o termo "Guia de Engenharia" usado no Manifesto descreve seu papel na cadeia — os dois se referem ao mesmo documento.
+
 ---
 
-# Relação com os demais documentos
+## Relação com os demais documentos
 
 A documentação deste projeto forma uma cadeia, em que cada elo depende do anterior e prepara o seguinte:
 
@@ -44,7 +46,7 @@ Este documento não substitui nenhum elo da cadeia — ele é um elo específico
 
 ---
 
-# PRINCÍPIOS DE ENGENHARIA
+## PRINCÍPIOS DE ENGENHARIA
 
 ### EP-01 — Código Simples
 
@@ -218,7 +220,7 @@ Este documento não substitui nenhum elo da cadeia — ele é um elo específico
 
 ---
 
-# REGRAS DE IMPLEMENTAÇÃO
+## REGRAS DE IMPLEMENTAÇÃO
 
 **Como criar novos arquivos.** Um arquivo novo só é criado quando nenhum arquivo existente pode razoavelmente absorver a responsabilidade em questão (ver EP-14). Seu nome descreve sua responsabilidade real, não sua localização ou o momento em que foi criado.
 
@@ -240,7 +242,7 @@ Este documento não substitui nenhum elo da cadeia — ele é um elo específico
 
 ---
 
-# REGRAS DE REFATORAÇÃO
+## REGRAS DE REFATORAÇÃO
 
 **O que caracteriza uma refatoração.** Uma mudança é refatoração quando altera a forma interna de algo sem alterar seu comportamento observável por quem usa o projeto. Se o resultado visível ou funcional muda, não é refatoração — é uma mudança de funcionalidade, e deve ser tratada e comunicada como tal (EP-08).
 
@@ -254,7 +256,7 @@ Este documento não substitui nenhum elo da cadeia — ele é um elo específico
 
 ---
 
-# REGRAS PARA TESTES
+## REGRAS PARA TESTES
 
 **Quando criar testes.** Ao implementar ou alterar um fluxo crítico — aquele cuja falha silenciosa afetaria diretamente quem usa o site (navegação, troca de idioma, envio de formulário, busca) — um teste automatizado correspondente é criado ou atualizado como parte da mesma entrega, não como tarefa futura.
 
@@ -270,7 +272,7 @@ Este documento não substitui nenhum elo da cadeia — ele é um elo específico
 
 ---
 
-# REGRAS PARA DOCUMENTAÇÃO
+## REGRAS PARA DOCUMENTAÇÃO
 
 **Quando atualizar documentação existente.** Sempre que uma mudança tornar uma afirmação de um documento existente desatualizada — o documento é atualizado na mesma entrega que causou a desatualização (EP-10), não depois.
 
@@ -286,7 +288,7 @@ Este documento não substitui nenhum elo da cadeia — ele é um elo específico
 
 ---
 
-# REGRAS PARA AGENTES DE IA
+## REGRAS PARA AGENTES DE IA
 
 Esta seção se aplica a qualquer agente de IA que proponha ou implemente mudanças neste projeto.
 
@@ -304,7 +306,7 @@ Esta seção se aplica a qualquer agente de IA que proponha ou implemente mudan�
 
 ---
 
-# O QUE ESTE DOCUMENTO NÃO É
+## O QUE ESTE DOCUMENTO NÃO É
 
 - **Não é o Manifesto.** Não estabelece princípios permanentes nem valores arquiteturais — assume os do Manifesto como dados e trabalha a partir deles.
 - **Não é um Guia de Estilo.** Não define convenções de formatação, indentação ou sintaxe específicas de uma linguagem — isso pertence a um guia de estilo dedicado, se e quando um for criado.

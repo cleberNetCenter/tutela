@@ -1,14 +1,14 @@
 # 19 — Definition of Done
 
-# Objetivo
+## Objetivo
 
 Definir o que significa dizer que um item de trabalho está **concluído**. Não explica conceitos, não justifica regras — para o porquê de cada critério, ver [17-architectural-manifesto.md](../architecture/17-architectural-manifesto.md) e [18-engineering-principles.md](18-engineering-principles.md). Este documento só declara o critério de aceite objetivo, aplicável a qualquer item de [16-architecture-backlog.md](../architecture/16-architecture-backlog.md).
 
-# Regra Geral
+## Regra Geral
 
 Nenhum item do backlog é considerado concluído enquanto todos os critérios obrigatórios da tabela abaixo não forem atendidos. Um item parcialmente atendido é **em andamento** ou **bloqueado**, nunca **concluído**.
 
-# Checklist de Conclusão
+## Checklist de Conclusão
 
 | Critério | Obrigatório | Observação |
 |---|---|---|
@@ -30,7 +30,7 @@ Nenhum item do backlog é considerado concluído enquanto todos os critérios ob
 
 15 critérios no total: 11 obrigatórios em toda entrega, 4 condicionais (aplicam-se conforme a natureza da entrega, mas quando aplicáveis são igualmente obrigatórios).
 
-# Exceções
+## Exceções
 
 Um item pode ser entregue parcialmente apenas quando:
 
@@ -40,11 +40,11 @@ Um item pode ser entregue parcialmente apenas quando:
 
 Sem os três pontos acima documentados no backlog, uma entrega parcial não é uma exceção válida — é um item incompleto.
 
-# Responsabilidade
+## Responsabilidade
 
 Quem revisa a entrega declara o item como concluído, com base nesta checklist — nunca quem a implementou, sozinho. Na ausência de um segundo revisor disponível, quem implementou confirma cada critério explicitamente antes de declarar conclusão, e essa autoavaliação fica registrada junto ao item.
 
-# O que este documento NÃO é
+## O que este documento NÃO é
 
 - Não é o Review Checklist. Não define o que verificar durante a revisão de uma mudança específica — define apenas o resultado que essa revisão confirma no final.
 - Não é o Manifesto. Não justifica nenhum critério — apenas os aplica.

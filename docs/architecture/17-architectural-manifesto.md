@@ -6,7 +6,7 @@
 
 ---
 
-# Introdução
+## Introdução
 
 Este projeto sustenta um serviço cujo valor central é a confiança de que um fato digital pode ser verificado. Antes de qualquer outra consideração técnica, esse é o problema que a arquitetura existe para resolver: garantir que o que é afirmado possa ser conferido, por qualquer pessoa, a qualquer momento, sem depender da palavra de quem afirma.
 
@@ -29,13 +29,13 @@ Tecnologias específicas são meios. Este documento não trata de meios — trat
 
 ---
 
-# Missão Arquitetural
+## Missão Arquitetural
 
 **A arquitetura existe para que a verdade permaneça verificável, mesmo quando tudo o mais mudar.**
 
 ---
 
-# Visão Arquitetural
+## Visão Arquitetural
 
 Nos próximos anos, este projeto deve crescer em conteúdo, alcance e complexidade de negócio sem crescer em complexidade estrutural na mesma proporção. Cada nova capacidade deve poder ser explicada por alguém que nunca a implementou, apenas lendo o que existe.
 
@@ -49,7 +49,7 @@ Nenhuma tecnologia usada hoje é permanente. Os compromissos descritos neste doc
 
 ---
 
-# Valores Arquiteturais
+## Valores Arquiteturais
 
 ### Simplicidade Deliberada
 
@@ -133,7 +133,7 @@ Nenhuma tecnologia usada hoje é permanente. Os compromissos descritos neste doc
 
 ---
 
-# Princípios Arquiteturais
+## Princípios Arquiteturais
 
 ### PA-01 — A Estrutura Publicada é a Fonte da Verdade
 
@@ -287,7 +287,7 @@ Nenhuma tecnologia usada hoje é permanente. Os compromissos descritos neste doc
 
 ---
 
-# DECISÕES INEGOCIÁVEIS
+## DECISÕES INEGOCIÁVEIS
 
 O que segue nunca deve ser violado, exceto mediante um novo registro formal de decisão que reconheça explicitamente a exceção e sua justificativa.
 
@@ -305,7 +305,7 @@ O que segue nunca deve ser violado, exceto mediante um novo registro formal de d
 
 ---
 
-# COMO A ARQUITETURA EVOLUI
+## COMO A ARQUITETURA EVOLUI
 
 **Como novas funcionalidades devem nascer.** Toda funcionalidade nova começa por um problema real e documentado, não por uma capacidade técnica disponível. Antes de qualquer construção, a funcionalidade é avaliada contra os valores e princípios deste manifesto — se ela exige violar um deles, essa violação precisa ser reconhecida e justificada explicitamente, não silenciada.
 
@@ -321,7 +321,7 @@ O que segue nunca deve ser violado, exceto mediante um novo registro formal de d
 
 ---
 
-# COMO TOMAMOS DECISÕES
+## COMO TOMAMOS DECISÕES
 
 Objetivos legítimos entram em conflito com frequência. Quando isso acontece, a ordem de prioridade abaixo resolve o conflito — não porque os objetivos de prioridade menor não importem, mas porque alguma ordem precisa existir para que a decisão não dependa de quem está na sala no momento em que ela é tomada.
 
@@ -343,7 +343,7 @@ Esta ordem não elimina o julgamento — ela dá a esse julgamento um ponto de p
 
 ---
 
-# PAPEL DA DOCUMENTAÇÃO
+## PAPEL DA DOCUMENTAÇÃO
 
 A documentação deste projeto não é um conjunto de artefatos independentes — é uma cadeia, em que cada elo responde a uma pergunta diferente e depende do elo anterior para fazer sentido.
 
@@ -359,7 +359,7 @@ Cada um desses documentos é responsabilidade de quem toma decisões arquitetura
 
 ---
 
-# PAPEL DA IA
+## PAPEL DA IA
 
 Esta seção se aplica a qualquer agente de IA que leia, proponha ou implemente mudanças neste projeto.
 
@@ -379,7 +379,7 @@ Um agente de IA não substitui o julgamento humano em decisões que este manifes
 
 ---
 
-# O QUE ESTE MANIFESTO NÃO É
+## O QUE ESTE MANIFESTO NÃO É
 
 - Não é um guia de programação. Não ensina como escrever código, nomear variáveis ou estruturar um arquivo — isso é papel do Guia de Engenharia.
 - Não é um checklist. Não lista passos a seguir ou caixas a marcar antes de uma entrega — isso é papel da Definição de Pronto e do Checklist de Revisão.
