@@ -1,6 +1,6 @@
 /* ===================== CONTENT BLOCKS ==================== */
 .text-block {
-  padding: var(--space-2xl) var(--space-lg);
+  padding: var(--space-section) var(--space-lg);
   background: var(--color-surface-light);
 }
 
