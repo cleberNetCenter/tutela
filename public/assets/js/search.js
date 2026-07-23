@@ -2,6 +2,84 @@
   if (window.__tutelaSearchInitialized) return;
   window.__tutelaSearchInitialized = true;
 
+  function normalize(str) {
+    return (str || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
+  // Ao clicar num resultado, a página de destino carrega com
+  // #buscar=<termo> na URL. Isso acha a primeira ocorrência do termo no
+  // texto visível da página (incluindo header/footer, já que em tempo de
+  // execução o SSI já resolveu — diferente do índice, que só vê o corpo
+  // próprio de cada página), marca com <mark> e rola até ela. Roda em
+  // toda página (o script já carrega em todas via scripts.html), não só
+  // nas que têm o widget.
+  function highlightAndScrollToQuery(query) {
+    if (!query || !document.body) return false;
+    const normQuery = normalize(query);
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        const parent = node.parentElement;
+        if (!parent) return NodeFilter.FILTER_REJECT;
+        // Não marca texto dentro do próprio painel de busca — resultado
+        // já mostra o trecho destacado ali, não precisa duplicar.
+        if (parent.closest("script, style, #searchWidget")) return NodeFilter.FILTER_REJECT;
+        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_SKIP;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    let node;
+    while ((node = walker.nextNode())) {
+      const text = node.nodeValue;
+      const idx = normalize(text).indexOf(normQuery);
+      if (idx === -1) continue;
+
+      const before = text.slice(0, idx);
+      const match = text.slice(idx, idx + query.length);
+      const after = text.slice(idx + query.length);
+
+      const markEl = document.createElement("mark");
+      markEl.className = "search-jump-highlight";
+      markEl.textContent = match;
+
+      const parent = node.parentNode;
+      const afterNode = document.createTextNode(after);
+      parent.insertBefore(document.createTextNode(before), node);
+      parent.insertBefore(markEl, node);
+      parent.insertBefore(afterNode, node);
+      parent.removeChild(node);
+
+      if (typeof markEl.scrollIntoView === "function") {
+        markEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return true;
+    }
+    return false;
+  }
+
+  (function jumpToHighlightFromHash() {
+    const m = /(?:^|&)buscar=([^&]*)/.exec(location.hash.replace(/^#/, ""));
+    if (!m) return;
+    const query = decodeURIComponent(m[1]);
+    const run = () => {
+      highlightAndScrollToQuery(query);
+      // Limpa o #buscar= da URL depois de tentar — não muda o scroll,
+      // só evita que a URL fique com o parâmetro pendurado.
+      if (history.replaceState) {
+        history.replaceState(null, "", location.pathname + location.search);
+      }
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", run);
+    } else {
+      run();
+    }
+  })();
+
   const widget = document.getElementById("searchWidget");
   const toggle = document.getElementById("searchToggle");
   const panel = document.getElementById("searchPanel");
@@ -28,13 +106,6 @@
 
   function currentLang() {
     return (window.I18N && window.I18N.currentLang) || localStorage.getItem("tutela_lang") || "pt";
-  }
-
-  function normalize(str) {
-    return (str || "")
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
   }
 
   function escapeHtml(str) {
@@ -113,7 +184,7 @@
   function makeSnippet(body, query, matchIndex) {
     // matchIndex é a posição no texto normalizado; como normalize() não
     // muda o tamanho da string (só remove acentos e baixa a caixa),
-    // a posição bate com o texto original também (testado).
+    // a posição bate com o texto original também.
     const radius = 70;
     const start = Math.max(0, matchIndex - radius);
     const end = Math.min(body.length, matchIndex + query.length + radius);
@@ -131,8 +202,9 @@
     resultsEl.innerHTML = matches
       .map(({ item, variant, snippet }) => {
         const descHtml = snippet ? highlight(snippet, query) : highlight(variant.description, query);
+        const href = item.url + "#buscar=" + encodeURIComponent(query);
         return (
-          '<a class="search-result" href="' + item.url + '">' +
+          '<a class="search-result" href="' + href + '">' +
           '<div class="search-result-title">' + highlight(variant.title, query) + "</div>" +
           '<div class="search-result-desc">' + descHtml + "</div>" +
           "</a>"
