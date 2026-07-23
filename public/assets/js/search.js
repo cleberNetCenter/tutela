@@ -21,7 +21,8 @@
     return fallback;
   }
 
-  let index = null;
+  let pages = null;
+  let globalText = "";
   let indexPromise = null;
   let debounceTimer = null;
 
@@ -55,21 +56,22 @@
   }
 
   function loadIndex() {
-    if (index) return Promise.resolve(index);
+    if (pages) return Promise.resolve(pages);
     if (indexPromise) return indexPromise;
-    indexPromise = fetch("/assets/search-index.json?v=1")
+    indexPromise = fetch("/assets/search-index.json?v=2")
       .then((res) => {
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();
       })
       .then((data) => {
-        index = data;
-        return index;
+        pages = data.pages || [];
+        globalText = data.global || "";
+        return pages;
       })
       .catch((err) => {
         console.error("[search] Erro ao carregar índice:", err);
-        index = [];
-        return index;
+        pages = [];
+        return pages;
       });
     return indexPromise;
   }
@@ -77,7 +79,9 @@
   function search(query) {
     const lang = currentLang();
     const normQuery = normalize(query);
-    return (index || [])
+    const matchesGlobal = normalize(globalText).indexOf(normQuery) !== -1;
+
+    const results = (pages || [])
       .map((item) => {
         const v = item.variants[lang] || item.variants.pt;
         if (!v) return null;
@@ -89,12 +93,21 @@
         }
         const normBody = normalize(item.body || "");
         const bodyIdx = normBody.indexOf(normQuery);
-        if (bodyIdx === -1) return null;
-        return { item, variant: v, score: 100000 + bodyIdx, snippet: makeSnippet(item.body, query, bodyIdx) };
+        if (bodyIdx !== -1) {
+          return { item, variant: v, score: 100000 + bodyIdx, snippet: makeSnippet(item.body, query, bodyIdx) };
+        }
+        if (matchesGlobal) {
+          // Só existe no header/footer (ex.: "Instagram", item de menu).
+          // Isso é igualmente verdadeiro pra TODAS as páginas — prioridade
+          // mais baixa, senão o termo vira ruído em todo resultado.
+          return { item, variant: v, score: 500000, snippet: null };
+        }
+        return null;
       })
       .filter(Boolean)
-      .sort((a, b) => a.score - b.score)
-      .slice(0, MAX_RESULTS);
+      .sort((a, b) => a.score - b.score);
+
+    return results.slice(0, MAX_RESULTS);
   }
 
   function makeSnippet(body, query, matchIndex) {
@@ -187,7 +200,7 @@
 
   window.addEventListener("i18n:languageChanged", () => {
     const query = input.value.trim();
-    if (query.length >= MIN_CHARS && index) {
+    if (query.length >= MIN_CHARS && pages) {
       renderResults(search(query), query);
     }
   });

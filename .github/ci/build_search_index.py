@@ -100,6 +100,27 @@ def extract_body_text(html):
     return text
 
 
+def extract_global_text():
+    """header.html e footer.html são includes SSI (<!--#include virtual=...-->):
+    o servidor injeta esse HTML em toda página no momento da requisição,
+    mas o arquivo bruto de cada página nunca contém esse texto — só o
+    comentário do include. Ou seja, sem isso, qualquer coisa que só existe
+    no header/footer (Instagram, CNPJ, itens de menu) fica impossível de
+    achar em QUALQUER página, mesmo aparecendo em todas elas — diferente
+    de como um crawler real (ou o navegador) veria a página montada.
+    Extrai esse texto uma vez só, pra usar como camada de busca comum a
+    todas as páginas, sem duplicar no índice de cada uma."""
+    parts = []
+    for name in ("header.html", "footer.html"):
+        path = f"{ROOT}/partials/{name}"
+        try:
+            with open(path, encoding="utf-8") as f:
+                parts.append(extract_body_text(f.read()))
+        except FileNotFoundError:
+            continue
+    return " ".join(parts)
+
+
 def is_redirect_stub(html):
     """Detecta páginas que só existem para redirecionar (meta refresh ou
     window.location.replace), como o-que-sao-ativos-digitais/index.html,
@@ -163,8 +184,9 @@ def build():
         # índice à toa (testado: ~318KB de duplicação nas 36 páginas).
         entries.append({"url": url_path, "body": body_pt, "variants": variants})
 
+    output = {"global": extract_global_text(), "pages": entries}
     with open(f"{ROOT}/assets/search-index.json", "w", encoding="utf-8") as f:
-        json.dump(entries, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump(output, f, ensure_ascii=False, separators=(",", ":"))
 
     return entries
 
