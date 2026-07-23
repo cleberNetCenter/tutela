@@ -51,7 +51,6 @@
   --hp-bg-page: var(--color-surface-darkest);   /* #0a0f0d */
   --hp-radius: 12px;
   --hp-radius-lg: 20px;
-  --hp-section-pad: var(--space-section-hero) 2rem;
   --hp-max-width: 1000px;
   --hp-max-width-text: 720px;
 }
@@ -307,7 +306,7 @@ button:focus-visible {
   o restante do site. Seções anteriores usavam valores ad-hoc.
 */
 .section-trust {
-  padding: var(--hp-section-pad);
+  padding: var(--space-section-tight) 2rem;
   max-width: var(--hp-max-width);
   margin-inline: auto;
 }
@@ -413,7 +412,7 @@ button:focus-visible {
   FIX v6: padding lateral padronizado (era 2rem, mantido).
 */
 .section-verticals {
-  padding: var(--space-lg) 2rem var(--space-section);
+  padding: var(--space-section-tight) 2rem;
   background: linear-gradient(180deg, transparent, rgba(34, 197, 94, .04), transparent);
   overflow: hidden;
   /* FIX: previne overflow em mobile */
@@ -544,7 +543,7 @@ button:focus-visible {
   ligeiramente maior para respiração do conteúdo; cores explicitadas.
 */
 .section-pillars {
-  padding: var(--space-lg) 2rem var(--space-section-hero);
+  padding: var(--space-section-tight) 2rem;
   max-width: var(--hp-max-width);
   margin-inline: auto;
 }
@@ -644,7 +643,7 @@ button:focus-visible {
   FIX v6: .legal-link-list li a com min-height 56px para área de toque.
 */
 .section-legal {
-  padding: var(--space-lg) 2rem var(--space-section);
+  padding: var(--space-section-tight) 2rem;
   background: rgba(34, 197, 94, .03);
   border-top: 1px solid var(--hp-border);
   border-bottom: 1px solid var(--hp-border);
