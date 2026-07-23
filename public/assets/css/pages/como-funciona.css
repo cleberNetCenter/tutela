@@ -15,16 +15,16 @@ body.page-como-funciona {
   --editorial-accent: #22c55e;
   --editorial-border: rgba(34, 197, 94, 0.2);
   --editorial-surface: rgba(255, 255, 255, 0.04);
-  --editorial-text-muted: rgba(255, 255, 255, 0.75);
+  --editorial-text-muted: var(--color-text-muted-dark);
   --cf-green: #22c55e;
   --cf-green-dim: #16a34a;
   --cf-green-glow: rgba(34, 197, 94, .15);
   --cf-border: rgba(34, 197, 94, .2);
   --cf-surface: rgba(255, 255, 255, .04);
   --cf-surface-2: rgba(255, 255, 255, .07);
-  --cf-text-muted: rgba(255, 255, 255, .75);
-  --cf-text-soft: rgba(255, 255, 255, .65);
-  --cf-text-note: rgba(255, 255, 255, .55);
+  --cf-text-muted: var(--color-text-muted-dark);
+  --cf-text-soft: var(--color-text-muted-dark);
+  --cf-text-note: var(--color-text-muted-dark);
   --cf-radius: 12px;
   --cf-radius-lg: 20px;
 }
@@ -37,7 +37,7 @@ body.page-como-funciona {
 
 /* ── INTRO ───────────────────────────────────────────────── */
 .cf-intro {
-  padding: 5rem 2rem;
+  padding: var(--space-section-tight) 2rem;
   max-width: 860px;
   margin: 0 auto;
 }
@@ -61,7 +61,7 @@ body.page-como-funciona {
 
 .cf-intro p {
   font-family: 'Inter', sans-serif;
-  font-size: .95rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: var(--cf-text-muted);
   margin-bottom: 1rem;
@@ -81,7 +81,7 @@ body.page-como-funciona {
 
 /* ── STEPS ───────────────────────────────────────────────── */
 .cf-steps {
-  padding: 4rem 2rem 6rem;
+  padding: var(--space-section-tight) 2rem;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -227,7 +227,7 @@ body.page-como-funciona {
 
 .cf-step-body p {
   font-family: 'Inter', sans-serif;
-  font-size: .9rem;
+  font-size: 1rem;
   line-height: 1.75;
   color: var(--cf-text-muted);
   margin: 0 0 .75rem;
@@ -251,7 +251,7 @@ body.page-como-funciona {
 
 /* ── VALIDADE JURÍDICA ───────────────────────────────────── */
 .cf-legal {
-  padding: 5rem 2rem;
+  padding: var(--space-section-tight) 2rem;
   background: rgba(34, 197, 94, .06); /* ↑ de .03 para melhor contraste de superfície */
   border-top: 1px solid var(--cf-border);
   border-bottom: 1px solid var(--cf-border);
@@ -328,7 +328,7 @@ body.page-como-funciona {
   font-family: 'Inter', sans-serif;
   font-size: .84rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, .8); /* ↑ de .7 para .8 -> melhor leitura */
+  color: var(--color-text-muted-dark);
 }
 
 .cf-info-list li::before {
@@ -341,7 +341,7 @@ body.page-como-funciona {
 
 /* ── CONTEÚDO RELACIONADO ────────────────────────────────── */
 .cf-related {
-  padding: 3rem 2rem;
+  padding: var(--space-section-tight) 2rem;
   max-width: 860px;
   margin: 0 auto;
 }
@@ -395,7 +395,7 @@ body.page-como-funciona {
 
 /* ── CTA ─────────────────────────────────────────────────── */
 .cf-cta {
-  padding: 7rem 2rem;
+  padding: var(--space-section-hero) 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;

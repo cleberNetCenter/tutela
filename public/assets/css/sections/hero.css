@@ -2,7 +2,7 @@
 /* ===================== HERO / PAGE ======================= */
 .hero,
 .lp-hero {
-	padding: var(--space-2xl) var(--space-lg);
+	padding: var(--space-section) var(--space-lg);
 	background: linear-gradient(180deg,
 			var(--color-surface-light),
 			var(--color-surface-muted));
@@ -10,7 +10,7 @@
 }
 
 .page-header {
-	padding: var(--space-2xl) var(--space-lg);
+	padding: var(--space-section) var(--space-lg);
 	background: linear-gradient(180deg,
 			var(--color-surface-light),
 			var(--color-surface-muted));

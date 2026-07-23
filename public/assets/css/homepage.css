@@ -45,13 +45,12 @@
   --hp-surface: rgba(255, 255, 255, .03);
   --hp-surface-hover: rgba(255, 255, 255, .06);
   --hp-text: rgba(255, 255, 255, .92);
-  --hp-text-muted: rgba(255, 255, 255, .55);
+  --hp-text-muted: var(--color-text-muted-dark);
   --hp-text-subtle: rgba(255, 255, 255, .35);
   --hp-bg-dark: #0d1410;
   --hp-bg-page: var(--color-surface-darkest);   /* #0a0f0d */
   --hp-radius: 12px;
   --hp-radius-lg: 20px;
-  --hp-section-pad: 6rem 2rem;
   --hp-max-width: 1000px;
   --hp-max-width-text: 720px;
 }
@@ -92,7 +91,7 @@ button:focus-visible {
   min-height: auto;
   display: flex;
   overflow: hidden;
-  padding: 7rem 2rem 4rem;
+  padding: 5.5rem 2rem 4rem;
   background: radial-gradient(ellipse 80% 60% at 50% -10%,
       rgba(34, 197, 94, .12) 0%,
       transparent 70%);
@@ -306,9 +305,8 @@ button:focus-visible {
   FIX v6: criado padrão unificado de seção para consistência com
   o restante do site. Seções anteriores usavam valores ad-hoc.
 */
-.section-trust,
-.section-pillars {
-  padding: var(--hp-section-pad);
+.section-trust {
+  padding: var(--space-section-tight) 2rem;
   max-width: var(--hp-max-width);
   margin-inline: auto;
 }
@@ -414,7 +412,7 @@ button:focus-visible {
   FIX v6: padding lateral padronizado (era 2rem, mantido).
 */
 .section-verticals {
-  padding: 5rem 2rem;
+  padding: var(--space-section-tight) 2rem;
   background: linear-gradient(180deg, transparent, rgba(34, 197, 94, .04), transparent);
   overflow: hidden;
   /* FIX: previne overflow em mobile */
@@ -545,7 +543,9 @@ button:focus-visible {
   ligeiramente maior para respiração do conteúdo; cores explicitadas.
 */
 .section-pillars {
-  /* herdado da regra conjunta com .section-trust acima */
+  padding: var(--space-section-tight) 2rem;
+  max-width: var(--hp-max-width);
+  margin-inline: auto;
 }
 
 .pillars-header {
@@ -643,7 +643,7 @@ button:focus-visible {
   FIX v6: .legal-link-list li a com min-height 56px para área de toque.
 */
 .section-legal {
-  padding: 5rem 2rem;
+  padding: var(--space-section-tight) 2rem;
   background: rgba(34, 197, 94, .03);
   border-top: 1px solid var(--hp-border);
   border-bottom: 1px solid var(--hp-border);
@@ -676,7 +676,7 @@ button:focus-visible {
 
 .legal-content p {
   font-family: 'Inter', sans-serif;
-  font-size: .9rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: var(--hp-text-muted);
   margin-bottom: 1rem;
@@ -709,7 +709,7 @@ button:focus-visible {
   min-height: 56px;
   font-family: 'Inter', sans-serif;
   font-size: .9rem;
-  color: rgba(255, 255, 255, .80);
+  color: var(--color-text-muted-dark);
   text-decoration: none;
   padding: .9rem 1.25rem;
   border: 1px solid var(--hp-border);
@@ -744,8 +744,7 @@ button:focus-visible {
   cta-home-inner max-width ligeiramente aumentado para respiração.
 */
 .section-cta-home {
-  padding: 6rem 2rem;
-  /* FIX v6: era 7rem */
+  padding: var(--space-section-hero) 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
