@@ -364,6 +364,29 @@
   color: var(--text-3);
 }
 
+/* ============================================================
+   DESTAQUE AO CHEGAR VINDO DA BUSCA
+   Aparece em qualquer lugar do corpo da página (não só no header),
+   por isso usa os tokens globais de accent (tokens.css), não as
+   variáveis locais deste arquivo.
+   ============================================================ */
+mark.search-jump-highlight {
+  background: var(--color-accent-light);
+  color: var(--color-text-strong);
+  padding: 0.05em 0.2em;
+  border-radius: 3px;
+  animation: search-jump-pulse 1.6s ease-out 1;
+}
+
+@keyframes search-jump-pulse {
+  0% {
+    box-shadow: 0 0 0 6px var(--color-accent-light);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
 .header-cta {
   display: inline-flex;
   align-items: center;
