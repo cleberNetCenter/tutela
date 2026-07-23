@@ -85,12 +85,15 @@ jobs:
 
           echo '</urlset>' >> public/sitemap.xml
 
+      - name: Generate search index
+        run: python3 .github/ci/build_search_index.py
+
       - name: Commit sitemap
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add public/sitemap.xml
+          git add public/sitemap.xml public/assets/search-index.json
           git commit -m "chore: auto update sitemap" || echo "No changes"
 
           # 🔥 PUSH NA BRANCH ATUAL (CORRETO)
