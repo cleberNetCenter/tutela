@@ -149,6 +149,7 @@
      para evitar duplicidade de valores */
   --space-section:       var(--space-xl);   /* 4rem  — padding padrão de seção de conteúdo */
   --space-section-hero:  5.5rem;            /* padding padrão de hero/CTA — antes 6-7rem */
+  --space-section-tight: 2rem;              /* 32px — seções internas sem quebra de fundo */
   --space-feature:  7rem;              /* valor único sem equivalente global */
 
   /* Layout */
