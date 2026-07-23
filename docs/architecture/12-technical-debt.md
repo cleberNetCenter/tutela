@@ -95,3 +95,4 @@ Google Analytics 4 está presente em todas as páginas sem um mecanismo visível
 ## Documentos relacionados
 - Cada achado linka de volta ao documento temático correspondente para contexto completo.
 - [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) — leitura executiva priorizada destes achados.
+- [16-architecture-backlog.md](16-architecture-backlog.md) — os 16 itens acima foram convertidos em itens `ARQ-xxx` rastreáveis, com critérios de aceite, risco e responsável.

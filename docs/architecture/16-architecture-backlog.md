@@ -878,10 +878,10 @@
 | Complexidade | Baixa |
 | Estimativa | M |
 | Responsável | Arquitetura |
-| Status | BACKLOG |
+| Status | REDEFINIDO (2026-07-23) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | Documento aprovado formalmente pelo time em revisão |
-| Observações | Último item do backlog por natureza — depende do conteúdo de todos os outros épicos estar estabilizado. |
+| Observações | Reavaliado na revisão final da fase estrutural. O escopo de conteúdo (princípios de evolução + convenções de engenharia formalizadas permanentemente) foi atendido por [17-architectural-manifesto.md](17-architectural-manifesto.md) (princípios) e [../governance/18-engineering-principles.md](../governance/18-engineering-principles.md) (convenções) — mas como **dois documentos separados**, não o "guia único" originalmente previsto neste item, e sem revisão formal pelo time humano (apenas aprovação "com ressalvas" na revisão arquitetural). Por isso o item é marcado **Redefinido**, não Concluído: o ID permanece reservado e não será reaberto para recriar um "guia único" — 17 e 18 são, a partir de agora, os documentos oficiais que cumprem esse papel. ARQ-701 (ADRs) e ARQ-702 (CLAUDE.md) continuam abertos, sem alteração, pois seu escopo não foi atendido por nenhum documento existente. |
 
 ---
 

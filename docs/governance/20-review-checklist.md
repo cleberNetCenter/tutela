@@ -1,18 +1,18 @@
 # 20 — Review Checklist
 
-# Objetivo
+## Objetivo
 
 Última verificação antes de aprovar uma mudança. Não explica nem justifica — para o porquê de cada item, ver [17-architectural-manifesto.md](../architecture/17-architectural-manifesto.md), [18-engineering-principles.md](18-engineering-principles.md) e [19-definition-of-done.md](19-definition-of-done.md).
 
-# Checklist de Revisão
+## Checklist de Revisão
 
-## Escopo
+### Escopo
 
 ☐ A mudança corresponde ao item do Backlog
 ☐ O escopo permaneceu controlado
 ☐ Não existem mudanças não relacionadas
 
-## Código
+### Código
 
 ☐ Simples
 ☐ Coeso
@@ -21,14 +21,14 @@
 ☐ Nomenclatura consistente
 ☐ Dependências justificadas
 
-## Testes
+### Testes
 
 ☐ Testes executados
 ☐ Fluxos críticos verificados
 ☐ Regressões verificadas
 ☐ Evidências registradas
 
-## Documentação
+### Documentação
 
 ☐ Documentação atualizada
 ☐ Backlog atualizado
@@ -36,20 +36,20 @@
 ☐ Roadmap impactado?
 ☐ Manifesto impactado?
 
-## Qualidade
+### Qualidade
 
 ☐ Performance preservada
 ☐ SEO preservado
 ☐ Segurança preservada
 ☐ Acessibilidade preservada
 
-## Aprovação
+### Aprovação
 
 ☐ Item atende à Definition of Done
 ☐ Pode ser integrado
 ☐ Pode ser publicado
 
-# Resultado da Revisão
+## Resultado da Revisão
 
 Resultado:
 
