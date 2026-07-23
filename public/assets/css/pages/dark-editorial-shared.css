@@ -33,7 +33,7 @@ body.page-como-funciona .app {
 .page-header.page-header--security-centered,
 .page-header.page-header--como-funciona-centered {
   position: relative;
-  padding: 7rem 2rem 4rem;
+  padding: 5.5rem 2rem 4rem;
   overflow: hidden;
   background-color: var(--color-surface-darkest);
   background-image:
@@ -112,5 +112,5 @@ body.page-como-funciona .app {
 }
 
 body.has-fixed-header .main {
-  padding-top: 80px;
+  padding-top: 60px;
 }
