@@ -31,12 +31,6 @@ const I18N = {
     } catch (error) {
       console.error('[i18n] Erro ao carregar configurações:', error);
       this.config = {
-        legalPages: [
-          'page-institucional', 'page-politica-de-privacidade',
-          'page-fundamento-juridico', 'page-termos-de-custodia',
-          'page-arquitetura-juridica-prova-digital', 'page-termos-de-uso',
-          'page-preservacao-probatoria-digital'
-        ],
         fallbackLang: 'pt',
         supportedLangs: ['pt', 'en', 'es']
       };
@@ -72,11 +66,7 @@ const I18N = {
   },
 
   isLegalPage() {
-    if (document.body?.classList.contains('legal-page')) return true;
-    return this.config.legalPages.some(pageId => {
-      const page = document.getElementById(pageId);
-      return page && page.classList.contains('active');
-    });
+    return document.body?.classList.contains('legal-page') === true;
   },
 
   applyTranslations() {

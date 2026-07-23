@@ -441,10 +441,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | Frontend |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (Sprint 1, 2026-07-23) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | Arquivo ausente do repositório; 0 erros 404 de asset em produção após deploy |
-| Observações | Item de risco confirmado mais baixo de todo o backlog — pode ser feito a qualquer momento. |
+| Observações | Item de risco confirmado mais baixo de todo o backlog — pode ser feito a qualquer momento. Removido em Sprint 1: revalidado via grep (0 referências em HTML/JS/JSON/YAML do repositório inteiro) e via `partials/scripts.html` (nunca incluído entre os 4 scripts globais). Validação funcional: servidor local confirma `404` para `/assets/js/navigation.js` após a remoção. |
 
 ### ARQ-402 — Remover IDs vestigiais de `i18n-config.json`
 
@@ -466,10 +466,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | Frontend |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (Sprint 1, 2026-07-23) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | 0 IDs vestigiais remanescentes em `i18n-config.json` |
-| Observações | — |
+| Observações | Removido em Sprint 1: array `legalPages` eliminado de `i18n-config.json` e do fallback de config em `i18n.js` (mesma duplicação, não catalogada individualmente antes); `isLegalPage()` simplificado para usar só `body.classList.contains('legal-page')`. Validação: confirmado que as 7 páginas legais usam `legal-page` como classe (nunca como `id`) via grep; JSON e sintaxe JS validados (`node --check`); servidor local confirma que `i18n-config.json` e `i18n.js` servem o conteúdo simplificado. |
 
 ### ARQ-403 — Decidir e consolidar `vercel.json`/`_redirects`
 
