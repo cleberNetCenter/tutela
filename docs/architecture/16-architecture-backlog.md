@@ -79,10 +79,10 @@
 | Complexidade | Média |
 | Estimativa | M-G |
 | Responsável | Segurança |
-| Status | BACKLOG |
+| Status | BACKLOG (confirmado ausente — Sprint 5/ARQ-108, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | 0 violações de CSP reportadas no console em auditoria manual das 37 páginas |
-| Observações | Recomenda-se modo `Content-Security-Policy-Report-Only` antes de aplicar em modo bloqueante. |
+| Observações | Recomenda-se modo `Content-Security-Policy-Report-Only` antes de aplicar em modo bloqueante. Escopo confirmado como puramente infraestrutural (fora deste repositório): ARQ-108 confirmou, via `nginx -T` na fonte, que CSP está ausente tanto em produção quanto em homologação, e a mudança é feita no Nginx dos servidores, não em código de aplicação — a única exceção seria a alternativa `<meta http-equiv>`, se a via Nginx não for escolhida. Evidência: `docs/ambientes-e-deploy.md`, seção "Auditoria externa (ARQ-108)". |
 
 ### ARQ-103 — Implantar HSTS (Strict-Transport-Security)
 
@@ -129,10 +129,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | Infraestrutura |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (satisfeito por infraestrutura — confirmado na Sprint 5/ARQ-108, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | Header presente em 100% das respostas |
-| Observações | Pode ser resolvido em conjunto com ARQ-102 (`frame-ancestors` no CSP substitui `X-Frame-Options`). |
+| Métrica de sucesso | Header presente em 100% das respostas — **atingido**: `X-Frame-Options: SAMEORIGIN` confirmado via `curl` externo e via `nginx -T` na fonte, em produção (host) e homologação (container), 2026-07-24. |
+| Observações | Pode ser resolvido em conjunto com ARQ-102 (`frame-ancestors` no CSP substitui `X-Frame-Options`). Gerenciado no Nginx dos servidores, fora deste repositório Git (config não versionada, por decisão já documentada). Evidência: `docs/ambientes-e-deploy.md`, seção "Auditoria externa (ARQ-108)". Nenhuma ação de código necessária. |
 
 ### ARQ-105 — Implantar Referrer-Policy
 
@@ -154,10 +154,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | Infraestrutura |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (satisfeito por infraestrutura — confirmado na Sprint 5/ARQ-108, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | Header presente em 100% das respostas |
-| Observações | — |
+| Métrica de sucesso | Header presente em 100% das respostas — **atingido**: `Referrer-Policy: strict-origin-when-cross-origin` confirmado via `curl` externo e via `nginx -T` na fonte, em produção (host) e homologação (container), 2026-07-24. |
+| Observações | Gerenciado no Nginx dos servidores, fora deste repositório Git (config não versionada, por decisão já documentada). Evidência: `docs/ambientes-e-deploy.md`, seção "Auditoria externa (ARQ-108)". Nenhuma ação de código necessária. |
 
 ### ARQ-106 — Implantar Permissions-Policy
 
@@ -179,10 +179,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | Infraestrutura |
-| Status | BACKLOG |
+| Status | BACKLOG (confirmado ausente — Sprint 5/ARQ-108, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | Header presente em 100% das respostas |
-| Observações | — |
+| Observações | Escopo confirmado como puramente infraestrutural (fora deste repositório): ARQ-108 confirmou, via `nginx -T` na fonte, que `Permissions-Policy` está ausente tanto em produção quanto em homologação; a mudança é feita no Nginx dos servidores, não em código de aplicação. Evidência: `docs/ambientes-e-deploy.md`, seção "Auditoria externa (ARQ-108)". |
 
 ### ARQ-107 — Banner de consentimento de cookies (CMP) para Google Analytics
 
@@ -229,10 +229,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | Infraestrutura |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (Sprint 5, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | 3/3 pontos cegos (headers, hostname homolog, redirects) documentados com evidência |
-| Observações | Item de maior retorno/menor esforço do Épico 1 — deveria ser um dos primeiros a ser feito, pois desbloqueia decisão técnica em outros 6 itens. |
+| Métrica de sucesso | 3/3 pontos cegos (headers, hostname homolog, redirects) documentados com evidência de config-fonte — **atingido, nos dois ambientes**. Pré-requisito original ("acesso de leitura à configuração Nginx de produção e homologação") — **atingido** (via `nginx -T` do host em produção e `docker exec ... nginx -T` do container em homologação). |
+| Observações | Item de maior retorno/menor esforço do Épico 1 — confirmado nesta sprint, em três etapas. **Etapa 1** (`curl` externo, sem SSH): confirmou os 3 pontos cegos originais com evidência reproduzível de fora. **Etapa 2** (`sudo nginx -T` no host de produção, `tutela-web`): confirmou tudo da Etapa 1 na config-fonte e revelou a causa raiz exata do bug de redirect. **Etapa 3** (homologação, `tutela-dev`): o `nginx -T` do host inicialmente **não batia** com o `curl` (vhost errado — `www.tuteladigital.com.br` em vez de `homolog.tuteladigital.com.br`, HSTS presente na config mas ausente ao vivo). Investigação (`docker ps` + `ss -ltnp`) revelou que, em homologação, o Nginx público roda **dentro do container** `tutela_v2_nginx` (publicado direto nas portas 80/443 do host via `docker-proxy`) — o `/etc/nginx` do host existe mas está morto, sem porta pública, aparentemente cópia obsoleta da config de produção nunca ativada. `docker exec tutela_v2_nginx nginx -T` deu a config real, que bate exatamente com o `curl`. Ver `docs/ambientes-e-deploy.md`, seção "Nginx", para a tabela comparativa completa e os comandos/outputs de todas as etapas. **Achado estrutural**: produção e homologação não têm apenas hosts diferentes, têm **arquiteturas de Nginx diferentes** — produção usa Nginx de host fazendo proxy para o container; homologação usa o próprio container publicado direto nas portas públicas, sem Nginx de host envolvido. Resumo consolidado dos 3 pontos cegos: HSTS/X-Frame-Options/X-Content-Type-Options/Referrer-Policy ativos em produção, HSTS ausente em homologação; CSP e Permissions-Policy ausentes nos dois; hostname de homologação é `homolog.tuteladigital.com.br` (CNAME para `dev.tuteladigital.com.br`); os redirects de `_redirects`/`vercel.json` **nunca são lidos por nenhum dos dois Nginx** — ambos têm a mesma regra genérica quebrada para `.html`, e as 5 URLs legadas resultam em `404` nos dois ambientes (bug confirmado na config-fonte). Bônus não pedido no critério de aceite original, mas resolvido: paridade de `docker-compose.yml` confirmada como **ausente** por observação direta (`docker ps`) — produção roda `tutela_v2_nginx` + `tutela_v2_api`, homologação roda só `tutela_v2_nginx`; e um container `tutela_v2_api` (porta 3000, interna) foi descoberto em produção, possível pista para a implementação de `/api/diagnostico` (ARQ-101), não investigado por disciplina de escopo. **Anomalia de `http://tuteladigital.com.br/` (porta 80) redirecionando para a porta `:445`**: confirmado que não vem de nenhum dos dois Nginx da aplicação — é o firewall Fortinet que faz o acesso externo aos servidores. Causa provável, informada pelo usuário (**não verificada diretamente nesta auditoria**): a porta de administração web do Fortinet foi remapeada de 443 para 445 (o equipamento atende vários sites na 443, então a porta administrativa precisou ser movida), e a regra de redirect HTTP→HTTPS de `tuteladigital.com.br` aparenta herdar essa porta administrativa em vez da porta 443 real do site — um erro de configuração conhecido em FortiGate (o redirect automático referencia a variável de porta administrativa em vez da porta do VIP/serviço). Correção está fora do escopo deste repositório (requer acesso ao Fortinet) — fica registrado em `12-technical-debt.md` como pendência de infraestrutura, com a causa provável já documentada para quem for corrigir. Isso não bloqueia o fechamento deste item, que é sobre o Nginx da aplicação, não sobre o firewall de borda. Desbloqueia formalmente a decisão técnica de ARQ-102 (CSP — confirmado ausente nos dois ambientes), ARQ-104/ARQ-105 (confirmados já implantados em produção — avaliar se o critério de aceite desses itens já está satisfeito antes de reabrir trabalho), ARQ-106 (Permissions-Policy — confirmado ausente) e ARQ-403 (causa raiz do redirect quebrado confirmada na config-fonte, nos dois ambientes). Nenhum desses itens teve seu Status alterado nesta entrega — decisão e execução ficam para sprint futura, por disciplina de escopo (auditoria, não implementação). |
 
 ---
 
@@ -487,14 +487,14 @@
 | Critérios de Aceite | Uma única fonte de verdade para redirects legados, confirmada ativa em produção |
 | Critérios de Regressão | As ~5 URLs legadas continuam redirecionando corretamente após a mudança |
 | Impacto | Médio |
-| Risco | Médio (remover sem confirmar pode quebrar redirects se, inesperadamente, algo depender do arquivo) |
+| Risco | Baixo (reclassificado de Médio na Sprint 6, 2026-07-24 — ver Observações) |
 | Complexidade | Baixa |
 | Estimativa | P-M |
 | Responsável | DevOps |
-| Status | BLOQUEADO |
+| Status | CONCLUÍDO (Sprint 6, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | Teste de todas as URLs legadas retornando 301 correto após a consolidação |
-| Observações | Bloqueado por ARQ-108, não por complexidade técnica própria. |
+| Métrica de sucesso | Teste de todas as URLs legadas retornando 301 correto após a consolidação — **não aplicável**: a auditoria (ARQ-108) revelou que as 5 URLs legadas já retornam `404` hoje, nos dois ambientes, independentemente destes arquivos (nunca foram a fonte ativa). A métrica realmente atingida é: 0 arquivos de redirect inertes no repositório, confirmado por grep e por `npm test` (7/7, sem regressão). |
+| Observações | Desbloqueado e concluído com base em ARQ-108 (Sprint 5). O risco original ("remover sem confirmar pode quebrar redirects se, inesperadamente, algo depender do arquivo") não se sustentava mais: `nginx -T` na fonte (produção e homologação) confirmou que nenhum dos dois Nginx lê `_redirects`/`vercel.json` — a normalização de URL é feita por uma regra genérica do Nginx, não por esses arquivos (ver `docs/ambientes-e-deploy.md`, seção "Auditoria externa (ARQ-108)"). Confirmado adicionalmente por grep em todo o repositório (incluindo `.github/workflows/`): nenhuma referência funcional, só documentação. `public/_redirects` e `public/vercel.json` removidos nesta sprint (`git rm`); `npm test` permaneceu 7/7 após a remoção. O bug das 5 URLs legadas (404) é uma pendência de infraestrutura separada, documentada em `12-technical-debt.md` e fora do escopo desta remoção. |
 
 ### ARQ-404 — Remover 6 arquivos CSS "deprecated" e seus `<link>` associados
 
