@@ -4,7 +4,7 @@
 	--green-bdr: #1e5535;
 	--text-1: #e8f0ea;
 	--text-2: #7faa8a;
-	--text-3: #4a7258;
+	--text-3: #6e8e79;   /* ARQ-604: clareado de #4a7258 (falhava 2.99:1 AA sobre --bg) */
 	--accent: #3ecf72;
 	--accent-s: rgba(62, 207, 114, 0.12);
 	font-family: var(--font-body);
