@@ -23,7 +23,9 @@
     "footerYoutube": "@TutelaDigitalbr",
     "learnMore": "Learn more",
     "backToHome": "Back to home",
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "site_title": "Tutela Digital® | Legal Infrastructure for Digital Evidence",
   "site_description": "Legal infrastructure for digital evidence preservation with auditable chain of custody, verifiable technical integrity and support for legal admissibility.",
