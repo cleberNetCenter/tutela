@@ -28,6 +28,9 @@ const ARTICLES = [
   "/insights/ativos-digitais/marco-regulatorio/",
   "/insights/ativos-digitais/custodia-ativos-digitais/",
   "/insights/ativos-digitais/compliance-lgpd/",
+  // hubs de cluster (têm body.legal-page, mesmo critério dos artigos)
+  "/insights/prova-digital/",
+  "/insights/ativos-digitais/",
 ];
 
 test.describe("Aviso de idioma PT-only em artigos de insights", () => {
@@ -42,6 +45,34 @@ test.describe("Aviso de idioma PT-only em artigos de insights", () => {
       const notice = page.locator("#legal-lang-notice");
       await expect(notice).toBeVisible();
       await expect(notice).toContainText("Portuguese");
+    });
+  }
+});
+
+// insights/ativos-digitais/index.html não incluía partials/scripts.html —
+// i18n.js (e demais scripts globais) nunca carregavam nessa página, então o
+// clique em qualquer bandeira de idioma não fazia absolutamente nada (sem
+// erro visível). Cobre também /insights/ (hub geral, sem body.legal-page —
+// não deve mostrar o aviso, mas a troca de idioma do chrome deve funcionar).
+test.describe("Troca de idioma funciona no chrome (nav) de todas as páginas de insights", () => {
+  test.use({ locale: "pt-BR" });
+
+  for (const path of ["/insights/ativos-digitais/", "/insights/"]) {
+    test(`${path}: clicar em EN traduz a nav e não gera erro de console`, async ({ page }) => {
+      const consoleErrors: string[] = [];
+      page.on("console", (msg) => {
+        if (msg.type() === "error") consoleErrors.push(msg.text());
+      });
+      page.on("pageerror", (err) => consoleErrors.push(err.message));
+
+      await page.goto(path);
+      await expect(page.locator(".nav-link").first()).toHaveText("Início");
+
+      await page.click('.lang-switch .lang-flag[data-lang="en"]');
+      await expect(page.locator(".nav-link").first()).toHaveText("Home");
+      await expect(page.locator('.lang-switch .lang-flag[data-lang="en"]')).toHaveClass(/active/);
+
+      expect(consoleErrors).toEqual([]);
     });
   }
 });
