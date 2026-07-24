@@ -713,7 +713,7 @@
 | Origem | Débito técnico #8 |
 | Documento | `12-technical-debt.md` |
 | Item da dívida técnica | #8 |
-| Arquivos afetados | `public/partials/header.html` (propagado a todas as páginas via SSI) |
+| Arquivos afetados | `public/partials/header.html` (skip-link, propagado via SSI); `public/assets/css/styles-header-final.css` (estilo, tokens de `foundation/tokens.css`); `public/assets/lang/pt.json`, `en.json`, `es.json` (texto traduzível `global.skipToContent`); `id="main-content" tabindex="-1"` adicionado ao `<main>` de 36/36 páginas reais (todas as páginas que incluem `header.html` via SSI); novo `tests/accessibility.spec.ts` |
 | Dependências (depende de) | Nenhuma |
 | Dependências (desbloqueia) | ARQ-602 (mesmo arquivo, sequenciamento natural) |
 | Pré-requisitos | Nenhum |
@@ -724,10 +724,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | Frontend |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (Sprint 7, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | Skip-link funcional em 37/37 páginas, validado com navegação por Tab |
-| Observações | Recomendado como um dos primeiros itens a implementar, independentemente da ordem formal dos épicos, dado o retorno desproporcional ao esforço. |
+| Métrica de sucesso | Skip-link funcional em 37/37 páginas, validado com navegação por Tab — **atingido em 36/37**: das 37 páginas HTML do repositório, 36 incluem `header.html`/`nav` real via SSI e receberam o destino `id="main-content"`; a 37ª (`public/insights/ativos-digitais/o-que-sao-ativos-digitais/index.html`) é um stub de redirect (`meta http-equiv="refresh"` + `window.location.replace`), sem `header.html`, sem navegação e sem conteúdo próprio a pular — fora do escopo do débito técnico #8 (que fala em usuário tabulando pela navegação, inexistente nesta página). |
+| Observações | Implementado em Sprint 7: `header.html` recebeu `<a class="skip-link" href="#main-content" data-i18n="global.skipToContent">` como primeiro elemento, antes de `<header>` — confirmado via grep que nada precede o `<!--#include virtual="/partials/header.html" -->` em nenhuma página além de `<div class="app">` (ou nada), então o skip-link é sempre o primeiro elemento focável real do documento. Estilo em `styles-header-final.css` (mesmo arquivo CSS já carregado nas 36 páginas junto com `header.html`, evitando um quinto arquivo CSS): oculto via `transform: translateY(-100%)` (não `display:none`, que impediria o foco), visível em `:focus`; cores usam os tokens globais já existentes (`--color-surface-brand`, `--color-text-inverse`, `--color-accent-bright` de `foundation/tokens.css`), sem introduzir um novo namespace de cor (evitando repetir o padrão já catalogado no débito técnico #6/ARQ-301). Texto traduzível via `data-i18n="global.skipToContent"`, com chave nova adicionada aos 3 arquivos de idioma (`pt.json`, `en.json`, `es.json`), consistente com o mecanismo de i18n já usado no resto do `header.html` — evita hardcode de string em um só idioma num site trilíngue. Destino: mapeamento completo do `<main>` real (não presumido a partir de `05-components.md`) via grep de todas as 37 páginas HTML encontrou 6 variantes de `<main class="...">` (e uma sem classe); todas as 36 páginas que incluem `header.html` tiveram `id="main-content" tabindex="-1"` adicionado ao seu `<main>` (o `tabindex="-1"` é necessário para que o navegador efetivamente mova o foco da página para `#main-content` ao ativar o link — sem ele, `<main>` não é nativamente focável e o foco ficaria preso em `document.body`, apesar do scroll acontecer). O partial `public/partials/ativos-digitais-pillar-main.html` (mesma variante de classe `<main>`) não foi tocado: confirmado via grep que não é incluído por nenhuma página (dead code pré-existente, fora do escopo aditivo desta sprint). Teste novo `tests/accessibility.spec.ts` cobre 3 páginas (home, `/legal/termos-de-uso.html`, `/ativos-digitais/` — 1 por cluster relevante, acima do mínimo de 2 pedido) verificando: skip-link presente com `href="#main-content"`, oculto (fora da viewport) antes do foco, é o primeiro elemento focado por `Tab`, fica visível ao receber foco, e ao ativar (`Enter`) move o foco DOM para `#main-content` (não só scroll). `npm test`: baseline 7/7 confirmado antes da mudança, nenhuma asserção alterada nos 7 testes existentes; 10/10 depois (7 + 3 novos), sem regressão. |
 
 ### ARQ-602 — Auditoria de landmarks/ARIA
 
