@@ -516,10 +516,10 @@
 | Complexidade | Média (superfície ampla, baixo risco individual) |
 | Estimativa | M |
 | Responsável | Frontend |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (Sprint 2, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | 0 requisições HTTP para CSS vazio (hoje: 21) |
-| Observações | Depende de ARQ-301 estar concluído para não remover algo ainda em uso. |
+| Observações | Removido em Sprint 2. A dependência declarada de ARQ-301 foi reavaliada com evidência direta, não descartada por suposição: os 6 arquivos continham exatamente 1 linha (comentário de descontinuação, 0 regras CSS) — confirmado via leitura integral de cada arquivo antes da remoção. `pages/ativos-digitais-pillar-styles.css` já não tinha nenhum `<link>` apontando para ele (órfão total). Os outros 5 são substituídos por `styles-header-final.css` (dropdown, confirmado presente em 100% das 21 páginas que linkavam `dropdown-menu.css`) e `legal-shared.css` (páginas legais, confirmado presente nas 4 páginas com CSS individual). Removidos: 6 arquivos CSS + 25 `<link>` em 24 páginas HTML (21× `dropdown-menu.css`, 1× cada dos 4 CSS individuais de página legal). Validação: grep completo confirma 0 referências remanescentes; `<head>` balanceado nos 27 arquivos tocados (inclui também ARQ-503, mesmo commit); servidor local confirma páginas servindo 200 e o CSS removido servindo 404. |
 
 ### ARQ-405 — Resolver nomenclatura `mobile-menu.js`/`dropdown-menu.js`
 
@@ -645,10 +645,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | Frontend |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (Sprint 2, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | 1 par de preconnect por página (hoje: 2) |
-| Observações | Item novo, adicionado pela revisão arquitetural do roadmap. |
+| Observações | Item novo, adicionado pela revisão arquitetural do roadmap. Escopo real era maior do que o inicialmente descrito: 22 páginas tinham preconnect estático próprio (não só `index.html`), todas duplicando o par injetado incondicionalmente por `partials/header.html` (o guard `global-fonts-loaded` só evita reinjeção do próprio script, não detecta o `<link>` estático já presente). Removidos os 44 `<link rel="preconnect">` estáticos das 22 páginas; `partials/header.html` **não foi alterado** — continua sendo a única fonte do preconnect, agora sem duplicação, para 100% das páginas via SSI. Trade-off registrado: o preconnect passa a depender da execução do script inline no `<header>` em vez de uma tag estática no `<head>`; como o script roda de forma síncrona logo no início do `<body>`, o atraso é mínimo e não haveria ganho real em manter a duplicação. Validado nas 22 páginas via grep e servidor local. |
 
 ### ARQ-504 — Automatizar checklist de publicação em CI (lint, `git diff --check`)
 
