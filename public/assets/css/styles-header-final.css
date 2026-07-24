@@ -162,7 +162,7 @@
 }
 
 .nav-dropdown:hover .dropdown-menu,
-.nav-dropdown:focus-within .dropdown-menu,
+.dropdown-menu:focus-within,
 .dropdown-menu.open {
   display: block;
   opacity: 1;
