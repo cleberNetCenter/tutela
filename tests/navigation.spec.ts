@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Navegação principal", () => {
   test("dropdown de desktop abre no hover e fecha com Escape", async ({ page }) => {
-    // O toggle também abre no `mouseenter` do `.nav-dropdown` (mobile-menu.js).
+    // O toggle também abre no `mouseenter` do `.nav-dropdown` (navigation-menu.js).
     // Um .click() do Playwright move o mouse até o elemento antes de clicar,
     // o que já dispara esse hover e abre o menu — testar hover diretamente
     // reflete a interação real de um usuário de mouse.
