@@ -1,5 +1,9 @@
 node_modules/
 
+# Saída de execução do Playwright (ARQ-501) — não deve ser versionada
+test-results/
+playwright-report/
+
 # Backups e diretórios temporários
 public_backup/
 *_backup/
