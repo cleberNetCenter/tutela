@@ -27,7 +27,7 @@ O projeto é um site estático servido de `public/`. O repositório não contém
 | Homologação | `homolog` | `/opt/tutela` | push em `homolog` | validação |
 | Produção | `main` | `/var/www/tutela` | push em `main` | site público |
 
-O hostname de produção confirmado no conteúdo e sitemap é `www.tuteladigital.com.br`. A URL de homologação não está versionada: obtenha-a da configuração Nginx/DNS e registre-a no cofre operacional.
+O hostname de produção confirmado no conteúdo e sitemap é `www.tuteladigital.com.br`. O hostname de homologação é **`homolog.tuteladigital.com.br`** — confirmado em 2026-07-24 via `curl -I https://homolog.tuteladigital.com.br/` (resposta `200`, `x-robots-tag: noindex, nofollow, noarchive`, ver [Auditoria externa (ARQ-108)](#auditoria-externa-arq-108-2026-07-24) abaixo).
 
 ## Desenvolvimento local
 
@@ -127,15 +127,104 @@ Nginx deve, no mínimo:
 - manter logs de acesso/erro, certificados válidos e renovação TLS;
 - aplicar a política atual de URLs canônicas e redirecionamentos.
 
-| Item | Homologação | Produção |
+**Achado estrutural importante (2026-07-24): homologação e produção têm arquiteturas de Nginx diferentes, não apenas hosts diferentes.** Em produção, o Nginx que termina TLS, aplica os security headers e faz a normalização de URL roda **no host** (`/etc/nginx`, fora do Docker) e repassa para o container `tutela_v2_nginx` só o conteúdo, via `proxy_pass http://localhost:8080`. Em homologação, não existe Nginx de host fazendo esse papel — o container `tutela_v2_nginx` (imagem `nginx:alpine`) está publicado **diretamente** nas portas 80/443 do host (`docker run -p 80:80 -p 443:443` ou equivalente no compose) e ele mesmo faz TLS, headers e normalização de URL. O `/etc/nginx` do host de homologação existe mas **não está vinculado a nenhuma porta pública** — é config morta, não uma segunda fonte de verdade. Consequência prática: para alterar headers/redirects/SSI em produção, edita-se o Nginx do host; para o mesmo em homologação, edita-se a config dentro do container (`/opt/tutela-v2`, montada ou construída na imagem).
+
+| Item | Homologação (host `tutela-dev`) | Produção (host `tutela-web`) |
 | --- | --- | --- |
-| Hostname | confirmar | `www.tuteladigital.com.br` |
-| Servidor/IP | confirmar | confirmar |
-| Arquivo Nginx ativo | confirmar | confirmar |
-| Certificado e renovação | confirmar | confirmar |
-| Compose | `/opt/tutela-v2/docker-compose.yml` | `/opt/tutela-v2/docker-compose.yml` |
+| Hostname | `homolog.tuteladigital.com.br` (CNAME para `dev.tuteladigital.com.br`) | `www.tuteladigital.com.br` |
+| Servidor/IP | `tutela-dev`; resolve internamente para IP privado (RFC1918) — registrar em cofre, não neste documento | `tutela-web`, host compartilhado com outros projetos (fora do escopo deste repositório); IP ainda não registrado |
+| Onde o Nginx público realmente roda | **Dentro do container** `tutela_v2_nginx` (`nginx:alpine`), publicado direto nas portas 80/443 do host — confirmado via `docker ps` + `ss -ltnp` (portas 80/443 pertencem a `docker-proxy`, não ao processo `nginx` do host) | **No host**, processo `nginx` nativo (fora do Docker) — confirmado via `ss -ltnp` (portas 80/443 pertencem a processos `nginx`, não a `docker-proxy`) |
+| Arquivo Nginx ativo | `/etc/nginx/conf.d/default.conf` **dentro do container** `tutela_v2_nginx`, obtido via `docker exec tutela_v2_nginx nginx -T` | `/etc/nginx/sites-enabled/tutela.conf` no host, obtido via `sudo nginx -T` |
+| `/etc/nginx` do host (fora do Docker) | Existe (`sites-available/tutela.conf`), mas **não está em uso** — não vinculado a nenhuma porta pública; parece cópia desatualizada do vhost de produção (mesmo `server_name www.tuteladigital.com.br`, mesmo cert) | É o Nginx real e ativo |
+| Versão Nginx | `nginx/1.29.7` (header `Server` — a imagem `nginx:alpine` não desativa `server_tokens`) | não divulgada no header (`server_tokens off;` no `nginx.conf` do host) |
+| Certificado e renovação | Let's Encrypt, `/etc/letsencrypt/live/homolog.tuteladigital.com.br/` (confirmado via `nginx -T` do container) | Let's Encrypt, `/etc/letsencrypt/live/www.tuteladigital.com.br/` (confirmado via `nginx -T`); renovação automática (certbot timer/cron) **não confirmada** em nenhum dos dois ambientes |
+| Containers `tutela_v2_*` ativos | Só `tutela_v2_nginx` (confirmado via `docker ps`) | `tutela_v2_nginx` **e** `tutela_v2_api` (porta 3000, interna) — confirmado via `docker ps` |
+| Compose (`/opt/tutela-v2/docker-compose.yml`) | **Paridade com produção confirmada como AUSENTE** — produção roda um container (`tutela_v2_api`) que não aparece rodando em homologação | Ver coluna ao lado — mesma conclusão |
 | Checkout Git | `/opt/tutela` | `/var/www/tutela` |
-| Upstream | confirmar | `127.0.0.1:8080` a confirmar |
+| Upstream | Nginx do container serve os arquivos direto (`root /usr/share/nginx/html;`), sem proxy adicional | `proxy_pass http://localhost:8080;` no host → `tutela_v2_nginx` no container, confirmado via `nginx -T` + `docker ps` |
+| SSI (Server Side Includes) | `ssi on; ssi_types text/html;` confirmado dentro do container | `ssi on;` confirmado no vhost do host — resolve a pendência que `11-build-deploy.md` registrava como não-documentada |
+| Redirect `.html` → URL limpa | `location ~ ^/(?!partials/)(.*)\.html$ { return 301 https://$host/$1; }` — mesma regra genérica de produção (sem barra final), mesmo bug: as 5 URLs legadas também quebram aqui | `location ~ ^/(?!partials/)(.*)\.html$ { return 301 .../$1/; }` (com barra final) |
+
+**Achado incidental, fora do escopo desta auditoria**: `docker ps` em produção mostra um container `tutela_v2_api` (porta 3000, interna, sem publicação externa direta) que não estava catalogado em nenhum documento de arquitetura. Pode ser a implementação de `/api/diagnostico` (item #2 de `12-technical-debt.md` / ARQ-101) — **não investigado agora**, por disciplina de escopo desta sprint (ARQ-108 é sobre Nginx, não sobre o backend do formulário). Fica como pista concreta para quando ARQ-101 for priorizado.
+
+### Auditoria externa (ARQ-108) — 2026-07-24
+
+Auditoria em duas fases. Fase 1 (abaixo): `curl` a partir do ambiente de execução do Claude Code, que tinha acesso de rede de saída (confirmado antes de prosseguir) mas **nenhum acesso SSH ou a arquivo de configuração** — evidência puramente externa, reproduzível por qualquer pessoa com os mesmos comandos. Fase 2 ("Confirmação via `nginx -T` na fonte", mais abaixo): o usuário rodou os comandos de auditoria diretamente nos servidores e compartilhou o resultado, confirmando (e em um caso, corrigindo) o que a Fase 1 já indicava.
+
+**Headers HTTP confirmados — duplamente, via `curl` externo e via `nginx -T` na fonte (host de produção e container de homologação); nível de confiança: confirmado diretamente nos dois métodos, valores idênticos:**
+
+| Header | Homologação (`https://homolog.tuteladigital.com.br/`) | Produção (`https://www.tuteladigital.com.br/`) |
+| --- | --- | --- |
+| `Strict-Transport-Security` | **ausente** | `max-age=31536000; includeSubDomains; preload` |
+| `X-Frame-Options` | `SAMEORIGIN` | `SAMEORIGIN` |
+| `X-Content-Type-Options` | `nosniff` | `nosniff` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | `strict-origin-when-cross-origin` |
+| `Content-Security-Policy` | ausente | ausente |
+| `Permissions-Policy` | ausente | ausente |
+| `X-Robots-Tag` | `noindex, nofollow, noarchive` | ausente (esperado — só faz sentido em homologação) |
+
+```bash
+curl -sS -D - -o /dev/null https://homolog.tuteladigital.com.br/
+curl -sS -D - -o /dev/null https://www.tuteladigital.com.br/
+```
+
+**`og-image.jpg`**: confirmado `404` tanto em produção (`https://www.tuteladigital.com.br/assets/images/og-image.jpg`) quanto em homologação. Resolve em definitivo a incerteza do item #1/`12-technical-debt.md`: o arquivo **não existe em nenhum ambiente**, não é um caso de "existe só em produção fora do Git".
+
+**Redirects legados (`_redirects`/`vercel.json`) — confirmado que NÃO são a fonte ativa, e que os 5 estão quebrados em produção:**
+
+Uma regra genérica do Nginx (remove `.html`, redireciona para o path sem extensão + barra final) intercepta as 5 URLs legadas antes de qualquer regra específica de `_redirects`/`vercel.json`, e o destino gerado não existe:
+
+```bash
+curl -sS -D - -o /dev/null https://www.tuteladigital.com.br/institucional.html
+# → 301 para /institucional/
+curl -sS -o /dev/null -w '%{http_code}\n' https://www.tuteladigital.com.br/institucional/
+# → 404
+```
+
+O mesmo padrão (`301` para path sem extensão, depois `404`) foi confirmado para `fundamento-juridico.html`, `termos-de-custodia.html`, `preservacao-probatoria-digital.html` e `politica-de-privacidade.html`. Controle: o mesmo comportamento de "strip `.html`" ocorre em `/diagnostico.html` (página sem nenhuma regra de redirect legado), confirmando que é uma regra genérica do Nginx, não a lógica de `_redirects`/`vercel.json`. As páginas de destino reais existem e respondem `200` em `/legal/institucional/` etc. — só não são alcançadas pelas 5 URLs legadas.
+
+**Conclusão factual para ARQ-403**: o Nginx não replica os redirects de `_redirects`/`vercel.json` em nenhum dos dois ambientes — e, hoje, as 5 URLs legadas resultam em `404` tanto em produção quanto em homologação. Correção está fora do escopo desta auditoria (ARQ-108 é só levantamento), mas o fato é confirmado e acionável a qualquer momento.
+
+### Confirmação via `nginx -T` na fonte — produção e homologação, 2026-07-24
+
+**Produção**: `sudo nginx -T` rodado pelo usuário no host `tutela-web` (que hospeda o vhost de `tuteladigital.com.br` junto com outros domínios não relacionados a este projeto, fora do escopo destes docs). Confirma, na fonte, tudo que a auditoria externa por `curl` já havia indicado:
+
+- **Causa raiz do redirect quebrado (ARQ-403), confirmada no arquivo de configuração** (`/etc/nginx/sites-enabled/tutela.conf`):
+  ```nginx
+  # .html → URL limpa com trailing slash
+  location ~ ^/(?!partials/)(.*)\.html$ {
+      return 301 https://www.tuteladigital.com.br/$1/;
+  }
+  ```
+  Não existe nenhum `location` específico para as 5 URLs legadas — essa regra genérica de normalização captura qualquer `.html` primeiro. `_redirects` e `vercel.json` nunca são lidos por este Nginx — confirmação de que esses dois arquivos são **inertes há muito tempo** nesta infraestrutura.
+- CSP e `Permissions-Policy` **confirmados ausentes na configuração-fonte**.
+- `ssi on;`, `proxy_pass http://localhost:8080;` e certificado Let's Encrypt (`/etc/letsencrypt/live/www.tuteladigital.com.br/`) confirmados.
+- `server_tokens off;` está no bloco `http {}` global do host (`/etc/nginx/nginx.conf`) — por isso produção não divulga a versão do Nginx no header `Server`.
+
+**Homologação**: inicialmente rodamos `sudo nginx -T` no host `tutela-dev` e o resultado **não batia** com o que o `curl` mostrava (vhost para `www.tuteladigital.com.br`, não `homolog.tuteladigital.com.br`; HSTS presente na config mas ausente ao vivo). Investigação (`docker ps` + `ss -ltnp`) revelou a causa: nesse host, as portas 80/443 são publicadas **diretamente pelo container** `tutela_v2_nginx` (`docker-proxy`, não o processo `nginx` do host) — o `/etc/nginx` do host existe mas está morto, sem porta pública associada, provavelmente uma cópia desatualizada da config de produção nunca ativada. A config real veio de `docker exec tutela_v2_nginx nginx -T`, e essa sim bate exatamente com o `curl`: `server_name homolog.tuteladigital.com.br`, sem HSTS, `X-Robots-Tag: noindex, nofollow, noarchive`, e a mesma regra genérica de redirect quebrado (`location ~ ^/(?!partials/)(.*)\.html$ { return 301 https://$host/$1; }`) — o bug do ARQ-403 existe nos dois ambientes, não só em produção.
+
+**Achado confirmado — a anomalia da porta 80/`:445` não vem de nenhum dos dois Nginx**: o vhost de porta 80 de produção (`server { listen 80; server_name tuteladigital.com.br www.tuteladigital.com.br; ... return 301 https://www.tuteladigital.com.br$request_uri; }`) é um redirect limpo, sem os headers extras (`Content-Security-Policy: frame-ancestors 'self'`, `X-XSS-Protection`) e sem porta `:445` observados via `curl` externo. O usuário esclareceu que o acesso externo passa por um **firewall Fortinet**, e explicou a causa provável (**informado pelo usuário — não verificado diretamente nesta auditoria**): como o Fortinet atende vários sites na porta 443, a porta de administração web do próprio equipamento foi remapeada de 443 (padrão de fábrica) para 445, para não conflitar com o tráfego HTTPS real dos sites. A hipótese mais provável é que a regra de redirect HTTP→HTTPS configurada no Fortinet para `tuteladigital.com.br` está referenciando essa porta de administração (445) em vez da porta real do site (443) — um erro de configuração conhecido em FortiGate, onde o redirecionamento automático herda a variável de porta administrativa (`admin-sport`) em vez da porta do VIP/serviço. Correção está fora do escopo desta auditoria e deste repositório (requer acesso ao Fortinet), mas a causa provável já está documentada para quem for corrigir. Homologação **não tem esse problema** — seu redirect de porta 80 (dentro do próprio container) é limpo, sem anomalia.
+
+```bash
+curl -sS -D - -o /dev/null http://tuteladigital.com.br/
+docker exec tutela_v2_nginx nginx -T   # rodado no host de homologação
+```
+
+**Pendências residuais** (nenhuma bloqueia mais os 3 pontos originais do ARQ-108 — headers, hostname, redirects —, todos confirmados; o que resta é para itens relacionados/futuros):
+
+```bash
+# Renovação de certificado, em cada servidor:
+sudo certbot certificates 2>/dev/null || true    # ou equivalente
+
+# No Fortinet (fora deste repositório) — corrigir a regra de redirect HTTP→HTTPS de
+# tuteladigital.com.br para apontar à porta 443 do site, não à porta de administração
+# (445) do próprio equipamento.
+
+# Registrar em cofre operacional (não neste documento): IP dos hosts tutela-web e
+# tutela-dev, e o IP privado para o qual homolog.tuteladigital.com.br resolve.
+```
+
+Isso fecha: renovação de certificado e a correção da regra de redirect no Fortinet (causa provável já identificada, ver acima — não verificada/corrigida nesta auditoria).
 
 ### Auditoria e mudança segura
 
@@ -175,7 +264,7 @@ curl -I https://www.tuteladigital.com.br/robots.txt
 curl -I https://www.tuteladigital.com.br/sitemap.xml
 ```
 
-Espere redirecionamentos para HTTPS/`www` quando aplicável e `200` para o site, robots e sitemap. Os redirecionamentos legados também aparecem em `public/_redirects` e `public/vercel.json`; confirme que a camada realmente usada em produção os atende.
+Espere redirecionamentos para HTTPS/`www` quando aplicável e `200` para o site, robots e sitemap. `public/_redirects` e `public/vercel.json` foram removidos do repositório na Sprint 6 (ARQ-403) — comprovadamente inertes, confirmado via `nginx -T` na fonte (ver seção "Nginx" acima). Os redirecionamentos legados reais dependem apenas da regra genérica do Nginx, hoje quebrada para as 5 URLs legadas (ver achados de ARQ-108 acima).
 
 ## Incidentes e rollback
 
@@ -193,7 +282,7 @@ Não deixe o checkout do servidor preso em SHA antigo: o workflow o substituirá
 - Controle escrita nas branches `main` e `homolog`; use revisão para produção.
 - Restrinja administração dos runners, Docker, Nginx, DNS e certificados.
 - Mantenha segredos em GitHub Secrets ou cofre operacional, nunca em commits.
-- Confirme e registre em cofre: URL/DNS de homologação, IPs, responsáveis, arquivo Nginx ativo, upstream, renovação TLS, paridade do Compose, backup e retenção de logs.
+- Confirme e registre em cofre: IPs, responsáveis, arquivo Nginx ativo, upstream, renovação TLS, paridade do Compose, backup e retenção de logs. (URL/DNS de homologação já confirmada em 2026-07-24, ver [Auditoria externa (ARQ-108)](#auditoria-externa-arq-108-2026-07-24).)
 - Defina se o merge automático **main → homolog** do sitemap é intencional para o processo de release.
 
 Depois de preencher esses dados operacionais, este documento é o runbook de onboarding, publicação e resposta inicial a incidentes.

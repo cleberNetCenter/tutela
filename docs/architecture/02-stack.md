@@ -66,7 +66,7 @@ Documentado em detalhe em [11-build-deploy.md](11-build-deploy.md). Resumo:
 - **Nginx** faz TLS, redirecionamentos e proxy reverso; a configuração ativa não é versionada no repositório (gerenciada diretamente nos servidores) — necessita validação.
 - **Docker Compose** empacota o servidor estático; o `docker-compose.yml` efetivo vive em `/opt/tutela-v2` no servidor, fora deste repositório.
 - **GitHub Actions** com runners self-hosted (`[self-hosted, homolog]` e `[self-hosted, production]`) fazem o deploy via `git reset --hard` + `docker compose up -d --build`.
-- Existe um `public/vercel.json` com regras de redirect, mas o pipeline de deploy documentado (`docs/ambientes-e-deploy.md`) não menciona Vercel em nenhum momento — a Vercel parece não estar em uso no pipeline atual (ver [12-technical-debt.md](12-technical-debt.md)).
+- `public/vercel.json` e `public/_redirects` (redirects em sintaxe Vercel/Netlify) foram removidos na Sprint 6 (ARQ-403), confirmados inertes: o pipeline real usa Nginx + Docker self-hosted, e `nginx -T` na fonte confirmou que nenhum dos dois arquivos era lido em produção ou homologação (ver [12-technical-debt.md](12-technical-debt.md)).
 
 ## Serviços de terceiros
 

@@ -24,8 +24,6 @@ tutela/
 │   ├── ambientes-e-deploy.md              # runbook de deploy/infra (pré-existente)
 │   └── architecture/                      # esta documentação
 ├── public/                                # ⭐ raiz do site servido
-│   ├── _redirects                         # redirects estilo Netlify (não confirmado em uso)
-│   ├── vercel.json                        # redirects estilo Vercel (não confirmado em uso — ver 12-technical-debt.md)
 │   ├── robots.txt
 │   ├── sitemap.xml                        # gerado automaticamente por CI
 │   ├── index.html                         # home (PT-BR)
@@ -75,7 +73,7 @@ tutela/
 
 | Subpasta/arquivo | Conteúdo | Nº de páginas HTML |
 | --- | --- | --- |
-| raiz de `public/` | Páginas institucionais principais + config (`robots.txt`, `sitemap.xml`, `_redirects`, `vercel.json`) | 7 (`index`, `como-funciona`, `diagnostico`, `seguranca`, `governo`, `empresas`, `pessoas`) |
+| raiz de `public/` | Páginas institucionais principais + config (`robots.txt`, `sitemap.xml`) | 7 (`index`, `como-funciona`, `diagnostico`, `seguranca`, `governo`, `empresas`, `pessoas`) |
 | `ativos-digitais/` | Pillar page jurídica com 4 subpáginas temáticas | 5 |
 | `insights/` | Blog jurídico com 2 categorias (`ativos-digitais`, `prova-digital`) | 15 (2 índices + 13 artigos, incluindo 1 stub de redirecionamento) |
 | `legal/` | Termos de uso, privacidade, custódia, fundamentos jurídicos | 7 |
@@ -130,7 +128,7 @@ A lista completa e roteável (com URLs finais) está em [04-routing.md](04-routi
 | `docker-compose.yml` | Não identificado no projeto — vive em `/opt/tutela-v2` no servidor (`docs/ambientes-e-deploy.md:20`) |
 | `Dockerfile` | Não identificado no repositório |
 | `.github/workflows/*.yml` | Presente — 4 workflows (deploy homolog, deploy produção, guard de branch, sitemap) |
-| `vercel.json` | Presente em `public/vercel.json`, mas não confirmado como parte do pipeline de deploy ativo |
+| `vercel.json` | Removido na Sprint 6 (ARQ-403) — confirmado inerte (`nginx -T` na fonte, ARQ-108) e nunca parte do pipeline de deploy ativo |
 | `.env` / `.env.*` | Não identificado no projeto — nenhuma variável de ambiente ou segredo versionado |
 | `playwright.config.*` | Não identificado no projeto (apesar da dependência estar instalada localmente) |
 

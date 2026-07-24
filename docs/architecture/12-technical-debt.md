@@ -73,9 +73,9 @@ Query strings de versão usam três convenções distintas: contador simples (`m
 `public/assets/js/navigation.js` contém unicamente um IIFE com `return` imediato e o comentário `NAVIGATION DISABLED (MPA MODE)`. Não está claro, a partir do repositório, se o arquivo ainda é referenciado por alguma página (não aparece em `scripts.html`) — necessita validação se algum HTML legado ainda o inclui.
 **Cenário de falha concreto**: nenhum funcional; é peso morto no repositório que pode confundir sobre o que está realmente ativo.
 
-### 15. `vercel.json` presente sem confirmação de uso no pipeline real
-`public/vercel.json` declara redirects no formato Vercel, mas o pipeline de deploy documentado (`docs/ambientes-e-deploy.md`, workflows de `.github/`) usa exclusivamente runners self-hosted + Docker + Nginx — nenhuma menção à Vercel.
-**Cenário de falha concreto**: um desenvolvedor pode presumir que editar `vercel.json` altera o comportamento de produção, quando na realidade (necessita validação) esse arquivo pode não ter efeito algum no ambiente real.
+### 15. ~~`vercel.json` presente sem confirmação de uso no pipeline real~~ — RESOLVIDO (Sprint 6, 2026-07-24, ARQ-403)
+`public/vercel.json` e `public/_redirects` declaravam redirects em sintaxes de plataformas (Vercel/Netlify) não usadas no pipeline real, que roda exclusivamente em runners self-hosted + Docker + Nginx.
+**Confirmação**: a auditoria ARQ-108 (Sprint 5) confirmou via `nginx -T` na fonte, em produção e homologação, que nenhum dos dois Nginx lê esses arquivos — a normalização de URL é feita por uma regra genérica do Nginx, independente deles (ver `docs/ambientes-e-deploy.md`, seção "Auditoria externa (ARQ-108)"). Grep em todo o repositório (incluindo `.github/workflows/`) não encontrou nenhuma outra referência funcional a esses arquivos. Ambos foram removidos na Sprint 6; `npm test` permaneceu 7/7 após a remoção.
 
 ### 16. Ausência de banner de consentimento de cookies
 Google Analytics 4 está presente em todas as páginas sem um mecanismo visível de consentimento prévio (cookie banner/CMP). Ver [09-security.md](09-security.md).
@@ -83,14 +83,22 @@ Google Analytics 4 está presente em todas as páginas sem um mecanismo visível
 
 ## Itens que necessitam validação (fora do repositório)
 
+Auditoria em três etapas (ARQ-108, 2026-07-24 — ver [docs/ambientes-e-deploy.md](../ambientes-e-deploy.md#nginx) para evidência completa): `curl` externo, depois `nginx -T` no host de produção, depois investigação de `docker ps`/`ss -ltnp` + `nginx -T` dentro do container em homologação (necessária porque o `nginx -T` do host de homologação inicialmente não batia com o `curl` — o Nginx real ali roda dentro do container `tutela_v2_nginx`, publicado direto nas portas 80/443; o `/etc/nginx` do host está morto). Juntas, **resolveram os 6 itens originais** e revelaram fatos novos não previstos nesta lista. Itens resolvidos, mantidos aqui só para rastreabilidade:
+
+- ~~Headers HTTP reais (CSP, HSTS, X-Frame-Options) em produção~~ — **resolvido, confirmado na config-fonte via `nginx -T`** em produção (host) e homologação (container): HSTS/X-Frame-Options/X-Content-Type-Options/Referrer-Policy ativos em produção; CSP e Permissions-Policy **ausentes** em ambos; HSTS **ausente** em homologação.
+- ~~Se `og-image.jpg` existe apenas no servidor de produção~~ — **resolvido**: confirmado `404` em produção e homologação; o arquivo não existe em nenhum ambiente.
+- ~~Se o Nginx aplica os redirects de `_redirects`/`vercel.json`~~ — **resolvido, causa raiz confirmada no arquivo de configuração, nos dois ambientes**: não aplica. Tanto produção quanto homologação têm uma regra genérica (`location ~ ^/(?!partials/)(.*)\.html$ { return 301 ...; }`) que intercepta qualquer `.html` antes de qualquer lógica de `_redirects`/`vercel.json` — esses dois arquivos nunca são lidos por nenhum dos dois Nginx. As 5 URLs legadas resultam em `404` hoje em ambos os ambientes.
+- ~~URL do ambiente de homologação~~ — **resolvido**: `homolog.tuteladigital.com.br` (CNAME para `dev.tuteladigital.com.br`).
+- ~~Arquivo Nginx ativo / upstream / SSI~~ — **resolvido nos dois ambientes**: produção usa `/etc/nginx/sites-enabled/tutela.conf` no host (`proxy_pass http://localhost:8080`); homologação usa a config dentro do container `tutela_v2_nginx`, publicado direto em 80/443 — arquiteturas diferentes entre os dois ambientes, ver `ambientes-e-deploy.md`. `ssi on` confirmado nos dois.
+- ~~Se `docker-compose.yml` em produção e homologação estão em paridade~~ — **resolvido, via observação direta (`docker ps`), não apenas confirmado como pendente**: **não estão em paridade**. Produção roda `tutela_v2_nginx` + `tutela_v2_api`; homologação roda só `tutela_v2_nginx` — o container de API não aparece ativo em homologação.
+
+Itens que continuam pendentes de acesso direto ao servidor/rede:
+
 | Item | Por que não pode ser confirmado só pelo código |
 | --- | --- |
-| Headers HTTP reais (CSP, HSTS, X-Frame-Options) em produção | Configuração do Nginx não é versionada (`docs/ambientes-e-deploy.md:116-118`) |
-| Se `og-image.jpg` existe apenas no servidor de produção | Repositório é a única fonte disponível para esta análise |
-| Comportamento real de `/api/diagnostico` | Endpoint não versionado neste repositório |
-| Se o Nginx aplica os redirects de `_redirects`/`vercel.json` | Depende da config real do servidor |
-| URL do ambiente de homologação | Não versionada; deve ser obtida do DNS/Nginx do servidor |
-| Se `docker-compose.yml` em produção e homologação estão em paridade | Vive fora do repositório, em `/opt/tutela-v2` de cada servidor |
+| Comportamento real de `/api/diagnostico` | Endpoint não versionado neste repositório. Achado incidental desta auditoria: existe um container `tutela_v2_api` rodando em produção (porta 3000, interna) que pode ser a implementação — não investigado, fora do escopo de ARQ-108; pista para ARQ-101. |
+| Renovação automática de certificado (produção e homologação) | Requer `certbot certificates` ou equivalente em cada servidor, não rodado nesta auditoria |
+| Correção do redirect para porta `:445` em `http://tuteladigital.com.br/` (porta 80) | **Confirmado que não vem de nenhum dos dois Nginx** (nem o de produção nem o de homologação fazem esse redirect ou adicionam esses headers) — origem é o firewall Fortinet que faz o acesso externo aos servidores. Causa provável **informada pelo usuário, não verificada diretamente**: a porta de administração web do Fortinet foi remapeada de 443 para 445 (para não conflitar com o tráfego HTTPS real dos sites que ele atende), e a regra de redirect HTTP→HTTPS de `tuteladigital.com.br` provavelmente herda essa porta administrativa em vez da porta 443 do site — erro de configuração conhecido em FortiGate. Correção requer acesso ao Fortinet, fora do escopo deste repositório. |
 
 ## Documentos relacionados
 - Cada achado linka de volta ao documento temático correspondente para contexto completo.
