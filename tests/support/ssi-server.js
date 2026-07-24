@@ -93,9 +93,13 @@ function createSSIServer() {
 }
 
 if (require.main === module) {
-  const port = Number(process.env.PORT) || 8080;
+  // 8081 por padrão (npm run dev, inspeção manual) — deliberadamente diferente
+  // de 8080 (python3 -m http.server, documentado no runbook antigo, não resolve
+  // SSI) para que as duas portas nunca sejam confundidas. O Playwright
+  // (playwright.config.ts) sobrescreve para 8080 via env PORT ao rodar `npm test`.
+  const port = Number(process.env.PORT) || 8081;
   createSSIServer().listen(port, () => {
-    console.log(`SSI test server listening on http://localhost:${port}`);
+    console.log(`SSI server (com resolução de includes) em http://localhost:${port}`);
   });
 }
 

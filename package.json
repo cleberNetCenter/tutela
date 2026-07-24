@@ -2,7 +2,8 @@
   "name": "tutela",
   "private": true,
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "dev": "node tests/support/ssi-server.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1"

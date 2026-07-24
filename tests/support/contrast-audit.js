@@ -78,16 +78,18 @@ const PAIRS = [
   { group: "--ad-*", label: "--ad-accent-gold (destaque stat-card) sobre --ad-bg-white — componente UI", fg: "#b08a57", bg: "#ffffff", context: "ui" },
   { group: "--ad-*", label: "branco sobre --ad-brand-dark (CTA/hero escuro)", fg: "#ffffff", bg: "#0d2b1a", context: "large" },
 
-  // ---- Terceiro sistema --ux-* (inline, ativos-digitais-pillar-styles.html) ----
-  { group: "--ux-*", label: "--ux-ink sobre --ux-bg", fg: "#18342b", bg: "#f4f7f2", context: "normal" },
-  { group: "--ux-*", label: "--ux-ink sobre cartão branco (stat-card/whitepaper)", fg: "#18342b", bg: "#ffffff", context: "normal" },
-  { group: "--ux-*", label: "--ux-ink-soft (corpo de texto) sobre cartão branco", fg: "#51645d", bg: "#ffffff", context: "normal" },
-  { group: "--ux-*", label: "--ux-brand-2 (h2/h3/card-icon) sobre cartão branco", fg: "#184d43", bg: "#ffffff", context: "normal" },
-  { group: "--ux-*", label: "--ux-danger (card-danger h3/icon) sobre --ux-danger-bg (quase-branco)", fg: "#9f3627", bg: "#fff2ef", context: "normal" },
-  { group: "--ux-*", label: "--ux-brand (checklist icon) sobre rgba(15,74,54,0.10) — componente UI", fg: "#0f4a36", bg: flatten("#0f4a36", 0.10, "#ffffff"), context: "ui" },
-  { group: "--ux-*", label: "branco (#eff6f1) sobre header .assets-page (rgba(10,42,33,0.72) sobre gradiente escuro)", fg: "#eff6f1", bg: flatten("#0a2a21", 0.72, "#0d3429"), context: "normal" },
-  { group: "--ux-*", label: "#f4f8f4 (page-header h1) sobre gradiente #163f35→#18453a — pior caso", fg: "#f4f8f4", bg: "#18453a", context: "large" },
-  { group: "--ux-*", label: ".btn-primary #18453a sobre #f4f6f3 (CTA claro)", fg: "#18453a", bg: "#f4f6f3", context: "normal" },
+  // ---- Extensão --ad-pillar-* (tokens.css) — consolidada nesta sprint a partir
+  // do --ux-* que vivia inline em ativos-digitais-pillar-styles.html (ARQ-301).
+  // Valores idênticos aos pré-migração; grupo/labels só refletem os novos nomes.
+  { group: "--ad-pillar-*", label: "--ad-pillar-ink sobre --ad-pillar-bg", fg: "#18342b", bg: "#f4f7f2", context: "normal" },
+  { group: "--ad-pillar-*", label: "--ad-pillar-ink sobre cartão branco (stat-card/whitepaper)", fg: "#18342b", bg: "#ffffff", context: "normal" },
+  { group: "--ad-pillar-*", label: "--ad-pillar-ink-soft (corpo de texto) sobre cartão branco", fg: "#51645d", bg: "#ffffff", context: "normal" },
+  { group: "--ad-pillar-*", label: "--ad-pillar-brand-2 (h2/h3/card-icon) sobre cartão branco", fg: "#184d43", bg: "#ffffff", context: "normal" },
+  { group: "--ad-pillar-*", label: "--ad-danger (card-danger h3/icon) sobre --ad-danger-bg (quase-branco)", fg: "#9f3627", bg: "#fff2ef", context: "normal" },
+  { group: "--ad-pillar-*", label: "--ad-pillar-brand (checklist icon) sobre rgba(15,74,54,0.10) — componente UI", fg: "#0f4a36", bg: flatten("#0f4a36", 0.10, "#ffffff"), context: "ui" },
+  { group: "--ad-pillar-*", label: "branco (#eff6f1) sobre header .assets-page (rgba(10,42,33,0.72) sobre gradiente escuro)", fg: "#eff6f1", bg: flatten("#0a2a21", 0.72, "#0d3429"), context: "normal" },
+  { group: "--ad-pillar-*", label: "#f4f8f4 (page-header h1) sobre gradiente #163f35→#18453a — pior caso", fg: "#f4f8f4", bg: "#18453a", context: "large" },
+  { group: "--ad-pillar-*", label: ".btn-primary #18453a sobre #f4f6f3 (CTA claro)", fg: "#18453a", bg: "#f4f6f3", context: "normal" },
 
   // ---- Header / Navegação / Dropdowns / Menu mobile (styles-header-final.css) — Sprint 7-9 ----
   { group: "Header/Nav", label: "skip-link: --color-text-inverse sobre --color-surface-brand (ARQ-601)", fg: "#e6f0eb", bg: "#0c2418", context: "normal" },

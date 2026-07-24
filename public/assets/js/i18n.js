@@ -227,25 +227,5 @@ document.addEventListener('click', (e) => {
   if (btn?.dataset.lang) I18N.switchLanguage(btn.dataset.lang);
 });
 
-// Observer para páginas SPA
-//const pageObserver = new MutationObserver((mutations) => {
-//  mutations.forEach((mutation) => {
-//    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-//    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-//    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-//      const target = mutation.target;
-//      if (target.classList?.contains('page') && target.classList.contains('active')) {
-//        I18N.applyTranslations();
-//        I18N.showLegalPageNoticeIfNeeded();
-//      }
-//    }
-//  });
-//});
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.page').forEach(page => {
-    pageObserver.observe(page, { attributes: true, attributeFilter: ['class'] });
-  });
-});
 
 window.I18N = I18N;
