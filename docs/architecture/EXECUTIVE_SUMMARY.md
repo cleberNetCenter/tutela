@@ -49,7 +49,7 @@ Sem prescrever implementação (fora do escopo desta análise, que é somente le
 - Confirmar e documentar formalmente a configuração real de Nginx (headers de segurança, redirects, SSI) como parte do runbook — ver [09-security.md](09-security.md) e [11-build-deploy.md](11-build-deploy.md).
 - Esclarecer o ciclo de vida de `/api/diagnostico` e dos dados coletados pelo formulário — ver [09-security.md](09-security.md).
 - Revisitar a decisão de sincronização automática `main → homolog` no workflow de sitemap junto à equipe — ver [11-build-deploy.md](11-build-deploy.md).
-- Decidir explicitamente se `vercel.json`/`public/_redirects` seguem necessários dado que o deploy real não usa essas plataformas — ver [04-routing.md](04-routing.md).
+- ~~Decidir explicitamente se `vercel.json`/`public/_redirects` seguem necessários~~ — resolvido na Sprint 6 (ARQ-403): ambos removidos, confirmados inertes — ver [04-routing.md](04-routing.md).
 
 ## Documentos relacionados
 

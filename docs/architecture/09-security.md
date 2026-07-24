@@ -22,7 +22,7 @@ Uma busca em todo o repositório (arquivos HTML, JS e JSON) por `Content-Securit
 
 Isso não significa necessariamente que esses headers estejam ausentes em produção — segundo `docs/ambientes-e-deploy.md:116-118`, a configuração ativa do Nginx *"não é mais versionada no repositório: ela é gerenciada diretamente nos servidores"*. Portanto, a existência (ou não) de CSP, HSTS, `X-Frame-Options` etc. **necessita validação** direta via `nginx -T` no servidor, ou via `curl -I` contra a produção, conforme o próprio runbook recomenda (`docs/ambientes-e-deploy.md:160-176`). O que é um fato verificável a partir do repositório é que **nenhum desses headers é definido pela aplicação em si** (não há middleware, não há `<meta http-equiv="Content-Security-Policy">` em nenhuma página).
 
-`public/vercel.json` — que poderia ser o lugar natural para declarar headers caso a Vercel estivesse em uso — contém apenas `redirects`, nenhuma seção `headers`.
+`public/vercel.json` — que poderia ter sido o lugar natural para declarar headers caso a Vercel estivesse em uso — continha apenas `redirects`, nenhuma seção `headers`; removido na Sprint 6 (ARQ-403) por estar comprovadamente inerte (ver [12-technical-debt.md](12-technical-debt.md)).
 
 ## Autenticação e autorização
 

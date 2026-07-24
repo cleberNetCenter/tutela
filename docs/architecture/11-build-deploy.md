@@ -105,7 +105,7 @@ A configuração Nginx ativa **não é versionada neste repositório** — é ge
 - Deve suportar SSI (necessário para o funcionamento do site, ver [05-components.md](05-components.md)) — necessita validação, pois esse requisito não está documentado explicitamente no runbook atual.
 - Deve fazer proxy para `127.0.0.1:8080` (porta do container) — a confirmar.
 - Hostname canônico de produção: `www.tuteladigital.com.br`.
-- Redirecionamentos legados (`public/_redirects`, `public/vercel.json`) só têm efeito real se replicados na configuração Nginx — o runbook pede confirmação explícita disso.
+- Redirecionamentos legados: `public/_redirects` e `public/vercel.json` foram removidos na Sprint 6 (ARQ-403) — `nginx -T` na fonte confirmou que nenhum dos dois nunca teve efeito real (produção ou homologação); a normalização de URL é feita por uma regra genérica do Nginx, que hoje resulta em `404` para as 5 URLs legadas nos dois ambientes (pendência de infraestrutura, ver [12-technical-debt.md](12-technical-debt.md)).
 
 ## Rollback
 

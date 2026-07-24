@@ -73,20 +73,9 @@ Total: 35 rotas (confirmado por `git ls-files public | grep '\.html$' | grep -v 
 
 ## Redirecionamentos
 
-Dois mecanismos de redirecionamento coexistem no repositório, **de plataformas diferentes**, para o mesmo conjunto de 4-5 URLs legadas (migração de páginas legais para `/legal/`):
+`public/_redirects` (sintaxe Netlify) e `public/vercel.json` (sintaxe Vercel) declaravam as mesmas 4-5 regras de redirect legado (migração de páginas legais para `/legal/`), em plataformas não usadas pelo pipeline real (Nginx + Docker self-hosted, ver [11-build-deploy.md](11-build-deploy.md)). A auditoria ARQ-108 (Sprint 5) confirmou via `nginx -T` na fonte, em produção e homologação, que nenhum dos dois Nginx lia esses arquivos — a normalização de URL é feita por uma regra genérica do Nginx, independente deles. Por serem comprovadamente inertes, ambos os arquivos foram removidos na Sprint 6 (ARQ-403).
 
-**`public/_redirects`** (sintaxe Netlify):
-```
-/institucional.html  /legal/institucional.html  301
-/fundamento-juridico.html  /legal/fundamento-juridico.html  301
-/termos-de-custodia.html  /legal/termos-de-custodia.html  301
-/politica-de-privacidade.html  /legal/politica-de-privacidade.html  301
-/preservacao-probatoria-digital.html  /legal/preservacao-probatoria-digital.html  301
-```
-
-**`public/vercel.json`** (sintaxe Vercel), com as mesmas 4 primeiras regras (falta a de `preservacao-probatoria-digital.html`).
-
-Como o ambiente de produção real roda em Nginx + Docker self-hosted (ver [11-build-deploy.md](11-build-deploy.md)), e não em Netlify nem Vercel, **nenhum desses dois arquivos é necessariamente respeitado em produção** — a aplicação real desses redirects depende da configuração do Nginx no servidor, que não é versionada. O próprio runbook de deploy admite essa lacuna: *"Os redirecionamentos legados também aparecem em `public/_redirects` e `public/vercel.json`; confirme que a camada realmente usada em produção os atende."* (`docs/ambientes-e-deploy.md:178`). Necessita validação. Ver também [12-technical-debt.md](12-technical-debt.md).
+A normalização de URL real (produção e homologação) é feita por uma regra genérica do Nginx que remove `.html` e redireciona para o path sem extensão. Essa regra intercepta as 5 URLs legadas antes de qualquer lógica de redirect específico, e o destino gerado não existe — resultando em `404` para as 5 URLs legadas hoje, nos dois ambientes. Esse bug é de infraestrutura (fora deste repositório) e está documentado em [12-technical-debt.md](12-technical-debt.md) e em `docs/ambientes-e-deploy.md` como pendência a escalar.
 
 Além disso, existe um **redirecionamento client-side** (meta refresh + `window.location.replace`) na página `/insights/ativos-digitais/o-que-sao-ativos-digitais/`, que redireciona para `/insights/ativos-digitais/sucessao-digital.html` (nota: com extensão `.html` e sem a pasta correspondente, embora a URL real do artigo, segundo esta própria tabela, seja `/insights/ativos-digitais/sucessao-digital/`). O `<link rel="canonical">` dessa mesma página estática aponta para uma terceira variante (`.../o-que-sao-ativos-digitais.html`). O gerador do índice de busca já documenta esse comportamento como conhecido e o trata como exceção (`.github/ci/build_search_index.py:47-51,124-133`), excluindo páginas de redirecionamento do índice de busca.
 
