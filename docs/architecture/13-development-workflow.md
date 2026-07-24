@@ -56,9 +56,9 @@ Extraído do runbook (`docs/ambientes-e-deploy.md:42-47`):
 - **Nomenclatura de arquivos CSS por página**: os arquivos em `assets/css/pages/` seguem o padrão `<nome-da-rota>.css`, facilitando localizar o estilo de uma página específica pelo nome da URL.
 - **Versionamento manual de assets**: ver inconsistência de esquemas de cache-busting documentada em [08-performance.md](08-performance.md) e [12-technical-debt.md](12-technical-debt.md).
 
-## Ausência de testes automatizados
+## Testes automatizados
 
-Não há suíte de testes automatizados versionada — nem unitários, nem E2E, nem de regressão visual. `docs/ambientes-e-deploy.md:40` confirma isso explicitamente: *"Não há build, gerenciador de pacotes nem testes automatizados versionados"*. A validação de qualidade descrita no runbook é **inteiramente manual** (checklist acima). A presença de `@playwright/test` como dependência não rastreada (ver [10-dependencies.md](10-dependencies.md) e [12-technical-debt.md](12-technical-debt.md)) sugere uma tentativa de introduzir testes E2E que não chegou a ser commitada.
+Desde a Sprint 3 (ARQ-501) há uma suíte de testes automatizados versionada com Playwright (smoke tests, contraste, regressão visual), executada via `npm test` (baseline atual: 26/26 — ver `tests/`, `playwright.config.ts` e `tests/support/ssi-server.js`). A validação de qualidade descrita no runbook (checklist acima) continua relevante para o que a suíte não cobre, mas deixou de ser a única linha de defesa.
 
 ## Ferramentas do assistente de IA no repositório
 

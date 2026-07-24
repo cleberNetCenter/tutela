@@ -247,4 +247,28 @@
 
   /* Layout */
   --ad-max-width: 940px;
+
+  /* ────────────────────────────────────────────────────────
+     Sub-extensão: variante "pillar" (ARQ-301, Sprint 11)
+     Consolida o terceiro sistema de tokens que vivia inline em
+     partials/ativos-digitais-pillar-styles.html (--ux-*), usado
+     só pelas 3 páginas de idioma do cluster (pt/en/es). Nenhum
+     destes 11 valores tem correspondência numérica exata em
+     --ad-* acima (paleta "pillar" é uma variante deliberadamente
+     mais clara do verde de marca) — para não introduzir uma
+     mudança de marca não intencional, os valores foram trazidos
+     para cá exatamente como estavam, só formalizados como fonte
+     única em tokens.css em vez de <style> inline duplicado.
+     ────────────────────────────────────────────────────────── */
+  --ad-pillar-bg:        #f4f7f2;
+  --ad-pillar-ink:       #18342b;
+  --ad-pillar-ink-soft:  #51645d;
+  --ad-pillar-line:      rgba(24, 52, 43, 0.10);
+  --ad-pillar-brand:     #0f4a36;
+  --ad-pillar-brand-2:   #184d43;
+  --ad-pillar-brand-3:   #2b6a5a;
+  --ad-pillar-max-width: 1240px;
+  --ad-pillar-radius-xl: 28px;
+  --ad-pillar-shadow-sm: 0 18px 40px rgba(16, 24, 40, 0.06);
+  --ad-pillar-shadow-md: 0 28px 64px rgba(16, 24, 40, 0.10);
 }

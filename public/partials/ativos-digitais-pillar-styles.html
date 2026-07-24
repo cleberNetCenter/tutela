@@ -1,33 +1,9 @@
 <style>
-  .assets-page {
-    --ux-bg: #f4f7f2;
-    --ux-surface: #fbfcfa;
-    --ux-surface-2: #f7faf7;
-    --ux-ink: #18342b;
-    --ux-ink-soft: #51645d;
-    --ux-line: rgba(24, 52, 43, 0.10);
-    --ux-line-strong: rgba(24, 52, 43, 0.16);
-    --ux-brand: #0f4a36;
-    --ux-brand-2: #184d43;
-    --ux-brand-3: #2b6a5a;
-    --ux-brand-glow: rgba(15, 74, 54, 0.18);
-    --ux-accent: #b08a57;
-    --ux-danger: #9f3627;
-    --ux-danger-bg: linear-gradient(180deg, rgba(255, 248, 246, 0.98) 0%, rgba(255, 241, 238, 0.98) 100%);
-    --ux-radius-xl: 28px;
-    --ux-radius-lg: 20px;
-    --ux-radius-md: 14px;
-    --ux-shadow-xs: 0 10px 24px rgba(16, 24, 40, 0.04);
-    --ux-shadow-sm: 0 18px 40px rgba(16, 24, 40, 0.06);
-    --ux-shadow-md: 0 28px 64px rgba(16, 24, 40, 0.10);
-    --ux-max: 1240px;
-  }
-
   body.assets-page {
     background:
       radial-gradient(circle at top center, rgba(31, 94, 74, 0.10), transparent 28%),
-      linear-gradient(180deg, #0d3429 0, #123d31 340px, var(--ux-bg) 340px, var(--ux-bg) 100%);
-    color: var(--ux-ink);
+      linear-gradient(180deg, #0d3429 0, #123d31 340px, var(--ad-pillar-bg) 340px, var(--ad-pillar-bg) 100%);
+    color: var(--ad-pillar-ink);
   }
 
   .assets-page .reveal {
@@ -80,7 +56,7 @@
   }
 
   .assets-page .breadcrumb {
-    max-width: var(--ux-max);
+    max-width: var(--ad-pillar-max-width);
     margin: 0 auto;
     padding: 1rem 1.5rem 0;
     color: rgba(255, 255, 255, 0.78);
@@ -97,7 +73,7 @@
   }
 
   .assets-page .page-header.page-header--legal {
-    max-width: var(--ux-max);
+    max-width: var(--ad-pillar-max-width);
     margin: 1rem auto 0;
     padding: 0 1.5rem;
     background: transparent;
@@ -172,7 +148,7 @@
   }
 
   .assets-page .legal-section-wrapper {
-    max-width: var(--ux-max);
+    max-width: var(--ad-pillar-max-width);
     margin: 0 auto;
     padding: 0 1.5rem;
   }
@@ -181,7 +157,7 @@
     position: relative;
     margin-top: -64px;
     padding: clamp(2rem, 3.2vw, 3.2rem);
-    border-radius: var(--ux-radius-xl);
+    border-radius: var(--ad-pillar-radius-xl);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 247, 0.98) 100%);
     border: 1px solid rgba(255, 255, 255, 0.55);
     box-shadow:
@@ -202,7 +178,7 @@
     font-size: clamp(1.8rem, 3vw, 2.7rem);
     line-height: 1.1;
     letter-spacing: -0.02em;
-    color: var(--ux-brand-2);
+    color: var(--ad-pillar-brand-2);
     text-wrap: balance;
   }
 
@@ -214,12 +190,12 @@
     width: 76px;
     height: 2px;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--ux-accent), rgba(176, 138, 87, 0.12));
+    background: linear-gradient(90deg, var(--ad-accent-gold), rgba(176, 138, 87, 0.12));
   }
 
   .assets-page .whitepaper-container h3 {
     margin: 1.4rem 0 0.7rem;
-    color: var(--ux-ink);
+    color: var(--ad-pillar-ink);
     font-size: 1.08rem;
     line-height: 1.35;
     letter-spacing: 0.01em;
@@ -227,7 +203,7 @@
 
   .assets-page .whitepaper-container p,
   .assets-page .whitepaper-container li {
-    color: var(--ux-ink-soft);
+    color: var(--ad-pillar-ink-soft);
     font-size: 1.04rem;
     line-height: 1.8;
   }
@@ -250,7 +226,7 @@
     border-radius: 18px;
     border: 1px solid rgba(24, 52, 43, 0.08);
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(246, 249, 247, 0.98) 100%);
-    box-shadow: var(--ux-shadow-sm);
+    box-shadow: var(--ad-pillar-shadow-sm);
     overflow: hidden;
   }
 
@@ -261,7 +237,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--ux-accent), var(--ux-brand-3));
+    background: linear-gradient(90deg, var(--ad-accent-gold), var(--ad-pillar-brand-3));
   }
 
   .assets-page .stat-card::after {
@@ -275,14 +251,14 @@
   .assets-page .stat-card:hover {
     transform: translateY(-6px);
     border-color: rgba(15, 74, 54, 0.18);
-    box-shadow: var(--ux-shadow-md);
+    box-shadow: var(--ad-pillar-shadow-md);
   }
 
   .assets-page .stat-card p {
     position: relative;
     z-index: 1;
     margin: 0;
-    color: var(--ux-ink);
+    color: var(--ad-pillar-ink);
     font-family: var(--font-display);
     font-size: 1.14rem;
     line-height: 1.45;
@@ -301,8 +277,8 @@
     position: relative;
     padding: 1.8rem;
     border-radius: 20px;
-    border: 1px solid var(--ux-line);
-    box-shadow: var(--ux-shadow-sm);
+    border: 1px solid var(--ad-pillar-line);
+    box-shadow: var(--ad-pillar-shadow-sm);
     overflow: hidden;
   }
 
@@ -311,7 +287,7 @@
   }
 
   .assets-page .card-danger {
-    background: var(--ux-danger-bg);
+    background: var(--ad-danger-bg);
     border-color: rgba(159, 54, 39, 0.18);
   }
 
@@ -331,13 +307,13 @@
   .assets-page .card:hover,
   .assets-page .card-danger:hover {
     transform: translateY(-6px);
-    box-shadow: var(--ux-shadow-md);
+    box-shadow: var(--ad-pillar-shadow-md);
   }
 
   .assets-page .card h3,
   .assets-page .card-danger h3 {
     margin-top: 0;
-    color: var(--ux-brand-2);
+    color: var(--ad-pillar-brand-2);
     font-family: var(--font-display);
     font-size: 1.38rem;
     line-height: 1.18;
@@ -345,7 +321,7 @@
   }
 
   .assets-page .card-danger h3 {
-    color: var(--ux-danger);
+    color: var(--ad-danger);
   }
 
   .assets-page .card p,
@@ -365,7 +341,7 @@
     justify-content: center;
     background: linear-gradient(135deg, rgba(15, 74, 54, 0.12), rgba(15, 74, 54, 0.05));
     border: 1px solid rgba(15, 74, 54, 0.08);
-    color: var(--ux-brand-2);
+    color: var(--ad-pillar-brand-2);
     transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
   }
 
@@ -382,7 +358,7 @@
   }
 
   .assets-page .card-danger .card-icon {
-    color: var(--ux-danger);
+    color: var(--ad-danger);
     background: linear-gradient(135deg, rgba(159, 54, 39, 0.14), rgba(159, 54, 39, 0.06));
     border-color: rgba(159, 54, 39, 0.10);
   }
@@ -409,10 +385,10 @@
     display: flex;
     align-items: flex-start;
     border-radius: 18px;
-    border: 1px solid var(--ux-line);
+    border: 1px solid var(--ad-pillar-line);
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(246, 249, 247, 0.98) 100%);
-    box-shadow: var(--ux-shadow-xs);
-    color: var(--ux-ink);
+    box-shadow: var(--ad-shadow-xs);
+    color: var(--ad-pillar-ink);
     font-weight: 600;
     line-height: 1.55;
   }
@@ -426,7 +402,7 @@
     width: 2.1rem;
     height: 2.1rem;
     border-radius: 999px;
-    background: linear-gradient(135deg, var(--ux-brand), var(--ux-brand-3));
+    background: linear-gradient(135deg, var(--ad-pillar-brand), var(--ad-pillar-brand-3));
     color: #fff;
     display: inline-flex;
     align-items: center;
@@ -439,7 +415,7 @@
   .assets-page .steps li:hover {
     transform: translateY(-4px);
     border-color: rgba(15, 74, 54, 0.16);
-    box-shadow: var(--ux-shadow-sm);
+    box-shadow: var(--ad-pillar-shadow-sm);
   }
 
   .assets-page .checklist {
@@ -454,10 +430,10 @@
     position: relative;
     padding: 1.05rem 1.15rem 1.05rem 3rem;
     border-radius: 14px;
-    border: 1px solid var(--ux-line);
+    border: 1px solid var(--ad-pillar-line);
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 247, 0.98) 100%);
-    box-shadow: var(--ux-shadow-xs);
-    color: var(--ux-ink);
+    box-shadow: var(--ad-shadow-xs);
+    color: var(--ad-pillar-ink);
   }
 
   .assets-page .checklist li::before {
@@ -472,7 +448,7 @@
     align-items: center;
     justify-content: center;
     background: rgba(15, 74, 54, 0.10);
-    color: var(--ux-brand);
+    color: var(--ad-pillar-brand);
     font-size: 0.86rem;
     font-weight: 800;
   }
@@ -480,11 +456,11 @@
   .assets-page .checklist li:hover {
     transform: translateY(-3px);
     border-color: rgba(15, 74, 54, 0.14);
-    box-shadow: var(--ux-shadow-sm);
+    box-shadow: var(--ad-pillar-shadow-sm);
   }
 
   .assets-page .insight-cta-block {
-    max-width: var(--ux-max);
+    max-width: var(--ad-pillar-max-width);
     margin: 0.85rem auto 0;
     padding: 0 1.5rem;
   }
