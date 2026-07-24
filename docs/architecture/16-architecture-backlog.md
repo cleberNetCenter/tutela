@@ -24,7 +24,7 @@
 - Prefixo `ARQ-` seguido de 3 dígitos. O primeiro dígito identifica o épico do roadmap (`15-architecture-roadmap.md`): `1xx` Segurança, `2xx` SEO, `3xx` Design System, `4xx` Consolidação Arquitetural, `5xx` Engenharia, `6xx` Acessibilidade, `7xx` Governança.
 - **Identificadores são permanentes.** Uma vez atribuído, um ID nunca é reatribuído a outro item — mesmo que o item original seja cancelado, o ID permanece reservado e aparece no backlog com `Status: CANCELADO`.
 - Novos itens dentro de um épico usam o próximo número livre na faixa correspondente (não há preenchimento retroativo de "buracos").
-- Próximo ID livre por épico neste momento: `ARQ-109`, `ARQ-204`, `ARQ-305`, `ARQ-407`, `ARQ-506`, `ARQ-606`, `ARQ-704`.
+- Próximo ID livre por épico neste momento: `ARQ-109`, `ARQ-204`, `ARQ-305`, `ARQ-407`, `ARQ-506`, `ARQ-607` (ARQ-606 atribuído na Sprint 10), `ARQ-704`.
 
 ## Fontes utilizadas
 
@@ -788,21 +788,46 @@
 | Origem | Contexto WCAG geral (`06-design-system.md`) e Épico 6 do roadmap ("Contraste") |
 | Documento | `06-design-system.md`, `12-technical-debt.md` |
 | Item da dívida técnica | N/A — decorre do Épico 6 do roadmap, sem item numerado específico em `12-technical-debt.md` |
-| Arquivos afetados | `public/assets/css/foundation/tokens.css` e usos de cor em componentes/páginas |
-| Dependências (depende de) | ARQ-301 (tokens de cor já unificados, evita retrabalho) |
+| Arquivos afetados | `public/assets/css/foundation/tokens.css`, `public/assets/css/styles-header-final.css`, `public/assets/css/sections/footer.css`; script de auditoria em `tests/support/contrast-audit.js`; rede de regressão visual em `tests/visual-contrast.spec.ts` |
+| Dependências (depende de) | ARQ-301 (tokens de cor já unificados, evita retrabalho) — **não satisfeita** (ARQ-301 segue BACKLOG); executado mesmo assim por decisão explícita desta sprint (ver Observações) |
 | Dependências (desbloqueia) | Nenhuma |
-| Pré-requisitos | ARQ-301 concluído |
-| Critérios de Aceite | Todos os pares texto/fundo ≥ 4.5:1 (ou 3:1 para texto grande), conforme WCAG AA |
-| Critérios de Regressão | Identidade visual de marca preservada (ajustes de contraste não descaracterizam a paleta) |
+| Pré-requisitos | ARQ-301 concluído — **exceção registrada nesta sprint**, ver Observações |
+| Critérios de Aceite | Todos os pares texto/fundo ≥ 4.5:1 (ou 3:1 para texto grande/componente UI), conforme WCAG AA |
+| Critérios de Regressão | Identidade visual de marca preservada (ajustes de contraste não descaracterizam a paleta); nenhum teste funcional (21/21) ou visual regride |
 | Impacto | Médio |
 | Risco | Baixo |
 | Complexidade | Média |
 | Estimativa | M |
 | Responsável | Frontend |
+| Status | CONCLUÍDO PARCIALMENTE (Sprint 10, 2026-07-24) — 2 achados remanescentes documentados, não corrigidos (ver ARQ-606) |
+| ADR relacionado | Nenhum (a criar em ARQ-701) |
+| Métrica de sucesso | 38 pares texto/fundo e UI/fundo auditados (tokens globais, `--ad-*`, `--ux-*`, header/nav/dropdown/menu mobile/skip-link, rodapé, páginas legais); 36/38 atendem WCAG AA após correção — **2 falhas remanescentes, achado registrado em ARQ-606** |
+| Observações | **Dependência de ARQ-301 não satisfeita**: ARQ-301 (unificação `--ux-*` → `--ad-*`) segue BACKLOG; ainda assim, o `--ux-*` foi auditado nesta sprint como sistema à parte (confirmado que ainda existe, ver `06-design-system.md`/débito técnico #6) e **todos os seus pares passaram WCAG AA sem necessidade de correção** — nenhum retrabalho foi de fato perdido pela dependência não satisfeita, mas uma futura consolidação (ARQ-301) pode alterar esses valores e exigirá reaudição pontual dos pares `--ux-*` então unificados. **2 correções aplicadas** (ver tabela completa na entrega da Sprint 10): `--primitive-neutral-600` (`--color-text-muted`) escurecido de `#4f7c6b` para `#4a7464` (falhava 4.38:1 e 4.07:1; ambos ≥4.5:1 após); `--text-3` (header/footer/busca) clareado de `#4a7258` para `#6e8e79` (falhava 2.99:1; 4.53:1 após) — declarado independentemente em `styles-header-final.css` e `footer.css`, ambos atualizados. **1 achado não corrigido, registrado como novo item rastreável**: subtítulo de hero das páginas legais (`rgba(255,255,255,0.68)` sobre gradiente `--primitive-green-950`→`--primitive-green-700`) falha WCAG AA (1.64:1–2.0:1 conforme o stop do gradiente) — não corrigido nesta sprint porque a correção exigiria elevar a opacidade a um nível perceptualmente diferente (subtítulo bem mais proeminente) em ~29 declarações `rgba(255,255,255,*)` distintas de `legal-shared.css`, usadas em 34 páginas — ver [ARQ-606](#arq-606--corrigir-contraste-do-subtítulo-de-hero-das-páginas-legais). `.logo sup` (marca "Tutela Digital®") também apareceu na varredura inicial (2.99:1 antes da correção de `--text-3`) mas está isento pelo WCAG 1.4.3 (texto de logotipo/marca não tem exigência mínima de contraste) — passou a 4.53:1 como efeito colateral benéfico da correção de `--text-3`, sem ser o motivo da correção. Rede de regressão visual (`tests/visual-contrast.spec.ts`) criada nesta sprint como consequência direta do trabalho de contraste — primeira cobertura de screenshot do projeto (lacuna registrada desde ARQ-301/Sprint 4); baseline versionado em `tests/visual-contrast.spec.ts-snapshots/`. |
+
+### ARQ-606 — Corrigir contraste do subtítulo de hero das páginas legais
+
+| Campo | Valor |
+|---|---|
+| Objetivo | Levar o subtítulo de hero das páginas legais (`.page-header-subtitle`/`.hero-subtitle`) a atender WCAG AA (4.5:1) sem alterar a proeminência visual pretendida do elemento de forma perceptível. |
+| Descrição | `legal-shared.css:139` declara `color: rgba(255, 255, 255, 0.68)` para o subtítulo, sobre um fundo em gradiente (`--primitive-green-950` 0% → `--primitive-green-800` 50% → `--primitive-green-700` 100%, `legal-shared.css:75-81`). Contraste calculado (`tests/support/contrast-audit.js`, achatando a rgba sobre cada stop do gradiente): 2.0:1 contra o stop mais escuro (`green-950`) e 1.64:1 contra o mais claro (`green-700`) — ambos muito abaixo do mínimo de 4.5:1 para texto normal (16px). Identificado na auditoria de contraste de ARQ-604 (Sprint 10); não corrigido naquela sprint porque a opacidade precisaria subir a um nível perceptualmente diferente (subtítulo muito mais opaco/proeminente) para cruzar o limiar em ~29 declarações `rgba(255,255,255,*)` distintas do mesmo arquivo (`legal-shared.css`), usadas em 34 páginas (`page-header-subtitle`/`hero-subtitle`) — ultrapassa o critério de "correção pontual e inequívoca" da Sprint 10. |
+| Origem | Achado da auditoria de ARQ-604 (Sprint 10) — não catalogado em `12-technical-debt.md`, não fazia parte do escopo original de ARQ-604 |
+| Documento | `16-architecture-backlog.md` (este item), `06-design-system.md` |
+| Item da dívida técnica | N/A — achado novo, identificado nesta sprint |
+| Arquivos afetados | `public/assets/css/legal-shared.css` (possivelmente introduzindo um token semântico novo, ex. `--color-text-inverse-muted`, em vez de literais `rgba()` espalhados — decisão de design a confirmar) |
+| Dependências (depende de) | Nenhuma dependência técnica; decisão de design sobre até onde a opacidade pode subir sem descaracterizar a hierarquia visual do hero |
+| Dependências (desbloqueia) | Nenhuma |
+| Pré-requisitos | Decisão de design: nível de opacidade/cor final aceitável para o subtítulo (e, possivelmente, para a família mais ampla de textos translúcidos brancos do mesmo arquivo — pills, divisores, textos de SVG) |
+| Critérios de Aceite | `.page-header-subtitle`/`.hero-subtitle` ≥ 4.5:1 contra o stop mais claro do gradiente (`--primitive-green-700`, pior caso) |
+| Critérios de Regressão | Nenhuma mudança perceptível na hierarquia visual do hero além do necessário para o contraste; regressão visual revisada via `tests/visual-contrast.spec.ts` (baseline já cobre a página legal usada como referência) |
+| Impacto | Médio (34 páginas afetadas, mas é subtítulo — não impede leitura do conteúdo principal) |
+| Risco | Médio (mudança visual perceptível é o próprio motivo do adiamento — qualquer correção aqui precisa ser sinalizada explicitamente antes de aplicar, conforme regra de evidência de ARQ-604) |
+| Complexidade | Baixa-Média (mecânica, mas depende de decisão de design prévia) |
+| Estimativa | P-M |
+| Responsável | Frontend + Design |
 | Status | BACKLOG |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | 100% dos pares texto/fundo auditados atendendo WCAG AA |
-| Observações | — |
+| Métrica de sucesso | 0:2 → 2:2 pares do subtítulo de hero atendendo WCAG AA (hoje: 0/2, contra os dois stops extremos do gradiente) |
+| Observações | Mesma disciplina de escopo de ARQ-605 (headings, Sprint 8): achado real, registrado no mesmo momento em que foi identificado, não corrigido às pressas. |
 
 ### ARQ-605 — Corrigir hierarquia de headings (h1-h6)
 
@@ -922,7 +947,7 @@
 `ARQ-401` a `ARQ-406` (Consolidação) + `ARQ-501` a `ARQ-505` (Engenharia). Combina a eliminação de vestígios da arquitetura anterior com a automação do pipeline (Playwright, lint, cache-busting único) — os dois épicos são tratados como um marco só porque a "Definição de Concluído" do roadmap exige rede de testes automatizada para considerar qualquer consolidação como encerrada.
 
 ### Marco 4 — Conformidade WCAG
-`ARQ-601` a `ARQ-605`. Alinhado ao critério "WCAG AA" do Épico 6 do roadmap.
+`ARQ-601` a `ARQ-606`. Alinhado ao critério "WCAG AA" do Épico 6 do roadmap. `ARQ-601`–`ARQ-604` concluídos (Sprints 7–10); `ARQ-605` (headings) e `ARQ-606` (contraste do subtítulo de hero legal) permanecem em BACKLOG, ambos bloqueados por decisão de conteúdo/design, não por complexidade técnica.
 
 ### Marco 5 — Governança Completa
 `ARQ-701` a `ARQ-703`. Todo novo desenvolvedor compreende a arquitetura lendo apenas a documentação — critério de aceite explícito do Épico 7 do roadmap.
@@ -945,3 +970,5 @@ Checagem executada antes de finalizar este documento:
 Itens adicionados nesta etapa que não constavam do roadmap original (`15-architecture-roadmap.md`) nem do catálogo de dívida técnica numerado: `ARQ-107` (desdobrado do rótulo genérico "LGPD"), `ARQ-108`, `ARQ-203`, `ARQ-405`, `ARQ-406`, `ARQ-503`, `ARQ-505`. Todos rastreados explicitamente no campo "Origem" de cada item.
 
 Item adicionado posteriormente, durante a execução do backlog (Sprint 8): `ARQ-605`, achado da auditoria de `ARQ-602`, rastreado no campo "Origem" do próprio item.
+
+Item adicionado posteriormente, durante a execução do backlog (Sprint 10): `ARQ-606`, achado da auditoria de `ARQ-604` (subtítulo de hero das páginas legais sem contraste suficiente), rastreado no campo "Origem" do próprio item.

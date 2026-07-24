@@ -39,7 +39,7 @@
   --primitive-neutral-100: #e6f0eb;
   --primitive-neutral-300: #c8ddd4;
   --primitive-neutral-400: #9fbfb3;
-  --primitive-neutral-600: #4f7c6b;
+  --primitive-neutral-600: #4a7464;   /* ARQ-604: escurecido de #4f7c6b (falhava 4.38:1/4.07:1 AA) */
 
   /* Dourado (acento da página de ativos) */
   --primitive-gold-500: #b08a57;
