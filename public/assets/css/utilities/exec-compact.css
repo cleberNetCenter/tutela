@@ -86,7 +86,7 @@ body.exec-compact .footer-inner {
 }
 
 /* ===================== MOBILE ============================ */
-@media (max-width:768px){
+@media (max-width: 768px) {
   body.exec-compact .hero,
   body.exec-compact .lp-hero,
   body.exec-compact .page-header,

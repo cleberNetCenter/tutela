@@ -8,6 +8,9 @@
      3. Escala tipográfica
      4. Espaçamento
      5. Extensão: Ativos Digitais (--ad-*)
+     6. Breakpoints (ARQ-302)
+   (índice não numera "Aliases de Compatibilidade", seção 5 no corpo do
+   arquivo — inconsistência pré-existente, fora do escopo desta sprint)
    ============================================================ */
 
 
@@ -271,4 +274,52 @@
   --ad-pillar-radius-xl: 28px;
   --ad-pillar-shadow-sm: 0 18px 40px rgba(16, 24, 40, 0.06);
   --ad-pillar-shadow-md: 0 28px 64px rgba(16, 24, 40, 0.10);
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   7. BREAKPOINTS (ARQ-302)
+   Débito técnico #10 (docs/architecture/12-technical-debt.md) — 13
+   valores de max-width usados como número mágico em @media, sem
+   token compartilhado, espalhados por 17 arquivos.
+
+   IMPORTANTE — var() não funciona dentro da condição de @media
+   (`@media (max-width: var(--breakpoint-768))` não é válido em CSS —
+   limitação da especificação, não de suporte de navegador; ver
+   docs/architecture/02-stack.md). O projeto não usa pré-processador
+   nem build step para CSS (mesmo documento) — introduzir um agora só
+   para viabilizar `@custom-media` (PostCSS) mudaria a arquitetura de
+   build do projeto, fora do escopo desta sprint.
+
+   Os 13 tokens abaixo cumprem dois papéis:
+   1) Fonte única de verdade utilizável via var() em contextos que
+      NÃO são condição de @media (ex.: max-width de container).
+   2) Lista de valores aprovados para @media (max-width: Npx), que
+      PRECISAM continuar literais nas queries. tests/breakpoint-tokens
+      .spec.ts lê estas declarações e falha caso algum @media
+      (max-width: ...) do repositório use um valor fora desta lista —
+      é o mecanismo real de "tokenização" possível neste stack.
+
+   Nomeados pelo valor literal (não por escala xs/sm/md/lg/xl): os 13
+   valores reais encontrados no repositório não se agrupam em 5-6
+   níveis semânticos sem comprimir valores distintos sob o mesmo nome
+   — o próprio backlog (ARQ-302) pede usar os valores reais, não uma
+   escala genérica de terceiros. Nenhum valor novo foi inventado;
+   todos já existiam espalhados no CSS antes desta sprint (ver tabela
+   completa na entrega da Sprint 12 em 16-architecture-backlog.md).
+   ────────────────────────────────────────────────────────── */
+:root {
+  --breakpoint-480:  480px;
+  --breakpoint-540:  540px;
+  --breakpoint-560:  560px;
+  --breakpoint-600:  600px;
+  --breakpoint-640:  640px;
+  --breakpoint-720:  720px;
+  --breakpoint-760:  760px;
+  --breakpoint-768:  768px;
+  --breakpoint-860:  860px;
+  --breakpoint-900:  900px;
+  --breakpoint-1024: 1024px;
+  --breakpoint-1180: 1180px;
+  --breakpoint-1200: 1200px;
 }
