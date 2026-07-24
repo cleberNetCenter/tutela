@@ -44,3 +44,69 @@ test.describe("Skip-link de acessibilidade (ARQ-601)", () => {
     });
   }
 });
+
+// ARQ-602 — auditoria de landmarks/ARIA. Cobre as 3 correções de baixo risco
+// aplicadas nesta sprint (ver 16-architecture-backlog.md).
+test.describe("Landmarks e ARIA (ARQ-602)", () => {
+  test("dropdowns de navegação: aria-expanded, aria-haspopup e aria-controls apontam para o menu correto", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    const toggles = page.locator(".nav-dropdown .nav-toggle");
+    await expect(toggles).toHaveCount(4);
+
+    const count = await toggles.count();
+    for (let i = 0; i < count; i++) {
+      const toggle = toggles.nth(i);
+      await expect(toggle).toHaveAttribute("aria-haspopup", "true");
+      await expect(toggle).toHaveAttribute("aria-expanded", "false");
+
+      const controlsId = await toggle.getAttribute("aria-controls");
+      expect(controlsId).toBeTruthy();
+      await expect(page.locator(`#${controlsId}`)).toHaveClass(/dropdown-menu/);
+    }
+  });
+
+  test("seletor de idioma (desktop): ícones de bandeira têm alt text", async ({ page }) => {
+    await page.goto("/");
+
+    const flags = page.locator(".lang-switch .lang-flag img");
+    await expect(flags).toHaveCount(3);
+
+    const count = await flags.count();
+    for (let i = 0; i < count; i++) {
+      const alt = await flags.nth(i).getAttribute("alt");
+      expect(alt).toBeTruthy();
+    }
+  });
+
+  test.describe("aside duplicados têm aria-labelledby distinto", () => {
+    const PAGES_WITH_TWO_ASIDES = [
+      { name: "Empresas", path: "/empresas.html" },
+      { name: "Governo", path: "/governo.html" },
+      { name: "Pessoas", path: "/pessoas.html" },
+      { name: "Ativos Digitais (visão geral)", path: "/ativos-digitais/" },
+    ];
+
+    for (const { name, path } of PAGES_WITH_TWO_ASIDES) {
+      test(`${name}: 2 landmarks <aside> com aria-labelledby apontando para um id existente e distinto entre si`, async ({
+        page,
+      }) => {
+        await page.goto(path);
+
+        const asides = page.locator("aside");
+        await expect(asides).toHaveCount(2);
+
+        const labelledbyIds = new Set<string>();
+        for (const aside of await asides.all()) {
+          const labelledby = await aside.getAttribute("aria-labelledby");
+          expect(labelledby).toBeTruthy();
+          await expect(page.locator(`#${labelledby}`)).toHaveCount(1);
+          labelledbyIds.add(labelledby!);
+        }
+        expect(labelledbyIds.size).toBe(2);
+      });
+    }
+  });
+});
