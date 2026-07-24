@@ -24,7 +24,7 @@
 - Prefixo `ARQ-` seguido de 3 dígitos. O primeiro dígito identifica o épico do roadmap (`15-architecture-roadmap.md`): `1xx` Segurança, `2xx` SEO, `3xx` Design System, `4xx` Consolidação Arquitetural, `5xx` Engenharia, `6xx` Acessibilidade, `7xx` Governança.
 - **Identificadores são permanentes.** Uma vez atribuído, um ID nunca é reatribuído a outro item — mesmo que o item original seja cancelado, o ID permanece reservado e aparece no backlog com `Status: CANCELADO`.
 - Novos itens dentro de um épico usam o próximo número livre na faixa correspondente (não há preenchimento retroativo de "buracos").
-- Próximo ID livre por épico neste momento: `ARQ-109`, `ARQ-204`, `ARQ-305`, `ARQ-407`, `ARQ-506`, `ARQ-605`, `ARQ-704`.
+- Próximo ID livre por épico neste momento: `ARQ-109`, `ARQ-204`, `ARQ-305`, `ARQ-407`, `ARQ-506`, `ARQ-606`, `ARQ-704`.
 
 ## Fontes utilizadas
 
@@ -749,10 +749,10 @@
 | Complexidade | Média |
 | Estimativa | M |
 | Responsável | Frontend |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (Sprint 8, 2026-07-24) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | 0 erros de landmark/ARIA reportados por axe-core |
-| Observações | — |
+| Métrica de sucesso | 0 erros de landmark/ARIA reportados por axe-core — **atingido por auditoria equivalente**: axe-core não foi adicionado como dependência nova (ver Observações); a verificação foi feita por auditoria manual (grep/leitura) das 37 páginas reais + 6 novos testes Playwright que travam a estrutura corrigida, cobrindo os 3 gaps encontrados. |
+| Observações | Concluído em Sprint 8, como auditoria completa das 37 páginas reais (landmarks, ARIA de componentes interativos, hierarquia de headings, `alt` de imagens) seguida de correção pontual dos achados inequívocos e de baixo risco. **Achados corrigidos** (evidência via grep, detalhada no relatório da sprint): (1) os 4 botões `.nav-toggle` de `partials/header.html` tinham `aria-expanded`/`aria-haspopup` mas nenhum `aria-controls` apontando para o `<ul id="drop-...">` que efetivamente controlam — adicionado `aria-controls` nos 4, propagado via SSI às 36 páginas que incluem o header. (2) Os 3 ícones de bandeira do seletor de idioma **desktop** (`.lang-switch`, `partials/header.html:134-136`) não tinham `alt`, enquanto o mesmo conjunto de ícones na versão **mobile** (`.lang-switch-mobile`, mesmo arquivo, linhas 99-101) já tinha `alt="Português"/"English"/"Español"` — o único gap de `alt` em todo o repositório (confirmado: só existem 6 tags `<img>` no site inteiro, todas em `header.html`); corrigido reaproveitando o texto já existente no próprio arquivo, sem decisão de copy nova. (3) 4 páginas (`empresas.html`, `governo.html`, `pessoas.html`, `ativos-digitais/index.html`) têm 2 landmarks `<aside>` cada, sem diferenciação para leitor de tela; adicionado `aria-labelledby` em cada `<aside>` apontando para o `id` do parágrafo de rótulo já existente e visível dentro dele (`sol-aside-label`/`sol-tech-label` nas 3 páginas de solução; `intro-aside-label`/`muda-aside-label` no cluster Ativos Digitais) — nenhum texto novo introduzido. **Achados não corrigidos nesta sprint** (fora do escopo original de ARQ-602, adjacentes e de mesmo custo de verificação): hierarquia de headings com nível pulado em 5 páginas, registrado como novo item [ARQ-605](#arq-605--corrigir-hierarquia-de-headings-h1-h6); nenhum achado de `alt` ausente restante (100% dos 6 `<img>` do site corrigidos nesta mesma sprint, então não há item futuro pendente para `alt`). **Não corrigido, documentado apenas como observação, sem virar item novo** (não é dívida técnica de landmark/ARIA, é de i18n/copy): o rótulo do botão `.mobile-menu-btn` permanece `aria-label="Abrir menu"` fixo, sem alternar para indicar o estado aberto — exigiria decisão de copy (string nova nos 3 idiomas), fora do critério de correção "só o atributo" desta sprint; candidato natural para ser resolvido junto de ARQ-603 (mesmo componente de navegação). Todos os 36 `<nav>` duplicados por página (breadcrumb + navegação principal, e o caso de 3 `<nav>` em `insights/index.html`) já tinham `aria-label` distinto (`"Breadcrumb"`, `"Explorar temas"`, `"Navegação principal"`) — confirmado sem necessidade de correção. Testes novos em `tests/accessibility.spec.ts` (bloco "Landmarks e ARIA (ARQ-602)"): 4 botões de dropdown com `aria-controls` válido; 3 ícones de idioma desktop com `alt`; 4 páginas com 2 `<aside>` cada verificadas por `aria-labelledby` distinto e resolvível. `npm test`: baseline 10/10 confirmado antes da mudança; 16/16 depois (10 + 6 novos), sem regressão. |
 
 ### ARQ-603 — Navegação por teclado nos dropdowns
 
@@ -803,6 +803,31 @@
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | 100% dos pares texto/fundo auditados atendendo WCAG AA |
 | Observações | — |
+
+### ARQ-605 — Corrigir hierarquia de headings (h1-h6)
+
+| Campo | Valor |
+|---|---|
+| Objetivo | Garantir que a ordem hierárquica de headings de cada página seja navegável sem saltos por tecnologia assistiva (ex. leitores de tela navegando por heading). |
+| Descrição | A auditoria de landmarks/ARIA de [ARQ-602](#arq-602--auditoria-de-landmarksaria) (Sprint 8) verificou, como achado adjacente e de mesmo custo de checagem, a sequência de headings das 37 páginas reais. 5 páginas pulam nível: `ativos-digitais/index.html`, `empresas.html`, `governo.html` e `pessoas.html` têm ao menos um `<h4>` (ex. títulos de "impactBar") sem um `<h3>` intermediário sob o `<h2>` de seção pai; `legal/termos-de-uso.html` tem um `<h3>Índice</h3>` antes do primeiro `<h2>` da página (`<h1>` → `<h3>`, pulando `<h2>`). Confirmado via varredura de todos os níveis de heading nas 37 páginas (script Python sobre `git ls-files public/*.html`, excluindo partials). |
+| Origem | Achado da auditoria de ARQ-602 (Sprint 8) — não catalogado em `12-technical-debt.md`, não fazia parte do escopo original de ARQ-602 |
+| Documento | `16-architecture-backlog.md` (este item) |
+| Item da dívida técnica | N/A — achado novo, identificado nesta sprint |
+| Arquivos afetados | `public/ativos-digitais/index.html`, `public/empresas.html`, `public/governo.html`, `public/pessoas.html`, `public/legal/termos-de-uso.html` |
+| Dependências (depende de) | Nenhuma dependência técnica; depende de decisão de conteúdo/copy sobre a estrutura visual das seções afetadas (ver Observações) |
+| Dependências (desbloqueia) | Nenhuma |
+| Pré-requisitos | Decisão de conteúdo: se os títulos "impactBar" (h4) devem subir para h3, ou se falta um h3 de agrupamento; se "Índice" deve ser h2 |
+| Critérios de Aceite | Nenhum salto de nível de heading nas 37 páginas reais (nível N não seguido diretamente por N+2 ou maior) |
+| Critérios de Regressão | Nenhuma mudança visual não intencional — a hierarquia semântica deve mudar sem alterar a apresentação visual atual (pode exigir CSS explícito por classe em vez de estilo implícito por nível de tag) |
+| Impacto | Baixo-Médio (achado comum de auditoria de acessibilidade; não impede o uso, mas degrada a navegação por heading) |
+| Risco | Baixo |
+| Complexidade | Baixa-Média (mecânica por página, mas exige decisão de conteúdo por não ser corrigível só por atributo) |
+| Estimativa | P-M |
+| Responsável | Frontend |
+| Status | BACKLOG |
+| ADR relacionado | Nenhum (a criar em ARQ-701) |
+| Métrica de sucesso | 0 saltos de nível de heading nas 37 páginas (hoje: 5 páginas com salto) |
+| Observações | Não corrigido em Sprint 8 (ARQ-602) por exigir decisão de conteúdo/copy — ver regra de evidência da própria sprint: mudar o nível de um heading que já tem estilo visual associado à tag (ex. `<h4>` com estilo de "impactBar") pode mudar a apresentação se não for acompanhado de ajuste de CSS por classe, o que ultrapassa "só o atributo". Registrado como item novo e rastreável no mesmo momento em que foi identificado, conforme EP-17 de `18-engineering-principles.md`. |
 
 ---
 
@@ -897,7 +922,7 @@
 `ARQ-401` a `ARQ-406` (Consolidação) + `ARQ-501` a `ARQ-505` (Engenharia). Combina a eliminação de vestígios da arquitetura anterior com a automação do pipeline (Playwright, lint, cache-busting único) — os dois épicos são tratados como um marco só porque a "Definição de Concluído" do roadmap exige rede de testes automatizada para considerar qualquer consolidação como encerrada.
 
 ### Marco 4 — Conformidade WCAG
-`ARQ-601` a `ARQ-604`. Alinhado ao critério "WCAG AA" do Épico 6 do roadmap.
+`ARQ-601` a `ARQ-605`. Alinhado ao critério "WCAG AA" do Épico 6 do roadmap.
 
 ### Marco 5 — Governança Completa
 `ARQ-701` a `ARQ-703`. Todo novo desenvolvedor compreende a arquitetura lendo apenas a documentação — critério de aceite explícito do Épico 7 do roadmap.
@@ -909,12 +934,14 @@
 Checagem executada antes de finalizar este documento:
 
 - [x] **Todos os 16 itens de dívida técnica de `12-technical-debt.md` possuem pelo menos um ARQ.** Mapeamento: #1→ARQ-201, #2→ARQ-101, #3→ARQ-102/103/104/105/106, #4→ARQ-405, #5→ARQ-202, #6→ARQ-301/303, #7→ARQ-406, #8→ARQ-601, #9→ARQ-404, #10→ARQ-302/304, #11→ARQ-501, #12→ARQ-502, #13→ARQ-402, #14→ARQ-401, #15→ARQ-403, #16→ARQ-107.
-- [x] **Todos os 33 ARQs possuem responsável**, restrito às 9 categorias definidas.
-- [x] **Todos os 33 ARQs possuem critérios de aceite** (mesmo os de auditoria/documentação, cujo critério é a publicação do achado).
-- [x] **Todos os 33 ARQs possuem métrica de sucesso objetiva.**
+- [x] **Todos os 34 ARQs possuem responsável**, restrito às 9 categorias definidas.
+- [x] **Todos os 34 ARQs possuem critérios de aceite** (mesmo os de auditoria/documentação, cujo critério é a publicação do achado).
+- [x] **Todos os 34 ARQs possuem métrica de sucesso objetiva.**
 - [x] **Não há duplicações de ID.** Cada ARQ aparece uma única vez no documento.
 - [x] **Não há ARQs órfãos.** Todo ID citado em um campo "Dependências" corresponde a um item de fato definido neste backlog.
 - [x] **Todas as dependências são consistentes** (nenhuma dependência circular; toda relação "depende de" tem uma contraparte "desbloqueia" no item referenciado, ou é uma dependência externa explícita ao repositório).
-- [x] **Todos os 7 épicos têm backlog suficiente para execução independente**: Segurança (8 itens), SEO (3), Design System (4), Consolidação (6), Engenharia (5), Acessibilidade (4), Governança (3) — nenhum épico depende de detalhamento adicional para que um time comece a trabalhar.
+- [x] **Todos os 7 épicos têm backlog suficiente para execução independente**: Segurança (8 itens), SEO (3), Design System (4), Consolidação (6), Engenharia (5), Acessibilidade (5), Governança (3) — nenhum épico depende de detalhamento adicional para que um time comece a trabalhar.
 
 Itens adicionados nesta etapa que não constavam do roadmap original (`15-architecture-roadmap.md`) nem do catálogo de dívida técnica numerado: `ARQ-107` (desdobrado do rótulo genérico "LGPD"), `ARQ-108`, `ARQ-203`, `ARQ-405`, `ARQ-406`, `ARQ-503`, `ARQ-505`. Todos rastreados explicitamente no campo "Origem" de cada item.
+
+Item adicionado posteriormente, durante a execução do backlog (Sprint 8): `ARQ-605`, achado da auditoria de `ARQ-602`, rastreado no campo "Origem" do próprio item.
