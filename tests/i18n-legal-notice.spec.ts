@@ -31,6 +31,10 @@ const ARTICLES = [
   // hubs de cluster (têm body.legal-page, mesmo critério dos artigos)
   "/insights/prova-digital/",
   "/insights/ativos-digitais/",
+  // hub geral — corrigido na Sprint 12 (faltava legal-page em <body>, só
+  // <main> tinha; ver commit da correção para o detalhe de CSS neutralizado
+  // em insights-pilar.css para não regredir a largura dos títulos td-*)
+  "/insights/",
 ];
 
 test.describe("Aviso de idioma PT-only em artigos de insights", () => {
@@ -52,8 +56,9 @@ test.describe("Aviso de idioma PT-only em artigos de insights", () => {
 // insights/ativos-digitais/index.html não incluía partials/scripts.html —
 // i18n.js (e demais scripts globais) nunca carregavam nessa página, então o
 // clique em qualquer bandeira de idioma não fazia absolutamente nada (sem
-// erro visível). Cobre também /insights/ (hub geral, sem body.legal-page —
-// não deve mostrar o aviso, mas a troca de idioma do chrome deve funcionar).
+// erro visível). Cobre também /insights/ (hub geral) — a troca de idioma do
+// chrome deve funcionar sem erro de console, independente do aviso PT-only
+// (coberto separadamente no describe acima).
 test.describe("Troca de idioma funciona no chrome (nav) de todas as páginas de insights", () => {
   test.use({ locale: "pt-BR" });
 
