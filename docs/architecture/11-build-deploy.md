@@ -25,7 +25,7 @@ Não existe etapa de build/compilação. O deploy consiste em colocar o conteúd
 
 | Ambiente | Branch | Checkout no servidor | Gatilho | Hostname confirmado |
 | --- | --- | --- | --- | --- |
-| Local | árvore de trabalho | — | manual (`python3 -m http.server 8080 --directory public`) | `localhost:8080` |
+| Local | árvore de trabalho | — | manual (`npm run dev`, resolve SSI — ver [13-development-workflow.md](13-development-workflow.md#ambiente-local); não usar `python3 -m http.server`, que não resolve SSI) | `localhost:8081` |
 | Homologação | `homolog` | `/opt/tutela` | push em `homolog` | não versionado — necessita validação |
 | Produção | `main` | `/var/www/tutela` | push em `main` | `www.tuteladigital.com.br` (confirmado no sitemap e conteúdo) |
 

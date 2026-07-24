@@ -31,13 +31,16 @@ O hostname de produção confirmado no conteúdo e sitemap é `www.tuteladigital
 
 ## Desenvolvimento local
 
-Pré-requisitos: Git, Python 3 e navegador. Não use `file://`; execute o site por HTTP:
+Pré-requisitos: Git, Node.js e navegador. Não use `file://`; execute o site por HTTP com o servidor de desenvolvimento do repositório (resolve os includes SSI de header/footer/scripts, assim como o Nginx faz em homologação/produção):
 
 ```bash
-python3 -m http.server 8080 --directory public
+npm install
+npm run dev
 ```
 
-Acesse `http://localhost:8080/`. Não há build, gerenciador de pacotes nem testes automatizados versionados; HTML, CSS, JavaScript, partials, idiomas e assets são entregues diretamente.
+Acesse `http://localhost:8081/`. HTML, CSS, JavaScript, partials, idiomas e assets são entregues diretamente, sem build.
+
+**Não use `python3 -m http.server` para verificar cabeçalho, navegação, rodapé ou qualquer página com partials.** Esse servidor não resolve `<!--#include virtual="..." -->` (SSI) — a página apareceria sem header/footer, com o comentário de include cru no lugar. Serve apenas para o caso raro de abrir um arquivo isolado sem includes.
 
 Antes de publicar:
 
