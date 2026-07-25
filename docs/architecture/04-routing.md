@@ -69,7 +69,7 @@ Isso explica por que páginas como `public/legal/institucional.html` (arquivo `.
 | `/pt/ativos-digitais/` | `public/pt/ativos-digitais/index.html` | i18n (pillar, espelho PT) |
 | `/prova-digital-validade-juridica/` | `public/prova-digital-validade-juridica/index.html` | Standalone — propósito atual necessita validação (não está no menu de navegação) |
 
-Total: 35 rotas (confirmado por `git ls-files public | grep '\.html$' | grep -v partials`). O `sitemap.xml` versionado contém 37 `<url>` (pequena divergência não investigada a fundo — necessita validação, possivelmente por timing de geração).
+Total: 37 rotas (confirmado por `git ls-files public | grep '\.html$' | grep -v partials`, 2026-07-25). O `sitemap.xml` versionado contém 37 `<url>`, reciprocidade item a item confirmada (ARQ-203, Sprint 17) — sem divergência atual. O "35" anteriormente registrado aqui era um erro de contagem da própria documentação: mesmo no commit que introduziu a frase, o comando documentado já retornava 37, não 35 — não houve uma janela real em que a contagem real fosse 35. Guard-test permanente em `tests/sitemap-route-parity.spec.ts`.
 
 ## Redirecionamentos
 

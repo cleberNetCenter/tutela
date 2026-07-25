@@ -32,7 +32,7 @@ graph TD
     User[Usuário / Googlebot / GPTBot] -->|HTTPS| Nginx[Nginx<br/>TLS + SSI + proxy]
     Nginx -->|proxy :8080| Container[Container Docker<br/>servidor estático da pasta public/]
     Container -->|resolve SSI| Partials[partials/header.html<br/>partials/footer.html<br/>partials/scripts.html]
-    Container --> Pages[Páginas HTML estáticas<br/>35 rotas rastreadas]
+    Container --> Pages[Páginas HTML estáticas<br/>37 rotas rastreadas]
     Pages --> CSS[CSS modular<br/>main.css + arquivos por página]
     Pages --> JS[JS vanilla<br/>i18n, busca, menu, diagnóstico]
     JS -->|fetch| LangJSON[assets/lang/pt.json, en.json, es.json]

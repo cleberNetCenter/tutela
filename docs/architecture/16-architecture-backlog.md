@@ -308,10 +308,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | SEO |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (Sprint 17, 2026-07-25) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | `sitemap.xml` com contagem de `<url>` = contagem de `git ls-files public/**/*.html` (excluindo partials) |
-| Observações | Item novo, adicionado pela revisão arquitetural do roadmap, não pelo catálogo original de dívida técnica. |
+| Métrica de sucesso | `sitemap.xml` com contagem de `<url>` = contagem de `git ls-files public/**/*.html` (excluindo partials) — **atingido**: 37 = 37, confirmado item a item (não só por contagem), sem divergência. |
+| Observações | **Não havia divergência real para corrigir.** Contagem de rotas reais hoje (`git ls-files`, exclui `public/partials/`, mesma lógica de `.github/workflows/sitemap.yml`): 37. Contagem de `<url>` em `public/sitemap.xml`: 37. Comparação item a item (não só numérica) entre as duas listas: **diff vazio** — as 37 URLs computadas a partir dos arquivos rastreados batem byte a byte com as 37 URLs do sitemap versionado. Investigação da origem do "35": a frase foi introduzida no commit `267f818` (2026-07-23, `docs: adiciona documentação de arquitetura e roadmap de evolução`); rodar o comando exatamente como documentado (`git ls-files public \| grep '\.html$' \| grep -v partials`) contra a árvore desse mesmo commit já retorna 37, não 35 — ou seja, não houve uma janela real em que a contagem fosse 35 seguida de crescimento para 37; foi um erro de contagem/transcrição no momento em que `04-routing.md` foi escrito, não um efeito de rotas criadas/removidas em sprints posteriores (Sprint 6 removeu CSS, não HTML; Sprint 11 corrigiu includes, não criou/removeu rotas). O stub de redirect puro identificado na Sprint 7 (`insights/ativos-digitais/o-que-sao-ativos-digitais/index.html`, sem header/nav) está presente e contado de forma consistente nos dois lados (é HTML rastreado fora de `partials/`, então conta como rota real pela própria definição do gerador, e aparece no sitemap) — não é fonte de divergência, confirmado, não presumido. Nenhuma URL fantasma no sitemap, nenhuma rota real faltando, nenhuma mudança na lógica do workflow gerador. Ação: corrigido apenas o número stale em `04-routing.md` (35→37) e criado `tests/sitemap-route-parity.spec.ts` (3 testes, guard-test permanente que replica a lógica exata do workflow gerador via `git ls-files` e compara contra `public/sitemap.xml` — falha se qualquer rota real ficar de fora do sitemap, qualquer URL do sitemap não corresponder a rota real, ou as contagens divergirem). `npm test`: 82/82 → 85/85 (3 novos), sem regressão. Nenhuma alteração em `.github/workflows/sitemap.yml` foi necessária. |
 
 ---
 
