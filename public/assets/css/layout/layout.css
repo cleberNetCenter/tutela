@@ -21,13 +21,13 @@ body.exec-compact .features-grid--security {
 	grid-template-columns: repeat(3, 1fr);
 }
 
-@media(max-width:1200px) {
+@media (max-width: 1200px) {
 	body.exec-compact .features-grid--security {
 		grid-template-columns: repeat(2, 1fr)
 	}
 }
 
-@media(max-width:768px) {
+@media (max-width: 768px) {
 
 	.features-grid,
 	body.exec-compact .features-grid--security {
