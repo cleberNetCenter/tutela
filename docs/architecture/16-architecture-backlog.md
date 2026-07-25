@@ -247,11 +247,11 @@
 | Origem | Débito técnico #1 |
 | Documento | `07-seo.md`, `08-performance.md`, `12-technical-debt.md` |
 | Item da dívida técnica | #1 |
-| Arquivos afetados | Novo `public/assets/images/og-image.jpg` (nenhum HTML precisa mudar — os paths já apontam corretamente) |
+| Arquivos afetados | Novo `public/assets/images/og-image.jpg` (único arquivo que falta — todos os 11 HTMLs que o referenciam já apontam para o caminho correto, corrigido nesta sprint quando necessário) |
 | Dependências (depende de) | Arte final produzida pelo time de conteúdo/design |
 | Dependências (desbloqueia) | Nenhuma |
-| Pré-requisitos | Asset de imagem finalizado (1200×630px, formato recomendado por Open Graph) |
-| Critérios de Aceite | Arquivo servindo `200 OK`; preview correto no Facebook Sharing Debugger e Twitter Card Validator |
+| Pré-requisitos | Asset de imagem finalizado (1200×630px, JPEG, peso recomendado < 300KB) |
+| Critérios de Aceite | Arquivo servindo `200 OK`; preview correto no Facebook Sharing Debugger e Twitter Card Validator; guard-test `tests/og-image.spec.ts` passando (sai do estado `fixme` automaticamente) |
 | Critérios de Regressão | Nenhuma — item puramente aditivo |
 | Impacto | Alto (risco #1 do `EXECUTIVE_SUMMARY.md`) |
 | Risco | Baixo |
@@ -261,7 +261,7 @@
 | Status | BLOQUEADO |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | 100% das páginas com Open Graph exibindo preview de imagem correto |
-| Observações | Bloqueado apenas pela entrega da arte — zero complexidade técnica. Resolve também a incerteza "og-image.jpg existe só em produção?" da tabela de validação de `12-technical-debt.md`. |
+| Observações | Bloqueado apenas pela entrega da arte — zero complexidade técnica confirmada na Sprint 18 (nenhum candidato ao asset encontrado em histórico/branches/repositório). Resolve também a incerteza "og-image.jpg existe só em produção?" da tabela de validação de `12-technical-debt.md`. **Sprint 18**: a premissa original desta linha ("nenhum HTML precisa mudar") estava incompleta — 3 páginas apontavam para um diretório inexistente (`assets/img/`, sem "s") em vez de `assets/images/`; corrigido, consolidando-as para `og-image.jpg`. Detalhe completo em `12-technical-debt.md`, item #1. Guard-test `tests/og-image.spec.ts` criado (roda como `fixme` até o arquivo existir, mais um teste de regressão de caminho que já roda hoje). Achado adjacente, fora deste item: `public/ativos-digitais/index.html` referencia um segundo asset ausente e com nome distinto, `og-ativos-digitais.jpg` (mesmo bug de diretório, já corrigido; arquivo ainda não existe) — não tratado como parte de ARQ-201 por ser um asset e uma página diferentes; se o time de conteúdo decidir que a página não precisa de imagem própria, o caminho pode simplesmente ser trocado para apontar a `og-image.jpg` também. |
 
 ### ARQ-202 — Reciprocidade completa de `hreflang` no cluster Ativos Digitais
 

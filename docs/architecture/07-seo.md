@@ -32,7 +32,7 @@ Presentes de forma consistente nas páginas principais (`public/index.html:15-28
 - `og:type`, `og:site_name`, `og:locale`, `og:title`, `og:description`, `og:url`, `og:image`
 - `twitter:card=summary_large_image`, `twitter:site=@tuteladigitalbr`, `twitter:title`, `twitter:description`, `twitter:image`
 
-**Achado crítico**: todas as páginas referenciam `https://tuteladigital.com.br/assets/images/og-image.jpg` como imagem de compartilhamento, mas **esse arquivo não existe no repositório** — `public/assets/images/` contém apenas 3 SVGs de bandeiras (`flags/br.svg`, `us.svg`, `es.svg`); não há nenhum `.jpg` em `public/assets/images/` nem em `public/assets/illustrations/`. Isso significa que **qualquer compartilhamento do site no WhatsApp, LinkedIn, Twitter/X ou Facebook não exibe imagem de preview**, a menos que o arquivo exista apenas no servidor de produção fora do controle de versão (necessita validação). Ver [12-technical-debt.md](12-technical-debt.md).
+**Achado crítico**: 11 páginas com metadata social referenciam `https://tuteladigital.com.br/assets/images/og-image.jpg` como imagem de compartilhamento, mas **esse arquivo não existe no repositório** — `public/assets/images/` contém apenas 3 SVGs de bandeiras (`flags/br.svg`, `us.svg`, `es.svg`); não há nenhum `.jpg` em `public/assets/images/` nem em `public/assets/illustrations/`. Isso significa que **qualquer compartilhamento dessas páginas no WhatsApp, LinkedIn, Twitter/X ou Facebook não exibe imagem de preview** — confirmado por auditoria externa (ARQ-108, Sprint 5): `404` em produção e homologação, não existe em nenhum ambiente. Ver [12-technical-debt.md](12-technical-debt.md).
 
 ## Schema.org (dados estruturados)
 
@@ -121,7 +121,7 @@ O índice de busca (`assets/search-index.json`) é gerado a partir do HTML rastr
 
 | Lacuna | Severidade | Detalhe |
 | --- | --- | --- |
-| `og-image.jpg` referenciado mas ausente do repositório | Alta | Ver acima; afeta preview de compartilhamento em todas as 35 páginas |
+| `og-image.jpg` referenciado mas ausente do repositório | Alta | Ver acima; afeta preview de compartilhamento nas 11 páginas que o referenciam |
 | Página `x-default` sem cluster `hreflang` recíproco | Média | Ver [04-routing.md](04-routing.md) |
 | `lastmod` do sitemap reflete commit, não revisão editorial | Baixa | Pode subestimar ou superestimar "frescor" percebido pelo Google |
 | Ausência de `sitemap` de imagens ou de vídeo | Baixa | Não identificado no projeto — não há necessidade aparente, dado o baixo volume de mídia rica |

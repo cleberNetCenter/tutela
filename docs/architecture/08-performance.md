@@ -39,7 +39,7 @@ Os 4 scripts globais (`mobile-menu.js`, `dropdown-menu.js`, `i18n.js`, `search.j
 
 O inventário de imagens é extremamente enxuto: `public/assets/images/` contém apenas 3 SVGs (bandeiras) e `public/assets/illustrations/` contém 2 SVGs + 1 PNG (favicon duplicado em SVG e PNG) + 1 SVG adicional. **Não há imagens fotográficas ou rasterizadas de conteúdo no repositório** (sem `.jpg`, `.webp`, `.avif` versionados). Isso tem duas leituras:
 - Positiva: o site é leve em payload de imagem, e SVG escala sem perda em qualquer densidade de tela.
-- Negativa: o `og-image.jpg` referenciado em todo `<meta property="og:image">` (ver [07-seo.md](07-seo.md)) não existe no repositório — se também não existir em produção, todo compartilhamento social perde a imagem de preview.
+- Negativa: o `og-image.jpg` referenciado em 11 páginas via `<meta property="og:image">` (ver [07-seo.md](07-seo.md)) não existe no repositório — confirmado `404` também em produção e homologação (ARQ-108, Sprint 5), então o compartilhamento social dessas páginas perde a imagem de preview hoje.
 
 Não há uso de `loading="lazy"` em nenhuma página (busca por esse atributo em todo `public/**/*.html` retornou zero ocorrências) nem de `<picture>`/`srcset` para arte direcionada — não identificado no projeto. Dado o baixíssimo volume de imagens atual, o impacto prático é pequeno hoje, mas a ausência do padrão significa que qualquer imagem pesada adicionada futuramente não terá lazy loading por padrão.
 
