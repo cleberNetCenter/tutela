@@ -136,7 +136,7 @@ body.legal-page .page-header--legal h1 {
 /* Subtítulo */
 body.legal-page .page-header-subtitle,
 body.legal-page .page-header--legal .hero-subtitle {
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.78);
   max-width: 600px;
   margin: 0 auto;
   font-size: 1rem;

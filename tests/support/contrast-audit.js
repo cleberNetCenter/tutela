@@ -107,8 +107,15 @@ const PAIRS = [
   { group: "Footer", label: "footer --text-3 (copyright/links secundários) sobre --bg", fg: "#6e8e79", bg: "#0c2418", context: "normal" },
 
   // ---- Páginas legais (legal-shared.css) ----
-  { group: "Legal", label: "hero subtitle rgba(255,255,255,0.68) sobre pior stop do gradiente (green-700)", fg: "#ffffff", bg: flatten("#ffffff", 0.68, "#1b6b4d"), context: "normal" },
-  { group: "Legal", label: "hero subtitle rgba(255,255,255,0.68) sobre melhor stop do gradiente (green-950)", fg: "#ffffff", bg: flatten("#ffffff", 0.68, "#0b241b"), context: "normal" },
+  // Correção de metodologia (Sprint 15, ARQ-606): texto é translúcido, fundo é opaco —
+  // o par correto compara a cor EFETIVA do texto (branco composto sobre o stop via
+  // flatten()) contra o próprio stop, não contra branco nominal. A versão anterior
+  // fazia contrastRatio("#ffffff", flatten(...)), comparando o branco nominal contra
+  // a cor composta — resultado sistematicamente mais pessimista (ex.: reportava 1.64:1
+  // e 2.00:1 para alpha 0.68, quando o valor correto era 3.94:1 e 8.18:1). Não altera
+  // o veredito (ambos falhavam), mas altera a magnitude usada para calibrar a correção.
+  { group: "Legal", label: "hero subtitle rgba(255,255,255,0.78) [ARQ-606] — texto efetivo vs pior stop do gradiente (green-700)", fg: flatten("#ffffff", 0.78, "#1b6b4d"), bg: "#1b6b4d", context: "normal" },
+  { group: "Legal", label: "hero subtitle rgba(255,255,255,0.78) [ARQ-606] — texto efetivo vs melhor stop do gradiente (green-950)", fg: flatten("#ffffff", 0.78, "#0b241b"), bg: "#0b241b", context: "normal" },
   { group: "Legal", label: "--color-text-muted sobre --color-surface-muted (seção clara)", fg: "#4a7464", bg: "#e6f0eb", context: "normal" },
   { group: "Legal", label: "--color-text-base sobre --color-surface-muted", fg: "#0f3a2a", bg: "#e6f0eb", context: "normal" },
   { group: "Legal", label: "--primitive-green-700 (link/label) sobre branco", fg: "#1b6b4d", bg: "#ffffff", context: "normal" },
