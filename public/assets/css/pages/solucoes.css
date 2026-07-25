@@ -308,7 +308,7 @@ body.solucoes-page main a:not([class]):hover { opacity: 0.75; }
   content: '';
   width: 5px;
   height: 5px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: currentColor;
   opacity: 0.7;
 }
@@ -367,7 +367,7 @@ body.solucoes-page .sol-hero::after {
   right: -60px;
   width: 420px;
   height: 420px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: radial-gradient(
     circle,
     var(--sol-accent-glow) 0%,
@@ -404,7 +404,7 @@ body.solucoes-page .sol-hero-eyebrow::after {
   content: '';
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: var(--sol-accent);
   opacity: 0.5;
 }
@@ -552,7 +552,7 @@ body.solucoes-page .sol-aside-label::before {
   content: '';
   width: 5px;
   height: 5px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: var(--sol-vertical-hue);
   flex-shrink: 0;
 }
@@ -713,7 +713,7 @@ body.solucoes-page .sol-contraste::before {
   right: -80px;
   width: 480px;
   height: 480px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   border: 1px solid rgba(255,255,255,0.04);
   pointer-events: none;
 }
@@ -724,7 +724,7 @@ body.solucoes-page .sol-contraste::after {
   right: -40px;
   width: 320px;
   height: 320px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   border: 1px solid rgba(255,255,255,0.03);
   pointer-events: none;
 }
@@ -795,7 +795,7 @@ body.solucoes-page .sol-col-pos .sol-comp-item {
 body.solucoes-page .sol-comp-icon {
   width: 22px;
   height: 22px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   flex-shrink: 0;
   margin-top: 1px;
   display: flex;
@@ -890,7 +890,7 @@ body.solucoes-page .sol-check-item:first-child { border-top: 1px solid var(--sol
 body.solucoes-page .sol-check-bullet {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: var(--sol-brand-dark);
   display: flex;
   align-items: center;
@@ -923,7 +923,7 @@ body.solucoes-page .sol-tech-aside::before {
   right: -2rem;
   width: 120px;
   height: 120px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   border: 1px solid rgba(45, 181, 96, 0.12);
   pointer-events: none;
 }
@@ -934,7 +934,7 @@ body.solucoes-page .sol-tech-aside::after {
   right: -2.75rem;
   width: 180px;
   height: 180px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   border: 1px solid rgba(45, 181, 96, 0.07);
   pointer-events: none;
 }
@@ -1185,7 +1185,7 @@ body.solucoes-page .sol-cta-list li {
 body.solucoes-page .sol-cta-check {
   width: 18px;
   height: 18px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: rgba(45, 181, 96, 0.16);
   border: 1px solid rgba(45, 181, 96, 0.30);
   display: flex;
@@ -1254,7 +1254,7 @@ body.solucoes-page .sol-trust-item {
 body.solucoes-page .sol-trust-dot {
   width: 3px;
   height: 3px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: rgba(255,255,255,0.12);
 }
 
@@ -1339,7 +1339,7 @@ body.solucoes-page .sol-selo-wrapper::before {
 body.solucoes-page .sol-selo-icon {
   width: 52px;
   height: 52px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   border: 1.5px solid var(--sol-border);
   background: var(--sol-bg);
   display: flex;

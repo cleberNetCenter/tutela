@@ -65,7 +65,7 @@ body.page-como-funciona .app {
   text-transform: uppercase;
   color: var(--editorial-accent);
   border: 1px solid var(--editorial-border);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   padding: 0.3rem 1rem;
   margin-bottom: 1.75rem;
   background: var(--editorial-surface);
@@ -78,7 +78,7 @@ body.page-como-funciona .app {
   width: 6px;
   height: 6px;
   background: var(--editorial-accent);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   box-shadow: 0 0 7px var(--editorial-accent);
   animation: blink 2.1s ease infinite;
 }

@@ -9,6 +9,7 @@
      4. Espaçamento
      5. Extensão: Ativos Digitais (--ad-*)
      6. Breakpoints (ARQ-302)
+     7. Radius & Shadow globais (ARQ-303)
    (índice não numera "Aliases de Compatibilidade", seção 5 no corpo do
    arquivo — inconsistência pré-existente, fora do escopo desta sprint)
    ============================================================ */
@@ -322,4 +323,91 @@
   --breakpoint-1024: 1024px;
   --breakpoint-1180: 1180px;
   --breakpoint-1200: 1200px;
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   8. RADIUS & SHADOW GLOBAIS (ARQ-303)
+   Débito técnico #6 (mesma raiz de fragmentação de tokens do
+   ARQ-301) — border-radius/box-shadow só tinham token dentro da
+   extensão --ad-*; fora dela apareciam como valores literais
+   espalhados por ~20 arquivos.
+
+   Diferente de ARQ-302 (breakpoints): var() funciona normalmente
+   em border-radius/box-shadow em qualquer lugar do CSS — não há
+   limitação de @media aqui. Confirmado antes desta sprint, não
+   presumido: vários sistemas de tokens locais por página já usavam
+   var() nessas propriedades (--sol-r-*, --hp-radius*, --sec-radius*,
+   --cf-radius*, --dg-shadow-*, --ad-radius-*, --ad-pillar-radius-xl/
+   shadow-*), então a migração aqui é literal→var() direta, sem
+   decisão técnica de build step.
+
+   Nomenclatura e escopo (decisão confirmada com o responsável pelo
+   backlog antes de qualquer migração, dado que a superfície real —
+   221 ocorrências de border-radius, ~33 valores distintos; 83+
+   declarações de box-shadow, majoritariamente sombras compostas
+   únicas por marca/página — era maior do que o item do backlog
+   sugeria):
+   1) --radius-*: um token por valor numérico real (nomeado pelo
+      valor literal, mesmo padrão de --breakpoint-*), sem fundir
+      valores próximos (ex. 12px/13px/14px permanecem 3 tokens
+      distintos — fundir seria decisão de design, não técnica).
+      Combinações direcionais (ex. "0 8px 8px 0", cantos assimétricos
+      tipo "meia-pílula") são compostas a partir destes tokens via
+      var() por canto (ex. `0 var(--radius-8) var(--radius-8) 0`),
+      não geram token dedicado — o valor final é idêntico ao literal
+      original, sem consolidação.
+   2) --shadow-*: box-shadow é, na maioria dos casos, uma sombra
+      composta e única por marca/página (cor rgba própria) — não uma
+      escala compartilhada. Só valores IDÊNTICOS (mesma string,
+      diferença de espaçamento ignorada) repetidos em 2+ arquivos
+      viraram token global aqui; sombras genuinamente únicas
+      permanecem literais — exceção deliberada permitida pelo
+      critério de aceite deste item ("exceto onde documentado como
+      exceção deliberada"). Nenhum valor de sombra "quase igual"
+      (ex. diagnostico.css:916-918 vs. 1007-1009, mesma forma mas
+      opacidade 0.18 vs 0.16) foi fundido.
+   Nenhum valor novo foi inventado; todos já existiam espalhados no
+   CSS antes desta sprint (tabela completa por arquivo/linha na
+   entrega da Sprint 13 em 16-architecture-backlog.md).
+   ────────────────────────────────────────────────────────── */
+:root {
+  /* Radius — nomeado pelo valor literal em px */
+  --radius-0:  0;
+  --radius-2:  2px;
+  --radius-3:  3px;
+  --radius-4:  4px;
+  --radius-5:  5px;
+  --radius-6:  6px;
+  --radius-7:  7px;
+  --radius-8:  8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-13: 13px;
+  --radius-14: 14px;
+  --radius-16: 16px;
+  --radius-18: 18px;
+  --radius-20: 20px;
+  --radius-22: 22px;
+  --radius-24: 24px;
+  --radius-26: 26px;
+  --radius-30: 30px;
+  --radius-34: 34px;
+  --radius-40: 40px;
+
+  /* Radius — formas nomeadas (não numéricas, mas com um único valor
+     real repetido em dezenas de ocorrências cada) */
+  --radius-pill: 999px;  /* forma "pílula" (border-radius total) */
+  --radius-full: 50%;    /* forma circular (avatares, dots, ícones) */
+
+  /* Shadow — só valores idênticos repetidos em 2+ arquivos (ver nota
+     acima); nomeados descritivamente (cor/papel), não por escala,
+     porque não há uma progressão numérica única como em --radius-* */
+  --shadow-neutral-sm:  0 8px 18px rgba(16, 24, 40, 0.05);   /* pages-consolidated.css ×3 */
+  --shadow-black-md:    0 8px 24px rgba(0, 0, 0, 0.25);      /* institucional.css + legal-shared.css ×3 */
+  --shadow-black-lg:    0 12px 32px rgba(0, 0, 0, 0.4);      /* styles-header-final.css ×2 */
+  --shadow-brand-md:    0 6px 30px rgba(10, 34, 24, .13);    /* pages-consolidated.css ×2 */
+  --shadow-accent-glow: 0 8px 32px rgba(34, 197, 94, .3);    /* seguranca.css + como-funciona.css + homepage.css ×3 */
+  --shadow-brand-sm:    0 10px 28px rgba(10, 34, 24, 0.09);  /* assets-digital.css ×2 */
+  --shadow-focus-ring:  0 0 0 3px rgba(62, 207, 114, 0.10);  /* diagnostico.css ×2 */
 }

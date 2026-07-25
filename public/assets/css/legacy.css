@@ -28,7 +28,7 @@
   padding: 1.25rem;
   background: #f8fbfa;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 6px;
+  border-radius: var(--radius-6);
   text-decoration: none;
   transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease;
 }
