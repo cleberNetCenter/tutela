@@ -166,7 +166,7 @@ body.page-como-funciona {
 .cf-step-num {
   width: 64px;
   height: 64px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   border: 1px solid var(--cf-border);
   background: var(--cf-surface);
   display: flex;
@@ -452,7 +452,7 @@ body.page-como-funciona {
 .btn-cf-primary:hover {
   background: var(--color-accent-bright);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(34, 197, 94, .3);
+  box-shadow: var(--shadow-accent-glow);
 }
 
 /* ── SCROLL REVEAL ───────────────────────────────────────── */

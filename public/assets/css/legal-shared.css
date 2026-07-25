@@ -80,7 +80,7 @@ body.legal-page .page-header--legal {
     var(--primitive-green-700) 100%
   );
   border: none;
-  border-radius: 14px;
+  border-radius: var(--radius-14);
   margin: var(--space-md) auto var(--space-lg);
   max-width: 820px;
   padding: 3.5rem 2.5rem 3rem;
@@ -108,7 +108,7 @@ body.legal-page .page-header--legal::after {
   right: -80px;
   width: 380px;
   height: 380px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: radial-gradient(
     circle,
     rgba(45, 181, 96, 0.15) 0%,
@@ -211,7 +211,7 @@ body.legal-page .page-header--legal .legal-graphic svg line {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.80);
   border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 2px;
+  border-radius: var(--radius-2);
   padding: 0.28rem 0.85rem;
   background: rgba(255, 255, 255, 0.07);
 }
@@ -270,7 +270,7 @@ body.legal-page .text-block.section-muted {
 body.legal-page .wp-highlight {
   background: linear-gradient(135deg, #f7fbf9, #edf6f2);
   border-left: 4px solid var(--primitive-green-700);
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 var(--radius-4) var(--radius-4) 0;
   padding: 1rem 1.25rem;
   margin-bottom: var(--space-sm);
   font-weight: 500;
@@ -314,7 +314,7 @@ body.legal-page .text-block-inner ul li::before {
   transform: translateY(-50%);
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: var(--primitive-green-700);
   opacity: 0.6;
 }
@@ -437,7 +437,7 @@ body.legal-page .legal-grid .feature-item {
   background: var(--primitive-neutral-000);
   border: 1px solid var(--color-border-soft);
   border-top: 3px solid var(--primitive-green-700);
-  border-radius: 4px;
+  border-radius: var(--radius-4);
   padding: var(--space-md) var(--space-sm);
   min-height: auto;
   text-decoration: none;
@@ -485,7 +485,7 @@ body.legal-page .section-dark .legal-grid .feature-item {
 
 body.legal-page .section-dark .legal-grid .feature-item:hover {
   background: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-black-md);
 }
 
 body.legal-page .section-dark .legal-grid .feature-item h3 {
@@ -512,7 +512,7 @@ body.legal-page .section-dark .legal-grid .feature-item p {
   background: var(--primitive-neutral-000);
   border: 1px solid var(--color-border-soft);
   border-top: 3px solid var(--primitive-green-700);
-  border-radius: 4px;
+  border-radius: var(--radius-4);
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -559,7 +559,7 @@ body.legal-page .section-dark .camada-card {
 
 body.legal-page .section-dark .camada-card:hover {
   background: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-black-md);
 }
 
 body.legal-page .section-dark .camada-label {
@@ -645,7 +645,7 @@ body.legal-page .text-block .legal-graphic svg text {
   color: var(--color-text-muted);
   background: var(--color-surface-muted);
   border: 1px solid var(--color-border-soft);
-  border-radius: 2px;
+  border-radius: var(--radius-2);
   padding: 0.22rem 0.65rem;
 }
 
@@ -662,7 +662,7 @@ body.legal-page .text-block .legal-graphic svg text {
   padding: var(--space-md);
   background: linear-gradient(135deg, #f7fbf9, #edf6f2);
   border: 1px solid var(--color-border-soft);
-  border-radius: 4px;
+  border-radius: var(--radius-4);
 }
 
 .legal-id-item {
@@ -728,7 +728,7 @@ body.legal-page .wp-summary-inner p {
 body.legal-page .cta-final {
   background: var(--primitive-green-950, #0b241b);
   border: none;
-  border-radius: 0;
+  border-radius: var(--radius-0);
   padding: var(--space-2xl) var(--space-md);
   text-align: center;
   position: relative;
@@ -743,7 +743,7 @@ body.legal-page .cta-final::before {
   right: -100px;
   width: 420px;
   height: 420px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   border: 1px solid rgba(45, 181, 96, 0.07);
   pointer-events: none;
 }
@@ -755,7 +755,7 @@ body.legal-page .cta-final::after {
   right: -60px;
   width: 250px;
   height: 250px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   border: 1px solid rgba(45, 181, 96, 0.05);
   pointer-events: none;
 }
