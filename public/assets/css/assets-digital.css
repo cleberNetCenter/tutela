@@ -1136,9 +1136,9 @@ body.assets-page.assets-pillar-page .impacto-bar-icon {
   background: #eef6f1;
   border: 1px solid rgba(29, 60, 43, 0.08);
 }
-body.assets-page.assets-pillar-page .impacto-bar h4 {
-  font-size: 0.9375rem;
-  font-weight: 600;
+body.assets-page.assets-pillar-page .impacto-bar h3 {
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--primitive-green-970);
   margin: 0 0 0.2rem;
   line-height: 1.2;
