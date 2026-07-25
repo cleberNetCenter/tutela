@@ -1080,8 +1080,8 @@ body.solucoes-page .sol-bar-icon {
   flex-shrink: 0;
 }
 
-body.solucoes-page .sol-bar-text h4 {
-  font-size: 0.9rem;
+body.solucoes-page .sol-bar-text h3 {
+  font-size: 1.05rem;
   font-family: var(--sol-ff-sans);
   font-weight: 600;
   color: var(--sol-text-head);
