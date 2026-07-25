@@ -283,10 +283,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | SEO |
-| Status | BACKLOG |
+| Status | CONCLUÍDO (Sprint 16, 2026-07-25) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | 4/4 páginas do cluster validadas sem erro de hreflang no Google Search Console |
-| Observações | — |
+| Métrica de sucesso | 4/4 páginas do cluster validadas sem erro de hreflang no Google Search Console — reciprocidade formal (pré-condição desta métrica) confirmada localmente: 4/4 |
+| Observações | Mapeamento via grep confirmou exatamente o que o débito técnico descrevia, sem divergência: as 3 páginas de idioma (`pt/ativos-digitais/`, `en/digital-assets/`, `es/activos-digitales/`) já declaravam um bloco `hreflang` completo e mutuamente idêntico (`pt-BR`→`/pt/ativos-digitais/`, `en`→`/en/digital-assets/`, `es`→`/es/activos-digitales/`, `x-default`→`/ativos-digitais/`); só `public/ativos-digitais/index.html` não declarava nenhum. Adicionado o mesmo bloco de 4 `<link rel="alternate" hreflang="...">` a essa página, na mesma posição relativa (logo após `canonical`, antes dos ícones) usada nas outras 3 — sem inventar formato novo. `x-default` aponta para a própria página (padrão já em uso, confirmado, não alterado). Criado `tests/hreflang-reciprocity.spec.ts` (5 testes: 4 verificam canonical + as 4 entradas hreflang esperadas por página, 1 verifica que as 4 páginas concordam byte-a-byte sobre o mapeamento hreflang→URL) como guard-test permanente contra regressão futura do cluster. `npm test`: 77/77 → 82/82 (5 novos). `contrast-audit.js`: 38/38, sem mudança (item é só metadado de `<head>`, não toca CSS). `tests/i18n-legal-notice.spec.ts`: 15/15, confirmando que `hreflang` (SEO) não interage com a lógica de troca de idioma via JS. Regressão visual (`visual-design-tokens.spec.ts`, `visual-radius-shadow.spec.ts`, cluster Ativos Digitais incluído) sem diff — confirmado, não presumido, que mudança de `<head>` não tem impacto visual. |
 
 ### ARQ-203 — Investigar divergência entre rotas reais (35) e URLs no sitemap (37)
 
