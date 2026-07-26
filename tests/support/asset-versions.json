@@ -1,0 +1,86 @@
+{
+  "/assets/css/assets-digital.css": {
+    "version": "8",
+    "hash": "7abc34b1d473"
+  },
+  "/assets/css/diagnostico.css": {
+    "version": "1",
+    "hash": "30ff37e721e9"
+  },
+  "/assets/css/homepage.css": {
+    "version": "6",
+    "hash": "47d02d58fb07"
+  },
+  "/assets/css/insights-pilar.css": {
+    "version": "3",
+    "hash": "81d2f340a564"
+  },
+  "/assets/css/legal-shared.css": {
+    "version": "1",
+    "hash": "e533e76065a3"
+  },
+  "/assets/css/main.css": {
+    "version": "7",
+    "hash": "0e98fc22b4b3"
+  },
+  "/assets/css/pages/arquitetura-juridica-prova-digital.css": {
+    "version": "1",
+    "hash": "9163c9ec202d"
+  },
+  "/assets/css/pages/ativos-digitais.css": {
+    "version": "1",
+    "hash": "0933c85a6c43"
+  },
+  "/assets/css/pages/como-funciona.css": {
+    "version": "5",
+    "hash": "0c625d29fa65"
+  },
+  "/assets/css/pages/institucional.css": {
+    "version": "6",
+    "hash": "2058a4fbad81"
+  },
+  "/assets/css/pages/solucoes.css": {
+    "version": "2",
+    "hash": "d1d0417a2763"
+  },
+  "/assets/css/seguranca.css": {
+    "version": "6",
+    "hash": "69ca30495280"
+  },
+  "/assets/css/styles-header-final.css": {
+    "version": "7",
+    "hash": "b853f29cc314"
+  },
+  "/assets/js/i18n.js": {
+    "version": "1",
+    "hash": "f12c8dd3125c"
+  },
+  "/assets/js/legal-animations.js": {
+    "version": "1",
+    "hash": "a55a29b4825e"
+  },
+  "/assets/js/navigation-menu.js": {
+    "version": "1",
+    "hash": "3268fc7ad3b3"
+  },
+  "/assets/js/search.js": {
+    "version": "1",
+    "hash": "f4f8352684f8"
+  },
+  "/assets/lang/en.json": {
+    "version": "10",
+    "hash": "72a30e836676"
+  },
+  "/assets/lang/es.json": {
+    "version": "10",
+    "hash": "fe015362c48b"
+  },
+  "/assets/lang/pt.json": {
+    "version": "10",
+    "hash": "e9c4d02b71ab"
+  },
+  "/assets/search-index.json": {
+    "version": "2",
+    "hash": "c69376f98e8d"
+  }
+}
