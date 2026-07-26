@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - homolog
 
 jobs:
   check-homolog-ancestor:
@@ -25,3 +26,31 @@ jobs:
             echo "abra um novo PR de homolog → main para promover."
             exit 1
           fi
+
+  # ARQ-504: automatiza o checklist de publicação hoje manual
+  # (docs/ambientes-e-deploy.md:42-47 / 13-development-workflow.md).
+  # Roda em PRs para homolog e main — não em deploy-homolog.yml/deploy-prod.yml,
+  # que fazem `git reset --hard` + deploy e não devem ganhar passos de validação.
+  checklist-publicacao:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Instalar navegadores do Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Suíte de testes (npm test)
+        run: npm test
+
+      - name: git diff --check (conflitos não resolvidos e espaço em branco problemático)
+        run: git diff --check ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
