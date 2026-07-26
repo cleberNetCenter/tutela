@@ -229,6 +229,50 @@ sudo certbot certificates 2>/dev/null || true    # ou equivalente
 
 Isso fecha: renovação de certificado e a correção da regra de redirect no Fortinet (causa provável já identificada, ver acima — não verificada/corrigida nesta auditoria).
 
+### Auditoria externa (ARQ-505) — 2026-07-26
+
+Ponto de partida: o achado incidental do ARQ-108/Sprint 5 (`docker ps` mostrando `tutela_v2_api` rodando só em produção — ver tabela comparativa acima) sugeria ausência de paridade, mas não era, por si só, a auditoria formal pedida por `12-technical-debt.md`. Esta sprint fecha o que é auditável **sem acesso a servidor** e prepara o que exige.
+
+**Confirmado por `curl` externo — comportamental, reproduzível por qualquer pessoa com os mesmos comandos, sem SSH:**
+
+Em vez de repetir só a observação de processo do ARQ-108, esta auditoria testou se o próprio serviço (não o processo) responde de forma diferente nos dois ambientes:
+
+```bash
+curl -sS -D - -o /dev/null https://www.tuteladigital.com.br/api/diagnostico/
+curl -sS -D - -o /dev/null https://homolog.tuteladigital.com.br/api/diagnostico/
+```
+
+- **Produção**: `404`, mas com um conjunto de headers que **não aparece em nenhuma página estática do site** — `content-security-policy: default-src 'none'`, `cross-origin-opener-policy`, `cross-origin-resource-policy`, `origin-agent-cluster`, `x-dns-prefetch-control`, `x-download-options`, `x-permitted-cross-domain-policies`, `x-xss-protection: 0`, e `x-ratelimit-limit`/`x-ratelimit-remaining`/`x-ratelimit-reset`. Esse padrão (CSP restritivo + headers de segurança tipo Helmet + rate limiting) é característico de uma aplicação Node/Express respondendo diretamente — não de um Nginx servindo arquivo estático inexistente.
+- **Homologação**: `404` também, mas com o mesmo conjunto plano de headers de qualquer 404 estático do ambiente (sem CSP, sem rate-limit) — comportamento indistinguível de um path totalmente inexistente.
+
+**Controles para descartar falso positivo** (confirmam que a diferença é específica de `/api/diagnostico`, não um efeito genérico do Nginx):
+
+```bash
+# Path garantidamente inexistente, para calibrar o comportamento "padrão" de cada ambiente:
+curl -sS -D - -o /dev/null https://www.tuteladigital.com.br/totally-nonexistent-path-xyz123
+curl -sS -D - -o /dev/null https://homolog.tuteladigital.com.br/totally-nonexistent-path-xyz123
+```
+
+- Produção redireciona (`301`) **qualquer** path sem extensão para a versão com barra final — inclusive paths inexistentes (`/totally-nonexistent-path-xyz123` → `301` → `/totally-nonexistent-path-xyz123/` → `404` sem headers de app) — confirmando que o `301` isolado de `/api/diagnostico` não é sinal de nada por si só; o sinal real está nos headers do `404` final em `/api/diagnostico/`, que só aparecem nesse path específico.
+- Testado também `/api/health`, `/api/status`, `/api/ping` nos dois ambientes: todos retornam o padrão genérico (produção `301`→`404` plano; homologação `404` plano) — ou seja, a aplicação por trás de produção só responde de forma diferenciada exatamente em `/api/diagnostico`, não em qualquer path sob `/api/`.
+- Porta `3000` (onde `tutela_v2_api` escuta, por `docker ps` do ARQ-108) não é alcançável externamente em nenhum dos dois ambientes (timeout de conexão) — confirma que o container, se existir, não está publicado direto, só acessível via proxy interno do Nginx.
+
+**Conclusão do Bloco A (sem acesso a servidor)**: há evidência comportamental externa, nova e independente do `docker ps` da Sprint 5, de que produção tem um backend de aplicação vivo e proxiado atrás de `/api/diagnostico`, enquanto homologação não tem nada respondendo nesse path (trata-o como qualquer 404 estático). Isso reforça a suspeita de ausência de paridade, mas **não é o diff de `docker-compose.yml`** pedido pelo critério de aceite de `ARQ-505` — não confirma sozinho todas as divergências (variáveis de ambiente, volumes, redes, versões de imagem), só a presença/ausência de um serviço proxiado.
+
+**O que não é auditável a partir deste ambiente**: o conteúdo completo de `docker-compose.yml` (serviços declarados, variáveis de ambiente, volumes, redes, versões de imagem) em nenhum dos dois servidores — esse arquivo não é versionado neste repositório e não há acesso SSH neste ambiente de execução.
+
+**Bloco B — comandos para rodar nos servidores** (mesmo padrão do ARQ-108: usuário roda e cola o resultado de volta):
+
+```bash
+# Em cada servidor (tutela-dev = homologação, tutela-web = produção), dentro de /opt/tutela-v2:
+cat docker-compose.yml
+docker compose config    # config resolvida, com variáveis de ambiente expandidas
+docker compose ps
+docker ps --format '{{.Names}}\t{{.Image}}\t{{.Ports}}'
+```
+
+Com esse output dos dois servidores, é possível fechar `ARQ-505` com o diff formal serviço a serviço. Até lá, o item permanece **BACKLOG, com investigação preparada** — a suspeita de ausência de paridade tem agora duas evidências independentes (processo, via ARQ-108, e comportamento do serviço, via esta auditoria), mas nenhuma delas substitui o diff real do arquivo.
+
 ### Auditoria e mudança segura
 
 No servidor do ambiente:

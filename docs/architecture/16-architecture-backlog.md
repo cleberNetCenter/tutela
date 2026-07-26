@@ -720,10 +720,10 @@
 | Complexidade | Baixa |
 | Estimativa | P |
 | Responsável | DevOps |
-| Status | BACKLOG |
+| Status | BACKLOG (investigação preparada — Sprint 23, 2026-07-26) |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
 | Métrica de sucesso | Diff documentado; 0 divergências não justificadas |
-| Observações | Item novo, adicionado para fechar um ponto cego já citado (mas não convertido em item de ação) em `12-technical-debt.md`. |
+| Observações | Item novo, adicionado para fechar um ponto cego já citado (mas não convertido em item de ação) em `12-technical-debt.md`. **Sprint 23 (2026-07-26)**: executado o que é auditável sem acesso a servidor. Achado novo, via `curl` externo controlado (não apenas repetição do `docker ps` incidental do ARQ-108/Sprint 5): `/api/diagnostico/` em produção responde `404` com headers característicos de aplicação Node/Express por trás de proxy (CSP `default-src 'none'`, `cross-origin-opener-policy`, `x-ratelimit-*`), enquanto o mesmo path em homologação responde `404` plano, indistinguível de um path inexistente — confirmado com controles (path garantidamente inexistente e outros paths `/api/*` recebem tratamento genérico idêntico nos dois ambientes, isolando o sinal a `/api/diagnostico` especificamente). Isso é evidência comportamental independente, reforçando (não substituindo) a conclusão já registrada pelo ARQ-108: produção tem um serviço de API vivo e proxiado que homologação não tem. **Não constitui o diff de `docker-compose.yml` exigido pelo critério de aceite** — variáveis de ambiente, volumes, redes e versões de imagem continuam fora do alcance deste ambiente. Comandos para os dois servidores preparados e prontos para copiar (`cat docker-compose.yml`, `docker compose config`, `docker compose ps`, `docker ps --format ...`) — ver `docs/ambientes-e-deploy.md`, seção "Auditoria externa (ARQ-505)". Status mantido como BACKLOG, não CONCLUÍDO, por não haver ainda evidência real do arquivo-fonte nos dois servidores. |
 
 ---
 
