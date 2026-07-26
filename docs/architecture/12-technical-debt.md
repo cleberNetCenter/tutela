@@ -13,9 +13,21 @@ Todos os itens abaixo são **fatos observáveis diretamente no código-fonte do 
 
 ## Alta severidade
 
-### 1. Imagem de Open Graph (`og-image.jpg`) referenciada mas ausente do repositório
-Todas as páginas com metadata social (ex. `public/index.html:22,28`, `public/diagnostico.html:19,24`) apontam para `https://tuteladigital.com.br/assets/images/og-image.jpg`. O diretório `public/assets/images/` contém apenas 3 SVGs de bandeiras — nenhum `.jpg` existe em lugar nenhum do repositório versionado.
-**Cenário de falha concreto**: qualquer pessoa que compartilhe qualquer página do site no WhatsApp, LinkedIn ou X verá um preview sem imagem (ou imagem quebrada), a menos que o arquivo exista apenas em produção fora do controle de versão — o que por si só seria um risco (arquivo de produção não reproduzível a partir do Git). Ver [07-seo.md](07-seo.md).
+### 1. ~~Imagem de Open Graph (`og-image.jpg`) referenciada mas ausente do repositório~~ — RESOLVIDO (Sprint 18, 2026-07-25, ARQ-201)
+15 páginas com metadata social referenciavam imagens que nunca existiram no repositório: `og-image.jpg` (11 páginas), `og-default.jpg`/`og-ativos-digitais.jpg` num diretório `assets/img/` (sem "s") que nunca existiu em nenhum commit do histórico (3+1 páginas), e `fluxo-cadeia-custodia-verde.png` (`como-funciona.html`). Confirmado via auditoria externa (ARQ-108, Sprint 5): `404` em produção e homologação nos dois ambientes.
+
+**Causa raiz confirmada (Sprint 18)**: o site **não usa nenhuma imagem rasterizada de conteúdo**, por decisão de design — os elementos visuais das páginas (ex. `legal/fundamento-juridico`) são inteiramente CSS/SVG inline. Busca em todo `public/**/*.html` confirma que o único `<img>` do site inteiro são as 3 bandeiras SVG do seletor de idioma (`public/partials/header.html`). As referências a `.jpg`/`.png` eram herança de um template/migração anterior, nunca de fato implementada — não um asset pendente de arte. Investigação em todo o histórico do Git (`git log --all --diff-filter=D`, todas as branches locais/remotas) não encontrou nenhum candidato ao asset em lugar nenhum, reforçando que ele nunca existiu, não que foi perdido.
+
+Mesma causa raiz também explicava dois outros problemas até então não catalogados: `<link rel="apple-touch-icon" href="/apple-touch-icon.png">` (5 páginas do cluster `ativos-digitais/*`, arquivo inexistente) e `"logo": ".../logo.png"` no schema.org (6 páginas, mesmo cluster) — ambos apontando para arquivos que nunca existiram, enquanto o resto do site já usa consistentemente `assets/illustrations/favicon.svg`.
+
+**Resolução aplicada**: removidas todas as referências mortas, em vez de aguardar uma arte que não será produzida.
+- `og:image`/`twitter:image`: removidos das 15 páginas.
+- `twitter:card="summary_large_image"` (que exige imagem): rebaixado para `"summary"` nas 15 páginas acima **mais** 4 páginas adicionais que já tinham esse card type sem nunca ter tido imagem nenhuma (`seguranca.html`, `pessoas.html`, `empresas.html`, `insights/prova-digital/cadeia-custodia-prova-digital/index.html`) — 19 páginas no total.
+- `apple-touch-icon`: corrigido para apontar ao asset real `/assets/illustrations/favicon.png` (512×512, existe no repositório mas não era referenciado por nenhuma página até então).
+- `alternate icon` (`favicon.ico`): removido — nenhum arquivo `.ico` existe no repositório.
+- schema.org `logo`: corrigido para `assets/illustrations/favicon.svg`, mesmo padrão já usado pela maioria do site.
+
+Guard-test criado: `tests/dead-asset-references.spec.ts` — varre todo HTML versionado (`href`/`src`/`content`/schema.org `url`/`logo`) em busca de qualquer referência a asset de imagem local ausente do disco. Roda sempre (não é `fixme`), e cobre as 4 categorias de bug encontradas nesta sprint, prevenindo reintrodução de qualquer uma delas.
 
 ### 2. `/api/diagnostico` sem implementação auditável no repositório
 `public/assets/js/diagnostico.js:294` envia nome, e-mail e respostas do questionário via `POST /api/diagnostico`. Não há função serverless, rota estática ou proxy documentado no repositório que implemente esse endpoint.

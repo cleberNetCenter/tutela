@@ -238,30 +238,30 @@
 
 ## Épico 2 — SEO (ARQ-2xx)
 
-### ARQ-201 — Criar e versionar `og-image.jpg`
+### ARQ-201 — Remover referências mortas a `og-image.jpg` e assets rasterizados equivalentes
 
 | Campo | Valor |
 |---|---|
-| Objetivo | Restaurar a pré-visualização de compartilhamento social (WhatsApp, LinkedIn, X, Facebook) em todas as páginas com Open Graph. |
-| Descrição | Todas as páginas com metadata social referenciam `og-image.jpg`, que não existe em nenhum lugar do repositório versionado. É necessário produzir a arte final e versioná-la em `public/assets/images/`. |
+| Objetivo | Eliminar previews de compartilhamento social quebrados (WhatsApp, LinkedIn, X, Facebook) causados por referências a imagens que nunca existiram no repositório. |
+| Descrição | 15 páginas referenciavam `og-image.jpg`/variantes que nunca existiram no repositório. Investigação (Sprint 18) mudou o diagnóstico original: não é um asset pendente de arte, é herança de migração de um template anterior — o site não usa nenhuma imagem rasterizada de conteúdo por decisão de design (só CSS/SVG). Resolução: remover as referências, não aguardar uma arte que não vai ser produzida. |
 | Origem | Débito técnico #1 |
 | Documento | `07-seo.md`, `08-performance.md`, `12-technical-debt.md` |
 | Item da dívida técnica | #1 |
-| Arquivos afetados | Novo `public/assets/images/og-image.jpg` (nenhum HTML precisa mudar — os paths já apontam corretamente) |
-| Dependências (depende de) | Arte final produzida pelo time de conteúdo/design |
+| Arquivos afetados | 19 HTMLs (`og:image`/`twitter:image` removidos e/ou `twitter:card` rebaixado para `summary`) + 5 HTMLs do cluster `ativos-digitais/*` (`apple-touch-icon` corrigido para o asset real, `favicon.ico` removido) + 6 HTMLs (schema.org `logo` corrigido) — ver detalhamento completo em `12-technical-debt.md`, item #1 |
+| Dependências (depende de) | Nenhuma — resolvido via remoção/correção de código, não depende de entrega externa |
 | Dependências (desbloqueia) | Nenhuma |
-| Pré-requisitos | Asset de imagem finalizado (1200×630px, formato recomendado por Open Graph) |
-| Critérios de Aceite | Arquivo servindo `200 OK`; preview correto no Facebook Sharing Debugger e Twitter Card Validator |
-| Critérios de Regressão | Nenhuma — item puramente aditivo |
+| Pré-requisitos | Nenhum |
+| Critérios de Aceite | Nenhuma página referencia asset de imagem ausente do repositório; guard-test `tests/dead-asset-references.spec.ts` passando |
+| Critérios de Regressão | Nenhuma alteração visual/CSS — apenas metadata `<head>` e schema.org |
 | Impacto | Alto (risco #1 do `EXECUTIVE_SUMMARY.md`) |
 | Risco | Baixo |
 | Complexidade | Baixa |
 | Estimativa | P |
-| Responsável | Conteúdo |
-| Status | BLOQUEADO |
-| ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | 100% das páginas com Open Graph exibindo preview de imagem correto |
-| Observações | Bloqueado apenas pela entrega da arte — zero complexidade técnica. Resolve também a incerteza "og-image.jpg existe só em produção?" da tabela de validação de `12-technical-debt.md`. |
+| Responsável | Engenharia |
+| Status | RESOLVIDO (Sprint 18, 2026-07-25) |
+| ADR relacionado | Nenhum |
+| Métrica de sucesso | 100% das páginas com Open Graph sem referência a imagem ausente; `tests/dead-asset-references.spec.ts` passando |
+| Observações | Diagnóstico original (Sprints anteriores) presumia que o bloqueio era só entrega de arte pendente de design/conteúdo — a Sprint 18 confirmou que essa premissa estava errada: o site inteiro tem exatamente 3 `<img>` (bandeiras SVG do seletor de idioma) e nenhuma imagem de conteúdo rasterizada em lugar nenhum, então as referências a `.jpg`/`.png` eram resíduo de migração nunca finalizado, não trabalho pendente. A investigação também achou (mesma causa raiz) `apple-touch-icon.png` e `logo.png` (schema.org) quebrados no cluster `ativos-digitais/*`, corrigidos na mesma sprint. Se o site vier a adotar imagens de conteúdo no futuro (ex. og-image dedicado), é um item novo, não uma reabertura deste. |
 
 ### ARQ-202 — Reciprocidade completa de `hreflang` no cluster Ativos Digitais
 
