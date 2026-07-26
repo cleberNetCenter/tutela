@@ -28,11 +28,11 @@ Cada página inclui, tipicamente (referência: `public/index.html:4-29`):
 
 ## Open Graph e Twitter Cards
 
-Presentes de forma consistente nas páginas principais (`public/index.html:15-28`, `public/diagnostico.html:13-24`):
-- `og:type`, `og:site_name`, `og:locale`, `og:title`, `og:description`, `og:url`, `og:image`
-- `twitter:card=summary_large_image`, `twitter:site=@tuteladigitalbr`, `twitter:title`, `twitter:description`, `twitter:image`
+Presentes de forma consistente nas páginas principais (`public/index.html:15-27`, `public/diagnostico.html:13-26`):
+- `og:type`, `og:site_name`, `og:locale`, `og:title`, `og:description`, `og:url`
+- `twitter:card=summary`, `twitter:site=@tuteladigitalbr`, `twitter:title`, `twitter:description`
 
-**Achado crítico**: 11 páginas com metadata social referenciam `https://tuteladigital.com.br/assets/images/og-image.jpg` como imagem de compartilhamento, mas **esse arquivo não existe no repositório** — `public/assets/images/` contém apenas 3 SVGs de bandeiras (`flags/br.svg`, `us.svg`, `es.svg`); não há nenhum `.jpg` em `public/assets/images/` nem em `public/assets/illustrations/`. Isso significa que **qualquer compartilhamento dessas páginas no WhatsApp, LinkedIn, Twitter/X ou Facebook não exibe imagem de preview** — confirmado por auditoria externa (ARQ-108, Sprint 5): `404` em produção e homologação, não existe em nenhum ambiente. Ver [12-technical-debt.md](12-technical-debt.md).
+**Resolvido (Sprint 18, ARQ-201)**: 15 páginas referenciavam `og:image`/`twitter:image` apontando para arquivos (`og-image.jpg` e variantes) que nunca existiram no repositório — confirmado `404` em produção e homologação (ARQ-108, Sprint 5). Investigação encontrou que a causa não era arte pendente: o site não usa nenhuma imagem rasterizada de conteúdo em lugar nenhum (só 3 SVGs de bandeiras em `public/assets/images/flags/`; elementos visuais como os de `legal/fundamento-juridico` são CSS/SVG inline). As referências eram herança de migração nunca finalizada. `og:image`/`twitter:image` foram removidos e `twitter:card` rebaixado de `summary_large_image` (que exige imagem) para `summary` em todas as páginas afetadas. Ver [12-technical-debt.md](12-technical-debt.md).
 
 ## Schema.org (dados estruturados)
 
@@ -121,7 +121,7 @@ O índice de busca (`assets/search-index.json`) é gerado a partir do HTML rastr
 
 | Lacuna | Severidade | Detalhe |
 | --- | --- | --- |
-| `og-image.jpg` referenciado mas ausente do repositório | Alta | Ver acima; afeta preview de compartilhamento nas 11 páginas que o referenciam |
+| ~~`og-image.jpg` referenciado mas ausente do repositório~~ | RESOLVIDO (Sprint 18, ARQ-201) | Referências removidas — site não usa imagem rasterizada de conteúdo; ver acima |
 | Página `x-default` sem cluster `hreflang` recíproco | Média | Ver [04-routing.md](04-routing.md) |
 | `lastmod` do sitemap reflete commit, não revisão editorial | Baixa | Pode subestimar ou superestimar "frescor" percebido pelo Google |
 | Ausência de `sitemap` de imagens ou de vídeo | Baixa | Não identificado no projeto — não há necessidade aparente, dado o baixo volume de mídia rica |
