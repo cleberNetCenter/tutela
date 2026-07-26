@@ -58,7 +58,14 @@ Extraído do runbook (`docs/ambientes-e-deploy.md:42-47`):
 
 ## Testes automatizados
 
-Desde a Sprint 3 (ARQ-501) há uma suíte de testes automatizados versionada com Playwright (smoke tests, contraste, regressão visual), executada via `npm test` (baseline atual: 26/26 — ver `tests/`, `playwright.config.ts` e `tests/support/ssi-server.js`). A validação de qualidade descrita no runbook (checklist acima) continua relevante para o que a suíte não cobre, mas deixou de ser a única linha de defesa.
+Desde a Sprint 3 (ARQ-501) há uma suíte de testes automatizados versionada com Playwright (smoke tests, contraste, regressão visual), executada via `npm test` (baseline atual: 92/92 — ver `tests/`, `playwright.config.ts` e `tests/support/ssi-server.js`). A validação de qualidade descrita no runbook (checklist acima) continua relevante para o que a suíte não cobre, mas deixou de ser a única linha de defesa. Desde a Sprint 22 (ARQ-504), a suíte também roda em CI (`.github/workflows/guard-main-requires-homolog.yml`, job `checklist-publicacao`, em PRs para `homolog`/`main`).
+
+**Baselines visuais e ambiente de renderização**: os `*.png` de `tests/*.spec.ts-snapshots/` são sensíveis a fonte/antialiasing do sistema operacional. Descoberto na Sprint 22, ao ligar CI pela primeira vez: 2 baselines de `visual-contrast.spec.ts` (`footer`, `dropdown-open-header`) geradas numa máquina local falhavam no runner `ubuntu-latest` do GitHub por diferença de sub-pixel (~1% dos pixels, sem mudança de layout). Baselines devem ser (re)geradas no mesmo ambiente que o CI usa, não numa máquina de desenvolvimento qualquer — para reproduzir localmente:
+```bash
+docker run --rm -v "$(pwd)":/work -w /work mcr.microsoft.com/playwright:v1.61.1-noble \
+  bash -c "npm ci && npx playwright test --update-snapshots"
+```
+(ajustar a tag da imagem para a versão de `@playwright/test` em `package.json`).
 
 ## Ferramentas do assistente de IA no repositório
 
