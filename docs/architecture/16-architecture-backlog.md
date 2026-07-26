@@ -571,6 +571,31 @@
 | Métrica de sucesso | Direção de sync documentada e consistente com o fluxo de branches oficial |
 | Observações | Bloqueado por decisão de processo do time, não por complexidade técnica. Item adicionado nesta revisão — ausente do roadmap original. |
 
+### ARQ-407 — Remover `<link>` órfão para `pages/termos-de-uso.css`
+
+| Campo | Valor |
+|---|---|
+| Objetivo | Eliminar uma requisição HTTP que nunca teve chance de retornar 200. |
+| Descrição | `legal/termos-de-uso.html` referencia `/assets/css/pages/termos-de-uso.css`, arquivo que nunca existiu no histórico do repositório (confirmado via `git log --all --diff-filter=A` e `git log --all -S`, sem nenhum commit de criação do arquivo). Achado sinalizado na Sprint 19 (ARQ-502) e catalogado em `KNOWN_DEAD_ASSETS` (`tests/support/asset-versions.js`) para não mascarar o guard-test de cache-busting enquanto não resolvido. Caso distinto de ARQ-404: lá os 6 arquivos existiam e foram esvaziados; aqui o arquivo nunca existiu. |
+| Origem | Achado da Sprint 19, sinalizado como candidato a item novo (não coberto por ARQ-502, que trata de convenção de versionamento, não de assets ausentes) |
+| Documento | Nenhum específico — achado operacional, não dívida técnica catalogada em `12-technical-debt.md` |
+| Item da dívida técnica | Nenhum |
+| Arquivos afetados | `public/legal/termos-de-uso.html` (remoção do `<link>`), `tests/support/asset-versions.js` (remoção da entrada de `KNOWN_DEAD_ASSETS`) |
+| Dependências (depende de) | Nenhuma |
+| Dependências (desbloqueia) | Nenhuma |
+| Pré-requisitos | Nenhum |
+| Critérios de Aceite | `<link>` removido de `legal/termos-de-uso.html`; `KNOWN_DEAD_ASSETS` sem a entrada de `termos-de-uso.css`; guard-test de cache-busting volta a cobrir esse caminho sem exceção |
+| Critérios de Regressão | Nenhuma mudança visual em `legal/termos-de-uso.html` (o CSS nunca carregou, então nunca aplicou estilo) |
+| Impacto | Baixo (performance marginal — 1 requisição 404 a menos) |
+| Risco | Baixo (remoção de referência morta, mesma categoria de ARQ-401/ARQ-402/ARQ-404) |
+| Complexidade | Baixa |
+| Estimativa | P |
+| Responsável | Frontend |
+| Status | CONCLUÍDO (Sprint 21, 2026-07-26) |
+| ADR relacionado | Nenhum |
+| Métrica de sucesso | 0 requisições 404 para `pages/termos-de-uso.css`; 0 exceções em `KNOWN_DEAD_ASSETS` |
+| Observações | Confirmado que o arquivo nunca existiu (`git log --all --diff-filter=A -- "**/termos-de-uso.css"` sem resultado; `git log --all -S"termos-de-uso.css"` só retorna commits que tocaram o `<link>`/comentário dentro de outros arquivos, nenhum de criação do CSS). Confirmado que é caso isolado: nenhuma outra página legal (`politica-de-privacidade.html`, `termos-de-custodia.html`, `institucional.html`) tem referência equivalente quebrada — `institucional.html` referencia `pages/institucional.css`, que existe. `npm test` 92/92 antes e depois, sem alteração de asserção nos testes visuais (`visual-contrast.spec.ts`, `visual-radius-shadow.spec.ts` já cobriam a página `termos-de-uso` e passaram sem regenerar snapshot). |
+
 ---
 
 ## Épico 5 — Engenharia (ARQ-5xx)

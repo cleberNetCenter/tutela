@@ -84,15 +84,13 @@ function findAllRefs() {
   return [...findStaticRefs(), ...findEmbeddedRefs()];
 }
 
-// Referência que já apontava para um arquivo inexistente ANTES desta
-// sprint (legal/termos-de-uso.html → pages/termos-de-uso.css, nunca
-// existiu no histórico do repositório). Fora do escopo de ARQ-502 (que
-// trata convenção de versionamento, não assets ausentes — mesma
-// disciplina de escopo de ARQ-201); fica listada aqui, não ignorada
-// silenciosamente, para não quebrar a geração do manifesto e para que
-// um novo asset morto introduzido no futuro continue sendo pego (ver
-// assertExistsOrKnownDead).
-const KNOWN_DEAD_ASSETS = new Set(["/assets/css/pages/termos-de-uso.css"]);
+// Mecanismo de exceção para assets referenciados que sabidamente não
+// existem no disco (evita que o guard-test de cache-busting quebre ao
+// tentar gerar o manifesto). Vazio hoje: a única entrada conhecida
+// (legal/termos-de-uso.html → pages/termos-de-uso.css) foi resolvida em
+// ARQ-407 (docs/architecture/16-architecture-backlog.md), removendo o
+// `<link>` órfão em vez de catalogar a exceção indefinidamente.
+const KNOWN_DEAD_ASSETS = new Set();
 
 function assetExists(assetPath) {
   return fs.existsSync(path.join(PUBLIC_DIR, assetPath.replace(/^\//, "")));
