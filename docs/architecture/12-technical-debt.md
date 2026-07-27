@@ -29,9 +29,9 @@ Mesma causa raiz também explicava dois outros problemas até então não catalo
 
 Guard-test criado: `tests/dead-asset-references.spec.ts` — varre todo HTML versionado (`href`/`src`/`content`/schema.org `url`/`logo`) em busca de qualquer referência a asset de imagem local ausente do disco. Roda sempre (não é `fixme`), e cobre as 4 categorias de bug encontradas nesta sprint, prevenindo reintrodução de qualquer uma delas.
 
-### 2. `/api/diagnostico` sem implementação auditável no repositório
-`public/assets/js/diagnostico.js:294` envia nome, e-mail e respostas do questionário via `POST /api/diagnostico`. Não há função serverless, rota estática ou proxy documentado no repositório que implemente esse endpoint.
-**Cenário de falha concreto**: não é possível, a partir deste repositório, auditar se os dados pessoais coletados são validados, sanitizados ou armazenados de forma compatível com a LGPD — relevante porque a própria empresa comercializa conformidade regulatória como parte de sua proposta de valor. Ver [09-security.md](09-security.md).
+### 2. `/api/diagnostico` — lacunas de retenção, exclusão e escopo do consentimento (auditado, não corrigido)
+`public/assets/js/diagnostico.js:294` envia nome, e-mail e respostas do questionário via `POST /api/diagnostico`. Desde a Sprint 24 (`ARQ-507`) o backend é auditável (`github.com/cleberNetCenter/tutela-api`); a Sprint 25 (`ARQ-101`) auditou o código com evidência de arquivo/linha — ver [09-security.md](09-security.md), seção "Backend `/api/diagnostico`".
+**Cenário de falha concreto**: `logs/leads.jsonl` (nome/e-mail/score/IP) não tem rotina de retenção/expurgo — cresce indefinidamente; não há endpoint técnico de exclusão para atender um pedido de titular; o checkbox de consentimento do formulário só é reforçado no cliente (o servidor não recebe nem valida esse campo) e a política de privacidade vinculada não menciona o formulário de diagnóstico nem os terceiros envolvidos (reCAPTCHA, Zoho/SMTP) — relevante porque a própria empresa comercializa conformidade regulatória como parte de sua proposta de valor. Correção de política de privacidade/retenção/consentimento não aplicada por exigir decisão do responsável pelo projeto, não só engenharia; `ARQ-101` aguarda revisão jurídica antes de ser fechado.
 
 ### 3. Ausência de headers de segurança versionados (CSP, HSTS, X-Frame-Options)
 Nenhum header de segurança é definido pela aplicação (não há meta CSP, não há `vercel.json` com seção `headers`). A configuração real depende do Nginx do servidor, não versionado.

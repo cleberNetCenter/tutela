@@ -39,25 +39,25 @@
 | Campo | Valor |
 |---|---|
 | Objetivo | Tornar auditável, a partir de evidência documentada, como nome/e-mail/respostas coletados no formulário de diagnóstico são validados, transmitidos e armazenados. |
-| Descrição | O endpoint `/api/diagnostico` não tem implementação, proxy ou contrato documentado neste repositório. É necessário obter da equipe responsável pelo backend uma descrição auditável do fluxo (validação server-side, armazenamento, retenção, criptografia em trânsito/repouso) e registrá-la na documentação de arquitetura. |
+| Descrição | O endpoint `/api/diagnostico` não tinha implementação, proxy ou contrato documentado neste repositório até a Sprint 24 (`ARQ-507`), quando o backend foi versionado em `github.com/cleberNetCenter/tutela-api`. Sprint 25 auditou esse código com evidência de arquivo/linha (coleta, validação, armazenamento, transmissão, retenção, acesso, consentimento, direito de exclusão, terceiros) e registrou o fluxo completo em `09-security.md`. |
 | Origem | Débito técnico #2 |
 | Documento | `09-security.md`, `12-technical-debt.md` |
 | Item da dívida técnica | #2 |
-| Arquivos afetados | Nenhum arquivo de código deste repositório (o endpoint é externo); documentação a atualizar: `09-security.md` |
+| Arquivos afetados | `09-security.md` (fluxo documentado); repositório `tutela-api` (`server.js` — `requireTLS: true` adicionado ao transporte SMTP, correção técnica de baixo risco, branch `homolog`, commit local não publicado) |
 | Dependências (depende de) | Nenhuma dependência técnica interna |
 | Dependências (desbloqueia) | Nenhuma diretamente; informa o escopo final de ARQ-107 |
-| Pré-requisitos | Acesso à equipe/infra responsável pelo backend do endpoint (fora deste repositório) |
+| Pré-requisitos | ~~Acesso à equipe/infra responsável pelo backend do endpoint~~ — obtido nesta sprint (acesso SSH Git já configurado ao repositório `tutela-api`) |
 | Critérios de Aceite | Documento descrevendo validação server-side, armazenamento e retenção de dados publicado e revisado por jurídico e pela equipe de backend |
-| Critérios de Regressão | Não aplicável (item de auditoria/documentação, não altera código) |
+| Critérios de Regressão | Não aplicável (item de auditoria/documentação; a única mudança de código foi aditiva e de baixo risco — `requireTLS`, não publicada) |
 | Impacto | Alto — dado pessoal, LGPD, é o item #2 nos "3 riscos de maior impacto" do `EXECUTIVE_SUMMARY.md` |
 | Risco | Alto |
 | Complexidade | Alta (depende de coordenação entre times/sistemas fora deste repositório) |
 | Estimativa | G |
 | Responsável | Segurança |
-| Status | BLOQUEADO |
+| Status | AUDITORIA TÉCNICA CONCLUÍDA — aguardando revisão jurídica (Sprint 25, 2026-07-27). **Não fechar como CONCLUÍDO** só com esta auditoria técnica — critério de aceite exige revisão jurídica, ainda pendente. |
 | ADR relacionado | Nenhum (a criar em ARQ-701) |
-| Métrica de sucesso | 100% dos campos coletados (nome, e-mail, score, consentimento) com tratamento documentado e auditável |
-| Observações | Item mais crítico do backlog por envolver dado pessoal em empresa cujo produto é conformidade regulatória. Bloqueio é externo ao código — não deve travar o início de outros épicos (ver Fase 4 do documento de validação do roadmap). |
+| Métrica de sucesso | 100% dos campos coletados (nome, e-mail, score, consentimento) com tratamento documentado e auditável — **atingido tecnicamente**; revisão jurídica formal ainda pendente |
+| Observações | Item mais crítico do backlog por envolver dado pessoal em empresa cujo produto é conformidade regulatória. **Sprint 25**: fluxo completo de PII documentado em `09-security.md` (seção "Backend `/api/diagnostico`"), com evidência de arquivo/linha em `tutela-api` (commit `23f0cb9`). Lacunas técnicas encontradas, sem correção nesta sessão por envolverem decisão de política de privacidade (aguardando decisão do responsável pelo projeto): (1) sem rotina de retenção/expurgo de `logs/leads.jsonl` — dados de lead retidos indefinidamente; (2) sem mecanismo técnico de exclusão/portabilidade específico para dados do formulário (só canal de contato genérico, herdado da política do produto de custódia); (3) consentimento é reforçado só no cliente — o servidor não recebe nem valida um campo de consentimento, então uma chamada direta à API (fora da UI) não deixa registro de consentimento; (4) a política de privacidade vinculada ao checkbox de consentimento não menciona o formulário de diagnóstico, os campos que ele coleta, nem os terceiros envolvidos (reCAPTCHA, Zoho/SMTP) — descreve apenas o produto de custódia de ativos digitais. Correção técnica de baixo risco aplicada: `requireTLS: true` no transporte SMTP (`tutela-api/server.js`), fechando uma janela de downgrade STARTTLS→texto-plano; commitada localmente na branch `homolog` do `tutela-api`, **não publicada** (aguardando confirmação de push do responsável pelo projeto, nos dois repositórios). Achados incidentais fora do escopo de correção desta sprint: `req.ip` provavelmente captura o IP interno do proxy Nginx, não o IP público real do visitante (sem `trust proxy` configurado no Express) — afeta também a precisão do rate limiting; `fetch` do formulário não verifica status HTTP da resposta, então falhas do backend (incluindo o próprio `RECAPTCHA_SECRET` vazio em homologação) são exibidas ao usuário como sucesso. Recomendação explícita: os achados desta sprint devem ser revisados por profissional com competência jurídica em proteção de dados antes deste item ser considerado formalmente resolvido — esta auditoria é técnica, não uma determinação de conformidade. |
 
 ### ARQ-102 — Implantar Content-Security-Policy (CSP)
 

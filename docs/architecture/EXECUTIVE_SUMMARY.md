@@ -28,7 +28,7 @@ Esta é uma arquitetura **deliberadamente simples e de baixo custo operacional**
 Classificados em detalhe, com evidência e severidade, em [12-technical-debt.md](12-technical-debt.md). Os três de maior impacto potencial:
 
 1. **Compartilhamento social quebrado em todo o site**: a imagem de Open Graph referenciada em todas as 35 páginas (`og-image.jpg`) não existe no repositório.
-2. **Endpoint de coleta de dados pessoais (`/api/diagnostico`) sem implementação auditável** neste repositório — impede verificar tratamento adequado de dados sob a LGPD, ironicamente para uma empresa cujo produto é conformidade e integridade probatória.
+2. **Endpoint de coleta de dados pessoais (`/api/diagnostico`)**: auditado tecnicamente na Sprint 25 (`ARQ-101`, repositório `tutela-api` versionado desde a Sprint 24) — sem rotina de retenção, sem mecanismo de exclusão e com consentimento reforçado só no cliente (não validado pelo servidor). Aguarda revisão jurídica antes de ser considerado resolvido; ver [16-architecture-backlog.md](16-architecture-backlog.md#arq-101) e [09-security.md](09-security.md).
 3. **Postura de segurança HTTP não verificável a partir do código**: CSP, HSTS e X-Frame-Options não são declarados em nenhum lugar do repositório; dependem inteiramente de uma configuração de Nginx que não é versionada, criando um ponto cego de auditoria.
 
 Riscos adicionais de menor severidade, mas relevantes para manutenção contínua: fragmentação de design tokens (três namespaces de cor de marca), ausência de skip-link de acessibilidade, e uma regra de sincronização de branches (main → homolog) que o próprio time já identificou como potencialmente invertida.
