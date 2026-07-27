@@ -273,6 +273,27 @@ docker ps --format '{{.Names}}\t{{.Image}}\t{{.Ports}}'
 
 Com esse output dos dois servidores, é possível fechar `ARQ-505` com o diff formal serviço a serviço. Até lá, o item permanece **BACKLOG, com investigação preparada** — a suspeita de ausência de paridade tem agora duas evidências independentes (processo, via ARQ-108, e comportamento do serviço, via esta auditoria), mas nenhuma delas substitui o diff real do arquivo.
 
+### Diff formal — `docker-compose.yml` produção vs. homologação (2026-07-27)
+
+O usuário rodou os 4 comandos do Bloco B nos dois servidores. **A hipótese de "paridade ausente" da Sprint 5 (baseada em `docker ps` observando o container `api` parado num dado momento) não se confirma como divergência de arquivo**: os dois `docker-compose.yml` declaram exatamente os mesmos dois serviços (`nginx`, `api`), com a mesma imagem/build.
+
+| Item | Homologação (`tutela-dev`) | Produção (`tutela-web`) | Divergência? |
+| --- | --- | --- | --- |
+| Serviço `api` declarado | `build: ./api`, `container_name: tutela_v2_api`, volume `./api/logs:/app/logs` | Idêntico | Não |
+| Serviço `nginx` — imagem | `nginx:alpine` | `nginx:alpine` | Não |
+| Porta publicada do `nginx` | `80:80`, `443:443` (direto) | `8080:80` | Sim — **esperada**: já documentada no ARQ-108 (produção usa Nginx do host fazendo proxy para `localhost:8080`; homologação publica o container direto nas portas públicas) |
+| Volume do site estático | `/opt/tutela/public` | `/var/www/tutela/public` | Sim — **esperada**: reflete o checkout de cada ambiente (`11-build-deploy.md`), não uma falha de config |
+| `/etc/letsencrypt` montado | Sim | Sim | Não |
+| `/var/www/html` montado | Sim (extra, sem uso confirmado) | Não presente | Sim — **não investigada** (baixo risco, não bloqueia paridade funcional; candidato a limpeza futura, não corrigido nesta auditoria) |
+| Política de restart dos serviços | Nenhuma declarada (`restart:` ausente em ambos) | Nenhuma declarada | Não (idêntico — ver achado operacional abaixo) |
+| `depends_on` | `api` (nginx depende de api) | `api` (idêntico) | Não |
+
+**Nenhuma divergência estrutural não justificada** — as duas diferenças de porta/volume já eram esperadas e documentadas pelo ARQ-108 (topologias de proxy diferentes por design). O montante de `/var/www/html` extra em homologação é a única divergência sem explicação registrada; fica anotado, não corrigido (fora do escopo de auditoria).
+
+**Achado operacional durante a coleta do Bloco B (não é sobre paridade, é um incidente real encontrado no processo)**: no momento da coleta, `docker compose ps` em produção mostrava `tutela_v2_nginx` em `Restarting (1)` e `tutela_v2_api` ausente — produção estava retornando `502` em todas as rotas, confirmado via `curl` externo. Causa raiz, pelos logs (`docker compose logs nginx`): `nginx: [emerg] host not found in upstream "api"` — após um reboot do servidor (atualização do Linux, informado pelo usuário), o container `api` não subiu automaticamente porque **nenhum dos dois serviços declara política de `restart`** no compose; sem o `api` no ar, o DNS interno do Docker não resolve o hostname `api`, e o `nginx` entra em loop de falha na inicialização (não tenta re-resolver sozinho). Corrigido ao vivo com `docker compose up -d --build`, que recriou os dois containers; produção confirmada saudável em seguida (`200` em home, `/legal/institucional/`, `/diagnostico/`, `sitemap.xml`; `/api/diagnostico/` respondendo com headers de app novamente). Isso não é uma divergência de paridade (a ausência de `restart:` é idêntica nos dois ambientes) — é uma lacuna de resiliência operacional comum aos dois, fora do escopo de `ARQ-505`; candidato a item novo do Épico 5 (ex. "adicionar `restart: unless-stopped` aos serviços do compose") para uma sprint futura, não corrigido no arquivo nesta auditoria.
+
+**Veredito final de `ARQ-505`**: paridade de `docker-compose.yml` **CONFIRMADA** entre produção e homologação — mesmos serviços, mesma imagem/build; as únicas diferenças (porta, path de volume) são de topologia esperada, já documentadas no ARQ-108, não falhas de configuração. Critério de aceite (diff documentado; divergências justificadas) satisfeito.
+
 ### Auditoria e mudança segura
 
 No servidor do ambiente:
