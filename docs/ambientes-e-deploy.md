@@ -29,6 +29,10 @@ O projeto é um site estático servido de `public/`. O repositório não contém
 
 O hostname de produção confirmado no conteúdo e sitemap é `www.tuteladigital.com.br`. O hostname de homologação é **`homolog.tuteladigital.com.br`** — confirmado em 2026-07-24 via `curl -I https://homolog.tuteladigital.com.br/` (resposta `200`, `x-robots-tag: noindex, nofollow, noarchive`, ver [Auditoria externa (ARQ-108)](#auditoria-externa-arq-108-2026-07-24) abaixo).
 
+## Backend (`api`)
+
+O backend por trás de `/api/diagnostico` (`public/assets/js/diagnostico.js:294`) vive fora deste repositório, em `/opt/tutela-v2/api` de cada servidor. Desde 2026-07-27 (Sprint 24, `ARQ-507`) está versionado em **`github.com/cleberNetCenter/tutela-api`** (privado), com o mesmo modelo de branches `main`/`homolog` deste repositório — produção rastreia `main`, homologação rastreia `homolog`. `.env`, `logs/` (contém PII de leads — nome, e-mail, IP) e `node_modules/` nunca são versionados (`.gitignore` na raiz do repositório do `api`). Push feito por deploy key SSH dedicada por servidor, não por credencial pessoal; não há pipeline de CI/CD para o `api` ainda — sincronizar os dois ambientes é manual.
+
 ## Desenvolvimento local
 
 Pré-requisitos: Git, Node.js e navegador. Não use `file://`; execute o site por HTTP com o servidor de desenvolvimento do repositório (resolve os includes SSI de header/footer/scripts, assim como o Nginx faz em homologação/produção):
