@@ -123,11 +123,17 @@ async function loadPrivacyPolicyContent() {
     const doc = parser.parseFromString(html, 'text/html');
     const sections = Array.from(doc.querySelectorAll('main .text-block'));
 
-    if (!sections.length) throw new Error('Conteudo da politica nao encontrado');
+    if (!sections.length) throw new Error('Conteúdo da política não encontrado');
 
     content.innerHTML = '';
     sections.forEach(section => {
-      content.appendChild(section.cloneNode(true));
+      const clone = section.cloneNode(true);
+      // A política é a página de origem do scroll-reveal (.reveal-on-scroll,
+      // pages-consolidated.css) — aqui é conteúdo clonado dentro de um modal,
+      // sem o IntersectionObserver que adicionaria .visible; sem remover a
+      // classe, o texto fica com opacity:0 para sempre (nunca revelado).
+      clone.classList.remove('reveal-on-scroll');
+      content.appendChild(clone);
     });
 
     privacyContentLoaded = true;
@@ -137,8 +143,8 @@ async function loadPrivacyPolicyContent() {
     status.hidden = false;
     const errorText = window.I18N
       ? I18N.t('diagnostic.privacyError')
-      : 'Nao foi possivel carregar a politica agora. Use a versao completa.';
-    status.textContent = errorText || 'Nao foi possivel carregar a politica agora. Use a versao completa.';
+      : 'Não foi possível carregar a política agora. Use a versão completa.';
+    status.textContent = errorText || 'Não foi possível carregar a política agora. Use a versão completa.';
   }
 }
 
@@ -320,8 +326,8 @@ function updateDynamicContent() {
     const { status } = getPrivacyModalElements();
     const loadingText = window.I18N
       ? I18N.t('diagnostic.privacyLoading')
-      : 'Carregando politica de privacidade...';
-    if (status) status.textContent = loadingText || 'Carregando politica de privacidade...';
+      : 'Carregando política de privacidade...';
+    if (status) status.textContent = loadingText || 'Carregando política de privacidade...';
   }
 }
 
