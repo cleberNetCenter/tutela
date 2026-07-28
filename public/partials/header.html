@@ -7,22 +7,11 @@
     (function () {
       if (document.getElementById('global-fonts-loaded')) return;
 
-      const linkPreconnect1 = document.createElement('link');
-      linkPreconnect1.rel = 'preconnect';
-      linkPreconnect1.href = 'https://fonts.googleapis.com';
-
-      const linkPreconnect2 = document.createElement('link');
-      linkPreconnect2.rel = 'preconnect';
-      linkPreconnect2.href = 'https://fonts.gstatic.com';
-      linkPreconnect2.crossOrigin = 'true';
-
       const linkFonts = document.createElement('link');
       linkFonts.id = 'global-fonts-loaded';
       linkFonts.rel = 'stylesheet';
-      linkFonts.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap';
+      linkFonts.href = '/assets/css/fonts.css?v=1';
 
-      document.head.appendChild(linkPreconnect1);
-      document.head.appendChild(linkPreconnect2);
       document.head.appendChild(linkFonts);
     })();
   </script>

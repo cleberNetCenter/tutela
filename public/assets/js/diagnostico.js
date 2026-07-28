@@ -287,6 +287,7 @@ function enviar() {
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
   const token = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+  const consentimento = document.getElementById('consentimento').checked;
 
   // Armazena para re-renderização em troca de idioma
   ultimoResultado = { score };
@@ -294,7 +295,7 @@ function enviar() {
   fetch('/api/diagnostico', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, email, score, token })
+    body: JSON.stringify({ nome, email, score, token, consentimento })
   })
     .then(() => renderResultado(score))
     .catch(() => alert('Erro ao enviar. Tente novamente.'));

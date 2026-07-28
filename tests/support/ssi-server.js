@@ -10,6 +10,7 @@
 // de public/ e sem rodar em produção.
 const http = require("http");
 const fs = require("fs");
+const fsp = fs.promises;
 const path = require("path");
 
 const PUBLIC_DIR = path.join(__dirname, "..", "..", "public");
@@ -27,6 +28,7 @@ const MIME_TYPES = {
   ".xml": "application/xml; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
   ".webmanifest": "application/manifest+json",
+  ".woff2": "font/woff2",
 };
 
 const INCLUDE_RE = /<!--#include\s+virtual="([^"]+)"\s*-->/g;
@@ -47,7 +49,7 @@ function resolveIncludes(html, depth = 0) {
   });
 }
 
-function resolveFilePath(urlPath) {
+async function resolveFilePath(urlPath) {
   const decoded = decodeURIComponent(urlPath.split("?")[0]);
   let filePath = path.join(PUBLIC_DIR, decoded);
 
@@ -56,7 +58,8 @@ function resolveFilePath(urlPath) {
   }
 
   try {
-    if (fs.statSync(filePath).isDirectory()) {
+    const stat = await fsp.stat(filePath);
+    if (stat.isDirectory()) {
       filePath = path.join(filePath, "index.html");
     }
   } catch {
@@ -66,11 +69,24 @@ function resolveFilePath(urlPath) {
   return filePath;
 }
 
+// Handler assíncrono (fs.promises) em vez de fs.*Sync: o loader global de
+// fontes (ARQ-604) passou a servir ~30 arquivos .woff2 localmente por
+// página, e chamadas síncronas aqui bloqueavam o event loop o suficiente
+// para causar timeout sob a concorrência default do Playwright (múltiplos
+// workers pedindo várias fontes ao mesmo tempo) — reproduzido e corrigido
+// nesta sprint.
 function createSSIServer() {
-  return http.createServer((req, res) => {
-    const filePath = resolveFilePath(req.url);
+  return http.createServer(async (req, res) => {
+    const filePath = await resolveFilePath(req.url);
 
-    if (!filePath || !fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+    let stat;
+    try {
+      stat = filePath ? await fsp.stat(filePath) : null;
+    } catch {
+      stat = null;
+    }
+
+    if (!stat || !stat.isFile()) {
       res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
       res.end("404 Not Found");
       return;
@@ -80,7 +96,7 @@ function createSSIServer() {
     const contentType = MIME_TYPES[ext] || "application/octet-stream";
 
     if (ext === ".html") {
-      const raw = fs.readFileSync(filePath, "utf8");
+      const raw = await fsp.readFile(filePath, "utf8");
       const resolved = resolveIncludes(raw);
       res.writeHead(200, { "Content-Type": contentType });
       res.end(resolved);

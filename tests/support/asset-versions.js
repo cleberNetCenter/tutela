@@ -46,8 +46,9 @@ function findStaticRefs() {
   return refs;
 }
 
-// Duas exceções conhecidas: versão embutida dentro de um fetch() em JS, não
-// em atributo href/src — não cobertas pelo padrão acima.
+// Três exceções conhecidas: versão embutida dentro de JS (fetch() ou
+// atribuição a .href), não em atributo href/src="..." — não cobertas pelo
+// padrão acima.
 function findEmbeddedRefs() {
   const refs = [];
 
@@ -73,6 +74,20 @@ function findEmbeddedRefs() {
       assetPath: "/assets/search-index.json",
       version: searchMatch[1],
       file: `public/${searchRel}`,
+      line: null,
+    });
+  }
+
+  // Loader global de fontes (ARQ-604): injeta o CSS via `.href = '...'` em
+  // JS, não em atributo href="..." — mesma classe de exceção acima.
+  const headerRel = "partials/header.html";
+  const headerSrc = fs.readFileSync(path.join(PUBLIC_DIR, headerRel), "utf8");
+  const headerMatch = headerSrc.match(/linkFonts\.href = '\/assets\/css\/fonts\.css\?v=(\S+?)'/);
+  if (headerMatch) {
+    refs.push({
+      assetPath: "/assets/css/fonts.css",
+      version: headerMatch[1],
+      file: `public/${headerRel}`,
       line: null,
     });
   }

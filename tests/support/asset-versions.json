@@ -7,6 +7,14 @@
     "version": "1",
     "hash": "30ff37e721e9"
   },
+  "/assets/css/fonts-editorial.css": {
+    "version": "1",
+    "hash": "b52893087506"
+  },
+  "/assets/css/fonts.css": {
+    "version": "1",
+    "hash": "178cb3cd8cc5"
+  },
   "/assets/css/homepage.css": {
     "version": "6",
     "hash": "47d02d58fb07"
@@ -81,6 +89,6 @@
   },
   "/assets/search-index.json": {
     "version": "2",
-    "hash": "c69376f98e8d"
+    "hash": "e3e0de3c4c65"
   }
 }

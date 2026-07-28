@@ -27,7 +27,10 @@ test.describe("Regressão Sprint 1 (ARQ-402) e Sprint 2 (ARQ-404/ARQ-503)", () =
     expect(hrefs.some((href) => href.includes("/assets/css/legal-shared.css"))).toBe(true);
   });
 
-  test("exatamente 1 par de preconnect de fontes por página, injetado 1x (ARQ-503)", async ({ page }) => {
+  test("fontes carregadas localmente 1x, sem preconnect externo ao Google Fonts (ARQ-503/ARQ-604)", async ({ page }) => {
+    // Fontes foram vendorizadas (ARQ-604): não há mais preconnect a
+    // fonts.googleapis.com/fonts.gstatic.com em lugar nenhum, e o loader
+    // global injeta o CSS local exatamente 1x (mesma guarda por ID de antes).
     await page.goto("/");
     await page.waitForFunction(() => document.getElementById("global-fonts-loaded") !== null);
 
@@ -38,8 +41,15 @@ test.describe("Regressão Sprint 1 (ARQ-402) e Sprint 2 (ARQ-404/ARQ-503)", () =
     const fontsGoogleapis = preconnectHrefs.filter((href) => href.includes("fonts.googleapis.com"));
     const fontsGstatic = preconnectHrefs.filter((href) => href.includes("fonts.gstatic.com"));
 
-    expect(fontsGoogleapis).toHaveLength(1);
-    expect(fontsGstatic).toHaveLength(1);
+    expect(fontsGoogleapis).toHaveLength(0);
+    expect(fontsGstatic).toHaveLength(0);
+
+    const localFontLinks = await page
+      .locator('link#global-fonts-loaded[rel="stylesheet"]')
+      .evaluateAll((links) => links.map((l) => (l as HTMLLinkElement).getAttribute("href") || ""));
+
+    expect(localFontLinks).toHaveLength(1);
+    expect(localFontLinks[0]).toBe("/assets/css/fonts.css?v=1");
   });
 
   test("isLegalPage() detecta página legal só pela classe, sem os IDs vestigiais removidos (ARQ-402)", async ({
