@@ -566,12 +566,6 @@
     "title": "Estructura Institucional",
     "subtitle": "Información jurídica y estructural."
   },
-  "modal": {
-    "title": "Antes de Acceder a la Plataforma",
-    "intro": "Verifique requisitos técnicos.",
-    "cancel": "Cancelar",
-    "proceed": "Continuar"
-  },
   "whatsapp": {
     "tooltip": "Habla con nuestro especialista",
     "aria": "Habla con nuestro especialista"

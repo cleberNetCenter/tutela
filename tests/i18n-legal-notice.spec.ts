@@ -81,3 +81,66 @@ test.describe("Troca de idioma funciona no chrome (nav) de todas as páginas de 
     });
   }
 });
+
+// governo.html carregava um segundo script de i18n inline, duplicado e
+// quebrado (fetch em `/assets/i18n/${lang}.json`, caminho inexistente — os
+// arquivos reais estão em `/assets/lang/`), que falhava silenciosamente em
+// toda carga da página (só console.error). empresas.html e pessoas.html
+// tinham um resquício mais grave da mesma limpeza incompleta: o script
+// duplicado tinha sido "removido" só no comentário — o corpo da função
+// (`el.textContent = value; ... window.addEventListener('storage', ...)`)
+// continuou fora de qualquer tag <script>, renderizando como texto visível
+// no rodapé da página. Sprint 28 removeu os três por completo, mantendo só
+// o carregamento padrão de i18n.js via partials/scripts.html.
+test.describe("governo/empresas/pessoas: sem script de i18n duplicado/quebrado", () => {
+  test.use({ locale: "pt-BR" });
+
+  for (const path of ["/governo.html", "/empresas.html", "/pessoas.html"]) {
+    test(`${path}: troca de idioma sem erro de console, sem texto de script órfão no corpo`, async ({ page }) => {
+      const consoleErrors: string[] = [];
+      page.on("console", (msg) => {
+        if (msg.type() === "error") consoleErrors.push(msg.text());
+      });
+      page.on("pageerror", (err) => consoleErrors.push(err.message));
+
+      await page.goto(path);
+      await page.click('.lang-switch .lang-flag[data-lang="en"]');
+      await expect(page.locator(".nav-link").first()).toHaveText("Home");
+
+      expect(consoleErrors).toEqual([]);
+
+      const bodyText = await page.locator("body").innerText();
+      expect(bodyText).not.toContain("el.textContent = value");
+      expect(bodyText).not.toContain("addEventListener('storage'");
+    });
+  }
+});
+
+// ARQ-607 (Sprint 27) registrou a tradução do rodapé (footer.trademarkNotice)
+// como pendente em en/es — publicada nesta sprint. Fixa o texto exato
+// aprovado nas 3 línguas, no rodapé compartilhado (partials/footer.html).
+test.describe("Rodapé: nota de marca (INPI) traduzida nas 3 línguas", () => {
+  test.use({ locale: "pt-BR" });
+
+  const EXPECTED: Record<string, string> = {
+    pt: "Tutela Digital™ – Marca em processo de registro no INPI.",
+    en: "Tutela Digital™ – Trademark application pending with INPI (Brazil's National Institute of Industrial Property).",
+    es: "Tutela Digital™ – Marca en proceso de registro ante el INPI (Instituto Nacional de la Propiedad Industrial de Brasil).",
+  };
+
+  for (const lang of ["en", "es"] as const) {
+    test(`troca para ${lang} exibe o texto aprovado, sem chave crua`, async ({ page }) => {
+      await page.goto("/governo.html");
+      await page.click(`.lang-switch .lang-flag[data-lang="${lang}"]`);
+      const notice = page.locator('[data-i18n="footer.trademarkNotice"]');
+      await expect(notice).toHaveText(EXPECTED[lang]);
+      await expect(notice).not.toHaveText("footer.trademarkNotice");
+    });
+  }
+
+  test("pt-BR (padrão) exibe o texto original", async ({ page }) => {
+    await page.goto("/governo.html");
+    const notice = page.locator('[data-i18n="footer.trademarkNotice"]');
+    await expect(notice).toHaveText(EXPECTED.pt);
+  });
+});
