@@ -92,10 +92,10 @@ test.describe("Troca de idioma funciona no chrome (nav) de todas as páginas de 
 // continuou fora de qualquer tag <script>, renderizando como texto visível
 // no rodapé da página. Sprint 28 removeu os três por completo, mantendo só
 // o carregamento padrão de i18n.js via partials/scripts.html.
-test.describe("governo: sem script de i18n duplicado/quebrado", () => {
+test.describe("governo/empresas/pessoas: sem script de i18n duplicado/quebrado", () => {
   test.use({ locale: "pt-BR" });
 
-  for (const path of ["/governo.html"]) {
+  for (const path of ["/governo.html", "/empresas.html", "/pessoas.html"]) {
     test(`${path}: troca de idioma sem erro de console, sem texto de script órfão no corpo`, async ({ page }) => {
       const consoleErrors: string[] = [];
       page.on("console", (msg) => {

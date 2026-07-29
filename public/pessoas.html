@@ -716,29 +716,6 @@
   </script>
 
   <!-- I18N SCRIPT removido: agora automático via scripts.html -->
-                el.textContent = value;
-              }
-            }
-          });
-        } catch (err) {
-          console.error('Erro ao carregar idioma:', err);
-        }
-      }
-
-      let currentLang = localStorage.getItem('lang') || 'pt-br';
-      if (currentLang === 'pt' || currentLang === 'pt_BR') currentLang = 'pt-br';
-      if (currentLang === 'en') currentLang = 'en';
-      if (currentLang === 'es') currentLang = 'es';
-      loadLanguage(currentLang);
-
-      window.addEventListener('storage', function (e) {
-        if (e.key === 'lang') {
-          const newLang = e.newValue || 'pt-br';
-          loadLanguage(newLang);
-        }
-      });
-    })();
-  </script>
 
 </body>
 
