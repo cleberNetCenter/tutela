@@ -1,6 +1,6 @@
-# Documentação de Arquitetura — Tutela Digital®
+# Documentação de Arquitetura — Tutela Digital™
 
-Esta pasta documenta, com base exclusivamente em evidências encontradas no repositório `cleberNetCenter/tutela` (branch `homolog`, snapshot de 2026-07-23), a arquitetura técnica, o design system, o SEO, a performance, a segurança e a dívida técnica do site institucional da Tutela Digital®.
+Esta pasta documenta, com base exclusivamente em evidências encontradas no repositório `cleberNetCenter/tutela` (branch `homolog`, snapshot de 2026-07-23), a arquitetura técnica, o design system, o SEO, a performance, a segurança e a dívida técnica do site institucional da Tutela Digital™.
 
 Este trabalho é **somente leitura** quanto ao código da aplicação: nenhum arquivo de `public/` foi alterado por esta documentação.
 

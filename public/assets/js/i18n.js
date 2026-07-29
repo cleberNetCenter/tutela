@@ -1,5 +1,5 @@
 // =======================================================
-// SISTEMA DE INTERNACIONALIZAÇÃO — Tutela Digital®
+// SISTEMA DE INTERNACIONALIZAÇÃO — Tutela Digital™
 // Inicialização automática, sem scripts inline
 // =======================================================
 
@@ -53,7 +53,7 @@ const I18N = {
         this.translations = window.__I18N_PRELOADED__;
         return;
       }
-      const response = await fetch(`/assets/lang/${lang}.json?v=10`);
+      const response = await fetch(`/assets/lang/${lang}.json?v=11`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       this.translations = await response.json();
       window.dispatchEvent(new CustomEvent('i18n:translationsLoaded', { detail: { lang } }));

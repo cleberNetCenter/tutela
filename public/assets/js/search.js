@@ -129,7 +129,7 @@
   function loadIndex() {
     if (pages) return Promise.resolve(pages);
     if (indexPromise) return indexPromise;
-    indexPromise = fetch("/assets/search-index.json?v=2")
+    indexPromise = fetch("/assets/search-index.json?v=3")
       .then((res) => {
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();

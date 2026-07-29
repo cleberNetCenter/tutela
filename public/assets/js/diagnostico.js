@@ -139,7 +139,7 @@ async function loadPrivacyPolicyContent() {
     privacyContentLoaded = true;
     status.hidden = true;
   } catch (error) {
-    console.error('[diagnostico] Erro ao carregar politica:', error);
+    console.error('[diagnostico] Erro ao carregar política:', error);
     status.hidden = false;
     const errorText = window.I18N
       ? I18N.t('diagnostic.privacyError')

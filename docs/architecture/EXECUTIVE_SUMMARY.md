@@ -1,4 +1,4 @@
-# Resumo Executivo — Arquitetura Tutela Digital®
+# Resumo Executivo — Arquitetura Tutela Digital™
 
 ## Índice
 - [Visão geral](#visão-geral)
@@ -10,7 +10,7 @@
 
 ## Visão geral
 
-O site da Tutela Digital® é uma **aplicação web multi-página (MPA) inteiramente estática** — HTML, CSS e JavaScript vanilla, sem framework, sem build, sem backend próprio versionado — que serve 35 páginas de conteúdo institucional e jurídico sobre custódia probatória de ativos digitais. A composição de página depende de Server Side Includes (SSI) resolvidos pelo Nginx em produção. O deploy é feito via GitHub Actions em runners self-hosted, com `git reset --hard` + Docker Compose em dois ambientes (homologação e produção), seguindo um fluxo de branches `feature → homolog → main` reforçado por um gate de CI que impede promoção direta a `main`.
+O site da Tutela Digital™ é uma **aplicação web multi-página (MPA) inteiramente estática** — HTML, CSS e JavaScript vanilla, sem framework, sem build, sem backend próprio versionado — que serve 35 páginas de conteúdo institucional e jurídico sobre custódia probatória de ativos digitais. A composição de página depende de Server Side Includes (SSI) resolvidos pelo Nginx em produção. O deploy é feito via GitHub Actions em runners self-hosted, com `git reset --hard` + Docker Compose em dois ambientes (homologação e produção), seguindo um fluxo de branches `feature → homolog → main` reforçado por um gate de CI que impede promoção direta a `main`.
 
 Esta é uma arquitetura **deliberadamente simples e de baixo custo operacional** para o problema que resolve: divulgar um serviço jurídico-técnico, capturar leads via um formulário de diagnóstico, e ranquear bem em buscadores (incluindo bots de LLM, explicitamente liberados no `robots.txt`) para um nicho jurídico específico no Brasil.
 

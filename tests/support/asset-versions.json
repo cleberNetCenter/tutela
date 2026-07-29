@@ -1,7 +1,7 @@
 {
   "/assets/css/assets-digital.css": {
     "version": "8",
-    "hash": "7abc34b1d473"
+    "hash": "5b2c9234d52c"
   },
   "/assets/css/diagnostico.css": {
     "version": "1",
@@ -17,7 +17,7 @@
   },
   "/assets/css/homepage.css": {
     "version": "6",
-    "hash": "47d02d58fb07"
+    "hash": "4a23b954bf33"
   },
   "/assets/css/insights-pilar.css": {
     "version": "3",
@@ -25,11 +25,11 @@
   },
   "/assets/css/legal-shared.css": {
     "version": "1",
-    "hash": "e533e76065a3"
+    "hash": "28ace6522271"
   },
   "/assets/css/main.css": {
     "version": "7",
-    "hash": "0e98fc22b4b3"
+    "hash": "66dd22bc5703"
   },
   "/assets/css/pages/arquitetura-juridica-prova-digital.css": {
     "version": "1",
@@ -41,19 +41,19 @@
   },
   "/assets/css/pages/como-funciona.css": {
     "version": "5",
-    "hash": "0c625d29fa65"
+    "hash": "a3660b8b9fca"
   },
   "/assets/css/pages/institucional.css": {
     "version": "6",
-    "hash": "2058a4fbad81"
+    "hash": "790f3533e22a"
   },
   "/assets/css/pages/solucoes.css": {
     "version": "2",
-    "hash": "d1d0417a2763"
+    "hash": "9c8e8563e9d3"
   },
   "/assets/css/seguranca.css": {
     "version": "6",
-    "hash": "69ca30495280"
+    "hash": "1d41989e3343"
   },
   "/assets/css/styles-header-final.css": {
     "version": "7",
@@ -61,7 +61,7 @@
   },
   "/assets/js/i18n.js": {
     "version": "1",
-    "hash": "f12c8dd3125c"
+    "hash": "0651571c4785"
   },
   "/assets/js/legal-animations.js": {
     "version": "1",
@@ -72,23 +72,23 @@
     "hash": "3268fc7ad3b3"
   },
   "/assets/js/search.js": {
-    "version": "1",
-    "hash": "f4f8352684f8"
+    "version": "2",
+    "hash": "831a8326f09d"
   },
   "/assets/lang/en.json": {
-    "version": "10",
-    "hash": "72a30e836676"
+    "version": "11",
+    "hash": "aa28dfc022b3"
   },
   "/assets/lang/es.json": {
-    "version": "10",
-    "hash": "fe015362c48b"
+    "version": "11",
+    "hash": "380933f381d2"
   },
   "/assets/lang/pt.json": {
-    "version": "10",
-    "hash": "e9c4d02b71ab"
+    "version": "11",
+    "hash": "e0e7a4ed14ae"
   },
   "/assets/search-index.json": {
-    "version": "2",
-    "hash": "e3e0de3c4c65"
+    "version": "3",
+    "hash": "c6cda407be10"
   }
 }
