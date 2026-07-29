@@ -566,12 +566,6 @@
     "title": "Institutional Structure",
     "subtitle": "Legal and structural information of the responsible entity."
   },
-  "modal": {
-    "title": "Before Accessing the Platform",
-    "intro": "Please verify that technical requirements are met.",
-    "cancel": "Cancel",
-    "proceed": "Proceed"
-  },
   "whatsapp": {
     "tooltip": "Speak to our specialist",
     "aria": "Speak to our specialist"

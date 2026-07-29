@@ -583,12 +583,6 @@
     "cta_title": "Consulte também nossos Termos de Custódia",
     "cta_text": "Para entender os termos técnicos e jurídicos da custódia probatória."
   },
-  "modal": {
-    "title": "Antes de acessar a plataforma",
-    "intro": "Verifique se os requisitos técnicos estão atendidos para funcionamento adequado.",
-    "cancel": "Cancelar",
-    "proceed": "Prosseguir"
-  },
   "institutional": {
     "title": "Estrutura Institucional",
     "subtitle": "Informações jurídicas e estruturais da entidade responsável pela preservação probatória digital.",
