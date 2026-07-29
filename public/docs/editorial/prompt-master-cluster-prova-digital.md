@@ -1,5 +1,5 @@
 # PROMPT MASTER — CLUSTER PROVA DIGITAL
-Tutela Digital®
+Tutela Digital™
 
 Este prompt define o padrão editorial e técnico para todos os artigos da seção:
 

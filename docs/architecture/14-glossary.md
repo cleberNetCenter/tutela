@@ -9,11 +9,11 @@
 
 | Termo | Significado no contexto do projeto |
 | --- | --- |
-| **Ativos digitais** | Bens ou direitos existentes em formato digital (documentos, contratos, credenciais, dados) que são objeto de custódia, proteção e planejamento sucessório pela Tutela Digital®. Cluster de conteúdo principal do site (`/ativos-digitais/`). |
+| **Ativos digitais** | Bens ou direitos existentes em formato digital (documentos, contratos, credenciais, dados) que são objeto de custódia, proteção e planejamento sucessório pela Tutela Digital™. Cluster de conteúdo principal do site (`/ativos-digitais/`). |
 | **Prova digital** | Evidência eletrônica usada para demonstrar fatos em processos judiciais, administrativos ou arbitrais. Segundo tema principal do site (`/insights/prova-digital/`, `/legal/*`). |
 | **Cadeia de custódia** | Registro documentado e ininterrupto de todas as operações realizadas sobre uma evidência digital, com identificação temporal e autoral de cada evento — usado para sustentar a admissibilidade da prova em juízo. Citado como um dos "selos de confiança" no rodapé (`footer.html:57`). |
 | **Custódia probatória / preservação probatória** | Ato técnico-jurídico de preservar um ativo/evidência digital de forma estruturada, com integridade verificável, antes ou durante um litígio. |
-| **Fase pré-litigiosa** | Momento anterior à existência formal de um litígio, em que a Tutela Digital® afirma atuar prioritariamente, preservando prova antes que ela seja necessária em juízo (`public/index.html:169-171`). |
+| **Fase pré-litigiosa** | Momento anterior à existência formal de um litígio, em que a Tutela Digital™ afirma atuar prioritariamente, preservando prova antes que ela seja necessária em juízo (`public/index.html:169-171`). |
 | **e-Notariado** | Plataforma nacional de atos notariais eletrônicos (tabelionatos brasileiros), citada como parceiro de integração para "formalização notarial" e "fé pública" (`public/index.html:191-193`). |
 | **Fé pública** | Atributo jurídico conferido por agente público (ex.: tabelião) que confere presunção de veracidade a um ato ou documento. |
 | **Admissibilidade jurídica / probatória** | Capacidade de uma evidência ser aceita e considerada válida por um juízo, tribunal administrativo ou câmara arbitral. |

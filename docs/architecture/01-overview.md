@@ -10,7 +10,7 @@
 
 ## O que é o projeto
 
-Tutela Digital® é o site institucional/jurídico de um serviço de **custódia probatória de ativos digitais** (preservação de prova digital com cadeia de custódia auditável, integridade técnica verificável e suporte à admissibilidade jurídica em processos judiciais, administrativos e arbitrais no Brasil). A empresa por trás do site é a Novaes & Coelho Ltda (CNPJ 00.810.662/0001-27), conforme identificado no rodapé (`public/partials/footer.html:46` e no bloco `application/ld+json` do tipo `Organization` no mesmo arquivo).
+Tutela Digital™ é o site institucional/jurídico de um serviço de **custódia probatória de ativos digitais** (preservação de prova digital com cadeia de custódia auditável, integridade técnica verificável e suporte à admissibilidade jurídica em processos judiciais, administrativos e arbitrais no Brasil). A empresa por trás do site é a Novaes & Coelho Ltda (CNPJ 00.810.662/0001-27), conforme identificado no rodapé (`public/partials/footer.html:46` e no bloco `application/ld+json` do tipo `Organization` no mesmo arquivo).
 
 O repositório contém **apenas o site público** (marketing, conteúdo jurídico/educacional, formulário de diagnóstico de risco e link de saída para a plataforma transacional). A aplicação transacional em si roda em outro domínio, `https://app.tuteladigital.com.br/` (ver `public/partials/header.html:137`), e **não faz parte deste repositório**.
 

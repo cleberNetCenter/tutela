@@ -100,7 +100,7 @@ const PAIRS = [
   { group: "Header/Nav", label: ".mobile-menu-btn span (barras do hamburguer): --text-2 sobre --bg — componente UI (ARQ-603)", fg: "#7faa8a", bg: "#0c2418", context: "ui" },
   { group: "Header/Nav", label: "menu mobile aberto (.nav.open): .dropdown-menu --bg-deep, texto --text-1 (ARQ-603)", fg: "#e8f0ea", bg: "#091d13", context: "normal" },
   { group: "Header/Nav", label: ".header-cta: #071a0e sobre --accent (botão CTA do header)", fg: "#071a0e", bg: "#3ecf72", context: "normal" },
-  { group: "Header/Nav", label: ".logo sup (marca ®): --text-3 sobre --bg", fg: "#6e8e79", bg: "#0c2418", context: "normal" },
+  { group: "Header/Nav", label: ".logo sup (marca ™): --text-3 sobre --bg", fg: "#6e8e79", bg: "#0c2418", context: "normal" },
   { group: "Header/Nav", label: ".nav-toggle::after (seta, repouso): --text-3 sobre --bg — componente UI", fg: "#6e8e79", bg: "#0c2418", context: "ui" },
 
   // ---- Rodapé (sections/footer.css, mesmos tokens --bg/--text-*) ----

@@ -17,7 +17,7 @@
 ```css
 /* ============================================================
    foundation/tokens.css
-   Tutela Digital® — Design Tokens Globais
+   Tutela Digital™ — Design Tokens Globais
    ============================================================
    Organização:
      1. Paleta primitiva (cor pura, sem semântica)

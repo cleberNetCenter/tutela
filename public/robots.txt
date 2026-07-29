@@ -1,4 +1,4 @@
-# Tutela Digital® - Robots.txt
+# Tutela Digital™ - Robots.txt
 # MPA Architecture - SEO Jurídico Nacional
 
 User-agent: *

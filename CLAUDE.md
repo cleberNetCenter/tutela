@@ -1,4 +1,4 @@
-# CLAUDE.md — Tutela Digital®
+# CLAUDE.md — Tutela Digital™
 
 Resumo operacional para uma sessão de Claude Code neste repositório. Não duplica os documentos de arquitetura — para o "porquê" das decisões, ver as referências abaixo.
 

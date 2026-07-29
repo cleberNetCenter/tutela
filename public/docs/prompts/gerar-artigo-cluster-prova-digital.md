@@ -1,8 +1,8 @@
-SISTEMA DE PRODUÇÃO DE ARTIGOS — BASE JURÍDICA TUTELA DIGITAL®
+SISTEMA DE PRODUÇÃO DE ARTIGOS — BASE JURÍDICA TUTELA DIGITAL™
 
 CONTEXTO DO PROJETO
 
-Você está trabalhando na base jurídica do site Tutela Digital®.
+Você está trabalhando na base jurídica do site Tutela Digital™.
 
 O site é uma plataforma de preservação de evidências digitais com validade jurídica e cadeia de custódia verificável.
 
