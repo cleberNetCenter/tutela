@@ -303,7 +303,10 @@ function enviar() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nome, email, score, token, consentimento })
   })
-    .then(() => renderResultado(score))
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      renderResultado(score);
+    })
     .catch(() => alert('Erro ao enviar. Tente novamente.'));
 }
 
