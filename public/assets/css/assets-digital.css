@@ -167,8 +167,8 @@ body.assets-page .whitepaper-container {
 body.assets-page .whitepaper-container > *:first-child { margin-top: 0; }
 body.assets-page .whitepaper-container h2 {
   position: relative;
-  margin: 3.4rem 0 1rem;
-  padding-top: 2rem;
+  margin: var(--space-lg) 0 1rem;
+  padding-top: var(--space-sm);
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3vw, 2.7rem);
   line-height: 1.1;
