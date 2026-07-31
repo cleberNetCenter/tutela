@@ -77,3 +77,35 @@ test.describe("Regressão visual (ARQ-604)", () => {
     await expect(header).toHaveScreenshot("dropdown-open-header.png");
   });
 });
+
+// ARQ-307 (Sprint 31) reduziu o padding-top do .hero e o padding de
+// `main > section` em assets-digital.css, mas descobriu que essas 2 regras
+// afetam 14 páginas (não só as 5 do cluster /ativos-digitais/*), sem
+// baseline visual dedicada às 10 páginas de artigo extras. Sprint 32
+// fecha essa lacuna: validado visualmente (screenshot manual, sem
+// distorção) que as 10 páginas de /insights/ativos-digitais/*
+// e /insights/prova-digital/* que carregam assets-digital.css
+// (body.assets-page.assets-pillar-page) receberam a redução de
+// espaçamento corretamente — ver 16-architecture-backlog.md (ARQ-308).
+const INSIGHTS_ASSETS_DIGITAL_PAGES = [
+  { slug: "compliance-lgpd", path: "/insights/ativos-digitais/compliance-lgpd/" },
+  { slug: "custodia-ativos-digitais", path: "/insights/ativos-digitais/custodia-ativos-digitais/" },
+  { slug: "marco-regulatorio", path: "/insights/ativos-digitais/marco-regulatorio/" },
+  { slug: "sucessao-digital", path: "/insights/ativos-digitais/sucessao-digital/" },
+  { slug: "cadeia-custodia-prova-digital", path: "/insights/prova-digital/cadeia-custodia-prova-digital/" },
+  { slug: "hash-criptografico-temporalidade", path: "/insights/prova-digital/hash-criptografico-temporalidade/" },
+  { slug: "ia-custodia-qualificada", path: "/insights/prova-digital/ia-custodia-qualificada/" },
+  { slug: "integridade-tecnica-admissibilidade", path: "/insights/prova-digital/integridade-tecnica-admissibilidade/" },
+  { slug: "producao-antecipada-prova-digital", path: "/insights/prova-digital/producao-antecipada-prova-digital/" },
+  { slug: "prova-digital-processo-civil-brasileiro", path: "/insights/prova-digital/prova-digital-processo-civil-brasileiro/" },
+];
+
+test.describe("Regressão visual — artigos de insights afetados por assets-digital.css (ARQ-308)", () => {
+  for (const { slug, path } of INSIGHTS_ASSETS_DIGITAL_PAGES) {
+    test(`${slug}: viewport completo`, async ({ page }) => {
+      await page.goto(path);
+      await freezeScrollReveal(page);
+      await expect(page).toHaveScreenshot(`insights-${slug}-full.png`, FULL_PAGE_OPTS);
+    });
+  }
+});
