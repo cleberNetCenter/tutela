@@ -110,7 +110,3 @@ body.page-como-funciona .app {
   margin: 0 auto 3rem;
   animation: fadeUp 0.65s 0.2s ease both;
 }
-
-body.has-fixed-header .main {
-  padding-top: 60px;
-}
