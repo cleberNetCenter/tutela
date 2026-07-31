@@ -312,6 +312,15 @@ body.legal-page.page-institucional h3 {
   border-bottom: none;
 }
 
+/* .section-overtitle (legal-shared.css) usa a cor clara --primitive-green-200,
+   pensada para o fundo escuro do hero/.section-dark — nas 2 seções .features
+   sem .section-dark desta página (fundo claro), essa cor cai para 1,46:1 de
+   contraste (WCAG AA exige 4,5:1). Reaproveita --primitive-green-700, já
+   usado como cor de destaque nesta mesma seção (borda de .features-inner h2). */
+.features:not(.section-dark) .section-overtitle {
+  color: var(--primitive-green-700);
+}
+
 .features-inner h2 {
   padding-left: var(--space-sm);
   border-left: 3px solid var(--primitive-green-700);
