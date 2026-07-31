@@ -328,7 +328,7 @@ body.assets-page.assets-pillar-page .container {
   margin-inline: auto;
 }
 body.assets-page.assets-pillar-page main > section {
-  padding: 4rem 0;
+  padding: var(--space-section-tight) 0;
 }
 
 /* Tipografia editorial */
@@ -358,7 +358,7 @@ body.assets-page.assets-pillar-page ul { list-style: none; padding: 0; }
    ────────────────────────────────────────────────────────── */
 body.assets-page.assets-pillar-page .hero {
   background: var(--primitive-green-970);
-  padding: var(--ad-space-xl, 5rem) 0 var(--ad-space-lg, 3.5rem);
+  padding: var(--space-section-hero) 0 var(--ad-space-lg, 3.5rem);
   position: relative;
   overflow: hidden;
 }
