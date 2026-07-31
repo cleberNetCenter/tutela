@@ -1,0 +1,18 @@
+# Alguns arquivos CSS legados usam terminador de linha CRLF (confirmado via
+# `file`/scan, não presumido) — preservados assim deliberadamente desde
+# ARQ-303 (Sprint 13) para não gerar diffs de milhares de linhas por uma
+# normalização de terminador sem nenhuma mudança de conteúdo real. Sem esta
+# declaração, o gate de CI `git diff --check` ("checklist-publicacao")
+# trata o \r de CRLF como erro de "trailing whitespace" por padrão em
+# QUALQUER linha alterada nesses arquivos — mesmo quando a edição em si não
+# tem nenhum problema de formatação. `whitespace=cr-at-eol` corrige a causa
+# raiz sem alterar nenhum byte de conteúdo.
+public/assets/css/legacy.css whitespace=cr-at-eol
+public/assets/css/pages/pages-consolidated.css whitespace=cr-at-eol
+public/assets/css/sections/steps.css whitespace=cr-at-eol
+public/assets/css/sections/verticals.css whitespace=cr-at-eol
+public/assets/css/sections/hero.css whitespace=cr-at-eol
+public/assets/css/layout/layout.css whitespace=cr-at-eol
+public/assets/css/utilities/animations.css whitespace=cr-at-eol
+public/assets/css/foundation/reset.css whitespace=cr-at-eol
+public/assets/css/components/buttons.css whitespace=cr-at-eol
