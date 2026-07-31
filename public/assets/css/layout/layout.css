@@ -7,7 +7,12 @@
 
 .main {
 	flex: 1;
-	padding-top: 60px;
+	/* Sem padding-top: o .header já reserva sua própria altura no fluxo
+	   normal (position: sticky, não fixed, desde 22a22d7/e107cc7). Este
+	   padding era compensação herdada da era de header fixed (position:
+	   fixed; height: 70px) e, com header sticky, virava uma faixa vazia
+	   redundante entre header e hero em qualquer página cujo .main não
+	   tivesse um override mais específico zerando-o (bug Sprint 30). */
 }
 
 /* ===================== GRIDS ============================= */
