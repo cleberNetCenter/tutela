@@ -46,6 +46,18 @@ test.describe("Regressão visual granular — migração --ux-*/--ad-* (ARQ-301)
       });
 
       test(`${slug}: página completa`, async ({ page }) => {
+        // Sprint 34: o timeout de 30000ms do assert abaixo já era intencional
+        // (captura fullPage é mais pesada que os recortes de componente desta
+        // suíte), mas o timeout padrão do teste em si (30000ms, herdado do
+        // Playwright) começa a contar antes do goto/addStyleTag do
+        // beforeEach — na prática o assert nunca podia usar seu próprio
+        // orçamento inteiro. Confirmado via trace (ARQ-604/Sprint 34) que a
+        // captura em si, sob `--workers=16`, pode legitimamente levar
+        // ~24-27s (CPU disputada por 16 instâncias Chromium renderizando/
+        // codificando PNG simultaneamente) sem nenhuma trava real da
+        // página — daí o teste precisar de orçamento próprio maior que o
+        // do assert.
+        test.setTimeout(60000);
         await expect(page).toHaveScreenshot(`${slug}-full.png`, { fullPage: true, ...OPTS, timeout: 30000 });
       });
 
@@ -75,6 +87,11 @@ test.describe("Regressão visual granular — migração --ux-*/--ad-* (ARQ-301)
       });
 
       test(`${slug}: whitepaper-container (tipografia h2/h3/p, fundo claro)`, async ({ page }) => {
+        // Sprint 34: mesmo racional do teste "página completa" acima — o
+        // timeout: 30000 do assert é maior que o de qualquer outro recorte
+        // desta suíte (bloco de texto grande), mas ficava sem efeito real
+        // preso ao timeout padrão de teste, também 30000ms.
+        test.setTimeout(60000);
         const container = page.locator(".whitepaper-container");
         await expect(container).toHaveScreenshot(`${slug}-whitepaper-container.png`, {
           ...OPTS,
