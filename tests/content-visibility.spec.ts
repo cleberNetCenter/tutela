@@ -67,8 +67,23 @@ async function answerDiagStep(page: import("@playwright/test").Page, step: numbe
   await waitForScrollSettled(page);
 }
 
+// Sprint 35 (estabilização de flake, ARQ-101): sob `--workers=16` este
+// teste reproduziu "Test timeout of 30000ms exceeded" com taxa
+// significativa (16/20 numa bateria dedicada) — apesar de já usar
+// `waitForScrollSettled()` (Sprint 33) em cada troca de passo, então não é
+// a race de scroll já corrigida (os traces mostram o helper resolvendo em
+// 169-307ms, sem travar). Causa real, confirmada via trace ação-por-ação:
+// `page.goto` inicial e os cliques dos 3 passos do wizard já consomem ~20s
+// em disputa de CPU real (16 processos Chromium), sobrando pouco do
+// orçamento de 30000ms do teste para o loop de asserções por seção do
+// modal (9 seções × toBeVisible/not.toHaveClass/opacity, cada uma exigindo
+// um round-trip real). Mesmo padrão da Sprint 34
+// (visual-design-tokens.spec.ts) e do outro flake desta mesma sprint
+// (diagnostico-form.spec.ts): orçamento de teste insuficiente, não race
+// condition — corrigido dando mais tempo ao teste como um todo.
 test.describe("Modal de política de privacidade (/diagnostico) — visibilidade real do conteúdo clonado", () => {
   test("conteúdo clonado da política fica de fato visível (não só presente no DOM)", async ({ page }) => {
+    test.setTimeout(60000);
     await page.goto("/diagnostico.html");
 
     await answerDiagStep(page, 1);
