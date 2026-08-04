@@ -18,9 +18,53 @@ import { test, expect } from "@playwright/test";
 // conteúdo de um contexto com mecanismo de revelação para um contexto sem
 // esse mecanismo).
 
+// Sprint 33 (estabilização de flake): cada troca de passo do wizard chama
+// `showStep()` (diagnostico.js), que faz `window.scrollTo({behavior:
+// 'smooth'})` para reencaixar o formulário na viewport — a mesma chamada
+// muda a altura do container (o novo `.diag-step` fica `.active`) e dispara
+// um scroll animado ao mesmo tempo. Sob paralelismo total (CPU contenda
+// entre 16 processos Chromium + o próprio ssi-server.js), o navegador
+// renderiza a animação em frames muito espaçados; o teste clica em seguida
+// em um elemento do passo recém-ativado, e a checagem de "stability" do
+// Playwright (posição igual entre dois polls) pode ser enganada por um
+// frame de scroll ainda em andamento, mas amostrado devagar o bastante para
+// parecer parado — o clique é despachado nas coordenadas antigas e cai fora
+// do alvo. Reproduzido isoladamente com trace: o `.click()` em
+// `#openPrivacyModal` retorna com sucesso, mas `#privacyModal` permanece
+// `hidden` por 20s inteiros depois — não é lentidão (que apenas atrasaria o
+// clique certo), é o clique errando o alvo. Elimina-se aguardando o scroll
+// de fato estabilizar (2 frames consecutivos com o mesmo `scrollY`) antes de
+// qualquer interação com o passo recém-ativado, em vez de confiar apenas na
+// heurística de estabilidade do Playwright ou de aumentar timeouts.
+async function waitForScrollSettled(page: import("@playwright/test").Page) {
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        let lastY = -1;
+        let stableFrames = 0;
+        function tick() {
+          const y = window.scrollY;
+          if (y === lastY) {
+            stableFrames++;
+            if (stableFrames >= 2) {
+              resolve();
+              return;
+            }
+          } else {
+            stableFrames = 0;
+            lastY = y;
+          }
+          requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      })
+  );
+}
+
 async function answerDiagStep(page: import("@playwright/test").Page, step: number) {
   await page.locator(`.diag-step[data-step="${step}"] .diag-opt`).first().click();
   await page.locator(`.diag-step[data-step="${step}"] .diag-next-btn`).click();
+  await waitForScrollSettled(page);
 }
 
 test.describe("Modal de política de privacidade (/diagnostico) — visibilidade real do conteúdo clonado", () => {
