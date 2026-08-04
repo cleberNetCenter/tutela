@@ -29,7 +29,7 @@
   },
   "/assets/css/main.css": {
     "version": "7",
-    "hash": "66dd22bc5703"
+    "hash": "e3cda5bf2d11"
   },
   "/assets/css/pages/arquitetura-juridica-prova-digital.css": {
     "version": "1",
@@ -59,9 +59,13 @@
     "version": "7",
     "hash": "b853f29cc314"
   },
+  "/assets/js/consent.js": {
+    "version": "1",
+    "hash": "0a888a5870f9"
+  },
   "/assets/js/i18n.js": {
     "version": "1",
-    "hash": "0651571c4785"
+    "hash": "c5ea0fbbd57b"
   },
   "/assets/js/legal-animations.js": {
     "version": "1",
@@ -77,15 +81,15 @@
   },
   "/assets/lang/en.json": {
     "version": "11",
-    "hash": "8071c20e5e1f"
+    "hash": "3d6700f84193"
   },
   "/assets/lang/es.json": {
     "version": "11",
-    "hash": "a8bcbb241947"
+    "hash": "64e1b64e0fc1"
   },
   "/assets/lang/pt.json": {
     "version": "11",
-    "hash": "1785756dc13b"
+    "hash": "72f4e62e0295"
   },
   "/assets/search-index.json": {
     "version": "3",

@@ -106,7 +106,7 @@ const I18N = {
     const selectors = [
       '.nav [data-i18n]', '.nav-link [data-i18n]', '.header [data-i18n]',
       '.footer [data-i18n]', '.modal [data-i18n]', 'button[data-i18n]',
-      '.header-cta[data-i18n]'
+      '.header-cta[data-i18n]', '.cookie-banner [data-i18n]'
     ];
     selectors.forEach(selector => {
       document.querySelectorAll(selector).forEach(el => {
