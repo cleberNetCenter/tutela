@@ -823,5 +823,11 @@
     "placeholder": "Buscar no site...",
     "noResults": "Nenhum resultado encontrado.",
     "hint": "Digite pelo menos 2 caracteres."
+  },
+  "cookieConsent": {
+    "message": "Usamos cookies de análise para entender como o site é usado. Você aceita?",
+    "accept": "Aceitar",
+    "decline": "Recusar",
+    "privacyLink": "Política de Privacidade"
   }
 }

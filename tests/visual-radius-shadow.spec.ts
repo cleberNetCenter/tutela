@@ -24,7 +24,21 @@ async function freezeScrollReveal(page: Page) {
 
 const FULL_PAGE_OPTS = { fullPage: true, maxDiffPixelRatio: 0.005 } as const;
 
+// ARQ-107 (Sprint 37): banner de consentimento de cookies aparece em toda
+// primeira visita e é fixed/bottom — pré-registrar uma recusa mantém o
+// banner oculto nestes screenshots, sem depender de rede real ao Google.
+// Comportamento do próprio banner é coberto por tests/cookie-consent.spec.ts.
+async function presetCookieConsentRejected(page: Page) {
+  await page.addInitScript(() => {
+    localStorage.setItem("cookieConsent", JSON.stringify({ status: "rejected", timestamp: Date.now() }));
+  });
+}
+
 test.describe("Regressão visual — tokenização --radius-*/--shadow-* (ARQ-303)", () => {
+  test.beforeEach(async ({ page }) => {
+    await presetCookieConsentRejected(page);
+  });
+
   test("Home: viewport completo", async ({ page }) => {
     await page.goto("/");
     await freezeScrollReveal(page);

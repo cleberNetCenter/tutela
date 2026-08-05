@@ -1,0 +1,108 @@
+/* ===================== COOKIE BANNER (ARQ-107) ===================== */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 400;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface-brand);
+  border-top: 1px solid var(--color-border-strong);
+  box-shadow: var(--shadow-black-lg);
+  font-family: var(--font-body);
+}
+
+.cookie-banner[hidden] {
+  display: none;
+}
+
+.cookie-banner-text {
+  flex: 1 1 auto;
+  min-width: 280px;
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-text-inverse);
+}
+
+.cookie-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.cookie-banner-link {
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-small);
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+.cookie-banner-link:hover,
+.cookie-banner-link:focus-visible {
+  /* Sem isso, o `a:hover { color: var(--color-text-strong) }` global
+     (foundation/base.css) vence no hover — --color-text-strong é um verde
+     quase preto, ilegível sobre o fundo escuro do banner (--color-surface-brand). */
+  color: var(--color-text-inverse);
+  opacity: 1;
+}
+
+.cookie-banner-btn {
+  border: 1px solid transparent;
+  border-radius: var(--radius-8);
+  padding: var(--space-xs) var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.cookie-banner-btn-accept {
+  background: var(--color-accent);
+  color: var(--color-surface-brand);
+}
+
+.cookie-banner-btn-accept:hover,
+.cookie-banner-btn-accept:focus-visible {
+  background: var(--color-accent-bright);
+}
+
+.cookie-banner-btn-decline {
+  background: transparent;
+  color: var(--color-text-inverse);
+  border-color: var(--color-border-strong);
+}
+
+.cookie-banner-btn-decline:hover,
+.cookie-banner-btn-decline:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cookie-banner-btn:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .cookie-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cookie-banner-actions {
+    justify-content: flex-end;
+  }
+}
+
+/* Evita sobreposição com o botão flutuante de WhatsApp (.tdf-wa,
+   fixed bottom-right, z-index 9999) enquanto o banner está visível. */
+body.has-cookie-banner .tdf-wa {
+  display: none;
+}

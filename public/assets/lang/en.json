@@ -778,5 +778,11 @@
     "placeholder": "Search the site...",
     "noResults": "No results found.",
     "hint": "Type at least 2 characters."
+  },
+  "cookieConsent": {
+    "message": "We use analytics cookies to understand how the site is used. Do you accept?",
+    "accept": "Accept",
+    "decline": "Decline",
+    "privacyLink": "Privacy Policy"
   }
 }

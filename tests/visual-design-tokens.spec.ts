@@ -37,10 +37,21 @@ async function freezeScrollReveal(page: Page) {
 
 const OPTS = { maxDiffPixelRatio: 0.005 } as const;
 
+// ARQ-107 (Sprint 37): banner de consentimento de cookies aparece em toda
+// primeira visita e é fixed/bottom — pré-registrar uma recusa mantém o
+// banner oculto nestes screenshots, sem depender de rede real ao Google.
+// Comportamento do próprio banner é coberto por tests/cookie-consent.spec.ts.
+async function presetCookieConsentRejected(page: Page) {
+  await page.addInitScript(() => {
+    localStorage.setItem("cookieConsent", JSON.stringify({ status: "rejected", timestamp: Date.now() }));
+  });
+}
+
 test.describe("Regressão visual granular — migração --ux-*/--ad-* (ARQ-301)", () => {
   for (const { slug, path } of PAGES) {
     test.describe(`${slug}: ${path}`, () => {
       test.beforeEach(async ({ page }) => {
+        await presetCookieConsentRejected(page);
         await page.goto(path);
         await freezeScrollReveal(page);
       });

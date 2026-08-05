@@ -42,7 +42,24 @@ async function freezeScrollReveal(page: Page) {
 // (0.5%) absorve esse ruído sem mascarar uma regressão real.
 const FULL_PAGE_OPTS = { fullPage: true, maxDiffPixelRatio: 0.005 } as const;
 
+// ARQ-107 (Sprint 37): o banner de consentimento de cookies aparece em toda
+// primeira visita (sem escolha registrada) e é fixed/bottom, cobrindo parte
+// do viewport — introduziria diff nestes screenshots sem relação com o que
+// cada suíte realmente testa. Pré-registrar uma recusa (via addInitScript,
+// aplicado antes de qualquer script da página rodar) mantém o banner oculto
+// sem depender de rede real ao Google (o comportamento do próprio banner é
+// coberto por tests/cookie-consent.spec.ts).
+async function presetCookieConsentRejected(page: Page) {
+  await page.addInitScript(() => {
+    localStorage.setItem("cookieConsent", JSON.stringify({ status: "rejected", timestamp: Date.now() }));
+  });
+}
+
 test.describe("Regressão visual (ARQ-604)", () => {
+  test.beforeEach(async ({ page }) => {
+    await presetCookieConsentRejected(page);
+  });
+
   test("Home: viewport completo", async ({ page }) => {
     await page.goto("/");
     await freezeScrollReveal(page);
@@ -101,6 +118,10 @@ const INSIGHTS_ASSETS_DIGITAL_PAGES = [
 ];
 
 test.describe("Regressão visual — artigos de insights afetados por assets-digital.css (ARQ-308)", () => {
+  test.beforeEach(async ({ page }) => {
+    await presetCookieConsentRejected(page);
+  });
+
   for (const { slug, path } of INSIGHTS_ASSETS_DIGITAL_PAGES) {
     test(`${slug}: viewport completo`, async ({ page }) => {
       await page.goto(path);
