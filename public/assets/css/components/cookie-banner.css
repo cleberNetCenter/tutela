@@ -46,6 +46,10 @@
 
 .cookie-banner-link:hover,
 .cookie-banner-link:focus-visible {
+  /* Sem isso, o `a:hover { color: var(--color-text-strong) }` global
+     (foundation/base.css) vence no hover — --color-text-strong é um verde
+     quase preto, ilegível sobre o fundo escuro do banner (--color-surface-brand). */
+  color: var(--color-text-inverse);
   opacity: 1;
 }
 
