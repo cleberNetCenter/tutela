@@ -24,7 +24,7 @@
 - Prefixo `ARQ-` seguido de 3 dígitos. O primeiro dígito identifica o épico do roadmap (`15-architecture-roadmap.md`): `1xx` Segurança, `2xx` SEO, `3xx` Design System, `4xx` Consolidação Arquitetural, `5xx` Engenharia, `6xx` Acessibilidade, `7xx` Governança.
 - **Identificadores são permanentes.** Uma vez atribuído, um ID nunca é reatribuído a outro item — mesmo que o item original seja cancelado, o ID permanece reservado e aparece no backlog com `Status: CANCELADO`.
 - Novos itens dentro de um épico usam o próximo número livre na faixa correspondente (não há preenchimento retroativo de "buracos").
-- Próximo ID livre por épico neste momento: `ARQ-109`, `ARQ-204`, `ARQ-310`, `ARQ-407`, `ARQ-509` (linha corrigida nesta sprint — estava desatualizada em `ARQ-506`, que já existia desde a Sprint 24), `ARQ-609`, `ARQ-704`.
+- Próximo ID livre por épico neste momento: `ARQ-109`, `ARQ-204`, `ARQ-310`, `ARQ-407`, `ARQ-510` (`ARQ-509` atribuído nesta sprint), `ARQ-609`, `ARQ-704`.
 
 ## Fontes utilizadas
 
@@ -926,6 +926,31 @@
 | ADR relacionado | Nenhum |
 | Métrica de sucesso | `git diff --check` limpo (exit 0) no range que antes falhava (commits de `ARQ-309` na PR #195) — **atingido**, confirmado localmente antes do commit e depois pelo próprio gate `checklist-publicacao` passando em CI na mesma PR |
 | Observações | **Escopo real, confirmado por varredura, não pela lista antiga de `ARQ-303`**: `ARQ-303` documentou 6 arquivos restaurados em CRLF (`homepage.css`, `legacy.css`, `pages-consolidated.css`, `steps.css`, `verticals.css`, `components/buttons.css`), mas uma varredura direta (`file` em todo `public/assets/css/**/*.css`) nesta sprint encontra **9** arquivos atualmente em CRLF: dos 6 originais, `homepage.css` foi normalizado para LF em algum momento posterior (não é mais CRLF, não precisa do atributo); `steps.css`/`verticals.css` foram movidos para `sections/` desde então; e há 3 arquivos CRLF adicionais nunca documentados (`sections/hero.css`, `layout/layout.css`, `utilities/animations.css`, `foundation/reset.css` — 4, não 3, contando todos). Os 9 arquivos cobertos pelo `.gitattributes`: `legacy.css`, `pages/pages-consolidated.css`, `sections/steps.css`, `sections/verticals.css`, `sections/hero.css`, `layout/layout.css`, `utilities/animations.css`, `foundation/reset.css`, `components/buttons.css`. **Commit isolado, sinalizado separadamente da mudança de produto que o motivou** (`ARQ-309`), seguindo a disciplina de escopo do projeto — nenhum CSS de página foi tocado neste item. **Validação real**: confirmado com `git diff --check <base>..<head>` localmente reproduzindo exatamente o range que a PR #195 usa, antes (exit 2, mesma mensagem do CI) e depois (exit 0) da adição do `.gitattributes`; validação final via o próprio gate em CI (não simulação) na mesma PR, que passou (`npm test` 113/113 + `git diff --check` limpo). Fecha, na prática, o risco residual que `ARQ-504` já havia sinalizado como pendente ("validação real via Actions... fica pendente para depois da publicação"). |
+
+### ARQ-509 — Monitoramento e alertas para falhas silenciosas de infraestrutura/configuração
+
+| Campo | Valor |
+|---|---|
+| Objetivo | Detectar ativamente, via alerta automático, falhas de infraestrutura/configuração que quebram funcionalidade crítica — em vez de depender de relato manual do usuário, como ocorreu nos dois incidentes de origem deste item. |
+| Descrição | Implantar mecanismo de alerta ativo cobrindo, no mínimo: (1) expiração de certificado TLS; (2) variáveis de ambiente ausentes/vazias em runtime nos serviços críticos (`api`, produção e homologação); (3) indisponibilidade do endpoint `/api/diagnostico` (um health check simples já cobre este ponto). Não escopar aqui a solução técnica (ex. Uptime Robot, Healthchecks.io, script cron próprio, Prometheus) — decisão de sprint técnica futura de levantamento de opções, mesmo padrão já usado para `ARQ-107` (a Sprint 36 levantou opções antes de decidir). |
+| Origem | Dois incidentes reais de produção do mesmo padrão — ver Observações |
+| Documento | Nenhum ainda — incidentes registrados pela primeira vez neste item (ver Observações) |
+| Item da dívida técnica | N/A — decorre de incidentes reais, não de item numerado em `12-technical-debt.md` |
+| Arquivos afetados | A definir na sprint técnica de levantamento de opções (fora do escopo deste registro — ver Descrição) |
+| Dependências (depende de) | Nenhuma dependência técnica interna |
+| Dependências (desbloqueia) | Nenhuma |
+| Pré-requisitos | Nenhum |
+| Critérios de Aceite | Alerta disparado automaticamente, sem depender de relato manual, para os 3 cenários mínimos descritos (certificado TLS, variáveis de ambiente ausentes/vazias em runtime, indisponibilidade de `/api/diagnostico`) |
+| Critérios de Regressão | Não aplicável (item aditivo — monitoramento observa os serviços, não altera o comportamento deles) |
+| Impacto | Alto — formulário de captação de leads (`/diagnostico`) ficou indisponível em produção por 6 dias sem qualquer alerta no incidente de origem, impacto direto de negócio |
+| Risco | Baixo — mudança aditiva; monitoramento não modifica o comportamento dos serviços monitorados |
+| Complexidade | Média — depende de decisão de ferramenta/mecanismo (fora de escopo aqui) e de acesso à infraestrutura dos servidores, historicamente fora do alcance direto do ambiente de execução do Claude Code (mesmo padrão já registrado em `ARQ-102`, Bloco C) |
+| Estimativa | M |
+| Responsável | DevOps |
+| Status | BACKLOG |
+| ADR relacionado | Nenhum (a criar em ARQ-701, caso a ferramenta escolhida na sprint técnica futura justifique registro de decisão) |
+| Métrica de sucesso | Falha simulada em cada um dos 3 cenários mínimos gera alerta automático em minutos, não dias — comparado aos 6 dias de detecção manual do incidente de 2026-08-05 e à detecção também manual do incidente de TLS de 2026-07-27 |
+| Observações | **Dois incidentes de produção do mesmo padrão motivam este item — falha silenciosa sem detecção até relato manual do usuário**: (1) **27/07/2026** — certificado TLS expirado em produção, não detectado até relato manual do usuário. (2) **05/08/2026** — `docker-compose.yml` do serviço `api` (produção e homologação) sem `env_file` declarado desde o commit `33b8f76` (Sprint 29, `ARQ-101`) — o `.dockerignore` introduzido naquela sprint passou a excluir `.env` da imagem corretamente, mas sem o `env_file` compensatório no Compose; resultado: `RECAPTCHA_SECRET`, `SMTP_PASS`, `ADMIN_API_TOKEN` chegando vazios em runtime desde o rebuild seguinte, com o formulário `/diagnostico` quebrado em produção por 6 dias sem qualquer alerta, até relato manual do usuário. Causa raiz e correção (`env_file: [./api/.env]` adicionado ao serviço `api`) documentadas na sessão do incidente; produção corrigida, homologação segue quebrada por falta de `.env` preenchido lá — item separado, fora do escopo deste registro. Padrão comum aos dois incidentes: nenhum mecanismo detecta silenciosamente uma falha de configuração/infraestrutura que quebra funcionalidade crítica (TLS, variáveis de ambiente) até que um humano note o sintoma — tempo de detecção nos dois casos foi de dias, não minutos, e dependente de relato manual, não de alerta automático. |
 
 ---
 
