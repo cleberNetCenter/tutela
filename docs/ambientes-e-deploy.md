@@ -361,6 +361,65 @@ Durante a validação de `ARQ-506` (Sprint 24), um health check de rotina (`curl
 
 **Lacuna sistêmica exposta, não corrigida nesta sessão**: não existe alerta/monitoramento de expiração de certificado — a falha de renovação só foi percebida porque um health check manual, feito por outro motivo, aconteceu de bater na janela entre a expiração real e a próxima tentativa agendada. Candidato a item novo de backlog (Épico 5, ex. "monitoramento de expiração de certificado TLS/alerta de falha de renovação silenciosa"), não criado nesta sessão por disciplina de escopo — fica registrado aqui como achado para decisão em sprint futura.
 
+### Incidente: "Captcha inválido" no formulário `/diagnostico` em produção (2026-08-05)
+
+Sintoma: `POST https://www.tuteladigital.com.br/api/diagnostico` retornando `403 {"error":"Captcha inválido"}` em todo envio do formulário, mesmo com o widget reCAPTCHA validando normalmente no navegador (checkbox verde, `reload`/`userverify` completando com sucesso contra `google.com`/`gstatic.com`) — descartado bloqueio client-side (CSP) pela resposta JSON real do servidor.
+
+**Causa raiz confirmada**, via leitura do código do `tutela-api` e inspeção direta do container em produção: `docker-compose.yml` (`/opt/tutela-v2`, não versionado) nunca declarou `env_file`/`environment` para o serviço `api`. Até o commit `33b8f76` (`tutela-api`, Sprint 29, 2026-07-30 — "adiciona `.dockerignore`"), isso não importava porque o `Dockerfile` assava `.env` dentro da imagem via `COPY . .`. Esse commit adicionou `.dockerignore` excluindo `.env` da imagem — correção correta de segurança (segredo não deveria estar em camada de imagem Docker) —, mas sem o `env_file` compensatório no Compose. A partir do rebuild seguinte, toda variável de ambiente do serviço `api` (`RECAPTCHA_SECRET`, `SMTP_PASS`, `ADMIN_API_TOKEN`) passou a chegar vazia em runtime, silenciosamente — confirmado via `docker exec tutela_v2_api sh -c 'echo ${#RECAPTCHA_SECRET}'` retornando `0`.
+
+Relação com a Sprint 38 (CSP, mesma data) descartada: confirmado via histórico do `tutela-api` que o serviço `api` não recebeu nenhum commit entre 2026-07-30 e o incidente — a Sprint 38 mexeu só no Nginx (headers `Content-Security-Policy-Report-Only`), nunca no backend.
+
+**Correção aplicada**: adicionado `env_file: [./api/.env]` ao serviço `api` em `docker-compose.yml`, em homologação e produção; `docker compose up -d api` recriou o container com as variáveis carregadas corretamente (`RECAPTCHA_SECRET length: 40` em produção). Validado com envio real do formulário em produção — resultado renderizado, sem erro.
+
+**Achado que agrava o incidente**: passou despercebido por ~6 dias sem nenhum alerta — mesmo padrão do incidente de certificado TLS acima. Formulário de captação de leads ficou indisponível todo esse período sem detecção automática.
+
+**Lacuna exposta, não corrigida nesta sessão**: o `.env` de homologação não tem `RECAPTCHA_SECRET` preenchido (nunca foi configurado ali) — o `docker-compose.yml` de homolog recebeu o mesmo `env_file` por consistência, mas o formulário de diagnóstico em homologação segue quebrado até alguém preencher o valor. Ausência de monitoramento para esse tipo de falha silenciosa reforça o candidato a item de backlog já sinalizado no incidente de TLS (Épico 5).
+
+## CSP Report-Only (ARQ-102) — Sprint 38, 2026-08-05
+
+Política desenhada e validada por captura de rede real (`npm run dev` + script Playwright ad hoc, home + `/diagnostico.html`, aceitando o banner de consentimento e renderizando o reCAPTCHA). Evidência completa por origem em `16-architecture-backlog.md` (ARQ-102). Baseline confirmada antes de qualquer mudança (2026-08-05):
+
+```bash
+curl -sS -D - -o /dev/null https://homolog.tuteladigital.com.br/
+# x-frame-options, x-content-type-options, referrer-policy, x-robots-tag presentes;
+# nenhum Content-Security-Policy (mesmo estado do ARQ-108, 2026-07-24)
+```
+
+**Header completo (uma linha, quebrado aqui só para leitura):**
+
+```
+Content-Security-Policy-Report-Only:
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com;
+  style-src 'self' 'unsafe-inline';
+  font-src 'self';
+  img-src 'self' data:;
+  connect-src 'self' https://www.google-analytics.com https://www.google.com;
+  frame-src https://www.google.com;
+  frame-ancestors 'self';
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self'
+```
+
+`'unsafe-inline'` em `script-src`/`style-src` é um risco residual conhecido, não uma omissão: o site não tem build/templating, tem ~18 páginas com `<script>` inline distintos e `style=""`/`<style>` inline em várias páginas — nonce/hash por página exigiria gerar e manter esse valor a cada request ou por página, o que não é viável sem introduzir um passo de build (decisão arquitetural fora do escopo desta sprint). Sem endpoint de coleta de relatórios formal: validação desta fase é por console do navegador/Playwright, não por `report-uri`/`report-to` (decisão de custo-benefício para um site deste porte, revisável se o volume de violações justificar).
+
+**Snippet Nginx — aplicar dentro do container `tutela_v2_nginx` em homologação** (`docker exec -it tutela_v2_nginx sh`, editar o vhost ativo, ou reconstruir a imagem se a config for gerada no build — confirmar qual dos dois é o caso antes de editar):
+
+```nginx
+set $csp_report_only "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.google.com; frame-src https://www.google.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'";
+add_header Content-Security-Policy-Report-Only $csp_report_only always;
+```
+
+Validar antes de recarregar:
+
+```bash
+docker exec tutela_v2_nginx nginx -t
+docker exec tutela_v2_nginx nginx -s reload   # só se o teste acima passar
+```
+
+**Bloco C — aplicado manualmente pelo usuário, fora desta sessão** (o ambiente de execução do Claude Code não tem acesso SSH a `tutela-dev`/`tutela-web`, confirmado por teste direto — hostname não resolve; consistente com o padrão das sprints anteriores de infraestrutura). Confirmado por auditoria em 2026-08-05 via `curl -sS -D -` externo: o header `Content-Security-Policy-Report-Only` acima está ativo em **homologação e produção**. A extensão a produção — fora da sequência original deste plano — foi um deploy manual intencional do responsável do projeto, para resolver um problema que afetava produção; não é uma aplicação acidental. Pendente: período de observação sem violações inesperadas e decisão explícita sobre passar para modo bloqueante (`Content-Security-Policy` sem sufixo Report-Only).
+
 ## Segurança e pendências de operação
 
 - Controle escrita nas branches `main` e `homolog`; use revisão para produção.
