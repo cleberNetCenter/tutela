@@ -749,6 +749,7 @@
     "resultCtaLow": "See how to maintain the structure",
     "resultCtaModerate": "Understand how to mitigate risks",
     "resultCtaHigh": "See how to structure urgently",
+    "resultCtaCritical": "Talk to a specialist now",
     "recommendLabel": "Recommendation:",
     "riskLevels": {
       "low": {

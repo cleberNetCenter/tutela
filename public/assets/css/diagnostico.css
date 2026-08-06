@@ -830,6 +830,10 @@ body.diag-modal-open {
   background: linear-gradient(90deg, #7f1d1d, #ef4444);
 }
 
+.diag-resultado-card.critical::before {
+  background: linear-gradient(90deg, #450a0a, #b91c1c);
+}
+
 .diag-resultado-nivel {
   display: inline-flex;
   align-items: center;
@@ -859,6 +863,11 @@ body.diag-modal-open {
 .high .diag-resultado-nivel {
   background: rgba(239, 68, 68, 0.12);
   color: #7f1d1d;
+}
+
+.critical .diag-resultado-nivel {
+  background: rgba(185, 28, 28, 0.16);
+  color: #450a0a;
 }
 
 .diag-resultado-titulo {
