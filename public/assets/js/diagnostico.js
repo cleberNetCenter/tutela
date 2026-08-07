@@ -226,12 +226,15 @@ function loadReCaptcha(lang) {
 
 /* ── Renderização do resultado (usa I18N.t) ── */
 
+function getRiskKey(score) {
+  if (score <= 1) return 'low';
+  if (score <= 3) return 'moderate';
+  if (score <= 4) return 'high';
+  return 'critical';
+}
+
 function renderResultado(score) {
-  // Mapeia score para nível
-  let riskKey = 'low';
-  if (score <= 2) riskKey = 'low';
-  else if (score <= 4) riskKey = 'moderate';
-  else riskKey = 'high';
+  const riskKey = getRiskKey(score);
 
   // Obtém as strings traduzidas
   const title = I18N.t(`diagnostic.riskLevels.${riskKey}.title`) || 'Risco';
@@ -244,6 +247,7 @@ function renderResultado(score) {
   if (riskKey === 'low') ctaKey = 'resultCtaLow';
   else if (riskKey === 'moderate') ctaKey = 'resultCtaModerate';
   else if (riskKey === 'high') ctaKey = 'resultCtaHigh';
+  else if (riskKey === 'critical') ctaKey = 'resultCtaCritical';
   const ctaText = I18N.t(`diagnostic.${ctaKey}`) || 'Ver estrutura jurídica';
 
   const resultDiv = document.getElementById('resultado');
@@ -290,6 +294,8 @@ function enviar() {
   }
 
   const score = q1 + q2 + q3;
+  const riskKey = getRiskKey(score);
+  const nivel = I18N.t(`diagnostic.riskLevels.${riskKey}.title`) || riskKey;
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
   const token = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
@@ -301,7 +307,7 @@ function enviar() {
   fetch('/api/diagnostico', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, email, score, token, consentimento })
+    body: JSON.stringify({ nome, email, score, nivel, token, consentimento })
   })
     .then(response => {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);

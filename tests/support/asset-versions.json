@@ -4,8 +4,8 @@
     "hash": "dc7dbc21bf6f"
   },
   "/assets/css/diagnostico.css": {
-    "version": "1",
-    "hash": "30ff37e721e9"
+    "version": "2",
+    "hash": "e646050ffb87"
   },
   "/assets/css/fonts-editorial.css": {
     "version": "1",
@@ -65,7 +65,7 @@
   },
   "/assets/js/i18n.js": {
     "version": "1",
-    "hash": "c5ea0fbbd57b"
+    "hash": "8df98ea37fda"
   },
   "/assets/js/legal-animations.js": {
     "version": "1",
@@ -80,16 +80,16 @@
     "hash": "831a8326f09d"
   },
   "/assets/lang/en.json": {
-    "version": "11",
-    "hash": "3d6700f84193"
+    "version": "12",
+    "hash": "1ef8c58a7ff9"
   },
   "/assets/lang/es.json": {
-    "version": "11",
-    "hash": "64e1b64e0fc1"
+    "version": "12",
+    "hash": "a820ec36a577"
   },
   "/assets/lang/pt.json": {
-    "version": "11",
-    "hash": "72f4e62e0295"
+    "version": "12",
+    "hash": "24f068823726"
   },
   "/assets/search-index.json": {
     "version": "3",

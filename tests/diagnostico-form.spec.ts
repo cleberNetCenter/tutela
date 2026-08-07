@@ -115,4 +115,30 @@ test.describe("Formulário de diagnóstico — tratamento de erro do fetch (ARQ-
     expect(dialogMessage).toMatch(/erro/i);
     await expect(page.locator(".diag-resultado-card")).toHaveCount(0);
   });
+
+  // Regressão: enviar() (diagnostico.js) nunca incluía `nivel` no corpo do
+  // POST — só calculava o nível de risco depois da resposta, dentro de
+  // renderResultado(), para exibição. O backend usa req.body.nivel no
+  // assunto do e-mail de notificação ("Novo diagnóstico - ${nivel}"), que
+  // chegava como "undefined" em todo envio. Corrigido calculando o nível
+  // antes do fetch e enviando no corpo.
+  test("envia o campo `nivel` (nível de risco) no corpo do POST", async ({ page }) => {
+    test.setTimeout(60000);
+
+    let sentBody: Record<string, unknown> | null = null;
+    await page.route("**/api/diagnostico", route => {
+      sentBody = route.request().postDataJSON();
+      route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ success: true }) });
+    });
+
+    await page.goto("/diagnostico.html");
+    await preencherStep4(page);
+
+    await page.evaluate(() => (window as any).enviar());
+    await expect(page.locator("#resultado")).toBeVisible();
+
+    expect(sentBody).not.toBeNull();
+    expect(sentBody!.nivel).toBeTruthy();
+    expect(sentBody!.nivel).not.toBe("undefined");
+  });
 });
