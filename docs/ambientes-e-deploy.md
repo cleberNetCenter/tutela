@@ -324,6 +324,18 @@ Produção segue sem PQC — decisão entre os 3 caminhos possíveis (upgrade do
 
 **Nota operacional**: `openssl` foi instalado via `apk add` dentro do container de homologação apenas para diagnóstico desta sessão — é efêmero (não sobrevive a um `--force-recreate`) e não deve ser considerado uma ferramenta permanente do ambiente sem decisão própria sobre customizar a imagem (ex. Dockerfile próprio em vez de `nginx:alpine` puro).
 
+### Atualização — Caminho B aplicado em produção (ARQ-704) — 14/08/2026
+
+O Caminho B (`oqs-provider`) foi escolhido e aplicado em produção, além de homologação. Os três sites servidos pelo host de produção — Tutela, Netcenter e Veritio — foram validados negociando `X25519MLKEM768`. Detalhamento completo (build, instalação, causa raiz do diagnóstico) está no ADR-0004 (adendo "Decisão final e execução"); o que segue é o resumo operacional relevante para este documento.
+
+> **⚠️ Lição operacional crítica**: mudanças em `/usr/lib/ssl/openssl.cnf` exigem `sudo systemctl restart nginx` — **não** `reload` — para que o novo provider seja carregado pelo processo master. Um `reload` sozinho falha silenciosamente: o Nginx aceita a configuração normalmente, mas o processo já em memória não reinicializa o OpenSSL nem seus providers, então o handshake com clientes que oferecem o grupo híbrido falha com `SSL alert number 40` (`handshake_failure`) sem nenhum erro visível nos logs de config. Só um novo processo master (via `restart`) recarrega os providers. Essa foi a causa raiz de uma falha que persistiu através de três tentativas de reposicionar a diretiva `ssl_ecdh_curve` no arquivo antes de ser diagnosticada corretamente — ver ADR-0004 para o passo a passo completo do diagnóstico por eliminação.
+
+`liboqs`/`oqs-provider` não são geridos por `apt` — instalação manual, fora de gerenciamento de pacote do sistema:
+
+- `liboqs.so*` → `/usr/lib/x86_64-linux-gnu/`
+- `oqsprovider.so` → `/usr/lib/x86_64-linux-gnu/ossl-modules/oqsprovider.so`
+- Backup do `openssl.cnf` original preservado em `/usr/lib/ssl/openssl.cnf.bak-20260814-oqs`, em ambos os servidores (homolog e produção), para referência de rollback futuro se necessário.
+
 ### Auditoria e mudança segura
 
 No servidor do ambiente:

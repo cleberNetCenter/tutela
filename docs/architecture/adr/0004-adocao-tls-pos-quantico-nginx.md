@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Status | Proposto (parcialmente implementado — ver Decisão) |
+| Status | Implementado (Caminho B, homolog e produção) |
 | Data | 2026-08-14 |
 | Sprint / ARQ | 14/08/2026, `ARQ-704` |
 | Relacionado | `ARQ-704` (a abrir formalmente), `ARQ-108` (auditoria de infraestrutura que originou este trabalho) |
@@ -61,3 +61,78 @@ Nenhum destes caminhos foi avaliado além do nível de descrição acima — cad
 ## Não decidido nesta sprint
 
 Qual dos três caminhos seguir para produção, e quando. Fica registrado como trabalho futuro sob `ARQ-704`.
+
+## Adendo — Decisão final e execução
+
+Status atualizado: Implementado (Caminho B, homolog e produção)
+Data da atualização: 14/08/2026
+
+Após a investigação original identificar três caminhos possíveis para produção (A — upgrade de OpenSSL do host; B — `oqs-provider`; C — migração de topologia), cada um foi avaliado com dados reais antes de uma escolha:
+
+### Caminho A — descartado
+
+Ubuntu 24.04 LTS trava OpenSSL na série 3.0.x nos repositórios oficiais (`apt-cache madison` não retorna nenhuma versão 3.5+). Um upgrade exigiria sair do repositório suportado pela Canonical. Mais grave: `libssl3` do sistema é dependência compartilhada de `sshd` e `apt` no mesmo host — substituí-la arriscaria acesso remoto ao servidor. Descartado por risco desproporcional ao ganho.
+
+### Caminho C — descartado
+
+`ss -tlnp` confirmou que o Nginx do host escuta `0.0.0.0:443` como processo único, multiplexando três domínios (`tuteladigital.com.br`, `netcenter.br.com`, `veritio.com.br`) por SNI. O host tem um único IP público (`192.168.30.220`, atrás de NAT/port-forward do Fortigate — `ip -4 addr show` confirmou ausência de IPs adicionais). Migrar o Tutela para o Docker terminar TLS diretamente causaria conflito de bind de porta com os outros dois sites, que compartilham o mesmo processo Nginx. Resolver isso exigiria nova interface de rede e/ou reconfiguração do Fortigate para rotear por VIP/SNI — complexidade desproporcional, descartado por decisão do responsável pelo projeto.
+
+### Caminho B — escolhido, implementado e validado em homologação e produção
+
+Processo de build (idêntico nos dois ambientes, executado via container Docker temporário `ubuntu:24.04`, sem instalar toolchain de compilação nos hosts):
+
+```bash
+git clone --depth 1 https://github.com/open-quantum-safe/liboqs.git
+git clone --depth 1 https://github.com/open-quantum-safe/oqs-provider.git
+cmake -S liboqs -B liboqs/build -DCMAKE_INSTALL_PREFIX=/tmp/liboqs-install -DOQS_USE_OPENSSL=OFF -DBUILD_SHARED_LIBS=ON -GNinja
+cmake --build liboqs/build --parallel && cmake --install liboqs/build
+cmake -S oqs-provider -B oqs-provider/build -DCMAKE_INSTALL_PREFIX=/tmp/oqsprov-install -Dliboqs_DIR=/tmp/liboqs-install/lib/cmake/liboqs -GNinja
+cmake --build oqs-provider/build --parallel
+```
+
+Artefatos gerados: `oqsprovider.so` (~1.1MB) e `liboqs.so.9` (~26MB) + symlinks.
+
+Instalação (fora de gerenciamento por pacote — `.so`s copiados manualmente):
+
+- `liboqs.so*` → `/usr/lib/x86_64-linux-gnu/` (+ `ldconfig`)
+- `oqsprovider.so` → `/usr/lib/x86_64-linux-gnu/ossl-modules/`
+- `openssl.cnf` editado: novo `oqsprovider = oqsprovider_sect` em `[provider_sect]`, nova seção `[oqsprovider_sect]` com `activate = 1`, e `default_sect` com `activate = 1` explícito (mantendo o provider padrão ativo — requisito de segurança, evita quebrar aplicações/SSH que dependem do OpenSSL do sistema).
+
+Diretiva Nginx aplicada — no nível `http{}` de `/etc/nginx/nginx.conf` (não em cada `server{}` individualmente — ver "Causa raiz descoberta" abaixo):
+
+```nginx
+ssl_ecdh_curve X25519MLKEM768:X25519:secp256r1;
+```
+
+### Causa raiz descoberta durante a aplicação em produção — lição operacional crítica
+
+A primeira tentativa de aplicar a diretiva (só no `server{}` do Tutela, depois em todos os `server{}` do domínio, depois no nível `http{}` global) falhou consistentemente com `SSL alert number 40` (`handshake_failure`) quando um cliente oferecia o grupo híbrido. Diagnóstico completo, por eliminação:
+
+- Não era posição da diretiva no arquivo — mesmo movida para `http{}` global (herdada por todos os `server{}`, incluindo Netcenter e Veritio), a falha persistiu.
+- Não era `ssl_ciphers` incompatível — testado isoladamente, sem efeito na negociação de grupo.
+- Não eram processos Nginx concorrentes na porta 443 — confirmado via `ss -tlnp` que só um processo (`nginx.service`) está de fato vinculado a `0.0.0.0:443`; os outros processos "nginx" visíveis em `ps` são workers dentro dos containers Docker, isolados em redes internas.
+- Causa real: `openssl list -providers`/CLI `openssl` enxergavam o `oqsprovider` corretamente (novo processo, lê `openssl.cnf` do zero), mas o processo master do Nginx, rodando desde 30/07 (duas semanas antes desta mudança), nunca recarregou sua inicialização do OpenSSL. `systemctl reload nginx` recarrega a configuração do Nginx, mas não reinicializa o OpenSSL nem seus providers — isso só acontece na criação de um novo processo master. Confirmado via `/proc/<pid>/maps`: o provider `liboqs.so` estava ausente do mapa de memória dos workers antes do restart, presente depois.
+
+Correção: `systemctl restart nginx` (não `reload`) após qualquer mudança em `openssl.cnf`. Causou interrupção breve (segundos) — aceitável, comunicado e executado deliberadamente, não incidental.
+
+### Validação final (14/08/2026, pós-restart)
+
+```
+Netcenter:  Negotiated TLS1.3 group: X25519MLKEM768
+Veritio:    Negotiated TLS1.3 group: X25519MLKEM768
+Tutela:     Negotiated TLS1.3 group: X25519MLKEM768 (via hostname público, através do Fortigate)
+Smoke test (sem forçar grupo): HTTP/2 200 nos três sites
+```
+
+Netcenter e Veritio ganharam suporte a PQC como benefício colateral não planejado — a diretiva no nível `http{}` global os beneficia automaticamente, sem trabalho adicional, já que compartilham o mesmo processo Nginx do host.
+
+### Consequências (atualizado)
+
+- Todos os três sites servidos por este host (Tutela, Netcenter, Veritio) têm key exchange híbrido PQC ativo, mitigando "harvest now, decrypt later" para os três de uma vez.
+- `liboqs`/`oqs-provider` não são gerenciados por pacote do sistema (`apt`) — instalação manual, não sobrevive a uma reinstalação do SO, e uma atualização futura de `libssl3` via `apt upgrade` pode alterar ABI o suficiente para quebrar compatibilidade binária com o provider compilado hoje. Sem processo de atualização automatizado — risco de dívida técnica silenciosa.
+- Qualquer mudança futura em `openssl.cnf` do host exige `systemctl restart nginx`, não `reload` — documentado no runbook para evitar repetição do diagnóstico desta sprint.
+- Ambiente de homologação (`tutela-dev`) tem dois caminhos PQC funcionando simultaneamente: o original via imagem `nginx:alpine`/Docker (não removido) e agora também via `oqs-provider` no host (mesmo padrão de produção) — redundância não intencional, sem necessidade de unificar, mas vale nota para não confundir futuros diagnósticos.
+
+### Não decidido — fica como trabalho futuro, fora desta sprint
+
+Empacotamento apropriado de `liboqs`/`oqs-provider` (ex. `.deb` próprio ou script de instalação versionado) para tornar a instalação reproduzível e resiliente a atualizações do sistema. Monitoramento contínuo da taxa de negociação PQC real vs. fallback clássico em produção (não implementado nesta sprint).
