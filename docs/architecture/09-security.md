@@ -20,9 +20,21 @@ Desde a Sprint 25 (`ARQ-101`), o backend de `/api/diagnostico` é auditável: ve
 
 ## Headers HTTP e CSP
 
-Uma busca em todo o repositório (arquivos HTML, JS e JSON) por `Content-Security-Policy`, `X-Frame-Options`, `Strict-Transport-Security`, `Permissions-Policy` e `X-Content-Type-Options` não retornou nenhuma ocorrência. **Não identificado no projeto.**
+Uma busca em todo o repositório (arquivos HTML, JS e JSON) por `Content-Security-Policy`, `X-Frame-Options`, `Strict-Transport-Security`, `Permissions-Policy` e `X-Content-Type-Options` não retorna nenhuma ocorrência — **nenhum desses headers é definido pela aplicação em si** (não há middleware, não há `<meta http-equiv="Content-Security-Policy">` em nenhuma página). A configuração ativa do Nginx não é versionada neste repositório — é gerenciada diretamente nos servidores, e o `nginx -T`/`curl -I` executado neles é a fonte de verdade.
 
-Isso não significa necessariamente que esses headers estejam ausentes em produção — segundo `docs/ambientes-e-deploy.md:116-118`, a configuração ativa do Nginx *"não é mais versionada no repositório: ela é gerenciada diretamente nos servidores"*. Portanto, a existência (ou não) de CSP, HSTS, `X-Frame-Options` etc. **necessita validação** direta via `nginx -T` no servidor, ou via `curl -I` contra a produção, conforme o próprio runbook recomenda (`docs/ambientes-e-deploy.md:160-176`). O que é um fato verificável a partir do repositório é que **nenhum desses headers é definido pela aplicação em si** (não há middleware, não há `<meta http-equiv="Content-Security-Policy">` em nenhuma página).
+Essa configuração-fonte foi auditada diretamente nos dois servidores (`tutela-web`/produção, `tutela-dev`/homologação) via `nginx -T`/`curl -I`, inicialmente em 2026-07-24 (ARQ-108) e reconfirmada/atualizada em 14/08/2026. Estado confirmado por esses headers:
+
+| Header | Produção | Homologação |
+| --- | --- | --- |
+| `Strict-Transport-Security` | `max-age=31536000; includeSubDomains; preload` | ausente |
+| `X-Frame-Options` | `SAMEORIGIN` | `SAMEORIGIN` |
+| `X-Content-Type-Options` | `nosniff` | `nosniff` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` | `camera=(), microphone=(), geolocation=()` |
+| `Content-Security-Policy-Report-Only` | ativo (política completa em `docs/ambientes-e-deploy.md`, seção "CSP Report-Only (ARQ-102)") | ativo |
+| `Content-Security-Policy` (modo bloqueante) | ausente | ausente |
+
+Detalhamento item a item, incluindo a evidência de config-fonte e o histórico de cada auditoria, está em `16-architecture-backlog.md` (ARQ-102 a ARQ-106, ARQ-108) e em `docs/ambientes-e-deploy.md` (seção "Nginx"). CSP em modo bloqueante segue pendente (ARQ-102, `BACKLOG`) — exige período de observação sem violações antes de ativar.
 
 `public/vercel.json` — que poderia ter sido o lugar natural para declarar headers caso a Vercel estivesse em uso — continha apenas `redirects`, nenhuma seção `headers`; removido na Sprint 6 (ARQ-403) por estar comprovadamente inerte (ver [12-technical-debt.md](12-technical-debt.md)).
 
