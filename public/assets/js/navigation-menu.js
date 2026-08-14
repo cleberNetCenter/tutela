@@ -187,17 +187,12 @@
     }
   });
 
-  document.querySelectorAll(".lang-flag").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".lang-flag").forEach((flag) => {
-        flag.classList.remove("active");
-      });
-      btn.classList.add("active");
-
-      if (window.I18N && typeof window.I18N.switchLanguage === "function") {
-        window.I18N.switchLanguage(btn.dataset.lang);
-      }
-    });
+  // A troca de idioma em si (fetch das traduções + classe .active) é
+  // responsabilidade exclusiva do listener global em i18n.js. Aqui só
+  // tratamos a consequência específica do menu mobile: fechar o menu
+  // depois que o idioma foi trocado a partir do seletor dentro dele.
+  document.querySelectorAll(".lang-switch-mobile .lang-flag").forEach((btn) => {
+    btn.addEventListener("click", () => closeMobileMenu());
   });
 
   const header = document.getElementById("header");
