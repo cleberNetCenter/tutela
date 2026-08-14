@@ -132,6 +132,20 @@ test.describe("Navegação por teclado nos dropdowns (ARQ-603)", () => {
     await expect(items.nth(itemCount - 1)).toBeFocused();
   });
 
+  test("ArrowUp no toggle abre o dropdown e foca o último item", async ({ page }) => {
+    await page.goto("/");
+
+    const dropdown = page.locator(".nav-dropdown").first();
+    const toggle = dropdown.locator(".nav-toggle");
+    const items = dropdown.locator(".dropdown-menu a");
+    const itemCount = await items.count();
+
+    await toggle.focus();
+    await page.keyboard.press("ArrowUp");
+    await expect(toggle).toHaveAttribute("aria-expanded", "true");
+    await expect(items.nth(itemCount - 1)).toBeFocused();
+  });
+
   test("Escape fecha o dropdown e devolve o foco ao toggle, mesmo com o foco em um item do submenu", async ({
     page,
   }) => {
