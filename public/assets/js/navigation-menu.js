@@ -101,14 +101,20 @@
       }
     });
 
-    // ArrowDown no toggle: abre o dropdown (equivalente ao clique) e move o
-    // foco para o primeiro item do submenu (padrão WAI-ARIA menu button).
+    // ArrowDown/ArrowUp no toggle: abrem o dropdown (equivalente ao clique)
+    // e movem o foco para o primeiro (ArrowDown) ou último (ArrowUp) item
+    // do submenu — padrão WAI-ARIA menu button, simétrico nas duas direções.
     btn.addEventListener("keydown", (event) => {
-      if (event.key !== "ArrowDown") return;
+      if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
       event.preventDefault();
       closeOthers(drop);
       openDrop(btn, menu);
-      menuItems()[0]?.focus();
+      const items = menuItems();
+      if (event.key === "ArrowDown") {
+        items[0]?.focus();
+      } else {
+        items[items.length - 1]?.focus();
+      }
     });
 
     // ArrowUp/ArrowDown com foco em um item do submenu aberto: navega entre
