@@ -24,7 +24,7 @@
 - Prefixo `ARQ-` seguido de 3 dígitos. O primeiro dígito identifica o épico do roadmap (`15-architecture-roadmap.md`): `1xx` Segurança, `2xx` SEO, `3xx` Design System, `4xx` Consolidação Arquitetural, `5xx` Engenharia, `6xx` Acessibilidade, `7xx` Governança.
 - **Identificadores são permanentes.** Uma vez atribuído, um ID nunca é reatribuído a outro item — mesmo que o item original seja cancelado, o ID permanece reservado e aparece no backlog com `Status: CANCELADO`.
 - Novos itens dentro de um épico usam o próximo número livre na faixa correspondente (não há preenchimento retroativo de "buracos").
-- Próximo ID livre por épico neste momento: `ARQ-109`, `ARQ-204`, `ARQ-310`, `ARQ-409` (`ARQ-408` atribuído em 14/08/2026 — nota: esta linha indicava `ARQ-407` como livre até essa data, desatualizada; `ARQ-407` já estava em uso, `CONCLUÍDO` desde a Sprint 21), `ARQ-510` (`ARQ-509` atribuído em sprint anterior), `ARQ-609`, `ARQ-704`.
+- Próximo ID livre por épico neste momento: `ARQ-109`, `ARQ-204`, `ARQ-310`, `ARQ-409` (`ARQ-408` atribuído em 14/08/2026 — nota: esta linha indicava `ARQ-407` como livre até essa data, desatualizada; `ARQ-407` já estava em uso, `CONCLUÍDO` desde a Sprint 21), `ARQ-510` (`ARQ-509` atribuído em sprint anterior), `ARQ-609`, `ARQ-705` (`ARQ-704` atribuído em 14/08/2026 — nota: esta linha indicava `ARQ-704` como livre até essa data, desatualizada).
 
 ## Fontes utilizadas
 
@@ -1264,6 +1264,31 @@
 | Métrica de sucesso | Documento aprovado formalmente pelo time em revisão |
 | Observações | Reavaliado na revisão final da fase estrutural. O escopo de conteúdo (princípios de evolução + convenções de engenharia formalizadas permanentemente) foi atendido por [17-architectural-manifesto.md](17-architectural-manifesto.md) (princípios) e [../governance/18-engineering-principles.md](../governance/18-engineering-principles.md) (convenções) — mas como **dois documentos separados**, não o "guia único" originalmente previsto neste item, e sem revisão formal pelo time humano (apenas aprovação "com ressalvas" na revisão arquitetural). Por isso o item é marcado **Redefinido**, não Concluído: o ID permanece reservado e não será reaberto para recriar um "guia único" — 17 e 18 são, a partir de agora, os documentos oficiais que cumprem esse papel. ARQ-701 (ADRs) e ARQ-702 (CLAUDE.md) continuam abertos, sem alteração, pois seu escopo não foi atendido por nenhum documento existente. |
 
+### ARQ-704 — Estratégia de adoção de TLS pós-quântico (PQC) na infraestrutura Nginx
+
+| Campo | Valor |
+|---|---|
+| Objetivo | Avaliar e decidir a estratégia de adoção de TLS pós-quântico (PQC) na infraestrutura Nginx, mitigando o risco "harvest now, decrypt later" no key exchange. |
+| Descrição | Ver [ADR-0004](adr/0004-adocao-tls-pos-quantico-nginx.md). |
+| Origem | Investigação técnica de 14/08/2026, decorrente da auditoria de infraestrutura `ARQ-108`. |
+| Documento | [ADR-0004](adr/0004-adocao-tls-pos-quantico-nginx.md) |
+| Item da dívida técnica | N/A — não corresponde a nenhum dos 16 itens numerados de `12-technical-debt.md`; item decorrente de investigação técnica posterior, mesmo padrão de `ARQ-108` |
+| Arquivos afetados | Nenhum arquivo deste repositório — configuração Nginx fora do repositório, nos dois servidores |
+| Dependências (depende de) | `ARQ-108` (concluído) |
+| Dependências (desbloqueia) | Nenhuma diretamente |
+| Pré-requisitos | Nenhum |
+| Critérios de Aceite | Decisão explícita entre os Caminhos A/B/C (ver ADR-0004) tomada e executada em produção, com grupo híbrido PQC negociável mantendo fallback clássico para clientes sem suporte |
+| Critérios de Regressão | Nenhum cliente legítimo perde a capacidade de negociar TLS 1.3 (fallback para grupos clássicos `X25519`/`secp256r1` preservado) |
+| Impacto | Médio-Alto (mitigação de risco de longo prazo — exposição a "harvest now, decrypt later" — não uma vulnerabilidade ativa hoje) |
+| Risco | Médio (mudança de infraestrutura crítica; aditiva e de baixo risco em homologação, mas o Caminho C exigiria mudança arquitetural maior em produção) |
+| Complexidade | Média-Alta (depende do caminho escolhido para produção — ver ADR-0004) |
+| Estimativa | M-G |
+| Responsável | Infraestrutura |
+| Status | EM ANDAMENTO — homologação implementada e validada; produção com decisão em aberto entre os 3 caminhos descritos no ADR. |
+| ADR relacionado | [ADR-0004](adr/0004-adocao-tls-pos-quantico-nginx.md) — Adoção de TLS Pós-Quântico (PQC) na Infraestrutura Nginx |
+| Métrica de sucesso | Grupo híbrido PQC negociado como grupo TLS 1.3 em produção, com fallback clássico preservado — **pendente** (atingido apenas em homologação até o momento) |
+| Observações | Diretiva aplicada em homologação: `ssl_ecdh_curve X25519MLKEM768:X25519:secp256r1;`, em `/opt/tutela-v2/nginx/default.conf` de `homolog.tuteladigital.com.br`, aplicada via `docker compose up -d --force-recreate nginx` (bind mount de arquivo único — `reload` sozinho não é suficiente, ver `docs/ambientes-e-deploy.md`). Validação ao vivo contra o hostname público real: `openssl s_client -connect homolog.tuteladigital.com.br:443 -groups X25519MLKEM768 -tls1_3` retornou `Negotiated TLS1.3 group: X25519MLKEM768`. Causa raiz de produção não ter recebido a mesma diretiva: o Nginx que termina TLS em produção é o do host (OpenSSL 3.0.13, sem suporte nativo a ML-KEM), diferente de homologação, onde quem termina TLS é o container Docker (`nginx:alpine`, OpenSSL 3.5.5/3.5.7 com suporte nativo) — ver detalhamento completo dos 3 caminhos possíveis para produção (upgrade do OpenSSL do host, `oqs-provider`, ou migração de topologia) no ADR-0004. Nenhum dos três caminhos foi avaliado além do nível de descrição no ADR; escolha fica para sprint futura. |
+
 ---
 
 ## Marcos Arquiteturais
@@ -1281,7 +1306,7 @@
 `ARQ-601` a `ARQ-606`. Alinhado ao critério "WCAG AA" do Épico 6 do roadmap. `ARQ-601`–`ARQ-606` concluídos (Sprints 7–10, 15) — Épico 6 completo. `ARQ-605` e `ARQ-606` ficaram em BACKLOG até a Sprint 15 por dependerem de decisão de conteúdo/design, não de complexidade técnica; resolvidos após o responsável pelo projeto escolher entre as opções concretas apresentadas.
 
 ### Marco 5 — Governança Completa
-`ARQ-701` a `ARQ-703`. Todo novo desenvolvedor compreende a arquitetura lendo apenas a documentação — critério de aceite explícito do Épico 7 do roadmap.
+`ARQ-701` a `ARQ-703`. Todo novo desenvolvedor compreende a arquitetura lendo apenas a documentação — critério de aceite explícito do Épico 7 do roadmap. `ARQ-704` (PQC) foi adicionado posteriormente ao Épico 7 (14/08/2026) mas não integra este marco — não faz parte do critério de aceite original "compreender a arquitetura pela documentação", é uma decisão técnica de infraestrutura que passou a usar o processo de ADR já formalizado por `ARQ-701`.
 
 ---
 
@@ -1290,16 +1315,18 @@
 Checagem executada antes de finalizar este documento:
 
 - [x] **Todos os 16 itens de dívida técnica de `12-technical-debt.md` possuem pelo menos um ARQ.** Mapeamento: #1→ARQ-201, #2→ARQ-101, #3→ARQ-102/103/104/105/106, #4→ARQ-405, #5→ARQ-202, #6→ARQ-301/303, #7→ARQ-406, #8→ARQ-601, #9→ARQ-404, #10→ARQ-302/304, #11→ARQ-501, #12→ARQ-502, #13→ARQ-402, #14→ARQ-401, #15→ARQ-403, #16→ARQ-107.
-- [x] **Todos os 34 ARQs possuem responsável**, restrito às 9 categorias definidas.
-- [x] **Todos os 34 ARQs possuem critérios de aceite** (mesmo os de auditoria/documentação, cujo critério é a publicação do achado).
-- [x] **Todos os 34 ARQs possuem métrica de sucesso objetiva.**
+- [x] **Todos os 35 ARQs possuem responsável**, restrito às 9 categorias definidas.
+- [x] **Todos os 35 ARQs possuem critérios de aceite** (mesmo os de auditoria/documentação, cujo critério é a publicação do achado).
+- [x] **Todos os 35 ARQs possuem métrica de sucesso objetiva.**
 - [x] **Não há duplicações de ID.** Cada ARQ aparece uma única vez no documento.
 - [x] **Não há ARQs órfãos.** Todo ID citado em um campo "Dependências" corresponde a um item de fato definido neste backlog.
 - [x] **Todas as dependências são consistentes** (nenhuma dependência circular; toda relação "depende de" tem uma contraparte "desbloqueia" no item referenciado, ou é uma dependência externa explícita ao repositório).
-- [x] **Todos os 7 épicos têm backlog suficiente para execução independente**: Segurança (8 itens), SEO (3), Design System (4), Consolidação (6), Engenharia (5), Acessibilidade (5), Governança (3) — nenhum épico depende de detalhamento adicional para que um time comece a trabalhar.
+- [x] **Todos os 7 épicos têm backlog suficiente para execução independente**: Segurança (8 itens), SEO (3), Design System (4), Consolidação (6), Engenharia (5), Acessibilidade (5), Governança (4, após `ARQ-704`) — nenhum épico depende de detalhamento adicional para que um time comece a trabalhar.
 
 Itens adicionados nesta etapa que não constavam do roadmap original (`15-architecture-roadmap.md`) nem do catálogo de dívida técnica numerado: `ARQ-107` (desdobrado do rótulo genérico "LGPD"), `ARQ-108`, `ARQ-203`, `ARQ-405`, `ARQ-406`, `ARQ-503`, `ARQ-505`. Todos rastreados explicitamente no campo "Origem" de cada item.
 
 Item adicionado posteriormente, durante a execução do backlog (Sprint 8): `ARQ-605`, achado da auditoria de `ARQ-602`, rastreado no campo "Origem" do próprio item.
 
 Item adicionado posteriormente, durante a execução do backlog (Sprint 10): `ARQ-606`, achado da auditoria de `ARQ-604` (subtítulo de hero das páginas legais sem contraste suficiente), rastreado no campo "Origem" do próprio item.
+
+Item adicionado posteriormente, durante a execução do backlog (14/08/2026): `ARQ-704`, decorrente de investigação técnica de viabilidade de TLS pós-quântico originada pela auditoria `ARQ-108`, rastreado no campo "Origem" do próprio item e formalizado via [ADR-0004](adr/0004-adocao-tls-pos-quantico-nginx.md).
