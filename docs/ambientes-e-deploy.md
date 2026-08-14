@@ -312,6 +312,18 @@ Nova rodada de comandos (`nginx -T`, `curl -I`) executada diretamente nos dois s
 
 **5. Data e evidência**: checagem realizada em 14/08/2026. Ver `docs/architecture/16-architecture-backlog.md` (ARQ-102, ARQ-103, ARQ-106, ARQ-108) para o detalhamento item a item dos headers, e `docs/architecture/09-security.md` (seção "Headers HTTP e CSP") para o resumo consolidado por ambiente.
 
+### Investigação de viabilidade de TLS pós-quântico (ARQ-704) — 2026-08-14
+
+Investigação técnica executada manualmente em homologação, decorrente da auditoria de infraestrutura acima (ARQ-108). Decisão e detalhamento completo (contexto, alternativas para produção, consequências) registrados em [`docs/architecture/adr/0004-adocao-tls-pos-quantico-nginx.md`](architecture/adr/0004-adocao-tls-pos-quantico-nginx.md) — o que segue é um resumo operacional.
+
+**Confirmado**: o container `nginx:alpine` de homologação roda OpenSSL 3.5.5 (atualizado para 3.5.7 via `apk upgrade` durante o teste), que suporta ML-KEM (FIPS 203) nativamente. O Nginx de produção, que roda no host (fora do Docker), usa OpenSSL 3.0.13, sem suporte nativo — suporte estável a ML-KEM só chegou na série 3.5 do OpenSSL.
+
+**Aplicado (só em homologação)**: `ssl_ecdh_curve X25519MLKEM768:X25519:secp256r1;` no `default.conf` de `homolog.tuteladigital.com.br`, aplicado via `docker compose up -d --force-recreate nginx` (necessário por causa do bind mount de arquivo único, ver nota acima). Validado contra o hostname público real com `openssl s_client -connect homolog.tuteladigital.com.br:443 -groups X25519MLKEM768 -tls1_3`, que retornou `Negotiated TLS1.3 group: X25519MLKEM768`.
+
+Produção segue sem PQC — decisão entre os 3 caminhos possíveis (upgrade do OpenSSL do host, `oqs-provider`, ou migração de topologia) fica em aberto, registrada no ADR-0004 acima, não decidida nesta sessão.
+
+**Nota operacional**: `openssl` foi instalado via `apk add` dentro do container de homologação apenas para diagnóstico desta sessão — é efêmero (não sobrevive a um `--force-recreate`) e não deve ser considerado uma ferramenta permanente do ambiente sem decisão própria sobre customizar a imagem (ex. Dockerfile próprio em vez de `nginx:alpine` puro).
+
 ### Auditoria e mudança segura
 
 No servidor do ambiente:

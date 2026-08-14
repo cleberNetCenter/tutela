@@ -13,3 +13,4 @@ Use [template.md](template.md) para novos ADRs. Numeração sequencial (`0001`, 
 | [0001](0001-nomenclatura-ad-pillar.md) | Nomenclatura `--ad-pillar-*` para tokens sem equivalente em `--ad-*` | Sprint 11 / `ARQ-301` |
 | [0002](0002-breakpoint-tokens-fora-de-media.md) | Tokens `--breakpoint-*` como constantes documentadas, não `var()` em `@media` | Sprint 12 / `ARQ-302` |
 | [0003](0003-convencao-cache-busting.md) | Cache-busting por contador incremental + guard-test de hash | Sprint 19 / `ARQ-502` |
+| [0004](0004-adocao-tls-pos-quantico-nginx.md) | TLS pós-quântico (ML-KEM híbrido) implantado em homologação; produção em aberto entre 3 caminhos | 14/08/2026 / `ARQ-704` |
