@@ -230,6 +230,10 @@
 	.tdf-trust {
 		flex-wrap: wrap;
 	}
+
+	.tdf-trust-pill {
+		white-space: normal;
+	}
 }
 
 /* Força herança de cor em todos os filhos do footer para evitar
