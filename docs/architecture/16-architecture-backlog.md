@@ -977,6 +977,31 @@
 | Métrica de sucesso | Falha simulada em cada um dos 3 cenários mínimos gera alerta automático em minutos, não dias — comparado aos 6 dias de detecção manual do incidente de 2026-08-05 e à detecção também manual do incidente de TLS de 2026-07-27 |
 | Observações | **Dois incidentes de produção do mesmo padrão motivam este item — falha silenciosa sem detecção até relato manual do usuário**: (1) **27/07/2026** — certificado TLS expirado em produção, não detectado até relato manual do usuário. (2) **05/08/2026** — `docker-compose.yml` do serviço `api` (produção e homologação) sem `env_file` declarado desde o commit `33b8f76` (Sprint 29, `ARQ-101`) — o `.dockerignore` introduzido naquela sprint passou a excluir `.env` da imagem corretamente, mas sem o `env_file` compensatório no Compose; resultado: `RECAPTCHA_SECRET`, `SMTP_PASS`, `ADMIN_API_TOKEN` chegando vazios em runtime desde o rebuild seguinte, com o formulário `/diagnostico` quebrado em produção por 6 dias sem qualquer alerta, até relato manual do usuário. Causa raiz e correção (`env_file: [./api/.env]` adicionado ao serviço `api`) documentadas na sessão do incidente; produção corrigida, homologação segue quebrada por falta de `.env` preenchido lá — item separado, fora do escopo deste registro. Padrão comum aos dois incidentes: nenhum mecanismo detecta silenciosamente uma falha de configuração/infraestrutura que quebra funcionalidade crítica (TLS, variáveis de ambiente) até que um humano note o sintoma — tempo de detecção nos dois casos foi de dias, não minutos, e dependente de relato manual, não de alerta automático. |
 
+### ARQ-510 — Eliminar flake intermitente em `content-visibility.spec.ts` (leitura de opacity sem retry)
+
+| Campo | Valor |
+|---|---|
+| Objetivo | Eliminar falso-negativo intermitente em CI que exige retrigger manual, restaurando confiança na suíte de testes. |
+| Descrição | O teste "Página de origem (/legal/politica-de-privacidade) — reveal-on-scroll revela ao rolar" (`tests/content-visibility.spec.ts`, antiga linha 142) lia `getComputedStyle(el).opacity` via `section.evaluate()` de forma síncrona, sem retry — diferente das duas asserções anteriores na mesma sequência (`toHaveClass(/visible/)` e `toBeVisible()`), que o Playwright já re-tenta automaticamente até `expect.timeout` (10000ms, `playwright.config.ts`). Sob 2 workers em CI (valor default do runner, confirmado nos 3 logs — não é paralelismo extremo), a leitura do opacity podia acontecer no exato frame em que a transição CSS da classe `reveal-on-scroll` ainda não tinha começado a renderizar, mesmo com a classe `visible` já confirmada presente. Corrigido substituindo a leitura síncrona por `expect.poll()`, que reusa o mesmo `expect.timeout` já configurado (nenhum timeout customizado adicional). Não relacionado ao Bloco A do mesmo arquivo (modal do wizard de diagnóstico), que já recebeu duas estabilizações em sprints anteriores (`136f9d0`, Sprint 33; `9482c12`, Sprint 35) e não aparece em nenhuma das 3 falhas documentadas — não alterado nesta sprint. |
+| Origem | 3 ocorrências idênticas em CI (mesmo arquivo, mesma linha, mesmo assert) — ver Observações |
+| Documento | Nenhum ainda — primeiro registro deste padrão, diagnosticado nesta sessão |
+| Item da dívida técnica | N/A — decorre de observação recorrente em CI, não de item numerado em `12-technical-debt.md` |
+| Arquivos afetados | `tests/content-visibility.spec.ts` (linha ~142) |
+| Dependências (depende de) | Nenhuma |
+| Dependências (desbloqueia) | Nenhuma |
+| Pré-requisitos | Nenhum |
+| Critérios de Aceite | Teste passa de forma consistente sob `--workers=2 --repeat-each=10` local; 0 novas ocorrências de falha em CI após o deploy desta correção (período de observação a definir) |
+| Critérios de Regressão | Bloco A do mesmo arquivo (modal do wizard de diagnóstico) continua passando inalterado; nenhum outro teste do arquivo é tocado |
+| Impacto | Médio (reduz fricção de CI, restaura confiança na suíte) |
+| Risco | Baixo (mudança de 3 linhas, escopo de teste apenas, não toca código de produção) |
+| Complexidade | Baixa |
+| Estimativa | P |
+| Responsável | DevOps |
+| Status | CONCLUÍDO (2026-08-17) — evidência local: 20/20 execuções passaram (`npx playwright test --workers=2 tests/content-visibility.spec.ts --repeat-each=10`, ~58s, Bloco A e Bloco B, 10 repetições cada). Ver Observações para os SHAs das 3 ocorrências de CI. |
+| ADR relacionado | Nenhum |
+| Métrica de sucesso | 0 ocorrências do erro em CI nas próximas execuções — a confirmar por observação (volume de PRs do projeto ainda não permite definir N com confiança estatística) |
+| Observações | **3 ocorrências de CI que motivam este item** (mesmo arquivo, mesma linha 142, mesmo assert `expect(received).toBeGreaterThan(expected)` com `Received: 0`): commits de retrigger `e65740c` (14/08/2026, precedido pela falha em `b3431ee`), `8892262` (17/08/2026, precedido pela falha em `28cb5642`), `1920905` (17/08/2026, precedido pela falha em `c87db7f`). Levantamento completo (conteúdo do teste, config do Playwright, logs de erro linha a linha) feito em etapa anterior desta sprint, antes de qualquer alteração de código. **Nota de numeração**: o contexto original desta sprint se referia a este item como "ARQ-506", presumindo ser o próximo ID livre do Épico 5 — não é; `ARQ-506` a `ARQ-509` já estavam ocupados (`ARQ-506` = política de `restart` no `docker-compose.yml`, concluído na Sprint 24). Registrado como `ARQ-510`, o ID de fato livre no Épico 5 no momento desta sprint. |
+
 ---
 
 ## Épico 6 — Acessibilidade (ARQ-6xx)
