@@ -138,7 +138,11 @@ test.describe("Página de origem (/legal/politica-de-privacidade) — reveal-on-
     await expect(section).toHaveClass(/visible/);
     await expect(section).toBeVisible();
 
-    const opacity = await section.evaluate((el) => getComputedStyle(el).opacity);
-    expect(Number(opacity)).toBeGreaterThan(0);
+    await expect
+      .poll(async () => {
+        const opacity = await section.evaluate((el) => getComputedStyle(el).opacity);
+        return Number(opacity);
+      })
+      .toBeGreaterThan(0);
   });
 });
