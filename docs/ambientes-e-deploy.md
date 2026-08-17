@@ -467,6 +467,28 @@ docker exec tutela_v2_nginx nginx -s reload   # só se o teste acima passar
 
 **Bloco C — aplicado manualmente pelo usuário, fora desta sessão** (o ambiente de execução do Claude Code não tem acesso SSH a `tutela-dev`/`tutela-web`, confirmado por teste direto — hostname não resolve; consistente com o padrão das sprints anteriores de infraestrutura). Confirmado por auditoria em 2026-08-05 via `curl -sS -D -` externo: o header `Content-Security-Policy-Report-Only` acima está ativo em **homologação e produção**. A extensão a produção — fora da sequência original deste plano — foi um deploy manual intencional do responsável do projeto, para resolver um problema que afetava produção; não é uma aplicação acidental. Pendente: período de observação sem violações inesperadas e decisão explícita sobre passar para modo bloqueante (`Content-Security-Policy` sem sufixo Report-Only).
 
+### CSP promovido para modo bloqueante em produção (ARQ-102) — 17/08/2026
+
+Após o período de observação em `Content-Security-Policy-Report-Only` desde a Sprint 38 (2026-08-05) sem nenhuma violação registrada, o header foi promovido para modo bloqueante (`Content-Security-Policy`, sem sufixo) **em produção**. A política em si não mudou — só o nome do header. Aplicado manualmente pelo usuário fora desta sessão (mesmo padrão de todas as intervenções de Nginx registradas nesta seção: sem acesso SSH neste ambiente de execução).
+
+Diff aplicado em `/etc/nginx/sites-enabled/tutela.conf` (host `tutela-web`, **não versionado neste repositório** — ver seção "Nginx" acima), no bloco `server { listen 443 ssl http2; server_name www.tuteladigital.com.br; }`, seção `SECURITY HEADERS`:
+
+```diff
+- add_header Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.google.com; frame-src https://www.google.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" always;
++ add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.google.com; frame-src https://www.google.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" always;
+```
+
+Validação feita antes de aplicar: inspeção manual via DevTools (Console + Network) em 3 páginas de maior risco — home (GA4/GTM), `/diagnostico/` (formulário + reCAPTCHA completo), `/insights/ativos-digitais/` (Google Fonts/reCAPTCHA) — zero violação de CSP encontrada, tanto em Report-Only quanto, depois do reload, já em modo bloqueante. Confirmado via `curl` em 17/08/2026:
+
+```bash
+curl -sI "https://www.tuteladigital.com.br/" | grep -i content-security-policy
+# → content-security-policy: [mesma política, sem -report-only]
+```
+
+Backup do arquivo original preservado em `/etc/nginx/sites-enabled/tutela.conf.bak-<data do backup mais recente>`.
+
+**Escopo confirmado como só produção**: o diff acima está restrito ao `server_name www.tuteladigital.com.br`; homologação segue em `Content-Security-Policy-Report-Only`, sem mudança nesta sprint — decisão de estender o modo bloqueante a homologação fica para sprint futura, não bloqueia o critério de aceite de `ARQ-102`, que é sobre o site público.
+
 ## Segurança e pendências de operação
 
 - Controle escrita nas branches `main` e `homolog`; use revisão para produção.
