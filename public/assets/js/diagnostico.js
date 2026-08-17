@@ -25,7 +25,11 @@ function updateProgress(step) {
 
   if (label && window.I18N && window.I18N.translations) {
     if (step < TOTAL_STEPS) {
-      const template = I18N.t('diagnostic.progressQuestion') || 'Pergunta {step} de {total}';
+      const translationsReady = window.I18N.translations.diagnostic &&
+        window.I18N.translations.diagnostic.progressQuestion;
+      const template = translationsReady
+        ? I18N.t('diagnostic.progressQuestion')
+        : 'Pergunta {step} de {total}';
       label.textContent = template.replace('{step}', step).replace('{total}', TOTAL_STEPS - 1);
     } else {
       label.textContent = I18N.t('diagnostic.progressData') || 'Seus dados';
