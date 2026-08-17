@@ -31,10 +31,10 @@ Essa configuração-fonte foi auditada diretamente nos dois servidores (`tutela-
 | `X-Content-Type-Options` | `nosniff` | `nosniff` |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` | `strict-origin-when-cross-origin` |
 | `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` | `camera=(), microphone=(), geolocation=()` |
-| `Content-Security-Policy-Report-Only` | ativo (política completa em `docs/ambientes-e-deploy.md`, seção "CSP Report-Only (ARQ-102)") | ativo |
-| `Content-Security-Policy` (modo bloqueante) | ausente | ausente |
+| `Content-Security-Policy-Report-Only` | substituído pelo header de enforcement (ver linha abaixo) | ativo (política completa em `docs/ambientes-e-deploy.md`, seção "CSP Report-Only (ARQ-102)") |
+| `Content-Security-Policy` (modo bloqueante) | **ativo desde 17/08/2026** — mesma política do Report-Only, sem sufixo (ver `docs/ambientes-e-deploy.md`, seção "CSP promovido para modo bloqueante em produção (ARQ-102)") | ausente (segue em Report-Only) |
 
-Detalhamento item a item, incluindo a evidência de config-fonte e o histórico de cada auditoria, está em `16-architecture-backlog.md` (ARQ-102 a ARQ-106, ARQ-108) e em `docs/ambientes-e-deploy.md` (seção "Nginx"). CSP em modo bloqueante segue pendente (ARQ-102, `BACKLOG`) — exige período de observação sem violações antes de ativar.
+Detalhamento item a item, incluindo a evidência de config-fonte e o histórico de cada auditoria, está em `16-architecture-backlog.md` (ARQ-102 a ARQ-106, ARQ-108) e em `docs/ambientes-e-deploy.md` (seção "Nginx"). CSP em modo bloqueante está `CONCLUÍDO` em produção (ARQ-102, 17/08/2026, após período de observação sem violações); homologação segue em Report-Only.
 
 `public/vercel.json` — que poderia ter sido o lugar natural para declarar headers caso a Vercel estivesse em uso — continha apenas `redirects`, nenhuma seção `headers`; removido na Sprint 6 (ARQ-403) por estar comprovadamente inerte (ver [12-technical-debt.md](12-technical-debt.md)).
 
