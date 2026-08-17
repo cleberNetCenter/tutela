@@ -154,6 +154,15 @@ Nginx deve, no mínimo:
 
 **Achado incidental, fora do escopo desta auditoria**: `docker ps` em produção mostra um container `tutela_v2_api` (porta 3000, interna, sem publicação externa direta) que não estava catalogado em nenhum documento de arquitetura. Pode ser a implementação de `/api/diagnostico` (item #2 de `12-technical-debt.md` / ARQ-101) — **não investigado agora**, por disciplina de escopo desta sprint (ARQ-108 é sobre Nginx, não sobre o backend do formulário). Fica como pista concreta para quando ARQ-101 for priorizado.
 
+### Regras adicionais em `tutela.conf` (fora do versionamento Git)
+
+- **410 para paths legados de WordPress** (`?page_id=`, `?s=`) —
+  adicionado em 17/08/2026 no bloco `server` de
+  `www.tuteladigital.com.br`, antes de `URL NORMALIZATION`. Resolve
+  resíduo de rastreio do Google Search Console (categoria "Crawled -
+  currently not indexed"). Validado via `curl -I` retornando 410 para
+  ambos os parâmetros, sem afetar `/`.
+
 ### Auditoria externa (ARQ-108) — 2026-07-24
 
 Auditoria em duas fases. Fase 1 (abaixo): `curl` a partir do ambiente de execução do Claude Code, que tinha acesso de rede de saída (confirmado antes de prosseguir) mas **nenhum acesso SSH ou a arquivo de configuração** — evidência puramente externa, reproduzível por qualquer pessoa com os mesmos comandos. Fase 2 ("Confirmação via `nginx -T` na fonte", mais abaixo): o usuário rodou os comandos de auditoria diretamente nos servidores e compartilhou o resultado, confirmando (e em um caso, corrigindo) o que a Fase 1 já indicava.
